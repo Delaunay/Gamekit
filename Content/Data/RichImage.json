@@ -1,0 +1,118 @@
+[
+	{
+		"Name": "Cooldown",
+		"Brush":
+		{
+			"ImageSize":
+			{
+				"X": 24,
+				"Y": 24
+			},
+			"Margin":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Tint":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"TintColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ResourceObject": "Material'/Gamekit/MaterialLibrary/AbilityCooldown.AbilityCooldown'",
+			"ResourceName": "None",
+			"UVRegion":
+			{
+				"Min":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Max":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"bIsValid": 0
+			},
+			"DrawAs": "Image",
+			"Tiling": "NoTile",
+			"Mirroring": "NoMirror",
+			"ImageType": "NoImage",
+			"bIsDynamicallyLoaded": false,
+			"bHasUObject": false
+		}
+	},
+	{
+		"Name": "Cost",
+		"Brush":
+		{
+			"ImageSize":
+			{
+				"X": 24,
+				"Y": 24
+			},
+			"Margin":
+			{
+				"Left": 0,
+				"Top": 0,
+				"Right": 0,
+				"Bottom": 0
+			},
+			"Tint":
+			{
+				"R": 1,
+				"G": 1,
+				"B": 1,
+				"A": 1
+			},
+			"TintColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ResourceObject": "Material'/Gamekit/MaterialLibrary/AbilityCost.AbilityCost'",
+			"ResourceName": "None",
+			"UVRegion":
+			{
+				"Min":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"Max":
+				{
+					"X": 0,
+					"Y": 0
+				},
+				"bIsValid": 0
+			},
+			"DrawAs": "Image",
+			"Tiling": "NoTile",
+			"Mirroring": "NoMirror",
+			"ImageType": "NoImage",
+			"bIsDynamicallyLoaded": false,
+			"bHasUObject": false
+		}
+	}
+]

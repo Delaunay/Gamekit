@@ -1,0 +1,60 @@
+#pragma once
+
+//! pi constnat
+inline float pi() {
+    return 3.14159265359;
+}
+
+//! Degree to radian ratio
+inline float d2r() {
+    return pi() / 180.f;
+}
+
+//! Radian to degree ratio
+inline float r2d() {
+    return 180.f / pi();
+}
+
+//! Returns polar coordinate (theta, radius) with theta being an angle [-pi, pi]
+float2 GetMidPoint(float InnerRadius, float OuterRadius, int SlotID, int Count, float Rotation) {
+    float MidRadius = (InnerRadius + OuterRadius) * 0.5;
+    float Step = (float(SlotID)) / float(Count) * 2.f * pi();
+
+    float RotationOffset = + Rotation * d2r();
+    float Angle = Step + RotationOffset + 0.5 / float(Count) * 2.f * pi();
+    return float2(Angle, MidRadius);
+}
+
+
+//! Transform polar coordinates to catersian coordinates
+float2 ToCartesian(float2 p) {
+    float2 Cartesian = float2(
+        p.y * cos(p.x),
+        p.y * sin(p.x)
+    );
+
+    return Cartesian;
+}
+
+//! Transforms catersian coordinates to polar coordinates
+float2 ToPolar(float2 p) {
+    float r = sqrt(p.x * p.x + p.y * p.y);
+    float theta = atan2(p.y, p.x);
+    return float2(theta, r);
+}
+
+//! Move (0, 0) from the top left corner of the texture to the center
+float2 CenteredUV(float2 uv) {
+    return float2(
+        2.0 * uv.x - 1,
+        1 - 2.0 * uv.y
+    );
+}
+
+//! Move (0, 0) from the center of the texture back to the top left corner
+float2 UnCenteredUV(float2 uv) {
+    return float2(
+        (uv.x + 1) / 2.f,
+        - (uv.y - 1) / 2.f
+    );
+}

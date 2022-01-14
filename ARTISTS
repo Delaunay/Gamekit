@@ -1,0 +1,23 @@
+This file is a list of Artist that contributed to Gamekit
+directly by providing the art for Gamekit or indirectly by making their art
+available through a permissive license.
+
+TODO: parse the file and create a credit section for Gamekit
+
+Artists
+=======
+
+<json>
+[
+{
+    "Attribution": "J. W. Bjerk (eleazzaar) -- www.jwbjerk.com/art  -- find this and other open art at: http://opengameart.org",
+    "Files": "Plugins/Gamekit/Content/Textures/IconsSkills/*",
+    "Licenses": [
+        "GNU GPL 2.0",
+        "GNU GPL 3.0",
+        "CC-BY 3.0",
+        "CC-BY-SA 3.0",
+    ]
+}
+]
+</json>

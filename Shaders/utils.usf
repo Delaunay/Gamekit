@@ -1,0 +1,8 @@
+#pragma once
+
+#include "/Gamekit/glsl_compat.usf"
+
+
+vec2 scale(vec2 uv, vec2 _scale){
+    return mul(mat2(_scale.x,0.0,0.0,_scale.y), uv);
+}

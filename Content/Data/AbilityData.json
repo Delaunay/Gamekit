@@ -1,0 +1,160 @@
+[
+	{
+		"Name": "Fireball",
+		"AbilityKind": "Skill",
+		"LocalName": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"EC9BA0DD417F0C07C07E3DBB00F88785\", \"Fire Ball\")",
+		"LocalDescription": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"9CB2744E447BF19F751B929142E6F484\", \"Launch a roaring ball of fire in a straight line\")",
+		"Icon": "Texture2D'/Gamekit/Textures/IconsSkills/fireball-red-1.fireball-red-1'",
+		"MaxLevel": 4,
+		"Duration": 0,
+		"AbilityEffects":
+		{
+		},
+		"Cost":
+		{
+			"Attribute":
+			{
+				"AttributeName": "Mana",
+				"Attribute": "/Script/Gamekit.GKAttributeSet:Mana",
+				"AttributeOwner": "Class'/Script/Gamekit.GKAttributeSet'"
+			},
+			"Value": [ 10, 9, 8, 7 ]
+		},
+		"Cooldown": [ 0.5, 9, 8, 5 ],
+		"Price": 0,
+		"MaxStack": 1,
+		"AreaOfEffect": 50,
+		"CastMaxRange": 500,
+		"CastMinRange": 0,
+		"AbilityBehavior": "PointTarget",
+		"AbilityTargetActorClass": "BlueprintGeneratedClass'/Game/Abilities/TargetActors/ControllerTrace.ControllerTrace_C'",
+		"TargetObjectTypes": [],
+		"CastTime": 0.20000000298023224,
+		"ChannelTime": 0,
+		"AbilityAnimation": "Attack",
+		"ProjectileActorClass": "BlueprintGeneratedClass'/Game/Abilities/Projectiles/BP_GA_Projectile.BP_GA_Projectile_C'",
+		"ProjectileSpeed": 1000,
+		"ProjectileBehavior": "Directional",
+		"ProjectileRange": 1600,
+		"AOEActorClass": "None"
+	},
+	{
+		"Name": "MeleeAttack",
+		"AbilityKind": "Skill",
+		"LocalName": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"F74451BA4C89824D2920A59A84ED2DC4\", \"Attack\")",
+		"LocalDescription": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"1B9C283845FB213172E553ABFDD50681\", \"Normal Attack\")",
+		"Icon": "Texture2D'/Gamekit/Textures/IconsSkills/enchant-red-3.enchant-red-3'",
+		"MaxLevel": 4,
+		"Duration": 0,
+		"AbilityEffects":
+		{
+		},
+		"Cost":
+		{
+			"Attribute":
+			{
+				"AttributeName": "Mana",
+				"Attribute": "/Script/Gamekit.GKAttributeSet:Mana",
+				"AttributeOwner": "Class'/Script/Gamekit.GKAttributeSet'"
+			},
+			"Value": [ 50, 30, 40, 50 ]
+		},
+		"Cooldown": [ 5 ],
+		"Price": 0,
+		"MaxStack": 1,
+		"AreaOfEffect": 0,
+		"CastMaxRange": 0,
+		"CastMinRange": 0,
+		"AbilityBehavior": "Hidden",
+		"AbilityTargetActorClass": "Class'/Script/Gamekit.GKAbilityTarget_PlayerControllerTrace'",
+		"TargetObjectTypes": [
+			"ObjectTypeQuery1"
+		],
+		"CastTime": 0.20000000298023224,
+		"ChannelTime": 0,
+		"AbilityAnimation": "Attack",
+		"ProjectileActorClass": "None",
+		"ProjectileSpeed": 0,
+		"ProjectileBehavior": "UnitTarget",
+		"ProjectileRange": 0,
+		"AOEActorClass": "None"
+	},
+	{
+		"Name": "Ability3",
+		"AbilityKind": "Skill",
+		"LocalName": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"F74451BA4C89824D2920A59A84ED2DC4\", \"Attack\")",
+		"LocalDescription": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"1B9C283845FB213172E553ABFDD50681\", \"Normal Attack\")",
+		"Icon": "Texture2D'/Gamekit/Textures/IconsSkills/evil-eye-red-3.evil-eye-red-3'",
+		"MaxLevel": 4,
+		"Duration": 0,
+		"AbilityEffects":
+		{
+		},
+		"Cost":
+		{
+			"Attribute":
+			{
+				"AttributeName": "Mana",
+				"Attribute": "/Script/Gamekit.GKAttributeSet:Mana",
+				"AttributeOwner": "Class'/Script/Gamekit.GKAttributeSet'"
+			},
+			"Value": [ 20, 30, 40, 50 ]
+		},
+		"Cooldown": [ 20 ],
+		"Price": 0,
+		"MaxStack": 1,
+		"AreaOfEffect": 250,
+		"CastMaxRange": 0,
+		"CastMinRange": 0,
+		"AbilityBehavior": "Hidden",
+		"AbilityTargetActorClass": "Class'/Script/Gamekit.GKAbilityTarget_PlayerControllerTrace'",
+		"TargetObjectTypes": [],
+		"CastTime": 0.20000000298023224,
+		"ChannelTime": 0,
+		"AbilityAnimation": "Attack",
+		"ProjectileActorClass": "None",
+		"ProjectileSpeed": 0,
+		"ProjectileBehavior": "UnitTarget",
+		"ProjectileRange": 0,
+		"AOEActorClass": "None"
+	},
+	{
+		"Name": "Firewave",
+		"AbilityKind": "Skill",
+		"LocalName": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"ECACA7EA47D83054F2D77FBE556D977B\", \"Fire Wave\")",
+		"LocalDescription": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"963877634A2FD154F72DA995C7B8AA3E\", \"Devastating firewave burn everything on its path\")",
+		"Icon": "Texture2D'/Gamekit/Textures/IconsSkills/explosion-orange-3.explosion-orange-3'",
+		"MaxLevel": 4,
+		"Duration": 0,
+		"AbilityEffects":
+		{
+		},
+		"Cost":
+		{
+			"Attribute":
+			{
+				"AttributeName": "Mana",
+				"Attribute": "/Script/Gamekit.GKAttributeSet:Mana",
+				"AttributeOwner": "None"
+			},
+			"Value": [ 10 ]
+		},
+		"Cooldown": [ 60 ],
+		"Price": 0,
+		"MaxStack": 1,
+		"AreaOfEffect": 0,
+		"CastMaxRange": 250,
+		"CastMinRange": 0,
+		"AbilityBehavior": "PointTarget",
+		"AbilityTargetActorClass": "Class'/Script/Gamekit.GKAbilityTarget_PlayerControllerTrace'",
+		"TargetObjectTypes": [],
+		"CastTime": 1,
+		"ChannelTime": 0,
+		"AbilityAnimation": "Attack",
+		"ProjectileActorClass": "None",
+		"ProjectileSpeed": 0,
+		"ProjectileBehavior": "UnitTarget",
+		"ProjectileRange": 0,
+		"AOEActorClass": "None"
+	}
+]

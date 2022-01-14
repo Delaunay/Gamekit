@@ -1,0 +1,187 @@
+#pragma once
+
+#include "/Gamekit/glsl_compat.usf"
+
+float random(float2 st) {
+    return frac(sin(dot(st.xy, float2(12.9898, 78.233))) * 43758.5453123);
+}
+
+float mix(float a, float b, float p) {
+    return a * (1 - p) + b * p;
+}
+
+
+float2 mix2(float2 a, float2 b, float p) {
+    return a * (1 - p) + b * p;
+}
+
+
+float3 mix3(float3 a, float3 b, float p) {
+    return a * (1 - p) + b * p;
+}
+
+//! Based on Morgan McGuire @morgan3d https://www.shadertoy.com/view/4dS3WdS
+float noise(float2 st) {
+    float2 i = floor(st);
+    float2 f = frac(st);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + float2(1.0, 0.0));
+    float c = random(i + float2(0.0, 1.0));
+    float d = random(i + float2(1.0, 1.0));
+
+    float2 u = f * f * (3.0 - 2.0 * f);
+
+    return a * (1 - u.x) + b * u.x +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+
+float fbm (float2 st, int octaves) {
+    // Initial values
+    float value = 0.0;
+    float amplitude = .5;
+    float frequency = 0.;
+    //
+    // Loop of octaves
+    for (int i = 0; i < octaves; i++) {
+        value += amplitude * noise(st);
+        st *= 2.;
+        amplitude *= .5;
+    }
+    return value;
+}
+
+
+float fbm_cloud (float2 _st, int octaves) {
+    float v = 0.0;
+    float a = 0.5;
+    float2 shift = float2(100.0, 100);
+
+    // Rotate to reduce axial bias
+    mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));
+
+    for (int i = 0; i < octaves; ++i) {
+        v += a * noise(_st);
+        _st = mul(rot, _st) * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+
+float3 smoke(float2 st, float t, int octaves) {
+    float2 q = float2(0, 0);
+    q.x = fbm( st + 0.00 * t, octaves);
+    q.y = fbm( st + float2(1.0, 1), octaves);
+
+    float2 r = float2(0., 0);
+    r.x = fbm( st + 1.0*q + float2(1.7,9.2)+ 0.150 * t, octaves);
+    r.y = fbm( st + 1.0*q + float2(8.3,2.8)+ 0.126 * t, octaves);
+
+    float f = fbm(st+r, octaves);
+
+    float3 color = float3(0, 0, 0);
+    color = mix3(float3(0.101961,0.619608,0.666667),
+                float3(0.666667,0.666667,0.498039),
+                clamp((f*f)*4.0,0.0,1.0));
+
+    color = mix3(color,
+                float3(0,0,0.164706),
+                clamp(length(q),0.0,1.0));
+
+    color = mix3(color,
+                float3(0.666667,1,1),
+                clamp(length(r.x),0.0,1.0));
+
+    return color;
+}
+
+#ifndef VORONOI_SIZE
+#define VORONOI_SIZE 4
+#endif
+
+float3 voronoi(float2 st) {
+    vec3 color = vec3(.0, 0, 0);
+
+    // Cell positions
+    float2 p[VORONOI_SIZE];
+    p[0] = vec2(0.83,0.75);
+    p[1] = vec2(0.60,0.07);
+    p[2] = vec2(0.28,0.64);
+    p[3] = vec2(0.31,0.26);
+
+    float m_dist = 1.;  // minimum distance
+    vec2 m_point;        // minimum position
+
+    // Iterate through the points positions
+    for (int i = 0; i < VORONOI_SIZE; i++) {
+        float dist = distance(st, p[i]);
+        if ( dist < m_dist ) {
+            // Keep the closer distance
+            m_dist = dist;
+
+            // Kepp the position of the closer point
+            m_point = p[i];
+        }
+    }
+
+    // Add distance field to closest point center
+    // color += m_dist*2.;
+
+    // tint acording the closest point position
+    color.rg = m_point;
+
+    // Show isolines
+    // color -= abs(sin(80.0*m_dist))*0.07;
+
+    // Draw point center
+    // color += 1.-step(.02, m_dist);
+
+    return color;
+}
+
+
+#define GAUSSIAN_KERNEL(FILTER) FILTER(-1.,  1., 1./16.) FILTER( 0.,  1., 1./8.) FILTER( 1.,  1., 1./16.) FILTER(-1.,  0., 1./8.) FILTER( 0.,  0., 1./4.) FILTER( 1.,  0., 1./8.) FILTER(-1., -1., 1./16.) FILTER( 0., -1., 1./8.) FILTER( 1., -1., 1./16.)
+
+float blured_random(vec2 st) {
+    float blured = 0.;
+
+    #define FILTER(x, y, v)\
+        blured += random(st + vec2(x, y)) * v;
+
+    GAUSSIAN_KERNEL(FILTER)
+    #undef FILTER
+
+    return blured;
+}
+
+float2 center(float2 p) {
+    return float2(p.x - 0.5, 0.5 - p.y);
+}
+
+float tresh(float a, float p) {
+    return a * (a > p);
+}
+
+float2 julia2(float2 p, float2 c, float r, float n) {
+    float i = 0.;
+    float r2 = r * r;
+    float2 z = p;
+
+    while (z.x * z.x + z.y * z.y < r2 &&  i < n) {
+        float xtemp = z.x * z.x - z.y * z.y;
+        z.y = 2 * z.x * z.y  + c.y ;
+        z.x = xtemp + c.x;
+
+        i += 1;
+    }
+
+    if (i == n) {
+        return 0.;
+    }
+    return i / n;
+}
+

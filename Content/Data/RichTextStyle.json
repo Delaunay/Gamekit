@@ -1,0 +1,1890 @@
+[
+	{
+		"Name": "Default",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 0.89999997615814209,
+					"G": 0.89999997615814209,
+					"B": 0.89999997615814209,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Bold",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Bold_Font.Comfortaa-Bold_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Title",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Bold_Font.Comfortaa-Bold_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 24,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Desc",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Cost",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 0.80208301544189453,
+					"G": 0.80208301544189453,
+					"B": 0.80208301544189453,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Cooldown",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 0.80208301544189453,
+					"G": 0.80208301544189453,
+					"B": 0.80208301544189453,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Newline",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 12,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	},
+	{
+		"Name": "Level",
+		"TextStyle":
+		{
+			"Font":
+			{
+				"FontObject": "Font'/Gamekit/Fonts/Comfortaa-Medium_Font.Comfortaa-Medium_Font'",
+				"FontMaterial": "None",
+				"OutlineSettings":
+				{
+					"OutlineSize": 0,
+					"bSeparateFillAlpha": false,
+					"bApplyOutlineToDropShadows": false,
+					"OutlineMaterial": "None",
+					"OutlineColor":
+					{
+						"R": 0,
+						"G": 0,
+						"B": 0,
+						"A": 1
+					}
+				},
+				"TypefaceFontName": "Default",
+				"Size": 13,
+				"LetterSpacing": 0,
+				"FontName": "None",
+				"Hinting": "Default"
+			},
+			"ColorAndOpacity":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Specified"
+			},
+			"ShadowOffset":
+			{
+				"X": 0,
+				"Y": 0
+			},
+			"ShadowColorAndOpacity":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 1
+			},
+			"SelectedBackgroundColor":
+			{
+				"SpecifiedColor":
+				{
+					"R": 1,
+					"G": 0,
+					"B": 1,
+					"A": 1
+				},
+				"ColorUseRule": "UseColor_Foreground"
+			},
+			"HighlightColor":
+			{
+				"R": 0,
+				"G": 0,
+				"B": 0,
+				"A": 0
+			},
+			"HighlightShape":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"StrikeBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 0
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "None",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Image",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			},
+			"UnderlineBrush":
+			{
+				"ImageSize":
+				{
+					"X": 32,
+					"Y": 32
+				},
+				"Margin":
+				{
+					"Left": 0,
+					"Top": 0,
+					"Right": 0,
+					"Bottom": 1
+				},
+				"Tint":
+				{
+					"R": 1,
+					"G": 1,
+					"B": 1,
+					"A": 1
+				},
+				"TintColor":
+				{
+					"SpecifiedColor":
+					{
+						"R": 1,
+						"G": 1,
+						"B": 1,
+						"A": 1
+					},
+					"ColorUseRule": "UseColor_Specified"
+				},
+				"ResourceObject": "Material'/Gamekit/MaterialLibrary/Color/White.White'",
+				"ResourceName": "None",
+				"UVRegion":
+				{
+					"Min":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"Max":
+					{
+						"X": 0,
+						"Y": 0
+					},
+					"bIsValid": 0
+				},
+				"DrawAs": "Border",
+				"Tiling": "NoTile",
+				"Mirroring": "NoMirror",
+				"ImageType": "NoImage",
+				"bIsDynamicallyLoaded": false,
+				"bHasUObject": false
+			}
+		}
+	}
+]

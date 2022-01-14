@@ -1,0 +1,19 @@
+#pragma once
+
+//! defines vec2 as HLSL float2
+#define vec2 float2
+
+//! defines vec3 as HLSL float3
+#define vec3 float3
+
+//! defines mat2 as HLSL float2x2
+#define mat2 float2x2
+
+//! defines mat3 as HLSL float3x3
+#define mat3 float3x3
+
+//! defines mat4 as HLSL float4x4
+#define mat4 float4x4
+
+//! defines fract as HLSL frac
+#define fract frac

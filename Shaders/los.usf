@@ -1,0 +1,41 @@
+
+// See F:\UE_4.26\Engine\Plugins\Experimental\ColorCorrectRegions\Shaders\Private\ColorCorrectRegionsShader.usf
+// for SceneTextureId
+//
+// #define PPI_CustomDepth 13
+//
+// https://www.artstation.com/artwork/63NQN
+// This does not work
+// either the editor crashes or the performance drops drasticly
+float los_raymarching (float2 HeadPosition, int StepCount, float2 ScreenUV) {
+    float4 pointHeight = SceneTextureLookup(ScreenUV, PPI_CustomDepth, false);
+    float4 targetHeight = SceneTextureLookup(HeadPosition, PPI_CustomDepth, false);
+    targetHeight = targetHeight - 1;
+
+    float2 currentUV;
+    float4 currentHeight;
+    float4 supposedHeight;
+    float2 dir = HeadPosition - ScreenUV;
+    float2 dis;
+
+    if (length(dir) < 0.03)
+        return 0.0f;
+
+    float steps = StepCount * length(dir) / 0.5;
+    float4 th = ((float) (targetHeight - pointHeight)) / steps;
+
+    for (int i = 1; i < steps; i++) {
+        currentUV = ScreenUV + (((float) i) / steps) * dir;
+        currentHeight = SceneTextureLookup(currentUV, PPI_CustomDepth, false);
+        supposedHeight = pointHeight + i * th;
+        dis = HeadPosition - currentUV;
+
+        if (length(dis) < 0.03)
+            return 0.0f;
+
+        if (currentHeight[0] + 50 < supposedHeight[0])
+            return 1.0f;
+    }
+
+    return 0.0f;
+}

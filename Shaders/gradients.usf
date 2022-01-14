@@ -1,0 +1,19 @@
+#pragma once
+
+#include "/Gamekit/glsl_compat.usf"
+
+float hexagon_gradient(float2 p, float r) {
+    // hex width = sqrt(3) / 2
+    const float3 HEX = float3(-0.866025404, 0.5, 0.577350269);
+
+    float2 s = sign(p);
+    p = abs(p);
+	float w = dot(HEX.xy, p);
+
+    p -= 2.0 * min(w, 0.0) * HEX.xy;
+    p -= float2(clamp(p.x, - HEX.z * r, HEX.z * r), r);
+
+    float d = length(p) * sign(p.y);
+
+    return d;
+}
