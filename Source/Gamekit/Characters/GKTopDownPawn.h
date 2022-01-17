@@ -7,20 +7,22 @@
 
 #include "Gamekit.h"
 #include "GameFramework/Pawn.h"
-#include "GKDummyPawn.generated.h"
+#include "GKTopDownPawn.generated.h"
 
 /**
  * A Edge paning camera and a cursor
  * Used when the controller is top-down god-like i.e not attached to a specific character
+ * 
+ * Movement Specific: EdgePan (Cursor to Edges to move), Screen Grab (click & move), Screen WASD
  */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKDummyPawn: public APawn
+class GAMEKIT_API AGKTopDownPawn: public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	AGKDummyPawn();
+	AGKTopDownPawn();
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,10 +41,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
-
-//	UFUNCTION()
-//	void OnScreenGrab();
-
 	/** Returns CameraBoom subobject **/
 	UFUNCTION(BlueprintGetter)
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -56,9 +54,6 @@ public:
 
 	UPROPERTY()
 	class APlayerController* PlayerController;
-
-	UPROPERTY()
-	class AHUD* PlayerHUD;
 
 	UFUNCTION(BlueprintCallable)
 	FVector GetCameraPanDirection();
@@ -83,16 +78,4 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float ZoomMax;
-
-	/** Returns CursorToWorld subobject **/
-	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
-
-	UPROPERTY()
-	FVector2D GridSize;
-
-private:
-
-	/** A decal that projects to the cursor location. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UDecalComponent* CursorToWorld;
 };

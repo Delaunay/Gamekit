@@ -7,13 +7,13 @@
 #include "Kismet/KismetSystemLibrary.h"
 
 
-UGKBoxSelection::UGKBoxSelection() { 
+UGKBoxSelectionComponent::UGKBoxSelectionComponent() { 
     ActorClassFilter = AActor::StaticClass();
     ExtentMargin     = FVector(0.f, 0.f, 100.f);
     ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
 }
 
-void UGKBoxSelection::StartBoxSelection(APlayerController * Controller,
+void UGKBoxSelectionComponent::StartBoxSelection(APlayerController * Controller,
                                         ETraceTypeQuery Trace) { 
     if (Controller == nullptr) {
         return;
@@ -31,7 +31,7 @@ void UGKBoxSelection::StartBoxSelection(APlayerController * Controller,
     Selecting = true;
 }
 
-void UGKBoxSelection::UpdateBoxSelection(APlayerController *Controller) {
+void UGKBoxSelectionComponent::UpdateBoxSelection(APlayerController *Controller) {
     if (!Selecting) {
         return;
     }
@@ -50,7 +50,7 @@ void UGKBoxSelection::UpdateBoxSelection(APlayerController *Controller) {
     Box += End;
 }
 
-void UGKBoxSelection::FetchBoxSelection(const UObject *World,  TArray<AActor *> &Out) {
+void UGKBoxSelectionComponent::FetchBoxSelection(const UObject *World,  TArray<AActor *> &Out) {
     if (!Selecting) {
         return;
     }
@@ -66,12 +66,11 @@ void UGKBoxSelection::FetchBoxSelection(const UObject *World,  TArray<AActor *> 
     );
 }
 
-void UGKBoxSelection::EndBoxSelection(const UObject *World, TArray<AActor *> &Out) {
-    FetchBoxSelection(World, Out);
+void UGKBoxSelectionComponent::EndBoxSelection(const UObject *World) {
     Selecting = false;
 }
 
-void UGKBoxSelection::DrawBoxSelection(const UObject *World) {
+void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World) {
     if (!Selecting) {
         return;
     }
@@ -107,5 +106,6 @@ void UGKBoxSelection::DrawBoxSelection(const UObject *World) {
 }
 
 
-FVector UGKBoxSelection::GetCenter() { return Box.GetCenter(); }
-FVector UGKBoxSelection::GetExtent() { return Box.GetExtent(); }
+FVector UGKBoxSelectionComponent::GetCenter() { return Box.GetCenter(); }
+FVector UGKBoxSelectionComponent::GetExtent() { return Box.GetExtent(); }
+FVector UGKBoxSelectionComponent::GetSize()   { return Box.GetSize();   }

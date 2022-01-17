@@ -7,7 +7,7 @@
 
 #include "Controllers/GKUnitController.h"
 #include "Grid/GKMovementUtility.h"
-#include "Characters/GKDummyPawn.h"
+#include "Characters/GKTopDownPawn.h"
 
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Blueprint/BlueprintExtension.h"
@@ -58,7 +58,7 @@ void AGKUnitCharacter::Tick(float delta)
 	// -----------------------------
 	// UGameplayStatics::GetPlayerPawn();
 	auto pawn = GetWorld()->GetFirstPlayerController()->GetPawn();
-	auto tactician = Cast<AGKDummyPawn>(pawn);
+    auto tactician = Cast<AGKTopDownPawn>(pawn);
 
 	if (tactician == nullptr){
 		UE_LOG(LogTemp, Warning, TEXT("Unit is not owned by a tactician"));

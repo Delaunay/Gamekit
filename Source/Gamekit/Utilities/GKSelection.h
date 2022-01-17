@@ -8,6 +8,7 @@
 #include "Math/Vector.h"
 #include "GameFramework/Actor.h"
 #include "Containers/Array.h"
+#include "Components/ActorComponent.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 
 #include "GKSelection.generated.h"
@@ -15,14 +16,15 @@
 
 /* Select a group of actors that is inside a box.
  * The box bound is given by the cursor. 
+ * 
  */
-UCLASS(Blueprintable)
-class GAMEKIT_API UGKBoxSelection: public UObject
+UCLASS(Blueprintable, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+class GAMEKIT_API UGKBoxSelectionComponent: public UActorComponent 
 {
     GENERATED_BODY()
 
 public:
-    UGKBoxSelection();
+    UGKBoxSelectionComponent();
 
     //! Start a box selection using the cursor position as the starting point
     UFUNCTION(BlueprintCallable, Category = "Selection")
@@ -39,7 +41,7 @@ public:
 
     //! Stop selection and returns the last selection
     UFUNCTION(BlueprintCallable, Category = "Selection", meta = (WorldContext = "World"))
-    void EndBoxSelection(const UObject *World, TArray<AActor *> &Out);
+    void EndBoxSelection(const UObject *World);
 
     //! Draw the current selction box for debug purposes
     UFUNCTION(BlueprintCallable, Category = "Debug|Selection", meta = (WorldContext = "World"))
@@ -52,6 +54,10 @@ public:
     //! Get the extent of the selection
     UFUNCTION(BlueprintPure, Category = "Selection")
     FVector GetExtent();
+
+    //! Get the size of the selection
+    UFUNCTION(BlueprintPure, Category = "Selection")
+    FVector GetSize();
 
     //! Last hit result
     UPROPERTY(BlueprintReadOnly)
@@ -94,13 +100,4 @@ public:
     //! Specific actors we would like to ignore
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<AActor *> ActorsToIgnore;
-};
-
-
-UCLASS()
-class GAMEKIT_API UGKSelectionLibrary: public UBlueprintFunctionLibrary {
-    GENERATED_BODY()
-
-    public:
-
 };

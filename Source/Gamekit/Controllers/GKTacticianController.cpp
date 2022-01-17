@@ -4,7 +4,7 @@
 // All rights reserved.
 
 #include "Controllers/GKTacticianController.h"
-#include "Characters/GKDummyPawn.h"
+#include "Characters/GKTopDownPawn.h"
 #include "Characters/GKUnitCharacter.h"
 #include "Grid/GKHexGridUtilities.h"
 
@@ -36,7 +36,7 @@ void AGKTacticianController::SetupInputComponent()
 }
 
 void AGKTacticianController::OnCameraZoom(float delta){
-	auto pawn = Cast<AGKDummyPawn>(GetPawn());
+	auto pawn = Cast<AGKTopDownPawn>(GetPawn());
 	pawn->ZoomCamera(delta);
 }
 
@@ -48,10 +48,11 @@ void AGKTacticianController::OnSelect(){
 	if (SelectedUnit != nullptr && Hit.bBlockingHit){
 		auto worldPos = Hit.ImpactPoint;
 
-		if (GetPawn() != nullptr){
-			auto size = Cast<AGKDummyPawn>(GetPawn())->GridSize;
+		if (GetPawn() != nullptr) { /*
+            auto size    = Cast<AGKTopDownPawn>(GetPawn())->GridSize;
 			auto gridPos = UGKHexGridUtilities::WorldToGrid(size, Hit.ImpactPoint);
 			worldPos = UGKHexGridUtilities::GridToWorld(size, gridPos);
+            */
 		}
 
 		UE_LOG(LogTemp, Warning, TEXT("Moving unit to %f x %f"), worldPos.X, worldPos.Y);
