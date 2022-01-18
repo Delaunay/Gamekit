@@ -6,7 +6,7 @@
 #include "GKEnhancedInputInterface.generated.h"
 
 
-UINTERFACE()
+UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
 class UPawnEnhancedInputInterface: public UInterface {
     GENERATED_BODY()
 };
