@@ -41,7 +41,10 @@ public class Gamekit : ModuleRules
             "Slate",
             "SlateCore",
             // Particles
-            "Niagara"
+            "Niagara",
+
+            // 
+            "EnhancedInput",
         });
     }
 }
