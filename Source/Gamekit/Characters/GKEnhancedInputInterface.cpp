@@ -1,6 +1,5 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-
 #include "Gamekit/Characters/GKEnhancedInputInterface.h"
 
 #include "InputTriggers.h"
@@ -9,8 +8,8 @@
 #include "EnhancedInputSubsystems.h"
 
 
- void IPawnEnhancedInputInterface::InitializeEnhancedInput(class AController     *MyController,
-                                                           class UInputComponent *PlayerInputComponent)
+ void IGKPawnEnhancedInputInterface::InitializeEnhancedInput(class AController *MyController,
+                                                             class UInputComponent *PlayerInputComponent)
  {
     // Cache for later
     PlayerEnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
@@ -49,7 +48,7 @@
     }
  }
 
-void IPawnEnhancedInputInterface::AddMappingContext(class UInputMappingContext *Input,
+void IGKPawnEnhancedInputInterface::AddMappingContext(class UInputMappingContext *Input,
                                                         int32                       Priority) {
     if (PlayerEnhancedInputComponent == nullptr) {
         UE_LOG(LogGamekit, Log, TEXT("AddMappingContext: Pawn is not using EnhancedInputComponent"));
@@ -89,7 +88,7 @@ void IPawnEnhancedInputInterface::AddMappingContext(class UInputMappingContext *
     InputSubsystem->AddMappingContext(Input, Priority);
 }
 
-void IPawnEnhancedInputInterface::RemoveMappingContext(class UInputMappingContext *Input) {
+void IGKPawnEnhancedInputInterface::RemoveMappingContext(class UInputMappingContext *Input) {
     if (PlayerEnhancedInputComponent == nullptr) {
         UE_LOG(LogGamekit, Log, TEXT("RemoveMappingContext: Pawn is not using EnhancedInputComponent"));
         return;
@@ -112,9 +111,9 @@ void IPawnEnhancedInputInterface::RemoveMappingContext(class UInputMappingContex
 }
 
 
-TMap<class UInputAction *, FName> const &IPawnEnhancedInputInterface::GetActionNameOverrides() {
+TMap<class UInputAction *, FName> const &IGKPawnEnhancedInputInterface::GetActionNameOverrides() {
     static TMap<class UInputAction *, FName> empty;
     return empty;
 }
 
-UInputMappingContext *IPawnEnhancedInputInterface::GetDefaultInputMapping() { return nullptr; }
+UInputMappingContext *IGKPawnEnhancedInputInterface::GetDefaultInputMapping() { return nullptr; }

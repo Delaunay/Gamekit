@@ -13,6 +13,16 @@
 
 #include "GKSelection.generated.h"
 
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKUnitGroup 
+{
+    GENERATED_USTRUCT_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TArray<AActor *> Units;
+};
+
 
 /* Select a group of actors that is inside a box.
  * The box bound is given by the cursor. 
@@ -28,8 +38,12 @@ public:
 
     //! Start a box selection using the cursor position as the starting point
     UFUNCTION(BlueprintCallable, Category = "Selection")
-    void StartBoxSelection(class APlayerController* Controller,
-                           ETraceTypeQuery          TraceChannel);
+    void StartBoxSelection(class APlayerController *Controller, ETraceTypeQuery TraceChannel);
+
+    //! Start the selection box if not current selecting
+    //! Update the selection box if currently selecting
+    UFUNCTION(BlueprintCallable, Category = "Selection")
+    void StartOrUpdateBoxSelection(class APlayerController *Controller, ETraceTypeQuery TraceChannel);
 
     //! Update the box selection using the cursor position as the end point
     UFUNCTION(BlueprintCallable, Category = "Selection")

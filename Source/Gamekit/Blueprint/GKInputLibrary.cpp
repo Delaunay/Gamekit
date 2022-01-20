@@ -3,6 +3,8 @@
 
 #include "Gamekit/Blueprint/GKInputLibrary.h"
 
+#include "Kismet/KismetSystemLibrary.h"
+
 
 FInputActionValue UGKInputLibrary::MakeBooleanAction(bool value) {
     return FInputActionValue(value);

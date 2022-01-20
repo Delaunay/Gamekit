@@ -2,7 +2,6 @@
 
 
 #include "Gamekit/Utilities/GKSelection.h"
-
 #include "GameFramework/PlayerController.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -13,9 +12,27 @@ UGKBoxSelectionComponent::UGKBoxSelectionComponent() {
     ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
 }
 
+
+void UGKBoxSelectionComponent::StartOrUpdateBoxSelection(class APlayerController *Controller,
+                                                         ETraceTypeQuery          Trace) 
+{
+    if (Selecting) {
+        StartBoxSelection(Controller, Trace);
+    } else {
+        UpdateBoxSelection(Controller);
+    }
+}
+
 void UGKBoxSelectionComponent::StartBoxSelection(APlayerController * Controller,
-                                        ETraceTypeQuery Trace) { 
+                                                 ETraceTypeQuery Trace) 
+{ 
     if (Controller == nullptr) {
+        UE_LOG(LogGamekit, Log, TEXT("StartBoxSelection: Controller == null"));
+        return;
+    }
+
+    if (Selecting) {
+        UE_LOG(LogGamekit, Log, TEXT("StartBoxSelection: Already selecting"));
         return;
     }
 
@@ -33,9 +50,11 @@ void UGKBoxSelectionComponent::StartBoxSelection(APlayerController * Controller,
 
 void UGKBoxSelectionComponent::UpdateBoxSelection(APlayerController *Controller) {
     if (!Selecting) {
+        UE_LOG(LogGamekit, Log, TEXT("UpdateBoxSelection: Not selecting!"));
         return;
     }
     if (Controller == nullptr) {
+        UE_LOG(LogGamekit, Log, TEXT("UpdateBoxSelection: Controller == null"));
         return;
     }
 
@@ -52,6 +71,7 @@ void UGKBoxSelectionComponent::UpdateBoxSelection(APlayerController *Controller)
 
 void UGKBoxSelectionComponent::FetchBoxSelection(const UObject *World,  TArray<AActor *> &Out) {
     if (!Selecting) {
+        UE_LOG(LogGamekit, Log, TEXT("FetchBoxSelection: Not selecting!"));
         return;
     }
 
@@ -72,6 +92,7 @@ void UGKBoxSelectionComponent::EndBoxSelection(const UObject *World) {
 
 void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World) {
     if (!Selecting) {
+        UE_LOG(LogGamekit, Log, TEXT("DrawBoxSelection: Not selecting!"));
         return;
     }
 

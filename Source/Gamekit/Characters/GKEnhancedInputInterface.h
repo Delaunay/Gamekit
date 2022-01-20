@@ -7,13 +7,13 @@
 
 
 UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
-class UPawnEnhancedInputInterface: public UInterface {
+class UGKPawnEnhancedInputInterface: public UInterface {
     GENERATED_BODY()
 };
 
 // Using the interface on our Pawn is not working :/
 // No logs are printed
-class GAMEKIT_API IPawnEnhancedInputInterface {
+class GAMEKIT_API IGKPawnEnhancedInputInterface {
     public:
 
     GENERATED_BODY()

@@ -9,7 +9,7 @@
 
 
 UCLASS()
-class GAMEKIT_API AGKPawnEnchancedInput: public APawn //, public IPawnEnhancedInputInterface 
+class GAMEKIT_API AGKPawnEnchancedInput: public APawn //, public IGKPawnEnhancedInputInterface 
 {
     public:
     GENERATED_BODY()

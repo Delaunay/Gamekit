@@ -68,4 +68,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	FGKAnimationSet AnimationSet;
+
+	//! Icon to display
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
+    class UTexture2D *Icon;
 };
