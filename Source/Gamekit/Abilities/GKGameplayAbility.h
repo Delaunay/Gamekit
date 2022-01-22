@@ -299,6 +299,12 @@ public:
 	//! if replication has not happened yet
 	UPROPERTY(BlueprintAssignable)
 	FGKAbilityLevelUpDelegate OnAbilityLevelUp;
+
+	//! Called when the the Ability is active and it is pressed a second time
+	virtual void InputPressed(const FGameplayAbilitySpecHandle Handle, 
+						      const FGameplayAbilityActorInfo* ActorInfo,
+							  const FGameplayAbilityActivationInfo ActivationInfo) override;
+
 };
 
 //! Return an effect that regenerate the given attribute overtime

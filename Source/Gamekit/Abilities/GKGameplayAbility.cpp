@@ -764,3 +764,16 @@ UAnimMontage* UGKGameplayAbility::GetAnimation() {
 
 	return AnimMontages.Sample();
 }
+
+void  UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle Handle, 
+									   const FGameplayAbilityActorInfo* ActorInfo,
+                                       const FGameplayAbilityActivationInfo ActivationInfo)
+{
+	UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::InputPressed pressed while active"));
+
+	// Cancel the current ability
+	CancelAbility(Handle, ActorInfo, ActivationInfo, true);
+
+	// Activate a new ability
+	ActorInfo->AbilitySystemComponent->TryActivateAbility(Handle);
+}
