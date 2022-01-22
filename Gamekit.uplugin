@@ -27,6 +27,14 @@
 		{
 			"Name": "GameplayAbilities",
 			"Enabled": true
+		}, 
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
 		}
 	]
 }

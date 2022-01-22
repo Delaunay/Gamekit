@@ -5,6 +5,7 @@
 #include "Gamekit.h"
 
 #include "Kismet/KismetMathLibrary.h"
+#include "Engine/DataTable.h"
 
 #include "GKAnimationSet.generated.h"
 
