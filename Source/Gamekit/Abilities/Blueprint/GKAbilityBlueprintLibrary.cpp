@@ -91,3 +91,8 @@ FHitResult UGKAbilityBlueprintLibrary::GetTargetDataHitResult(FGameplayAbilityTa
     HasHitResult = true;
     return *HitResult;
 }
+
+FGKAbilitySlot UGKAbilityBlueprintLibrary::AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput)
+{
+    return FGKAbilitySlot(AbilityInput);
+}

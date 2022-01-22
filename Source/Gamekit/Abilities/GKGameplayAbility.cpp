@@ -12,6 +12,7 @@
 #include "Gamekit.h"
 #include "Abilities/GKAbilitySystemComponent.h"
 #include "Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h"
+#include "Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 #include "Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
 #include "Abilities/Targeting/GKAbilityTask_WaitTargetData.h"
 #include "Abilities/GKTargetType.h"
@@ -769,11 +770,43 @@ void  UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle Handle,
 									   const FGameplayAbilityActorInfo* ActorInfo,
                                        const FGameplayAbilityActivationInfo ActivationInfo)
 {
-	UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::InputPressed pressed while active"));
 
-	// Cancel the current ability
-	CancelAbility(Handle, ActorInfo, ActivationInfo, true);
+	// TODO: Move this to a movement Ability
+	//
+	// We could also use it to add multiple points
+	// but not as flexible as an Ability queue
+	auto MovementTask = Cast<UGKAbilityTask_MoveToDestination>(CurrentTask);
+	if (MovementTask)
+    {
+        auto Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
+		FHitResult Result;
+		// TODO:: Fix this trace
+        ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
+		Controller->GetHitResultUnderCursorByChannel(Channel, false, Result);
+        MovementTask->Destination = Result.ImpactPoint;
+	}
 
-	// Activate a new ability
-	ActorInfo->AbilitySystemComponent->TryActivateAbility(Handle);
+	// This is a bit laggy
+	// 
+	// Have to check the replicate on this one
+	// For movement we only need the movement between the server & client to match
+	// Maybe we can reduce the amount of data shared
+	// Maybe we can update underlying task with its new point
+	// Would prevent us to see the stop
+	// 
+	// Might be better to move the movement out of GA
+	// and use regular Task instead
+	// But we do not have access to the current task running ?
+	// 
+	// Dont cancel abilities that cannot be recast after cancel
+	// This means you can cancel abilities by recasting it 
+	// before the cost & Cooldown gets expanded
+	else if (CanActivateAbility(Handle, ActorInfo))
+    {
+		// Cancel the current ability
+		CancelAbility(Handle, ActorInfo, ActivationInfo, true);
+
+		// Activate a new ability
+		ActorInfo->AbilitySystemComponent->TryActivateAbility(Handle);
+	}
 }

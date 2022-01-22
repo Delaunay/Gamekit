@@ -7,7 +7,7 @@
 #include "Abilities/GameplayAbility.h"
 #include "Abilities/GKAbilityStatic.h"
 #include "Abilities/GKAbilityTypes.h"
-
+ 
 #include "GKGameplayAbility.generated.h"
 
 
@@ -43,6 +43,13 @@ public:
  * For ability with charges, just make the ability consume charges on activation
  * remove cooldown, give an effect that grant charges overtime
  * Add the Charge Gametag the the Ability Tag Requirement
+ * 
+ * TODO: Measure GA Latency
+ *	   : Measure RPC Latency (Ping-Pong) with BP
+ * 
+ * TODO: Add an option to execute a queued ability
+ * which would skip the Need to Request a target data from the user
+ * 
  */
 UCLASS()
 class GAMEKIT_API UGKGameplayAbility : public UGameplayAbility
@@ -305,6 +312,8 @@ public:
 						      const FGameplayAbilityActorInfo* ActorInfo,
 							  const FGameplayAbilityActivationInfo ActivationInfo) override;
 
+	// Current Task taht is playing
+	UAbilityTask* CurrentTask;
 };
 
 //! Return an effect that regenerate the given attribute overtime

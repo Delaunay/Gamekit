@@ -9,6 +9,8 @@
 // ----------------------------------------------------------------------------------------------------------------
 
 #include "UObject/PrimaryAssetId.h"
+#include "Gamekit/Abilities/GKAbilityInputs.h"
+
 #include "GKItemTypes.generated.h"
 
 class UGKItem;
@@ -30,6 +32,10 @@ struct GAMEKIT_API FGKAbilitySlot
 
 	FGKAbilitySlot(int32 InSlotNumber)
 		: SlotNumber(InSlotNumber)
+	{}
+
+	FGKAbilitySlot(EGK_MOBA_AbilityInputID AbilityInput)
+		: SlotNumber(int32(AbilityInput))
 	{}
 
 	/** The number of this slot, 0 indexed */

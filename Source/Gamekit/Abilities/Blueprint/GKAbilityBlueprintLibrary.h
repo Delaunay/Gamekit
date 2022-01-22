@@ -69,4 +69,7 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
     static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &Handle,
                                              int32                                   Index,
                                              bool &                                  HasHitResult);
+
+	UFUNCTION(BlueprintPure, Category = "AbilitySlot")
+	static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput);
 };

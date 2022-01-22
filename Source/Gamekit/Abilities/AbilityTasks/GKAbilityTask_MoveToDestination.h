@@ -57,6 +57,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 {
     GENERATED_BODY()
 
+public:
     UGKAbilityTask_MoveToDestination(const FObjectInitializer &ObjectInitializer);
 
     UFUNCTION(BlueprintCallable,
@@ -94,7 +95,6 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 
     void DebugDraw();
 
-    private:
     // Arguments
     float   TurnRate;
     float   MaxSpeed;

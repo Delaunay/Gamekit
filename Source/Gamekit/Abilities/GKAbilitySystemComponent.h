@@ -15,8 +15,46 @@ class UGKGameplayAbility;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKAbilityFailedDelegate, const UGameplayAbility*, Ability, const FGameplayTagContainer&, FailureReason);
 
+
+/* Queued Ability
+ * 
+ * For an Ability to be queuable, all the data it requires
+ * needs to be available when the Ability is first queued AND
+ * at the time of execution
+ * 
+ * So moving to a point on the map is fine.
+ * Casting a spell on an ennemy will only be possible if
+ * the enemy is in range & visible at the time.
+ *
+ * The queued ability saves all the data it requires
+ * and will skip some activation steps (like requesting targets)
+ * 
+ * Instead the data will be validated before execution
+ */
+USTRUCT()
+struct GAMEKIT_API FGKQueuedAbility
+{
+	GENERATED_BODY();
+
+public:
+	// Ability To be executed with all the appropriate information
+	// FGameplayAbilitySpecHandle Handle;
+
+	//FGameplayAbilityActorInfo ActorInfo;
+
+    //FGameplayAbilityActivationInfo ActivationInfo;
+
+	// Data available to the ability at Execution
+	// TODO: Make/Use a TargetData Handle
+	AActor* Target;
+
+	FVector Location;
+};
+
+
 /**
  *
+ * TODO: We need an ability Queue
  */
 UCLASS(BlueprintType, Blueprintable)
 class GAMEKIT_API UGKAbilitySystemComponent : public UAbilitySystemComponent
@@ -35,6 +73,21 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsInitialized() const;
+
+
+	// Queue Interface 
+	// ---------------
+    void ExecuteQueuedAbility(FGKQueuedAbility const&) {}
+
+	// Check if there are any Abilities in queue & execute them
+	void ExecuteAbilityQueue() { };
+
+	void ClearAbilityQueue() {}
+
+	void AddToQueue() {}
+
+	TArray<FGKQueuedAbility> AbilityQueue;
+
 
 	/*! Called when the ability fails to activate
 	 * /rst

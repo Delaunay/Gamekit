@@ -2,6 +2,8 @@
 
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
+#include "Gamekit/Abilities/GKGameplayAbility.h"
+
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
 #include "Gamekit.h"
@@ -32,6 +34,14 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
         OwningAbility, 
         TaskInstanceName
     );
+
+    // TODO: Move this to some generic GKAbilityTask
+    auto GKAbility = Cast<UGKGameplayAbility>(OwningAbility);
+    if (GKAbility)
+    {
+        GKAbility->CurrentTask = MyObj;   
+    }
+
     MyObj->Destination = Destination;
     MyObj->DistanceTolerance = DistanceTolerance;
     MyObj->AngleTolerance    = AngleTolerance;
@@ -191,6 +201,13 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { 
     Super::OnDestroy(AbilityIsEnding); 
     Ability->OnGameplayAbilityCancelled.RemoveAll(this);
+
+    // TODO: Move this to some generic GKAbilityTask
+    auto GKAbility = Cast<UGKGameplayAbility>(Ability);
+    if (GKAbility)
+    {
+        GKAbility->CurrentTask = nullptr;   
+    }
 }
 
 void UGKAbilityTask_MoveToDestination::Activate() {}
