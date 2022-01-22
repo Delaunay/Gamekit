@@ -4,6 +4,7 @@
 #include "Gamekit.h"
 
 #include "Abilities/GKGameplayAbility.h"
+#include "Abilities/GKAbilityInputs.h"
 #include "Animation/GKAnimationSet.h"
 
 #include "Engine/DataTable.h"
@@ -72,4 +73,21 @@ public:
 	//! Icon to display
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
     class UTexture2D *Icon;
+};
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKInputAbilityPair
+{
+    GENERATED_USTRUCT_BODY()
+
+public:
+    FGKInputAbilityPair(): 
+		InputSlot(EGK_MOBA_AbilityInputID::None)
+	{}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    EGK_MOBA_AbilityInputID         InputSlot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSubclassOf<UGKGameplayAbility> AbilityClass;
 };

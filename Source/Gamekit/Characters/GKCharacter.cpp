@@ -225,6 +225,8 @@ bool AGKCharacterBase::SetCharacterLevel(int32 NewLevel)
 
 void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass) /* InputID -1 */
 {
+	// Only called with authority
+
 	// This has input binding that should be customizable
 	// 0 is None, The enum for AbilityInput starts at one
 	FGameplayAbilitySpec Spec = FGameplayAbilitySpec(
@@ -272,8 +274,16 @@ FGenericTeamId AGKCharacterBase::GetGenericTeamId() const
 
 void AGKCharacterBase::OnGiveAbility_Native(FGameplayAbilitySpec& AbilitySpec) {
 	// AbilityName is the unique tag per ability
-	auto Id = FGKAbilitySlot(AbilitySpecs.Num());
-	AbilitySpec.InputID = Id.SlotNumber + 1;
+	auto Id = FGKAbilitySlot(AbilitySpec.InputID);
+
+	//
+	 UE_LOG(LogGamekit,
+               Log,
+               TEXT("Adding Ability %s with Input %d: %s"),
+               *AbilitySpec.Ability->GetFName().ToString(),
+               AbilitySpec.InputID,
+               *UEnum::GetValueAsString(EGK_MOBA_AbilityInputID(AbilitySpec.InputID))
+		 );
 
 	AbilitySpecs.Add(Id, AbilitySpec);
 	OnGiveAbility.Broadcast(AbilitySpec);

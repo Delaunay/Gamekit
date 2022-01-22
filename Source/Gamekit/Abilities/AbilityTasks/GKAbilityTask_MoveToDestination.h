@@ -14,10 +14,14 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKMoveToDestinationDelegate);
  *
  * 	1. This will move the player to location without a timer
  *	2. This will turn the player to the movement direction before moving
+ *  3. This can be cancelled by the user, or by opponents
  * 
  * AddControllerYawInput && AddMovementInput are used to turn the character
  * mimicking what a player would have to do to turn it.
  * Hopefully making it respect the constraitn imposed by the MovementComponent.
+ * 
+ * Turn rate is an important game mechanic that give time for the opponents to react.
+ * It also give an advantage to the character that is ready (i.e facing).
  * 
  * Parameters
  * ----------
@@ -28,10 +32,13 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKMoveToDestinationDelegate);
  * DistanceTolerance: Float
  *  How close to the location should we be to stop (avoid too small values)
  * 
- * AngleTolerance: Float
+ * AngleTolerance: Float (In Degrees, Default: 15)
  *  Angle Jitter we are willing to accept (avoid too small values)
+ *  15 which will give a 30 degrees of leeway where the 
+ *  character can move right away. This will make the movement more natural
+ *  by making the transition between the turn and movement less obvious
  * 
- * TurnRate: Float
+ * TurnRate: Float (In Degrees)
  *  Turn speed
  * 
  * Speed: Float
@@ -58,20 +65,16 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     static UGKAbilityTask_MoveToDestination *MoveToDestination(UGameplayAbility *OwningAbility,
                                                                FName             TaskInstanceName,
                                                                FVector           Destination,
-                                                               float             DistanceTolerance,
-                                                               float             AngleTolerance,
-                                                               float             TurnRate,
-                                                               float             Speed,
-                                                               bool              MoveToTarget,
-                                                               bool              Debug);
+                                                               float             DistanceTolerance = 10.f,
+                                                               float             AngleTolerance    = 15.f,
+                                                               float             TurnRate          = 45.f,
+                                                               float             Speed             = 600.f,
+                                                               bool              MoveToTarget      = true,
+                                                               bool              Debug             = false);
 
     /** Reached Destination */
     UPROPERTY(BlueprintAssignable)
     FGKMoveToDestinationDelegate OnCompleted;
-
-    /** The movement was stopped by external forces */
-    UPROPERTY(BlueprintAssignable)
-    FGKMoveToDestinationDelegate OnInterrupted;
 
     /** The movement action was cancelled by the user */
     UPROPERTY(BlueprintAssignable)
@@ -88,6 +91,8 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     virtual void ExternalCancel() override;
 
     void Init();
+
+    void DebugDraw();
 
     private:
     // Arguments

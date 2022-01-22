@@ -28,16 +28,19 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
                                                                                       bool    MoveToTarget,
                                                                                       bool    Debug)
 {
-    UGKAbilityTask_MoveToDestination *MyObj =
-            NewAbilityTask<UGKAbilityTask_MoveToDestination>(OwningAbility, TaskInstanceName);
+    UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
+        OwningAbility, 
+        TaskInstanceName
+    );
     MyObj->Destination = Destination;
-    MyObj->Init();
     MyObj->DistanceTolerance = DistanceTolerance;
     MyObj->AngleTolerance    = AngleTolerance;
     MyObj->TurnRate          = TurnRate;
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
     MyObj->MoveToTarget      = MoveToTarget;
+
+    MyObj->Init();
     return MyObj;
 }
 
@@ -71,6 +74,10 @@ void UGKAbilityTask_MoveToDestination::Init()
         bIsFinished = true;
         return;
     }
+
+    Ability->OnGameplayAbilityCancelled.Add(
+        FOnGameplayAbilityCancelled::FDelegate::CreateUObject(this, &UGKAbilityTask_MoveToDestination::ExternalCancel)
+    );
 }
 
 void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameplayTasksComponent)
@@ -78,14 +85,14 @@ void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent
     Super::InitSimulatedTask(InGameplayTasksComponent);
 }
 
-
-void UGKAbilityTask_MoveToDestination::DebugDraw() {
-    #if ENABLE_DRAW_DEBUG
+void UGKAbilityTask_MoveToDestination::DebugDraw()
+{
+#if ENABLE_DRAW_DEBUG
     if (bDebug)
     {
         // Get Forward Vector
-        FVector Forward = RootComponent->GetForwardVector();
-        FVector Location  = RootComponent->GetComponentLocation();
+        FVector Forward  = RootComponent->GetForwardVector();
+        FVector Location = RootComponent->GetComponentLocation();
 
         DrawDebugLine(GetWorld(),
                       Location,                    // Start
@@ -112,10 +119,21 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 {
     if (bIsFinished)
     {
+        EndTask();
         return;
     }
 
     DebugDraw();
+
+    // If the movement input was not consumed yet; we cannot run
+    // to avoid overshooting our target
+    // NB: no need to use NearlyZero here because the pending
+    // vector will be exactly Zero after input consumption
+    if (!Character->GetPendingMovementInputVector().IsZero())
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Movement Input was not consumed yet"));
+        return;
+    }
 
     auto Location  = RootComponent->GetComponentLocation();
     auto Direction = Destination - Location;
@@ -128,20 +146,10 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         EndTask();
         return;
     }
-    
-    // If the movement input was not consumed yet; we cannot run
-    // to avoid overshooting our target
-    // NB: no need to use NearlyZero here because the pending
-    // vector will be exactly Zero after input consumption
-    if (!Character->GetPendingMovementInputVector().IsZero())
-    {
-        UE_LOG(LogGamekit, Log, TEXT("Movement Input was not consumed yet"));
-        return;
-    }
 
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
     auto CurrentRot    = RootComponent->GetComponentRotation();
-    auto TargetYaw   = (TargetRotator.Yaw - CurrentRot.Yaw);
+    auto TargetYaw     = (TargetRotator.Yaw - CurrentRot.Yaw);
 
     // This is the most reliable way of getting the smallest angle
     TargetYaw = FMath::RadiansToDegrees(asinf(sinf(FMath::DegreesToRadians(TargetYaw))));
@@ -180,14 +188,17 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     }
 }
 
-void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { Super::OnDestroy(AbilityIsEnding); }
+void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { 
+    Super::OnDestroy(AbilityIsEnding); 
+    Ability->OnGameplayAbilityCancelled.RemoveAll(this);
+}
 
 void UGKAbilityTask_MoveToDestination::Activate() {}
 
 void UGKAbilityTask_MoveToDestination::ExternalCancel()
 {
     bIsFinished = true;
-    OnInterrupted.Broadcast();
+    OnCancelled.Broadcast();
     EndTask();
 }
 

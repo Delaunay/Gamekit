@@ -5,9 +5,12 @@
 #include "CoreMinimal.h"
 
 // MOBA/Hack'n Slash like Ability binding
+// How does this work with EnhancedInput ?
+// Probably doesn't
 UENUM(BlueprintType)
 enum class EGK_MOBA_AbilityInputID : uint8
 {
+    // clang-format off
 	None			UMETA(DisplayName = "None"),
 
 	Skill1			UMETA(DisplayName = "Skill1"),	// Q
@@ -29,4 +32,11 @@ enum class EGK_MOBA_AbilityInputID : uint8
 
 	Confirm			UMETA(DisplayName = "Confirm"),
 	Cancel			UMETA(DisplayName = "Cancel"),
+
+	// Movements
+	Move			UMETA(DisplayName = "Move"),		 // Destination
+	AttackMove		UMETA(DisplayName = "AttackMove"),   // Area & Target
+	FollowTarget	UMETA(DisplayName = "FollowTarget"), // Follow Ally
+	Patrol			UMETA(DisplayName = "Patrol")		 // Go through multiple points
+    // clang-format on
 };
