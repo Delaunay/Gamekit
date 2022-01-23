@@ -16,6 +16,12 @@ Limitations
   gets triggered.
   Mouse movement alone does not trigger the input system.
 
+
+Notes
+-----
+
+* Gameplay Ablities have their own input mechanism which is not compatible with Enhanced Input
+
 References
 ----------
 

@@ -4,20 +4,54 @@ available through a permissive license.
 
 TODO: parse the file and create a credit section for Gamekit
 
+
+Template
+========
+
+,
+{
+    "Attribution": "",
+    "Website": "",
+    "Source": "",
+    "Files": "",
+    "Licenses": []
+}
+
 Artists
 =======
 
 <json>
 [
-{
-    "Attribution": "J. W. Bjerk (eleazzaar) -- www.jwbjerk.com/art  -- find this and other open art at: http://opengameart.org",
-    "Files": "Plugins/Gamekit/Content/Textures/IconsSkills/*",
-    "Licenses": [
-        "GNU GPL 2.0",
-        "GNU GPL 3.0",
-        "CC-BY 3.0",
-        "CC-BY-SA 3.0",
-    ]
-}
+    {
+        "Attribution": "J. W. Bjerk (eleazzaar) -- www.jwbjerk.com/art  -- find this and other open art at: http://opengameart.org",
+        "Website": "www.jwbjerk.com/art",
+        "Source": "http://opengameart.org",
+        "Files": "Plugins/Gamekit/Content/Textures/IconsSkills/*",
+        "Licenses": [
+            "GNU GPL 2.0",
+            "GNU GPL 3.0",
+            "CC-BY 3.0",
+            "CC-BY-SA 3.0",
+        ]
+    },
+    {
+        "Attribution": null,
+        "Website": "https://freestocktextures.com/",
+        "Source": [
+            "https://freestocktextures.com/search/?q=Grass",
+            "https://freestocktextures.com/search/?q=Dirt",
+        ],
+        "Files": [
+            "Plugins/Gamekit/Content/Textures/Tex_Dirt_1"
+            "Plugins/Gamekit/Content/Textures/Tex_Dirt_2"
+            "Plugins/Gamekit/Content/Textures/Tex_Grass"
+            "Plugins/Gamekit/Content/Textures/Tex_Grass_2048"
+            "Plugins/Gamekit/Content/Textures/Tex_Moss",
+            "Plugins/Gamekit/Content/Textures/Tex_WhiteWall_2048"
+        ],
+        "Licenses": [
+            "CC0"
+        ]
+    }
 ]
 </json>
