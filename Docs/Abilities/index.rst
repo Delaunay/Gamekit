@@ -109,22 +109,22 @@ a spell button.
 
 #. Ability cannot be cast because of debuf
 
-.. image:: _static/btn_cooldown.PNG
+.. image:: /_static/btn_cooldown.PNG
    :width: 60
 
-.. image:: _static/btn_disabled.PNG
+.. image:: /_static/btn_disabled.PNG
    :width: 60
 
-.. image:: _static/btn_normal.PNG
+.. image:: /_static/btn_normal.PNG
    :width: 60
 
-.. image:: _static/btn_targetting.PNG
+.. image:: /_static/btn_targetting.PNG
    :width: 60
 
-.. image:: _static/btn_oom.PNG
+.. image:: /_static/btn_oom.PNG
    :width: 60
 
-.. image:: _static/btn_mute.png
+.. image:: /_static/btn_mute.png
    :width: 60
 
 

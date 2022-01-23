@@ -17,6 +17,7 @@ Contents
    Installation
    Abilities/index
    FogOfWar/index
+   Minimaps/index
    Level/index
    MachineLearning/index
    Others
