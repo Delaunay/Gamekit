@@ -22,10 +22,6 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
     GENERATED_UCLASS_BODY()
 
     public:
-    // Returns the project version set in the 'Project Settings' > 'Description' section
-    // of the editor
-    UFUNCTION(BlueprintPure, Category = "Project")
-    static FString GetProjectVersion();
 
     // Debug FGameplayAbilitySpec
     // --------------------------

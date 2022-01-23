@@ -11,16 +11,6 @@ UGKAbilityBlueprintLibrary::UGKAbilityBlueprintLibrary(const FObjectInitializer 
 {
 }
 
-FString UGKAbilityBlueprintLibrary::GetProjectVersion()
-{
-    FString ProjectVersion;
-
-    GConfig->GetString(
-            TEXT("/Script/EngineSettings.GeneralProjectSettings"), TEXT("ProjectVersion"), ProjectVersion, GGameIni);
-
-    return ProjectVersion;
-}
-
 int UGKAbilityBlueprintLibrary::GetInputIDFromAbilitySpec(const FGameplayAbilitySpec &Spec) { return Spec.InputID; }
 
 FGameplayAbilitySpecHandle UGKAbilityBlueprintLibrary::GetAbilityHandleFromAbilitySpec(const FGameplayAbilitySpec &Spec)

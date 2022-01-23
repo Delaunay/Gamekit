@@ -17,7 +17,7 @@ public:
 	// Sets default values for this component's properties
     UGKMinimapComponent();
 
-protected:
+public:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
@@ -27,12 +27,12 @@ protected:
     class AGKMinimapVolume* GetMinimapVolume();
 
     //! Material used to draw the actor on the minimap
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UMaterialInterface* UnobstructedVisionMaterial;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+    class UMaterialInterface* Material;
 
     //!
-    int Size;
-
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+    float Size;
 
 private:
     class AGKMinimapVolume* MinimapVolume;

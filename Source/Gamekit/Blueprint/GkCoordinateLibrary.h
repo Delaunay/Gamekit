@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+
 #include "GKCoordinateLibrary.generated.h"
 
 /**
@@ -16,4 +17,11 @@ class GAMEKIT_API UGKCoordinateLibrary : public UBlueprintFunctionLibrary
 	
 public:
 
+	//! Returns coordinate (0, 1)
+	UFUNCTION(BlueprintPure, Category = "Coordinate")
+	static FVector2D ToTextureCoordinate(FVector WorldLocation, FVector2D MapSize);
+
+	//! Returns coordinate (0, PixelSize)
+	UFUNCTION(BlueprintPure, Category = "Coordinate")
+	static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize);
 };
