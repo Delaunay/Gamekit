@@ -11,11 +11,20 @@
 
 /*! Minimap Volume is a static volume for RTS like games
  * 
- * Notes
- * -----
+ * \rst
  * 
- * This is not Blueprintable, the blueprint version does not work
- * as expected, the Brush size is incorrect.
+ * .. note::
+ *    
+ *    This is not Blueprintable, the blueprint version does not work
+ *    as expected, the Brush size is incorrect.
+ * 
+ * .. note::
+ * 
+ *    This is the static version that works on a entire fixed map
+ * 
+ * \endrst
+ * 
+ * TODO: create a radar version that follows the actor
  */
 UCLASS()
 class GAMEKIT_API AGKMinimapVolume : public AVolume

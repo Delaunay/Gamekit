@@ -37,6 +37,9 @@
  *    enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness to 1
  *
  * \endrst
+ * 
+ *  TODO: create a radar version that follows the actor.
+ *  The actor will have a fog that follows him.
  */
 UCLASS(Blueprintable)
 class GAMEKIT_API AGKFogOfWarVolume : public AVolume
