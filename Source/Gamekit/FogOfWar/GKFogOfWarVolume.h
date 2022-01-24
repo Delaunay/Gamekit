@@ -96,10 +96,13 @@ public:
     //! Draw the fog of war for each factions
     void DrawFactionFog();
 
+    //! Draw the line of sight using LineTrace
     void DrawObstructedLineOfSight(class UGKFogOfWarComponent* c);
 
+    //! Draw the ligne of sight using a material (no collision)
     void DrawUnobstructedLineOfSight(class UGKFogOfWarComponent* c);
 
+    //! Draw the line of sight using the right method
     void DrawLineOfSight(class UGKFogOfWarComponent* c);
 
     //! Returns the texture coordinate given world coordinates
@@ -190,8 +193,10 @@ protected:
     //! Updates the Texture Size, given the size covered by the Fog of War volume
     void UpdateVolumeSizes();
 
+    //! Clear all the exploration textures
     void ClearExploration();
 
+    //! Add current sight to exploration textures
     void UpdateExploration();
 
 private:

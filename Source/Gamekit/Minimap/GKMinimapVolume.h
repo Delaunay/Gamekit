@@ -43,29 +43,38 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     float FramePerSeconds;
 
-    // Texture used to render component on the minimap
+    //! Texture used to render component on the minimap
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     class UCanvasRenderTarget2D* MinimapCanvas;
 
-    // Texture used to render the minimap capture from the scene
+    //! Texture used to render the minimap capture from the scene
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     class UCanvasRenderTarget2D* MinimapCaptureTexture;
 
+    //! Toggle to disable Minimap drawing altogether
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     bool bMinimapEnabled;
 
 public:
+    //! Called by UGKMinimapComponent to register themselves
     void RegisterActorComponent(class UGKMinimapComponent* c);
 
+    //! Called by UGKMinimapComponent to unregister themselves
     void UnregisterActorComponent(class UGKMinimapComponent* c);
 
+    //! Iterate through all the actor component and draw each component 
+    //! on the minimap
     void DrawMinimap();
 
+    //! Draw a single component on the given canvas
     void DrawActorCompoment(class UGKMinimapComponent* Compoment, class UCanvas* Canvas);
 
+    //! Fetch the Volume size and update MapSize
+    //! It will update the capture component with the new size
+    //! sets its texture target and ShowOnlyActors as well
     void UpdateSizes();
 
-    //! Returns the texture coordinate given world coordinates
+    //! Returns the texture (UV) coordinate given a world coordinates
     UFUNCTION(BlueprintPure, Category = Coordinate)
     inline FVector2D GetTextureCoordinate(FVector loc) const {
         return FVector2D(
@@ -74,26 +83,29 @@ public:
         );
     }
 
+    //! Returns the screen (Pixel) coordinate given a world coordinates
     UFUNCTION(BlueprintPure, Category = Coordinate)
     inline FVector2D GetScreenCoordinate(FVector loc) const {
-        //
         return GetTextureCoordinate(loc) * GetTextureSize();
     }
 
+    //! Returns the volume size
     UFUNCTION(BlueprintPure, Category = Coordinate)
     inline FVector2D GetMapSize() const {
-        //
         return MapSize;
     }
 
+    //! Returns the size of the texture we are writing to
     UFUNCTION(BlueprintPure, Category = Coordinate)
     FVector2D GetTextureSize() const;
 
-    // Set your landscape actor here
+    //! List of actors that are rendered on the minimap
+    //! Your landscape should be there
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
 	TArray<AActor*> ShowOnlyActors;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minimap")
+    //! The scene capture component used to generate the minimap
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap")
     class USceneCaptureComponent2D* MinimapCapture;
 
 private:
