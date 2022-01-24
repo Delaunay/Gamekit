@@ -6,8 +6,20 @@ Installation
 .. _`Releases`: https://gitlab.com/Delaunay/gamekit/-/releases
 
 
-Installation Procedure
-----------------------
+Source Code
+------------
+
+.. code-block:: bash
+
+   # Go to your project directory
+   cd /path/to/my/uproject
+
+   # Add Gamekit as a submodule
+   git submodule add https://github.com/Delaunay/Gamekit.git Plugins/Gamekit
+
+
+Binary Installation Procedure
+-----------------------------
 
 1. Unzip inside `<Project>/Plugins`
 
