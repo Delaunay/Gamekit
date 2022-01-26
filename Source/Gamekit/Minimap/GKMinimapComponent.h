@@ -8,7 +8,7 @@
 
 /*! \brief UGKMinimapComponent is used to define how an actor is renderer on the minimap
  */
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, ClassGroup = (Minimap), meta = (BlueprintSpawnableComponent))
 class GAMEKIT_API UGKMinimapComponent : public UActorComponent
 {
     GENERATED_BODY()

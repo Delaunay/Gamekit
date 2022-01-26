@@ -22,7 +22,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor*, Act
  * \endrst
  *
  */
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, ClassGroup = (FogOfWar), meta = (BlueprintSpawnableComponent))
 class GAMEKIT_API UGKFogOfWarComponent : public UActorComponent
 {
     GENERATED_BODY()

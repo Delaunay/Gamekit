@@ -4,10 +4,15 @@
 #include "Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
 #include "Abilities/GKAbilityStatic.h"
 
+ 	
+
+#include "GenericTeamAgentInterface.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GameplayAbility.h"
 #include "DrawDebugHelpers.h"
 #include "Components/DecalComponent.h"
+
 
 AGKAbilityTarget_PlayerControllerTrace::AGKAbilityTarget_PlayerControllerTrace(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer) 
@@ -49,14 +54,27 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds) {
     APlayerController* PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
     check(PC);
 
-    // PC->GetHitResultUnderCursor(ECC_Visibility, false, LatestHitResult);
-    // PC->GetHitResultUnderCursorByChannel(ETraceTypeQuery::, false, LatestHitResult);
-
     PC->GetHitResultUnderCursorForObjects(ObjectTypes, false, LatestHitResult);
 
     TraceEndPoint = LatestHitResult.Component.IsValid() ? LatestHitResult.ImpactPoint : LatestHitResult.TraceEnd;
 
+    if (TraceMode == EGK_TraceMode::ActorTarget)
+    {
+        UKismetSystemLibrary::SphereOverlapActors(
+                GetWorld(), 
+                TraceEndPoint, 
+                AreaOfEffect, 
+                ObjectTypes, 
+                ClassFilter, 
+                ActorsToIgnore, 
+                ActorsUnderCursor
+        );
+
+        FilterActors();
+    }
+
     auto valid = IsConfirmTargetingAllowed();
+
     if (valid) {
         LatestValidHitResult = LatestHitResult;
     }
@@ -91,8 +109,18 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const {
         return false;
     }
 
-    float DistanceSqr = FVector::DistSquared(SourceActor->GetActorLocation(), TraceEndPoint);
-    return MaxRange * MaxRange >= DistanceSqr && DistanceSqr >= MinRange * MinRange;
+    if (TraceMode == EGK_TraceMode::ActorTarget)
+    {
+        return ActorsUnderCursor.Num() > 0;
+    }
+
+    if (TraceMode == EGK_TraceMode::PointTarget)
+    {
+        float DistanceSqr = FVector::DistSquared(SourceActor->GetActorLocation(), TraceEndPoint);
+        return MaxRange * MaxRange >= DistanceSqr && DistanceSqr >= MinRange * MinRange;
+    }
+
+    return false;
 } 
 
 bool AGKAbilityTarget_PlayerControllerTrace::IsConfirmTargetingAllowed() {
@@ -135,9 +163,80 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
         return;
     }
 
-    // Target is ready, send the data now
-    FGameplayAbilityTargetDataHandle Handle = StartLocation.MakeTargetDataHandleFromHitResult(OwningAbility, LatestHitResult);
-    TargetDataReadyDelegate.Broadcast(Handle);
+    if (TraceMode == EGK_TraceMode::ActorTarget)
+    {
+        TArray<TWeakObjectPtr<AActor>> Actors;
+        Actors.Reset(ActorsUnderCursor.Num());
+
+        for (auto &actor: ActorsUnderCursor)
+        {
+            Actors.Add(actor);
+        }
+
+        // Target is ready, send the data now
+        auto Handle = StartLocation.MakeTargetDataHandleFromActors(Actors, false);
+        TargetDataReadyDelegate.Broadcast(Handle);
+        return;
+    }
+
+    if (TraceMode == EGK_TraceMode::PointTarget)
+    {
+        // Target is ready, send the data now
+        auto Handle = StartLocation.MakeTargetDataHandleFromHitResult(OwningAbility, LatestHitResult);
+        TargetDataReadyDelegate.Broadcast(Handle);
+        return;
+    }
+}
+
+void AGKAbilityTarget_PlayerControllerTrace::FilterActors() 
+{
+    TArray<AActor *> Actors;
+    Actors.Reset(ActorsUnderCursor.Num());
+
+    APlayerController *PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
+    IGenericTeamAgentInterface *Me = nullptr;
+
+    {
+        AActor *OwnerActor  = OwningAbility->GetCurrentActorInfo()->OwnerActor.Get();
+        AActor *AvatarActor = OwningAbility->GetCurrentActorInfo()->AvatarActor.Get();
+
+        Me = Cast<IGenericTeamAgentInterface>(OwnerActor);
+        if (Me == nullptr)
+        {
+            Me = Cast<IGenericTeamAgentInterface>(AvatarActor);
+        }
+    }
+
+    auto isFriend  = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Friendly; };
+    auto isEnemy   = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Hostile; };
+    auto isNeutral = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Neutral; };
+    
+    for (auto &Actor: ActorsUnderCursor)
+    {
+        bool Valid = false;
+
+        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Friend) && isFriend(Actor))
+        {
+            Valid = true;
+        }
+
+        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Enemy) && isEnemy(Actor))
+        {
+            Valid = true;
+        }
+
+        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Neutral) && isNeutral(Actor))
+        {
+            Valid = true;
+        }
+
+        if (Valid)
+        {
+            Actors.Add(Actor);
+        }
+    }
+
+    ActorsUnderCursor = Actors;
 }
 
 void AGKAbilityTarget_PlayerControllerTrace::BindToConfirmCancelInputs() {

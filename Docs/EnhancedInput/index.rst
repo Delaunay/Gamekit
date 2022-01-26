@@ -17,13 +17,15 @@ Limitations
   Mouse movement alone does not trigger the input system.
 
 
-Notes
------
+.. note::
 
-* Gameplay Ablities have their own input mechanism which is not compatible with Enhanced Input
+   Gameplay Ablities have their own input mechanism which is not compatible with Enhanced Input
+   You can use EnhancedInput and GameplayAbilities since GameplayAbilities is not using the input component.
+
 
 References
 ----------
 
 .. [1]: `UE4 EnhancedInput <https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/Input/EnhancedInput/>`_
-.. [1]: `API Documentation <https://docs.unrealengine.com/4.26/en-US/API/Plugins/EnhancedInput/>`_
+.. [2]: `API Documentation <https://docs.unrealengine.com/4.26/en-US/API/Plugins/EnhancedInput/>`_
+.. [3]: `Gameplay Ability Input <https://github.com/tranek/GASDocumentation#concepts-ga-input>`_

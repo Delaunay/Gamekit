@@ -137,3 +137,29 @@ AGKAbilityTarget_Actor* UGKAbilitySystemComponent::GetAbilityTarget_Actor(TSubcl
 
 	return AbilityTarget_Actor;
 }
+
+
+
+void UGKAbilitySystemComponent::TryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point) {
+    ServerTryActivateAbility_Point(Handle, Point);
+}
+
+void UGKAbilitySystemComponent::ServerTryActivateAbility_Point_Implementation(FGameplayAbilitySpecHandle Handle,
+                                                                              FVector                    Point)
+{
+    FGameplayAbilitySpec *Spec = FindAbilitySpecFromHandle(Handle);
+
+    if (!Spec)
+    {
+        return;
+    }
+
+    auto Ability = Cast<UGKGameplayAbility>(Spec->Ability);
+
+    if (!Ability)
+    {
+        return;
+    }
+
+    Ability->ActivateManual_PointTarget(Point);
+}

@@ -109,14 +109,21 @@ public:
 	void CancelAllPendingAbilities();
 
 	//! Level up the given ability
-	UFUNCTION(BlueprintCallable, Category = Abilities)
-	void LevelUpAbility(FGameplayAbilitySpecHandle Handle);
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    void LevelUpAbility(FGameplayAbilitySpecHandle Handle);
 
-	UFUNCTION(Server, Reliable)
-	void ServerLevelUpAbility(FGameplayAbilitySpecHandle Handle);
+    UFUNCTION(Server, Reliable)
+    void ServerLevelUpAbility(FGameplayAbilitySpecHandle Handle);
 
-	UFUNCTION(Client, Reliable)
-	void ClientLevelUpAbility_Result(FGameplayAbilitySpecHandle Handle, int Level);
+    UFUNCTION(Client, Reliable)
+    void ClientLevelUpAbility_Result(FGameplayAbilitySpecHandle Handle, int Level);
+
+	//! Level up the given ability
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    void TryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
+
+    UFUNCTION(Server, Reliable)
+    void ServerTryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
 
 // protected:
 	bool Initialized;

@@ -10,6 +10,15 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult&, TraceHit, bool, IsValid);
 
+
+UENUM(BlueprintType)
+enum class EGK_TraceMode : uint8
+{
+    PointTarget  UMETA(DisplayName = "PointTarget"),  // Targets the ground
+    ActorTarget  UMETA(DisplayName = "ActorTarget"),  // Targets another actor
+    VectorTarget UMETA(DisplayName = "VectorTarget")  // Targets 2 points on the ground
+};
+
 /**
 * Basic Trace for a top down game, we do not really need more than that
 /rst
@@ -51,8 +60,13 @@ public:
 	//! Listen to user inputs
 	virtual void BindToConfirmCancelInputs();
 
+	void FilterActors();
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+    EGK_TraceMode TraceMode;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
 	float MaxRange;
@@ -61,7 +75,19 @@ public:
 	float MinRange;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
-	float AreaOfEffect;
+    float AreaOfEffect;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+    TSubclassOf<AActor> ClassFilter;
+
+	UPROPERTY(BlueprintReadWrite,
+              EditAnywhere,
+              Category = Trace,
+              meta     = (ExposeOnSpawn = true, Bitmask, BitmaskEnum = "EGK_FriendOrFoe"))
+    int32 TargetActorFaction;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+	TArray<AActor *> ActorsToIgnore;
 
 	UPROPERTY(BlueprintReadOnly)
 	FHitResult LatestHitResult;
@@ -77,6 +103,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FTargetValidityChanged TargetValidityChanged;
+
+	UPROPERTY(BlueprintReadOnly)
+	TArray<AActor *> ActorsUnderCursor;
 
 	bool IsInputBound;
 };

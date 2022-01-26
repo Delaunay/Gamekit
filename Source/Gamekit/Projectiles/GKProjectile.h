@@ -41,6 +41,12 @@ public:
 	float Speed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
+	float InitialSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
+     float HomingAcceleration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
 	FVector Direction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);

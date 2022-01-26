@@ -16,6 +16,7 @@ enum class EGK_AbilityAnimation : uint8
     Channel UMETA(DisplayName = "Channel"),
     Attack  UMETA(DisplayName = "Attack"),
     Cast    UMETA(DisplayName = "Cast"),
+    Death   UMETA(DisplayName = "Death"),
 };
 
 
@@ -53,6 +54,11 @@ public:
         }
 
         return DefaultAnimations;
+    }
+
+    class UAnimMontage *Sample(EGK_AbilityAnimation AnimKind) const { 
+        //
+        return GetAnimations(AnimKind).Sample();
     }
 
 public:

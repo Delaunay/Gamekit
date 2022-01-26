@@ -12,7 +12,7 @@ AGKProjectile::AGKProjectile()
 	PrimaryActorTick.bCanEverTick = true;
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 
-	// We decide when we are ready to initialze movements
+	// We decide when we are ready to initialize movements
 	ProjectileMovementComponent->bWantsInitializeComponent = false;
 
 	bReplicates = true;
@@ -67,8 +67,10 @@ void AGKProjectile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLif
 
 void AGKProjectile::InitProjectileMovement() {
 	auto Movement = ProjectileMovementComponent;
-	Movement->InitialSpeed = Speed;
-	Movement->ProjectileGravityScale = 0.0f;
+    Movement->InitialSpeed             = InitialSpeed;
+    Movement->MaxSpeed                 = Speed;
+    Movement->ProjectileGravityScale   = 0.0f;
+    Movement->Velocity                 = Direction;
 	Movement->bRotationFollowsVelocity = true;
 	
 	// Movement->bIsSliding = false;
@@ -78,8 +80,9 @@ void AGKProjectile::InitProjectileMovement() {
 	}
 
 	if (Behavior == EGK_ProjectileBehavior::UnitTarget && Target) {
+		// The accelaration needs to be very high
 		Movement->bIsHomingProjectile = true;
 		Movement->HomingTargetComponent = Target->GetRootComponent();
-		// Movement->HomingAccelerationMagnitude;
+        Movement->HomingAccelerationMagnitude = HomingAcceleration;
 	}
 }

@@ -214,10 +214,26 @@ void UGKGameplayAbility::OnAbilityTargetingCancelled(const FGameplayAbilityTarge
 	K2_CancelAbility();
 }
 
+
+void UGKGameplayAbility::ActivateManual_PointTarget(FVector Point) { 
+
+	FHitResult Result;
+    Result.ImpactPoint = Point;
+
+	auto StartLocation    = FGameplayAbilityTargetingLocationInfo();
+    auto TargetDataHandle = StartLocation.MakeTargetDataHandleFromHitResult(this, Result);
+
+	OnAbilityTargetAcquired(TargetDataHandle);
+}
+
 void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDataHandle& Data) {
 	TargetingResultDelegate.Broadcast(false);
-	TargetTask->EndTask();
-	TargetTask = nullptr;
+    
+	if (TargetTask)
+    {
+		TargetTask->EndTask();
+		TargetTask = nullptr;
+    }
 	// ------------------
 
 	if (Immediate) {
@@ -524,6 +540,12 @@ const FGameplayTagContainer& UGKGameplayAbility::GetAbilityCooldownTags() const 
 TArray<FGameplayAttribute> UGKGameplayAbility::GetAbilityCostAttribute() const {
 	TArray<FGameplayAttribute> Out;
 	auto CostEffect = GetCostGameplayEffect();
+
+	if (!CostEffect)
+    {
+		return Out;    
+	}
+
 	for (auto& Modifiers : CostEffect->Modifiers)
 	{
 		Out.Add(Modifiers.Attribute);
@@ -684,6 +706,44 @@ FGameplayTagContainer UGKGameplayAbility::GetActivationRequiredTag() {
 	return ActivationRequiredTags;
 }
 
+
+bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle TargetData, FVector& Position, AActor *& Target, int32 Index)
+{
+    if (TargetData.Num() == 0)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::SpawnProjectile: No TargetData"));
+        return false;
+    }
+
+    if (Index == 0 && TargetData.Num() > 1)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::SpawnProjectile: Has %d TargetData"), TargetData.Num());
+    }
+
+    if (TargetData.Get(Index)->HasHitResult())
+    {
+        Target = TargetData.Get(Index)->GetHitResult()->Actor.Get();
+        Position = TargetData.Get(Index)->GetHitResult()->ImpactPoint;
+        return true;
+    }
+    else
+    {
+        auto Actors = TargetData.Get(Index)->GetActors();
+
+        if (Index == 0 && Actors.Num() == 0)
+        {
+            UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::SpawnProjectile: No Actor Data"));
+            return false;
+        }
+
+        Target    = Actors[0].Get();
+        Position = Target->GetActorLocation();
+        return true;
+    }
+
+	return false;
+}
+
 void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData) {
 	FGKAbilityStatic* Data = GetAbilityStatic();
 
@@ -692,31 +752,37 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
 	}
 
 	auto& TargetData = EventData.TargetData;
-	if (TargetData.Num() <= 0) {
-		UE_LOG(LogGamekit, Warning, TEXT("UGKGameplayAbility::SpawnProjectile: No TargetData"));
+
+
+    auto ActorInfo = GetCurrentActorInfo();
+    auto Actor     = ActorInfo->AvatarActor;
+    auto Pawn      = Cast<APawn>(Actor.Get());
+
+    AActor *Target = nullptr;
+    FVector Direction;
+    
+	if (!GetTargetLocation(EventData.TargetData, Direction, Target, 0))
+    {
 		return;
 	}
 
-	auto ActorInfo = GetCurrentActorInfo();
-	auto Actor = ActorInfo->AvatarActor;
-	auto Pawn = Cast<APawn>(Actor.Get());
+    FVector    Loc      = Actor->GetActorLocation();
+    FTransform Transform;
+    Transform.SetLocation(Actor->GetActorLocation() + Actor->GetActorForwardVector() * 64.0f);
 
+	// ---
+	
 	// From: GameplayAbilities\Public\Abilities\Tasks\AbilityTask_SpawnActor.h
-	// > Long term we can also use this task as a sync point.
-	// > If the executing client could wait execution until the server createsand replicate sthe
-	// > actor down to him.We could potentially also use this to do predictive actor spawning / reconciliation.
-	//
-	// Pending UE4 does it we might have to do it here
-	FActorSpawnParameters SpawnInfo;
-	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	SpawnInfo.Owner = Pawn;
-	SpawnInfo.Instigator = Pawn;
-	SpawnInfo.bDeferConstruction = true;
-
-	auto ActorRot = Actor->GetActorRotation();
-	FTransform Transform;
-	Transform.SetRotation(FQuat(ActorRot));
-	Transform.SetLocation(Actor->GetActorLocation() + Actor->GetActorForwardVector() * 64.0f);
+    // > Long term we can also use this task as a sync point.
+    // > If the executing client could wait execution until the server createsand replicate sthe
+    // > actor down to him.We could potentially also use this to do predictive actor spawning / reconciliation.
+    //
+    // Pending UE4 does it we might have to do it here
+    FActorSpawnParameters SpawnInfo;
+    SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    SpawnInfo.Owner                          = Pawn;
+    SpawnInfo.Instigator                     = Pawn;
+    SpawnInfo.bDeferConstruction             = true;
 
 	auto ProjectileInstance = Actor->GetWorld()->SpawnActor<AGKProjectile>(
 		Data->ProjectileActorClass,
@@ -724,9 +790,12 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
 		SpawnInfo
 	);
 
-	ProjectileInstance->Direction = ActorRot.Vector();
-	ProjectileInstance->Speed = Data->ProjectileSpeed;
-	ProjectileInstance->Target = TargetData.Get(0)->GetHitResult()->Actor.Get();
+	Direction.Z                   = Loc.Z;
+	ProjectileInstance->Direction = (Direction - Loc);
+	ProjectileInstance->Speed = Data->ProjectileSpeed; 
+    ProjectileInstance->InitialSpeed = Data->ProjectileInitialSpeed;
+    ProjectileInstance->Target = Target;
+    ProjectileInstance->HomingAcceleration = Data->ProjectileHomingAcceleration;
 	ProjectileInstance->Behavior = Data->ProjectileBehavior;
 	ProjectileInstance->Range = Data->ProjectileRange;
 	ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EventTag, EventData);

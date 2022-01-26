@@ -42,6 +42,18 @@ Ability Replication Flow
 Animations
 ^^^^^^^^^^
 
+To make abilities generic the animations montage themselves are not specified.
+Instead an animation kind is set (Channelling, Attack, Cast, etc..) which is a single enumerator
+representing the kind of annimation an ability can expect.
+
+The animation montage are specified by the Character itself which has a FGKAnimationSet
+which our ability can sample from.
+
+When an ability is activated the AnimationSet is fectched from the character to the ability
+and the right animation is then played. This enable us to use the same ability for different
+characters which can have different animation as well.
+
+
 .. image:: /_static/AbilityAnimations.png
 
 .. note::

@@ -8,4 +8,24 @@ FGKAbilityStatic::FGKAbilityStatic()
 	, Price(0)
 	, MaxStack(1)
 	, AbilityTargetActorClass(AGKAbilityTarget_PlayerControllerTrace::StaticClass())
-{}
+{
+
+	AbilityKind  = EGK_AbilityKind::None;
+    Icon         = nullptr;
+    CastMaxRange = 1800;
+    CastMinRange = 0;
+    MaxStack         = 1;
+    Price            = 0;
+    Duration         = 1;
+    AbilityBehavior  = EGK_AbilityBehavior::NoTarget;
+    TargetActorFaction = static_cast<int32>(EGK_FriendOrFoe::None);
+    CastTime           = 1;
+    ChannelTime        = 0;
+    AbilityAnimation   = EGK_AbilityAnimation::Attack;
+    ProjectileSpeed    = 1800;
+    ProjectileInitialSpeed = 1800;
+    ProjectileHomingAcceleration = 16000;
+    ProjectileBehavior           = EGK_ProjectileBehavior::Directional;
+    ProjectileRange              = 3200;
+    AreaOfEffect                 = 16.f;
+}

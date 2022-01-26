@@ -187,7 +187,9 @@ public:
 
     void SetFoWEnabledParameter(bool Enabled);
 
-protected:
+    void Tick(float DeltaTime);
+
+    protected:
     void GetBrushSizes(FVector2D& TextureSize, FVector2D& MapSize);
 
     //! Updates the Texture Size, given the size covered by the Fog of War volume

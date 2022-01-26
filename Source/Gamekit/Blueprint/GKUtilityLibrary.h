@@ -31,4 +31,29 @@ public:
 	//! Return the map size stored inside the Fog of War Volume if any
 	UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
 	static FVector2D GetFogOfWarMapSize(const UObject *World);
+
+	//! Given a player controller it will output the 4 corners seen by the player
+	//! projected on the ground
+	UFUNCTION(BlueprintCallable, Category = "Controller", meta = (WorldContext = "World"))
+    static void GetControllerFieldOfView(const UObject *           World,
+                                         class APlayerController * Controller,
+                                         ETraceTypeQuery           TraceChannel,
+                                         TArray<FVector>         & Corners, 
+										 FVector2D                 Margin = FVector2D(0, 0));
+
+	//! Draw a polygon given its corners
+	//! It will close the polygon at the end
+    UFUNCTION(BlueprintCallable, Category = "Controller", meta = (WorldContext = "World"))
+    static void DrawPolygon(const UObject *              World,
+                            class UCanvasRenderTarget2D *Target,
+                            TArray<FVector>              Corners,
+                            FVector2D                    MapSize,
+                            FLinearColor                 Color,
+                            float                        Thickness);
+
+
+	UFUNCTION(BlueprintPure, Category = "Rotation")
+    static FRotator BetterLookAtRotation(FVector ActorLocation,
+                                         FVector LookAt,
+                                         FVector UpDirection = FVector(0, 0, 1.f));
 };

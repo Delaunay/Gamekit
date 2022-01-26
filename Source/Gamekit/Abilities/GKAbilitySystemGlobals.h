@@ -23,6 +23,18 @@ public:
 	UPROPERTY(config)
 	FName ActivateFailNotYetLearnedName;
 
+	UPROPERTY()
+    FGameplayTag DeathTag;
+
+	UPROPERTY(config)
+	FName DeathName;
+
+	UPROPERTY()
+    FGameplayTag DeathDispelTag;
+
+	UPROPERTY(config)
+    FName DeathDispelName;
+
 	virtual void InitGlobalTags() override;
 
 	//

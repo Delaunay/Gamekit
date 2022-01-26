@@ -188,8 +188,15 @@ public:
 	FGKTargetingStartDelegate TargetingStartDelegate;
 
 	// -----------------------------------------------------------------
+	//! Reads the TargetData and try to fetch a location and an actor
+    UFUNCTION(BlueprintCallable, Category = Ability)
+    bool GetTargetLocation(FGameplayAbilityTargetDataHandle TargetData,
+                           FVector &                        Position,
+                           AActor *&                        Target,
+                           int32                            Index = 0);
 
 	// Projectile
+    UFUNCTION(BlueprintCallable, Category = Ability)
 	void SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData);
 
 public:
@@ -299,6 +306,12 @@ public:
 	//! Level up the ability (RPC to server)
 	UFUNCTION(BlueprintCallable, Category = Ability)
 	void LevelUpAbility();
+
+	//! Activate the hability and skip target acquisition
+	//! It essentially skips a lot of replication logic
+	//! TODO: Replicate to server
+    UFUNCTION(BlueprintCallable, Category = Ability)
+    void ActivateManual_PointTarget(FVector Point);
 
 	//! Server RPC to client
 	//! Note that the Level returned by this event is the correct one

@@ -81,6 +81,9 @@ public:
     UPROPERTY(BlueprintAssignable)
     FGKMoveToDestinationDelegate OnCancelled;
 
+    UPROPERTY(BlueprintAssignable)
+    FGKMoveToDestinationDelegate OnTurnDone;
+
     virtual void InitSimulatedTask(UGameplayTasksComponent &InGameplayTasksComponent) override;
 
     virtual void TickTask(float DeltaTime) override;
@@ -91,6 +94,8 @@ public:
 
     virtual void ExternalCancel() override;
 
+    // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
+
     void Init();
 
     void DebugDraw();
@@ -98,7 +103,10 @@ public:
     // Arguments
     float   TurnRate;
     float   MaxSpeed;
+
+    // UPROPERTY(replicated)
     FVector Destination;
+
     bool    bDebug;
     float   DistanceTolerance;
     float   AngleTolerance;

@@ -37,6 +37,16 @@ enum class EGK_AbilityBehavior : uint8
 	Toggle			UMETA(DisplayName = "Toggle"),			// Ability is Active or not
 };
 
+// Used to defined what kind of target is allowed
+UENUM(BlueprintType, meta = (Bitflags))
+enum class EGK_FriendOrFoe : uint8
+{
+    None    = 0		   UMETA(DisplayName = "None"),
+    Friend  = (1 << 0) UMETA(DisplayName = "Friend"), 
+    Enemy   = (1 << 1) UMETA(DisplayName = "Enemy"),
+    Neutral = (1 << 2) UMETA(DisplayName = "Neutral"),
+};
+
 // This is create because we cannot use include AGKAbilityTarget_Actor
 // in AbilityStatic
 UENUM(BlueprintType)
@@ -146,6 +156,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
 	EGK_AbilityBehavior AbilityBehavior;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "EGK_FriendOrFoe"))
+    int32 TargetActorFaction;
+
 	//! The AbilityTarget Actor this ability will use to select a target
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
 	TSubclassOf<AGameplayAbilityTargetActor> AbilityTargetActorClass;
@@ -178,6 +191,15 @@ public:
 	//! Base projectile speed
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
 	float ProjectileSpeed;
+
+	//! Base projectile speed
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    float ProjectileInitialSpeed;
+
+	//! Homing Acceleration affects how quickly the projectile can turn
+	//! towards the target
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    float ProjectileHomingAcceleration;
 
 	//! How the projectlie behave
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);

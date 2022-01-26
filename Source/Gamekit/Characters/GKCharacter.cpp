@@ -6,6 +6,8 @@
 #include "Abilities/GKGameplayAbility.h"
 #include "Abilities/GKAbilityStatic.h"
 #include "Items/GKItem.h"
+#include "Abilities/GKAbilitySystemGlobals.h"
+#include "Components/CapsuleComponent.h"
 
 #include "AbilitySystemGlobals.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -157,6 +159,83 @@ UAbilitySystemComponent* AGKCharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
+void AGKCharacterBase::OnHealthChanged_Native(const FOnAttributeChangeData &Data) {
+
+	// Health gets clamp to 0 so we know that it will be exactly equal to 0
+	if (Data.NewValue == 0.f)
+    {
+        Die();
+    }
+}
+
+void AGKCharacterBase::ClearGameplayAbilities()
+{
+    if (GetLocalRole() != ROLE_Authority || AbilitySystemComponent == nullptr || !AbilitySystemComponent->Initialized)
+    {
+        return;
+    }
+
+    TArray<FGameplayAbilitySpecHandle> Abilities;
+
+	auto ASC = GetAbilitySystemComponent();
+    for (const FGameplayAbilitySpec &Spec: ASC->GetActivatableAbilities())
+    {
+        if ((Spec.SourceObject == this))
+        {
+            Abilities.Add(Spec.Handle);
+        }
+    }
+
+    for (auto &Ability: Abilities)
+    {
+        AbilitySystemComponent->ClearAbility(Ability);
+    }
+
+    AbilitySystemComponent->Initialized = false;
+}
+
+void AGKCharacterBase::Die()
+{
+	// Remove all abilities
+    ClearGameplayAbilities();
+
+	// Disable Collision
+    GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    GetCharacterMovement()->GravityScale = 0;
+    GetCharacterMovement()->Velocity     = FVector(0);
+
+	// Clean up the ASC
+	const FGameplayTag &DeathDispelTag = ((UGKAbilitySystemGlobals &)UGKAbilitySystemGlobals::Get()).DeathDispelTag;
+    const FGameplayTag &DeathTag = ((UGKAbilitySystemGlobals &)UGKAbilitySystemGlobals::Get()).DeathTag;
+
+    if (AbilitySystemComponent != nullptr)
+    {
+        AbilitySystemComponent->CancelAllAbilities();
+
+        FGameplayTagContainer EffectTagsToRemove;
+        EffectTagsToRemove.AddTag(DeathDispelTag);
+        int32 NumEffectsRemoved = AbilitySystemComponent->RemoveActiveEffectsWithTags(EffectTagsToRemove);
+        AbilitySystemComponent->AddLooseGameplayTag(DeathTag);
+    }
+
+	// Play the death montage
+	// NB: we could play it in the animation bp as well
+    //*
+    if (UnitStatic)
+    {
+        auto Montage = UnitStatic->AnimationSet.Sample(EGK_AbilityAnimation::Death);
+        if (Montage)
+        {
+            PlayAnimMontage(Montage);
+        }
+    }
+    //*/
+
+	// let blueprints do something about it
+    OnCharacterDied.Broadcast(this);
+}
+
+bool AGKCharacterBase::IsDead() { return GetAttributeSet()->Health.GetCurrentValue() == 0.f; }
 
 void AGKCharacterBase::BeginPlay() {
 	Super::BeginPlay();
@@ -170,6 +249,10 @@ void AGKCharacterBase::BeginPlay() {
 			UE_LOG(LogGamekit, Warning, TEXT("Loading Unit Config From DataTable"));
 			OnDataTableChanged_Native();
 		}
+
+		
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetHealthAttribute())
+                        .AddUObject(this, &AGKCharacterBase::OnHealthChanged_Native);
 	}
 }
 
@@ -328,4 +411,15 @@ void AGKCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		UE_LOG(LogGamekit, Warning, TEXT("Abilities got bound"));
 		InputsBound = true;
 	}
+}
+
+void AGKCharacterBase::MoveToLocation(FVector Loc) {
+    auto Spec = AbilitySpecs.Find(FGKAbilitySlot(EGK_MOBA_AbilityInputID::Move));
+
+    if (Spec == nullptr || Spec->Ability == nullptr)
+    {
+        return;
+    }
+
+	AbilitySystemComponent->TryActivateAbility_Point(Spec->Handle, Loc);
 }

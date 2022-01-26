@@ -34,6 +34,12 @@ void AGKAbilityTarget_Actor::StartTargeting(UGKGameplayAbility* Ability) {
 	if (AbilitySystemComponent) {
 		AbilitySystemComponent->SpawnedTargetActors.Add(this);
 	}
+
+	auto Data = Ability->GetAbilityStatic();
+    if (Data)
+    {
+        InitializeFromAbilityData(*Data);
+    }
 }
 
 void AGKAbilityTarget_Actor::InitializeFromAbilityData(FGKAbilityStatic const& AbilityData) {

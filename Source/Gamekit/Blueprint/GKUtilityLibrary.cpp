@@ -1,10 +1,18 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
 
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
-#include "Kismet/GameplayStatics.h"
 
+#include "Engine/Canvas.h"
+#include "Engine/CanvasRenderTarget2D.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetRenderingLibrary.h"
+#include "Math/Rotator.h"
+#include "Math/RotationMatrix.h"
+
+#include "GKCoordinateLibrary.h"
 #include "GKWorldSettings.h"
 
 AWorldSettings const*UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext) {
@@ -57,4 +65,99 @@ FVector2D UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
     }
 
     return FVector2D();
+}
+
+
+void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
+                                                 class APlayerController *Controller,
+                                                 ETraceTypeQuery          TraceChannel,
+                                                 TArray<FVector> &        Corners,
+                                                 FVector2D                Margin)
+{
+    int32 SizeX = 0;
+    int32 SizeY = 0;
+
+    Controller->GetViewportSize(SizeX, SizeY);
+    auto ViewportSize = FVector2D(SizeX, SizeY) - Margin;
+
+    TArray<AActor *> ActorsToIgnore;
+    FHitResult     OutHit;
+
+    static TArray<FVector2D> ViewportCorners = {
+        FVector2D(1, 1), 
+        FVector2D(0, 1), 
+        FVector2D(0, 0), 
+        FVector2D(1, 0)
+    };
+
+    Corners.Reset(4);
+
+    for (auto &Corner: ViewportCorners)
+    {
+        FVector WorldDirection;
+        FVector WorldLocation;
+
+        auto Screen = ViewportSize * Corner;
+
+         UGameplayStatics::DeprojectScreenToWorld(
+            Controller, 
+            Screen, 
+            WorldLocation, 
+            WorldDirection
+        );
+
+        UKismetSystemLibrary::LineTraceSingle(World,
+                                              WorldLocation,
+                                              WorldLocation + WorldDirection * 5000.f,
+                                              TraceChannel,
+                                              false,
+                                              ActorsToIgnore,
+                                              EDrawDebugTrace::None,
+                                              OutHit,
+                                              true);
+
+        Corners.Add(OutHit.Location);
+    }
+}
+
+
+void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
+                                    class UCanvasRenderTarget2D *Target,
+                                    TArray<FVector>              Corners,
+                                    FVector2D                    MapSize,
+                                    FLinearColor                 Color,
+                                    float                        Thickness
+    )
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
+    
+    UCanvas *                  Canvas;
+    FVector2D                  TextureSize;
+    FDrawToRenderTargetContext Context;
+
+    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(World, Target, Canvas, TextureSize, Context);
+    UKismetRenderingLibrary::ClearRenderTarget2D(World, Target);
+
+    for (int i = 1; i < Corners.Num(); i++)
+    {
+        Canvas->K2_DrawLine(
+            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i - 1], MapSize, TextureSize),
+            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i], MapSize, TextureSize),
+            Thickness, 
+            Color);
+    }
+
+    auto Last = Corners.Num() - 1;
+    Canvas->K2_DrawLine(
+        UGKCoordinateLibrary::ToScreenCoordinate(Corners[Last], MapSize, TextureSize),
+        UGKCoordinateLibrary::ToScreenCoordinate(Corners[0], MapSize, TextureSize),
+        Thickness,
+        Color);
+
+    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(World, Context);
+}
+
+FRotator UGKUtilityLibrary::BetterLookAtRotation(FVector ActorLocation, FVector LookAt, FVector UpDirection)
+{
+    return FRotator();
 }

@@ -20,10 +20,7 @@ struct GAMEKIT_API FGKUnitStatic: public FTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FGKUnitStatic():
-		Health(100.0f), HealthRegen(1.0f),
-		Mana(100.0f), ManaRegen(1.0f)
-	{}
+    FGKUnitStatic();
 
 	//! User-visible short name 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

@@ -3,7 +3,9 @@
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
 #include "Gamekit/Abilities/GKGameplayAbility.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
+#include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
 #include "Gamekit.h"
@@ -125,6 +127,13 @@ void UGKAbilityTask_MoveToDestination::DebugDraw()
 #endif // ENABLE_DRAW_DEBUG
 }
 
+
+/* void UGKAbilityTask_MoveToDestination::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
+{
+    DOREPLIFETIME(UGKAbilityTask_MoveToDestination, Destination);
+}
+// */
+
 void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 {
     if (bIsFinished)
@@ -149,7 +158,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     auto Direction = Destination - Location;
     auto Distance  = Direction.Size2D();
 
-    if (Distance < DistanceTolerance)
+    if (bRotationFinished && Distance < DistanceTolerance)
     {
         bIsFinished = true;
         OnCompleted.Broadcast();
@@ -157,12 +166,22 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         return;
     }
 
+    // Look at method
+    // ---------------
+    // auto TargetRotator = UGKUtilityLibrary::BetterLookAtRotation(Location, Destination);
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
     auto CurrentRot    = RootComponent->GetComponentRotation();
     auto TargetYaw     = (TargetRotator.Yaw - CurrentRot.Yaw);
 
     // This is the most reliable way of getting the smallest angle
-    TargetYaw = FMath::RadiansToDegrees(asinf(sinf(FMath::DegreesToRadians(TargetYaw))));
+    auto Before = TargetYaw;
+
+    // I think there is a bug when the angle is close to 180
+    if (FMath::Abs(TargetYaw) > 180)
+    {
+        TargetYaw = FMath::RadiansToDegrees(FMath::Asin(FMath::Sin(FMath::DegreesToRadians(TargetYaw))));
+    }
+    // -----------------
 
     // Limit turn speed
     auto MaxTurnStep = TurnRate * DeltaTime;
@@ -175,7 +194,12 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     // Is our direction close enough ?
     if (FMath::Abs(TargetYaw) < AngleTolerance)
     {
+        if (!bRotationFinished)
+        {
+            OnTurnDone.Broadcast();
+        }
         bRotationFinished = true;
+
 
         if (!MoveToTarget)
         {

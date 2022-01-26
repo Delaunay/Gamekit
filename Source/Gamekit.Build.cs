@@ -45,6 +45,7 @@ public class Gamekit : ModuleRules
 
             // 
             "EnhancedInput",
+            "Landscape",
         });
     }
 }

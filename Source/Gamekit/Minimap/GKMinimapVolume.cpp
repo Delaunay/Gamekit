@@ -3,6 +3,7 @@
 #include "Minimap/GKMinimapVolume.h"
 #include "Minimap/GKMinimapComponent.h"
 
+#include "Landscape.h"
 #include "TimerManager.h"
 #include "Components/BrushComponent.h"
 #include "Engine/Canvas.h"
@@ -13,6 +14,7 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Components/SceneCaptureComponent2D.h"
+#include "Kismet/GameplayStatics.h"
 
 
 AGKMinimapVolume::AGKMinimapVolume() {
@@ -21,7 +23,8 @@ AGKMinimapVolume::AGKMinimapVolume() {
 
     MinimapCapture = CreateDefaultSubobject<USceneCaptureComponent2D>(TEXT("MinimapCapture"));
     MinimapCapture->SetRelativeRotation(FRotator(-90, 0, 0));
-    MinimapCapture->SetRelativeLocation(FVector(0, 0, 50));
+    CameraPosition = FVector(0, 0, 1000);
+    MinimapCapture->SetRelativeLocation(CameraPosition);
     MinimapCapture->CaptureSource = ESceneCaptureSource::SCS_BaseColor;
     MinimapCapture->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
     MinimapCapture->ProjectionType = ECameraProjectionMode::Orthographic;
@@ -30,6 +33,8 @@ AGKMinimapVolume::AGKMinimapVolume() {
     PrimaryActorTick.bCanEverTick = true;
     bMinimapEnabled = true;
     FramePerSeconds = 30.f;
+     
+    AllowClass = ALandscape::StaticClass();
 }
 
 void AGKMinimapVolume::RegisterActorComponent(UGKMinimapComponent* c) {
@@ -135,9 +140,24 @@ void AGKMinimapVolume::UpdateSizes() {
     // Make sure our Capture component is configured right
     if (MinimapCapture)
     {
+        MinimapCapture->SetRelativeLocation(CameraPosition);
         MinimapCapture->OrthoWidth = FMath::Max(MapSize.X, MapSize.Y);
         MinimapCapture->TextureTarget = MinimapCaptureTexture;
-        MinimapCapture->ShowOnlyActors = ShowOnlyActors;
+        
+        if (ShowOnlyActors.Num() > 0)
+        {
+            MinimapCapture->ShowOnlyActors = ShowOnlyActors;
+        }
+        
+        if (AllowClass.Get() != nullptr)
+        {
+            UGameplayStatics::GetAllActorsOfClass(
+                GetWorld(), 
+                AllowClass.Get(), 
+                MinimapCapture->ShowOnlyActors
+            );
+
+        }
     }
 }
 

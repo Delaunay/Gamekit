@@ -55,6 +55,10 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     bool bMinimapEnabled;
 
+    //! Bit of a work around since we cannot modify the location of a C++ component
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+    FVector CameraPosition;
+
 public:
     //! Called by UGKMinimapComponent to register themselves
     void RegisterActorComponent(class UGKMinimapComponent* c);
@@ -107,6 +111,11 @@ public:
     //! The scene capture component used to generate the minimap
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap")
     class USceneCaptureComponent2D* MinimapCapture;
+
+    // Fetch all the actors of a given class and add them to our allow list
+    // Defaults to ALandscape
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    TSubclassOf<AActor> AllowClass;
 
 private:
     FCriticalSection Mutex;               // Mutex to sync adding/removing components with the fog compute

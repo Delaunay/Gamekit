@@ -17,6 +17,8 @@
 
 AGKFogOfWarVolume::AGKFogOfWarVolume()
 {
+    PrimaryActorTick.bCanEverTick = true;
+
     static ConstructorHelpers::FObjectFinder<UMaterialParameterCollection> FoWParameterCollection(
             TEXT("MaterialParameterCollection'/Gamekit/FogOfWar/FoWParameters.FoWParameters'"));
 
@@ -168,6 +170,7 @@ void AGKFogOfWarVolume::UpdateVolumeSizes()
     for (auto &RenderTargets: FogFactions)
     {
         RenderTargets.Value->ResizeTarget(TextureSize.X, TextureSize.Y);
+        RenderTargets.Value->bNeedsTwoCopies = true;
     }
 }
 
@@ -229,6 +232,14 @@ void AGKFogOfWarVolume::InitDecalRendering()
     }
 }
 
+void AGKFogOfWarVolume::Tick(float DeltaTime)
+{
+    if (bFoWEnabled)
+    {
+        DrawFactionFog();
+    }
+}
+
 void AGKFogOfWarVolume::BeginPlay()
 {
     Super::BeginPlay();
@@ -243,18 +254,21 @@ void AGKFogOfWarVolume::BeginPlay()
     SetFoWEnabledParameter(bFoWEnabled);
 
     // Start drawing the fog
+    // For this method to work we need a better way to synchronize the textures
+    /*
     GetWorldTimerManager().SetTimer(FogComputeTimer,
                                     this,
                                     &AGKFogOfWarVolume::DrawFactionFog,
                                     1.f / FramePerSeconds,
                                     true,
                                     bFoWEnabled ? 0.f : 1.f);
-
+    
     if (!bFoWEnabled)
     {
         GetWorldTimerManager().PauseTimer(FogComputeTimer);
         return;
     }
+    //*/
 }
 
 UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionRenderTarget(FName name, bool CreateRenderTarget)

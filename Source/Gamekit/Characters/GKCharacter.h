@@ -19,6 +19,7 @@ class UGKGameplayAbility;
 class UGameplayEffect;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character);
 
 
 /** Base class for Character, Designed to be blueprinted
@@ -69,6 +70,19 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual bool SetCharacterLevel(int32 NewLevel);
 
+	virtual void OnHealthChanged_Native(const FOnAttributeChangeData &Data);
+
+	void ClearGameplayAbilities();
+
+	UFUNCTION(BlueprintPure, Category = Death)
+    bool IsDead();
+
+	UFUNCTION(BlueprintCallable, Category = "Death")
+	virtual void Die();
+
+	UPROPERTY(BlueprintAssignable, Category = "Death")
+    FGKCharacterDiedDelegate OnCharacterDied;
+
 protected:
 	/** The level of this character, should not be modified directly once it has already spawned */
 	UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
@@ -108,8 +122,11 @@ public:
 	void OnGiveAbility_Native(FGameplayAbilitySpec& AbilitySpec);
 
 	//! Low level ability activation
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    bool ActivateAbility(FGKAbilitySlot Slot);
+
 	UFUNCTION(BlueprintCallable, Category = Abilities)
-	bool ActivateAbility(FGKAbilitySlot Slot);
+    void MoveToLocation(FVector loc);
 
 	UFUNCTION(BlueprintCallable, Category = Abilities)
 	int AbilityCount() const;
