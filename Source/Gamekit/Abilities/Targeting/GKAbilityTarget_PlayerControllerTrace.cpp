@@ -2,9 +2,9 @@
 
 
 #include "Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
-#include "Abilities/GKAbilityStatic.h"
 
- 	
+#include "Abilities/GKAbilityStatic.h"
+#include "Characters/GKSelectableInterface.h"
 
 #include "GenericTeamAgentInterface.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -45,7 +45,53 @@ void AGKAbilityTarget_PlayerControllerTrace::StartTargeting(UGKGameplayAbility* 
     TargetValidityChanged.Broadcast(LatestHitResult, bIsTargetValid);
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds) {
+void AGKAbilityTarget_PlayerControllerTrace::Deselect() {
+    for (auto &Actor: ActorsUnderCursor)
+    {
+        auto Selectable = Cast<IGKSelectableInterface>(Actor);
+        if (Selectable) 
+        {
+            Selectable->Deselect();
+        }
+    }
+} 
+
+void AGKAbilityTarget_PlayerControllerTrace::Select() {
+    for (auto &Actor: ActorsUnderCursor)
+    {
+        auto Selectable = Cast<IGKSelectableInterface>(Actor);
+        if (Selectable)
+        {
+            Selectable->Select();
+        }
+    }
+}
+
+
+void AGKAbilityTarget_PlayerControllerTrace::DebugDraw() {
+#if ENABLE_DRAW_DEBUG
+    if (bDebug)
+    {
+        auto Color = IsConfirmTargetingAllowed() ? FColor::Green : FColor::Red;
+        DrawDebugLine(GetWorld(), SourceActor->GetActorLocation(), TraceEndPoint, Color, false);
+        DrawDebugSphere(GetWorld(), TraceEndPoint, 16, 10, Color, false);
+        DrawDebugCircle(GetWorld(),
+                        SourceActor->GetActorLocation() + FVector(0.f, 0.f, 1.f),
+                        MaxRange,
+                        32,
+                        FColor::Green,
+                        false,
+                        -1.f,
+                        0,
+                        1,
+                        FVector(0.f, 1.f, 0.f),
+                        FVector(1.f, 0.f, 0.f));
+    }
+#endif // ENABLE_DRAW_DEBUG
+}
+
+void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
+{
     // Server and launching client only
     if (!OwningAbility) {
         return;
@@ -60,6 +106,8 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds) {
 
     if (TraceMode == EGK_TraceMode::ActorTarget)
     {
+        Deselect();
+
         UKismetSystemLibrary::SphereOverlapActors(
                 GetWorld(), 
                 TraceEndPoint, 
@@ -71,6 +119,9 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds) {
         );
 
         FilterActors();
+
+        Select();
+
     }
 
     auto valid = IsConfirmTargetingAllowed();
@@ -79,27 +130,7 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds) {
         LatestValidHitResult = LatestHitResult;
     }
 
-#if ENABLE_DRAW_DEBUG
-    if (bDebug)
-    {
-        auto Color = valid ? FColor::Green : FColor::Red;
-        DrawDebugLine(GetWorld(), SourceActor->GetActorLocation(), TraceEndPoint, Color, false);
-        DrawDebugSphere(GetWorld(), TraceEndPoint, 16, 10, Color, false);
-        DrawDebugCircle(
-            GetWorld(), 
-            SourceActor->GetActorLocation() + FVector(0.f, 0.f, 1.f),
-            MaxRange,
-            32,
-            FColor::Green,
-            false,
-            -1.f,
-            0, 
-            1,
-            FVector(0.f, 1.f, 0.f), 
-            FVector(1.f, 0.f, 0.f)
-        );
-    }
-#endif // ENABLE_DRAW_DEBUG
+    DebugDraw();
 
     SetActorLocationAndRotation(TraceEndPoint, SourceActor->GetActorRotation());
 }
@@ -137,6 +168,7 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsConfirmTargetingAllowed() {
 
 void AGKAbilityTarget_PlayerControllerTrace::CancelTargeting() {
     CanceledDelegate.Broadcast(FGameplayAbilityTargetDataHandle());
+    Deselect();
 }
 
 //! Select the current target as our final target
@@ -186,6 +218,8 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
         TargetDataReadyDelegate.Broadcast(Handle);
         return;
     }
+
+    Deselect();
 }
 
 void AGKAbilityTarget_PlayerControllerTrace::FilterActors() 
@@ -305,6 +339,7 @@ void AGKAbilityTarget_PlayerControllerTrace::StopTargeting() {
     }
 
     const FGameplayAbilityActorInfo* Info = (OwningAbility ? OwningAbility->GetCurrentActorInfo() : nullptr);
+    Deselect();
 
     // i.e Locally Controlled
     if (GenericDelegateBoundASC && Info && Info->IsLocallyControlled()){

@@ -218,6 +218,8 @@ void AGKCharacterBase::Die()
         AbilitySystemComponent->AddLooseGameplayTag(DeathTag);
     }
 
+	Deselect();
+
 	// Play the death montage
 	// NB: we could play it in the animation bp as well
     //*
@@ -347,6 +349,11 @@ FGameplayAbilitySpecHandle AGKCharacterBase::GetAbilityHandle(FGKAbilitySlot Slo
 
 	return Spec->Handle;
 }
+
+void AGKCharacterBase::Select() { OnSelect();  }
+
+void AGKCharacterBase::Deselect() { OnDeselect(); }
+
 
 FGenericTeamId AGKCharacterBase::GetGenericTeamId() const
 {

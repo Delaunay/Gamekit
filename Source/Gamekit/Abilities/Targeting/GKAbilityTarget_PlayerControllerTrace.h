@@ -62,6 +62,12 @@ public:
 
 	void FilterActors();
 
+	void Deselect();
+
+	void Select();
+
+	void DebugDraw();
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
 

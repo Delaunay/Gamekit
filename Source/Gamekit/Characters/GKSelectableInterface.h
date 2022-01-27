@@ -16,7 +16,9 @@ class GAMEKIT_API IGKSelectableInterface {
 
     GENERATED_BODY()
 
-    void Select();
+    UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+    virtual void Select() = 0;
 
-    void Deselect();
+    UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+    virtual void Deselect() = 0;
 };

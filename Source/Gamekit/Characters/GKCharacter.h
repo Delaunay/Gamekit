@@ -12,6 +12,7 @@
 #include "Items/GKInventoryInterface.h"
 #include "Abilities/GKAbilitySystemComponent.h"
 #include "Abilities/GKAttributeSet.h"
+#include "Characters/GKSelectableInterface.h"
 
 #include "GKCharacter.generated.h"
 
@@ -41,7 +42,10 @@ Automatic input binding
 
 */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKCharacterBase : public ACharacter, public IAbilitySystemInterface, public IGenericTeamAgentInterface
+class GAMEKIT_API AGKCharacterBase : public ACharacter, 
+								     public IAbilitySystemInterface,
+	                                 public IGenericTeamAgentInterface,
+                                     public IGKSelectableInterface
 {
 	GENERATED_BODY()
 
@@ -82,6 +86,20 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Death")
     FGKCharacterDiedDelegate OnCharacterDied;
+
+	// IGKSelectableInterface
+    UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+    void Deselect();
+
+    UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+    void Select();
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "UnitSelection")
+    void OnSelect();
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "UnitSelection")
+    void OnDeselect();
+	// -------
 
 protected:
 	/** The level of this character, should not be modified directly once it has already spawned */
