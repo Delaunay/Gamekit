@@ -1,12 +1,19 @@
-float3 newSample =
-    Texture2DSample(Tex,TexSampler,UV + float2(-1,  1) * Distance) * 1.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 0,  1) * Distance) * 2.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 1,  1) * Distance) * 1.f +
-    Texture2DSample(Tex,TexSampler,UV + float2(-1,  0) * Distance) * 2.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 0,  0) * Distance) * 4.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 1,  0) * Distance) * 2.f +
-    Texture2DSample(Tex,TexSampler,UV + float2(-1, -1) * Distance) * 1.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 0, -1) * Distance) * 2.f +
-    Texture2DSample(Tex,TexSampler,UV + float2( 1, -1) * Distance) * 1.f;
 
-return newSample / 16.f;
+SamplerState TexSampler;
+
+//! Simple 3x3 Gaussian Kernel
+float3 GaussianBlur(Texture2D Tex, float2 UV, float Distance) {
+
+    float3 newSample =
+        Texture2DSample(Tex, TexSampler, UV + float2(-1,  1) * Distance) * 1.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 0,  1) * Distance) * 2.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 1,  1) * Distance) * 1.f +
+        Texture2DSample(Tex, TexSampler, UV + float2(-1,  0) * Distance) * 2.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 0,  0) * Distance) * 4.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 1,  0) * Distance) * 2.f +
+        Texture2DSample(Tex, TexSampler, UV + float2(-1, -1) * Distance) * 1.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 0, -1) * Distance) * 2.f +
+        Texture2DSample(Tex, TexSampler, UV + float2( 1, -1) * Distance) * 1.f;
+
+    return newSample / 16.f;
+}

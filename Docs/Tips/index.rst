@@ -76,5 +76,9 @@ Others
 
    Controllers/index
    Cameras/index
-   Minimaps/index
+   Cameras/configure
    Shaders/index
+   cross
+   compilation
+
+

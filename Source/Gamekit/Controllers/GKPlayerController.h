@@ -27,7 +27,7 @@ public:
 
 protected:
 	/** Called when a global save game as been loaded */
-	void HandleSaveGameLoaded(UGKSaveGame* NewSaveGame);
+	void HandleSaveGameLoaded(class UGKSaveGame* NewSaveGame);
 
 public:
 

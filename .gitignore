@@ -27,3 +27,7 @@ Plugins/Gamekit/Content/Textures/IconsSkills
 MOBA_GamekitUnits.json
 MOBA_GamekitAbilies.json
 enc_temp_folder/
+
+Docs/Doxyfile
+Docs/_build/
+Docs/api/

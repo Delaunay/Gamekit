@@ -1,6 +1,17 @@
 Cross compilation
 =================
 
+Git Diff
+~~~~~~~~
+
+.. code-block:: bash
+
+   # Windows file permissions are wrong when using WSL
+   git config --global core.filemode false
+
+   # Do not use windows newline
+   git config --global core.autocrlf true
+
 
 Compile libaries with UE4 clang
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

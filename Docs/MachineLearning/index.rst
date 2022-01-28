@@ -215,9 +215,12 @@ The observation space is defined by adding ``U4MLSensor`` to the agent configura
 
    * AIPerception: hook itself to the AI Perception system of UE4 (Note this is a Game-AI (Behavior Trees) not ML-AI)
 
-      * see `AI Perception <https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/AIPerception/>`_ which include Hearing, Sight, Team (proximity of ally), Touch. Currently only Sight is supported, it is created by the UE4ML system and added to the player controller.
+      * see `AI Perception <https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/AIPerception/>`_
+        which include Hearing, Sight, Team (proximity of ally), Touch. Currently only Sight is supported,
+        it is created by the UE4ML system and added to the player controller.
 
-   * Attribute: listen to attribute change if you are using `UAttributeSet <https://docs.unrealengine.com/4.27/en-US/API/Plugins/GameplayAbilities/UAttributeSet/>`_ for your character.
+   * Attribute: listen to attribute change if you are using
+     `UAttributeSet <https://docs.unrealengine.com/4.27/en-US/API/Plugins/GameplayAbilities/UAttributeSet/>`_ for your character.
    * Camera: Make a camera capture of the scene
    * Input: Capture the inputs
    * Movement: Capture the characters movement & acceleration
@@ -327,9 +330,9 @@ Wishlist
 * Annotate the observation & action space
 
    * The observation space order is unclear. Python dictionnary are ordered the observation space returned is ordered differently
-   the order look deterministic but it would be nice it it was made explicit.
-   sensors are stored in a ``TMap`` so the order in which the space is generated is not clear.
-   Additionally they are probably json-searialized so the order could be switched again there.
+     the order look deterministic but it would be nice it it was made explicit.
+     sensors are stored in a ``TMap`` so the order in which the space is generated is not clear.
+     Additionally they are probably json-searialized so the order could be switched again there.
 
 
 .. note::

@@ -45,7 +45,7 @@ Tangrams
    The URL contains the lat/long of the pixel at the center.
    Using your browser developer tools you can query the size in meters ``scene.view.size.meters``
 
-   .. code-block:: javascript:
+   .. code-block:: javascript
 
       scene.view.size.meters
       Object { x: 5243.083422156026, y: 5243.083422156026 }
