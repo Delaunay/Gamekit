@@ -52,6 +52,7 @@ def configure_doxyfile():
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 
 if read_the_docs_build:
+    os.makedirs(doxygen_out_html, exist_ok=True)
     configure_doxyfile()
     subprocess.call("doxygen", shell=True)
 

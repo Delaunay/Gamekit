@@ -8,6 +8,18 @@ This is my journal written while exploring UE4.
 Might contain some useful information.
 
 
+Goals
+~~~~~
+
+* Setup basic repository for effective development
+* Favour community development
+
+   * C++ > Blueprint
+   * Shader Code > Materials
+
+* Implement common blocs
+
+
 Contents
 ~~~~~~~~
 
