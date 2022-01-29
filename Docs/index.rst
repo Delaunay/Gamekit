@@ -19,16 +19,21 @@ Goals
 
 * Implement common blocs
 
+   * UI
+   * Menus
 
-Contents
-~~~~~~~~
+
+.. warning::
+
+   This is not meant to be an instroduction to UE.
+   It expects some knowledge of UE and does not shy away from C++.
+
 
 .. toctree::
    :caption: Welcome
    :maxdepth: 1
 
    Installation
-
 
 .. toctree::
    :caption: Abilities
