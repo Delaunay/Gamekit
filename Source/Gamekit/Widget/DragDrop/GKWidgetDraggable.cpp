@@ -23,6 +23,8 @@ void UGKWidgetDraggable::NativeOnDragDetected(const FGeometry& InGeometry, const
     OutOperation->Payload = this; 
     OutOperation->Pivot = EDragPivot::CenterCenter;
     OutOperation->Offset = FVector2D(0, 0);
+    OutOperation->OnDragCancelled.AddDynamic(this, &UGKWidgetDraggable::OnDropCancelled_Native);
+    OutOperation->OnDrop.AddDynamic(this, &UGKWidgetDraggable::OnDropSuccess_Native);
 
     if (DragVisualClass) {
         // Kept: for documentation; you need to use CreateWidget else the children widget will not get created
@@ -42,6 +44,9 @@ void UGKWidgetDraggable::NativeOnDragDetected(const FGeometry& InGeometry, const
     // Blueprint logic
     UUserWidget::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 }
+
+void UGKWidgetDraggable::OnDropCancelled_Native(class UDragDropOperation *Operation) { OnDropCancelled(Operation); }
+void UGKWidgetDraggable::OnDropSuccess_Native(class UDragDropOperation* Operation) { OnDropSuccess(Operation); }
 
 bool UGKWidgetDraggable::IsDraggable_Native() {
     // Blueprint logic

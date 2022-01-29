@@ -58,7 +58,8 @@ Artists
             "Plugins/Gamekit/Content/Textures/Tex_WhiteWall_2048"
             "Plugins/Gamekit/Content/Textures/Tex_Cracked_Earth.Tex_Cracked_Earth",
             "Plugins/Gamekit/Content/Textures/Tex_Wood_Cut.Tex_Wood_Cut",
-            "Plugins/Gamekit/Content/Textures/Tex_Wood_Cut2.Tex_Wood_Cut2"
+            "Plugins/Gamekit/Content/Textures/Tex_Wood_Cut2.Tex_Wood_Cut2",
+            "Plugins/Gamekit/Content/Textures/Tex_WoodPlanks"
         ],
         "Licenses": [
             "CC0"

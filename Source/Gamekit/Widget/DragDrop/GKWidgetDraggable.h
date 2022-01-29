@@ -43,6 +43,15 @@ public:
     UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")
     bool IsDraggable();
 
+    UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")
+    void OnDropCancelled(class UDragDropOperation* Operation);
+
+    UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")
+    void OnDropSuccess(class UDragDropOperation* Operation);
+
+    void OnDropCancelled_Native(class UDragDropOperation* Operation);
+    void OnDropSuccess_Native(class UDragDropOperation* Operation);
+
     // UFUNCTION(BlueprintImplementableEvent
     // UFUNCTION(BlueprintNativeEvent)
 
