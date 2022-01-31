@@ -28,4 +28,5 @@ FGKAbilityStatic::FGKAbilityStatic()
     ProjectileBehavior           = EGK_ProjectileBehavior::Directional;
     ProjectileRange              = 3200;
     AreaOfEffect                 = 16.f;
+    Slot = EGK_ItemSlot::None;
 }

@@ -47,15 +47,12 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drag and Drop", meta = (ExposeOnSpawn = "true"))
     UUserWidget* DraggedWidget;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drag and Drop", meta = (ExposeOnSpawn = "true"))
     UPanelWidget* PreviousParent;
-
-    // FGKWidgetLocationData PreviousLoc;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drag and Drop", meta = (ExposeOnSpawn = "true"))
     bool RestoreParentOnFailure;
 
-    // In case the UGKWidgetDragVisual took ownership of the widget
-    // NOTE: does not work becaue it is not called on failure
     UFUNCTION()
     void OnDragCancelled_Native(UDragDropOperation* Operation);
 };

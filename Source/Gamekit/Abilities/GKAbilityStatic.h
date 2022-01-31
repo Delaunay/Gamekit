@@ -56,6 +56,35 @@ enum class EGK_TargetingMode : uint8
 	PlayerControllerTrace  UMETA(DisplayName = "PlayerControllerTrace"),
 };
 
+
+UENUM(BlueprintType)
+enum class EGK_ItemSlot : uint8
+{
+	None,
+
+	Head,
+	Neck,
+	Shoulders,
+	Shirt,
+	Chest,
+	Belt,
+	Legs,
+	Feet,
+	Wrist,
+	Gloves,
+	Finger1,
+	Finger2,
+	Trinket1,
+	Trinket2,
+	Back,
+	RightHand,
+	LeftHand,
+	Tabard,
+	
+	Ranged,
+	Ammo,
+};
+
 USTRUCT(BlueprintType)
 struct GAMEKIT_API FGKAbilityCost
 {
@@ -136,6 +165,9 @@ public:
 	//! Price in game
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
 	int32 Price;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
+	EGK_ItemSlot Slot;
 
 	// TODO: make a token tag if we have different kind of money
 

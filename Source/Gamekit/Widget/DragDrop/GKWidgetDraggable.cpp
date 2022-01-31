@@ -1,5 +1,7 @@
 #include "GKWidgetDraggable.h"
 
+#include "Widget/DragDrop/GKWidgetDropZone.h"
+
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
 

@@ -42,14 +42,14 @@ Ability Replication Flow
 Animations
 ^^^^^^^^^^
 
-To make abilities generic the animations montage themselves are not specified.
+To make abilities generic, the animations montage themselves are not specified.
 Instead an animation kind is set (Channelling, Attack, Cast, etc..) which is a single enumerator
-representing the kind of annimation an ability can expect.
+:cpp:enumerator:`EGK_AbilityAnimation` representing the kind of annimation an ability can use.
 
-The animation montage are specified by the Character itself which has a FGKAnimationSet
+The animation montage are specified by the Character itself through its :cpp:class:`FGKAnimationSet` (inside :cpp:class:`FGKUnitStatic`)
 which our ability can sample from.
 
-When an ability is activated the AnimationSet is fectched from the character to the ability
+When an ability is activated the :cpp:class:`FGKAnimationSet` is fectched from the character to the ability
 and the right animation is then played. This enable us to use the same ability for different
 characters which can have different animation as well.
 

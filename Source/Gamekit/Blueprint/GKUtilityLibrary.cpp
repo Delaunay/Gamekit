@@ -11,6 +11,7 @@
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Math/Rotator.h"
 #include "Math/RotationMatrix.h"
+#include "Components/PanelSlot.h"
 
 #include "GKCoordinateLibrary.h"
 #include "GKWorldSettings.h"
@@ -160,4 +161,33 @@ void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
 FRotator UGKUtilityLibrary::BetterLookAtRotation(FVector ActorLocation, FVector LookAt, FVector UpDirection)
 {
     return FRotator();
+}
+
+
+UWidget *UGKUtilityLibrary::GetPanelSlotContent(UPanelSlot *Slot) {
+    return Slot->Content;
+}
+
+class UWidget *UGKUtilityLibrary::GetWidgetUnderCursor() {
+    // Get a reference to the singleton instance of the slate application.
+     FSlateApplication& App = FSlateApplication::Get();
+ 
+     // Find a "widget tree path" of all widgets under the mouse cursor.
+     // This path will contain not only the top-level widget, but all widgets underneath.
+     // For example, if the mouse cursor was over a Button with a Text widget inside of it, then the last 
+     // widget in the widget path would be the Text widget, and the next to last widget would be the Button widget.
+     FWidgetPath WidgetsUnderCursor = App.LocateWindowUnderMouse(
+         App.GetCursorPos(), 
+         App.GetInteractiveTopLevelWindows()
+     );
+ 
+     FString Result = TEXT( "" );
+     if (WidgetsUnderCursor.IsValid() )
+     {
+         auto Last = WidgetsUnderCursor.Widgets.Num() - 1;
+         FArrangedWidget& Widget = WidgetsUnderCursor.Widgets[Last];
+         return nullptr;
+     }
+    
+     return nullptr;
 }

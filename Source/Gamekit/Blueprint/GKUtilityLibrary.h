@@ -56,4 +56,12 @@ public:
     static FRotator BetterLookAtRotation(FVector ActorLocation,
                                          FVector LookAt,
                                          FVector UpDirection = FVector(0, 0, 1.f));
+
+
+	UFUNCTION(BlueprintPure, Category = "Widget")
+    static class UWidget *GetPanelSlotContent(class UPanelSlot* Slot);
+
+	// UFUNCTION(BlueprintPure, Category = "Widget")
+    // Don't use
+	static class UWidget *GetWidgetUnderCursor();
 };

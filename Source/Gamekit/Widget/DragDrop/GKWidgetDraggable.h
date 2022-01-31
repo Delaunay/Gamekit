@@ -50,6 +50,7 @@ public:
     void OnDropSuccess(class UDragDropOperation* Operation);
 
     void OnDropCancelled_Native(class UDragDropOperation* Operation);
+
     void OnDropSuccess_Native(class UDragDropOperation* Operation);
 
     // UFUNCTION(BlueprintImplementableEvent

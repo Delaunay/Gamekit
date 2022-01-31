@@ -1,5 +1,7 @@
 #include "GKWidgetDropZone.h"
 
+#include "Components/PanelWidget.h"
+
 #include "Kismet/KismetInputLibrary.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 #include "Blueprint/DragDropOperation.h"
@@ -19,7 +21,7 @@ bool UGKWidgetDropZone::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
     auto AbsolutePos = UKismetInputLibrary::PointerEvent_GetScreenSpacePosition(InDragDropEvent);
     auto LocalPos = USlateBlueprintLibrary::AbsoluteToLocal(InGeometry, AbsolutePos);
 
-    bool Success = WidgetDrop(Payload, LocalPos);
+    bool Success = OnWidgetDrop(Payload, LocalPos);
 
     if (!Success)
     {
@@ -32,4 +34,3 @@ bool UGKWidgetDropZone::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 
     return Success;
 }
-

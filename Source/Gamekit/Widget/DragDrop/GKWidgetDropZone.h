@@ -17,6 +17,10 @@ public:
     bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
     //! Returns true if the widget was successfully dropped
-    UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")
-    bool WidgetDrop(UUserWidget* Widget, FVector2D LocalLoc);
+    UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, BlueprintCosmetic, Category = "Drag and Drop")
+    bool OnWidgetDrop(UUserWidget* Widget, FVector2D LocalLoc);
+
+
+    //! Returns true if the widget can be dropped
+    // TODO
 };

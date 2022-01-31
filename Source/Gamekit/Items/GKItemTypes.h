@@ -16,6 +16,7 @@
 class UGKItem;
 class UGKSaveGame;
 
+
 /** Struct representing a slot for an item, shown in the UI
  * The ARPG used a static FName Item Type as well, I think it makes interaction with the code
  * more complex for little gains.
@@ -55,7 +56,7 @@ struct GAMEKIT_API FGKAbilitySlot
 	/** Implemented so it can be used in Maps/Sets */
 	friend inline uint32 GetTypeHash(const FGKAbilitySlot& Key)
 	{
-		return (uint32)Key.SlotNumber;
+		return GetTypeHash(Key.SlotNumber);
 	}
 
 	/** Returns true if slot is valid */
