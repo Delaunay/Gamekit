@@ -15,12 +15,10 @@ class GAMEKIT_API UGKWidgetDropZone : public UUserWidget
 public:
     //! Handle dropping of a widget
     bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
+   
+    // Implement to handle drop
+    // bool OnDrop(FGeometry MyGeometry, FPointerEvent PointerEvent, UDragDropOperation* Operation);
 
-    //! Returns true if the widget was successfully dropped
-    UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, BlueprintCosmetic, Category = "Drag and Drop")
-    bool OnWidgetDrop(UUserWidget* Widget, FVector2D LocalLoc);
-
-
-    //! Returns true if the widget can be dropped
-    // TODO
+    // Implement to handle pending drop
+    // bool OnDragOver(FGeometry MyGeometry, FPointerEvent PointerEvent, UDragDropOperation *Operation);
 };

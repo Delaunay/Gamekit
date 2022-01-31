@@ -21,7 +21,8 @@ bool UGKWidgetDropZone::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
     auto AbsolutePos = UKismetInputLibrary::PointerEvent_GetScreenSpacePosition(InDragDropEvent);
     auto LocalPos = USlateBlueprintLibrary::AbsoluteToLocal(InGeometry, AbsolutePos);
 
-    bool Success = OnWidgetDrop(Payload, LocalPos);
+    // Call the blueprint version
+    bool Success = Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 
     if (!Success)
     {
