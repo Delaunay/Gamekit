@@ -85,6 +85,18 @@ Artists
         "Licenses": [
             "CC0"
         ]
+    },
+    {
+        "Attribution": "Game Icons",
+        "Website": "https://game-icons.net",
+        "Source": [
+            "https://game-icons.net/1x1/sbed/cancel.html#download",
+            "https://game-icons.net/1x1/guard13007/play-button.html",
+        ],
+        "Files": [],
+        "Licenses": [
+            "CC-BY"
+        ]
     }
 ]
 </json>

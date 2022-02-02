@@ -3,6 +3,8 @@
 #include "FogOfWar/GKFogOfWarVolume.h"
 #include "FogOfWar/GKFogOfWarComponent.h"
 
+#include "Blueprint/GKCoordinateLibrary.h"
+
 #include "Components/BrushComponent.h"
 #include "Components/DecalComponent.h"
 #include "Engine/Canvas.h"
@@ -65,6 +67,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     FogOfWarCollisionChannel = DEFAULT_FoW_COLLISION;
     UseFoWDecalRendering     = true;
     bFoWEnabled              = true;
+    FogVersion               = 1;
 
     DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
 
@@ -554,7 +557,114 @@ void AGKFogOfWarVolume::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
     }
 }
 
-void AGKFogOfWarVolume::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
+
+void AGKFogOfWarVolume::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c) {
+    switch (FogVersion)
+    {
+    case 1:  return DrawObstructedLineOfSight_RayCastV1(c);
+    case 2:  return DrawObstructedLineOfSight_RayCastV2(c);
+    default: return DrawObstructedLineOfSight_RayCastV2(c);
+    }
+}
+
+
+// This is slower than V1, tracce the same amount of rays
+// We could improve this by only focusing the rays around the relevant actors
+// Make a polygon and draw the result
+void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent *c) {
+
+    Triangles.Reset(c->TraceCount + 1);
+
+    AActor *         actor          = c->GetOwner();
+    FVector          forward        = actor->GetActorForwardVector();
+    FVector          loc            = actor->GetActorLocation();
+    TArray<AActor *> ActorsToIgnore = {GetOwner()};
+    TSet<AActor *>   AlreadySighted;
+
+    float step = c->FieldOfView / float(c->TraceCount);
+    int   n    = c->TraceCount / 2;
+
+    FHitResult   OutHit;
+    FCanvasUVTri Triangle;
+    auto         TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
+    FVector2D    Previous;
+    bool         bHasPrevious = false;
+
+    for (int i = -n; i <= n; i++)
+    {
+        float   angle = float(i) * step;
+        FVector dir   = forward.RotateAngleAxis(angle, FVector(0, 0, 1));
+
+        FVector LineStart = loc + dir * c->InnerRadius;
+        FVector LineEnd   = loc + dir * c->Radius;
+
+        bool hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
+                                                         LineStart,
+                                                         LineEnd,
+                                                         TraceType,
+                                                         false, // bTraceComplex
+                                                         ActorsToIgnore,
+                                                         EDrawDebugTrace::None,
+                                                         OutHit,
+                                                         true, // Ignore Self
+                                                         FLinearColor::Red,
+                                                         FLinearColor::Green,
+                                                         5.0f);
+
+        LineEnd = hit ? OutHit.Location : LineEnd;
+
+        auto Start = GetTextureCoordinate(LineStart);
+        auto End   = GetTextureCoordinate(LineEnd);
+
+        auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+
+        //Triangle.V0_Color = FLinearColor::White;
+        Triangle.V0_Pos   = Start;
+        Triangle.V0_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(FVector2D(0, 0), TriangleSize);
+
+        //Triangle.V1_Color = FLinearColor::White;
+        Triangle.V1_Pos   = Previous;
+        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(Previous - Start, TriangleSize);
+
+        //Triangle.V2_Color = FLinearColor::White;
+        Triangle.V2_Pos   = End;
+        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(End - Start, TriangleSize);
+
+        if (bHasPrevious)
+        {
+            Triangles.Add(Triangle);
+        }
+
+        bHasPrevious = true;
+        Previous = End;
+        
+        if (hit && OutHit.Actor.IsValid())
+        {
+            // Avoid multiple broadcast per target
+            AActor *Target = OutHit.Actor.Get();
+            if (!AlreadySighted.Contains(Target))
+            {
+                AlreadySighted.Add(Target);
+                BroadCastEvents(actor, c, Target);
+            }
+        }
+    }
+
+
+    // Draw all Triangles
+    UCanvas *                  Canvas;
+    FVector2D                  Size;
+    FDrawToRenderTargetContext Context;
+
+    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
+    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
+
+    Canvas->K2_DrawMaterialTriangle(TrianglesMaterial, Triangles);
+
+    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+}
+
+void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV1(UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();

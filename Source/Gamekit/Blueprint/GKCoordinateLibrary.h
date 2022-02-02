@@ -24,4 +24,10 @@ public:
 	//! Returns coordinate (0, PixelSize)
 	UFUNCTION(BlueprintPure, Category = "Coordinate")
 	static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize);
+
+	UFUNCTION(BlueprintPure, Category = "Coordinate")
+	static FVector2D ToTextureCoordinate2D(FVector2D WorldLocation, FVector2D MapSize);
+
+	UFUNCTION(BlueprintPure, Category = "Coordinate")
+	static FVector2D ToScreenCoordinate2D(FVector2D WorldLocation, FVector2D MapSize, FVector2D TextureSize);
 };

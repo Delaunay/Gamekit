@@ -96,8 +96,14 @@ public:
     //! Draw the fog of war for each factions
     void DrawFactionFog();
 
+    void DrawObstructedLineOfSight(class UGKFogOfWarComponent *c);
+    
     //! Draw the line of sight using LineTrace
-    void DrawObstructedLineOfSight(class UGKFogOfWarComponent* c);
+    void DrawObstructedLineOfSight_RayCastV1(class UGKFogOfWarComponent* c);
+
+    //! Generates Triangles of vision per actor and draw them
+    //! More precise than simply casting rays 
+    void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
 
     //! Draw the ligne of sight using a material (no collision)
     void DrawUnobstructedLineOfSight(class UGKFogOfWarComponent* c);
@@ -133,6 +139,10 @@ public:
     //! Material used to draw unobstructed vision
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     class UMaterialInterface* UnobstructedVisionMaterial;
+
+    //! Material used to draw unobstructed vision with Triangles
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    class UMaterialInterface *TrianglesMaterial;
 
     //! Base Material used to draw the fog of war in a post process step,
     //! it uses the texture parameters FoWView & FoWExploration
@@ -170,6 +180,9 @@ public:
     //! It will also set a dynamic material parameter so material can disable the post processing
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool bFoWEnabled;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    int FogVersion;
 
     /* If I could use a UTextureRenderTarget2DArray for everything
     * it would be great all the Fields of views would be available in one
@@ -221,4 +234,7 @@ private:
     TMap<FName, class UMaterialInterface*> PostProcessMaterials;
 
     class UMaterialInstanceDynamic* DecalMaterialInstance;
+
+    // Used by RayCastV2
+    TArray<FCanvasUVTri> Triangles;
 };

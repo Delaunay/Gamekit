@@ -19,7 +19,7 @@ UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObject
     bIsFinished       = false;
     DistanceTolerance = 0.001;
     AngleTolerance    = 0.001;
-    bDebug            = true;
+    bDebug            = false;
 }
 
 UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(UGameplayAbility *OwningAbility,
@@ -92,15 +92,16 @@ void UGKAbilityTask_MoveToDestination::Init()
     );
 }
 
-void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameplayTasksComponent)
+void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameReplayTasksComponent)
 {
-    Super::InitSimulatedTask(InGameplayTasksComponent);
+    Init();
+    Super::InitSimulatedTask(InGameReplayTasksComponent);
 }
 
 void UGKAbilityTask_MoveToDestination::DebugDraw()
 {
 #if ENABLE_DRAW_DEBUG
-    if (bDebug)
+    if (bDebug && RootComponent)
     {
         // Get Forward Vector
         FVector Forward  = RootComponent->GetForwardVector();
@@ -224,13 +225,17 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 
 void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { 
     Super::OnDestroy(AbilityIsEnding); 
-    Ability->OnGameplayAbilityCancelled.RemoveAll(this);
 
-    // TODO: Move this to some generic GKAbilityTask
-    auto GKAbility = Cast<UGKGameplayAbility>(Ability);
-    if (GKAbility)
+    if (!IsSimulatedTask())
     {
-        GKAbility->CurrentTask = nullptr;   
+        Ability->OnGameplayAbilityCancelled.RemoveAll(this);
+
+        // TODO: Move this to some generic GKAbilityTask
+        auto GKAbility = Cast<UGKGameplayAbility>(Ability);
+        if (GKAbility)
+        {
+            GKAbility->CurrentTask = nullptr;   
+        }
     }
 }
 
