@@ -588,14 +588,30 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
     FCanvasUVTri Triangle;
     auto         TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
     FVector2D    Previous;
+    FVector      LinePrevious;
     bool         bHasPrevious = false;
+
+
+    // Because we are drawing triangles but our field of view is arched 
+    // we make the radius bigger the circle will be draw using the texture
+    /*
+    float halfStep       = step / 2.f;
+    float ExtendedRadius = FMath::Sqrt(
+        FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - halfStep)))
+        + FMath::Square(c->Radius)
+    );
+    */
+
+    auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
 
     for (int i = -n; i <= n; i++)
     {
         float   angle = float(i) * step;
         FVector dir   = forward.RotateAngleAxis(angle, FVector(0, 0, 1));
 
-        FVector LineStart = loc + dir * c->InnerRadius;
+        // We have to ignore the Inner Radius for our triangles to be
+        // perfectly completing each other
+        FVector LineStart = loc; // + dir * c->InnerRadius;
         FVector LineEnd   = loc + dir * c->Radius;
 
         bool hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
@@ -616,19 +632,19 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
         auto Start = GetTextureCoordinate(LineStart);
         auto End   = GetTextureCoordinate(LineEnd);
 
-        auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+        // FIXME: Effective radius turns out to be a bit smaller
 
         //Triangle.V0_Color = FLinearColor::White;
         Triangle.V0_Pos   = Start;
-        Triangle.V0_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(FVector2D(0, 0), TriangleSize);
+        Triangle.V0_UV  = FVector2D(0.5, 0.5);
 
         //Triangle.V1_Color = FLinearColor::White;
         Triangle.V1_Pos   = Previous;
-        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(Previous - Start, TriangleSize);
+        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LinePrevious - LineStart), TriangleSize);
 
         //Triangle.V2_Color = FLinearColor::White;
         Triangle.V2_Pos   = End;
-        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate2D(End - Start, TriangleSize);
+        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
 
         if (bHasPrevious)
         {
@@ -637,6 +653,7 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
 
         bHasPrevious = true;
         Previous = End;
+        LinePrevious = LineEnd;
         
         if (hit && OutHit.Actor.IsValid())
         {

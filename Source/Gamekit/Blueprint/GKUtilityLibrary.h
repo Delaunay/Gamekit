@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+
+#include "Abilities/GKAbilityStatic.h"
+
 #include "GKUtilityLibrary.generated.h"
 
 /**
@@ -64,4 +67,7 @@ public:
 	// UFUNCTION(BlueprintPure, Category = "Widget")
     // Don't use
 	static class UWidget *GetWidgetUnderCursor();
+
+	UFUNCTION(BlueprintPure, Category = "ItemSlot")
+    static EGK_ItemSlot ItemSlotFromInteger(int SlotId);
 };

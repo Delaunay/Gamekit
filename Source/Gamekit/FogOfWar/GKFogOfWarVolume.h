@@ -102,7 +102,18 @@ public:
     void DrawObstructedLineOfSight_RayCastV1(class UGKFogOfWarComponent* c);
 
     //! Generates Triangles of vision per actor and draw them
-    //! More precise than simply casting rays 
+    //! Drawing triangles is more expensive than simple lines, you should lower
+    //! the number of trace done by each actors
+    //! Even with a low trace count the field of view will still render 
+    //! as a circle thanks to its material
+    //! 
+    //! TODO: refine collision detection:
+    //!     * Generate minimum Line traces <----------------------------+
+    //!     * Get all obstacle in a radius                              |
+    //!     * For each obstacle add 2 traces                            |
+    //!     * Add Line traces if angle between 2 traces are too wide <--+
+    //!     * Generate triangles
+    //!     * Draw
     void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
 
     //! Draw the ligne of sight using a material (no collision)

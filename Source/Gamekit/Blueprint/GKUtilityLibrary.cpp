@@ -191,3 +191,6 @@ class UWidget *UGKUtilityLibrary::GetWidgetUnderCursor() {
     
      return nullptr;
 }
+
+
+EGK_ItemSlot UGKUtilityLibrary::ItemSlotFromInteger(int SlotId) { return EGK_ItemSlot(SlotId); }
