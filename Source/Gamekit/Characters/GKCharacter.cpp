@@ -311,7 +311,6 @@ bool AGKCharacterBase::SetCharacterLevel(int32 NewLevel)
 void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass) /* InputID -1 */
 {
 	// Only called with authority
-
 	// This has input binding that should be customizable
 	// 0 is None, The enum for AbilityInput starts at one
 	FGameplayAbilitySpec Spec = FGameplayAbilitySpec(
@@ -321,6 +320,21 @@ void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplay
 		this
 	);
 	FGameplayAbilitySpecHandle Handle = AbilitySystemComponent->GiveAbility(Spec);
+}
+
+void AGKCharacterBase::EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass) {
+	// Only called with authority
+	FGameplayAbilitySpec Spec = FGameplayAbilitySpec(
+		AbilityClass, 
+		1, 
+		0,	// No Input for this
+		this
+	);
+
+	// Items get activated as soon as they are equipped
+	// NOTE: for items that have actives: the active ability is granted on equip
+	//	
+	FGameplayAbilitySpecHandle Handle = AbilitySystemComponent->GiveAbilityAndActivateOnce(Spec);
 }
 
 UGKGameplayAbility* AGKCharacterBase::GetAbilityInstance(FGKAbilitySlot Slot) {

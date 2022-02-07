@@ -20,6 +20,16 @@ UGKAttributeSet::UGKAttributeSet()
 	, MoveSpeed(1.0f)
 	, Damage(0.0f)
 {
+	NameToAttribute = {
+		{FName("Health")		, Health},
+		{FName("MaxHealth")		, MaxHealth},
+		{FName("Mana")			, Mana},
+		{FName("MaxMana")		, MaxMana},
+		{FName("Damage")		, Damage},
+		{FName("AttackPower")	, AttackPower},
+		{FName("DefensePower")	, DefensePower},
+		{FName("MoveSpeed")		, MoveSpeed}
+	};
 }
 
 void UGKAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -220,4 +230,22 @@ void UGKAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
 			//TargetCharacter->HandleMoveSpeedChanged(DeltaValue, SourceTags);
 		}
 	}
+}
+
+FGameplayAttributeData UGKAttributeSet::GetAttribute(FName AttributeName) { 
+	FGameplayAttributeData* Result = NameToAttribute.Find(AttributeName);
+    if (Result == nullptr)
+    {
+        return FGameplayAttributeData();
+    }
+
+	return *Result;
+}
+
+float UGKAttributeSet::GetBaseValue(FName AttributeName) {
+	return GetAttribute(AttributeName).GetBaseValue();
+}
+
+float UGKAttributeSet::GetCurrentValue(FName AttributeName) { 
+	return GetAttribute(AttributeName).GetCurrentValue(); 
 }

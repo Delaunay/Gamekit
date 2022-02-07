@@ -76,6 +76,15 @@ public:
 	FGameplayAttributeData Damage;
 	ATTRIBUTE_ACCESSORS(UGKAttributeSet, Damage)
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
+	FGameplayAttributeData GetAttribute(FName AttributeName);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
+	float GetBaseValue(FName AttributeName);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
+    float GetCurrentValue(FName AttributeName);
+
 protected:
 	/** Helper function to proportionally adjust the value of an attribute when it's associated max attribute changes. (i.e. When MaxHealth increases, Health increases by an amount that maintains the same percentage as before) */
 	void AdjustAttributeForMaxChange(FGameplayAttributeData& AffectedAttribute, const FGameplayAttributeData& MaxAttribute, float NewMaxValue, const FGameplayAttribute& AffectedAttributeProperty);
@@ -101,4 +110,7 @@ protected:
 
 	UFUNCTION()
 	virtual void OnRep_MoveSpeed(const FGameplayAttributeData& OldValue);
+
+	TMap<FName, FGameplayAttributeData> NameToAttribute;
+
 };

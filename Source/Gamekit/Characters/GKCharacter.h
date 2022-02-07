@@ -133,6 +133,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Abilities)
 	void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
 
+	UFUNCTION(BlueprintCallable, Category = Abilities)
+	void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
+
+	// Allow to rebind abilities
+    // void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);
+
 	UPROPERTY(BlueprintAssignable, Category = Abilities)
 	FGiveAbilityEventSignature OnGiveAbility;
 
