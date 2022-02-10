@@ -65,14 +65,14 @@ Compile libaries with UE4 clang
 
 .. code-block:: bash
 
-	EngineDir="$SCRIPT_DIR/../../../"
-	InstallClangDir="$EngineDir/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/"
-	PATH="${InstallClangDir}/bin:$PATH"
-	LibCxx="$EngineDir/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++.a"
-	LibCxxAbi="$EngineDir/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++abi.a"
-	LibCxxInclude="$EngineDir/Source/ThirdParty/Linux/LibCxx/include/c++/v1"
+   EngineDir="$SCRIPT_DIR/../../../"
+   InstallClangDir="$EngineDir/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/"
+   PATH="${InstallClangDir}/bin:$PATH"
+   LibCxx="$EngineDir/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++.a"
+   LibCxxAbi="$EngineDir/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++abi.a"
+   LibCxxInclude="$EngineDir/Source/ThirdParty/Linux/LibCxx/include/c++/v1"
 
-	cmake $ModuleDir/Source/ $Options \
+   cmake $ModuleDir/Source/ $Options \
       -DCMAKE_SYSROOT=${InstallClangDir}\
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_C_COMPILER=${InstallClangDir}/bin/clang \

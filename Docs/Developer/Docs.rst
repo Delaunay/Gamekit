@@ -13,5 +13,3 @@ Sphinx with the breathe and exhale extensions parse the XML and generate the doc
 
    You can use the documentation for personal note taking.
    You will thank your past self.
-
-
