@@ -56,7 +56,10 @@ if read_the_docs_build:
     configure_doxyfile()
     subprocess.call("doxygen", shell=True)
 
-    os.rename(os.path.join(doxygen_out, 'index.html'), 'doxy.html')
+    os.rename(
+        os.path.join(doxygen_out_html, 'index.html'),
+        os.path.join(doxygen_out_html, 'doxy.html')
+    )
 
 # -- General configuration ------------------------------------------------
 
