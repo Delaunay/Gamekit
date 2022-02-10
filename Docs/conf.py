@@ -56,6 +56,8 @@ if read_the_docs_build:
     configure_doxyfile()
     subprocess.call("doxygen", shell=True)
 
+    os.rename(os.path.join(doxygen_out, 'index.html'), 'doxy.html')
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -222,7 +224,9 @@ html_static_path = ["_static"]
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-# html_extra_path = []
+html_extra_path = [
+    "_build/doxygen"
+]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.

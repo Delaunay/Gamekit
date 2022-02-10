@@ -56,14 +56,14 @@ Goals
    :maxdepth: 1
 
    Tips/Others
-   Source/windows
 
 .. toctree::
    :caption: Developer Guide
 
-   Developer/release
+   Developer/Release
    Developer/Docs
-   Developer/compilation
+   Developer/Compilation
+   Developer/Shaders
    Developer/Doxygen
    Developer/api/GamekitAPI
 
