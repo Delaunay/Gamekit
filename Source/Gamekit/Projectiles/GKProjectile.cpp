@@ -16,10 +16,6 @@ AGKProjectile::AGKProjectile()
 	ProjectileMovementComponent->bWantsInitializeComponent = false;
 
 	bReplicates = true;
-
-	// Sane defaults so people experimenting will get something that works
-	Range = 1000;
-	Behavior = EGK_ProjectileBehavior::Directional;
 }
 
 // Called when the game starts or when spawned
@@ -50,7 +46,8 @@ void AGKProjectile::Tick(float DeltaTime)
 			PreviousLoc = CurrentLoc;
 		}
 
-		if (DistanceTravelled >= Range) {
+		if (DistanceTravelled >= ProjectileData.Range)
+        {
 			Destroy();
 		}
 	}
@@ -58,31 +55,28 @@ void AGKProjectile::Tick(float DeltaTime)
 
 void AGKProjectile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(AGKProjectile, Speed);
-	DOREPLIFETIME(AGKProjectile, Direction);
-	DOREPLIFETIME(AGKProjectile, Target);
-	DOREPLIFETIME(AGKProjectile, Behavior);
-	DOREPLIFETIME(AGKProjectile, Range);
 }
 
 void AGKProjectile::InitProjectileMovement() {
 	auto Movement = ProjectileMovementComponent;
-    Movement->InitialSpeed             = InitialSpeed;
-    Movement->MaxSpeed                 = Speed;
+    Movement->InitialSpeed             = ProjectileData.InitialSpeed;
+    Movement->MaxSpeed                 = ProjectileData.BaseSpeed;
     Movement->ProjectileGravityScale   = 0.0f;
     Movement->Velocity                 = Direction;
 	Movement->bRotationFollowsVelocity = true;
 	
 	// Movement->bIsSliding = false;
 
-	if (Behavior == EGK_ProjectileBehavior::Directional) {
+	if (ProjectileData.Behavior == EGK_ProjectileBehavior::Directional)
+    {
 		Movement->bIsHomingProjectile = false;
 	}
 
-	if (Behavior == EGK_ProjectileBehavior::UnitTarget && Target) {
+	if (ProjectileData.Behavior == EGK_ProjectileBehavior::UnitTarget && Target)
+    {
 		// The accelaration needs to be very high
 		Movement->bIsHomingProjectile = true;
 		Movement->HomingTargetComponent = Target->GetRootComponent();
-        Movement->HomingAccelerationMagnitude = HomingAcceleration;
+        Movement->HomingAccelerationMagnitude = ProjectileData.HomingAcceleration;
 	}
 }

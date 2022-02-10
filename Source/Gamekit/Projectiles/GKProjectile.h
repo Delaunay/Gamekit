@@ -5,15 +5,9 @@
 #include "CoreMinimal.h"
 
 #include "Projectiles/GKAbilityEffectActor.h"
+#include "Projectiles/GKProjectileStatic.h"
 
 #include "GKProjectile.generated.h"
-
-UENUM(BlueprintType)
-enum class EGK_ProjectileBehavior : uint8
-{
-	UnitTarget  UMETA(DisplayName = "UnitTarget"),  // Target seeking Projectile
-	Directional UMETA(DisplayName = "Directional"), // Projectile goes in straight line
-};
 
 
 UCLASS(BlueprintType)
@@ -37,26 +31,14 @@ public:
 
 	void InitProjectileMovement();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-	float Speed;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+	FGKProjectileStatic ProjectileData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-	float InitialSpeed;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-     float HomingAcceleration;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
 	FVector Direction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
 	AActor* Target;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-	EGK_ProjectileBehavior Behavior;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-	float Range;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
 	class UProjectileMovementComponent* ProjectileMovementComponent;

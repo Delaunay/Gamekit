@@ -220,26 +220,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
 	TSubclassOf<AGKProjectile> ProjectileActorClass;
 
-	//! Base projectile speed
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	float ProjectileSpeed;
-
-	//! Base projectile speed
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-    float ProjectileInitialSpeed;
-
-	//! Homing Acceleration affects how quickly the projectile can turn
-	//! towards the target
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-    float ProjectileHomingAcceleration;
-
-	//! How the projectlie behave
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	EGK_ProjectileBehavior ProjectileBehavior;
-
-	//! Max length before the actor destroy itself
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	float ProjectileRange;
+	//! Projectile customization data
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile)
+    FGKProjectileStatic ProjectileData;
 
 	//!
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AreaOfEffect);

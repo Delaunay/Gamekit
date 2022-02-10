@@ -22,11 +22,6 @@ FGKAbilityStatic::FGKAbilityStatic()
     CastTime           = 1;
     ChannelTime        = 0;
     AbilityAnimation   = EGK_AbilityAnimation::Attack;
-    ProjectileSpeed    = 1800;
-    ProjectileInitialSpeed = 1800;
-    ProjectileHomingAcceleration = 16000;
-    ProjectileBehavior           = EGK_ProjectileBehavior::Directional;
-    ProjectileRange              = 3200;
     AreaOfEffect                 = 16.f;
     Slot = EGK_ItemSlot::None;
 }

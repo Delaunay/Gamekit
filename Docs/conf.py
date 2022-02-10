@@ -89,7 +89,7 @@ breathe_domain_by_extension = {
 }
 exhale_args = {
     # These arguments are required
-    "containmentFolder": "./api",
+    "containmentFolder": "./Developer/api",
     "rootFileName": "GamekitAPI.rst",
     "rootFileTitle": "Gamekit API",
     "doxygenStripFromPath": "..",

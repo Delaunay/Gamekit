@@ -790,15 +790,12 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
 		SpawnInfo
 	);
 
-	Direction.Z                   = Loc.Z;
-	ProjectileInstance->Direction = (Direction - Loc);
-	ProjectileInstance->Speed = Data->ProjectileSpeed; 
-    ProjectileInstance->InitialSpeed = Data->ProjectileInitialSpeed;
-    ProjectileInstance->Target = Target;
-    ProjectileInstance->HomingAcceleration = Data->ProjectileHomingAcceleration;
-	ProjectileInstance->Behavior = Data->ProjectileBehavior;
-	ProjectileInstance->Range = Data->ProjectileRange;
+	Direction.Z                         = Loc.Z;
+    ProjectileInstance->ProjectileData  = Data->ProjectileData;
+    ProjectileInstance->Target          = Target;
+	ProjectileInstance->Direction       = (Direction - Loc);
 	ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EventTag, EventData);
+
 	// The attachment is probably Character/class/Skeleton defined
 	// ...
 

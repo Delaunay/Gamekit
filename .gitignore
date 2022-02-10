@@ -17,7 +17,6 @@ Plugins/Gamekit/Docs/Doxyfile
 *.pri
 *.pro
 Content/Levels/FlatLandscape_BuiltData.uasset
-Plugins/Gamekit/Docs/api/
 
 *~
 *.autosave
@@ -30,4 +29,5 @@ enc_temp_folder/
 
 Docs/Doxyfile
 Docs/_build/
-Docs/api/
+Docs/Developer/api/
+

@@ -22,18 +22,16 @@ Goals
    * UI
    * Menus
 
-
 .. warning::
 
    This is not meant to be an instroduction to UE.
    It expects some knowledge of UE and does not shy away from C++.
 
-
 .. toctree::
    :caption: Welcome
    :maxdepth: 1
 
-   Installation
+   Welcome/Installation
 
 .. toctree::
    :caption: Abilities
@@ -42,6 +40,7 @@ Goals
    Abilities/index
    Abilities/items
    Abilities/skills
+   Abilities/projectiles
 
 .. toctree::
    :caption: Unsorted
@@ -56,15 +55,17 @@ Goals
    :caption: Tips & Tricks
    :maxdepth: 1
 
-   Docs
-   Others
+   Tips/Others
    Source/windows
 
 .. toctree::
-   :caption: API
+   :caption: Developer Guide
 
-   Doxygen
-   api/GamekitAPI
+   Developer/release
+   Developer/Docs
+   Developer/compilation
+   Developer/Doxygen
+   Developer/api/GamekitAPI
 
 
 Indices and tables
