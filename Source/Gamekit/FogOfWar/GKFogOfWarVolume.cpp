@@ -1,10 +1,14 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
 #include "FogOfWar/GKFogOfWarVolume.h"
+
 #include "FogOfWar/GKFogOfWarComponent.h"
+#include "FogOfWar/GKFogOfWarLibrary.h"
 
 #include "Blueprint/GKCoordinateLibrary.h"
+#include "Blueprint/GKUtilityLibrary.h"
 
+#include "Engine/CollisionProfile.h"
 #include "Components/BrushComponent.h"
 #include "Components/DecalComponent.h"
 #include "Engine/Canvas.h"
@@ -13,8 +17,10 @@
 #include "Kismet/KismetMaterialLibrary.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
+#include "Math/UnrealMathUtility.h"
 #include "TimerManager.h"
 
 AGKFogOfWarVolume::AGKFogOfWarVolume()
@@ -68,6 +74,8 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     UseFoWDecalRendering     = true;
     bFoWEnabled              = true;
     FogVersion               = 1;
+    bDebug                   = false;
+    Margin                   = 25.f;
 
     DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
 
@@ -540,7 +548,8 @@ void AGKFogOfWarVolume::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
 
     TArray<AActor *>                      ActorsToIgnore;
     UClass *                              ActorClassFilter = AActor::StaticClass();
-    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes      = {ObjectTypeQuery3};
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+    UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarCollisionChannel, ObjectTypes);
     TArray<AActor *>                      OutActors;
 
     UKismetSystemLibrary::SphereOverlapActors(
@@ -559,20 +568,279 @@ void AGKFogOfWarVolume::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
 
 
 void AGKFogOfWarVolume::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c) {
+    AActor * actor = c->GetOwner();
+    FVector  loc   = actor->GetActorLocation();
+
+    if (bDebug)
+    {
+        UKismetSystemLibrary::DrawDebugCircle(
+            GetWorld(),          // World
+            loc,                 // Center
+            c->Radius,           // Radius
+            c->TraceCount,       // NumSegments
+            FLinearColor::White, // LineColor
+            0.f,                 // LifeTime 
+            5.f,                 // Tickness
+            FVector(1, 0, 0),    // YAxis 
+            FVector(0, 1, 0),    // ZAxis 
+            true                 // DrawAxes
+        );
+    }
+
+
     switch (FogVersion)
     {
     case 1:  return DrawObstructedLineOfSight_RayCastV1(c);
     case 2:  return DrawObstructedLineOfSight_RayCastV2(c);
+    case 3:  return DrawObstructedLineOfSight_RayCastV3(c);
     default: return DrawObstructedLineOfSight_RayCastV2(c);
     }
 }
 
+void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent *c) {
+    Triangles.Reset(c->TraceCount + 1);
+
+    TArray<AActor *>                      ActorsToIgnore   = {
+        c->GetOwner()
+    };
+    UClass *                              ActorClassFilter = AActor::StaticClass();
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+    UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarCollisionChannel, ObjectTypes);
+
+    AActor *                              Actor            = c->GetOwner();
+    TArray<AActor *>                      OutActors;
+
+    FVector Location = Actor->GetActorLocation();
+    FVector Forward  = Actor->GetActorForwardVector();
+
+    /*
+    OverlapMultiByObjectType(
+            TArray< struct FOverlapResult > & OutOverlaps,
+            const FVector & Pos,
+            const FQuat & Rot,
+            const FCollisionObjectQueryParams & ObjectQueryParams,
+            const FCollisionShape & CollisionShape,
+            const FCollisionQueryParams & Params
+        ) const;
+
+        */
+    UKismetSystemLibrary::SphereOverlapActors(
+        GetWorld(), 
+        Location, 
+        c->Radius, 
+        ObjectTypes, 
+        ActorClassFilter,
+        ActorsToIgnore, 
+        OutActors
+    );
+
+    UE_LOG(LogGamekit, Log, TEXT("Found %d Actors"), OutActors.Num());
+
+    TArray<FVector> EndPoints;
+    TArray<float> Angles;
+    FVector Origin;
+    FVector BoxExtent;
+    FVector Cartesian;
+    auto BaseYaw = Actor->GetActorRotation().Yaw;
+
+    auto AddPointAsAngle = [&Angles, &Location, &BaseYaw](FVector Point) {
+        auto Angle = UGKUtilityLibrary::GetYaw(Location, Point) - BaseYaw;
+        Angles.Add(Angle);
+    };
+
+    for (auto &OutActor: OutActors)
+    {
+        OutActor->GetActorBounds(true, Origin, BoxExtent);
+
+        float Hypotenuse = (Origin - Location).Size2D();
+        float Adjacent   = (BoxExtent.X + BoxExtent.Y) / 2.f;
+        float Angle      = FMath::Acos(Adjacent / Hypotenuse);
+
+        UE_LOG(LogGamekit, Log, TEXT("Actor %s %f"), *AActor::GetDebugName(OutActor), FMath::RadiansToDegrees(Angle));
+
+        Origin.Z = Location.Z;
+        auto TargetYaw = FMath::DegreesToRadians(UGKUtilityLibrary::GetYaw(Origin, Location));
+
+        // 1st ray is a bit outside
+        FMath::PolarToCartesian(Adjacent + Margin, TargetYaw + Angle, Cartesian.X, Cartesian.Y);
+        AddPointAsAngle(Origin + Cartesian);
+
+        // 2nd ray is hiting the actor
+        FMath::PolarToCartesian(Adjacent - Margin, TargetYaw + Angle, Cartesian.X, Cartesian.Y);
+        AddPointAsAngle(Origin + Cartesian);
+
+        // Middle ray for good measure ?
+        AddPointAsAngle(Origin);
+
+        // 3rd ray is hiting the actor
+        FMath::PolarToCartesian(Adjacent - Margin, TargetYaw - Angle, Cartesian.X, Cartesian.Y);
+        AddPointAsAngle(Origin + Cartesian);
+
+        // 4th ray is a bit outside
+        FMath::PolarToCartesian(Adjacent + Margin, TargetYaw - Angle, Cartesian.X, Cartesian.Y);
+        AddPointAsAngle(Origin + Cartesian);
+    }
+
+    //*
+    float step = c->FieldOfView / float(c->TraceCount);
+    int   n    = c->TraceCount / 2;
+
+    for (int i = -n; i <= n; i++)
+    {
+        float angle = float(i) * step;
+        Angles.Add(angle);
+    }
+
+    Angles.Sort();
+    //*/
+
+    /*
+    // Make sure the angles are not too far appart
+    float step = c->FieldOfView / float(c->TraceCount);
+
+    Angles.Sort();
+    TArray<float> NewAngles;
+    float         Previous = Angles[0];
+    NewAngles.Add(Previous);
+    Angles.Add(Previous);
+
+    for (int i = 1; i < Angles.Num(); i++)
+    {
+        auto Angle = Angles[i];
+        auto Range = (Angle - Previous);
+        auto Diff = int(Range / step);
+
+        for (int j = 1; j < Diff; j++)
+        {
+            NewAngles.Add(Previous + Range / float(Diff) * j);
+        }
+
+        NewAngles.Add(Angle);
+    }
+    //*/
+
+    GenerateTrianglesFromAngles(c, Angles);
+
+    DrawTriangles(c);
+}
+
+void AGKFogOfWarVolume::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles) {
+    auto Actor       = c->GetOwner();
+    FVector Location = Actor->GetActorLocation();
+    FVector Forward  = Actor->GetActorForwardVector();
+
+    TArray<AActor *> ActorsToIgnore   = {};
+
+    FCanvasUVTri Triangle;
+    FHitResult OutHit;
+    auto TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
+    FVector2D    Previous;
+    FVector      LinePrevious;
+    bool         bHasPrevious = false;
+    auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+    TSet<AActor *>   AlreadySighted;
+
+    for (auto Angle: Angles)
+    {
+        // We need to use forward vector in case the FieldOfView is not 360
+        FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
+
+        // We have to ignore the Inner Radius for our triangles to be
+        // perfectly completing each other
+        FVector LineStart = Location; // + dir * c->InnerRadius;
+        FVector LineEnd   = Location + dir * c->Radius;
+
+        if (bDebug)
+        {
+            UKismetSystemLibrary::DrawDebugCircle(
+                GetWorld(),          // World
+                LineEnd,             // Center
+                25.f,                // Radius
+                36,                  // NumSegments
+                FLinearColor::White, // LineColor
+                0.f,                 // LifeTime 
+                5.f,                 // Tickness
+                FVector(1, 0, 0),    // YAxis 
+                FVector(0, 1, 0),    // ZAxis 
+                true                 // DrawAxes
+            );
+        }
+
+        bool hit = UKismetSystemLibrary::LineTraceSingle(
+            GetWorld(),
+            Location,
+            LineEnd,
+            TraceType,
+            false, // bTraceComplex
+            ActorsToIgnore,
+            DebugTrace(),
+            OutHit,
+            true, // Ignore Self
+            FLinearColor::Red,
+            FLinearColor::Green,
+            5.0f
+        );
+
+        LineEnd = hit ? OutHit.Location : LineEnd;
+
+        auto Start = GetTextureCoordinate(LineStart);
+
+        // FIXME: Effective radius turns out to be a bit smaller
+        auto End   = GetTextureCoordinate(LineEnd);
+
+        //Triangle.V0_Color = FLinearColor::White;
+        Triangle.V0_Pos   = Start;
+        Triangle.V0_UV  = FVector2D(0.5, 0.5);
+
+        //Triangle.V1_Color = FLinearColor::White;
+        Triangle.V1_Pos   = Previous;
+        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LinePrevious - LineStart), TriangleSize);
+
+        //Triangle.V2_Color = FLinearColor::White;
+        Triangle.V2_Pos   = End;
+        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
+
+        if (bHasPrevious)
+        {
+            Triangles.Add(Triangle);
+        }
+
+        bHasPrevious = true;
+        Previous = End;
+        LinePrevious = LineEnd;
+        
+        if (hit && OutHit.Actor.IsValid())
+        {
+            // Avoid multiple broadcast per target
+            AActor *Target = OutHit.Actor.Get();
+            if (!AlreadySighted.Contains(Target))
+            {
+                AlreadySighted.Add(Target);
+                BroadCastEvents(Actor, c, Target);
+            }
+        }
+    }
+}
+
+void AGKFogOfWarVolume::DrawTriangles(UGKFogOfWarComponent *c) {
+    // Draw all Triangles
+    UCanvas *                  Canvas;
+    FVector2D                  Size;
+    FDrawToRenderTargetContext Context;
+
+    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
+    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
+
+    Canvas->K2_DrawMaterialTriangle(TrianglesMaterial, Triangles);
+
+    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+    Triangles.Reset(c->TraceCount + 1);
+}
 
 // This is slower than V1, tracce the same amount of rays
 // We could improve this by only focusing the rays around the relevant actors
 // Make a polygon and draw the result
 void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent *c) {
-
     Triangles.Reset(c->TraceCount + 1);
 
     AActor *         actor          = c->GetOwner();
@@ -591,18 +859,17 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
     FVector      LinePrevious;
     bool         bHasPrevious = false;
 
-
     // Because we are drawing triangles but our field of view is arched 
-    // we make the radius bigger the circle will be draw using the texture
-    /*
+    // we make the radius bigger the circle outline will be drawn using the texture
     float halfStep       = step / 2.f;
     float ExtendedRadius = FMath::Sqrt(
         FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - halfStep)))
         + FMath::Square(c->Radius)
     );
-    */
-
+    
     auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+
+    // UE_LOG(LogGamekit, Log, TEXT("Extended Radius is %f (%f)"), ExtendedRadius, c->Radius);
 
     for (int i = -n; i <= n; i++)
     {
@@ -620,19 +887,19 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
                                                          TraceType,
                                                          false, // bTraceComplex
                                                          ActorsToIgnore,
-                                                         EDrawDebugTrace::None,
+                                                         DebugTrace(),
                                                          OutHit,
                                                          true, // Ignore Self
                                                          FLinearColor::Red,
                                                          FLinearColor::Green,
                                                          5.0f);
 
-        LineEnd = hit ? OutHit.Location : LineEnd;
+        LineEnd = hit ? OutHit.Location : loc + dir * ExtendedRadius;
 
         auto Start = GetTextureCoordinate(LineStart);
-        auto End   = GetTextureCoordinate(LineEnd);
 
         // FIXME: Effective radius turns out to be a bit smaller
+        auto End   = GetTextureCoordinate(LineEnd);
 
         //Triangle.V0_Color = FLinearColor::White;
         Triangle.V0_Pos   = Start;
@@ -667,18 +934,7 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent
         }
     }
 
-
-    // Draw all Triangles
-    UCanvas *                  Canvas;
-    FVector2D                  Size;
-    FDrawToRenderTargetContext Context;
-
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
-    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-
-    Canvas->K2_DrawMaterialTriangle(TrianglesMaterial, Triangles);
-
-    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+    DrawTriangles(c);
 }
 
 void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV1(UGKFogOfWarComponent *c)
@@ -715,7 +971,7 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV1(UGKFogOfWarComponent
                                                          TraceType,
                                                          false, // bTraceComplex
                                                          ActorsToIgnore,
-                                                         EDrawDebugTrace::None,
+                                                         DebugTrace(),
                                                          OutHit,
                                                          true, // Ignore Self
                                                          FLinearColor::Red,

@@ -6,6 +6,7 @@
 #include "CoreMinimal.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
 #include "GameFramework/Volume.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 #include "GKFogOfWarVolume.generated.h"
 
@@ -116,6 +117,8 @@ public:
     //!     * Draw
     void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
 
+    void DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent *c);
+
     //! Draw the ligne of sight using a material (no collision)
     void DrawUnobstructedLineOfSight(class UGKFogOfWarComponent* c);
 
@@ -154,6 +157,10 @@ public:
     //! Material used to draw unobstructed vision with Triangles
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     class UMaterialInterface *TrianglesMaterial;
+
+    //! Margin for Actor Rays
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast|V3")
+    float Margin;
 
     //! Base Material used to draw the fog of war in a post process step,
     //! it uses the texture parameters FoWView & FoWExploration
@@ -195,6 +202,15 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     int FogVersion;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    bool bDebug;
+
+    EDrawDebugTrace::Type DebugTrace() { 
+        if (bDebug) 
+            return EDrawDebugTrace::ForOneFrame;
+        return EDrawDebugTrace::None;
+    }
+
     /* If I could use a UTextureRenderTarget2DArray for everything
     * it would be great all the Fields of views would be available in one
     * texture instead of X textures
@@ -230,6 +246,8 @@ private:
     // UpdateVolumeSizes does that for them
     void SetMapSize(FVector2D size);
     void SetTextureSize(FVector2D size);
+    void DrawTriangles(UGKFogOfWarComponent *c);
+    void GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles);
 
 private:
     void InitDecalRendering();

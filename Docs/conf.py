@@ -26,10 +26,33 @@ docs_src_path = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(docs_src_path, ".."))
 doxygen_out = os.path.join(project_root, "Binaries")
 doxygen_out_xml = os.path.join(doxygen_out, "xml")
+doxygen_version_file = os.path.join(doxygen_out_xml, "version.txt")
 
 # Generate the HTML in the sphinx folder so it will be made
 # available in read the docs
 doxygen_out_html = os.path.join(project_root, "Docs", "_build", "html", "doxygen")
+
+
+def is_new_version():
+    os.makedirs(doxygen_out_xml, exist_ok=True)
+
+    # TODO: only go it for C++ files
+    version_match = False
+    version_hash = subprocess.check_output(
+        'echo -n $"$(git rev-parse HEAD) $(git diff)" | sha256sum', shell=True
+    )
+
+    if os.path.exists(doxygen_version_file):
+        with open(doxygen_version_file, "br") as v:
+            saved_version = v.read()
+
+        version_match = saved_version == version_hash
+
+    if not version_match:
+        with open(doxygen_version_file, "bw") as v:
+            v.write(version_hash)
+
+    return not version_match
 
 
 def configure_doxyfile():
@@ -52,14 +75,15 @@ def configure_doxyfile():
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 
 if read_the_docs_build:
-    os.makedirs(doxygen_out_html, exist_ok=True)
-    configure_doxyfile()
-    subprocess.call("doxygen", shell=True)
+    if is_new_version():
+        os.makedirs(doxygen_out_html, exist_ok=True)
+        configure_doxyfile()
+        subprocess.call("doxygen", shell=True)
 
-    os.rename(
-        os.path.join(doxygen_out_html, 'index.html'),
-        os.path.join(doxygen_out_html, 'doxy.html')
-    )
+        os.rename(
+            os.path.join(doxygen_out_html, "index.html"),
+            os.path.join(doxygen_out_html, "doxy.html"),
+        )
 
 # -- General configuration ------------------------------------------------
 
@@ -94,7 +118,7 @@ breathe_domain_by_extension = {
 }
 exhale_args = {
     # These arguments are required
-    "containmentFolder": "./Developer/api",
+    "containmentFolder": "generated_api",
     "rootFileName": "GamekitAPI.rst",
     "rootFileTitle": "Gamekit API",
     "doxygenStripFromPath": "..",
@@ -227,9 +251,7 @@ html_static_path = ["_static"]
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-html_extra_path = [
-    "_build/doxygen"
-]
+html_extra_path = ["_build/doxygen"]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.

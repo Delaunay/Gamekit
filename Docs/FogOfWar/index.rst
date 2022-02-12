@@ -61,6 +61,75 @@ a post process volume must be added to the level with the appropriate post proce
 .. _doc: https://docs.unrealengine.com/4.26/en-US/API/Runtime/AIModule/Perception/UAISense_Sight/
 
 
+Versions
+--------
+
+RayCast V1
+~~~~~~~~~~
+
+Draws ``n`` rays, draw lines of a given width on the Fog of War texture.
+
+.. |V1_36_Render| image:: /_static/FogOfWar_RayCast_V1_36Rays_RenderTexture.PNG
+
+.. |V1_36_View| image:: /_static/FogOfWar_RayCast_V1_36Rays.PNG
+
+.. |V1_720_Render| image:: /_static/FogOfWar_RayCast_V1_720Rays_RenderTexture.PNG
+
+.. |V1_720_View| image:: /_static/FogOfWar_RayCast_V1_720Rays.PNG
+
+.. |V1_360_Render| image:: /_static/FogOfWar_RayCast_V1_360Rays_Tickness1_RenderTexture.PNG
+
+.. |V1_360_View| image:: /_static/FogOfWar_RayCast_V1_360Rays_Thickness1.PNG
+
++----------+------+---------------+-----------------+
+| Tickness | Rays |  Render       | Fog Texture     |
++----------+------+---------------+-----------------+
+|        2 |  36  | |V1_36_View|  | |V1_36_Render|  |
++----------+------+---------------+-----------------+
+|        1 | 360  | |V1_360_View| | |V1_360_Render| |
++----------+------+---------------+-----------------+
+|        2 | 720  | |V1_720_View| | |V1_720_Render| |
++----------+------+---------------+-----------------+
+
+RayCast V2
+~~~~~~~~~~
+
+Draws ``n`` rays, draw triangles with a material.
+
+.. |V2_36_Render| image:: /_static/FogOfWar_RayCast_V2_36Rays_RenderTexture.PNG
+
+.. |V2_36_View| image:: /_static/FogOfWar_RayCast_V2_36Rays.PNG
+
+.. |V2_12_Render| image:: /_static/FogOfWar_RayCast_V2_12Rays_RenderTexture.PNG
+
+.. |V2_12_View| image:: /_static/FogOfWar_RayCast_V2_12Rays.PNG
+
++------+---------------+----------------+
+| Rays |  Render       | Fog Texture    |
++------+---------------+----------------+
+|   12 | |V2_12_View|  | |V2_12_Render| |
++------+---------------+----------------+
+|   36 | |V2_36_View|  | |V2_36_Render| |
++------+---------------+----------------+
+
+
+RayCast V3
+~~~~~~~~~~
+
+WIP
+
+
+Discrete Tiles V1
+~~~~~~~~~~~~~~~~~
+
+WIP
+
+
+Comparison
+~~~~~~~~~~
+
+
+
 Exploration
 -----------
 

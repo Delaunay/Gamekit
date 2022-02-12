@@ -70,4 +70,6 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "ItemSlot")
     static EGK_ItemSlot ItemSlotFromInteger(int SlotId);
+
+	static float GetYaw(FVector Origin, FVector Target);
 };

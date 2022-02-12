@@ -194,3 +194,16 @@ class UWidget *UGKUtilityLibrary::GetWidgetUnderCursor() {
 
 
 EGK_ItemSlot UGKUtilityLibrary::ItemSlotFromInteger(int SlotId) { return EGK_ItemSlot(SlotId); }
+
+
+float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target) {
+    auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Origin, Target);
+    auto TargetYaw = TargetRotator.Yaw;
+
+    if (FMath::Abs(TargetYaw) > 180)
+    {
+        TargetYaw = FMath::RadiansToDegrees(FMath::Asin(FMath::Sin(FMath::DegreesToRadians(TargetYaw))));
+    }
+
+    return TargetYaw;
+}
