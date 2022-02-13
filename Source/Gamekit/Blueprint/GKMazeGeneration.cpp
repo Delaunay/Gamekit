@@ -2,6 +2,8 @@
 
 #include "Gamekit/Blueprint/GKMazeGeneration.h"
 
+#include "Gamekit/Container/Matrix.h"
+
 #include "Kismet/KismetMathLibrary.h"
 #include "Math/IntVector.h"
 #include "Math/RandomStream.h"
@@ -33,50 +35,6 @@ void UGKMazeGeneration::RandomWall(int GridX, int GridY, float Density, TArray<F
     }
 }
 
-FIntVector NOFFSET[6] = {
-    FIntVector(-2, 0, 0), FIntVector(+2, 0, 0), FIntVector(0, -2, 0),
-    FIntVector(0, +2, 0), FIntVector(0, 0, -2), FIntVector(0, 0, +2),
-};
-
-template <typename T>
-struct T3DArray {
-    T3DArray(int row, int col, int depth = 1): Row(row), Col(col), Depth(depth) {
-        Data.Init(T(), Row * Col * Depth);
-    }
-
-    T &operator()(int r, int c, int d = 0) { return Data[c + r * Col + d * (Col * Row)]; }
-
-    T &operator()(FIntVector v) { return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; }
-
-    TArray<FIntVector> GetNeighbours(FIntVector v) {
-        TArray<FIntVector> Result;
-        Result.Reserve(4);
-
-        for (int i = 0; i < 4; i++) {
-            auto n = v + NOFFSET[i];
-            if (n.X < 0 || n.X >= Row) {
-                continue;
-            }
-            if (n.Y < 0 || n.Y >= Col) {
-                continue;
-            }
-            if (n.Z < 0 || n.Z >= Depth) {
-                continue;
-            }
-            Result.Add(NOFFSET[i]);
-        }
-        return Result;
-    }
-
-    TArray<T> &GetData() { return Data; }
-
-    private:
-    int       Row;
-    int       Col;
-    int       Depth;
-    TArray<T> Data;
-};
-
 #define VISITED 1
 #define WALL    0
 
@@ -85,7 +43,7 @@ void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
     TArray<FIntVector> Stack;
 
     Stack.Reserve(GridX * GridY);
-    T3DArray<int> Grid(GridX, GridY);
+    TMatrix3D<int> Grid(GridX, GridY);
     FRandomStream Stream(0);
 
     // Choose the initial cell,
@@ -142,7 +100,7 @@ void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
 
 // The stopping condition is probably not that great
 void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out) {
-    T3DArray<int> Grid(GridX, GridY);
+    TMatrix3D<int> Grid(GridX, GridY);
     FRandomStream Stream(0);
     int           count = 0;
 
@@ -161,7 +119,7 @@ void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out) {
     auto Cell          = Starting;
     auto pending_count = count + 1;
 
-    T3DArray<int> Pending = Grid;
+    TMatrix3D<int> Pending = Grid;
     do {
         auto Neighbours = Grid.GetNeighbours(Cell);
 

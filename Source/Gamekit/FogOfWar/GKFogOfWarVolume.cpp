@@ -593,6 +593,7 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c)
     case 1:  return DrawObstructedLineOfSight_RayCastV1(c);
     case 2:  return DrawObstructedLineOfSight_RayCastV2(c);
     case 3:  return DrawObstructedLineOfSight_RayCastV3(c);
+    case 4:  return DrawObstructedLineOfSight_DiscreteV1(c);
     default: return DrawObstructedLineOfSight_RayCastV2(c);
     }
 }
@@ -634,7 +635,7 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent
         OutActors
     );
 
-    UE_LOG(LogGamekit, Log, TEXT("Found %d Actors"), OutActors.Num());
+    // UE_LOG(LogGamekit, Log, TEXT("Found %d Actors"), OutActors.Num());
 
     TArray<FVector> EndPoints;
     TArray<float> Angles;
@@ -642,48 +643,58 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent
     FVector BoxExtent;
     FVector Cartesian;
     auto BaseYaw = Actor->GetActorRotation().Yaw;
+    float step = c->FieldOfView / float(c->TraceCount);
+    int   n    = c->TraceCount / 2;
 
-    auto AddPointAsAngle = [&Angles, &Location, &BaseYaw](FVector Point) {
+    float MaxAngle = float(n) * step;
+    float MinAngle = float(-n) * step;
+
+    auto AddPointAsAngle = [&Angles, &Location, &BaseYaw, &MaxAngle, &MinAngle](FVector Point) {
         auto Angle = UGKUtilityLibrary::GetYaw(Location, Point) - BaseYaw;
-        Angles.Add(Angle);
+
+        /*
+        if (FMath::Abs(Angle) > 180)
+        {
+            Angle = FMath::RadiansToDegrees(FMath::Asin(FMath::Sin(FMath::DegreesToRadians(Angle))));
+        }
+
+        if (Angle > MinAngle && Angle < MaxAngle) //*/
+        {
+            Angles.Add(Angle);
+        }
     };
 
     for (auto &OutActor: OutActors)
     {
-        OutActor->GetActorBounds(true, Origin, BoxExtent);
+        FVector MinPoint;
+        FVector MaxPoint = FVector(0, 0, 0);
+        FVector Point;
+        UGKUtilityLibrary::GetVisibleBounds(Location, OutActor, MinPoint, MaxPoint);
 
-        float Hypotenuse = (Origin - Location).Size2D();
-        float Adjacent   = (BoxExtent.X + BoxExtent.Y) / 2.f;
-        float Angle      = FMath::Acos(Adjacent / Hypotenuse);
+        float Angle;
+        float Radius;
 
-        UE_LOG(LogGamekit, Log, TEXT("Actor %s %f"), *AActor::GetDebugName(OutActor), FMath::RadiansToDegrees(Angle));
+        MinPoint = MinPoint - Origin;
+        FMath::CartesianToPolar(MinPoint.X, MinPoint.Y, Radius, Angle);
+        FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
+        AddPointAsAngle(Point + Origin);
 
-        Origin.Z = Location.Z;
-        auto TargetYaw = FMath::DegreesToRadians(UGKUtilityLibrary::GetYaw(Origin, Location));
+        FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
+        AddPointAsAngle(Point + Origin);
 
-        // 1st ray is a bit outside
-        FMath::PolarToCartesian(Adjacent + Margin, TargetYaw + Angle, Cartesian.X, Cartesian.Y);
-        AddPointAsAngle(Origin + Cartesian);
+        // Add a trace that point directly to the center
+        // this makes sure than even if the 2 traces are missing the actor
+        // does not work
+        // AddPointAsAngle(Origin);
 
-        // 2nd ray is hiting the actor
-        FMath::PolarToCartesian(Adjacent - Margin, TargetYaw + Angle, Cartesian.X, Cartesian.Y);
-        AddPointAsAngle(Origin + Cartesian);
+        MaxPoint = MaxPoint - Origin;
+        FMath::CartesianToPolar(MaxPoint.X, MaxPoint.Y, Radius, Angle);
+        FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
+        AddPointAsAngle(Point + Origin);
 
-        // Middle ray for good measure ?
-        AddPointAsAngle(Origin);
-
-        // 3rd ray is hiting the actor
-        FMath::PolarToCartesian(Adjacent - Margin, TargetYaw - Angle, Cartesian.X, Cartesian.Y);
-        AddPointAsAngle(Origin + Cartesian);
-
-        // 4th ray is a bit outside
-        FMath::PolarToCartesian(Adjacent + Margin, TargetYaw - Angle, Cartesian.X, Cartesian.Y);
-        AddPointAsAngle(Origin + Cartesian);
+        FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
+        AddPointAsAngle(Point + Origin);
     }
-
-    //*
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
 
     for (int i = -n; i <= n; i++)
     {
@@ -692,7 +703,14 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent
     }
 
     Angles.Sort();
-    //*/
+
+    // make sure the last triangle do a full turn
+    if (c->FieldOfView >= 360)
+    {
+        // TArray does not want to add its own element
+        float Temp = Angles[0];
+        Angles.Add(Temp);
+    }
 
     /*
     // Make sure the angles are not too far appart
@@ -725,23 +743,36 @@ void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent
 }
 
 void AGKFogOfWarVolume::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles) {
+    Triangles.Reset(c->TraceCount + 1);
+
     auto Actor       = c->GetOwner();
     FVector Location = Actor->GetActorLocation();
     FVector Forward  = Actor->GetActorForwardVector();
 
     TArray<AActor *> ActorsToIgnore   = {};
 
-    FCanvasUVTri Triangle;
-    FHitResult OutHit;
-    auto TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
-    FVector2D    Previous;
-    FVector      LinePrevious;
-    bool         bHasPrevious = false;
-    auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
-    TSet<AActor *>   AlreadySighted;
+    FCanvasUVTri   Triangle;
+    FHitResult     OutHit;
+    auto           TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
+    FVector2D      Previous;
+    FVector        LinePrevious;
+    float          PreviousAngle;
+    bool           bHasPrevious = false;
+    auto           TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+    TSet<AActor *> AlreadySighted;
 
     for (auto Angle: Angles)
     {
+        // Not sure why we get a bunch of angles that are very close
+        /*
+        if (bHasPrevious && FMath::IsNearlyEqual(Angle, PreviousAngle))
+        {
+            continue;
+        }
+        //*/
+
+    
+
         // We need to use forward vector in case the FieldOfView is not 360
         FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
 
@@ -781,11 +812,15 @@ void AGKFogOfWarVolume::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TAr
             5.0f
         );
 
-        LineEnd = hit ? OutHit.Location : LineEnd;
+        // TODO: compute the extended radius here
+        float ExtendedRadius = bHasPrevious ? FMath::Sqrt(
+            FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - (PreviousAngle - Angle) / 2.f)))
+            + FMath::Square(c->Radius)
+        ): c->Radius;
+
+        LineEnd = hit ? OutHit.Location : Location + dir * ExtendedRadius;
 
         auto Start = GetTextureCoordinate(LineStart);
-
-        // FIXME: Effective radius turns out to be a bit smaller
         auto End   = GetTextureCoordinate(LineEnd);
 
         //Triangle.V0_Color = FLinearColor::White;
@@ -808,6 +843,7 @@ void AGKFogOfWarVolume::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TAr
         bHasPrevious = true;
         Previous = End;
         LinePrevious = LineEnd;
+        PreviousAngle = Angle;
         
         if (hit && OutHit.Actor.IsValid())
         {
@@ -1040,4 +1076,8 @@ void AGKFogOfWarVolume::UpdateExploration()
                                FVector2D(0, 0));
         UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
     }
+}
+
+void AGKFogOfWarVolume::DrawObstructedLineOfSight_DiscreteV1(UGKFogOfWarComponent* c) {
+    
 }

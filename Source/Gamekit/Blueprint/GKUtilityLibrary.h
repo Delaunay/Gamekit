@@ -72,4 +72,8 @@ public:
     static EGK_ItemSlot ItemSlotFromInteger(int SlotId);
 
 	static float GetYaw(FVector Origin, FVector Target);
+
+	//! Returns the two points of an actor that are visible from Location
+	UFUNCTION(BlueprintPure, Category = "Bounds")
+	static void GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) ;
 };

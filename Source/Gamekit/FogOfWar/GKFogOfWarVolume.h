@@ -8,6 +8,8 @@
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
 
+#include "Gamekit/Grid/GKGrid.h"
+
 #include "GKFogOfWarVolume.generated.h"
 
 
@@ -97,6 +99,8 @@ public:
     //! Draw the fog of war for each factions
     void DrawFactionFog();
 
+    //! Note because the terrain can stop the sight we always will have to cast
+    //! rays all around the target
     void DrawObstructedLineOfSight(class UGKFogOfWarComponent *c);
     
     //! Draw the line of sight using LineTrace
@@ -108,16 +112,21 @@ public:
     //! Even with a low trace count the field of view will still render 
     //! as a circle thanks to its material
     //! 
-    //! TODO: refine collision detection:
+    void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
+
+    //! V3 find all the obstacle and try to draw more traces neat the bounds
+    //! There is a sorting problem, the angles behaves a bit strangely
+    //! although they are sorted the triangles are not drawn correctly
+    //! 
     //!     * Generate minimum Line traces <----------------------------+
     //!     * Get all obstacle in a radius                              |
     //!     * For each obstacle add 2 traces                            |
     //!     * Add Line traces if angle between 2 traces are too wide <--+
     //!     * Generate triangles
     //!     * Draw
-    void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
-
     void DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent *c);
+
+    void DrawObstructedLineOfSight_DiscreteV1(UGKFogOfWarComponent *c);
 
     //! Draw the ligne of sight using a material (no collision)
     void DrawUnobstructedLineOfSight(class UGKFogOfWarComponent* c);
@@ -155,12 +164,31 @@ public:
     class UMaterialInterface* UnobstructedVisionMaterial;
 
     //! Material used to draw unobstructed vision with Triangles
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     class UMaterialInterface *TrianglesMaterial;
 
     //! Margin for Actor Rays
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast|V3")
     float Margin;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete|V1")
+    FGKGrid Grid;
+
+    FIntVector ToGridTexture(FIntVector Pos) {
+        return FIntVector(
+            Pos.X + TextureSize.X / 2,
+            TextureSize.Y / 2 - Pos.Y,
+            Pos.Z
+        );
+    }
+
+    FIntVector FromTextureToGrid(FIntVector Pos) {
+        return FIntVector(
+            Pos.X -  TextureSize.X / 2,
+            TextureSize.Y / 2 - Pos.Y,
+            Pos.Z
+        );
+    }
 
     //! Base Material used to draw the fog of war in a post process step,
     //! it uses the texture parameters FoWView & FoWExploration
@@ -255,10 +283,11 @@ private:
     TMap<FName, int>  NameToIndex;
 
     FCriticalSection Mutex;             // Mutex to sync adding/removing components with the fog compute
-    FVector2D        MapSize;           // from the Volume box
-    FVector2D        TextureSize;       // == MapSize * TextureScale
     FTimerHandle     FogComputeTimer;   // Compute the fog every few frames (or so)
 
+    FVector2D        MapSize;           // from the Volume box
+    FVector2D        TextureSize;       // == MapSize * TextureScale
+   
     TArray<class UGKFogOfWarComponent*> ActorComponents;
     TMap<FName, class UMaterialInterface*> PostProcessMaterials;
 
@@ -266,4 +295,6 @@ private:
 
     // Used by RayCastV2
     TArray<FCanvasUVTri> Triangles;
+
+    friend class UGKFogOfWarStrategy;
 };

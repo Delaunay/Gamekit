@@ -207,3 +207,44 @@ float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target) {
 
     return TargetYaw;
 }
+
+
+void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) {
+    FVector Origin;
+    FVector BoxExtent;
+    Actor->GetActorBounds(true, Origin, BoxExtent);
+
+    BoxExtent.Z = 0;
+    Origin.Z = Location.Z;
+
+    TArray<FVector> Corners = {
+        Origin + BoxExtent,
+        Origin - BoxExtent,
+        Origin + BoxExtent * FVector(-1, 1, 0),
+        Origin + BoxExtent * FVector(1, -1, 0)
+    };
+
+    OutMax = Corners[0];
+    OutMin = Corners[1];
+
+    float AngleMax= UGKUtilityLibrary::GetYaw(Location, OutMax);
+    float AngleMin = UGKUtilityLibrary::GetYaw(Location, OutMin);
+
+    // The Corners that matters are the one with the widest angles (min & max)
+    for (int i = 1; i < 4; i++)
+    {
+        float Angle = UGKUtilityLibrary::GetYaw(Location, Corners[i]);
+
+        if (Angle > AngleMax)
+        {
+            AngleMax = Angle;
+            OutMax = Corners[i];
+        }
+
+        if (Angle < AngleMin)
+        {
+            AngleMin = Angle;
+            OutMin = Corners[i];
+        }
+    }
+}
