@@ -3,11 +3,13 @@
 #pragma once
 
 #include "Gamekit.h"
+
 #include "CoreMinimal.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
 
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/Grid/GKGrid.h"
 
 #include "GKFogOfWarVolume.generated.h"
@@ -151,6 +153,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
     class UMaterialInterface* GetFogOfWarPostprocessMaterial(FName name, bool CreateRenderTarget = false);
 
+    //! TODO: for debugging only
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UTexture2D *GetFactionTexture(FName name);
+
     //! Represents how often the fog is updated
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float FramePerSeconds;
@@ -279,6 +285,7 @@ private:
 
 private:
     void InitDecalRendering();
+    void InitializeStrategy();
 
     TMap<FName, int>  NameToIndex;
 
@@ -296,5 +303,9 @@ private:
     // Used by RayCastV2
     TArray<FCanvasUVTri> Triangles;
 
+    UPROPERTY(VisibleAnywhere)
+    class UGKFogOfWarStrategy* Strategy;
+
     friend class UGKFogOfWarStrategy;
+    friend class UGKShadowCasting;
 };

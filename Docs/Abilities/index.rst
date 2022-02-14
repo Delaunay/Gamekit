@@ -153,4 +153,4 @@ The easiest way to bind the ability to a UI element is to use async task that wi
 Resources
 ~~~~~~~~~
 
-[1] Gameplay Ability System `GAS <https://github.com/tranek/GASDocumentation>`_.
+.. [1] Gameplay Ability System `GAS <https://github.com/tranek/GASDocumentation>`_.

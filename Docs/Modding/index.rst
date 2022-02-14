@@ -44,4 +44,4 @@ interface and force the engine to load the module as if it was an offical module
 References
 ----------
 
-[1]: `Hooking utility <https://github.com/Delaunay/SML/blob/208d9e8021f4d662f08cf21f5d0d1e1c8f14dfea/Source/mod/hooking.h>`_
+.. [1] `Hooking utility <https://github.com/Delaunay/SML/blob/208d9e8021f4d662f08cf21f5d0d1e1c8f14dfea/Source/mod/hooking.h>`_

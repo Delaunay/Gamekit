@@ -1,11 +1,11 @@
 Resources
 =========
 
-#. Filters for materials `FilterForge`_.
-#. Game UI Database `GameUI`_.
-#. Book Of Shader `BookOfShader`_.
-#. GPU Gem `GPUGem`_.
-#. Icons `OpenArt`_.
+.. [1] Filters for materials `FilterForge`_.
+.. [2] Game UI Database `GameUI`_.
+.. [3] Book Of Shader `BookOfShader`_.
+.. [4] GPU Gem `GPUGem`_.
+.. [5] Icons `OpenArt`_.
 
 #. Textures
 

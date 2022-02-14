@@ -347,9 +347,9 @@ Wishlist
 References
 ~~~~~~~~~~
 
-* `UE4ML`_
-* `Readme`_
-* `AirSim <https://github.com/microsoft/AirSim>`_
+.. [1] `UE4ML`_
+.. [2] `Readme`_
+.. [3] `AirSim <https://github.com/microsoft/AirSim>`_
 
 .. _MI: https://www.amd.com/en/graphics/instinct-server-accelerators
 .. _pytorch: https://pytorch.org/get-started/locally/

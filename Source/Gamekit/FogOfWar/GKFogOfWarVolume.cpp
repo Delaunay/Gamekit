@@ -4,9 +4,9 @@
 
 #include "FogOfWar/GKFogOfWarComponent.h"
 #include "FogOfWar/GKFogOfWarLibrary.h"
-
 #include "Blueprint/GKCoordinateLibrary.h"
 #include "Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
 #include "Engine/CollisionProfile.h"
 #include "Components/BrushComponent.h"
@@ -26,6 +26,7 @@
 AGKFogOfWarVolume::AGKFogOfWarVolume()
 {
     PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.TickGroup = TG_DuringPhysics;
 
     static ConstructorHelpers::FObjectFinder<UMaterialParameterCollection> FoWParameterCollection(
             TEXT("MaterialParameterCollection'/Gamekit/FogOfWar/FoWParameters.FoWParameters'"));
@@ -76,6 +77,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     FogVersion               = 1;
     bDebug                   = false;
     Margin                   = 25.f;
+    Strategy                 = nullptr;
 
     DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
 
@@ -251,6 +253,24 @@ void AGKFogOfWarVolume::Tick(float DeltaTime)
     }
 }
 
+void AGKFogOfWarVolume::InitializeStrategy() {
+
+    switch (FogVersion)
+    {
+    case 4:
+    {
+        if (!Strategy)
+        {
+            Strategy = Cast<UGKShadowCasting>(
+                AddComponentByClass(UGKShadowCasting::StaticClass(), false, FTransform(), true)
+            );
+            FinishAddComponent(Strategy, false, FTransform());
+            Strategy->Initialize();
+        }
+    }
+    }
+}
+
 void AGKFogOfWarVolume::BeginPlay()
 {
     Super::BeginPlay();
@@ -263,6 +283,10 @@ void AGKFogOfWarVolume::BeginPlay()
     DecalMaterialInstance = nullptr;
     InitDecalRendering();
     SetFoWEnabledParameter(bFoWEnabled);
+
+
+    // Last for now
+    InitializeStrategy();
 
     // Start drawing the fog
     // For this method to work we need a better way to synchronize the textures
@@ -303,7 +327,10 @@ UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionRenderTarget(FName name, boo
                TextureSize.Y);
 
         render = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-                GetWorld(), UCanvasRenderTarget2D::StaticClass(), TextureSize.X, TextureSize.Y);
+            GetWorld(), 
+            UCanvasRenderTarget2D::StaticClass(), 
+            TextureSize.X, 
+            TextureSize.Y);
 
         // render->MipGenSettings = TMGS_NoMipmaps;
         FogFactions.Add(name, render);
@@ -457,6 +484,12 @@ void AGKFogOfWarVolume::UnregisterActorComponent(class UGKFogOfWarComponent *c)
 
 void AGKFogOfWarVolume::DrawFactionFog()
 {
+    if (Strategy)
+    {
+        Strategy->DrawFactionFog();
+        return;
+    }
+
     // We are drawing to the targets we cannot change the fog components right now
     FScopeLock ScopeLock(&Mutex);
 
@@ -1080,4 +1113,12 @@ void AGKFogOfWarVolume::UpdateExploration()
 
 void AGKFogOfWarVolume::DrawObstructedLineOfSight_DiscreteV1(UGKFogOfWarComponent* c) {
     
+}
+
+class UTexture2D *AGKFogOfWarVolume::GetFactionTexture(FName name) { 
+    if (Strategy) {
+        return Strategy->GetFactionTexture(name);
+    } 
+
+    return nullptr;
 }

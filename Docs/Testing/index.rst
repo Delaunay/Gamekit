@@ -1,7 +1,7 @@
 Testing
 =======
 
-* Ground Truth Data in the Functional Testing Editor plugin. 
+* Ground Truth Data in the Functional Testing Editor plugin.
 * Unit testing of C++ code
 
 
@@ -10,4 +10,4 @@ Testing
 References
 ~~~~~~~~~~
 
-* `Automation System Overview <https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/Automation/>`_
+.. [1] `Automation System Overview <https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/Automation/>`_

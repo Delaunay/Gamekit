@@ -24,16 +24,21 @@ struct FGKGrid
 
     public:
 
+    FGKGrid() {
+        TileSize = FVector(100, 100, 50);
+        GridKind = EGK_GridKind::Square;
+    }
+
 	FIntVector WorldToGrid(FVector World) const;
 
     FVector    GridToWorld(FIntVector Grid) const;
 
     FVector    GetTileSize() const;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Tile)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tile)
 	FVector TileSize;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Tile)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tile)
     EGK_GridKind GridKind;
 
 };
