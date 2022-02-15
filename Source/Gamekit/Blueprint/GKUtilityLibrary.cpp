@@ -50,7 +50,7 @@ FString UGKUtilityLibrary::GetProjectVersion()
 }
 
 
-FVector2D UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
+FVector UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
     UWorld* World = GEngine->GetWorldFromContextObject(
         WorldContext, 
         EGetWorldErrorMode::LogAndReturnNull
@@ -62,10 +62,10 @@ FVector2D UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
     if (OutActors.Num() >= 1)
     {
         auto Size = Cast<AGKFogOfWarVolume>(OutActors[0])->GetMapSize();
-        return FVector2D(Size.R, Size.G);
+        return FVector(Size.X, Size.Y, Size.Z);
     }
 
-    return FVector2D();
+    return FVector();
 }
 
 

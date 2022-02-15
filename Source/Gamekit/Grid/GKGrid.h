@@ -31,6 +31,8 @@ struct FGKGrid
 
 	FIntVector WorldToGrid(FVector World) const;
 
+    FVector    SnapToGrid(FVector World) const;
+
     FVector    GridToWorld(FIntVector Grid) const;
 
     FVector    GetTileSize() const;
@@ -57,12 +59,31 @@ inline FIntVector FGKGrid::WorldToGrid(FVector World) const {
     case EGK_GridKind::Square:
     default:
         return FIntVector(
-            int(FMath::GridSnap(World.X, TileSize.X)),
-            int(FMath::GridSnap(World.Y, TileSize.Y)),
-            int(FMath::GridSnap(World.Z, TileSize.Z))
+            int(World.X / TileSize.X),
+            int(World.Y / TileSize.Y),
+            int(World.Z / TileSize.Z)
         );
     }
 }
+
+inline FVector FGKGrid::SnapToGrid(FVector World) const
+{
+    switch (GridKind)
+    {
+    case EGK_GridKind::Hexagonal:
+    {
+        // TODO
+        return World;
+    }
+
+    case EGK_GridKind::Square:
+    default:
+        return FVector((FMath::GridSnap(World.X, TileSize.X)),
+                       (FMath::GridSnap(World.Y, TileSize.Y)),
+                       (FMath::GridSnap(World.Z, TileSize.Z)));
+    }
+}
+
 inline FVector    FGKGrid::GridToWorld(FIntVector Grid) const {
     switch (GridKind)
     {
