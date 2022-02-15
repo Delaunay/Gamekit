@@ -6,6 +6,11 @@
 #include "FogOfWar/GKFogOfWarLibrary.h"
 #include "Blueprint/GKCoordinateLibrary.h"
 #include "Blueprint/GKUtilityLibrary.h"
+
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
+
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
 #include "Engine/CollisionProfile.h"
@@ -104,7 +109,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     
         return;
     }
 
-    auto FoWView = GetFactionRenderTarget(name, CreateRenderTarget);
+    auto FoWView = GetFactionTexture(name);
     if (FoWView != nullptr)
     {
         Material->SetTextureParameterValue("FoWView", FoWView);
@@ -139,7 +144,7 @@ UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name
     }
 
     // Those calls will create the render target if missing
-    auto FoWView        = GetFactionRenderTarget(name, CreateRenderTarget);
+    auto FoWView        = GetFactionTexture(name);
     auto FoWExploration = GetFactionExplorationRenderTarget(name, CreateRenderTarget);
 
     if (FoWView == nullptr)
@@ -254,21 +259,44 @@ void AGKFogOfWarVolume::Tick(float DeltaTime)
 }
 
 void AGKFogOfWarVolume::InitializeStrategy() {
+    if (Strategy != nullptr)
+    {
+        delete Strategy;
+    }
 
     switch (FogVersion)
     {
+    case 1:
+    {
+        auto DelayedStrategy = Cast<UGKRayCasting_Line>(
+                AddComponentByClass(UGKRayCasting_Line::StaticClass(), false, FTransform(), true));
+        FinishAddComponent(DelayedStrategy, false, FTransform());
+        Strategy = DelayedStrategy;
+    }
+    case 2:
+    {
+        auto DelayedStrategy = Cast<UGKRayCasting_Triangle>(
+                AddComponentByClass(UGKRayCasting_Triangle::StaticClass(), false, FTransform(), true));
+        FinishAddComponent(DelayedStrategy, false, FTransform());
+        Strategy = DelayedStrategy;
+    }
+    case 3:
+    {
+        auto DelayedStrategy = Cast<UGKRayCasting_Less>(
+            AddComponentByClass(UGKRayCasting_Less::StaticClass(), false, FTransform(), true));
+        FinishAddComponent(DelayedStrategy, false, FTransform());
+        Strategy = DelayedStrategy;
+    }
     case 4:
     {
-        if (!Strategy)
-        {
-            Strategy = Cast<UGKShadowCasting>(
-                AddComponentByClass(UGKShadowCasting::StaticClass(), false, FTransform(), true)
-            );
-            FinishAddComponent(Strategy, false, FTransform());
-            Strategy->Initialize();
-        }
+        auto DelayedStrategy = Cast<UGKShadowCasting>(
+            AddComponentByClass(UGKShadowCasting::StaticClass(), false, FTransform(), true));
+        FinishAddComponent(DelayedStrategy, false, FTransform());
+        Strategy = DelayedStrategy;
     }
     }
+
+    Strategy->Initialize();
 }
 
 void AGKFogOfWarVolume::BeginPlay()
@@ -306,40 +334,6 @@ void AGKFogOfWarVolume::BeginPlay()
     //*/
 }
 
-UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionRenderTarget(FName name, bool CreateRenderTarget)
-{
-    UCanvasRenderTarget2D **renderResult = FogFactions.Find(name);
-    UCanvasRenderTarget2D * render       = nullptr;
-
-    if (renderResult != nullptr)
-    {
-        render = renderResult[0];
-    }
-    else if (CreateRenderTarget)
-    {
-        GetBrushSizes(TextureSize, MapSize);
-
-        UE_LOG(LogGamekit,
-               Log,
-               TEXT("Creating a new render target for %s (%.2f x %.2f)"),
-               *name.ToString(),
-               TextureSize.X,
-               TextureSize.Y);
-
-        render = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-            GetWorld(), 
-            UCanvasRenderTarget2D::StaticClass(), 
-            TextureSize.X, 
-            TextureSize.Y);
-
-        // render->MipGenSettings = TMGS_NoMipmaps;
-        FogFactions.Add(name, render);
-    }
-
-    render->bNeedsTwoCopies = true;
-    return render;
-}
-
 UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionExplorationRenderTarget(FName name, bool CreateRenderTarget)
 {
     UCanvasRenderTarget2D **renderResult = Explorations.Find(name);
@@ -372,7 +366,6 @@ UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionExplorationRenderTarget(FNam
         Explorations.Add(name, render);
     }
 
-    render->bNeedsTwoCopies = true;
     return render;
 }
 
@@ -484,9 +477,8 @@ void AGKFogOfWarVolume::UnregisterActorComponent(class UGKFogOfWarComponent *c)
 
 void AGKFogOfWarVolume::DrawFactionFog()
 {
-    if (Strategy)
+    if (!Strategy)
     {
-        Strategy->DrawFactionFog();
         return;
     }
 
@@ -498,577 +490,10 @@ void AGKFogOfWarVolume::DrawFactionFog()
         UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), RenderTargets.Value);
     }
 
-    for (auto &Component: ActorComponents)
-    {
-        DrawLineOfSight(Component);
-    }
+    Strategy->DrawFactionFog();
 
     // Update exploration texture if any
     UpdateExploration();
-}
-
-void AGKFogOfWarVolume::DrawLineOfSight(UGKFogOfWarComponent *c)
-{
-    if (!c->GivesVision)
-    {
-        return;
-    }
-
-    if (c->UnobstructedVision)
-    {
-        DrawUnobstructedLineOfSight(c);
-    }
-    else
-    {
-        DrawObstructedLineOfSight(c);
-    }
-}
-
-void BroadCastEvents(AActor *Seer, UGKFogOfWarComponent *SeerComponent, AActor *Target)
-{
-    // Send an event that current actor is seeing something
-    SeerComponent->OnSighting.Broadcast(Target);
-
-    UActorComponent *component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
-    if (component == nullptr)
-    {
-        return;
-    }
-
-    UGKFogOfWarComponent *target = Cast<UGKFogOfWarComponent>(component);
-    if (target == nullptr)
-    {
-        return;
-    }
-
-    // Send an event that the hit is being seen
-    target->OnSighted.Broadcast(Seer);
-}
-
-void AGKFogOfWarVolume::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
-{
-    AActor *actor   = c->GetOwner();
-    FVector forward = actor->GetActorForwardVector();
-
-    UMaterialInstanceDynamic *material = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-            GetWorld(), UnobstructedVisionMaterial, NAME_None, EMIDCreationFlags::None);
-
-    FLinearColor Value;
-    Value.R = forward.X;
-    Value.G = forward.Y;
-    Value.B = c->FieldOfView;
-    Value.A = c->InnerRadius / c->Radius;
-    material->SetVectorParameterValue("Direction&FoV", Value);
-
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
-    auto NewRadius    = FVector2D(c->Radius * TextureSize.X / MapSize.X, c->Radius * TextureSize.Y / MapSize.Y);
-    auto Start        = GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;
-
-    UCanvas *                  Canvas;
-    FVector2D                  Size;
-    FDrawToRenderTargetContext Context;
-    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-
-    Canvas->K2_DrawMaterial(Cast<UMaterialInterface>(material),
-                            Start,
-                            NewRadius * 2.f,
-                            FVector2D(0.f, 0.f),
-                            FVector2D::UnitVector,
-                            0.f,
-                            FVector2D(0.5f, 0.5f));
-
-    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
-
-    TArray<AActor *>                      ActorsToIgnore;
-    UClass *                              ActorClassFilter = AActor::StaticClass();
-    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-    UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarCollisionChannel, ObjectTypes);
-    TArray<AActor *>                      OutActors;
-
-    UKismetSystemLibrary::SphereOverlapActors(
-            GetWorld(), actor->GetActorLocation(), c->Radius, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors);
-
-    for (AActor *Target: OutActors)
-    {
-        if (Target == nullptr)
-        {
-            continue;
-        }
-
-        BroadCastEvents(actor, c, Target);
-    }
-}
-
-
-void AGKFogOfWarVolume::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c) {
-    AActor * actor = c->GetOwner();
-    FVector  loc   = actor->GetActorLocation();
-
-    if (bDebug)
-    {
-        UKismetSystemLibrary::DrawDebugCircle(
-            GetWorld(),          // World
-            loc,                 // Center
-            c->Radius,           // Radius
-            c->TraceCount,       // NumSegments
-            FLinearColor::White, // LineColor
-            0.f,                 // LifeTime 
-            5.f,                 // Tickness
-            FVector(1, 0, 0),    // YAxis 
-            FVector(0, 1, 0),    // ZAxis 
-            true                 // DrawAxes
-        );
-    }
-
-
-    switch (FogVersion)
-    {
-    case 1:  return DrawObstructedLineOfSight_RayCastV1(c);
-    case 2:  return DrawObstructedLineOfSight_RayCastV2(c);
-    case 3:  return DrawObstructedLineOfSight_RayCastV3(c);
-    case 4:  return DrawObstructedLineOfSight_DiscreteV1(c);
-    default: return DrawObstructedLineOfSight_RayCastV2(c);
-    }
-}
-
-void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent *c) {
-    Triangles.Reset(c->TraceCount + 1);
-
-    TArray<AActor *>                      ActorsToIgnore   = {
-        c->GetOwner()
-    };
-    UClass *                              ActorClassFilter = AActor::StaticClass();
-    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-    UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarCollisionChannel, ObjectTypes);
-
-    AActor *                              Actor            = c->GetOwner();
-    TArray<AActor *>                      OutActors;
-
-    FVector Location = Actor->GetActorLocation();
-    FVector Forward  = Actor->GetActorForwardVector();
-
-    /*
-    OverlapMultiByObjectType(
-            TArray< struct FOverlapResult > & OutOverlaps,
-            const FVector & Pos,
-            const FQuat & Rot,
-            const FCollisionObjectQueryParams & ObjectQueryParams,
-            const FCollisionShape & CollisionShape,
-            const FCollisionQueryParams & Params
-        ) const;
-
-        */
-    UKismetSystemLibrary::SphereOverlapActors(
-        GetWorld(), 
-        Location, 
-        c->Radius, 
-        ObjectTypes, 
-        ActorClassFilter,
-        ActorsToIgnore, 
-        OutActors
-    );
-
-    // UE_LOG(LogGamekit, Log, TEXT("Found %d Actors"), OutActors.Num());
-
-    TArray<FVector> EndPoints;
-    TArray<float> Angles;
-    FVector Origin;
-    FVector BoxExtent;
-    FVector Cartesian;
-    auto BaseYaw = Actor->GetActorRotation().Yaw;
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
-
-    float MaxAngle = float(n) * step;
-    float MinAngle = float(-n) * step;
-
-    auto AddPointAsAngle = [&Angles, &Location, &BaseYaw, &MaxAngle, &MinAngle](FVector Point) {
-        auto Angle = UGKUtilityLibrary::GetYaw(Location, Point) - BaseYaw;
-
-        /*
-        if (FMath::Abs(Angle) > 180)
-        {
-            Angle = FMath::RadiansToDegrees(FMath::Asin(FMath::Sin(FMath::DegreesToRadians(Angle))));
-        }
-
-        if (Angle > MinAngle && Angle < MaxAngle) //*/
-        {
-            Angles.Add(Angle);
-        }
-    };
-
-    for (auto &OutActor: OutActors)
-    {
-        FVector MinPoint;
-        FVector MaxPoint = FVector(0, 0, 0);
-        FVector Point;
-        UGKUtilityLibrary::GetVisibleBounds(Location, OutActor, MinPoint, MaxPoint);
-
-        float Angle;
-        float Radius;
-
-        MinPoint = MinPoint - Origin;
-        FMath::CartesianToPolar(MinPoint.X, MinPoint.Y, Radius, Angle);
-        FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
-        AddPointAsAngle(Point + Origin);
-
-        FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
-        AddPointAsAngle(Point + Origin);
-
-        // Add a trace that point directly to the center
-        // this makes sure than even if the 2 traces are missing the actor
-        // does not work
-        // AddPointAsAngle(Origin);
-
-        MaxPoint = MaxPoint - Origin;
-        FMath::CartesianToPolar(MaxPoint.X, MaxPoint.Y, Radius, Angle);
-        FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
-        AddPointAsAngle(Point + Origin);
-
-        FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
-        AddPointAsAngle(Point + Origin);
-    }
-
-    for (int i = -n; i <= n; i++)
-    {
-        float angle = float(i) * step;
-        Angles.Add(angle);
-    }
-
-    Angles.Sort();
-
-    // make sure the last triangle do a full turn
-    if (c->FieldOfView >= 360)
-    {
-        // TArray does not want to add its own element
-        float Temp = Angles[0];
-        Angles.Add(Temp);
-    }
-
-    /*
-    // Make sure the angles are not too far appart
-    float step = c->FieldOfView / float(c->TraceCount);
-
-    Angles.Sort();
-    TArray<float> NewAngles;
-    float         Previous = Angles[0];
-    NewAngles.Add(Previous);
-    Angles.Add(Previous);
-
-    for (int i = 1; i < Angles.Num(); i++)
-    {
-        auto Angle = Angles[i];
-        auto Range = (Angle - Previous);
-        auto Diff = int(Range / step);
-
-        for (int j = 1; j < Diff; j++)
-        {
-            NewAngles.Add(Previous + Range / float(Diff) * j);
-        }
-
-        NewAngles.Add(Angle);
-    }
-    //*/
-
-    GenerateTrianglesFromAngles(c, Angles);
-
-    DrawTriangles(c);
-}
-
-void AGKFogOfWarVolume::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles) {
-    Triangles.Reset(c->TraceCount + 1);
-
-    auto Actor       = c->GetOwner();
-    FVector Location = Actor->GetActorLocation();
-    FVector Forward  = Actor->GetActorForwardVector();
-
-    TArray<AActor *> ActorsToIgnore   = {};
-
-    FCanvasUVTri   Triangle;
-    FHitResult     OutHit;
-    auto           TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
-    FVector2D      Previous;
-    FVector        LinePrevious;
-    float          PreviousAngle;
-    bool           bHasPrevious = false;
-    auto           TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
-    TSet<AActor *> AlreadySighted;
-
-    for (auto Angle: Angles)
-    {
-        // Not sure why we get a bunch of angles that are very close
-        /*
-        if (bHasPrevious && FMath::IsNearlyEqual(Angle, PreviousAngle))
-        {
-            continue;
-        }
-        //*/
-
-    
-
-        // We need to use forward vector in case the FieldOfView is not 360
-        FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
-
-        // We have to ignore the Inner Radius for our triangles to be
-        // perfectly completing each other
-        FVector LineStart = Location; // + dir * c->InnerRadius;
-        FVector LineEnd   = Location + dir * c->Radius;
-
-        if (bDebug)
-        {
-            UKismetSystemLibrary::DrawDebugCircle(
-                GetWorld(),          // World
-                LineEnd,             // Center
-                25.f,                // Radius
-                36,                  // NumSegments
-                FLinearColor::White, // LineColor
-                0.f,                 // LifeTime 
-                5.f,                 // Tickness
-                FVector(1, 0, 0),    // YAxis 
-                FVector(0, 1, 0),    // ZAxis 
-                true                 // DrawAxes
-            );
-        }
-
-        bool hit = UKismetSystemLibrary::LineTraceSingle(
-            GetWorld(),
-            Location,
-            LineEnd,
-            TraceType,
-            false, // bTraceComplex
-            ActorsToIgnore,
-            DebugTrace(),
-            OutHit,
-            true, // Ignore Self
-            FLinearColor::Red,
-            FLinearColor::Green,
-            5.0f
-        );
-
-        // TODO: compute the extended radius here
-        float ExtendedRadius = bHasPrevious ? FMath::Sqrt(
-            FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - (PreviousAngle - Angle) / 2.f)))
-            + FMath::Square(c->Radius)
-        ): c->Radius;
-
-        LineEnd = hit ? OutHit.Location : Location + dir * ExtendedRadius;
-
-        auto Start = GetTextureCoordinate(LineStart);
-        auto End   = GetTextureCoordinate(LineEnd);
-
-        //Triangle.V0_Color = FLinearColor::White;
-        Triangle.V0_Pos   = Start;
-        Triangle.V0_UV  = FVector2D(0.5, 0.5);
-
-        //Triangle.V1_Color = FLinearColor::White;
-        Triangle.V1_Pos   = Previous;
-        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LinePrevious - LineStart), TriangleSize);
-
-        //Triangle.V2_Color = FLinearColor::White;
-        Triangle.V2_Pos   = End;
-        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
-
-        if (bHasPrevious)
-        {
-            Triangles.Add(Triangle);
-        }
-
-        bHasPrevious = true;
-        Previous = End;
-        LinePrevious = LineEnd;
-        PreviousAngle = Angle;
-        
-        if (hit && OutHit.Actor.IsValid())
-        {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(Actor, c, Target);
-            }
-        }
-    }
-}
-
-void AGKFogOfWarVolume::DrawTriangles(UGKFogOfWarComponent *c) {
-    // Draw all Triangles
-    UCanvas *                  Canvas;
-    FVector2D                  Size;
-    FDrawToRenderTargetContext Context;
-
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
-    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-
-    Canvas->K2_DrawMaterialTriangle(TrianglesMaterial, Triangles);
-
-    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
-    Triangles.Reset(c->TraceCount + 1);
-}
-
-// This is slower than V1, tracce the same amount of rays
-// We could improve this by only focusing the rays around the relevant actors
-// Make a polygon and draw the result
-void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV2(UGKFogOfWarComponent *c) {
-    Triangles.Reset(c->TraceCount + 1);
-
-    AActor *         actor          = c->GetOwner();
-    FVector          forward        = actor->GetActorForwardVector();
-    FVector          loc            = actor->GetActorLocation();
-    TArray<AActor *> ActorsToIgnore = {GetOwner()};
-    TSet<AActor *>   AlreadySighted;
-
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
-
-    FHitResult   OutHit;
-    FCanvasUVTri Triangle;
-    auto         TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
-    FVector2D    Previous;
-    FVector      LinePrevious;
-    bool         bHasPrevious = false;
-
-    // Because we are drawing triangles but our field of view is arched 
-    // we make the radius bigger the circle outline will be drawn using the texture
-    float halfStep       = step / 2.f;
-    float ExtendedRadius = FMath::Sqrt(
-        FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - halfStep)))
-        + FMath::Square(c->Radius)
-    );
-    
-    auto TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
-
-    // UE_LOG(LogGamekit, Log, TEXT("Extended Radius is %f (%f)"), ExtendedRadius, c->Radius);
-
-    for (int i = -n; i <= n; i++)
-    {
-        float   angle = float(i) * step;
-        FVector dir   = forward.RotateAngleAxis(angle, FVector(0, 0, 1));
-
-        // We have to ignore the Inner Radius for our triangles to be
-        // perfectly completing each other
-        FVector LineStart = loc; // + dir * c->InnerRadius;
-        FVector LineEnd   = loc + dir * c->Radius;
-
-        bool hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
-                                                         LineStart,
-                                                         LineEnd,
-                                                         TraceType,
-                                                         false, // bTraceComplex
-                                                         ActorsToIgnore,
-                                                         DebugTrace(),
-                                                         OutHit,
-                                                         true, // Ignore Self
-                                                         FLinearColor::Red,
-                                                         FLinearColor::Green,
-                                                         5.0f);
-
-        LineEnd = hit ? OutHit.Location : loc + dir * ExtendedRadius;
-
-        auto Start = GetTextureCoordinate(LineStart);
-
-        // FIXME: Effective radius turns out to be a bit smaller
-        auto End   = GetTextureCoordinate(LineEnd);
-
-        //Triangle.V0_Color = FLinearColor::White;
-        Triangle.V0_Pos   = Start;
-        Triangle.V0_UV  = FVector2D(0.5, 0.5);
-
-        //Triangle.V1_Color = FLinearColor::White;
-        Triangle.V1_Pos   = Previous;
-        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LinePrevious - LineStart), TriangleSize);
-
-        //Triangle.V2_Color = FLinearColor::White;
-        Triangle.V2_Pos   = End;
-        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
-
-        if (bHasPrevious)
-        {
-            Triangles.Add(Triangle);
-        }
-
-        bHasPrevious = true;
-        Previous = End;
-        LinePrevious = LineEnd;
-        
-        if (hit && OutHit.Actor.IsValid())
-        {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(actor, c, Target);
-            }
-        }
-    }
-
-    DrawTriangles(c);
-}
-
-void AGKFogOfWarVolume::DrawObstructedLineOfSight_RayCastV1(UGKFogOfWarComponent *c)
-{
-    AActor *         actor          = c->GetOwner();
-    FVector          forward        = actor->GetActorForwardVector();
-    FVector          loc            = actor->GetActorLocation();
-    TArray<AActor *> ActorsToIgnore = {GetOwner()};
-    TSet<AActor *>   AlreadySighted;
-
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
-
-    FHitResult                 OutHit;
-    UCanvas *                  Canvas;
-    FVector2D                  Size;
-    FDrawToRenderTargetContext Context;
-
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
-    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-    auto TraceType = UEngineTypes::ConvertToTraceType(FogOfWarCollisionChannel);
-
-    for (int i = -n; i <= n; i++)
-    {
-        float   angle = float(i) * step;
-        FVector dir   = forward.RotateAngleAxis(angle, FVector(0, 0, 1));
-
-        FVector LineStart = loc + dir * c->InnerRadius;
-        FVector LineEnd   = loc + dir * c->Radius;
-
-        bool hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
-                                                         LineStart,
-                                                         LineEnd,
-                                                         TraceType,
-                                                         false, // bTraceComplex
-                                                         ActorsToIgnore,
-                                                         DebugTrace(),
-                                                         OutHit,
-                                                         true, // Ignore Self
-                                                         FLinearColor::Red,
-                                                         FLinearColor::Green,
-                                                         5.0f);
-
-        LineEnd = hit ? OutHit.Location : LineEnd;
-
-        auto Start = GetTextureCoordinate(LineStart);
-        auto End   = GetTextureCoordinate(LineEnd);
-
-        //
-        //
-        Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
-
-        if (hit && OutHit.Actor.IsValid())
-        {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(actor, c, Target);
-            }
-        }
-    }
-
-    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
 }
 
 void AGKFogOfWarVolume::ClearExploration()
@@ -1089,7 +514,7 @@ void AGKFogOfWarVolume::UpdateExploration()
     {
         auto ExpFaction    = RenderTargets.Key;
         auto Exploration   = RenderTargets.Value;
-        auto CurrentVision = GetFactionRenderTarget(ExpFaction, false);
+        auto CurrentVision = GetFactionTexture(ExpFaction);
 
         // this check might not be necessary
         if (CurrentVision == nullptr)
@@ -1111,11 +536,8 @@ void AGKFogOfWarVolume::UpdateExploration()
     }
 }
 
-void AGKFogOfWarVolume::DrawObstructedLineOfSight_DiscreteV1(UGKFogOfWarComponent* c) {
-    
-}
 
-class UTexture2D *AGKFogOfWarVolume::GetFactionTexture(FName name) { 
+UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name) { 
     if (Strategy) {
         return Strategy->GetFactionTexture(name);
     } 

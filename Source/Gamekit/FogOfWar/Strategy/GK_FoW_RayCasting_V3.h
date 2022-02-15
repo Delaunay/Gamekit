@@ -1,0 +1,32 @@
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+
+#pragma once
+
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
+
+#include "GK_FoW_RayCasting_V3.generated.h"
+
+
+UCLASS(BlueprintType)
+class GAMEKIT_API UGKRayCasting_Less: public UGKRayCasting_Triangle
+{
+    GENERATED_BODY()
+
+public:
+    UGKRayCasting_Less();
+
+protected:
+    //! V3 find all the obstacle and try to draw more traces neat the bounds
+    //! There is a sorting problem, the angles behaves a bit strangely
+    //! although they are sorted the triangles are not drawn correctly
+    //! 
+    //!     * Generate minimum Line traces <----------------------------+
+    //!     * Get all obstacle in a radius                              |
+    //!     * For each obstacle add 2 traces                            |
+    //!     * Add Line traces if angle between 2 traces are too wide <--+
+    //!     * Generate triangles
+    //!     * Draw
+    virtual void DrawObstructedLineOfSight(UGKFogOfWarComponent *c);
+
+    void GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles);
+};

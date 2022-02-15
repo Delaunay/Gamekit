@@ -56,9 +56,9 @@ public:
 
     void BeginPlay();
 
-    //! Returns the render target associated with the faction name
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    class UCanvasRenderTarget2D* GetFactionRenderTarget(FName name, bool CreateRenderTarget = true);
+    //! Returns the vision texture
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UTexture *GetFactionTexture(FName name);
 
     //! Returns the exploration render target associated with the faction name
     UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
@@ -101,41 +101,6 @@ public:
     //! Draw the fog of war for each factions
     void DrawFactionFog();
 
-    //! Note because the terrain can stop the sight we always will have to cast
-    //! rays all around the target
-    void DrawObstructedLineOfSight(class UGKFogOfWarComponent *c);
-    
-    //! Draw the line of sight using LineTrace
-    void DrawObstructedLineOfSight_RayCastV1(class UGKFogOfWarComponent* c);
-
-    //! Generates Triangles of vision per actor and draw them
-    //! Drawing triangles is more expensive than simple lines, you should lower
-    //! the number of trace done by each actors
-    //! Even with a low trace count the field of view will still render 
-    //! as a circle thanks to its material
-    //! 
-    void DrawObstructedLineOfSight_RayCastV2(class UGKFogOfWarComponent* c);
-
-    //! V3 find all the obstacle and try to draw more traces neat the bounds
-    //! There is a sorting problem, the angles behaves a bit strangely
-    //! although they are sorted the triangles are not drawn correctly
-    //! 
-    //!     * Generate minimum Line traces <----------------------------+
-    //!     * Get all obstacle in a radius                              |
-    //!     * For each obstacle add 2 traces                            |
-    //!     * Add Line traces if angle between 2 traces are too wide <--+
-    //!     * Generate triangles
-    //!     * Draw
-    void DrawObstructedLineOfSight_RayCastV3(UGKFogOfWarComponent *c);
-
-    void DrawObstructedLineOfSight_DiscreteV1(UGKFogOfWarComponent *c);
-
-    //! Draw the ligne of sight using a material (no collision)
-    void DrawUnobstructedLineOfSight(class UGKFogOfWarComponent* c);
-
-    //! Draw the line of sight using the right method
-    void DrawLineOfSight(class UGKFogOfWarComponent* c);
-
     //! Returns the texture coordinate given world coordinates
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     inline FVector2D GetTextureCoordinate(FVector loc) {
@@ -152,10 +117,6 @@ public:
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
     class UMaterialInterface* GetFogOfWarPostprocessMaterial(FName name, bool CreateRenderTarget = false);
-
-    //! TODO: for debugging only
-    UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    class UTexture2D *GetFactionTexture(FName name);
 
     //! Represents how often the fog is updated
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
@@ -245,20 +206,6 @@ public:
         return EDrawDebugTrace::None;
     }
 
-    /* If I could use a UTextureRenderTarget2DArray for everything
-    * it would be great all the Fields of views would be available in one
-    * texture instead of X textures
-    * The main issue here is that UTextureRenderTarget2DArray do not have a Canvas version
-    * to draw on them programmatically, it might be doable to implement one
-    * the issue is I am not sure how much trouble it is going to be
-    * is it worth the effort
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UTextureRenderTarget2DArray* FieldOfViews;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UTextureRenderTarget2DArray* Explorations2;
-    */
-
     void SetFoWEnabledParameter(bool Enabled);
 
     void Tick(float DeltaTime);
@@ -280,8 +227,6 @@ private:
     // UpdateVolumeSizes does that for them
     void SetMapSize(FVector2D size);
     void SetTextureSize(FVector2D size);
-    void DrawTriangles(UGKFogOfWarComponent *c);
-    void GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles);
 
 private:
     void InitDecalRendering();
@@ -308,4 +253,6 @@ private:
 
     friend class UGKFogOfWarStrategy;
     friend class UGKShadowCasting;
+    friend class UGKRayCasting_Line;
+    friend class UGKRayCasting_Triangles;
 };

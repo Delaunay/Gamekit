@@ -41,7 +41,6 @@ UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial(bool Cr
     return vol->GetFogOfWarPostprocessMaterial(Faction, CreateRenderTarget);
 }
 
-
 // Called when the game starts
 void UGKFogOfWarComponent::BeginPlay()
 {

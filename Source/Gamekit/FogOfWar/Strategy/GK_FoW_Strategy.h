@@ -32,10 +32,10 @@ public:
     virtual void DrawLineOfSight(class UGKFogOfWarComponent *c) {}
 
 	//! Retrieve the Texture used to draw the fog of war for a given faction
-    virtual class UTexture2D *GetFactionTexture(FName name, bool CreateRenderTarget = true) {
+    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) {
 		return nullptr;
 	}
 
-protected:
+    protected:
 	class AGKFogOfWarVolume* FogOfWarVolume;
 };

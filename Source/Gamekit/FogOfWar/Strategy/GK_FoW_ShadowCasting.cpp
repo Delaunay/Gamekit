@@ -10,7 +10,32 @@
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 
-UTexture2D *UGKShadowCasting::GetFactionTexture(FName name, bool CreateRenderTarget) {
+UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool CreateRenderTarget)
+{
+    return GetFactionTexture2D(Name, CreateRenderTarget);
+}
+
+
+UTexture2D *UGKShadowCasting::CreateTexture2D() {
+    auto Texture = UTexture2D::CreateTransient(Buffer.Width(), Buffer.Height(), EPixelFormat::PF_G8);
+
+    Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
+    Texture->SRGB                = false;
+    Texture->Filter              = TextureFilter::TF_Nearest;
+    Texture->AddressX            = TextureAddress::TA_Clamp;
+    Texture->AddressY            = TextureAddress::TA_Clamp;
+    Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
+
+    // Streaming Texture cause issues when updating it from the buffer
+    // Texture->VirtualTextureStreaming = 1;
+    // Texture->NeverStream = 0;
+
+    Texture->UpdateResource();
+    return Texture;
+}
+
+UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool CreateRenderTarget)
+{
     UTexture2D ** Result = FogFactions.Find(name);
     UTexture2D* Texture = nullptr;
 
@@ -20,27 +45,8 @@ UTexture2D *UGKShadowCasting::GetFactionTexture(FName name, bool CreateRenderTar
     }
     else if (CreateRenderTarget)
     {   
-        Texture = UTexture2D::CreateTransient(
-            Buffer.Width(), 
-            Buffer.Height(), 
-            EPixelFormat::PF_G8
-        );
-
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
-
-        Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
-        Texture->SRGB = false;
-        Texture->Filter = TextureFilter::TF_Nearest;
-        Texture->AddressX = TextureAddress::TA_Clamp;
-        Texture->AddressY = TextureAddress::TA_Clamp;
-        Texture->MipGenSettings = TextureMipGenSettings::TMGS_NoMipmaps;
-
-        // Streaming Texture cause issues when updating it from the buffer
-        // Texture->VirtualTextureStreaming = 1;
-        // Texture->NeverStream = 0;
-
-        Texture->UpdateResource();
-
+        Texture = CreateTexture2D();
         FogFactions.Add(name, Texture);
     }
 
@@ -59,15 +65,15 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     auto TopLeftCorner  = Origin - BoxExtent;
     auto BotRightCorner = Origin - BoxExtent;
 
-    Buffer.FillRectangle2D(FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(TopLeftCorner)),
-                           FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(BotRightCorner)),
-                           (uint8)(EGK_TileVisbility::Wall) 
+    Buffer.FillRectangle2D(
+        FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(TopLeftCorner)),
+        FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(BotRightCorner)),
+        (uint8)(EGK_TileVisbility::Wall) 
     );
 }
 
 void UGKShadowCasting::UpdateTextures(class UTexture2D* Texture)
 {
-
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
@@ -84,45 +90,6 @@ void UGKShadowCasting::UpdateTextures(class UTexture2D* Texture)
             delete[] Buf;
         }
     );
-
-    
-     /*
-     * 
-     * 
-    struct FTextureData
-    {
-        FTexture2DResource* Texture2DResource;
-        FUpdateTextureRegion2D Region;
-        uint32 SrcPitch;
-        uint8* SrcData;
-    };
-
-    FTextureData* TextureData = new FTextureData();
-    TextureData->Texture2DResource = Texture2DResource;
-    TextureData->SrcPitch = UpdateRegion.Width;
-    TextureData->SrcData = NewBuffer;
-    TextureData->Region = UpdateRegion;
-
-    // UpdateTextureRegions
-
-    ENQUEUE_RENDER_COMMAND(UpdateTexture)
-    (
-        [TextureData](FRHICommandListImmediate& RHICmdList) {
-            int32 CurrentFirstMip = TextureData->Texture2DResource->GetCurrentFirstMip();
-            if (CurrentFirstMip <= 0)
-            {
-                RHIUpdateTexture2D(
-                    // RegionData->Texture2DResource->TextureRHI->GetTexture2D(),
-                    TextureData->Texture2DResource->GetTexture2DRHI(),
-                    0 - CurrentFirstMip,
-                    TextureData->Region,
-                    TextureData->SrcPitch,
-                    TextureData->SrcData);
-            }
-            delete[] TextureData->SrcData;
-            delete TextureData;
-        });
-        */
 }
 
 void UGKShadowCasting::DrawFactionFog()
@@ -131,24 +98,28 @@ void UGKShadowCasting::DrawFactionFog()
     TSet<FName> Factions;
 
     // Update the blocks
-    
-    //*
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
-        UpdateBlocking(Component);
+        if (Component->BlocksVision)
+        {
+            UpdateBlocking(Component);
+        }
     }
 
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
-        DrawLineOfSight(Component);
         Factions.Add(Component->Faction);
+        if (Component->GivesVision)
+        {
+            DrawLineOfSight(Component);
+            
+        }
     }
-    //*/
 
+    // Update Textures for rendering
     for (auto Faction: Factions)
     {
-        // UE_LOG(LogGamekit, Log, TEXT("Update Faction %s"), *Faction.ToString());
-        UpdateTextures(GetFactionTexture(Faction));
+        UpdateTextures(GetFactionTexture2D(Faction));
     }
 }
 
@@ -156,18 +127,19 @@ void UGKShadowCasting::Initialize()
 {
     Super::Initialize();
 
-    Grid = FogOfWarVolume->Grid;
-
-    auto MapSize   = FogOfWarVolume->MapSize;
+    Grid                = FogOfWarVolume->Grid;
+    auto MapSize        = FogOfWarVolume->MapSize;
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
     Buffer.Init(0, TileCount.X, TileCount.Y, 1);
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
+    //*
     UE_LOG(LogGamekit, Log, TEXT("Map Size is %s"), *MapSize.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileCount Count is %s"), *TileCount.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
+    //*/
 
     // Try to allocate our buffer early
     for (auto &Component: FogOfWarVolume->ActorComponents)
@@ -182,6 +154,12 @@ void UGKShadowCasting::DrawLineOfSight(UGKFogOfWarComponent *c)
 
     auto GridCoord = Grid.WorldToGrid(WorldPos);
     auto Radius    = int(c->Radius / Grid.GetTileSize().X);
+
+    /*
+    UE_LOG(LogGamekit, Log, TEXT("Actor is %s"), *AActor::GetDebugName(c->GetOwner()));
+    UE_LOG(LogGamekit, Log, TEXT("Grid Position is %s -> %s "), *GridCoord.ToString(), *WorldPos.ToString());
+    UE_LOG(LogGamekit, Log, TEXT("Radius is %f %d"), c->Radius, Radius);
+    //*/
 
     Compute(GridCoord, Radius);
 }

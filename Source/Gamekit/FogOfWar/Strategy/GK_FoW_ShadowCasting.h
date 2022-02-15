@@ -59,7 +59,11 @@ public:
 
 	void UpdateTextures(class UTexture2D* Texture);
 
-	class UTexture2D *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
+	class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
+
+	class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
+
+	class UTexture2D *CreateTexture2D();
 
 private:
 	void Compute(FIntVector origin, int rangeLimit);
