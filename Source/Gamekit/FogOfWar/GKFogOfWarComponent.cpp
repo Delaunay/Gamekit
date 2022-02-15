@@ -91,14 +91,14 @@ void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent* Primitiv
     }
 }
 
-UCanvasRenderTarget2D* UGKFogOfWarComponent::GetRenderTarget(bool CreateRenderTarget) {
+class UTexture* UGKFogOfWarComponent::GetVisionTexture() {
     auto FoWVolume = GetFogOfWarVolume();
 
     if (FoWVolume == nullptr) {
         return nullptr;
     }
 
-    return FoWVolume->GetFactionRenderTarget(Faction, CreateRenderTarget);
+    return FoWVolume->GetFactionTexture(Faction);
 }
 
 AGKFogOfWarVolume* UGKFogOfWarComponent::GetFogOfWarVolume() {

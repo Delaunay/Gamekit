@@ -45,7 +45,7 @@ public:
 
     //! Returns the render target associated with its faction
     UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    class UCanvasRenderTarget2D* GetRenderTarget(bool CreateRenderTarget = true);
+    class UTexture* GetVisionTexture();
 
     //! Returns the fog of war volume this component is associated to
     UFUNCTION(BlueprintCallable, Category = FogOfWar)

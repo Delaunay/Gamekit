@@ -1,6 +1,10 @@
 
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
@@ -10,24 +14,34 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 
-#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-
 
 UGKRayCasting_Line::UGKRayCasting_Line() {
 
 }
 
 void UGKRayCasting_Line::Initialize() {
-
+    Super::Initialize();
 }
 
 void UGKRayCasting_Line::RegisterActorComponent(class UGKFogOfWarComponent *c) {
 
 }
 
- void UGKRayCasting_Line::UnregisterActorComponent(class UGKFogOfWarComponent *c) {
+void UGKRayCasting_Line::UnregisterActorComponent(class UGKFogOfWarComponent *c) {
  
+}
+
+void UGKRayCasting_Line::DrawFactionFog() {
+ 
+    for (auto &RenderTargets: FogFactions)
+    {
+        UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), RenderTargets.Value);
+    }
+
+    for (auto &Component: FogOfWarVolume->ActorComponents)
+    {
+        DrawLineOfSight(Component);
+    }
  }
 
  void BroadCastEvents(AActor *Seer, UGKFogOfWarComponent *SeerComponent, AActor *Target)
@@ -198,7 +212,7 @@ UCanvasRenderTarget2D* UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bo
      FVector forward = actor->GetActorForwardVector();
 
      UMaterialInstanceDynamic *material = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-             GetWorld(), UnobstructedVisionMaterial, NAME_None, EMIDCreationFlags::None);
+             GetWorld(), FogOfWarVolume->UnobstructedVisionMaterial, NAME_None, EMIDCreationFlags::None);
 
      FLinearColor Value;
      Value.R = forward.X;
@@ -208,8 +222,8 @@ UCanvasRenderTarget2D* UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bo
      material->SetVectorParameterValue("Direction&FoV", Value);
 
      auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
-     auto NewRadius    = FVector2D(c->Radius * TextureSize.X / MapSize.X, c->Radius * TextureSize.Y / MapSize.Y);
-     auto Start        = GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;
+     auto NewRadius    = FVector2D(c->Radius * FogOfWarVolume->TextureSize.X / FogOfWarVolume->MapSize.X, c->Radius * FogOfWarVolume->TextureSize.Y / FogOfWarVolume->MapSize.Y);
+     auto Start        = FogOfWarVolume->GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;
 
      UCanvas *                  Canvas;
      FVector2D                  Size;
@@ -229,7 +243,7 @@ UCanvasRenderTarget2D* UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bo
      TArray<AActor *>                      ActorsToIgnore;
      UClass *                              ActorClassFilter = AActor::StaticClass();
      TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarCollisionChannel, ObjectTypes);
+     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarVolume->FogOfWarCollisionChannel, ObjectTypes);
      TArray<AActor *> OutActors;
 
      UKismetSystemLibrary::SphereOverlapActors(GetWorld(),

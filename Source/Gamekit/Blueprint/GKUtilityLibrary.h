@@ -33,7 +33,7 @@ public:
 
 	//! Return the map size stored inside the Fog of War Volume if any
 	UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
-	static FVector2D GetFogOfWarMapSize(const UObject *World);
+	static FVector GetFogOfWarMapSize(const UObject *World);
 
 	//! Given a player controller it will output the 4 corners seen by the player
 	//! projected on the ground

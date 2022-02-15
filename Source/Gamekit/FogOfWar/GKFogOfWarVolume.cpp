@@ -84,14 +84,14 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     Margin                   = 25.f;
     Strategy                 = nullptr;
 
-    DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
+    PreviewDecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
 
     static ConstructorHelpers::FObjectFinder<UMaterialInterface> FoWPostDecalMaterial(
             TEXT("Material'/Gamekit/FogOfWar/FoWAsDecal.FoWAsDecal'"));
 
     if (FoWPostProcessMaterial.Succeeded())
     {
-        DecalComponent->SetDecalMaterial(FoWPostDecalMaterial.Object);
+        PreviewDecalComponent->SetDecalMaterial(FoWPostDecalMaterial.Object);
     }
     else
     {
@@ -179,25 +179,24 @@ UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name
 void AGKFogOfWarVolume::UpdateVolumeSizes()
 {
     FScopeLock ScopeLock(&Mutex);
-
     GetBrushSizes(TextureSize, MapSize);
-    SetMapSize(MapSize);
-    SetTextureSize(TextureSize);
+    SetMaterialParam_MapSize(MapSize);
+    SetMaterialParam_TextureSize(TextureSize);
 
-    // Resize existing Targets to match expectation
+    /*/ Resize existing Targets to match expectation
     for (auto &RenderTargets: FogFactions)
     {
         RenderTargets.Value->ResizeTarget(TextureSize.X, TextureSize.Y);
         RenderTargets.Value->bNeedsTwoCopies = true;
-    }
+    }*/
 }
 
-void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector2D &MapSize_)
+void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector &MapSize_)
 {
     auto bb   = GetComponentsBoundingBox(true);
     auto Size = bb.GetSize();
 
-    MapSize_ = FVector2D(Size.X, Size.Y);
+    MapSize_ = FVector(Size.X, Size.Y, Size.Z);
 
     if (MapSize_.X == 0 || MapSize_.Y == 0)
     {
@@ -206,6 +205,7 @@ void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector2D &MapSiz
         // If size == 0 it will trigger assert on the RHI side
         MapSize_.X = 100.f;
         MapSize_.Y = 100.f;
+        MapSize_.Z = 1.f;
     }
 
     if (TextureScale == 0)
@@ -222,9 +222,9 @@ void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector2D &MapSiz
 
 void AGKFogOfWarVolume::InitDecalRendering()
 {
-    DecalComponent->SetVisibility(UseFoWDecalRendering);
+    PreviewDecalComponent->SetVisibility(UseFoWDecalRendering);
 
-    if (UseFoWDecalRendering && Faction.IsValid())
+    if (UseFoWDecalRendering && PreviewFaction.IsValid())
     {
         auto bb   = GetComponentsBoundingBox(true);
         auto Size = bb.GetSize();
@@ -238,15 +238,15 @@ void AGKFogOfWarVolume::InitDecalRendering()
         // The scale of the parent is 20x20x20
         // 200x200x200 would be the unscaled probably need to device it by 2 again
 
-        DecalComponent->DecalSize = Size;
+        PreviewDecalComponent->DecalSize = Size;
         if (DecalMaterialInstance == nullptr)
         {
             DecalMaterialInstance = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-                    GetWorld(), DecalComponent->GetDecalMaterial(), NAME_None, EMIDCreationFlags::None);
-            DecalComponent->SetDecalMaterial(DecalMaterialInstance);
+                    GetWorld(), PreviewDecalComponent->GetDecalMaterial(), NAME_None, EMIDCreationFlags::None);
+            PreviewDecalComponent->SetDecalMaterial(DecalMaterialInstance);
         }
 
-        SetFogOfWarMaterialParameters(Faction, DecalMaterialInstance);
+        SetFogOfWarMaterialParameters(PreviewFaction, DecalMaterialInstance);
     }
 }
 
@@ -258,6 +258,43 @@ void AGKFogOfWarVolume::Tick(float DeltaTime)
     }
 }
 
+void AGKFogOfWarVolume::InitializeStrategy_Line() {
+    auto DelayedStrategy = Cast<UGKRayCasting_Line>(AddComponentByClass(UGKRayCasting_Line::StaticClass(), false, FTransform(), true));
+    // Initialize Properties
+
+    // ---
+    FinishAddComponent(DelayedStrategy, false, FTransform());
+    Strategy = DelayedStrategy;
+}
+
+void AGKFogOfWarVolume::InitializeStrategy_Triangle() {
+    auto DelayedStrategy = Cast<UGKRayCasting_Triangle>(AddComponentByClass(UGKRayCasting_Triangle::StaticClass(), false, FTransform(), true));
+    // Initialize Properties
+
+    // ---
+    FinishAddComponent(DelayedStrategy, false, FTransform());
+    Strategy = DelayedStrategy;
+} 
+
+void AGKFogOfWarVolume::InitializeStrategy_Less() {
+    auto DelayedStrategy = Cast<UGKRayCasting_Less>(AddComponentByClass(UGKRayCasting_Less::StaticClass(), false, FTransform(), true));
+    // Initialize Properties
+
+    // ---
+    FinishAddComponent(DelayedStrategy, false, FTransform());
+    Strategy = DelayedStrategy;
+}
+
+void AGKFogOfWarVolume::InitializeStrategy_ShadowCasting() {
+    auto DelayedStrategy = Cast<UGKShadowCasting>(AddComponentByClass(UGKShadowCasting::StaticClass(), false, FTransform(), true));
+    // Initialize Properties
+
+    // ---
+    FinishAddComponent(DelayedStrategy, false, FTransform());
+    Strategy = DelayedStrategy;
+}
+
+
 void AGKFogOfWarVolume::InitializeStrategy() {
     if (Strategy != nullptr)
     {
@@ -266,34 +303,10 @@ void AGKFogOfWarVolume::InitializeStrategy() {
 
     switch (FogVersion)
     {
-    case 1:
-    {
-        auto DelayedStrategy = Cast<UGKRayCasting_Line>(
-                AddComponentByClass(UGKRayCasting_Line::StaticClass(), false, FTransform(), true));
-        FinishAddComponent(DelayedStrategy, false, FTransform());
-        Strategy = DelayedStrategy;
-    }
-    case 2:
-    {
-        auto DelayedStrategy = Cast<UGKRayCasting_Triangle>(
-                AddComponentByClass(UGKRayCasting_Triangle::StaticClass(), false, FTransform(), true));
-        FinishAddComponent(DelayedStrategy, false, FTransform());
-        Strategy = DelayedStrategy;
-    }
-    case 3:
-    {
-        auto DelayedStrategy = Cast<UGKRayCasting_Less>(
-            AddComponentByClass(UGKRayCasting_Less::StaticClass(), false, FTransform(), true));
-        FinishAddComponent(DelayedStrategy, false, FTransform());
-        Strategy = DelayedStrategy;
-    }
-    case 4:
-    {
-        auto DelayedStrategy = Cast<UGKShadowCasting>(
-            AddComponentByClass(UGKShadowCasting::StaticClass(), false, FTransform(), true));
-        FinishAddComponent(DelayedStrategy, false, FTransform());
-        Strategy = DelayedStrategy;
-    }
+    case 1: InitializeStrategy_Line();          break;
+    case 2: InitializeStrategy_Triangle();      break;
+    case 3: InitializeStrategy_Less();          break;
+    case 4: InitializeStrategy_ShadowCasting(); break;
     }
 
     Strategy->Initialize();
@@ -302,18 +315,14 @@ void AGKFogOfWarVolume::InitializeStrategy() {
 void AGKFogOfWarVolume::BeginPlay()
 {
     Super::BeginPlay();
-
     ClearExploration();
-
     UpdateVolumeSizes();
 
     // Reset the material instance
     DecalMaterialInstance = nullptr;
     InitDecalRendering();
-    SetFoWEnabledParameter(bFoWEnabled);
 
-
-    // Last for now
+    SetMatrialParams();
     InitializeStrategy();
 
     // Start drawing the fog
@@ -369,100 +378,6 @@ UCanvasRenderTarget2D *AGKFogOfWarVolume::GetFactionExplorationRenderTarget(FNam
     return render;
 }
 
-UMaterialParameterCollection *AGKFogOfWarVolume::GetMaterialParameterCollection() { return FogMaterialParameters; }
-
-FLinearColor AGKFogOfWarVolume::GetColor()
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return FLinearColor();
-    }
-
-    FCollectionVectorParameter const *value = MaterialParameters->GetVectorParameterByName("Color");
-    return value->DefaultValue;
-}
-
-FLinearColor AGKFogOfWarVolume::GetTextureSize()
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return FLinearColor();
-    }
-
-    FCollectionVectorParameter const *value = MaterialParameters->GetVectorParameterByName("TextureSize");
-    return value->DefaultValue;
-}
-
-FLinearColor AGKFogOfWarVolume::GetMapSize()
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return FLinearColor();
-    }
-
-    FCollectionVectorParameter const *value = MaterialParameters->GetVectorParameterByName("MapSize");
-    return value->DefaultValue;
-}
-
-void AGKFogOfWarVolume::SetColor(FLinearColor color)
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return;
-    }
-
-    UKismetMaterialLibrary::SetVectorParameterValue(GetWorld(), MaterialParameters, "Color", color);
-}
-
-void AGKFogOfWarVolume::SetTextureSize(FVector2D size)
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return;
-    }
-
-    TextureSize = size;
-    UKismetMaterialLibrary::SetVectorParameterValue(
-            GetWorld(), MaterialParameters, "TextureSize", FLinearColor(size.X, size.Y, 1.f, 1.f));
-}
-
-void AGKFogOfWarVolume::SetFoWEnabledParameter(bool Enabled)
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return;
-    }
-
-    bFoWEnabled = Enabled;
-    UKismetMaterialLibrary::SetScalarParameterValue(GetWorld(), MaterialParameters, "FoWEnabled", float(bFoWEnabled));
-}
-
-void AGKFogOfWarVolume::SetMapSize(FVector2D size)
-{
-    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
-
-    if (MaterialParameters == nullptr)
-    {
-        return;
-    }
-
-    MapSize = size;
-    UKismetMaterialLibrary::SetVectorParameterValue(
-            GetWorld(), MaterialParameters, "MapSize", FLinearColor(size.X, size.Y, 1.f, 1.f));
-}
-
 void AGKFogOfWarVolume::RegisterActorComponent(class UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
@@ -484,11 +399,6 @@ void AGKFogOfWarVolume::DrawFactionFog()
 
     // We are drawing to the targets we cannot change the fog components right now
     FScopeLock ScopeLock(&Mutex);
-
-    for (auto &RenderTargets: FogFactions)
-    {
-        UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), RenderTargets.Value);
-    }
 
     Strategy->DrawFactionFog();
 
@@ -543,4 +453,75 @@ UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name) {
     } 
 
     return nullptr;
+}
+
+
+// Material Parameter Collection
+// -----------------------------
+UMaterialParameterCollection *AGKFogOfWarVolume::GetMaterialParameterCollection() { return FogMaterialParameters; }
+
+void AGKFogOfWarVolume::SetMatrialParams(){
+    SetMaterialParam_MapSize(MapSize);
+    SetMaterialParam_TextureSize(TextureSize);
+    SetMaterialParam_FoWEnabled(bFoWEnabled);
+    SetMaterialParam_Exploration(EnableExploration);
+}
+
+void AGKFogOfWarVolume::SetMaterialParam_MapSize(FVector Size)
+{
+    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
+    if (MaterialParameters == nullptr){
+        return;
+    }
+    UKismetMaterialLibrary::SetVectorParameterValue(GetWorld(), MaterialParameters, "MapSize", FLinearColor(Size.X, Size.Y, Size.Z, 1.f));
+}
+
+void AGKFogOfWarVolume::SetMaterialParam_TextureSize(FVector2D Size)
+{
+    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
+    if (MaterialParameters == nullptr){
+        return;
+    }
+    UKismetMaterialLibrary::SetVectorParameterValue(GetWorld(), MaterialParameters, "TextureSize", FLinearColor(Size.X, Size.Y, 1.f, 1.f));
+}
+
+void AGKFogOfWarVolume::SetMaterialParam_FoWEnabled(int Enabled)
+{
+    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
+    if (MaterialParameters == nullptr){
+        return;
+    }
+    UKismetMaterialLibrary::SetScalarParameterValue(GetWorld(), MaterialParameters, "FoWEnabled", Enabled);
+}
+
+void AGKFogOfWarVolume::SetMaterialParam_Exploration(int Enabled)
+{
+    UMaterialParameterCollection *MaterialParameters = GetMaterialParameterCollection();
+    if (MaterialParameters == nullptr){
+        return;
+    }
+    UKismetMaterialLibrary::SetScalarParameterValue(GetWorld(), MaterialParameters, "WithExploration", Enabled);
+}
+
+
+// Editor
+void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent& e) {
+    FName PropertyName = (e.Property != NULL) ? e.Property->GetFName() : NAME_None;
+
+    if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, FogVersion))
+    {
+        InitializeStrategy();
+    }
+
+    if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, TextureSize)) {
+        return;
+    }
+
+    if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, MapSize)) {
+        return;
+    }
+
+    UE_LOG(LogGamekit, Warning, TEXT("Property changed %s"), *PropertyName.ToString());
+    UpdateVolumeSizes();
+    Super::PostEditChangeProperty(e);
 }
