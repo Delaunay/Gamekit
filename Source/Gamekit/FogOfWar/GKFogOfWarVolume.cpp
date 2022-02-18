@@ -287,7 +287,8 @@ void AGKFogOfWarVolume::InitializeStrategy_ShadowCasting() {
 void AGKFogOfWarVolume::InitializeStrategy() {
     if (Strategy != nullptr)
     {
-        delete Strategy;
+        Strategy->DestroyComponent();
+        
     }
 
     switch (FogVersion)
@@ -299,6 +300,14 @@ void AGKFogOfWarVolume::InitializeStrategy() {
     }
 
     Strategy->Initialize();
+}
+
+void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason) {
+    if (Strategy != nullptr)
+    {
+        Strategy->Stop();
+        Strategy->DestroyComponent();
+    }
 }
 
 void AGKFogOfWarVolume::BeginPlay()

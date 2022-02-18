@@ -10,7 +10,7 @@
 	"DocsURL": "https://gamekit.readthedocs.io/en/latest/",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/",
 	"SupportURL": "https://gitlab.com/Delaunay/gamekit",
-	"EngineVersion": "4.26",
+	"EngineVersion": "4.27",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
@@ -19,7 +19,7 @@
 		{
 			"Name": "Gamekit",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PostConfigInit",
 			"WhitelistPlatforms": [ "Win64" ]
 		}
 	],

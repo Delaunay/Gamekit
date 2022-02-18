@@ -12,26 +12,27 @@ public class Gamekit : ModuleRules
             "Gamekit",
         });
 
-        //PublicIncludePaths.AddRange(new string[]{
-        //    "Gamekit",
-        //});
-
         PublicDependencyModuleNames.AddRange(new string[]{
-             // Gameplay Abilities
+            "Core",
+            "RenderCore",
+            "RHI"
+        });
+
+        PrivateDependencyModuleNames.AddRange(new string[] { 
+            // Gameplay Abilities
             "GameplayAbilities",
             "GameplayTags",
             "GameplayTasks",
-            // Custom Shader Location
-            "RHI",
-            "RenderCore",
+
+            "Renderer",
+            "Projects",
             // Used for ads
             "HTTP",
             "Json",
             "JsonUtilities",
             // Defaults 
-            "Core",
             "CoreUObject",
-            "Engine", 
+            "Engine",
             "MoviePlayer",
             "InputCore",
             "HeadMountedDisplay",
@@ -42,7 +43,6 @@ public class Gamekit : ModuleRules
             "SlateCore",
             // Particles
             "Niagara",
-
             // 
             "EnhancedInput",
             "Landscape",

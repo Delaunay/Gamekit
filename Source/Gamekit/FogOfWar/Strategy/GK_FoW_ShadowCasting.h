@@ -42,8 +42,8 @@ enum class EGK_TileVisbility : uint8
     Height4 = uint8(1 << 3),
     Height5 = uint8(1 << 4),
     Height6 = uint8(1 << 5),
-    Visible = uint8(1 << 6), // Visible
-    Wall    = uint8(1 << 7), // Blocks Light
+    Wall    = uint8(1 << 6), // Blocks Light
+    Visible = uint8(1 << 7), // Visible
 };
 
 
@@ -71,18 +71,26 @@ public:
 
 	void DrawFactionFog() override;
 
+	void Stop() override;
+
 	//! Draw the line of sight using the right method
     void DrawLineOfSight(class UGKFogOfWarComponent *c) override;
 
 	void UpdateBlocking(class UGKFogOfWarComponent *c);
 
-	void UpdateTextures(class UTexture2D* Texture);
+	void UpdateTextures(FName Name);
 
 	class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
 
 	class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
 
 	class UTexture2D *CreateTexture2D();
+
+	class UCanvasRenderTarget2D *GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget = true);
+
+	class UCanvasRenderTarget2D *CreateUpscaleTarget();
+
+	bool bUpscaling;
 
 private:
 	void Compute(FIntVector origin, int rangeLimit);
@@ -101,11 +109,17 @@ private:
 	//! The function ignorse coordinates that are out of bounds
 	void SetVisible(int X, int Y);
 
+	FIntVector                     TextureSize;
 	FGKGrid						   Grid;
 	TMatrix3D<uint8>			   Buffer;
 
 	UPROPERTY(Transient)
-	TMap<FName, class UTexture2D*> FogFactions;
+    TMap<FName, class UTexture2D *> FogFactions;
+
+	UPROPERTY(Transient)
+    TMap<FName, class UCanvasRenderTarget2D *> UpscaledFogFactions;
 
 	FUpdateTextureRegion2D UpdateRegion;
+
+	class FUpscalerShader *Uspcaler;
 };

@@ -19,6 +19,8 @@ public:
 
     virtual void Initialize();
 
+	virtual void Stop() {}
+
 	//! Register a new actor to the fog of war volume
 	virtual void RegisterActorComponent(class UGKFogOfWarComponent *c) {}
 

@@ -148,6 +148,8 @@ public:
 
     void Tick(float DeltaTime);
 
+    void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 protected:
     void GetBrushSizes(FVector2D& TextureSize, FVector& MapSize);
 

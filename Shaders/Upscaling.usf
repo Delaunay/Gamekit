@@ -1,0 +1,39 @@
+#include "/Engine/Public/Platform.ush"
+
+#include "/Gamekit/Upscaling_Patterns.ush"
+
+RWTexture2D<uint> OutputTexture;
+RWTexture2D<uint> InputTexture;
+uint3 OriginalSize;
+
+#define TEXEL_2x2(a, b, c, d)\
+    uint(uint(a) << 3 | (uint(b) << 2) | (uint(c) << 1) | (uint(d)))
+
+uint2 ToOffset(uint2 Pos, uint3 Size) {
+    // Pos.x + Pos.y * Size.x
+    return Pos;
+}
+
+[numthreads(THREADGROUPSIZE_X, THREADGROUPSIZE_Y, THREADGROUPSIZE_Z)]
+void UpscalerEntryPoint(uint3 ThreadId : SV_DispatchThreadID)
+{
+    uint2 Pos = ThreadId.xy;
+
+    uint a = InputTexture[ToOffset(Pos + uint2(0, 0), OriginalSize)];
+    uint b = InputTexture[ToOffset(Pos + uint2(1, 0), OriginalSize)];
+    uint c = InputTexture[ToOffset(Pos + uint2(0, 1), OriginalSize)];
+    uint d = InputTexture[ToOffset(Pos + uint2(1, 1), OriginalSize)];
+
+    uint Pattern = TEXEL_2x2(a, b, c, d);
+    uint UpscaleSize = OriginalSize.x * 4;
+
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            int x = 4 * Pos.x + j;
+            int y = 4 * Pos.y + i;
+
+            OutputTexture[uint2(x, y)] = PatternMap[Pattern * 16 + i * 4 + j];
+        }
+    }
+}
+

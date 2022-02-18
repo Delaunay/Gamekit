@@ -2,6 +2,8 @@
 
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
+#include "Gamekit/Shaders/GKComputeShader.h"
+
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
@@ -10,9 +12,21 @@
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 
-UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool CreateRenderTarget)
+void UGKShadowCasting::Stop()
 {
-    return GetFactionTexture2D(Name, CreateRenderTarget);
+    if (bUpscaling)
+    {
+        Uspcaler->EndRendering();
+    }
+}
+
+UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool bCreateRenderTarget)
+{
+    if (bUpscaling)
+    {
+        return GetFactionUpscaleTarget(Name, bCreateRenderTarget);
+    }
+    return GetFactionTexture2D(Name, bCreateRenderTarget);
 }
 
 
@@ -34,7 +48,7 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
     return Texture;
 }
 
-UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool CreateRenderTarget)
+UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRenderTarget)
 {
     UTexture2D ** Result = FogFactions.Find(name);
     UTexture2D* Texture = nullptr;
@@ -43,7 +57,7 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool CreateRenderT
     {
         Texture = Result[0];
     }
-    else if (CreateRenderTarget)
+    else if (bCreateRenderTarget)
     {   
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
@@ -95,12 +109,13 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     auto TopLeftCornerGrid  = Grid.WorldToGrid(TopRight);
     auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
 
+    /*
     UE_LOG(LogGamekit,
            Log,
            TEXT("Update Blocking From %s to %s"),
            *TopLeftCornerGrid.ToString(),
            *BotRightCornerGrid.ToString());
-
+    //*/
     Buffer.FillRectangle2D(FogOfWarVolume->ToGridTexture(TopLeftCornerGrid),
                            FogOfWarVolume->ToGridTexture(BotRightCornerGrid),
                            (uint8)(EGK_TileVisbility::Wall) 
@@ -108,8 +123,35 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     //*/
 }
 
-void UGKShadowCasting::UpdateTextures(class UTexture2D* Texture)
+
+UCanvasRenderTarget2D *UGKShadowCasting::GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget) {
+    UCanvasRenderTarget2D **Result  = UpscaledFogFactions.Find(name);
+    UCanvasRenderTarget2D * Texture = nullptr;
+
+    if (Result != nullptr)
+    {
+        Texture = Result[0];
+    }
+    else if (bCreateRenderTarget)
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
+        Texture = CreateUpscaleTarget();
+        UpscaledFogFactions.Add(name, Texture);
+    }
+
+    return Texture;
+}
+
+UCanvasRenderTarget2D *UGKShadowCasting::CreateUpscaleTarget() {
+    return UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(GetWorld(),
+                                                             UCanvasRenderTarget2D::StaticClass(),
+                                                             TextureSize.X * 4,
+                                                             TextureSize.Y * 4);
+}
+
+void UGKShadowCasting::UpdateTextures(FName Name)
 {
+    auto Texture = GetFactionTexture2D(Name);
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
@@ -122,10 +164,19 @@ void UGKShadowCasting::UpdateTextures(class UTexture2D* Texture)
         UpdateRegion.Width, 
         sizeof(uint8), 
         NewBuffer, 
-        [](uint8* Buf, const FUpdateTextureRegion2D*) {
+        [&](uint8* Buf, const FUpdateTextureRegion2D*) {
             delete[] Buf;
         }
     );
+
+    if (bUpscaling)
+    {
+        FUspcalingShaderParameters Params;
+        Params.OriginalTexture = Texture;
+        Params.UpscaledTexture = GetFactionUpscaleTarget(Name);
+        Params.TextureSize     = TextureSize;
+        Uspcaler->UpdateParameters(Params);
+    }
 }
 
 void UGKShadowCasting::DrawFactionFog()
@@ -155,12 +206,13 @@ void UGKShadowCasting::DrawFactionFog()
     // Update Textures for rendering
     for (auto Faction: Factions)
     {
-        UpdateTextures(GetFactionTexture2D(Faction));
+        UpdateTextures(Faction);
     }
 }
 
 void UGKShadowCasting::Initialize()
 {
+    bUpscaling = true;
     Super::Initialize();
 
     Grid                = FogOfWarVolume->Grid;
@@ -168,6 +220,7 @@ void UGKShadowCasting::Initialize()
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
+    TextureSize = TileCount;
     Buffer.Init(0, TileCount.X, TileCount.Y, 1);
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
@@ -181,6 +234,12 @@ void UGKShadowCasting::Initialize()
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
         GetFactionTexture(Component->Faction);
+    }
+
+    if (bUpscaling)
+    {
+        Uspcaler = FUpscalerShader::Get();
+        Uspcaler->BeginRendering();
     }
 }
 
