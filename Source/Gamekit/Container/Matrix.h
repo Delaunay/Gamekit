@@ -64,9 +64,9 @@ struct TMatrix3D {
 
     void FillLine3D(int32 x0, int32 y0, int32 x1, T Value) {
         if (y0 < 0 || y0 >= Height() || x0 >= Width() || x1 < 0)
-		    return;
+            return;
 
-    	x0 = FMath::Max(x0, 0);
+        x0 = FMath::Max(x0, 0);
         x1 = FMath::Clamp(x1, x0, Width() - 1);
 
         FMemory::Memset(&(*this)(x1, y0), Value, (x1 - x0 + 1) * sizeof(T));

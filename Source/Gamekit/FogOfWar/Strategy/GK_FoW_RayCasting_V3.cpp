@@ -12,58 +12,42 @@
 
 UGKRayCasting_Less::UGKRayCasting_Less(){}
 
-void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) {
+void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
+{
     Triangles.Reset(c->TraceCount + 1);
 
-    TArray<AActor *>                      ActorsToIgnore   = {
-        c->GetOwner()
-    };
+    TArray<AActor *>                      ActorsToIgnore   = {c->GetOwner()};
     UClass *                              ActorClassFilter = AActor::StaticClass();
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarVolume->FogOfWarCollisionChannel, ObjectTypes);
 
-    AActor *                              Actor            = c->GetOwner();
-    TArray<AActor *>                      OutActors;
+    AActor *         Actor = c->GetOwner();
+    TArray<AActor *> OutActors;
 
     FVector Location = Actor->GetActorLocation();
     FVector Forward  = Actor->GetActorForwardVector();
 
-    /*
-    OverlapMultiByObjectType(
-            TArray< struct FOverlapResult > & OutOverlaps,
-            const FVector & Pos,
-            const FQuat & Rot,
-            const FCollisionObjectQueryParams & ObjectQueryParams,
-            const FCollisionShape & CollisionShape,
-            const FCollisionQueryParams & Params
-        ) const;
-
-        */
-    UKismetSystemLibrary::SphereOverlapActors(
-        GetWorld(), 
-        Location, 
-        c->Radius, 
-        ObjectTypes, 
-        ActorClassFilter,
-        ActorsToIgnore, 
-        OutActors
-    );
+    UKismetSystemLibrary::CapsuleOverlapActors(
+            GetWorld(), Location, c->Radius, 1.f, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors);
 
     // UE_LOG(LogGamekit, Log, TEXT("Found %d Actors"), OutActors.Num());
 
     TArray<FVector> EndPoints;
-    TArray<float> Angles;
-    FVector Origin;
-    FVector BoxExtent;
-    FVector Cartesian;
-    auto BaseYaw = Actor->GetActorRotation().Yaw;
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
+    TArray<float>   Angles;
+    FVector         Origin;
+    FVector         BoxExtent;
+    FVector         Cartesian;
+    auto            BaseYaw = Actor->GetActorRotation().Yaw;
 
-    float MaxAngle = float(n) * step;
-    float MinAngle = float(-n) * step;
     float Offset   = 0;
     float Margin   = FogOfWarVolume->Margin;
+
+    OutActors.Sort(
+            [&Location](const AActor &a, const AActor &b) -> bool
+            {
+                return UGKUtilityLibrary::GetYaw(Location, a.GetActorLocation()) >
+                       UGKUtilityLibrary::GetYaw(Location, b.GetActorLocation());
+            });
 
     for (auto &OutActor: OutActors)
     {
@@ -80,6 +64,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) {
 
         FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
         auto Angle1 = UGKUtilityLibrary::GetYaw(Location, Point + Origin) - BaseYaw;
+
         Angles.Add(Angle1);
 
         FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
@@ -101,52 +86,51 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) {
         Angles.Add(Angle4);
     }
 
-    //*
-    for (int i = -n; i <= n; i++)
-    {
-        float angle = float(i) * step;
-        Angles.Add(angle);
-    }
-    //*/
-
     Angles.Sort();
 
-    /*/ make sure the last triangle do a full turn
-    if (c->FieldOfView >= 360)
-    {
-        // TArray does not want to add its own element
-        float Temp = Angles[0];
-        Angles.Add(Temp);
-    } */
-
-    /*
-    // Make sure the angles are not too far appart
-    float step = c->FieldOfView / float(c->TraceCount);
-
-    Angles.Sort();
-    TArray<float> NewAngles;
-    float         Previous = Angles[0];
-    NewAngles.Add(Previous);
-    Angles.Add(Previous);
-
-    for (int i = 1; i < Angles.Num(); i++)
-    {
-        auto Angle = Angles[i];
-        auto Range = (Angle - Previous);
-        auto Diff = int(Range / step);
-
-        for (int j = 1; j < Diff; j++)
-        {
-            NewAngles.Add(Previous + Range / float(Diff) * j);
-        }
-
-        NewAngles.Add(Angle);
-    }
-    //*/
+    FillMissingAngles(c, Angles);
 
     GenerateTrianglesFromAngles(c, Angles);
 
     DrawTriangles(c);
+} 
+
+void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles)
+{
+    float MaxStep = c->FieldOfView / float(c->TraceCount);
+    int   n    = c->TraceCount / 2;
+
+    float MaxAngle = float(n) * MaxStep;
+    float MinAngle = float(-n) * MaxStep;
+
+    float Temp = Angles[0];
+    Angles.Add(Temp + 360.f);
+
+    TArray<float> NewAngles;
+    NewAngles.Reserve(Angles.Num());
+
+    NewAngles.Add(Angles[0]);
+    float PreviousAngle = Angles[0];
+
+    for (int i = 1; i < Angles.Num(); i++)
+    {
+        float Angle = Angles[i];
+        float Range = Angle - PreviousAngle;
+
+        if (Range > MaxStep)
+        {
+            int   Count   = Range / MaxStep;
+            float NewStep = Range / float(Count);
+
+            for (int j = 1; j <= Count; j++)
+            {
+                NewAngles.Add(PreviousAngle + float(j) * NewStep);
+            }
+        }
+        PreviousAngle = Angle;
+        NewAngles.Add(PreviousAngle);
+    }
+    Angles = NewAngles;
 }
 
 void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles) {
@@ -156,14 +140,14 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
     FVector Location = Actor->GetActorLocation();
     FVector Forward  = Actor->GetActorForwardVector();
 
-    TArray<AActor *> ActorsToIgnore   = {};
+    TArray<AActor *> ActorsToIgnore   = {Actor};
 
     FCanvasUVTri   Triangle;
     FHitResult     OutHit;
     auto           TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
-    FVector2D      Previous;
-    FVector        LinePrevious;
-    float          PreviousAngle;
+    FVector2D      Previous = FVector2D::ZeroVector;
+    FVector        LinePrevious = FVector::ZeroVector;
+    float          PreviousAngle = 0;
     bool           bHasPrevious = false;
     auto           TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
     TSet<AActor *> AlreadySighted;
@@ -178,9 +162,8 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
         }
         //*/
 
-    
-
         // We need to use forward vector in case the FieldOfView is not 360
+        // Rotating by 0 is actually not stable
         FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
 
         // We have to ignore the Inner Radius for our triangles to be
@@ -242,9 +225,27 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
         Triangle.V2_Pos   = End;
         Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
 
+        float step = c->FieldOfView / float(c->TraceCount);
         if (bHasPrevious)
         {
-            Triangles.Add(Triangle);
+            /*
+            UE_LOG(LogGamekit,
+                   Log,
+                   TEXT("Triangle V1 %s -> V2 %s  A1 %f -> A2 %f"),
+                   *Triangle.V1_Pos.ToString(),
+                   *Triangle.V2_Pos.ToString(),
+                   PreviousAngle,
+                   Angle);
+            //*/
+
+            if (FMath::Abs(Angle - PreviousAngle) > 180)
+            {
+                UE_LOG(LogGamekit, Log, TEXT("Angle too big skipping"));
+            }
+            else
+            {
+                Triangles.Add(Triangle);
+            }
         }
 
         bHasPrevious = true;
@@ -263,4 +264,6 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
             }
         }
     }
+
+    UE_LOG(LogGamekit, Log, TEXT("== Done"));
 }

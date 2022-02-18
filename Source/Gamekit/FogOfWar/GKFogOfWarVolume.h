@@ -44,6 +44,7 @@
  * \endrst
  * 
  *  TODO: create a radar version that follows the actor.
+ *  TODO: add a upscale layer
  *  The actor will have a fog that follows him.
  */
 UCLASS(Blueprintable)
@@ -254,8 +255,8 @@ private:
 
     FIntVector ToGridTexture(FIntVector Pos) {
         return FIntVector(
-            Pos.X + TextureSize.X / 2,
-            TextureSize.Y / 2 - Pos.Y,
+            TextureSize.Y / 2 - Pos.Y, 
+            Pos.X + TextureSize.X / 2, 
             Pos.Z
         );
     }

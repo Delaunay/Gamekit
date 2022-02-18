@@ -20,11 +20,30 @@ struct FGKSlope
     int Y, X;
 };
 
+
+enum class EGK_VisibilityLayer : uint8
+{
+	Block,
+
+	LowGround,
+	MediumGround,
+	HighGround,
+
+	MaxLayer,
+};
+
+
 enum class EGK_TileVisbility : uint8
 {
-	None    = 0x00,	// Nothing
-	Wall	= 0x7E, // Blocks Light
-    Visible = 0xFF, // Visible
+    None    = 0x00,          // Nothing
+    Height1 = uint8(1 << 0),
+    Height2 = uint8(1 << 1),
+    Height3 = uint8(1 << 2),
+    Height4 = uint8(1 << 3),
+    Height5 = uint8(1 << 4),
+    Height6 = uint8(1 << 5),
+    Visible = uint8(1 << 6), // Visible
+    Wall    = uint8(1 << 7), // Blocks Light
 };
 
 
@@ -76,7 +95,7 @@ private:
 	bool BlocksLight(int X, int Y);
 
 	//! GetDistance returns the distance from the point to the origin.
-    int  GetDistance(int X, int Y);
+    int GetDistance(FIntVector Origin, FIntVector Diff);
 
 	//! SetVisible marks a tile as visible, given its X and Y coordinates.
 	//! The function ignorse coordinates that are out of bounds

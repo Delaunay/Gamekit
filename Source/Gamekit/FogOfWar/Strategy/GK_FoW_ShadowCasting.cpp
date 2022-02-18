@@ -62,13 +62,34 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     Actor->GetActorBounds(true, Origin, BoxExtent);
     BoxExtent.Z = 0;
 
-    auto TopLeftCorner  = Origin - BoxExtent;
-    auto BotRightCorner = Origin - BoxExtent;
+    FVector TopLeftCorner  = Origin - BoxExtent;
+    FVector BotRightCorner = Origin + BoxExtent;
 
-    Buffer.FillRectangle2D(
-        FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(TopLeftCorner)),
-        FogOfWarVolume->ToGridTexture(Grid.WorldToGrid(BotRightCorner)),
-        (uint8)(EGK_TileVisbility::Wall) 
+    /*
+    float   Yaw            = Actor->GetActorRotation().Yaw;
+
+    float Angle;
+    float Rad;
+
+    FMath::CartesianToPolar(TopLeftCorner.X, TopLeftCorner.Y, Rad, Angle);
+    FMath::PolarToCartesian(Rad, Angle - FMath::DegreesToRadians(Yaw), TopLeftCorner.Z, TopLeftCorner.Z);
+
+    FMath::CartesianToPolar(BotRightCorner.X, BotRightCorner.Y, Rad, Angle);
+    FMath::PolarToCartesian(Rad, Angle + FMath::DegreesToRadians(Yaw), BotRightCorner.Z, BotRightCorner.Z);
+    */
+
+    auto TopLeftCornerGrid = Grid.WorldToGrid(TopLeftCorner);
+    auto BotRightCornerGrid = Grid.WorldToGrid(BotRightCorner);
+
+    UE_LOG(LogGamekit,
+           Log,
+           TEXT("Update Blocking From %s to %s"),
+           *TopLeftCornerGrid.ToString(),
+           *BotRightCornerGrid.ToString());
+
+    Buffer.FillRectangle2D(FogOfWarVolume->ToGridTexture(TopLeftCornerGrid),
+                           FogOfWarVolume->ToGridTexture(BotRightCornerGrid),
+                           (uint8)(EGK_TileVisbility::Wall) 
     );
 }
 
@@ -170,13 +191,24 @@ bool UGKShadowCasting::BlocksLight(int X, int Y)
 
     if (Buffer.Valid(TexturePos))
     {
-        return Buffer(TexturePos) == (uint8)(EGK_TileVisbility::Wall);
+        // Check if wall flag is set
+        auto Blocks = Buffer(TexturePos) & (uint8)(EGK_TileVisbility::Wall);
+        if (Blocks)
+        {
+            UE_LOG(LogGamekit, Log, TEXT("Blocked %s!"), *TexturePos.ToString());
+        }
+        return bool(Blocks);
     }
 
+    
     return true;
 }
 
-int UGKShadowCasting::GetDistance(int X, int Y) { return FMath::Sqrt(X * X + Y * Y); }
+int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff) { 
+    Origin.Z = 0;
+    Diff.Z   = 0;
+    return (Origin - Diff).Size();
+}
 
 void UGKShadowCasting::SetVisible(int X, int Y)
 {
@@ -184,7 +216,12 @@ void UGKShadowCasting::SetVisible(int X, int Y)
 
     if (Buffer.Valid(TexturePos))
     {
-        Buffer(TexturePos) = (uint8)(EGK_TileVisbility::Visible);
+        // Set visible flag
+        Buffer(TexturePos) |= (uint8)(EGK_TileVisbility::Visible);
+    }
+    else
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Cannot set %d x %d as visisble %s"), X, Y, *TexturePos.ToString());
     }
 }
 
@@ -192,7 +229,7 @@ void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit)
 {
     SetVisible(origin.X, origin.Y);
 
-    for (uint8 octant = 0; octant < 8; octant++)
+    for (uint8 octant = 0; octant < 8; octant++) 
     {
         Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1));
     }
@@ -229,7 +266,7 @@ void UGKShadowCasting::Compute(uint8 octant, FIntVector origin, int rangeLimit, 
             }
             // clang-format off
 
-            bool inRange = rangeLimit < 0 || GetDistance(tx, ty) <= rangeLimit;
+            bool inRange = rangeLimit < 0 || GetDistance(origin, FIntVector(tx, ty, 0)) <= rangeLimit;
 
             if (inRange){
                 SetVisible(tx, ty);
@@ -263,7 +300,9 @@ void UGKShadowCasting::Compute(uint8 octant, FIntVector origin, int rangeLimit, 
                 }
                 else // adjust top vector downwards and continue if we found a transition from opaque to clear
                 {    // (x*2+1, y*2+1) is the top-right corner of the clear tile (i.e. the bottom-right of the opaque tile)
-                    if(wasOpaque > 0) top = FGKSlope(y*2+1, x*2+1);
+                    if(wasOpaque > 0) {
+                        top = FGKSlope(y*2+1, x*2+1);
+                    }
                     wasOpaque = 0;
                 }
             }

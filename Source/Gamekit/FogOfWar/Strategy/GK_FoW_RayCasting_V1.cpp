@@ -21,6 +21,20 @@ UGKRayCasting_Line::UGKRayCasting_Line() {
 
 void UGKRayCasting_Line::Initialize() {
     Super::Initialize();
+
+    auto TexScale = FogOfWarVolume->TextureScale;
+    auto MapSize  = FogOfWarVolume->MapSize;
+
+    if (TexScale == 0)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("TextureScale cannot be zero"));
+
+        // If size == 0 it will trigger assert on the RHI side
+        TexScale = 1.f;
+    }
+
+    FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X, MapSize.Y) * TexScale);
+   
 }
 
 void UGKRayCasting_Line::RegisterActorComponent(class UGKFogOfWarComponent *c) {

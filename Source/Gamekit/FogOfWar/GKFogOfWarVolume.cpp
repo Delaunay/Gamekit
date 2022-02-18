@@ -207,17 +207,6 @@ void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector &MapSize_
         MapSize_.Y = 100.f;
         MapSize_.Z = 1.f;
     }
-
-    if (TextureScale == 0)
-    {
-        UE_LOG(LogGamekit, Warning, TEXT("TextureScale cannot be zero"));
-
-        // If size == 0 it will trigger assert on the RHI side
-        TextureScale = 1.f;
-    }
-
-    TextureSize_.X = MapSize_.X * TextureScale;
-    TextureSize_.Y = MapSize_.Y * TextureScale;
 }
 
 void AGKFogOfWarVolume::InitDecalRendering()
@@ -510,7 +499,8 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent& e) 
 
     if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, FogVersion))
     {
-        InitializeStrategy();
+        // Initializing it early does not help us
+        // InitializeStrategy();
     }
 
     if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, TextureSize)) {

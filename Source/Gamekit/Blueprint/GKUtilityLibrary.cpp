@@ -227,7 +227,7 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVecto
     OutMax = Corners[0];
     OutMin = Corners[1];
 
-    float AngleMax= UGKUtilityLibrary::GetYaw(Location, OutMax);
+    float AngleMax = UGKUtilityLibrary::GetYaw(Location, OutMax);
     float AngleMin = UGKUtilityLibrary::GetYaw(Location, OutMin);
 
     // The Corners that matters are the one with the widest angles (min & max)
