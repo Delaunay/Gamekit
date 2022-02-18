@@ -58,6 +58,7 @@ inline FIntVector FGKGrid::WorldToGrid(FVector World) const {
         
     case EGK_GridKind::Square:
     default:
+        World = World - TileSize / 2.f;
         return FIntVector(
             int(World.X / TileSize.X),
             int(World.Y / TileSize.Y),

@@ -25,6 +25,10 @@ struct TMatrix3D {
 
     FORCEINLINE T &operator()(FIntVector v) { return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; }
 
+    FORCEINLINE T operator()(int r, int c, int d = 0) const { return Data[c + r * Col + d * (Col * Row)]; }
+
+    FORCEINLINE T operator()(FIntVector v) const { return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; }
+
     TArray<FIntVector> GetNeighbours(FIntVector v) {
         TArray<FIntVector> Result;
         Result.Reserve(4);
@@ -97,7 +101,7 @@ struct TMatrix3D {
         );
 
         int Length = p2.X - p1.X + 1;
-        for (int i = p1.Y; i <= p2.Y; i++)
+        for (int i = p1.Y; i < p2.Y; i++)
         {
             FMemory::Memset(&(*this)(p1.X, i), Value, Length * sizeof(T));
         }

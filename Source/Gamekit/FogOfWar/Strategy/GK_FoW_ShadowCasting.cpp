@@ -60,26 +60,40 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     FVector Origin;
     FVector BoxExtent;
     Actor->GetActorBounds(true, Origin, BoxExtent);
-    BoxExtent.Z = 0;
 
-    FVector TopLeftCorner  = Origin - BoxExtent;
-    FVector BotRightCorner = Origin + BoxExtent;
+    Origin.Z = 0;
 
-    /*
-    float   Yaw            = Actor->GetActorRotation().Yaw;
+    FTransform Transform;
+    Transform.SetLocation(Origin);
+    Transform.SetRotation(Actor->GetActorRotation().Quaternion());
 
-    float Angle;
-    float Rad;
+    auto TopLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(+1, -1, 0));
+    auto TopRight = Transform.TransformVector(Origin + BoxExtent * FVector(+1, +1, 0));
+    auto BotLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(-1, -1, 0));
+    auto BotRight = Transform.TransformVector(Origin + BoxExtent * FVector(-1, +1, 0));
 
-    FMath::CartesianToPolar(TopLeftCorner.X, TopLeftCorner.Y, Rad, Angle);
-    FMath::PolarToCartesian(Rad, Angle - FMath::DegreesToRadians(Yaw), TopLeftCorner.Z, TopLeftCorner.Z);
-
-    FMath::CartesianToPolar(BotRightCorner.X, BotRightCorner.Y, Rad, Angle);
-    FMath::PolarToCartesian(Rad, Angle + FMath::DegreesToRadians(Yaw), BotRightCorner.Z, BotRightCorner.Z);
-    */
-
-    auto TopLeftCornerGrid = Grid.WorldToGrid(TopLeftCorner);
-    auto BotRightCornerGrid = Grid.WorldToGrid(BotRightCorner);
+    // Draw Corners
+    if (FogOfWarVolume->bDebug)
+    {
+        TArray<FVector> Corners = {TopLeft, TopRight, BotLeft, BotRight};
+        for (auto &Corner: Corners)
+        {
+            UKismetSystemLibrary::DrawDebugCircle(GetWorld(),          // World
+                                                  Corner,              // Center
+                                                  25.f,                // Radius
+                                                  36,                  // NumSegments
+                                                  FLinearColor::White, // LineColor
+                                                  0.f,                 // LifeTime
+                                                  5.f,                 // Tickness
+                                                  FVector(1, 0, 0),    // YAxis
+                                                  FVector(0, 1, 0),    // ZAxis
+                                                  true                 // DrawAxes
+            );
+        }
+    }
+   
+    auto TopLeftCornerGrid  = Grid.WorldToGrid(TopRight);
+    auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
 
     UE_LOG(LogGamekit,
            Log,
@@ -91,6 +105,7 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
                            FogOfWarVolume->ToGridTexture(BotRightCornerGrid),
                            (uint8)(EGK_TileVisbility::Wall) 
     );
+    //*/
 }
 
 void UGKShadowCasting::UpdateTextures(class UTexture2D* Texture)
@@ -192,15 +207,9 @@ bool UGKShadowCasting::BlocksLight(int X, int Y)
     if (Buffer.Valid(TexturePos))
     {
         // Check if wall flag is set
-        auto Blocks = Buffer(TexturePos) & (uint8)(EGK_TileVisbility::Wall);
-        if (Blocks)
-        {
-            UE_LOG(LogGamekit, Log, TEXT("Blocked %s!"), *TexturePos.ToString());
-        }
-        return bool(Blocks);
+        return bool(Buffer(TexturePos) & (uint8)(EGK_TileVisbility::Wall));
     }
 
-    
     return true;
 }
 

@@ -1,0 +1,39 @@
+#pragma once
+
+float IsVisibleInt(Texture2D Tex, int3 UV) {
+    int result = (int)Tex.Load(UV) & (1 << 6);
+    return float(result);
+}
+
+float IsWallInt(Texture2D Tex, int3 UV) {
+    int result = (int)Tex.Load(UV) & (1 << 7);
+    return float(result);
+}
+
+float IsVisibleFloat(Texture2D Tex, float2 UV) {
+    int Width = 0;
+    int Height = 0;
+
+    Tex.GetDimensions(
+       Width,
+       Height
+    );
+
+    UV = UV * float2(float(Width), float(Height));
+
+    return IsVisibleInt(Tex, int3(int(UV.x), int(UV.y), 0));
+}
+
+float IsWallFloat(Texture2D Tex, float2 UV) {
+    int Width = 0;
+    int Height = 0;
+
+    Tex.GetDimensions(
+       Width,
+       Height
+    );
+
+    UV = UV * float2(float(Width), float(Height));
+
+    return IsWallInt(Tex, int3(int(UV.x), int(UV.y), 0));
+}
