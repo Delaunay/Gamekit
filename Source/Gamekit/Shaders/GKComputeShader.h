@@ -34,13 +34,21 @@ public:
     static FUpscalerShader *Get();
 
     private:
+         
+    void CreateOutputTarget(FIntVector Size);
+    void CreateInputTarget(FIntVector Size);
+
+    void CopyFromUAVToDest(FRHICommandListImmediate &RHICmdList);
+    void CopyFromSrcToSRV(FRHICommandListImmediate &RHICmdList);
 
     FUpscalerShader();
 
     FUspcalingShaderParameters        Parameters;
     volatile bool                     bParamsValid;
-    TRefCountPtr<IPooledRenderTarget> ComputeShaderOutput;
-    TRefCountPtr<IPooledRenderTarget> ComputeShaderInput;
+
+    TRefCountPtr<IPooledRenderTarget> OutputTarget;
+    TRefCountPtr<IPooledRenderTarget> InputTarget;
+
     FDelegateHandle                   OnPostResolvedSceneColorHandle;
 
     static FUpscalerShader *instance;

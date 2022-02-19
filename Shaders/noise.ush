@@ -1,6 +1,6 @@
 #pragma once
 
-#include "/Gamekit/glsl_compat.usf"
+#include "/Gamekit/glsl_compat.ush"
 
 float random(float2 st) {
     return frac(sin(dot(st.xy, float2(12.9898, 78.233))) * 43758.5453123);

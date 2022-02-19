@@ -45,6 +45,9 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
     // Texture->NeverStream = 0;
 
     Texture->UpdateResource();
+
+    Texture->GetResource()->GetTexture2DRHI();
+
     return Texture;
 }
 
@@ -136,6 +139,8 @@ UCanvasRenderTarget2D *UGKShadowCasting::GetFactionUpscaleTarget(FName name, boo
     {
         UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
         Texture = CreateUpscaleTarget();
+
+
         UpscaledFogFactions.Add(name, Texture);
     }
 

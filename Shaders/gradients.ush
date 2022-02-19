@@ -1,6 +1,6 @@
 #pragma once
 
-#include "/Gamekit/glsl_compat.usf"
+#include "/Gamekit/glsl_compat.ush"
 
 float hexagon_gradient(float2 p, float r) {
     // hex width = sqrt(3) / 2

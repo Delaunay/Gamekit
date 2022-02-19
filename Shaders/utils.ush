@@ -1,6 +1,6 @@
 #pragma once
 
-#include "/Gamekit/glsl_compat.usf"
+#include "/Gamekit/glsl_compat.ush"
 
 
 vec2 scale(vec2 uv, vec2 _scale){
