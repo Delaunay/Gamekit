@@ -452,6 +452,20 @@ Parameters:
 * RDG_TEXTURE_ACCESS_DYNAMIC
 
 
+Common Errors
+-------------
+
+.. code-block:: bash
+
+    [2022.02.19-18.32.59:344][522]LogWindows: Windows GetLastError: The operation completed successfully. (0)
+    [2022.02.19-18.32.59:345][522]LogWindows: Error: === Critical error: ===
+    [2022.02.19-18.32.59:345][522]LogWindows: Error:
+    [2022.02.19-18.32.59:345][522]LogWindows: Error: Fatal error: [File:C:/opt/UnrealEngine/Engine/Source/Runtime/RenderCore/Private/RenderingThread.cpp] [Line: 902]
+    [2022.02.19-18.32.59:345][522]LogWindows: Error: Rendering thread exception:
+    [2022.02.19-18.32.59:345][522]LogWindows: Error: Assertion failed: !GRDGInExecutePassScope [File:C:/opt/UnrealEngine/Engine/Source/Runtime/RenderCore/Private/RenderGraphValidation.cpp] [Line: 512]
+    [2022.02.19-18.32.59:345][522]LogWindows: Error: Render graph is being executed recursively. This usually means a separate FRDGBuilder instance was created inside of an executing pass.
+
+
 Reference
 ---------
 
@@ -459,6 +473,7 @@ Reference
 .. [2] `Add shader extensions to VSCode <https://stackoverflow.com/questions/29973619/how-to-make-vs-code-treat-a-file-extensions-as-a-certain-language/51228725#51228725>`_
 .. [3] `ShaderParameterMacros <https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/RenderCore/Public/ShaderParameterMacros.h>`_
 .. [4] `HLSL Data types <https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-data-types>`_
+.. [5] `Compute Shaders <https://medium.com/realities-io/using-compute-shaders-in-unreal-engine-4-f64bac65a907>`_
 
 
 .. code-block:: cpp
