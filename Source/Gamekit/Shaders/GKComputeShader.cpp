@@ -20,8 +20,8 @@ class FUpscalingShader: public FGlobalShader
     SHADER_USE_PARAMETER_STRUCT(FUpscalingShader, FGlobalShader);
 
     BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
-        SHADER_PARAMETER_RDG_TEXTURE_SRV(Texture2D, InputTexture)
-        SHADER_PARAMETER_RDG_TEXTURE_UAV(RWTexture2D, OutputTexture)
+        SHADER_PARAMETER_TEXTURE(Texture2D<uint>, InputTexture)
+        SHADER_PARAMETER_UAV(RWTexture2D<uint>, OutputTexture)
         SHADER_PARAMETER(FIntVector, OriginalSize)
 
         //SHADER_PARAMETER_TEXTURE(RWTexture2D<uint>, OutputTexture)
@@ -86,10 +86,10 @@ void FUpscalerShader::CreateOutputTarget(FIntVector Size) {
     // Create 2D texture description for writing
     FPooledRenderTargetDesc OutputTargetDesc = FPooledRenderTargetDesc::Create2DDesc(
         FIntPoint(Size.X, Size.Y),
-        PF_R8G8B8A8,
+        EPixelFormat::PF_G8,
         FClearValueBinding::None,
         TexCreate_None,
-        TexCreate_UAV | TexCreate_ShaderResource | TexCreate_GenerateMipCapable | TexCreate_RenderTargetable,
+        TexCreate_UAV | TexCreate_ShaderResource | TexCreate_RenderTargetable,
         false
     );
 
@@ -108,7 +108,7 @@ void FUpscalerShader::CreateInputTarget(FIntVector Size) {
     // Create 2D texture description for reading
     FPooledRenderTargetDesc InputTargetDesc = FPooledRenderTargetDesc::Create2DDesc(
         FIntPoint(Size.X, Size.Y),     // FIntPoint           InExtent
-        PF_G16,                        // EPixelFormat        InFormat
+        EPixelFormat::PF_G8,           // EPixelFormat        InFormat
         FClearValueBinding::None,      // FCLearValueBinding  InClearValue
         TexCreate_None,                // ETextureCreateFlags InFlags
         TexCreate_ShaderResource,      // ETextureCreateFlags InTargetableFlags
@@ -211,7 +211,7 @@ void FUpscalerShader::CopyFromSrcToSRV(FRHICommandListImmediate &RHICmdList) {
         CopyInfo
     );
 
-    // Output texture is ready for compute
+    // InputTarget texture is ready for compute
     RHICmdList.Transition(
         FRHITransitionInfo(
             InputTarget->GetRenderTargetItem().ShaderResourceTexture,
@@ -233,8 +233,6 @@ void FUpscalerShader::Execute_RenderThread(FRHICommandListImmediate &RHICmdList,
     SCOPED_DRAW_EVENT(RHICmdList, ShaderPlugin_Compute); // Used to profile GPU activity and add metadata to be consumed
                                                          // by for example RenderDoc
 
-    FMemMark Mark(FMemStack::Get());
-    FRDGBuilder GraphBuilder(RHICmdList);
     FGPUFenceRHIRef Fence = RHICreateGPUFence(TEXT("UpscaleFence"));
 
     auto OutptSize = Parameters.TextureSize * 4;
@@ -242,21 +240,25 @@ void FUpscalerShader::Execute_RenderThread(FRHICommandListImmediate &RHICmdList,
     CreateInputTarget(Parameters.TextureSize);
     CreateOutputTarget(OutptSize); 
 
-    // Move data to our target
     CopyFromSrcToSRV(RHICmdList);
-
-    FRDGTextureRef SrcTexture = GraphBuilder.RegisterExternalTexture(InputTarget);
-    FRDGTextureRef DstTexture = GraphBuilder.RegisterExternalTexture(OutputTarget);
-
-    FRDGTextureUAVRef UAV = GraphBuilder.CreateUAV(DstTexture);
-    FRDGTextureSRVRef SRV = GraphBuilder.CreateSRV(FRDGTextureSRVDesc::Create(SrcTexture));;
 
     TShaderMapRef<FUpscalingShader> ComputeShader(GetGlobalShaderMap(GMaxRHIFeatureLevel));
 
-    FUpscalingShader::FParameters* Params = GraphBuilder.AllocParameters<FUpscalingShader::FParameters>();
-    Params->InputTexture = SRV;
-    Params->OutputTexture = UAV;
-    Params->OriginalSize = Parameters.TextureSize;
+    // RHICreateShaderResourceView(Parameters.OriginalTexture->GetResource()->GetTexture2DRHI()); //
+    //  InputTarget->GetRenderTargetItem().ShaderResourceTexture;
+
+    /*
+    FUpscalingShader::FParameters Params;
+    Params.OutputTexture = RHICreateUnorderedAccessView(Parameters.UpscaledTexture->GetResource()->GetTexture2DRHI()); // OutputTarget->GetRenderTargetItem().UAV;
+    Params.InputTexture = Parameters.OriginalTexture->GetResource()->GetTexture2DRHI();
+    Params.OriginalSize  = Parameters.TextureSize;
+    */
+
+    FUpscalingShader::FParameters Params;
+    Params.OutputTexture = OutputTarget->GetRenderTargetItem().UAV;
+    Params.InputTexture = InputTarget->GetRenderTargetItem().ShaderResourceTexture;
+    Params.OriginalSize  = Parameters.TextureSize;
+
 
     const FIntVector GroupCount(
         FMath::DivideAndRoundUp(Parameters.TextureSize.X, NUM_THREADS_PER_GROUP_DIMENSION),
@@ -264,15 +266,12 @@ void FUpscalerShader::Execute_RenderThread(FRHICommandListImmediate &RHICmdList,
         1
     );
 
-    FComputeShaderUtils::AddPass(
-        GraphBuilder,
-        RDG_EVENT_NAME("ShaderTypePass"),
+    FComputeShaderUtils::Dispatch(
+        RHICmdList,
         ComputeShader,
         Params,
         GroupCount
     );
-
-    GraphBuilder.Execute();
 
     CopyFromUAVToDest(RHICmdList);
 
