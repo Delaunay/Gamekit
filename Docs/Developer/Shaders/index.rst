@@ -506,3 +506,7 @@ Reference
             SHADER_PARAMETER(FIntPoint, DstTextureCoord)
         END_SHADER_PARAMETER_STRUCT()
     };
+
+
+
+FResolveDepthPS

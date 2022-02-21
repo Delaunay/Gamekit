@@ -242,7 +242,7 @@ void UGKShadowCasting::DrawFactionFog()
 
 void UGKShadowCasting::Initialize()
 {
-    bUpscaling = false;
+    bUpscaling = true;
     Super::Initialize();
 
     Grid                = FogOfWarVolume->Grid;

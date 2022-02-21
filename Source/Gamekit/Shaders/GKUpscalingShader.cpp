@@ -6,7 +6,7 @@
 #include "RenderTargetPool.h"
 
 
-#include "Modules/ModuleManager.h"
+#include "Modules/ModuleManager.h" 
 
 #define NUM_THREADS_PER_GROUP_DIMENSION 32
 
@@ -53,9 +53,9 @@ FUpscalingDispatcher* FUpscalingDispatcher::instance = nullptr;
 
 FUpscalingDispatcher* FUpscalingDispatcher::Get()
 {
-	if (!instance)
-		instance = new FUpscalingDispatcher();
-	return instance;
+    if (!instance)
+        instance = new FUpscalingDispatcher();
+    return instance;
 };
 
 //Begin the execution of the compute shader each frame
