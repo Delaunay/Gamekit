@@ -2,8 +2,6 @@
 
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
-#include "Gamekit/Shaders/GKUpscalingShader.h"
-
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
@@ -136,31 +134,11 @@ void UGKShadowCasting::UpdateTextures(FName Name)
     );
 
     FogOfWarVolume->TextureReady(Name);
-
-    /*
-    if (bUpscaling)
-    {
-        // FUspcalingShaderParameters Params;
-        // Params.OriginalTexture = Texture;
-        // Params.UpscaledTexture = GetFactionUpscaleTarget(Name);
-        // Params.TextureSize     = TextureSize;
-        // Uspcaler->UpdateParameters(Params);
-
-        static uint32 val = 0;
-
-        FUpscalingParameter Params;
-        Params.UpscaledTexture = GetFactionUpscaleTarget(Name, true);
-        Params.OriginalTexture = Texture;
-        Params.OriginalSize = FIntPoint(TextureSize.X, TextureSize.Y);
-        Params.TimeStamp = val++;
-
-        Uspcaler->UpdateParameters(Params);
-    }
-    */
 }
 
 void UGKShadowCasting::DrawFactionFog()
 {
+    Points.Reset();
     Buffer.ResetLayer(0, (uint8)(EGK_TileVisbility::None));
     TSet<FName> Factions;
 
@@ -222,6 +200,8 @@ void UGKShadowCasting::DrawLineOfSight(UGKFogOfWarComponent *c)
 
     auto GridCoord = Grid.WorldToGrid(WorldPos);
     auto Radius    = int(c->Radius / Grid.GetTileSize().X);
+    Points.Add(c, FGKPoints());
+    FGKPoints *ComponentPoints = Points.Find(c);
 
     /*
     UE_LOG(LogGamekit, Log, TEXT("Actor is %s"), *AActor::GetDebugName(c->GetOwner()));
@@ -229,7 +209,7 @@ void UGKShadowCasting::DrawLineOfSight(UGKFogOfWarComponent *c)
     UE_LOG(LogGamekit, Log, TEXT("Radius is %f %d"), c->Radius, Radius);
     //*/
 
-    Compute(GridCoord, Radius);
+    Compute(GridCoord, Radius, ComponentPoints);
 }
 
 bool UGKShadowCasting::BlocksLight(int X, int Y)
@@ -266,17 +246,23 @@ void UGKShadowCasting::SetVisible(int X, int Y)
     }
 }
 
-void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit)
+void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit, FGKPoints *CPoints)
 {
     SetVisible(origin.X, origin.Y);
 
     for (uint8 octant = 0; octant < 8; octant++) 
     {
-        Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1));
+        Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), CPoints);
     }
 }
 
-void UGKShadowCasting::Compute(uint8 octant, FIntVector origin, int rangeLimit, int x, FGKSlope top, FGKSlope bottom)
+void UGKShadowCasting::Compute(uint8      octant,
+                               FIntVector origin,
+                               int        rangeLimit,
+                               int        x,
+                               FGKSlope   top,
+                               FGKSlope   bottom,
+                               FGKPoints *CPoints)
 {
     // rangeLimit < 0 || x <= rangeLimit
     for (; (uint8)x <= (uint8)rangeLimit; x++)
@@ -284,11 +270,12 @@ void UGKShadowCasting::Compute(uint8 octant, FIntVector origin, int rangeLimit, 
         // compute the Y coordinates where the top vector leaves the column (on the right) and where the bottom vector
         // enters the column (on the left). this equals (x+0.5)*top+0.5 and (x-0.5)*bottom+0.5 respectively, which can
         // be computed like (x+0.5)*top+0.5 = (2(x+0.5)*top+1)/2 = ((2x+1)*top+1)/2 to avoid floating point math
-        int topY    = top.X == 1 ? x
-                                 : ((x * 2 + 1) * top.Y + top.X - 1) / (top.X * 2); // the rounding is a bit tricky, though
-        int bottomY = bottom.Y == 0 ? 0 : ((x * 2 - 1) * bottom.Y + bottom.X) / (bottom.X * 2);
 
-        int wasOpaque = -1; // 0:false, 1:true, -1:not applicable
+        int topY    = top.X == 1 ? x : ((x * 2 + 1) * top.Y + top.X - 1) / (top.X * 2); // the rounding is a bit tricky, though
+        int bottomY = bottom.Y == 0 ? 0 : ((x * 2 - 1) * bottom.Y + bottom.X) / (bottom.X * 2);
+        int wasOpaque = -1; // 0:false, 
+                            // 1:true, -1:not applicable
+
         for (int y = topY; y >= bottomY; y--)
         {
             int tx = origin.X, ty = origin.Y;
@@ -334,7 +321,7 @@ void UGKShadowCasting::Compute(uint8 octant, FIntVector origin, int rangeLimit, 
                             break;
                         }
                         else {
-                            Compute(octant, origin, rangeLimit, x+1, top, newBottom);
+                            Compute(octant, origin, rangeLimit, x+1, top, newBottom, CPoints);
                         }
                     }
                     wasOpaque = 1;

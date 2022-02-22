@@ -87,6 +87,8 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     bDebug                   = false;
     Margin                   = 25.f;
     Strategy                 = nullptr;
+
+    // Upscaling is experimental
     bUpscaling               = true;
 
     PreviewDecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
@@ -309,7 +311,8 @@ void AGKFogOfWarVolume::InitializeStrategy() {
     {
         Upscaler = Cast<UGKUpscalerStrategy>(AddComponentByClass(
             // UGKUpscalerStrategy::StaticClass(), 
-            UGKCPUUpscalerStrategy::StaticClass(),
+            // UGKCPUUpscalerStrategy::StaticClass(),
+            UGKGPUUpscalerStrategy::StaticClass(),
             false, 
             FTransform(), 
             true
@@ -325,6 +328,11 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason) {
     {
         Strategy->Stop();
         Strategy->DestroyComponent();
+    }
+
+    if (bUpscaling)
+    {
+        Upscaler->Stop();
     }
 }
 

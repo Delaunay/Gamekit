@@ -30,7 +30,5 @@ public:
     virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture2D *Tex);
 
 private:
-    TMatrix3D<uint8> UpscaledBuffer;
-
     class FUpscalingDispatcher *UpscalingDispatcher;
 };

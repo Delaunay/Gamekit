@@ -16,7 +16,6 @@ void UGKGPUUpscalerStrategy::Initialize()
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
     TextureSize = TileCount;
-    UpscaledBuffer.Init(0, TileCount.X * Multiplier, TileCount.Y * Multiplier, 1);
 
     UpscalingDispatcher = FUpscalingDispatcher::Get();
     UpscalingDispatcher->BeginRendering();
@@ -31,6 +30,7 @@ void UGKGPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
     Params.UpscaledTexture = GetFactionUpscaleTarget(Name);
     Params.OriginalSize    = FIntPoint(TextureSize.X, TextureSize.Y);
     Params.TimeStamp       = ++CallCount;
+    Params.Multiplier      = Multiplier;
 
     UpscalingDispatcher->UpdateParameters(Params);
 }

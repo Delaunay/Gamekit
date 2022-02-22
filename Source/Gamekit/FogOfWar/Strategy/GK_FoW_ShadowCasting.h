@@ -46,10 +46,22 @@ enum class EGK_TileVisbility : uint8
     Visible = uint8(1 << 7), // Visible
 };
 
+struct FGKPoints
+{
+    TArray<FIntVector> Points;
+};
+
+
 /**
  * 
  * /rst
  * 
+ * Notes
+ * -----
+ * 
+ * Maybe we can use this version to run on the dedicated server & client.
+ * In addition the client could generate rendering data to display a more 
+ * appealing fog of war.
  * 
  * References
  * ----------
@@ -90,9 +102,15 @@ public:
 	}
 
 private:
-	void Compute(FIntVector origin, int rangeLimit);
+    void Compute(FIntVector origin, int rangeLimit, FGKPoints *Points);
 
-	void Compute(uint8 octant, FIntVector origin, int rangeLimit, int x, FGKSlope top, FGKSlope bottom);
+	void Compute(uint8      octant,
+                 FIntVector origin,
+                 int        rangeLimit,
+                 int        x,
+                 FGKSlope   top,
+                 FGKSlope   bottom,
+                 FGKPoints *Points);
 
 	//! BlocksLight takes X and Y coordinates of a tile and determines whether the
 	//! given tile blocks the passage of light. 
@@ -114,4 +132,5 @@ private:
     TMap<FName, class UTexture2D *> FogFactions;
 
 	FUpdateTextureRegion2D UpdateRegion;
+    TMap<class UGKFogOfWarComponent *, FGKPoints> Points;
 };

@@ -140,7 +140,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool bDebug;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Experimental")
     bool bUpscaling;
 
     EDrawDebugTrace::Type DebugTrace() { 

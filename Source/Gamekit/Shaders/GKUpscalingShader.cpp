@@ -16,10 +16,11 @@ public:
     SHADER_USE_PARAMETER_STRUCT(FUpscalingShader, FGlobalShader);
 
     BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
-        SHADER_PARAMETER_UAV(RWTexture2D<uint>, InputTexture)
+        SHADER_PARAMETER_TEXTURE(Texture2D<uint>, InputTexture)
         SHADER_PARAMETER_UAV(RWTexture2D<uint>, OutputTexture)
         SHADER_PARAMETER(FIntPoint, Dimensions)
         SHADER_PARAMETER(UINT, TimeStamp)
+        SHADER_PARAMETER(UINT, Multiplier)
     END_SHADER_PARAMETER_STRUCT()
 
 public:
@@ -93,78 +94,125 @@ void FUpscalingDispatcher::UpdateParameters(FUpscalingParameter& Params)
     bCachedParamsAreValid = true;
 }
 
+void FUpscalingDispatcher::ReserveRenderTargets(FRHICommandListImmediate &RHICmdList)
+{
+    auto ComputeShaderOutputDesc = FPooledRenderTargetDesc::Create2DDesc(
+        CachedParams.OriginalSize * CachedParams.Multiplier,
+        // CachedParams.UpscaledTexture->GetRenderTargetResource()->TextureRHI->GetFormat(),
+        CachedParams.UpscaledTexture->GetResource()->TextureRHI->GetFormat(),
+        FClearValueBinding::Black,
+        TexCreate_None,
+        TexCreate_ShaderResource | TexCreate_UAV,
+        false
+    );
+
+    ComputeShaderOutputDesc.DebugName = TEXT("FUpscalingShader_Output_RenderTarget");
+    GRenderTargetPool.FindFreeElement(
+        RHICmdList, 
+        ComputeShaderOutputDesc, 
+        ComputeShaderOutput, 
+        TEXT("FUpscalingShader_Output_RenderTarget")
+    );
+
+    auto ComputeShaderInputDesc =FPooledRenderTargetDesc::Create2DDesc(
+        CachedParams.OriginalSize,
+        CachedParams.OriginalTexture->GetResource()->TextureRHI->GetFormat(),
+        FClearValueBinding::Black,
+        TexCreate_None,
+        TexCreate_ShaderResource | TexCreate_UAV,
+        false
+    );
+
+    ComputeShaderInputDesc.DebugName = TEXT("FUpscalingShader_Input_RenderTarget");
+    GRenderTargetPool.FindFreeElement(
+        RHICmdList, 
+        ComputeShaderInputDesc, 
+        ComputeShaderInput, 
+        TEXT("FUpscalingShader_Input_RenderTarget")
+    );
+}
+
+void FUpscalingDispatcher::CopyInputTextureToInputTarget(FRHICommandListImmediate &RHICmdList)
+{
+    // Original Texture is about to be copied from
+    RHICmdList.Transition(FRHITransitionInfo(
+        CachedParams.OriginalTexture->GetResource()->TextureRHI, 
+        ERHIAccess::Unknown,
+        ERHIAccess::CopySrc
+    ));
+
+    // InputTarget is about to be copied to
+    RHICmdList.Transition(FRHITransitionInfo(
+        ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture,
+        ERHIAccess::UAVCompute,
+        ERHIAccess::CopyDest
+    ));
+
+    // Copy the entire target
+    RHICmdList.CopyTexture(
+        CachedParams.OriginalTexture->GetResource()->TextureRHI,
+        ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture,
+        FRHICopyTextureInfo()
+    );
+
+    // Set input target back to Compute
+    RHICmdList.Transition(FRHITransitionInfo(
+        ComputeShaderInput->GetRenderTargetItem().UAV, 
+        ERHIAccess::CopyDest, 
+        ERHIAccess::UAVCompute
+    ));
+}
+
+
+void FUpscalingDispatcher::CopyOutputTargetToOutputTexture(FRHICommandListImmediate &RHICmdList) {
+    // Output Target is about to be copied from
+    RHICmdList.Transition(FRHITransitionInfo(
+        ComputeShaderOutput->GetRenderTargetItem().ShaderResourceTexture,
+        ERHIAccess::UAVCompute,
+        ERHIAccess::CopySrc
+    ));
+
+    // OutputTexture is about to be copied to
+    RHICmdList.Transition(FRHITransitionInfo(
+        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+        ERHIAccess::Unknown,
+        ERHIAccess::CopyDest)
+    ); 
+
+    RHICmdList.CopyTexture(
+        ComputeShaderOutput->GetRenderTargetItem().ShaderResourceTexture,
+        // CachedParams.UpscaledTexture->GetRenderTargetResource()->TextureRHI,
+        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+        FRHICopyTextureInfo()
+    );
+
+    // Set output texture to graphic resource
+    RHICmdList.Transition(FRHITransitionInfo(
+        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+        ERHIAccess::CopyDest,
+        ERHIAccess::SRVGraphics
+    ));
+}
 
 void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmdList, class FSceneRenderTargets& SceneContext)
 {
     if (!(bCachedParamsAreValid && CachedParams.UpscaledTexture))
     {
+        UE_LOG(LogGamekit, Warning, TEXT("Skip update, no valid input %d"), bCachedParamsAreValid);
         return;
     }
 
     check(IsInRenderingThread());
 
-    if (!ComputeShaderOutput.IsValid())
-    {
-        auto ComputeShaderOutputDesc = FPooledRenderTargetDesc::Create2DDesc(
-            CachedParams.OriginalSize * 4, 
-            CachedParams.UpscaledTexture->GetResource()->TextureRHI->GetFormat(), // ->GetRenderTargetResource()->TextureRHI->GetFormat(), 
-            FClearValueBinding::Black, 
-            TexCreate_None, 
-            TexCreate_ShaderResource | TexCreate_UAV, 
-            false
-        );
-        ComputeShaderOutputDesc.DebugName = TEXT("FUpscalingShader_Output_RenderTarget");
-        GRenderTargetPool.FindFreeElement(RHICmdList, ComputeShaderOutputDesc, ComputeShaderOutput, TEXT("FUpscalingShader_Output_RenderTarget"));
-    }
-
-    if (!ComputeShaderInput.IsValid())
-    {
-        auto ComputeShaderInputDesc = FPooledRenderTargetDesc::Create2DDesc(
-            CachedParams.OriginalSize, 
-            CachedParams.OriginalTexture->GetResource()->TextureRHI->GetFormat(), 
-            FClearValueBinding::Black, 
-            TexCreate_None, 
-            TexCreate_ShaderResource | TexCreate_UAV, 
-            false
-        );
-        ComputeShaderInputDesc.DebugName = TEXT("FUpscalingShader_Input_RenderTarget");
-        GRenderTargetPool.FindFreeElement(RHICmdList, ComputeShaderInputDesc, ComputeShaderInput, TEXT("FUpscalingShader_Input_RenderTarget"));
-    }
-
-    RHICmdList.CopyTexture(
-        CachedParams.OriginalTexture->GetResource()->TextureRHI, 
-        ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture, 
-        FRHICopyTextureInfo()
-    );
-
-    RHICmdList.Transition(
-        FRHITransitionInfo(
-            ComputeShaderOutput->GetRenderTargetItem().UAV,
-            ERHIAccess::Unknown,
-            ERHIAccess::UAVCompute
-        )
-    );
-
-    RHICmdList.Transition(
-        FRHITransitionInfo(
-            ComputeShaderInput->GetRenderTargetItem().UAV,
-            ERHIAccess::Unknown,
-            ERHIAccess::UAVCompute
-        )
-    );
-
-    /*
-    RHICmdList.TransitionResource(
-        EResourceTransitionAccess::ERWBarrier, 
-        EResourceTransitionPipeline::EGfxToCompute, 
-        ComputeShaderOutput->GetRenderTargetItem().UAV
-    );*/
+    ReserveRenderTargets(RHICmdList);
+    CopyInputTextureToInputTarget(RHICmdList);
 
     FUpscalingShader::FParameters PassParameters;
     PassParameters.OutputTexture = ComputeShaderOutput->GetRenderTargetItem().UAV;
-    PassParameters.InputTexture  = ComputeShaderInput->GetRenderTargetItem().UAV;
-    PassParameters.Dimensions = CachedParams.OriginalSize;  
-    PassParameters.TimeStamp = CachedParams.TimeStamp;
+    PassParameters.InputTexture  = ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture;
+    PassParameters.Dimensions    = CachedParams.OriginalSize;
+    PassParameters.TimeStamp     = CachedParams.TimeStamp;
+    PassParameters.Multiplier    = CachedParams.Multiplier;
 
     TShaderMapRef<FUpscalingShader> ComputeShader(GetGlobalShaderMap(GMaxRHIFeatureLevel));
 
@@ -179,10 +227,5 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
         )
     );
 
-    RHICmdList.CopyTexture(
-        ComputeShaderOutput->GetRenderTargetItem().ShaderResourceTexture, 
-        CachedParams.UpscaledTexture->GetResource()->TextureRHI, // ->GetRenderTargetResource()->TextureRHI, 
-        FRHICopyTextureInfo()
-    );
-
+    CopyOutputTargetToOutputTexture(RHICmdList);
 }

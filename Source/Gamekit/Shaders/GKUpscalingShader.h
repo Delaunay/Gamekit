@@ -7,10 +7,12 @@
 struct FUpscalingParameter
 {
 public:
-	class UTexture2D *            OriginalTexture;
-    class UTexture2D *			  UpscaledTexture;
-	FIntPoint				      OriginalSize;
-	uint32						  TimeStamp;
+    class UTexture2D *OriginalTexture;
+	class UTexture2D *UpscaledTexture;
+	// class UCanvasRenderTarget2D *UpscaledTexture;
+    FIntPoint         OriginalSize;
+    uint32            TimeStamp;
+    uint32            Multiplier;
 };
 
 
@@ -51,6 +53,10 @@ private:
 	//Reference to a pooled render target where the shader will write its output
 	TRefCountPtr<IPooledRenderTarget> ComputeShaderOutput;
 	TRefCountPtr<IPooledRenderTarget> ComputeShaderInput;
+
+	void ReserveRenderTargets(FRHICommandListImmediate &RHICmdList);
+    void CopyInputTextureToInputTarget(FRHICommandListImmediate &RHICmdList);
+    void CopyOutputTargetToOutputTexture(FRHICommandListImmediate &RHICmdList);
 
 public:
 	void Execute_RenderThread(FRHICommandListImmediate& RHICmdList, class FSceneRenderTargets& SceneContext);

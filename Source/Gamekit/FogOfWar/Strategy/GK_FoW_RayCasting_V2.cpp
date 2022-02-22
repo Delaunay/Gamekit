@@ -20,6 +20,12 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) 
     TArray<AActor *> ActorsToIgnore = {actor};
     TSet<AActor *>   AlreadySighted;
 
+     // Disable making the angle relative to the forward vector
+    if (c->FieldOfView >= 360)
+    {
+        forward = FVector(1, 0, 0);
+    }
+
     float step = c->FieldOfView / float(c->TraceCount);
     int   n    = c->TraceCount / 2;
 

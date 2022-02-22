@@ -2,19 +2,20 @@
 
 #include "/Gamekit/Upscaling_Patterns.ush"
 
-RWTexture2D<uint> OutputTexture;
-RWTexture2D<uint> InputTexture;
+RWTexture2D<float> OutputTexture;
+Texture2D<float>   InputTexture;
 
 uint2 Dimensions;
 uint  TimeStamp;
+uint  Multiplier;
 
 #define TEXEL_2x2(a, b, c, d) uint(uint(a) << 3 | (uint(b) << 2) | (uint(c) << 1) | (uint(d)))
 
 #define GET(xy, Size) ((xy.x) + (xy.y * Size.x))
 
-#define IS_VISIBLE(X) (int(uint(X & uint(1 << 7) > 0)))
+// #define IS_VISIBLE(X) (int(uint(uint(X) & uint(1 << 7) > 0)))
 
-// #define IS_VISIBLE(X) (uint(X > 0))
+#define IS_VISIBLE(X) (X > float(uint(1 << 6)) / float(1 << 7))
 
 // clang-format off
 [numthreads(THREADGROUPSIZE_X, THREADGROUPSIZE_Y, THREADGROUPSIZE_Z)]
@@ -26,57 +27,37 @@ void MainComputeShader(uint3 GroupId      : SV_GroupID,
 {
     uint2 Pos = ThreadId.xy;
 
-    if (Pos.x + 1 >= Dimensions.x)
-    {
-        return;
-    }
-
-    if (Pos.y + 1 >= Dimensions.y)
-    {
-        return;
-    }
-
     uint P_00 = IS_VISIBLE(InputTexture[Pos + uint2(0, 0)]);
-    uint P_10 = IS_VISIBLE(InputTexture[Pos + uint2(1, 0)]);
-    uint P_01 = IS_VISIBLE(InputTexture[Pos + uint2(0, 1)]);
-    uint P_11 = IS_VISIBLE(InputTexture[Pos + uint2(1, 1)]);
+    uint P_10 = 0;
+    uint P_01 = 0;
+    uint P_11 = 0;
+
+    if (Pos.x + 1 < Dimensions.x)
+    {
+        P_10 = IS_VISIBLE(InputTexture[Pos + uint2(1, 0)]);
+    }
+    if (Pos.y + 1 < Dimensions.y)
+    {
+        P_01 = IS_VISIBLE(InputTexture[Pos + uint2(0, 1)]);
+    }
+    if (Pos.x + 1 < Dimensions.x && Pos.y + 1 < Dimensions.y)
+    {
+        P_11 = IS_VISIBLE(InputTexture[Pos + uint2(1, 1)]);
+    }
 
     uint Pattern = TEXEL_2x2(P_00, P_10, P_01, P_11);
-
-    // Pattern    = 16 * 14;
-    uint PatId = Pattern * 16;
+    uint PatId   = Pattern * 16;
 
     for (int i = 0; i < 4; ++i)
     {
         for (int j = 0; j < 4; ++j)
         {
-            int x = 4 * Pos.x + j;
-            int y = 4 * Pos.y + i;
+            int x = Multiplier * Pos.x + j;
+            int y = Multiplier * Pos.y + i;
             int z = PatId + i * 4 + j;
-            
-            if (z < 256) {
-                OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
-                // OutputTexture[uint2(x, y)] = PatternMap[z];
-                // OutputTexture[uint2(x, y)] = 0;
-                OutputTexture[uint2(x, y)] = 0xFFFFFFFF;
-            }
 
-            // Does not work
-            // OutputTexture[ThreadId.xy] = uint(-1);
-
-            //
-            // OutputTexture[ThreadId.xy] = 0;
-
-            // OutputTexture[uint2(x, y)] = Pattern * 16;
-
-            // This works
-            // OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
-
-
-            // This returns 0
-            // OutputTexture[uint2(x, y)] = (InputTexture[ThreadId.xy] > 0) * 256;
-
-            // OutputTexture[uint2(x, y)] = PatternMap[PatId + i * 4 + j];
+            OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
+            OutputTexture[uint2(x, y)] = PatternMap[z] / 0xFF;
         }
     }
 }

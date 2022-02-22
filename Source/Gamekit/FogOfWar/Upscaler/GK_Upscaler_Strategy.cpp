@@ -1,5 +1,7 @@
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
 
+#include "Engine/CanvasRenderTarget2D.h"
+
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 
@@ -39,6 +41,19 @@ UpscaledTextureType *UGKUpscalerStrategy::CreateUpscaleTarget()
     // FIXME: why is the strategy not initialized alread
     Initialize();
 
+    /*
+    auto Texture = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
+        GetWorld(),
+        UCanvasRenderTarget2D::StaticClass(),
+        TextureSize.X * Multiplier, 
+        TextureSize.Y * Multiplier
+    );
+
+    // Texture->InitCustomFormat();
+    return Texture;
+    */
+
+    //*
     auto Texture = UTexture2D::CreateTransient(
         TextureSize.X * Multiplier, 
         TextureSize.Y * Multiplier, 
@@ -47,13 +62,14 @@ UpscaledTextureType *UGKUpscalerStrategy::CreateUpscaleTarget()
 
     Texture->CompressionSettings = TextureCompressionSettings::TC_Default;
     Texture->SRGB                = false;
-    Texture->Filter              = TextureFilter::TF_Nearest;
+    Texture->Filter              = TextureFilter::TF_Default;
     Texture->AddressX            = TextureAddress::TA_Clamp;
     Texture->AddressY            = TextureAddress::TA_Clamp;
     Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
 
     Texture->UpdateResource();
     return Texture;
+    //*/
 }
 
 class UTexture *UGKUpscalerStrategy::GetFactionTexture(FName name, bool CreateRenderTarget)

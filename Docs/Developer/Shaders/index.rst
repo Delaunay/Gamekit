@@ -23,13 +23,13 @@ To write shader code directly, you can add a custom shader path in your project 
 
     // Maps ``/Gamekit`` to ``/path/to/project/Gamekit/Shaders``
     void FGamekitModule::StartupModule() {
-            // GamekitShaders
-            FString ShaderDirectory = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("<ProjectFolderName>"), TEXT("<ShaderFolder>>"));
+        // GamekitShaders
+        FString ShaderDirectory = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("<ProjectFolderName>"), TEXT("<ShaderFolder>>"));
 
-            // Make sure the mapping does not exist before adding it
-            if (!AllShaderSourceDirectoryMappings().Contains("/<ShaderFolderShortcut>")){
-                AddShaderSourceDirectoryMapping("/<ShaderFolderShortcut>", ShaderDirectory);
-            }
+        // Make sure the mapping does not exist before adding it
+        if (!AllShaderSourceDirectoryMappings().Contains("/<ShaderFolderShortcut>")){
+            AddShaderSourceDirectoryMapping("/<ShaderFolderShortcut>", ShaderDirectory);
+        }
     }
 
     void FGamekitModule::ShutdownModule() {

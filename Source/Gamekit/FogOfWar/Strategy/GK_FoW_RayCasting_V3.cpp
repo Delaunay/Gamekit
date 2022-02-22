@@ -39,6 +39,12 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
     FVector         Cartesian;
     auto            BaseYaw = Actor->GetActorRotation().Yaw;
 
+    // Disable making the angle relative to the forward vector
+    if (c->FieldOfView >= 360)
+    {
+        BaseYaw = 0;
+    }
+
     float Offset   = 0;
     float Margin   = FogOfWarVolume->Margin;
 
@@ -139,6 +145,13 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
     auto Actor       = c->GetOwner();
     FVector Location = Actor->GetActorLocation();
     FVector Forward  = Actor->GetActorForwardVector();
+
+     // Disable making the angle relative to the forward vector
+    if (c->FieldOfView >= 360)
+    {
+        Forward = FVector(1, 0, 0);
+    }
+
 
     TArray<AActor *> ActorsToIgnore   = {Actor};
 
@@ -264,6 +277,4 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
             }
         }
     }
-
-    UE_LOG(LogGamekit, Log, TEXT("== Done"));
 }

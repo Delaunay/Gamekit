@@ -12,6 +12,7 @@
 #include "GK_Upscaler_Strategy.generated.h"
 
 #define UpscaledTextureType UTexture2D
+// #define UpscaledTextureType UCanvasRenderTarget2D
 
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKUpscalerStrategy: public UActorComponent
