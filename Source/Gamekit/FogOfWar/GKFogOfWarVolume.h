@@ -9,13 +9,13 @@
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/Grid/GKGrid.h"
 
 #include "GKFogOfWarVolume.generated.h"
 
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
+
 
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
@@ -140,6 +140,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool bDebug;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    bool bUpscaling;
+
     EDrawDebugTrace::Type DebugTrace() { 
         if (bDebug) 
             return EDrawDebugTrace::ForOneFrame;
@@ -202,7 +205,10 @@ public:
     UPROPERTY(Transient)
     class UGKFogOfWarStrategy* Strategy;
 
-private:
+    UPROPERTY(Transient)
+    class UGKUpscalerStrategy *Upscaler;
+
+    private:
     // Private because they do not lock the mutex
     // UpdateVolumeSizes does that for them
     void InitializeStrategy_Line();
@@ -275,4 +281,7 @@ public:
     // Editor Stuff
     // -------------
     void PostEditChangeProperty(struct FPropertyChangedEvent& e);
+
+public:
+    void TextureReady(FName Name);
 };

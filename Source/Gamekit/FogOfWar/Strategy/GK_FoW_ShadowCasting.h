@@ -46,8 +46,6 @@ enum class EGK_TileVisbility : uint8
     Visible = uint8(1 << 7), // Visible
 };
 
-#define UpscaledTextureType UTexture2D
-
 /**
  * 
  * /rst
@@ -87,11 +85,9 @@ public:
 
 	class UTexture2D *CreateTexture2D();
 
-	class UpscaledTextureType* GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget = true);
-
-	class UpscaledTextureType* CreateUpscaleTarget();
-
-	bool bUpscaling;
+	TMatrix3D<uint8> const *GetFactionTextureCPU(FName name) const override { 
+		return &Buffer; 
+	}
 
 private:
 	void Compute(FIntVector origin, int rangeLimit);
@@ -117,10 +113,5 @@ private:
 	UPROPERTY(Transient)
     TMap<FName, class UTexture2D *> FogFactions;
 
-	UPROPERTY(Transient)
-    TMap<FName, class UTexture2D*> UpscaledFogFactions;
-
 	FUpdateTextureRegion2D UpdateRegion;
-
-	class FUpscalingDispatcher *Uspcaler;
 };

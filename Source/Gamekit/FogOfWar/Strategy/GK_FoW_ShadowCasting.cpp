@@ -14,18 +14,10 @@
 
 void UGKShadowCasting::Stop()
 {
-    if (bUpscaling)
-    {
-        Uspcaler->EndRendering();
-    }
 }
 
 UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool bCreateRenderTarget)
 {
-    if (bUpscaling)
-    {
-        return GetFactionUpscaleTarget(Name, bCreateRenderTarget);
-    }
     return GetFactionTexture2D(Name, bCreateRenderTarget);
 }
 
@@ -123,52 +115,6 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     //*/
 }
 
-
-UpscaledTextureType*UGKShadowCasting::GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget) {
-    UpscaledTextureType **Result  = UpscaledFogFactions.Find(name);
-    UpscaledTextureType * Texture = nullptr;
-
-    if (Result != nullptr)
-    {
-        Texture = Result[0];
-    }
-    else if (bCreateRenderTarget)
-    {
-        UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
-        Texture = CreateUpscaleTarget();
-
-
-        UpscaledFogFactions.Add(name, Texture);
-    }
-
-    return Texture;
-}
-
-UpscaledTextureType *UGKShadowCasting::CreateUpscaleTarget() {
-    auto Texture = UTexture2D::CreateTransient(Buffer.Width() * 4, Buffer.Height() * 4, EPixelFormat::PF_G8);
-
-    Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
-    Texture->SRGB                = false;
-    Texture->Filter              = TextureFilter::TF_Default;
-    Texture->AddressX            = TextureAddress::TA_Clamp;
-    Texture->AddressY            = TextureAddress::TA_Clamp;
-    Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
-
-    // Streaming Texture cause issues when updating it from the buffer
-    // Texture->VirtualTextureStreaming = 1;
-    // Texture->NeverStream = 0;
-
-    Texture->UpdateResource();
-    return Texture;
-
-    /*
-    return UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(GetWorld(),
-                                                             UCanvasRenderTarget2D::StaticClass(),
-                                                             TextureSize.X * 4,
-                                                             TextureSize.Y * 4);
-    */
-}
-
 void UGKShadowCasting::UpdateTextures(FName Name)
 {
     auto Texture = GetFactionTexture2D(Name);
@@ -189,6 +135,9 @@ void UGKShadowCasting::UpdateTextures(FName Name)
         }
     );
 
+    FogOfWarVolume->TextureReady(Name);
+
+    /*
     if (bUpscaling)
     {
         // FUspcalingShaderParameters Params;
@@ -207,6 +156,7 @@ void UGKShadowCasting::UpdateTextures(FName Name)
 
         Uspcaler->UpdateParameters(Params);
     }
+    */
 }
 
 void UGKShadowCasting::DrawFactionFog()
@@ -242,7 +192,6 @@ void UGKShadowCasting::DrawFactionFog()
 
 void UGKShadowCasting::Initialize()
 {
-    bUpscaling = true;
     Super::Initialize();
 
     Grid                = FogOfWarVolume->Grid;
@@ -264,12 +213,6 @@ void UGKShadowCasting::Initialize()
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
         GetFactionTexture(Component->Faction);
-    }
-
-    if (bUpscaling)
-    {
-        Uspcaler = FUpscalingDispatcher::Get();
-        Uspcaler->BeginRendering();
     }
 }
 

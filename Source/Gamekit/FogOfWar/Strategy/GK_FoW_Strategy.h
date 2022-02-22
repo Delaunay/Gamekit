@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
+#include "Gamekit/Container/Matrix.h"
+
 #include "GK_FoW_Strategy.generated.h"
 
 
@@ -32,6 +34,10 @@ public:
 
 	//! Draw the line of sight using the right method
     virtual void DrawLineOfSight(class UGKFogOfWarComponent *c) {}
+
+	virtual TMatrix3D<uint8> const *GetFactionTextureCPU(FName name) const { 
+		return nullptr;
+	}
 
 	//! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) {

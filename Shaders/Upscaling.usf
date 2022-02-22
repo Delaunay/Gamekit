@@ -43,7 +43,7 @@ void MainComputeShader(uint3 GroupId      : SV_GroupID,
 
     uint Pattern = TEXEL_2x2(P_00, P_10, P_01, P_11);
 
-    Pattern    = 16 * 15;
+    // Pattern    = 16 * 14;
     uint PatId = Pattern * 16;
 
     for (int i = 0; i < 4; ++i)
@@ -52,8 +52,14 @@ void MainComputeShader(uint3 GroupId      : SV_GroupID,
         {
             int x = 4 * Pos.x + j;
             int y = 4 * Pos.y + i;
-
-            OutputTexture[uint2(x, y)] = PatternMap[PatId + i * 4 + j];
+            int z = PatId + i * 4 + j;
+            
+            if (z < 256) {
+                OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
+                // OutputTexture[uint2(x, y)] = PatternMap[z];
+                // OutputTexture[uint2(x, y)] = 0;
+                OutputTexture[uint2(x, y)] = 0xFFFFFFFF;
+            }
 
             // Does not work
             // OutputTexture[ThreadId.xy] = uint(-1);
@@ -66,8 +72,6 @@ void MainComputeShader(uint3 GroupId      : SV_GroupID,
             // This works
             // OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
 
-            // Set RGBA to 256, does not work
-            // OutputTexture[uint2(x, y)] = 0xFFFFFFFF;
 
             // This returns 0
             // OutputTexture[uint2(x, y)] = (InputTexture[ThreadId.xy] > 0) * 256;

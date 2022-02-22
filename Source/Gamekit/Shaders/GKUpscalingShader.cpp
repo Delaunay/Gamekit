@@ -5,7 +5,6 @@
 #include "RenderGraphUtils.h"
 #include "RenderTargetPool.h"
 
-
 #include "Modules/ModuleManager.h" 
 
 #define NUM_THREADS_PER_GROUP_DIMENSION 32
@@ -24,13 +23,11 @@ public:
     END_SHADER_PARAMETER_STRUCT()
 
 public:
-    //Called by the engine to determine which permutations to compile for this shader
     static bool ShouldCompilePermutation(const FGlobalShaderPermutationParameters& Parameters)
     {
         return IsFeatureLevelSupported(Parameters.Platform, ERHIFeatureLevel::SM5);
     }
 
-    //Modifies the compilations environment of the shader
     static inline void ModifyCompilationEnvironment(const FGlobalShaderPermutationParameters& Parameters, FShaderCompilerEnvironment& OutEnvironment)
     {
         FGlobalShader::ModifyCompilationEnvironment(Parameters, OutEnvironment);
@@ -48,7 +45,6 @@ public:
 IMPLEMENT_GLOBAL_SHADER(FUpscalingShader, "/Gamekit/Upscaling.usf", "MainComputeShader", SF_Compute);
 
 
-//Static members
 FUpscalingDispatcher* FUpscalingDispatcher::instance = nullptr;
 
 FUpscalingDispatcher* FUpscalingDispatcher::Get()
@@ -58,16 +54,14 @@ FUpscalingDispatcher* FUpscalingDispatcher::Get()
     return instance;
 };
 
-//Begin the execution of the compute shader each frame
 void FUpscalingDispatcher::BeginRendering()
 {
-    //If the handle is already initalized and valid, no need to do anything
     if (OnPostResolvedSceneColorHandle.IsValid())
     {
         return;
     }
     bCachedParamsAreValid = false;
-    //Get the Renderer Module and add our entry to the callbacks so it can be executed each frame after the scene rendering is done
+
     const FName RendererModuleName("Renderer");
     IRendererModule* RendererModule = FModuleManager::GetModulePtr<IRendererModule>(RendererModuleName);
     if (RendererModule)
@@ -76,16 +70,13 @@ void FUpscalingDispatcher::BeginRendering()
     }
 }
 
-//Stop the compute shader execution
 void FUpscalingDispatcher::EndRendering()
 {
-    //If the handle is not valid then there's no cleanup to do
     if (!OnPostResolvedSceneColorHandle.IsValid())
     {
         return;
     }
 
-    //Get the Renderer Module and remove our entry from the ResolvedSceneColorCallbacks
     const FName RendererModuleName("Renderer");
     IRendererModule* RendererModule = FModuleManager::GetModulePtr<IRendererModule>(RendererModuleName);
     if (RendererModule)
@@ -96,33 +87,22 @@ void FUpscalingDispatcher::EndRendering()
     OnPostResolvedSceneColorHandle.Reset();
 }
 
-//Update the parameters by a providing an instance of the Parameters structure used by the shader manager
-void FUpscalingDispatcher::UpdateParameters(FUpscalingParameter& params)
+void FUpscalingDispatcher::UpdateParameters(FUpscalingParameter& Params)
 {
-    CachedParams = params;
+    CachedParams          = Params;
     bCachedParamsAreValid = true;
 }
 
 
-/// <summary>
-/// Creates an instance of the shader type parameters structure and fills it using the cached shader manager parameter structure
-/// Gets a reference to the shader type from the global shaders map
-/// Dispatches the shader using the parameter structure instance
-/// </summary>
 void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmdList, class FSceneRenderTargets& SceneContext)
 {
-    //If there's no cached parameters to use, skip
-    //If no Render Target is supplied in the cachedParams, skip
     if (!(bCachedParamsAreValid && CachedParams.UpscaledTexture))
     {
         return;
     }
 
-    //Render Thread Assertion
     check(IsInRenderingThread());
 
-
-    //If the render target is not valid, get an element from the render target pool by supplying a Descriptor
     if (!ComputeShaderOutput.IsValid())
     {
         auto ComputeShaderOutputDesc = FPooledRenderTargetDesc::Create2DDesc(
@@ -151,14 +131,12 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
         GRenderTargetPool.FindFreeElement(RHICmdList, ComputeShaderInputDesc, ComputeShaderInput, TEXT("FUpscalingShader_Input_RenderTarget"));
     }
 
-    // Copy From orignal texture to shader texture
     RHICmdList.CopyTexture(
         CachedParams.OriginalTexture->GetResource()->TextureRHI, 
         ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture, 
         FRHICopyTextureInfo()
     );
 
-    //Specify the resource transition, we're executing this in post scene rendering so we set it to Graphics to Compute
     RHICmdList.Transition(
         FRHITransitionInfo(
             ComputeShaderOutput->GetRenderTargetItem().UAV,
@@ -182,17 +160,14 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
         ComputeShaderOutput->GetRenderTargetItem().UAV
     );*/
 
-    //Fill the shader parameters structure with tha cached data supplied by the client
     FUpscalingShader::FParameters PassParameters;
     PassParameters.OutputTexture = ComputeShaderOutput->GetRenderTargetItem().UAV;
     PassParameters.InputTexture  = ComputeShaderInput->GetRenderTargetItem().UAV;
     PassParameters.Dimensions = CachedParams.OriginalSize;  
     PassParameters.TimeStamp = CachedParams.TimeStamp;
 
-    // Get a reference to our shader type from global shader map
     TShaderMapRef<FUpscalingShader> ComputeShader(GetGlobalShaderMap(GMaxRHIFeatureLevel));
 
-    // Dispatch the compute shader
     FComputeShaderUtils::Dispatch(
         RHICmdList, 
         ComputeShader, 
@@ -204,7 +179,6 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
         )
     );
 
-    // Copy shader's output to the render target provided by the client
     RHICmdList.CopyTexture(
         ComputeShaderOutput->GetRenderTargetItem().ShaderResourceTexture, 
         CachedParams.UpscaledTexture->GetResource()->TextureRHI, // ->GetRenderTargetResource()->TextureRHI, 

@@ -7,11 +7,15 @@
 #include "Blueprint/GKCoordinateLibrary.h"
 #include "Blueprint/GKUtilityLibrary.h"
 
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
-
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_CPU_Upscaler.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_GPU_Upscaler.h"
 
 #include "Engine/CollisionProfile.h"
 #include "Components/BrushComponent.h"
@@ -83,6 +87,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     bDebug                   = false;
     Margin                   = 25.f;
     Strategy                 = nullptr;
+    bUpscaling               = true;
 
     PreviewDecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
 
@@ -288,7 +293,6 @@ void AGKFogOfWarVolume::InitializeStrategy() {
     if (Strategy != nullptr)
     {
         Strategy->DestroyComponent();
-        
     }
 
     switch (FogVersion)
@@ -300,6 +304,20 @@ void AGKFogOfWarVolume::InitializeStrategy() {
     }
 
     Strategy->Initialize();
+
+    if (bUpscaling)
+    {
+        Upscaler = Cast<UGKUpscalerStrategy>(AddComponentByClass(
+            // UGKUpscalerStrategy::StaticClass(), 
+            UGKCPUUpscalerStrategy::StaticClass(),
+            false, 
+            FTransform(), 
+            true
+        ));
+
+        FinishAddComponent(Upscaler, false, FTransform());
+        Upscaler->Initialize();
+    }
 }
 
 void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason) {
@@ -322,6 +340,7 @@ void AGKFogOfWarVolume::BeginPlay()
 
     SetMatrialParams();
     InitializeStrategy();
+
 
     // Start drawing the fog
     // For this method to work we need a better way to synchronize the textures
@@ -446,6 +465,11 @@ void AGKFogOfWarVolume::UpdateExploration()
 
 
 UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name) { 
+    if (Strategy && bUpscaling)
+    {
+        return Upscaler->GetFactionTexture(name);
+    }
+
     if (Strategy) {
         return Strategy->GetFactionTexture(name);
     } 
@@ -523,4 +547,16 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent& e) 
     UE_LOG(LogGamekit, Warning, TEXT("Property changed %s"), *PropertyName.ToString());
     UpdateVolumeSizes();
     Super::PostEditChangeProperty(e);
+}
+
+void AGKFogOfWarVolume::TextureReady(FName Name)
+{ 
+    if (bUpscaling && Strategy->GetFactionTextureCPU(Name) != nullptr)
+    {
+        Upscaler->Upscale(
+            Name, 
+            Strategy->GetFactionTextureCPU(Name), 
+            Cast<UTexture2D>(Strategy->GetFactionTexture(Name))
+        );
+    }
 }

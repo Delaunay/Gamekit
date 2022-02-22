@@ -15,10 +15,13 @@ struct TMatrix3D {
     }
 
     void Init(T Value, int row, int col, int depth = 1) {
-        Row = row;
-        Col = col; 
-        Depth = depth;
-        Data.Init(Value, Row * Col * Depth);
+        if (row * col * depth > 0 && row * col * depth != Row * Col * Depth)
+        {
+            Row   = row;
+            Col   = col;
+            Depth = depth;
+            Data.Init(Value, Row * Col * Depth);
+        }
     }
 
     FORCEINLINE T &operator()(int r, int c, int d = 0) { return Data[c + r * Col + d * (Col * Row)]; }
@@ -28,6 +31,14 @@ struct TMatrix3D {
     FORCEINLINE T operator()(int r, int c, int d = 0) const { return Data[c + r * Col + d * (Col * Row)]; }
 
     FORCEINLINE T operator()(FIntVector v) const { return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; }
+
+    FORCEINLINE T GetWithDefault(FIntVector v, T Default) const { 
+        if (!Valid(v))
+        {
+            return Default;
+        }
+        return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; 
+    }
 
     TArray<FIntVector> GetNeighbours(FIntVector v) {
         TArray<FIntVector> Result;
@@ -107,7 +118,7 @@ struct TMatrix3D {
         }
     }
 
-    FORCEINLINE bool Valid(FIntVector V) {
+    FORCEINLINE bool Valid(FIntVector V) const {
         return V.X >= 0 && V.X < Width() && 
                V.Y >= 0 && V.Y < Height();
     }
