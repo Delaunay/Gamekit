@@ -125,7 +125,7 @@ For each actors in vision range trace 4 rays; 2 Left/right rays, one that misses
 +------+---------------+----------------+
 | Rays |  Render       | Fog Texture    |
 +------+---------------+----------------+
-|   12 | |V2_12_View|  | |V2_12_Render| |
+|   12 | |V3_12_View|  | |V3_12_Render| |
 +------+---------------+----------------+
 
 Discrete Tiles V1
@@ -144,7 +144,7 @@ Split the world is square tiles & draw the line of sight.
 +----------+---------------------+-------------------------------+
 |   No     | |V1_Discrete_View|  | |V1_Discrete_Render|          |
 +----------+---------------------+-------------------------------+
-|   Yes    |                     | |V1_Discrete_Render_Upscaled| |
+|   Yes    | |V1_Discrete_Render_Upscaled||                      |
 +----------+---------------------+-------------------------------+
 
 

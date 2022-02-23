@@ -65,6 +65,7 @@ Goals
    Developer/Compilation
    Developer/Shaders/index
    Developer/Doxygen
+   Developer/ci
    generated_api/GamekitAPI
 
 

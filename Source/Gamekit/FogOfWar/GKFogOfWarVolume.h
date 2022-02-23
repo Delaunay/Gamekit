@@ -130,6 +130,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     class UDecalComponent* PreviewDecalComponent;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    TArray<AActor *> ActorsToIgnore;
+
     //! Allow you to disable all the functionality related to Fog of war
     //! without removing it
     //! This only pause the timer so the fog of war is not updated anymore

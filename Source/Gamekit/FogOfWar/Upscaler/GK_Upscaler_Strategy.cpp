@@ -2,6 +2,7 @@
 
 #include "Engine/CanvasRenderTarget2D.h"
 
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 
@@ -66,8 +67,10 @@ UpscaledTextureType *UGKUpscalerStrategy::CreateUpscaleTarget()
     Texture->AddressX            = TextureAddress::TA_Clamp;
     Texture->AddressY            = TextureAddress::TA_Clamp;
     Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
-
     Texture->UpdateResource();
+
+    // UGKUtilityLibrary::ClearTexture(Texture, FLinearColor::Black);
+
     return Texture;
     //*/
 }

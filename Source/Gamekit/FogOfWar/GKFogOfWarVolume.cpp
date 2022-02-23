@@ -466,7 +466,6 @@ void AGKFogOfWarVolume::UpdateExploration()
         auto Exploration   = RenderTargets.Value;
         auto CurrentVision = GetFactionTexture(ExpFaction);
 
-        // this check might not be necessary
         if (CurrentVision == nullptr)
         {
             continue;
@@ -479,7 +478,9 @@ void AGKFogOfWarVolume::UpdateExploration()
                                FVector2D(0, 0),
                                FVector2D(1, 1),
                                FLinearColor(0, 1, 0, 0),
-                               EBlendMode::BLEND_Additive,
+                               EBlendMode::BLEND_Masked,
+                               // EBlendMode::BLEND_MAX, 
+                               // EBlendMode::BLEND_Additive,
                                0.0,
                                FVector2D(0, 0));
         UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);

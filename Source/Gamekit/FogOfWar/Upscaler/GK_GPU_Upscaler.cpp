@@ -27,7 +27,7 @@ void UGKGPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
 
     FUpscalingParameter Params;
     Params.OriginalTexture = Tex;
-    Params.UpscaledTexture = GetFactionUpscaleTarget(Name);
+    Params.UpscaledTexture = GetFactionUpscaleTarget(Name, true);
     Params.OriginalSize    = FIntPoint(TextureSize.X, TextureSize.Y);
     Params.TimeStamp       = ++CallCount;
     Params.Multiplier      = Multiplier;

@@ -12,6 +12,7 @@
 #include "Math/Rotator.h"
 #include "Math/RotationMatrix.h"
 #include "Components/PanelSlot.h"
+#include "ClearQuad.h"
 
 #include "GKCoordinateLibrary.h"
 #include "GKWorldSettings.h"
@@ -159,8 +160,12 @@ void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
 }
 
 FRotator UGKUtilityLibrary::BetterLookAtRotation(FVector ActorLocation, FVector LookAt, FVector UpDirection)
-{
-    return FRotator();
+{   
+    ActorLocation.Z = 0;
+    LookAt.Z        = 0;
+
+    float Yaw = FMath::Acos(FVector::DotProduct(ActorLocation, LookAt) / (ActorLocation.Size2D() * LookAt.Size2D()));
+    return FRotator(0, Yaw, 0);
 }
 
 
@@ -219,21 +224,25 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVecto
 
     TArray<FVector> Corners = {
         Origin + BoxExtent,
-        Origin - BoxExtent,
         Origin + BoxExtent * FVector(-1, 1, 0),
+        Origin - BoxExtent,
         Origin + BoxExtent * FVector(1, -1, 0)
     };
 
+    #define GET_YAW(x, y) UKismetMathLibrary::FindLookAtRotation(x, y).Yaw
+
     OutMax = Corners[0];
-    OutMin = Corners[1];
+    OutMin = Corners[0];
 
-    float AngleMax = UGKUtilityLibrary::GetYaw(Location, OutMax);
-    float AngleMin = UGKUtilityLibrary::GetYaw(Location, OutMin);
+    auto  Dir      = Location;
+    float AngleMax = GET_YAW(Dir, OutMax);
+    float AngleMin = GET_YAW(Dir, OutMin);
 
-    // The Corners that matters are the one with the widest angles (min & max)
+    // The Corners that matters are the one with the widest angles
+    // but this does not really do that it finds the min max angles
     for (int i = 1; i < 4; i++)
     {
-        float Angle = UGKUtilityLibrary::GetYaw(Location, Corners[i]);
+        float Angle = GET_YAW(Dir, Corners[i]);
 
         if (Angle > AngleMax)
         {
@@ -247,4 +256,25 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVecto
             OutMin = Corners[i];
         }
     }
+}
+
+
+void UGKUtilityLibrary::ClearTexture(class UTexture *Texture, FLinearColor ClearColor)
+{
+    ENQUEUE_RENDER_COMMAND(ClearRTCommand)
+    (
+        [Texture, ClearColor](FRHICommandList &RHICmdList)
+        {
+            FRHIRenderPassInfo RPInfo(Texture->GetResource()->GetTexture2DRHI(),
+                                        ERenderTargetActions::DontLoad_Store);
+
+            TransitionRenderPassTargets(RHICmdList, RPInfo);
+            RHICmdList.BeginRenderPass(RPInfo, TEXT("ClearTexture"));
+            DrawClearQuad(RHICmdList, ClearColor);
+            RHICmdList.EndRenderPass();
+
+            RHICmdList.Transition(FRHITransitionInfo(
+                    Texture->GetResource()->GetTexture2DRHI(), ERHIAccess::RTV, ERHIAccess::SRVMask));
+        }
+    );
 }

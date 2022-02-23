@@ -10,6 +10,22 @@
 #include "Kismet/KismetSystemLibrary.h"
 
 
+#define DEBUG_CIRCLE(XY)                    \
+    {if (FogOfWarVolume->bDebug){           \
+    UKismetSystemLibrary::DrawDebugCircle(  \
+        GetWorld(),                         \
+        XY,                                 \
+        25.f,                               \
+        36,                                 \
+        FLinearColor::White,                \
+        0.f,                                \
+        5.f,                                \
+        FVector(1, 0, 0),                   \
+        FVector(0, 1, 0),                   \
+        true                                \
+    );                                      \
+    }}
+
 UGKRayCasting_Less::UGKRayCasting_Less(){}
 
 void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
@@ -17,6 +33,8 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
     Triangles.Reset(c->TraceCount + 1);
 
     TArray<AActor *>                      ActorsToIgnore   = {c->GetOwner()};
+    ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
+
     UClass *                              ActorClassFilter = AActor::StaticClass();
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarVolume->FogOfWarCollisionChannel, ObjectTypes);
@@ -67,8 +85,9 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
 
         MinPoint = MinPoint - Origin;
         FMath::CartesianToPolar(MinPoint.X, MinPoint.Y, Radius, Angle);
-
         FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
+
+        DEBUG_CIRCLE(Point + Origin);
         auto Angle1 = UGKUtilityLibrary::GetYaw(Location, Point + Origin) - BaseYaw;
 
         Angles.Add(Angle1);
@@ -84,6 +103,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
         FMath::CartesianToPolar(MaxPoint.X, MaxPoint.Y, Radius, Angle);
 
         FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
+        DEBUG_CIRCLE(Point + Origin);
         auto Angle3 = UGKUtilityLibrary::GetYaw(Location, Point + Origin) - BaseYaw;
         Angles.Add(Angle3);
 
@@ -104,7 +124,16 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
 void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles)
 {
     float MaxStep = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
+    int   n       = c->TraceCount / 2;
+
+    if (Angles.Num() == 0)
+    {
+        for (int i = -n; i <= n; i++)
+        {
+            Angles.Add(float(i) * MaxStep);
+        }
+        return;
+    }
 
     float MaxAngle = float(n) * MaxStep;
     float MinAngle = float(-n) * MaxStep;
@@ -151,7 +180,6 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
     {
         Forward = FVector(1, 0, 0);
     }
-
 
     TArray<AActor *> ActorsToIgnore   = {Actor};
 
@@ -221,7 +249,7 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
             + FMath::Square(c->Radius)
         ): c->Radius;
 
-        LineEnd = hit ? OutHit.Location : Location + dir * ExtendedRadius;
+        LineEnd = hit ? OutHit.Location - dir : Location + dir * ExtendedRadius;
 
         auto Start = FogOfWarVolume->GetTextureCoordinate(LineStart);
         auto End   = FogOfWarVolume->GetTextureCoordinate(LineEnd);

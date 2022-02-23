@@ -6,6 +6,7 @@
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
 
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
@@ -33,8 +34,10 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
     // Streaming Texture cause issues when updating it from the buffer
     // Texture->VirtualTextureStreaming = 1;
     // Texture->NeverStream = 0;
-
     Texture->UpdateResource();
+
+
+    // UGKUtilityLibrary::ClearTexture(Texture, FLinearColor::Black);
     return Texture;
 }
 
@@ -188,9 +191,11 @@ void UGKShadowCasting::Initialize()
     //*/
 
     // Try to allocate our buffer early
+    // TSet<FName> Factions;
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
-        GetFactionTexture(Component->Faction);
+        GetFactionTexture(Component->Faction, true);
+        // Factions.Add(Component->Faction);
     }
 }
 

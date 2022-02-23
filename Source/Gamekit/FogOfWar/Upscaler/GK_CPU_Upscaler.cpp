@@ -156,7 +156,7 @@ void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
     FMemory::Memcpy(NewBuffer, UpscaledBuffer.GetLayer(0), UpscaledBuffer.GetLayerSizeBytes());
 
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, UpscaledBuffer.Width(), UpscaledBuffer.Height());
-    GetFactionUpscaleTarget(Name)->UpdateTextureRegions(
+    GetFactionUpscaleTarget(Name, true)->UpdateTextureRegions(
         0,
         1,
         &UpdateRegion,

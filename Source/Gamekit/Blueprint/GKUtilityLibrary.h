@@ -77,4 +77,6 @@ public:
     UFUNCTION(BlueprintPure, Category = "Bounds")
     static void GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) ;
 
+    UFUNCTION(BlueprintCallable, Category = "Rendering")
+    static void ClearTexture(class UTexture *Texture, FLinearColor ClearColor);
 };

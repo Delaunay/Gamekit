@@ -216,7 +216,7 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
     check(IsInRenderingThread());
 
     ReserveRenderTargets(RHICmdList);
-    CopyInputTextureToInputTarget(RHICmdList);
+    CopyInputTextureToInputTarget(RHICmdList);;
 
     FUpscalingShader::FParameters PassParameters;
     PassParameters.OutputTexture = ComputeShaderOutput->GetRenderTargetItem().UAV;
@@ -239,4 +239,5 @@ void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmd
     );
 
     CopyOutputTargetToOutputTexture(RHICmdList);
+    bCachedParamsAreValid = false;
 }
