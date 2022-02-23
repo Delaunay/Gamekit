@@ -27,7 +27,7 @@ public:
     virtual void Stop() {}
 
 	//! Draw the fog of war for each factions
-    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture2D* Tex) {}
+    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture* Tex) {}
 
 	//! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);

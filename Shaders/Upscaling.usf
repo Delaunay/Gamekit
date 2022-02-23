@@ -11,10 +11,6 @@ uint  Multiplier;
 
 #define TEXEL_2x2(a, b, c, d) uint(uint(a) << 3 | (uint(b) << 2) | (uint(c) << 1) | (uint(d)))
 
-#define GET(xy, Size) ((xy.x) + (xy.y * Size.x))
-
-// #define IS_VISIBLE(X) (int(uint(uint(X) & uint(1 << 7) > 0)))
-
 #define IS_VISIBLE(X) (X > float(uint(1 << 6)) / float(1 << 7))
 
 // clang-format off
@@ -56,8 +52,8 @@ void MainComputeShader(uint3 GroupId      : SV_GroupID,
             int y = Multiplier * Pos.y + i;
             int z = PatId + i * 4 + j;
 
-            OutputTexture[uint2(x, y)] = InputTexture[ThreadId.xy];
-            OutputTexture[uint2(x, y)] = PatternMap[z] / 0xFF;
+            OutputTexture[uint2(x, y)] = float(PatternMap[z]) / float(0xFF);
+            // OutputTexture[uint2(x, y)] = InputTexture[Pos];
         }
     }
 }

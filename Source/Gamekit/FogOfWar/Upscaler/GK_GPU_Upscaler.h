@@ -13,7 +13,8 @@
 
 
 /*
- * Does not work yet
+ *
+ *  TODO: batch multi factions upscaling
  */
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKUpscalerStrategy
@@ -27,7 +28,7 @@ public:
     void Stop() override;
 
 	//! Draw the fog of war for each factions
-    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture2D *Tex);
+    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture *Tex);
 
 private:
     class FUpscalingDispatcher *UpscalingDispatcher;

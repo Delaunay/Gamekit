@@ -7,7 +7,7 @@
 struct FUpscalingParameter
 {
 public:
-    class UTexture2D *OriginalTexture;
+    class UTexture *OriginalTexture;
 	class UTexture2D *UpscaledTexture;
 	// class UCanvasRenderTarget2D *UpscaledTexture;
     FIntPoint         OriginalSize;

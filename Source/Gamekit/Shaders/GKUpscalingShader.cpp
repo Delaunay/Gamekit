@@ -1,5 +1,7 @@
 #include "Gamekit/Shaders/GKUpscalingShader.h"
 
+#include "Engine/CanvasRenderTarget2D.h"
+
 #include "GlobalShader.h"
 #include "ShaderParameterStruct.h"
 #include "RenderGraphUtils.h"
@@ -38,13 +40,11 @@ public:
         OutEnvironment.SetDefine(TEXT("THREADGROUPSIZE_Y"), NUM_THREADS_PER_GROUP_DIMENSION);
         OutEnvironment.SetDefine(TEXT("THREADGROUPSIZE_Z"), 1);
     }
-
 };
 
 // This will tell the engine to create the shader and where the shader entry point is.
 //                        ShaderType              ShaderPath             Shader function name    Type
 IMPLEMENT_GLOBAL_SHADER(FUpscalingShader, "/Gamekit/Upscaling.usf", "MainComputeShader", SF_Compute);
-
 
 FUpscalingDispatcher* FUpscalingDispatcher::instance = nullptr;
 
@@ -94,12 +94,24 @@ void FUpscalingDispatcher::UpdateParameters(FUpscalingParameter& Params)
     bCachedParamsAreValid = true;
 }
 
+
+FTextureRHIRef GetTextureRHI(UTexture* Texture)
+{
+    // UCanvasRenderTarget2D is not a UTexture2D
+    auto *Target2D = Cast<UCanvasRenderTarget2D>(Texture);
+    if (Target2D)
+    {
+        return Target2D->GetRenderTargetResource()->TextureRHI;
+    }
+
+    return Texture->GetResource()->TextureRHI;
+}
+
 void FUpscalingDispatcher::ReserveRenderTargets(FRHICommandListImmediate &RHICmdList)
 {
     auto ComputeShaderOutputDesc = FPooledRenderTargetDesc::Create2DDesc(
         CachedParams.OriginalSize * CachedParams.Multiplier,
-        // CachedParams.UpscaledTexture->GetRenderTargetResource()->TextureRHI->GetFormat(),
-        CachedParams.UpscaledTexture->GetResource()->TextureRHI->GetFormat(),
+        GetTextureRHI(CachedParams.UpscaledTexture)->GetFormat(),
         FClearValueBinding::Black,
         TexCreate_None,
         TexCreate_ShaderResource | TexCreate_UAV,
@@ -114,9 +126,9 @@ void FUpscalingDispatcher::ReserveRenderTargets(FRHICommandListImmediate &RHICmd
         TEXT("FUpscalingShader_Output_RenderTarget")
     );
 
-    auto ComputeShaderInputDesc =FPooledRenderTargetDesc::Create2DDesc(
+    auto ComputeShaderInputDesc = FPooledRenderTargetDesc::Create2DDesc(
         CachedParams.OriginalSize,
-        CachedParams.OriginalTexture->GetResource()->TextureRHI->GetFormat(),
+        GetTextureRHI(CachedParams.OriginalTexture)->GetFormat(),
         FClearValueBinding::Black,
         TexCreate_None,
         TexCreate_ShaderResource | TexCreate_UAV,
@@ -136,7 +148,7 @@ void FUpscalingDispatcher::CopyInputTextureToInputTarget(FRHICommandListImmediat
 {
     // Original Texture is about to be copied from
     RHICmdList.Transition(FRHITransitionInfo(
-        CachedParams.OriginalTexture->GetResource()->TextureRHI, 
+        GetTextureRHI(CachedParams.OriginalTexture), 
         ERHIAccess::Unknown,
         ERHIAccess::CopySrc
     ));
@@ -150,7 +162,7 @@ void FUpscalingDispatcher::CopyInputTextureToInputTarget(FRHICommandListImmediat
 
     // Copy the entire target
     RHICmdList.CopyTexture(
-        CachedParams.OriginalTexture->GetResource()->TextureRHI,
+        GetTextureRHI(CachedParams.OriginalTexture),
         ComputeShaderInput->GetRenderTargetItem().ShaderResourceTexture,
         FRHICopyTextureInfo()
     );
@@ -174,21 +186,20 @@ void FUpscalingDispatcher::CopyOutputTargetToOutputTexture(FRHICommandListImmedi
 
     // OutputTexture is about to be copied to
     RHICmdList.Transition(FRHITransitionInfo(
-        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+        GetTextureRHI(CachedParams.UpscaledTexture),
         ERHIAccess::Unknown,
         ERHIAccess::CopyDest)
     ); 
 
     RHICmdList.CopyTexture(
         ComputeShaderOutput->GetRenderTargetItem().ShaderResourceTexture,
-        // CachedParams.UpscaledTexture->GetRenderTargetResource()->TextureRHI,
-        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+         GetTextureRHI(CachedParams.UpscaledTexture),
         FRHICopyTextureInfo()
     );
 
     // Set output texture to graphic resource
     RHICmdList.Transition(FRHITransitionInfo(
-        CachedParams.UpscaledTexture->GetResource()->TextureRHI,
+        GetTextureRHI(CachedParams.UpscaledTexture),
         ERHIAccess::CopyDest,
         ERHIAccess::SRVGraphics
     ));
@@ -196,7 +207,7 @@ void FUpscalingDispatcher::CopyOutputTargetToOutputTexture(FRHICommandListImmedi
 
 void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate& RHICmdList, class FSceneRenderTargets& SceneContext)
 {
-    if (!(bCachedParamsAreValid && CachedParams.UpscaledTexture))
+    if (!(bCachedParamsAreValid && CachedParams.UpscaledTexture && CachedParams.OriginalTexture))
     {
         UE_LOG(LogGamekit, Warning, TEXT("Skip update, no valid input %d"), bCachedParamsAreValid);
         return;

@@ -2,7 +2,6 @@
 
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
 #define TEXEL_2x2(a, b, c, d) uint8(uint8(a) << 3 | (uint8(b) << 2) | (uint8(c) << 1) | (uint8(d)))
@@ -109,10 +108,10 @@ Texel2x2 UGKCPUUpscalerStrategy::GetTexel(TMatrix3D<uint8> const &Mat, FIntVecto
 }
 
 void UGKCPUUpscalerStrategy::Initialize()
-{ 
+{
     Super::Initialize();
-    bInitialized   = true;
-    
+    bInitialized = true;
+
     auto Grid           = FogOfWarVolume->Grid;
     auto MapSize        = FogOfWarVolume->MapSize;
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
@@ -122,8 +121,13 @@ void UGKCPUUpscalerStrategy::Initialize()
     UpscaledBuffer.Init(0, TileCount.X * Multiplier, TileCount.Y * Multiplier, 1);
 }
 
-void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture2D *Tex)
-{ 
+void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture *Tex)
+{
+    if (Original == nullptr)
+    {
+        return;
+    }
+
     const uint8 PAT_WIDTH = 4;
 
     for (int32 y = 0; y < Original->Height(); ++y)
@@ -133,7 +137,7 @@ void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
             // Fetch original texture pixel and its neighbors
             Texel2x2 Texel = GetTexel(*Original, FIntVector(x, y, 0));
 
-            uint8_t* UpscaledTexel = PatternMap + Texel * 16;
+            uint8_t *UpscaledTexel = PatternMap + Texel * 16;
 
             for (int32 i = 0; i < PAT_WIDTH; ++i)
             {
@@ -152,7 +156,6 @@ void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
     FMemory::Memcpy(NewBuffer, UpscaledBuffer.GetLayer(0), UpscaledBuffer.GetLayerSizeBytes());
 
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, UpscaledBuffer.Width(), UpscaledBuffer.Height());
-    /*
     GetFactionUpscaleTarget(Name)->UpdateTextureRegions(
         0,
         1,
@@ -161,8 +164,7 @@ void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
         sizeof(uint8),
         NewBuffer,
         [&](uint8 *Buf, const FUpdateTextureRegion2D *) {
-            delete[] Buf; 
+            delete[] Buf;
         }
     );
-    */
 }

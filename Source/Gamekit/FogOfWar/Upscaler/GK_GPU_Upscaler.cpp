@@ -21,7 +21,7 @@ void UGKGPUUpscalerStrategy::Initialize()
     UpscalingDispatcher->BeginRendering();
 }
 
-void UGKGPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture2D *Tex)
+void UGKGPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture *Tex)
 { 
     static uint32 CallCount = 0;
 

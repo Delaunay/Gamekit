@@ -21,10 +21,11 @@ enum class EGK_UpscalingMethod
 using Texel2x2 = uint8;
 
 /*
- * .. note:: 
-    
-      this is too slow, we need a GPU kernel to make the upscaling
-      more efficient
+ *  .. note:: 
+ *   
+ *     this is too slow, we need a GPU kernel to make the upscaling
+ *     more efficient, use for debug only
+ * 
  */
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKCPUUpscalerStrategy: public UGKUpscalerStrategy
@@ -38,7 +39,7 @@ public:
 	Texel2x2 GetTexel(TMatrix3D<uint8> const &Mat, FIntVector v);
 
 	//! Draw the fog of war for each factions
-        virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture2D *Tex);
+        virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture *Tex);
 
 private:
     TMatrix3D<uint8> UpscaledBuffer;
