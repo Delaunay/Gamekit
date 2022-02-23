@@ -486,6 +486,16 @@ void AGKFogOfWarVolume::UpdateExploration()
     }
 }
 
+UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name)
+{
+    if (Strategy)
+    {
+        return Strategy->GetFactionTexture(name);
+    }
+
+    return nullptr;
+}
+
 UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name)
 {
     if (Strategy && bUpscaling)

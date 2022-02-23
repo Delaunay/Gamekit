@@ -116,18 +116,52 @@ Draws ``n`` rays, draw triangles with a material.
 RayCast V3
 ~~~~~~~~~~
 
-WIP
+For each actors in vision range trace 4 rays; 2 Left/right rays, one that misses and one that hits
 
+.. |V3_12_Render| image:: /_static/FogOfWar_RayCast_V3_12Rays_RenderTexture.PNG
+
+.. |V3_12_View| image:: /_static/FogOfWar_RayCast_V3_12Rays.PNG
+
++------+---------------+----------------+
+| Rays |  Render       | Fog Texture    |
++------+---------------+----------------+
+|   12 | |V2_12_View|  | |V2_12_Render| |
++------+---------------+----------------+
 
 Discrete Tiles V1
 ~~~~~~~~~~~~~~~~~
 
-WIP
+Split the world is square tiles & draw the line of sight.
+
+.. |V1_Discrete_View| image:: /_static/FogOfWar_ShadowCasting_V1_noUpscaled.PNG
+
+.. |V1_Discrete_Render| image:: /_static/FogOfWar_ShadowCasting_V1_RenderTexture.PNG
+
+.. |V1_Discrete_Render_Upscaled| image:: /_static/FogOfWar_ShadowCasting_V1_Upscaled.PNG
+
++----------+---------------------+-------------------------------+
+| Upscaled |  Render             | Fog Texture                   |
++----------+---------------------+-------------------------------+
+|   No     | |V1_Discrete_View|  | |V1_Discrete_Render|          |
++----------+---------------------+-------------------------------+
+|   Yes    |                     | |V1_Discrete_Render_Upscaled| |
++----------+---------------------+-------------------------------+
 
 
 Comparison
 ~~~~~~~~~~
 
++-------------+---------------------+-------------------------------+
+| Strategy    |  Pros               | Cons                          |
++-------------+---------------------+-------------------------------+
+| RayCast V1  |                     | Slow                          |
++-------------+---------------------+-------------------------------+
+| RayCast V2  | Less Rays than V1   | 2x Jittery                    |
++-------------+---------------------+-------------------------------+
+| RayCast V3  | Less Rays than V1   | 2x Jittery                    |
++-------------+---------------------+-------------------------------+
+| Discrete V1 | Fast                | 1x Jittery                    |
++-------------+---------------------+-------------------------------+
 
 
 Exploration

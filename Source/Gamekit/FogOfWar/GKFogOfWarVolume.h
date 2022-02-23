@@ -61,6 +61,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UTexture *GetFactionTexture(FName name);
 
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UTexture *GetOriginalFactionTexture(FName name);
+
     //! Returns the exploration render target associated with the faction name
     UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
     class UCanvasRenderTarget2D* GetFactionExplorationRenderTarget(FName name, bool CreateRenderTarget = true);
