@@ -234,6 +234,8 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVecto
     OutMax = Corners[0];
     OutMin = Corners[0];
 
+
+
     auto  Dir      = Location;
     float AngleMax = GET_YAW(Dir, OutMax);
     float AngleMin = GET_YAW(Dir, OutMin);

@@ -1,6 +1,11 @@
 Abilities
 =========
 
+.. warning:::
+
+   The gameplay ability system is highly experimental
+
+
 Relevant classes:
 
 * :class:`UGKGameplayAbility`: basic Gameplay Ability for skills and items, implements a few top down casting options

@@ -110,6 +110,8 @@ Texel2x2 UGKCPUUpscalerStrategy::GetTexel(TMatrix3D<uint8> const &Mat, FIntVecto
 void UGKCPUUpscalerStrategy::Initialize()
 {
     Super::Initialize();
+    Multiplier   = 2;
+    bFixedSize   = false;
     bInitialized = true;
 
     auto Grid           = FogOfWarVolume->Grid;
@@ -121,12 +123,16 @@ void UGKCPUUpscalerStrategy::Initialize()
     UpscaledBuffer.Init(0, TileCount.X * Multiplier, TileCount.Y * Multiplier, 1);
 }
 
-void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture *Tex)
+void UGKCPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
 {
-    if (Original == nullptr)
+    if (FactionFog->Buffer == nullptr)
     {
         return;
     }
+
+    auto Upscaled              = GetFactionTransformTarget(FactionFog->Name, true);
+    FactionFog->UpScaledVision = Upscaled;
+    auto Original = static_cast<TMatrix3D<uint8>*>(FactionFog->Buffer);
 
     const uint8 PAT_WIDTH = 4;
 
@@ -156,7 +162,7 @@ void UGKCPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Origina
     FMemory::Memcpy(NewBuffer, UpscaledBuffer.GetLayer(0), UpscaledBuffer.GetLayerSizeBytes());
 
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, UpscaledBuffer.Width(), UpscaledBuffer.Height());
-    GetFactionUpscaleTarget(Name, true)->UpdateTextureRegions(
+    Upscaled->UpdateTextureRegions(
         0,
         1,
         &UpdateRegion,

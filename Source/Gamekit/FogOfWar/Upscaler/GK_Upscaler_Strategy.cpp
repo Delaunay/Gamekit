@@ -6,21 +6,25 @@
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 
-UGKUpscalerStrategy::UGKUpscalerStrategy() { 
+UGKTransformerStrategy::UGKTransformerStrategy()
+{ 
     TextureSize = FIntVector::ZeroValue; 
     bInitialized = false;
     Multiplier   = 2;
 }
 
-void UGKUpscalerStrategy::Initialize()
+void UGKTransformerStrategy::Initialize()
 { 
     FogOfWarVolume = Cast<AGKFogOfWarVolume>(GetOwner());
+    bFixedSize     = FogOfWarVolume->bFixedSize;
+    Multiplier     = FogOfWarVolume->Multiplier;
+    FixedSize      = FogOfWarVolume->FixedSize;
 }
 
-UpscaledTextureType *UGKUpscalerStrategy::GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget)
+UTexture2D *UGKTransformerStrategyTexture2D::GetFactionTransformTarget(FName name, bool bCreateRenderTarget)
 {
-    UpscaledTextureType **Result  = UpscaledFogFactions.Find(name);
-    UpscaledTextureType * Texture = nullptr;
+    UTexture2D **Result  = TransformedTarget.Find(name);
+    UTexture2D * Texture = nullptr;
 
     if (Result != nullptr)
     {
@@ -28,36 +32,23 @@ UpscaledTextureType *UGKUpscalerStrategy::GetFactionUpscaleTarget(FName name, bo
     }
     else if (bCreateRenderTarget)
     {
-        UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
-        Texture = CreateUpscaleTarget();
+        UE_LOG(LogGamekit, Log, TEXT("Creating a Transform Texture for faction %s"), *name.ToString());
+        Texture = CreateTransformTarget();
 
-        UpscaledFogFactions.Add(name, Texture);
+        TransformedTarget.Add(name, Texture);
     }
 
     return Texture;
 }
 
-UpscaledTextureType *UGKUpscalerStrategy::CreateUpscaleTarget()
+UTexture2D *UGKTransformerStrategyTexture2D::CreateTransformTarget()
 {
     // FIXME: why is the strategy not initialized alread
     Initialize();
 
-    /*
-    auto Texture = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-        GetWorld(),
-        UCanvasRenderTarget2D::StaticClass(),
-        TextureSize.X * Multiplier, 
-        TextureSize.Y * Multiplier
-    );
-
-    // Texture->InitCustomFormat();
-    return Texture;
-    */
-
-    //*
     auto Texture = UTexture2D::CreateTransient(
-        TextureSize.X * Multiplier, 
-        TextureSize.Y * Multiplier, 
+        UpscaledTextureSize().X, 
+        UpscaledTextureSize().Y, 
         EPixelFormat::PF_G8
     );
 
@@ -69,13 +60,52 @@ UpscaledTextureType *UGKUpscalerStrategy::CreateUpscaleTarget()
     Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
     Texture->UpdateResource();
 
-    // UGKUtilityLibrary::ClearTexture(Texture, FLinearColor::Black);
+    return Texture;
+}
+
+class UTexture *UGKTransformerStrategyTexture2D::GetFactionTexture(FName name, bool CreateRenderTarget)
+{
+    return GetFactionTransformTarget(name, CreateRenderTarget);
+}
+
+UCanvasRenderTarget2D *UGKTransformerStrategyCanvas::GetFactionTransformTarget(FName name, bool bCreateRenderTarget)
+{
+    UCanvasRenderTarget2D **Result  = TransformedTarget.Find(name);
+    UCanvasRenderTarget2D * Texture = nullptr;
+
+    if (Result != nullptr)
+    {
+        Texture = Result[0];
+    }
+    else if (bCreateRenderTarget)
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
+        Texture = CreateTransformTarget();
+
+        TransformedTarget.Add(name, Texture);
+    }
 
     return Texture;
-    //*/
 }
 
-class UTexture *UGKUpscalerStrategy::GetFactionTexture(FName name, bool CreateRenderTarget)
+UCanvasRenderTarget2D *UGKTransformerStrategyCanvas::CreateTransformTarget()
 {
-    return GetFactionUpscaleTarget(name, CreateRenderTarget);
+    // FIXME: why is the strategy not initialized alread
+    Initialize();
+
+    auto Texture = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
+        GetWorld(),
+        UCanvasRenderTarget2D::StaticClass(),
+        UpscaledTextureSize().X,
+        UpscaledTextureSize().Y
+    );
+
+    return Texture;
 }
+
+class UTexture *UGKTransformerStrategyCanvas::GetFactionTexture(FName name, bool CreateRenderTarget)
+{
+    return GetFactionTransformTarget(name, CreateRenderTarget);
+}
+
+

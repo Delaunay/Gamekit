@@ -44,7 +44,7 @@ public:
     FName Faction;
 
     //! Returns the render target associated with its faction
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UTexture* GetVisionTexture();
 
     //! Returns the fog of war volume this component is associated to
@@ -52,12 +52,15 @@ public:
     class AGKFogOfWarVolume* GetFogOfWarVolume();
 
     //! Returns the post process material the actor should use for its camera
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    class UMaterialInterface* GetFogOfWarPostprocessMaterial(bool CreateRenderTarget = true);
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UMaterialInterface* GetFogOfWarPostprocessMaterial();
+
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    void SetCameraPostprocessMaterial(class UCameraComponent* CameraComponent);
 
     //! Sets the texture parameters FoWView & FoWExploration
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic* Material, bool CreateRenderTarget = true);
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic* Material);
 
     //! Line Tickness to draw sights, smaller tickness is more precise but requires more rays
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)

@@ -8,7 +8,9 @@
 void UGKGPUUpscalerStrategy::Initialize()
 { 
     Super::Initialize();
-    bInitialized   = true;
+    Multiplier   = 2;
+    bFixedSize   = false;
+    bInitialized = true;
     
     auto Grid           = FogOfWarVolume->Grid;
     auto MapSize        = FogOfWarVolume->MapSize;
@@ -21,13 +23,16 @@ void UGKGPUUpscalerStrategy::Initialize()
     UpscalingDispatcher->BeginRendering();
 }
 
-void UGKGPUUpscalerStrategy::Upscale(FName Name, TMatrix3D<uint8> const *Original, UTexture *Tex)
+void UGKGPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
 { 
     static uint32 CallCount = 0;
 
+    auto Upscaled = GetFactionTransformTarget(FactionFog->Name, true);
+    FactionFog->UpScaledVision = Upscaled;
+
     FUpscalingParameter Params;
-    Params.OriginalTexture = Tex;
-    Params.UpscaledTexture = GetFactionUpscaleTarget(Name, true);
+    Params.OriginalTexture = FactionFog->Vision;
+    Params.UpscaledTexture = Upscaled;
     Params.OriginalSize    = FIntPoint(TextureSize.X, TextureSize.Y);
     Params.TimeStamp       = ++CallCount;
     Params.Multiplier      = Multiplier;

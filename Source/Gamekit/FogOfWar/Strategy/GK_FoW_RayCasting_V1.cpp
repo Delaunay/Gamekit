@@ -1,6 +1,7 @@
 
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
@@ -34,26 +35,16 @@ void UGKRayCasting_Line::Initialize()
     FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X, MapSize.Y) * TexScale);
 }
 
-void UGKRayCasting_Line::RegisterActorComponent(class UGKFogOfWarComponent *c) {}
-
-void UGKRayCasting_Line::UnregisterActorComponent(class UGKFogOfWarComponent *c) {}
-
-void UGKRayCasting_Line::DrawFactionFog()
+void UGKRayCasting_Line::DrawFactionFog(FGKFactionFog *FactionFog)
 {
+    auto Texture       = GetFactionRenderTarget(FactionFog->Name);
 
-    for (auto &RenderTargets: FogFactions)
-    {
-        UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), RenderTargets.Value);
-    }
+    FactionFog->Vision = Texture;
+    UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), Texture);
 
-    for (auto &Component: FogOfWarVolume->ActorComponents)
+    for (auto &Component: FactionFog->Allies)
     {
         DrawLineOfSight(Component);
-    }
-
-    for (auto &RenderTargets: FogFactions)
-    {
-        FogOfWarVolume->TextureReady(RenderTargets.Key);
     }
 }
 
@@ -85,23 +76,7 @@ void UGKRayCasting_Line::DrawLineOfSight(UGKFogOfWarComponent *c)
         return;
     }
 
-    AActor *actor = c->GetOwner();
-    FVector loc   = actor->GetActorLocation();
-
-    if (FogOfWarVolume->bDebug)
-    {
-        UKismetSystemLibrary::DrawDebugCircle(GetWorld(),          // World
-                                              loc,                 // Center
-                                              c->Radius,           // Radius
-                                              c->TraceCount,       // NumSegments
-                                              FLinearColor::White, // LineColor
-                                              0.f,                 // LifeTime
-                                              5.f,                 // Tickness
-                                              FVector(1, 0, 0),    // YAxis
-                                              FVector(0, 1, 0),    // ZAxis
-                                              true                 // DrawAxes
-        );
-    }
+    DebugDrawComponent(c);
 
     if (c->UnobstructedVision)
     {

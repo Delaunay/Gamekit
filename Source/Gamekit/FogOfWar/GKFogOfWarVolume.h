@@ -5,52 +5,61 @@
 #include "Gamekit.h"
 
 #include "CoreMinimal.h"
-#include "Runtime/Core/Public/HAL/ThreadingBase.h"
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Runtime/Core/Public/HAL/ThreadingBase.h"
 
 #include "Gamekit/Grid/GKGrid.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 
 #include "GKFogOfWarVolume.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
+struct FGKFactionFog
+{
+    FGKFactionFog() { 
+        Buffer         = nullptr;
+        Exploration    = nullptr;
+        Vision         = nullptr;
+        UpScaledVision = nullptr;
+        VisibleEnemies.Reserve(128);
+        Allies.Reserve(128);
+    }
+
+    FName           Name;
+    class UTexture *Exploration;
+    class UTexture *Vision;
+    class UTexture *UpScaledVision;
+    bool            bDiscrete;
+
+    TArray<class UGKFogOfWarComponent *> VisibleEnemies;
+    TArray<class UGKFogOfWarComponent *> Allies;
+
+    void *Buffer;
+};
 
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
  *
- * AGKFogOfWarVolume sets a timers that runs every 1/30 seconds, configurable through AGKFogOfWarVolume::FramePerSeconds
- * which computes the vision from each factions
- *
  * \rst
- * The fog of war can be rendered to the screen using two methods
- *
- * #. **PostProcessing**: which requires you do add the post processing step to all the camera components or add a global post-process volume.
- *    Using a post process material on CameraComponents is recommended as it gives the most flexibility.
- *
- * #. **DecalComponent** which applies a decal material on your entire map.
- *    This approach is not recommended. It is used by the :class:`AGKFogOfWarVolume` to display the fog in editor mode
- *
- * .. warning::
- *
- *    It requires a custom collision channel, set :member:`AGKFogOfWarVolume::FogOfWarCollisionChannel`
- *
+ * 
  * .. note::
  *
- *    The fog of war will darken your screen, it is advised to disable UE4 default auto exposure using a Post Process Volume and
- *    enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness to 1
+ *    The fog of war will darken your screen, it is advised to disable UE4 default auto exposure using a Post Process
+ *    Volume and enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness to 1
  *
  * \endrst
- * 
- *  TODO: create a radar version that follows the actor.
- *  TODO: add a upscale layer
- *  The actor will have a fog that follows him.
+ *
+ *  TODO: create a radar version that follows the actor. The actor will have a fog that follows him.
  */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKFogOfWarVolume : public AVolume
+class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
     AGKFogOfWarVolume();
@@ -61,74 +70,129 @@ public:
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UTexture *GetFactionTexture(FName name);
 
+    //! Returns the vision texture before upscaling
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UTexture *GetOriginalFactionTexture(FName name);
 
     //! Returns the exploration render target associated with the faction name
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    class UCanvasRenderTarget2D* GetFactionExplorationRenderTarget(FName name, bool CreateRenderTarget = true);
-
-    //! Draw the fog of war for each factions
-    void DrawFactionFog();
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UTexture *GetFactionExplorationTexture(FName name);
 
     //! Sets the texture parameters FoWView & FoWExploration
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    void SetFogOfWarMaterialParameters(FName name, class UMaterialInstanceDynamic* Material, bool CreateRenderTarget = false);
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    void SetFogOfWarMaterialParameters(FName name, class UMaterialInstanceDynamic *Material);
 
     //! Returns the post process material the actor should use for its camera
-    UFUNCTION(BlueprintCallable, Category = FogOfWar, meta = (AutoCreateRefTerm = "CreateRenderTarget"))
-    class UMaterialInterface* GetFogOfWarPostprocessMaterial(FName name, bool CreateRenderTarget = false);
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    class UMaterialInterface *GetFogOfWarPostprocessMaterial(FName name);
+
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    TArray<class UGKFogOfWarComponent *> const& GetBlocking() const { return Blocking;  }
 
     // Properties
     // ----------
+
+    //! Represents how often the fog is updated when AsyncDraw is true
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
+    float FramePerSeconds;
+
+    //! Enable Async drawing 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
+    bool bAsyncDraw;
+
+    //! class used to draw the vision
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+    TSubclassOf<UGKFogOfWarStrategy> VisionDrawingStrategy;
+
+    //! Used to control the size of the underlying texture given the terrain size
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
+    float TextureScale;
 
     //! Collision Channel used to draw the line of sight
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     TEnumAsByte<ECollisionChannel> FogOfWarCollisionChannel;
 
-    //! If true exploration texture will be created
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    bool EnableExploration;
-
-    //! Represents how often the fog is updated
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    float FramePerSeconds;
-
     //! Material used to draw unobstructed vision
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
-    class UMaterialInterface* UnobstructedVisionMaterial;
+    class UMaterialInterface *UnobstructedVisionMaterial;
 
     //! Material used to draw unobstructed vision with Triangles
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     class UMaterialInterface *TrianglesMaterial;
 
     //! Margin for Actor Rays
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast|V3")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     float Margin;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete|V1")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
     FGKGrid Grid;
 
-    //! Base Material used to draw the fog of war in a post process step,
-    //! it uses the texture parameters FoWView & FoWExploration
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UMaterialInterface* BasePostProcessMaterial;
+    //! Class used to perform the upscaling
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    TSubclassOf<UGKTransformerStrategy> UpscalerClass;
 
-    //! Maps the faction to their fog texture
-    //! This can be manually set or they will be automatically generated at runtime
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    TMap<FName, class UCanvasRenderTarget2D*> Explorations;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    bool bUpscaling;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    class UMaterialInterface *UpscaleMaterial;
+
+    //! It is the recommended way to set the upscale size
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    FIntVector FixedSize;
+
+    //! Upscale multipler, be careful not go beyond GPU limits
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    int Multiplier;
+
+    //! Use fixed size for the upscaling
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+    bool bFixedSize;
+
+    //! class used to generate the exploration
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+    TSubclassOf<UGKTransformerStrategy> ExplorationClass;
+
+    //! If true exploration texture will be created
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+    bool bExploration;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+    bool bDebug;
 
     //! Use Decal FoWDecal rendering
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
     bool UseFoWDecalRendering;
 
     //! Faction that is displayed by the client
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
     FName PreviewFaction;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UDecalComponent* PreviewDecalComponent;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+    class UDecalComponent *PreviewDecalComponent;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+    TMap<FName, class UCanvasRenderTarget2D *> DebugDumpVision;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+    TMap<FName, class UCanvasRenderTarget2D *> DebugDumpVisionUpscaled;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+    TMap<FName, class UCanvasRenderTarget2D *> DebugDumpExploration;
+
+    //! Parameter collection used to talk to shader/materials
+    //! The volume sets the following parameters
+    //!     WithExploration
+    //!     FoWEnabled
+    //!     MapSize
+    //!     TextureSize
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Rendering")
+    class UMaterialParameterCollection *FogMaterialParameters;
+
+    //! Base Material used to draw the fog of war in a post process step,
+    //! it uses the texture parameters FoWView & FoWExploration
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Rendering")
+    class UMaterialInterface *BasePostProcessMaterial;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     TArray<AActor *> ActorsToIgnore;
@@ -138,19 +202,11 @@ public:
     //! This only pause the timer so the fog of war is not updated anymore
     //! It will also set a dynamic material parameter so material can disable the post processing
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    bool bFoWEnabled;
+    bool bFogOfWarEnabled;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    int FogVersion;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    bool bDebug;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Experimental")
-    bool bUpscaling;
-
-    EDrawDebugTrace::Type DebugTrace() { 
-        if (bDebug) 
+    EDrawDebugTrace::Type DebugTrace()
+    {
+        if (bDebug)
             return EDrawDebugTrace::ForOneFrame;
         return EDrawDebugTrace::None;
     }
@@ -160,25 +216,13 @@ public:
     void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 protected:
-    void GetBrushSizes(FVector2D& TextureSize, FVector& MapSize);
+    //! Draw the fog of war for each factions
+    void DrawFactionFog();
+
+    void GetBrushSizes(FVector2D &TextureSize, FVector &MapSize);
 
     //! Updates the Texture Size, given the size covered by the Fog of War volume
     void UpdateVolumeSizes();
-
-    //! Clear all the exploration textures
-    void ClearExploration();
-
-    //! Add current sight to exploration textures
-    void UpdateExploration();
-
-    //! Parameter collection used to talk to shader/materials
-    //! The volume sets the following parameters
-    //!     WithExploration
-    //!     FoWEnabled
-    //!     MapSize
-    //!     TextureSize
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    class UMaterialParameterCollection* FogMaterialParameters;
 
     void SetMatrialParams();
     void SetMaterialParam_MapSize(FVector Size);
@@ -186,108 +230,105 @@ protected:
     void SetMaterialParam_FoWEnabled(int Enabled);
     void SetMaterialParam_Exploration(int Enabled);
 
-        //! Returns the material parameter collection used to configure the Fog of War
+    //! Returns the material parameter collection used to configure the Fog of War
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    class UMaterialParameterCollection* GetMaterialParameterCollection();
+    class UMaterialParameterCollection *GetMaterialParameterCollection();
+
+    void DumpToDebugRenderTarget();
 
 public:
-    //! Used to controlled the size of the underlying texture given the terrain size
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
-    float TextureScale;
-
     //! Size of the Volume box
     UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = FogOfWar)
-    FVector MapSize; 
+    FVector MapSize;
 
     FVector GetMapSize() const { return MapSize; }
 
-    void SetTextureSize(FVector2D Size) {
+    void SetTextureSize(FVector2D Size)
+    {
         TextureSize = Size;
         SetMaterialParam_TextureSize(Size);
     }
 
 public:
-    //! Actor Component that does the actual vision computation
-    UPROPERTY(Transient)
-    class UGKFogOfWarStrategy* Strategy;
 
-    UPROPERTY(Transient)
-    class UGKUpscalerStrategy *Upscaler;
+    // Helpers
+    // -----------------------------
 
-    private:
-    // Private because they do not lock the mutex
-    // UpdateVolumeSizes does that for them
-    void InitializeStrategy_Line();
-    void InitializeStrategy_Triangle();
-    void InitializeStrategy_Less();
-    void InitializeStrategy_ShadowCasting();
+    //! Returns the texture coordinate given world coordinates
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    inline FVector2D GetTextureCoordinate(FVector loc)
+    {
+        return FVector2D((loc.X / MapSize.X + 0.5) * TextureSize.X, (0.5 - loc.Y / MapSize.Y) * TextureSize.Y);
+    }
+
+    FIntVector ToGridTexture(FIntVector Pos)
+    {
+        return FIntVector(TextureSize.Y / 2 - Pos.Y, Pos.X + TextureSize.X / 2, Pos.Z);
+    }
+
+    FIntVector FromTextureToGrid(FIntVector Pos)
+    {
+        return FIntVector(Pos.X - TextureSize.X / 2, TextureSize.Y / 2 - Pos.Y, Pos.Z);
+    }
 
 private:
     void InitDecalRendering();
-    void InitializeStrategy();
 
-    TMap<FName, int>  NameToIndex;
+    FCriticalSection Mutex;           // Mutex to sync adding/removing components with the fog compute
+    FTimerHandle     FogComputeTimer; // Compute the fog every few frames (or so)
 
-    FCriticalSection Mutex;             // Mutex to sync adding/removing components with the fog compute
-    FTimerHandle     FogComputeTimer;   // Compute the fog every few frames (or so)
+    FVector2D TextureSize; // == MapSize * TextureScale
 
-    FVector2D        TextureSize;       // == MapSize * TextureScale
-
-    TArray<class UGKFogOfWarComponent*> ActorComponents;
+    TArray<class UGKFogOfWarComponent *> ActorComponents;
 
     //! Post Processing materials
-    TMap<FName, class UMaterialInterface*> PostProcessMaterials;
+    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
 
     //! Decal Material used to draw in the editor
-    class UMaterialInstanceDynamic* DecalMaterialInstance;
+    class UMaterialInstanceDynamic *DecalMaterialInstance;
 
+public:
+    // Editor Stuff
+    // -------------
+    void PostEditChangeProperty(struct FPropertyChangedEvent &e);
+
+public:
     // TODO: Remove this
     friend class UGKFogOfWarStrategy;
     friend class UGKShadowCasting;
     friend class UGKRayCasting_Line;
     friend class UGKRayCasting_Triangles;
 
- public:
-
+private:
     //! Register a new actor to the fog of war volume
-    void RegisterActorComponent(class UGKFogOfWarComponent* c);
+    void RegisterActorComponent(class UGKFogOfWarComponent *c);
 
     //! Unregister the actor to the fog of war volume
-    void UnregisterActorComponent(class UGKFogOfWarComponent* c);
+    void UnregisterActorComponent(class UGKFogOfWarComponent *c);
 
-    // Helpers
-    // -----------------------------
-   
-    //! Returns the texture coordinate given world coordinates
-    UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    inline FVector2D GetTextureCoordinate(FVector loc) {
-        return FVector2D(
-            (loc.X / MapSize.X + 0.5) * TextureSize.X,
-            (0.5 - loc.Y / MapSize.Y) * TextureSize.Y
-        );
-    }
+    friend class UGKFogOfWarComponent;
 
-    FIntVector ToGridTexture(FIntVector Pos) {
-        return FIntVector(
-            TextureSize.Y / 2 - Pos.Y, 
-            Pos.X + TextureSize.X / 2, 
-            Pos.Z
-        );
-    }
+    FGKFactionFog &GetFactionFogs(FName Faction);
 
-    FIntVector FromTextureToGrid(FIntVector Pos) {
-        return FIntVector(
-            Pos.X -  TextureSize.X / 2,
-            TextureSize.Y / 2 - Pos.Y,
-            Pos.Z
-        );
-    }
+    TMap<FName, FGKFactionFog> FactionFogs;
 
-public:
-    // Editor Stuff
-    // -------------
-    void PostEditChangeProperty(struct FPropertyChangedEvent& e);
+    TArray<class UGKFogOfWarComponent *> Blocking; 
 
-public:
-    void TextureReady(FName Name);
+protected:
+    void InitializeStrategy();
+    void InitializeUpscaler();
+    void InitializeExploration();
+
+    //! Actor Component that does the actual vision computation
+    UPROPERTY(Transient)
+    class UGKFogOfWarStrategy *Strategy;
+
+    UPROPERTY(Transient)
+    class UGKTransformerStrategy *Upscaler;
+
+    UPROPERTY(Transient)
+    class UGKTransformerStrategy *Exploration;
+
+    bool bReady;
 };
+ 

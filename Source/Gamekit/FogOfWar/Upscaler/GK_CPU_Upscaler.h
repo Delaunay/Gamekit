@@ -28,7 +28,7 @@ using Texel2x2 = uint8;
  * 
  */
 UCLASS(BlueprintType)
-class GAMEKIT_API UGKCPUUpscalerStrategy: public UGKUpscalerStrategy
+class GAMEKIT_API UGKCPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
 {
 	GENERATED_BODY()
 		 
@@ -38,8 +38,7 @@ public:
 
 	Texel2x2 GetTexel(TMatrix3D<uint8> const &Mat, FIntVector v);
 
-	//! Draw the fog of war for each factions
-        virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture *Tex);
+    void Transform(struct FGKFactionFog *FactionFog);
 
 private:
     TMatrix3D<uint8> UpscaledBuffer;

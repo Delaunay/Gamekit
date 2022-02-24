@@ -3,6 +3,8 @@
 #include "GKFogOfWarComponent.h"
 #include "GKFogOfWarVolume.h"
 
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
@@ -31,14 +33,14 @@ void UGKFogOfWarComponent::BeginDestroy() {
     Super::BeginDestroy();
 }
 
-UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial(bool CreateRenderTarget) {
+UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial() {
     auto vol = GetFogOfWarVolume();
 
     if (vol == nullptr) {
         return nullptr;
     }
 
-    return vol->GetFogOfWarPostprocessMaterial(Faction, CreateRenderTarget);
+    return vol->GetFogOfWarPostprocessMaterial(Faction);
 }
 
 // Called when the game starts
@@ -71,14 +73,14 @@ void UGKFogOfWarComponent::BeginPlay()
     vol->RegisterActorComponent(this);
 }
 
-void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic* Material, bool CreateRenderTarget) {
+void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic* Material) {
     auto FoWVolume = GetFogOfWarVolume();
 
     if (FoWVolume == nullptr) {
         return;
     }
 
-    return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material, CreateRenderTarget);
+    return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material);
 }
 
 void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent* Primitive, ECollisionChannel Channel) {
@@ -117,4 +119,8 @@ AGKFogOfWarVolume* UGKFogOfWarComponent::GetFogOfWarVolume() {
         FogOfWarVolume = Cast<AGKFogOfWarVolume>(OutActors[0]);
     }
     return FogOfWarVolume;
+}
+
+void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *CameraComponent) { 
+    UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
 }

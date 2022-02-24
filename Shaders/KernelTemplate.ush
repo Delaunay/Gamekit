@@ -1,0 +1,66 @@
+
+// Define the preprocessor `KERNEL_DEFINE` before calling this
+float3 FUNCTION_NAME_FLOAT(Texture2D Tex, float2 UV, float Distance) {
+    float sum = 0;
+    float3 acc = 0;
+
+    float n = float(KERNEL_SIZE / 2);
+    float s = KERNEL_SIZE - 1;
+
+    for (int j = 0; j < KERNEL_SIZE; j++){
+        for(int i = 0; i < KERNEL_SIZE; i++) {
+            float x = KERNEL_OFFSET[i];
+            float y = KERNEL_OFFSET[s - j];
+
+            float w = KERNEL_DEFINE[j * KERNEL_SIZE + i];
+
+            sum += w;
+            acc += Texture2DSample(
+                Tex,
+                TexSampler,
+                UV + float2(x, y) * Distance
+            ) * w;
+        }
+    }
+
+#ifdef NO_DIVIDE
+    return acc;
+#else
+    return acc / sum;
+#endif
+}
+
+float3 FUNCTION_NAME_INT(Texture2D Tex, float2 UV, int Distance) {
+    float sum = 0;
+    float3 acc = 0;
+
+    int3 Pos = int3(int(UV.x), int(UV.y), 0);
+    float n = float(KERNEL_SIZE / 2);
+    float s = KERNEL_SIZE - 1;
+
+    if (Distance <= 0) {
+        Distance = 1;
+    }
+
+    for (int j = 0; j < KERNEL_SIZE; j++){
+        for(int i = 0; i < KERNEL_SIZE; i++) {
+            int x = KERNEL_OFFSET[i];
+            int y = KERNEL_OFFSET[s - j];
+
+            float w = KERNEL_DEFINE[j * KERNEL_SIZE + i];
+
+            sum += w;
+            acc += Tex.Load(Pos + int3(x, y, 0) * Distance) * w;
+        }
+    }
+
+
+#ifdef NO_DIVIDE
+    return acc;
+#else
+    return acc / sum;
+#endif
+}
+
+
+

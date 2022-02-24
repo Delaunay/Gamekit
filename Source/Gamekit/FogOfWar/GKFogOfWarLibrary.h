@@ -16,4 +16,8 @@ class GAMEKIT_API UGKFogOfWarLibrary : public UBlueprintFunctionLibrary
 	
 public:
 	static void ConvertToObjectType(ECollisionChannel CollisionChannel, TArray<TEnumAsByte<EObjectTypeQuery>>& ObjectTypes);
+
+	static void SetCameraPostprocessMaterial(class AGKFogOfWarVolume *Volume,
+                                             FName                    Faction,
+                                             class UCameraComponent * CameraComponent);
 };

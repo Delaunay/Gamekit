@@ -80,7 +80,7 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 public:
 	void Initialize() override;
 
-	void DrawFactionFog() override;
+	void DrawFactionFog(struct FGKFactionFog *FactionFog) override;
 
 	void Stop() override;
 
@@ -96,10 +96,6 @@ public:
 	class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
 
 	class UTexture2D *CreateTexture2D();
-
-	TMatrix3D<uint8> const *GetFactionTextureCPU(FName name) const override { 
-		return &Buffer; 
-	}
 
 private:
     void Compute(FIntVector origin, int rangeLimit, FGKPoints *Points);

@@ -15,34 +15,76 @@
 // #define UpscaledTextureType UCanvasRenderTarget2D
 
 UCLASS(BlueprintType)
-class GAMEKIT_API UGKUpscalerStrategy: public UActorComponent
+class GAMEKIT_API UGKTransformerStrategy: public UActorComponent
 {
-	GENERATED_BODY()
-		 
+    GENERATED_BODY()
+
 public:
-	UGKUpscalerStrategy();
+    UGKTransformerStrategy();
 
     virtual void Initialize();
 
     virtual void Stop() {}
 
-	//! Draw the fog of war for each factions
-    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture* Tex) {}
+    virtual void Transform(struct FGKFactionFog *FactionFog) {}
 
-	//! Retrieve the Texture used to draw the fog of war for a given faction
-    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
+    //! Retrieve the Texture used to draw the fog of war for a given faction
+    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { 
+        return nullptr;
+    }
+
+    FORCEINLINE FIntVector UpscaledTextureSize() const { 
+        if (bFixedSize)
+            return FixedSize;
+        return TextureSize * Multiplier;
+    }
+
+    void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
 
 protected:
-	class UpscaledTextureType *GetFactionUpscaleTarget(FName name, bool bCreateRenderTarget = true);
-
-    class UpscaledTextureType *CreateUpscaleTarget();
-
-    UPROPERTY(Transient)
-    TMap<FName, class UTexture2D *> UpscaledFogFactions;
-
+    FIntVector               FixedSize;
+    bool                     bFixedSize;  
     FIntVector               TextureSize;
     uint8                    Multiplier;
     bool                     bInitialized;
     class AGKFogOfWarVolume *FogOfWarVolume;
     FUpdateTextureRegion2D   UpdateRegion;
+};
+
+
+UCLASS(BlueprintType)
+class GAMEKIT_API UGKTransformerStrategyTexture2D: public UGKTransformerStrategy
+{
+    GENERATED_BODY()
+
+    public:
+    //! Retrieve the Texture used to draw the fog of war for a given faction
+    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
+
+    protected:
+    class UTexture2D *GetFactionTransformTarget(FName name, bool bCreateRenderTarget = true);
+
+    class UTexture2D *CreateTransformTarget();
+
+    UPROPERTY(Transient)
+    TMap<FName, class UTexture2D *> TransformedTarget;
+};
+
+
+UCLASS(BlueprintType)
+class GAMEKIT_API UGKTransformerStrategyCanvas: public UGKTransformerStrategy
+{
+    GENERATED_BODY()
+
+    public:
+    //! Retrieve the Texture used to draw the fog of war for a given faction
+    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
+
+    protected:
+    class UCanvasRenderTarget2D *GetFactionTransformTarget(FName name, bool bCreateRenderTarget = true);
+
+    class UCanvasRenderTarget2D *CreateTransformTarget();
+
+    UPROPERTY(Transient)
+    TMap<FName, class UCanvasRenderTarget2D *> TransformedTarget;
 };

@@ -1,0 +1,91 @@
+#pragma once
+
+#include "/Gamekit/KernelWeights.ush"
+
+
+#ifndef TEX_SAMPLER
+#define TEX_SAMPLER
+SamplerState TexSampler;
+#endif
+
+
+#define FUNCTION_NAME_FLOAT ComputeGauss_3x3Float
+#define FUNCTION_NAME_INT ComputeGauss_3x3Int
+#define KERNEL_OFFSET Gauss_3x3_Offset
+#define KERNEL_DEFINE Gauss_3x3
+#define KERNEL_SIZE 3
+
+#include "/Gamekit/KernelTemplate.ush"
+
+#undef FUNCTION_NAME_FLOAT
+#undef FUNCTION_NAME_INT
+#undef KERNEL_OFFSET
+#undef KERNEL_DEFINE
+#undef KERNEL_SIZE
+
+
+#define FUNCTION_NAME_FLOAT ComputeGauss_5x5Float
+#define FUNCTION_NAME_INT ComputeGauss_5x5Int
+#define KERNEL_OFFSET Gauss_5x5_Offset
+#define KERNEL_DEFINE Gauss_5x5
+#define KERNEL_SIZE 5
+
+#include "/Gamekit/KernelTemplate.ush"
+
+#undef FUNCTION_NAME_FLOAT
+#undef FUNCTION_NAME_INT
+#undef KERNEL_OFFSET
+#undef KERNEL_DEFINE
+#undef KERNEL_SIZE
+
+
+#define FUNCTION_NAME_FLOAT ComputeDiff_3x3Float
+#define FUNCTION_NAME_INT ComputeDiff_3x3Int
+#define KERNEL_OFFSET Gauss_3x3_Offset
+#define KERNEL_DEFINE Diff_3x3
+#define KERNEL_SIZE 3
+#define NO_DIVIDE
+
+#include "/Gamekit/KernelTemplate.ush"
+
+#undef FUNCTION_NAME_FLOAT
+#undef FUNCTION_NAME_INT
+#undef KERNEL_OFFSET
+#undef KERNEL_DEFINE
+#undef KERNEL_SIZE
+#undef NO_DIVIDE
+
+
+
+#define FUNCTION_NAME_FLOAT ComputeSobelUp_3x3Float
+#define FUNCTION_NAME_INT ComputeSobelUp_3x3Int
+#define KERNEL_OFFSET Gauss_3x3_Offset
+#define KERNEL_DEFINE Sobel_Up_3x3
+#define KERNEL_SIZE 3
+#define NO_DIVIDE
+
+#include "/Gamekit/KernelTemplate.ush"
+
+#undef FUNCTION_NAME_FLOAT
+#undef FUNCTION_NAME_INT
+#undef KERNEL_OFFSET
+#undef KERNEL_DEFINE
+#undef KERNEL_SIZE
+#undef NO_DIVIDE
+
+
+#define FUNCTION_NAME_FLOAT ComputeSobelSide_3x3Float
+#define FUNCTION_NAME_INT ComputeSobelSide_3x3Int
+#define KERNEL_OFFSET Gauss_3x3_Offset
+#define KERNEL_DEFINE Sobel_Side_3x3
+#define KERNEL_SIZE 3
+#define NO_DIVIDE
+
+#include "/Gamekit/KernelTemplate.ush"
+
+#undef FUNCTION_NAME_FLOAT
+#undef FUNCTION_NAME_INT
+#undef KERNEL_OFFSET
+#undef KERNEL_DEFINE
+#undef KERNEL_SIZE
+#undef NO_DIVIDE

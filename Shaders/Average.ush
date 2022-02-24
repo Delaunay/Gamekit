@@ -1,0 +1,45 @@
+#pragma once
+
+#ifndef TEX_SAMPLER
+#define TEX_SAMPLER
+SamplerState TexSampler;
+#endif
+
+float3 AverageInt(Texture2D Tex, float2 UV, int Distance, int Size) {
+    float3 acc = 0;
+
+    int3 Pos = int3(int(UV.x), int(UV.y), 0);
+    float n = float(Size / 2);
+
+    for (int j = 0; j < Size; j++){
+        for(int i = 0; i < Size; i++) {
+            int x = i - n;
+            int y = n - j;
+
+            acc += Tex.Load(Pos + int3(x, y, 0) * Distance);
+        }
+    }
+
+    return acc / float(Size * Size);
+}
+
+
+float3 AverageFloat(Texture2D Tex, float2 UV, float Distance, int Size) {
+    float3 acc = 0;
+    float n = float(Size / 2);
+
+    for (int j = 0; j < Size; j++){
+        for(int i = 0; i < Size; i++) {
+            float x = float(i - n);
+            float y = float(n - j);
+
+            acc += Texture2DSample(
+                Tex,
+                TexSampler,
+                UV + float2(x, y) * Distance
+            );
+        }
+    }
+
+    return acc / float(Size * Size);
+}

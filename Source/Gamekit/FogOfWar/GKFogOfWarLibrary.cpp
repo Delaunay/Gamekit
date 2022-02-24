@@ -3,7 +3,9 @@
 
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 
+#include "GKFogOfWarVolume.h"
 
+#include "Camera/CameraComponent.h"
 #include "Engine/CollisionProfile.h"
 
 
@@ -32,4 +34,24 @@ void UGKFogOfWarLibrary::ConvertToObjectType(ECollisionChannel CollisionChannel,
 			ObjectTypeIndex++;
 		}
 	}
+}
+
+void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume* Volume, FName Faction, UCameraComponent *CameraComponent)
+{
+    auto Material = Volume->GetFogOfWarPostprocessMaterial(Faction);
+
+	if (Material == nullptr)
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Postprocess Material was null, Are you using decal rendering?"));
+		return;
+	}
+
+    for (auto &Blendable: CameraComponent->PostProcessSettings.WeightedBlendables.Array)
+    {
+        if (Blendable.Object == Material)
+        {
+            return;
+        }
+    }
+    CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(FWeightedBlendable(1, Material));
 }

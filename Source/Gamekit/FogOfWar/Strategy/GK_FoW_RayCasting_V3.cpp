@@ -10,22 +10,6 @@
 #include "Kismet/KismetSystemLibrary.h"
 
 
-#define DEBUG_CIRCLE(XY)                    \
-    {if (FogOfWarVolume->bDebug){           \
-    UKismetSystemLibrary::DrawDebugCircle(  \
-        GetWorld(),                         \
-        XY,                                 \
-        25.f,                               \
-        36,                                 \
-        FLinearColor::White,                \
-        0.f,                                \
-        5.f,                                \
-        FVector(1, 0, 0),                   \
-        FVector(0, 1, 0),                   \
-        true                                \
-    );                                      \
-    }}
-
 UGKRayCasting_Less::UGKRayCasting_Less(){}
 
 void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
@@ -87,7 +71,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
         FMath::CartesianToPolar(MinPoint.X, MinPoint.Y, Radius, Angle);
         FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
 
-        DEBUG_CIRCLE(Point + Origin);
+        DebugDrawPoint(Point + Origin);
         auto Angle1 = UGKUtilityLibrary::GetYaw(Location, Point + Origin) - BaseYaw;
 
         Angles.Add(Angle1);
@@ -101,9 +85,9 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
 
         MaxPoint = MaxPoint - Origin;
         FMath::CartesianToPolar(MaxPoint.X, MaxPoint.Y, Radius, Angle);
-
         FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
-        DEBUG_CIRCLE(Point + Origin);
+
+        DebugDrawPoint(Point + Origin);
         auto Angle3 = UGKUtilityLibrary::GetYaw(Location, Point + Origin) - BaseYaw;
         Angles.Add(Angle3);
 
@@ -211,22 +195,7 @@ void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TA
         // perfectly completing each other
         FVector LineStart = Location; // + dir * c->InnerRadius;
         FVector LineEnd   = Location + dir * c->Radius;
-
-        if (FogOfWarVolume->bDebug)
-        {
-            UKismetSystemLibrary::DrawDebugCircle(
-                GetWorld(),          // World
-                LineEnd,             // Center
-                25.f,                // Radius
-                36,                  // NumSegments
-                FLinearColor::White, // LineColor
-                0.f,                 // LifeTime 
-                5.f,                 // Tickness
-                FVector(1, 0, 0),    // YAxis 
-                FVector(0, 1, 0),    // ZAxis 
-                true                 // DrawAxes
-            );
-        }
+        DebugDrawPoint(LineEnd);
 
         bool hit = UKismetSystemLibrary::LineTraceSingle(
             GetWorld(),

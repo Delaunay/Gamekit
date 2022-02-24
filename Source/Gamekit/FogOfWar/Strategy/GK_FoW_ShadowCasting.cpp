@@ -26,7 +26,7 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
 
     Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
     Texture->SRGB                = false;
-    Texture->Filter              = TextureFilter::TF_Nearest;
+    Texture->Filter              = TextureFilter::TF_Default;
     Texture->AddressX            = TextureAddress::TA_Clamp;
     Texture->AddressY            = TextureAddress::TA_Clamp;
     Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
@@ -85,17 +85,7 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
         TArray<FVector> Corners = {TopLeft, TopRight, BotLeft, BotRight};
         for (auto &Corner: Corners)
         {
-            UKismetSystemLibrary::DrawDebugCircle(GetWorld(),          // World
-                                                  Corner,              // Center
-                                                  25.f,                // Radius
-                                                  36,                  // NumSegments
-                                                  FLinearColor::White, // LineColor
-                                                  0.f,                 // LifeTime
-                                                  5.f,                 // Tickness
-                                                  FVector(1, 0, 0),    // YAxis
-                                                  FVector(0, 1, 0),    // ZAxis
-                                                  true                 // DrawAxes
-            );
+            DebugDrawPoint(Corner);
         }
     }
    
@@ -135,18 +125,19 @@ void UGKShadowCasting::UpdateTextures(FName Name)
             delete[] Buf;
         }
     );
-
-    FogOfWarVolume->TextureReady(Name);
 }
 
-void UGKShadowCasting::DrawFactionFog()
+void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 {
     Points.Reset();
     Buffer.ResetLayer(0, (uint8)(EGK_TileVisbility::None));
-    TSet<FName> Factions;
 
+    FactionFog->Vision = GetFactionTexture(FactionFog->Name, true);
+    FactionFog->Buffer = static_cast<void *>(&Buffer);
+
+    // TODO: FIXME, maybe have a global blocking layer
     // Update the blocks
-    for (auto &Component: FogOfWarVolume->ActorComponents)
+    for (auto &Component: FogOfWarVolume->GetBlocking())
     {
         if (Component->BlocksVision)
         {
@@ -154,21 +145,18 @@ void UGKShadowCasting::DrawFactionFog()
         }
     }
 
-    for (auto &Component: FogOfWarVolume->ActorComponents)
+    for (auto &Component: FactionFog->Allies)
     {
-        Factions.Add(Component->Faction);
         if (Component->GivesVision)
         {
             DrawLineOfSight(Component);
-            
+            DebugDrawComponent(Component);
         }
+
     }
 
     // Update Textures for rendering
-    for (auto Faction: Factions)
-    {
-        UpdateTextures(Faction);
-    }
+    UpdateTextures(FactionFog->Name);
 }
 
 void UGKShadowCasting::Initialize()

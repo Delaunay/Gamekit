@@ -23,13 +23,7 @@ public:
 
     virtual void Initialize();
 
-    //! Register a new actor to the fog of war volume
-    virtual void RegisterActorComponent(class UGKFogOfWarComponent *c);
-
-    //! Unregister the actor to the fog of war volume
-    virtual void UnregisterActorComponent(class UGKFogOfWarComponent *c);
-
-    void DrawFactionFog();
+    void DrawFactionFog(struct FGKFactionFog *FactionFog);
 
     //! Draw the line of sight using the right method
     virtual void DrawLineOfSight(class UGKFogOfWarComponent *c);

@@ -17,7 +17,7 @@
  *  TODO: batch multi factions upscaling
  */
 UCLASS(BlueprintType)
-class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKUpscalerStrategy
+class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
 {
 	GENERATED_BODY()
 		 
@@ -28,7 +28,7 @@ public:
     void Stop() override;
 
 	//! Draw the fog of war for each factions
-    virtual void Upscale(FName Name, TMatrix3D<uint8> const *Original, class UTexture *Tex);
+    void Transform(struct FGKFactionFog *FactionFog);
 
 private:
     class FUpscalingDispatcher *UpscalingDispatcher;

@@ -23,17 +23,15 @@ public:
 
 	virtual void Stop() {}
 
-	//! Register a new actor to the fog of war volume
-	virtual void RegisterActorComponent(class UGKFogOfWarComponent *c) {}
-
-	//! Unregister the actor to the fog of war volume
-	virtual void UnregisterActorComponent(class UGKFogOfWarComponent *c) {}
-
 	//! Draw the fog of war for each factions
-    virtual void DrawFactionFog();
+    virtual void DrawFactionFog(struct FGKFactionFog* FactionFog);
 
 	//! Draw the line of sight using the right method
     virtual void DrawLineOfSight(class UGKFogOfWarComponent *c) {}
+
+	void DebugDrawComponent(class UGKFogOfWarComponent *c);
+
+	void DebugDrawPoint(FVector Center, FLinearColor Color = FLinearColor::White);
 
 	virtual TMatrix3D<uint8> const *GetFactionTextureCPU(FName name) const { 
 		return nullptr;
@@ -42,6 +40,10 @@ public:
 	//! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) {
 		return nullptr;
+	}
+
+	void OnNewFaction(FName Name) { 
+		GetFactionTexture(Name, true);
 	}
 
     protected:
