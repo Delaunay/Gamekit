@@ -36,9 +36,13 @@ In a nutshell
 1. Create a ``AGKFogOfWarVolume`` over the area that will be covered by the fog
 
    1. [Optional] Set the post process material
+
    2. [Optional] Set the fog of war material parameters
+
    4. [Optional] Disable/Enable exploration
+
    5. [Optional] Select Vision drawing strategy
+
    6. [Optional] Disable/Enable Upscaling strategy
 
       1. Set the upscaling material

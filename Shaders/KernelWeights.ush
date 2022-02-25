@@ -22,10 +22,23 @@ static float Gauss_3x3[9] = {
     1, 2, 1,
 };
 
+// Laplacian
+static float Laplacian_3x3[9] = {
+    0,  1, 0,
+    1, -4, 1,
+    0,  1, 0
+};
+
+static float Diff_v1_3x3[9] = {
+    0.25,  0.5, 0.25,
+    0.50, -3  , 0.50,
+    0.25,  0.5, 0.25,
+};
+
 static float Diff_3x3[9] = {
-     0, -1,  0,
-    -1,  5, -1,
-     0, -1,  0,
+    2.82,   2   , 2.82,
+    2   , -19.31, 2,
+    2.82,   2   , 2.82,
 };
 
 static float Sobel_Side_3x3[9] = {
