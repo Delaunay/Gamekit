@@ -4,6 +4,7 @@
 #include "GKFogOfWarVolume.h"
 
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "GenericTeamAgentInterface.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -43,6 +44,25 @@ UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial() {
     return vol->GetFogOfWarPostprocessMaterial(Faction);
 }
 
+
+FName UGKFogOfWarComponent::DeduceFaction() {
+    const IGenericTeamAgentInterface* TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
+
+    if (!TeamAgent)
+    {
+        return DefaultFaction;
+    }
+
+    auto Factions = FogOfWarVolume->FactionEnum;
+
+    if (!Factions)
+    {
+        return DefaultFaction;
+    }
+
+    return Factions->GetNameByIndex(TeamAgent->GetGenericTeamId());
+}
+
 // Called when the game starts
 void UGKFogOfWarComponent::BeginPlay()
 {
@@ -54,6 +74,8 @@ void UGKFogOfWarComponent::BeginPlay()
     if (vol == nullptr) {
         return;
     }
+
+    Faction = DeduceFaction();
 
     // Tweak the collision response channel
     for (UActorComponent* ActorComponent : GetOwner()->GetComponents())
@@ -123,4 +145,8 @@ AGKFogOfWarVolume* UGKFogOfWarComponent::GetFogOfWarVolume() {
 
 void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *CameraComponent) { 
     UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
+}
+
+FName UGKFogOfWarComponent::GetFaction() const {
+    return Faction;
 }

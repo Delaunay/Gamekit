@@ -119,7 +119,7 @@ void UGKRayCasting_Triangle::DrawTriangles(UGKFogOfWarComponent *c)
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
-    UCanvasRenderTarget2D* RenderCanvas = GetFactionRenderTarget(c->Faction, true);
+    UCanvasRenderTarget2D *RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(
         FogOfWarVolume->GetWorld(), 
         RenderCanvas, 

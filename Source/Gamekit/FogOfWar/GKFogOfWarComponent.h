@@ -39,9 +39,9 @@ protected:
     virtual void BeginDestroy() override;
 
 public:
-    //! Faction this actors belongs to, each faction have their own fog of war
+    //! Default faction the unit will fallbacl to if it does not implement IGenericTeamAgentInterface
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    FName Faction;
+    FName DefaultFaction;
 
     //! Returns the render target associated with its faction
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -50,6 +50,9 @@ public:
     //! Returns the fog of war volume this component is associated to
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class AGKFogOfWarVolume* GetFogOfWarVolume();
+
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    FName GetFaction() const;
 
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -117,4 +120,12 @@ private:
     class AGKFogOfWarVolume* FogOfWarVolume;
 
     void SetCollisionFoWResponse(class UPrimitiveComponent* Primitive, ECollisionChannel Channel);
+
+    //! Try to get the faction using the IGenericTeamAgentInterface
+    FName DeduceFaction();
+
+    //! Faction this unit belongs to
+    FName Faction;
+
+    friend class AGKFogOfWarVolume;
 };

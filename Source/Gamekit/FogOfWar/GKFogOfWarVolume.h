@@ -100,6 +100,11 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
     bool bAsyncDraw;
 
+    //! Enumeration of all the possible factions
+    //! The faction enum is used to map TeamID to the fog of war faction names
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+	UEnum* FactionEnum;
+
     //! class used to draw the vision
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     TSubclassOf<UGKFogOfWarStrategy> VisionDrawingStrategy;

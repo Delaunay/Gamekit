@@ -104,7 +104,7 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
+    auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
     auto TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
 
@@ -219,7 +219,7 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
     Value.A = c->InnerRadius / c->Radius;
     material->SetVectorParameterValue("Direction&FoV", Value);
 
-    auto RenderCanvas = GetFactionRenderTarget(c->Faction, true);
+    auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
     auto NewRadius    = FVector2D(c->Radius * FogOfWarVolume->TextureSize.X / FogOfWarVolume->MapSize.X,
                                c->Radius * FogOfWarVolume->TextureSize.Y / FogOfWarVolume->MapSize.Y);
     auto Start        = FogOfWarVolume->GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;

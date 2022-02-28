@@ -368,14 +368,6 @@ void AGKCharacterBase::Select() { OnSelect();  }
 
 void AGKCharacterBase::Deselect() { OnDeselect(); }
 
-
-FGenericTeamId AGKCharacterBase::GetGenericTeamId() const
-{
-	static const FGenericTeamId PlayerTeam(0);
-	static const FGenericTeamId AITeam(1);
-	return Cast<APlayerController>(GetController()) ? PlayerTeam : AITeam;
-}
-
 void AGKCharacterBase::OnGiveAbility_Native(FGameplayAbilitySpec& AbilitySpec) {
 	// AbilityName is the unique tag per ability
 	auto Id = FGKAbilitySlot(AbilitySpec.InputID);
@@ -444,3 +436,20 @@ void AGKCharacterBase::MoveToLocation(FVector Loc) {
 
 	AbilitySystemComponent->TryActivateAbility_Point(Spec->Handle, Loc);
 }
+
+	void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId& TeamID) {
+		Faction = TeamID;
+	}
+	
+	FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Faction; }
+
+    ETeamAttitude::Type AGKCharacterBase::GetTeamAttitudeTowards(const AActor &Other) const {
+		const IGenericTeamAgentInterface* OtherTeamAgent = Cast<const IGenericTeamAgentInterface>(&Other);
+
+		if (!OtherTeamAgent)
+        {
+			return ETeamAttitude::Neutral;  
+		}
+
+		return FGenericTeamId::GetAttitude(GetGenericTeamId(), OtherTeamAgent->GetGenericTeamId());
+	}

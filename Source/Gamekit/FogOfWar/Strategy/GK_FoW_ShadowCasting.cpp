@@ -182,7 +182,7 @@ void UGKShadowCasting::Initialize()
     // TSet<FName> Factions;
     for (auto &Component: FogOfWarVolume->ActorComponents)
     {
-        GetFactionTexture(Component->Faction, true);
+        GetFactionTexture(Component->GetFaction(), true);
         // Factions.Add(Component->Faction);
     }
 }

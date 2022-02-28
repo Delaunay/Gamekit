@@ -114,9 +114,6 @@ protected:
 	UPROPERTY()
 	UGKAttributeSet* AttributeSet;
 
-	/** Required to support AIPerceptionSystem */
-	virtual FGenericTeamId GetGenericTeamId() const override;
-
 	// Friended to allow access to handle functions above
 	friend class UGKAttributeSet;
 	friend class UGKAbilitySystemComponent;
@@ -193,4 +190,19 @@ protected:
 	TMap<FGKAbilitySlot, FGameplayAbilitySpec> AbilitySpecs;
 
 	bool InputsBound;
+
+public:
+	FGenericTeamId Faction;
+
+	// IGenericTeamAgentInterface
+	void SetGenericTeamId(const FGenericTeamId& TeamID) override;
+	
+	/** Retrieve team identifier in form of FGenericTeamId */
+	FGenericTeamId GetGenericTeamId() const override;
+
+	/** Retrieved owner attitude toward given Other object */
+    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor &Other) const override;
+
+	UFUNCTION(BlueprintCallable, Category = "FriendOrFoe")
+    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor *Other) const { return GetTeamAttitudeTowards(*Other); }
 };
