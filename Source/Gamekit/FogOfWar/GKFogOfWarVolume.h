@@ -191,12 +191,12 @@ public:
     //!     FoWEnabled
     //!     MapSize
     //!     TextureSize
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Rendering")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     class UMaterialParameterCollection *FogMaterialParameters;
 
     //! Base Material used to draw the fog of war in a post process step,
     //! it uses the texture parameters FoWView & FoWExploration
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Rendering")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     class UMaterialInterface *BasePostProcessMaterial;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)

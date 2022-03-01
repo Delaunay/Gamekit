@@ -31,7 +31,7 @@ public:
 
 	void DebugDrawComponent(class UGKFogOfWarComponent *c);
 
-	void DebugDrawPoint(FVector Center, FLinearColor Color = FLinearColor::White);
+	void DebugDrawPoint(FVector Center, FLinearColor Color = FLinearColor::White, float Radius = 26.f);
 
 	virtual TMatrix3D<uint8> const *GetFactionTextureCPU(FName name) const { 
 		return nullptr;

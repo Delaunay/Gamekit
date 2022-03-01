@@ -44,17 +44,17 @@ void UGKFogOfWarStrategy::DebugDrawComponent(class UGKFogOfWarComponent *Compone
 }
 
 
-void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color)
+void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, float Radius)
 {                                      
     if (FogOfWarVolume->bDebug)                                    
     {                                                              
         UKismetSystemLibrary::DrawDebugCircle(
             GetWorld(),          
             Center,                  
-            25.f,                
+            Radius,                
             36,                  
             Color, 
-            0.f,                 
+            1.f,                 
             5.f,                 
             FVector(1, 0, 0),    
             FVector(0, 1, 0),    

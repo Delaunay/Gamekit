@@ -5,6 +5,8 @@
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
+#include "DrawDebugHelpers.h"
+
 
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
@@ -74,36 +76,47 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     Transform.SetLocation(Origin);
     Transform.SetRotation(Actor->GetActorRotation().Quaternion());
 
-    auto TopLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(+1, -1, 0));
-    auto TopRight = Transform.TransformVector(Origin + BoxExtent * FVector(+1, +1, 0));
-    auto BotLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(-1, -1, 0));
-    auto BotRight = Transform.TransformVector(Origin + BoxExtent * FVector(-1, +1, 0));
+    auto TopLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(+1, -1, 0) * 0.90);
+    auto TopRight = Transform.TransformVector(Origin + BoxExtent * FVector(+1, +1, 0) * 0.90);
+    auto BotLeft  = Transform.TransformVector(Origin + BoxExtent * FVector(-1, -1, 0) * 0.90);
+    auto BotRight = Transform.TransformVector(Origin + BoxExtent * FVector(-1, +1, 0) * 0.90);
+
+    FVector Corners[4] = {TopLeft, TopRight, BotLeft, BotRight};
+
 
     // Draw Corners
+    #if ENABLE_DRAW_DEBUG
     if (FogOfWarVolume->bDebug)
     {
-        TArray<FVector> Corners = {TopLeft, TopRight, BotLeft, BotRight};
         for (auto &Corner: Corners)
         {
-            DebugDrawPoint(Corner);
+            DebugDrawPoint(Corner, FLinearColor::White, 25.f);
+
+            auto CornerGrid  = Grid.SnapToGrid(Corner);
+
+            DebugDrawPoint(CornerGrid, FLinearColor::Red, 30.f);
         }
     }
-   
-    auto TopLeftCornerGrid  = Grid.WorldToGrid(TopRight);
-    auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
+    #endif
 
-    /*
-    UE_LOG(LogGamekit,
-           Log,
-           TEXT("Update Blocking From %s to %s"),
-           *TopLeftCornerGrid.ToString(),
-           *BotRightCornerGrid.ToString());
-    //*/
-    Buffer.FillRectangle2D(FogOfWarVolume->ToGridTexture(TopLeftCornerGrid),
-                           FogOfWarVolume->ToGridTexture(BotRightCornerGrid),
-                           (uint8)(EGK_TileVisbility::Wall) 
-    );
-    //*/
+    //*
+    auto TopLeftCornerGrid  = Grid.WorldToGrid(TopRight);
+    auto TopLeftTexure      = FogOfWarVolume->ToGridTexture(TopLeftCornerGrid);
+
+    auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
+    auto BotRightTexture    = FogOfWarVolume->ToGridTexture(BotRightCornerGrid);
+
+    int Width = BotRightTexture.X - TopLeftTexure.X + 1;
+    int Height = TopLeftTexure.Y - BotRightTexture.Y + 1;
+    uint8 Value = (uint8)(EGK_TileVisbility::Wall);
+
+    for (int j = 0; j < Height; j++)
+    {
+        for (int i = 0; i < Width; i++)
+        {
+            Buffer(TopLeftTexure + FIntVector(i, -j, 0)) = Value;
+        }
+    }
 }
 
 void UGKShadowCasting::UpdateTextures(FName Name)
