@@ -106,15 +106,18 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
     auto BotRightTexture    = FogOfWarVolume->ToGridTexture(BotRightCornerGrid);
 
-    int Width = BotRightTexture.X - TopLeftTexure.X + 1;
+    int Width  = BotRightTexture.X - TopLeftTexure.X + 1;
     int Height = TopLeftTexure.Y - BotRightTexture.Y + 1;
-    uint8 Value = (uint8)(EGK_TileVisbility::Wall);
+
+    uint8 ZHeight = 0; 
+    // ZHeight = Origin.Z / TileSize.Z;
+    uint8 Value   = (uint8)(EGK_TileVisbility::Wall) | (ZHeight << 1);
 
     for (int j = 0; j < Height; j++)
     {
         for (int i = 0; i < Width; i++)
         {
-            Buffer(TopLeftTexure + FIntVector(i, -j, 0)) = Value;
+            Buffer(TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking))) = Value;
         }
     }
 }
@@ -125,7 +128,7 @@ void UGKShadowCasting::UpdateTextures(FName Name)
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
-    FMemory::Memcpy(NewBuffer, Buffer.GetLayer(0), Buffer.GetLayerSizeBytes());
+    FMemory::Memcpy(NewBuffer, Buffer.GetLayer(uint8(EGK_VisbilityLayers::Visible)), Buffer.GetLayerSizeBytes());
 
     Texture->UpdateTextureRegions(
         0, 
@@ -143,7 +146,8 @@ void UGKShadowCasting::UpdateTextures(FName Name)
 void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 {
     Points.Reset();
-    Buffer.ResetLayer(0, (uint8)(EGK_TileVisbility::None));
+    Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Visible), (uint8)(EGK_TileVisbility::None));
+    Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Blocking), (uint8)(EGK_TileVisbility::None));
 
     FactionFog->Vision = GetFactionTexture(FactionFog->Name, true);
     FactionFog->Buffer = static_cast<void *>(&Buffer);
@@ -182,7 +186,7 @@ void UGKShadowCasting::Initialize()
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
     TextureSize = TileCount;
-    Buffer.Init(0, TileCount.X, TileCount.Y, 1);
+    Buffer.Init(0, TileCount.X, TileCount.Y, uint8(EGK_VisbilityLayers::Size));
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
     //*
@@ -221,6 +225,7 @@ void UGKShadowCasting::DrawLineOfSight(UGKFogOfWarComponent *c)
 bool UGKShadowCasting::BlocksLight(int X, int Y)
 {
     auto TexturePos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
+    TexturePos.Z    = uint8(EGK_VisbilityLayers::Blocking);
 
     if (Buffer.Valid(TexturePos))
     {
@@ -240,6 +245,7 @@ int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff) {
 void UGKShadowCasting::SetVisible(int X, int Y)
 {
     auto TexturePos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
+    TexturePos.Z    = uint8(EGK_VisbilityLayers::Visible);
 
     if (Buffer.Valid(TexturePos))
     {

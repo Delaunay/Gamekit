@@ -1,5 +1,11 @@
 #pragma once
 
+static float WallConstant = float(1 << 6) / float(0xFF);
+
+static float VisibleConstant = float(1 << 7) / float(0xFF);
+
+
+/*
 float IsVisibleInt(Texture2D Tex, int3 UV) {
     int result = (int)Tex.Load(UV) & (1 << 6);
     return float(result);
@@ -9,31 +15,12 @@ float IsWallInt(Texture2D Tex, int3 UV) {
     int result = (int)Tex.Load(UV) & (1 << 7);
     return float(result);
 }
+*/
 
-float IsVisibleFloat(Texture2D Tex, float2 UV) {
-    int Width = 0;
-    int Height = 0;
-
-    Tex.GetDimensions(
-       Width,
-       Height
-    );
-
-    UV = UV * float2(float(Width), float(Height));
-
-    return IsVisibleInt(Tex, int3(int(UV.x), int(UV.y), 0));
+float IsVisibleFloat(float v) {
+    return float(v > 0.8);
 }
 
-float IsWallFloat(Texture2D Tex, float2 UV) {
-    int Width = 0;
-    int Height = 0;
-
-    Tex.GetDimensions(
-       Width,
-       Height
-    );
-
-    UV = UV * float2(float(Width), float(Height));
-
-    return IsWallInt(Tex, int3(int(UV.x), int(UV.y), 0));
+float IsWallFloat(float v) {
+    return (v > WallConstant - 1e-5) && (v < VisibleConstant);
 }

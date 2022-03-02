@@ -46,7 +46,7 @@ void UGKGameplayAbility::PostInitProperties() {
 	Super::PostInitProperties();
 
 	if (AbilityDataTable && AbilityRowName.IsValid()) {
-		UE_LOG(LogGamekit, Warning, TEXT("Loading From DataTable"));
+		UE_LOG(LogGamekit, Log, TEXT("Loading From DataTable"));
 		OnDataTableChanged_Native();
 	}
 }
@@ -64,7 +64,7 @@ void UGKGameplayAbility::OnDataTableChanged_Native() {
 }
 
 void UGKGameplayAbility::LoadFromDataTable(FGKAbilityStatic& AbilityDef) {
-	UE_LOG(LogGamekit, Warning, TEXT("Init Ability from table %s"), *AbilityDef.Name.ToString());
+	UE_LOG(LogGamekit, Log, TEXT("Init Ability from table %s"), *AbilityDef.Name.ToString());
 
 	CooldownEffectInstance = NewCooldownEffectFromConfig(AbilityDef.Cooldown);
 	CostEffectInstance = NewCostEffectFromConfig(AbilityDef.Cost);

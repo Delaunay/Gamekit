@@ -162,6 +162,10 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
     bool bExploration;
 
+    //! If true exploration will use the upscaled vision texture
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+    bool bUseUpscaledVision;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
     bool bDebug;
 

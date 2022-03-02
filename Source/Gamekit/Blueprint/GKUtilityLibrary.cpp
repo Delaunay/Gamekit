@@ -86,10 +86,10 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
     FHitResult     OutHit;
 
     static TArray<FVector2D> ViewportCorners = {
-        FVector2D(1, 1), 
-        FVector2D(0, 1), 
         FVector2D(0, 0), 
-        FVector2D(1, 0)
+        FVector2D(1, 0), 
+        FVector2D(1, 1), 
+        FVector2D(0, 1)
     };
 
     Corners.Reset(4);
@@ -120,6 +120,11 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
 
         Corners.Add(OutHit.Location);
     }
+
+    // Makes sure the lines are perfectly horizontal
+    // without it they is a small offset
+    Corners[0].X = Corners[1].X;
+    Corners[2].X = Corners[3].X;
 }
 
 

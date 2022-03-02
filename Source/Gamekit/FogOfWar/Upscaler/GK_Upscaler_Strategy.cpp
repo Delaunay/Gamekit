@@ -19,6 +19,18 @@ void UGKTransformerStrategy::Initialize()
     bFixedSize     = FogOfWarVolume->bFixedSize;
     Multiplier     = FogOfWarVolume->Multiplier;
     FixedSize      = FogOfWarVolume->FixedSize;
+    bUseUpscaledVision = FogOfWarVolume->bUseUpscaledVision;
+}
+
+
+void UGKTransformerStrategyTexture2D::Initialize() { 
+    Super::Initialize();
+    // TransformedTarget.Reset(); 
+}
+
+void UGKTransformerStrategyCanvas::Initialize() { 
+    Super::Initialize();
+    // TransformedTarget.Reset();  
 }
 
 UTexture2D *UGKTransformerStrategyTexture2D::GetFactionTransformTarget(FName name, bool bCreateRenderTarget)
@@ -79,7 +91,7 @@ UCanvasRenderTarget2D *UGKTransformerStrategyCanvas::GetFactionTransformTarget(F
     }
     else if (bCreateRenderTarget)
     {
-        UE_LOG(LogGamekit, Log, TEXT("Creating a Upscale Texture for faction %s"), *name.ToString());
+        UE_LOG(LogGamekit, Log, TEXT("Creating a Transform Texture for faction %s"), *name.ToString());
         Texture = CreateTransformTarget();
 
         TransformedTarget.Add(name, Texture);

@@ -1,4 +1,10 @@
 
+
+#ifndef FILTER
+#define FILTER
+#endif
+
+
 // Define the preprocessor `KERNEL_DEFINE` before calling this
 float3 FUNCTION_NAME_FLOAT(Texture2D Tex, float2 UV, float Distance) {
     float sum = 0;
@@ -15,11 +21,11 @@ float3 FUNCTION_NAME_FLOAT(Texture2D Tex, float2 UV, float Distance) {
             float w = KERNEL_DEFINE[j * KERNEL_SIZE + i];
 
             sum += w;
-            acc += Texture2DSample(
+            acc += FILTER(Texture2DSample(
                 Tex,
                 TexSampler,
                 UV + float2(x, y) * Distance
-            ) * w;
+            )) * w;
         }
     }
 

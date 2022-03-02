@@ -22,9 +22,7 @@ Features
 * Mutliple fog of war drawing trategy
 * Sample post process materials
 * Customizable Components
-
 * Support spectator fog (multi fog view)
-
 
 
 .. image :: /_static/FogOfWar.PNG
@@ -39,11 +37,11 @@ In a nutshell
 
    2. [Optional] Set the fog of war material parameters
 
-   4. [Optional] Disable/Enable exploration
+   3. [Optional] Disable/Enable exploration
 
-   5. [Optional] Select Vision drawing strategy
+   4. [Optional] Select Vision drawing strategy
 
-   6. [Optional] Disable/Enable Upscaling strategy
+   5. [Optional] Disable/Enable Upscaling strategy
 
       1. Set the upscaling material
 

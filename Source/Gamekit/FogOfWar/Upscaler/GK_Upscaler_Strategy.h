@@ -42,6 +42,7 @@ public:
     void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
 
 protected:
+    bool                     bUseUpscaledVision;
     FIntVector               FixedSize;
     bool                     bFixedSize;  
     FIntVector               TextureSize;
@@ -58,6 +59,7 @@ class GAMEKIT_API UGKTransformerStrategyTexture2D: public UGKTransformerStrategy
     GENERATED_BODY()
 
     public:
+    virtual void Initialize();
     //! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
 
@@ -77,6 +79,8 @@ class GAMEKIT_API UGKTransformerStrategyCanvas: public UGKTransformerStrategy
     GENERATED_BODY()
 
     public:
+    virtual void Initialize();
+
     //! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
 

@@ -421,7 +421,7 @@ void AGKCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 			GAIB
 		);
 
-		UE_LOG(LogGamekit, Warning, TEXT("Abilities got bound"));
+		UE_LOG(LogGamekit, Log, TEXT("Abilities got bound"));
 		InputsBound = true;
 	}
 }

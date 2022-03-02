@@ -5,6 +5,10 @@
 SamplerState TexSampler;
 #endif
 
+#ifndef FILTER
+#define FILTER(X) X
+#endif
+
 float3 AverageInt(Texture2D Tex, float2 UV, int Distance, int Size) {
     float3 acc = 0;
 
@@ -33,11 +37,13 @@ float3 AverageFloat(Texture2D Tex, float2 UV, float Distance, int Size) {
             float x = float(i - n);
             float y = float(n - j);
 
-            acc += Texture2DSample(
+            float value = Texture2DSample(
                 Tex,
                 TexSampler,
                 UV + float2(x, y) * Distance
             );
+
+            acc += FILTER(value);
         }
     }
 

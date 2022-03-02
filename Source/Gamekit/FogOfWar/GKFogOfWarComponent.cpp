@@ -115,6 +115,18 @@ void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent* Primitiv
     }
 }
 
+
+class UTexture *UGKFogOfWarComponent::GetExplorationTexture() {
+    auto FoWVolume = GetFogOfWarVolume();
+
+    if (FoWVolume == nullptr)
+    {
+        return nullptr;
+    }
+
+    return FoWVolume->GetFactionExplorationTexture(Faction);
+}
+
 class UTexture* UGKFogOfWarComponent::GetVisionTexture() {
     auto FoWVolume = GetFogOfWarVolume();
 

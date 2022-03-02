@@ -69,7 +69,5 @@ class UMaterialInstanceDynamic *UGKCanvasUpscaler::GetFactionMaterialInstance(FN
 
 void UGKCanvasUpscaler::Initialize() { 
     Super::Initialize(); 
-    
     UpscalingMaterial = FogOfWarVolume->UpscaleMaterial;
-
 }

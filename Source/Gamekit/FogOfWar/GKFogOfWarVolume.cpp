@@ -559,7 +559,6 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
 }
 
 
-
 FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
     auto *Fog = FactionFogs.Find(Faction);

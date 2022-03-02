@@ -15,5 +15,16 @@ class GAMEKIT_API UGKExplorationTransform: public UGKTransformerStrategyCanvas
 	GENERATED_BODY()
 
 public:
+    void Initialize();
+
     void Transform(struct FGKFactionFog *FactionFog) override;
+
+    /*
+    class UMaterialInstanceDynamic *GetFactionMaterialInstance(FName Name);
+
+    class UMaterialInterface *ExplorationMaterial;
+
+    UPROPERTY(Transient)
+    TMap<FName, class UMaterialInstanceDynamic *> MaterialInstances;
+    */
 };

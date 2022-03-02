@@ -46,6 +46,15 @@ enum class EGK_TileVisbility : uint8
     Visible = uint8(1 << 7), // Visible
 };
 
+
+enum class EGK_VisbilityLayers : uint8
+{
+	Visible,
+	Terrain,	// Permanent Layer
+	Blocking,
+	Size,
+};
+
 struct FGKPoints
 {
     TArray<FIntVector> Points;
