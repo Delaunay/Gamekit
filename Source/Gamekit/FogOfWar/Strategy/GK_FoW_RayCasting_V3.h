@@ -28,7 +28,7 @@ protected:
     //!     * Draw
     virtual void DrawObstructedLineOfSight(UGKFogOfWarComponent *c);
 
-    void GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles);
+    void CastLinesFromAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
 
     //! Make sure we do a full turn
     //! TODO: support field of view != 360

@@ -45,6 +45,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
     if (c->FieldOfView >= 360)
     {
         BaseYaw = 0;
+        Forward = FVector(1, 0, 0);
     }
 
     float Offset   = 0;
@@ -97,13 +98,82 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
     }
 
     Angles.Sort();
-
     FillMissingAngles(c, Angles);
+    CastLinesFromAngles(c, Angles);
 
-    GenerateTrianglesFromAngles(c, Angles);
-
+    // Only for non-dedicated servers
+    GenerateTriangles(c);
     DrawTriangles(c);
 } 
+
+
+void UGKRayCasting_Less::CastLinesFromAngles(UGKFogOfWarComponent *c, TArray<float> &Angles) {
+    auto             Actor    = c->GetOwner();
+    FVector          Location = Actor->GetActorLocation();
+    FVector          Forward  = Actor->GetActorForwardVector();
+    FHitResult       OutHit;
+    auto             TraceType      = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
+    TArray<AActor *> ActorsToIgnore = {Actor};
+    TSet<AActor *>   AlreadySighted;
+    float            PreviousAngle = 0;
+    bool             bHasPrevious  = false;
+
+    if (c->FieldOfView >= 360)
+    {
+        Forward = FVector(1, 0, 0);
+    }
+
+    Lines.Reset(c->TraceCount + 1);
+    for (auto Angle: Angles)
+    {
+        // We need to use forward vector in case the FieldOfView is not 360
+        // Rotating by 0 is actually not stable
+        FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
+
+        // We have to ignore the Inner Radius for our triangles to be
+        // perfectly completing each other
+        FVector LineStart = Location; // + dir * c->InnerRadius;
+        FVector LineEnd   = Location + dir * c->Radius;
+        DebugDrawPoint(LineEnd);
+
+        bool hit = UKismetSystemLibrary::LineTraceSingle(
+            GetWorld(),
+            Location,
+            LineEnd,
+            TraceType,
+            false, // bTraceComplex
+            ActorsToIgnore,
+            FogOfWarVolume->DebugTrace(),
+            OutHit,
+            true, // Ignore Self
+            FLinearColor::Red,
+            FLinearColor::Green,
+            0);
+
+        float ExtendedRadius = c->Radius;
+        if (bHasPrevious)
+        {
+            ExtendedRadius = FMath::Sqrt(
+                FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians( 90.f - (PreviousAngle - Angle) / 2.f))) +
+                FMath::Square(c->Radius)
+            );
+        }
+
+        LineEnd = hit ? OutHit.Location - dir : Location + dir * ExtendedRadius;
+        Lines.Add(FGKLinePoints{LineStart, LineEnd});
+
+        if (hit && OutHit.Actor.IsValid())
+        {
+            // Avoid multiple broadcast per target
+            AActor *Target = OutHit.Actor.Get();
+            if (!AlreadySighted.Contains(Target))
+            {
+                AlreadySighted.Add(Target);
+                BroadCastEvents(Actor, c, Target);
+            }
+        }
+    }
+}
 
 void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles)
 {
@@ -150,128 +220,4 @@ void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float
         NewAngles.Add(PreviousAngle);
     }
     Angles = NewAngles;
-}
-
-void UGKRayCasting_Less::GenerateTrianglesFromAngles(UGKFogOfWarComponent *c, TArray<float>& Angles) {
-    Triangles.Reset(c->TraceCount + 1);
-
-    auto Actor       = c->GetOwner();
-    FVector Location = Actor->GetActorLocation();
-    FVector Forward  = Actor->GetActorForwardVector();
-
-     // Disable making the angle relative to the forward vector
-    if (c->FieldOfView >= 360)
-    {
-        Forward = FVector(1, 0, 0);
-    }
-
-    TArray<AActor *> ActorsToIgnore   = {Actor};
-
-    FCanvasUVTri   Triangle;
-    FHitResult     OutHit;
-    auto           TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
-    FVector2D      Previous = FVector2D::ZeroVector;
-    FVector        LinePrevious = FVector::ZeroVector;
-    float          PreviousAngle = 0;
-    bool           bHasPrevious = false;
-    auto           TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
-    TSet<AActor *> AlreadySighted;
-
-    for (auto Angle: Angles)
-    {
-        // Not sure why we get a bunch of angles that are very close
-        /*
-        if (bHasPrevious && FMath::IsNearlyEqual(Angle, PreviousAngle))
-        {
-            continue;
-        }
-        //*/
-
-        // We need to use forward vector in case the FieldOfView is not 360
-        // Rotating by 0 is actually not stable
-        FVector dir = Forward.RotateAngleAxis(Angle, FVector(0, 0, 1));
-
-        // We have to ignore the Inner Radius for our triangles to be
-        // perfectly completing each other
-        FVector LineStart = Location; // + dir * c->InnerRadius;
-        FVector LineEnd   = Location + dir * c->Radius;
-        DebugDrawPoint(LineEnd);
-
-        bool hit = UKismetSystemLibrary::LineTraceSingle(
-            GetWorld(),
-            Location,
-            LineEnd,
-            TraceType,
-            false, // bTraceComplex
-            ActorsToIgnore,
-            FogOfWarVolume->DebugTrace(),
-            OutHit,
-            true, // Ignore Self
-            FLinearColor::Red,
-            FLinearColor::Green,
-            5.0f
-        );
-
-        // TODO: compute the extended radius here
-        float ExtendedRadius = bHasPrevious ? FMath::Sqrt(
-            FMath::Square(c->Radius / FMath::Tan(FMath::DegreesToRadians(90.f - (PreviousAngle - Angle) / 2.f)))
-            + FMath::Square(c->Radius)
-        ): c->Radius;
-
-        LineEnd = hit ? OutHit.Location - dir : Location + dir * ExtendedRadius;
-
-        auto Start = FogOfWarVolume->GetTextureCoordinate(LineStart);
-        auto End   = FogOfWarVolume->GetTextureCoordinate(LineEnd);
-
-        //Triangle.V0_Color = FLinearColor::White;
-        Triangle.V0_Pos   = Start;
-        Triangle.V0_UV  = FVector2D(0.5, 0.5);
-
-        //Triangle.V1_Color = FLinearColor::White;
-        Triangle.V1_Pos   = Previous;
-        Triangle.V1_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LinePrevious - LineStart), TriangleSize);
-
-        //Triangle.V2_Color = FLinearColor::White;
-        Triangle.V2_Pos   = End;
-        Triangle.V2_UV    = UGKCoordinateLibrary::ToTextureCoordinate((LineEnd - LineStart), TriangleSize);
-
-        float step = c->FieldOfView / float(c->TraceCount);
-        if (bHasPrevious)
-        {
-            /*
-            UE_LOG(LogGamekit,
-                   Log,
-                   TEXT("Triangle V1 %s -> V2 %s  A1 %f -> A2 %f"),
-                   *Triangle.V1_Pos.ToString(),
-                   *Triangle.V2_Pos.ToString(),
-                   PreviousAngle,
-                   Angle);
-            //*/
-
-            if (FMath::Abs(Angle - PreviousAngle) > 180)
-            {
-                UE_LOG(LogGamekit, Log, TEXT("Angle too big skipping"));
-            }
-            else
-            {
-                Triangles.Add(Triangle);
-            }
-        }
-
-        bHasPrevious = true;
-        Previous = End;
-        LinePrevious = LineEnd;
-        PreviousAngle = Angle;
-        
-        if (hit && OutHit.Actor.IsValid())
-        {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(Actor, c, Target);
-            }
-        }
-    }
 }

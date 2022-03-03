@@ -88,25 +88,23 @@ void UGKRayCasting_Line::DrawLineOfSight(UGKFogOfWarComponent *c)
     }
 }
 
+
 void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
     FVector          loc            = actor->GetActorLocation();
     TArray<AActor *> ActorsToIgnore = {GetOwner()};
+    ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
+
     TSet<AActor *>   AlreadySighted;
 
-    float step = c->FieldOfView / float(c->TraceCount);
-    int   n    = c->TraceCount / 2;
+    float      step = c->FieldOfView / float(c->TraceCount);
+    int        n    = c->TraceCount / 2;
+    FHitResult OutHit;
+    auto       TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
 
-    FHitResult                 OutHit;
-    UCanvas *                  Canvas;
-    FVector2D                  Size;
-    FDrawToRenderTargetContext Context;
-
-    auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
-    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-    auto TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
+    Lines.Reset(c->TraceCount + 1);
 
     for (int i = -n; i <= n; i++)
     {
@@ -116,27 +114,23 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c
         FVector LineStart = loc + dir * c->InnerRadius;
         FVector LineEnd   = loc + dir * c->Radius;
 
-        bool hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
-                                                         LineStart,
-                                                         LineEnd,
-                                                         TraceType,
-                                                         false, // bTraceComplex
-                                                         ActorsToIgnore,
-                                                         FogOfWarVolume->DebugTrace(),
-                                                         OutHit,
-                                                         true, // Ignore Self
-                                                         FLinearColor::Red,
-                                                         FLinearColor::Green,
-                                                         5.0f);
+        bool hit = UKismetSystemLibrary::LineTraceSingle(
+            GetWorld(),
+            LineStart,
+            LineEnd,
+            TraceType,
+            false, // bTraceComplex
+            ActorsToIgnore,
+            FogOfWarVolume->DebugTrace(),
+            OutHit,
+            true, // Ignore Self
+            FLinearColor::Red,
+            FLinearColor::Green,
+            0
+        );
 
         LineEnd = hit ? OutHit.Location : LineEnd;
-
-        auto Start = FogOfWarVolume->GetTextureCoordinate(LineStart);
-        auto End   = FogOfWarVolume->GetTextureCoordinate(LineEnd);
-
-        //
-        //
-        Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
+        Lines.Add(FGKLinePoints{LineStart, LineEnd});
 
         if (hit && OutHit.Actor.IsValid())
         {
@@ -150,7 +144,33 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c
         }
     }
 
-    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+    DrawLines(c);
+}
+
+void UGKRayCasting_Line::DrawLines(class UGKFogOfWarComponent *c)
+{
+    // Rendering is not needed by the server
+#if !UE_SERVER
+    if (GetWorld()->GetNetMode() != NM_DedicatedServer)
+    {
+        UCanvas *                  Canvas;
+        FVector2D                  Size;
+        FDrawToRenderTargetContext Context;
+
+        // Draw lines
+        auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
+        UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
+        for (auto Line: Lines)
+        {
+            auto Start = FogOfWarVolume->GetTextureCoordinate(Line.Start);
+            auto End   = FogOfWarVolume->GetTextureCoordinate(Line.End);
+
+            Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
+        }
+
+        UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+    }
+#endif
 }
 
 UTexture *UGKRayCasting_Line::GetFactionTexture(FName name, bool bCreateRenderTarget)

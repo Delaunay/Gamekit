@@ -16,6 +16,8 @@ public:
     UGKRayCasting_Triangle();
 
 protected:
+
+    void GenerateTriangles(UGKFogOfWarComponent *c);
     
 	void DrawTriangles(UGKFogOfWarComponent *c);
 

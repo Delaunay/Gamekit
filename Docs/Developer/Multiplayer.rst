@@ -14,6 +14,16 @@ Server Only code blocks
    #endif
 
 
+Client only code blocks
+-----------------------
+
+.. code-block:: cpp
+
+   #if !UE_SERVER
+
+   #endif
+
+
 Actor Network configuration
 ---------------------------
 

@@ -12,6 +12,12 @@
 
 void BroadCastEvents(AActor *Seer, UGKFogOfWarComponent *SeerComponent, AActor *Target);
 
+struct FGKLinePoints
+{
+    FVector Start;
+    FVector End;
+};
+
 
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
@@ -41,7 +47,11 @@ protected:
     //! Draw the ligne of sight using a material (no collision)
     virtual void DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c);
 
+    void DrawLines(class UGKFogOfWarComponent *c);
+
     class UCanvasRenderTarget2D *CreateRenderTarget();
+
+    TArray<FGKLinePoints> Lines;
 
     UPROPERTY(Transient)
     TMap<FName, class UCanvasRenderTarget2D *> FogFactions;

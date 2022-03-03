@@ -54,12 +54,11 @@ void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, flo
             Radius,                
             36,                  
             Color, 
-            1.f,                 
+            0.f,                 
             5.f,                 
             FVector(1, 0, 0),    
             FVector(0, 1, 0),    
             true
-        );               
-    }                                                              
-    
+        );
+    }
 }
