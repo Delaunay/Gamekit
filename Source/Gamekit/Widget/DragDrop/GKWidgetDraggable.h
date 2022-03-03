@@ -69,11 +69,13 @@ public:
     // ------
     // We are not using NativeOnDrop/NativeOnDragCancelled
     // because they require a `FDragDropEvent` which is not given by UDragDropOperation delegates
+    UFUNCTION()
     void OnDropCancelled_Native(class UDragDropOperation *Operation);
 
     UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")
     void OnDropCancelled(class UDragDropOperation *Operation);
 
+    UFUNCTION()
     void OnDropSuccess_Native(class UDragDropOperation *Operation);
 
     UFUNCTION(BlueprintImplementableEvent, BlueprintCosmetic, Category = "Drag and Drop")

@@ -79,4 +79,10 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Rendering")
     static void ClearTexture(class UTexture *Texture, FLinearColor ClearColor);
+
+    UFUNCTION(BlueprintPure, Category = "Multiplayer", meta = (WorldContext = "World"))
+    static FName GameInstanceMode(const UObject *World);
+
+    UFUNCTION(BlueprintPure, Category = "Multiplayer")
+    static FString GetNetConfig(const AActor *Actor);
 };
