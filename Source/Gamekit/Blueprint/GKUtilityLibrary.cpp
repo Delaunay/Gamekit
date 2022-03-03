@@ -285,3 +285,56 @@ void UGKUtilityLibrary::ClearTexture(class UTexture *Texture, FLinearColor Clear
         }
     );
 }
+
+FName UGKUtilityLibrary::GameInstanceMode(const UObject *WorldContext)
+{
+    static FName Server = "Server";
+    static FName Client = "Client";
+
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
+
+    switch (World->GetGameInstance()->IsDedicatedServerInstance())
+    {
+    case true:
+        return Server;
+    case false:
+        return Client;
+    }
+
+    return NAME_None;
+}
+
+FName NetModeToString(ENetMode NetMode)
+{
+    switch (NetMode)
+    {
+    case NM_Standalone:     return "Standalone";
+    case NM_DedicatedServer:return "Dedicated";
+    case NM_ListenServer:   return "Listen";
+    case NM_Client:         return "Client";
+    }
+    return NAME_None;
+}
+
+FName NetRoleToString(ENetRole NetRole)
+{
+    switch (NetRole)
+    {
+    case ROLE_SimulatedProxy:   return "Simulated";
+    case ROLE_AutonomousProxy:  return "AutoProxy";
+    case ROLE_Authority:        return "Authority";
+    }
+    return NAME_None;
+}
+
+FString UGKUtilityLibrary::GetNetConfig(const AActor *Actor) {
+    TArray<FStringFormatArg> Frags = {
+        FStringFormatArg(NetModeToString(Actor->GetNetMode()).ToString()),
+        FStringFormatArg(NetRoleToString(Actor->GetLocalRole()).ToString()),
+        FStringFormatArg(NetRoleToString(Actor->GetRemoteRole()).ToString())
+    };
+    return FString::Format(
+        TEXT("[NM: {0}] [LR: {1}] [RR: {2}]"),
+        Frags
+    );
+}

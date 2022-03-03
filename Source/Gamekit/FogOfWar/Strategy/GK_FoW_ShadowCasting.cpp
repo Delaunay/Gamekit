@@ -52,7 +52,7 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     {
         Texture = Result[0];
     }
-    else if (bCreateRenderTarget)
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
     {   
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();

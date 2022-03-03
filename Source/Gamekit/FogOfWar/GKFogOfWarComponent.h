@@ -6,7 +6,8 @@
 #include "GKFogOfWarComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor*, Actor);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor*, Actor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FBeginPlayFogOfWar);
 
 
 /*! UGKFogOfWarComponent is used to defines the spec of the actor participating in the fog of war
@@ -55,7 +56,7 @@ public:
     class AGKFogOfWarVolume* GetFogOfWarVolume();
 
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    FName GetFaction() const;
+    FName GetFaction();
 
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -110,6 +111,12 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float FieldOfView;
 
+    //! Use this event to set different fog of war textures
+    UPROPERTY(BlueprintAssignable, Category = FogOfWar)
+    FBeginPlayFogOfWar OnBeginPlayFogOfWar;
+
+    void NativeOnBeginPlayFogOfWar();
+
 public:
     //! Called when the actor is seeing another actor in its line of sight
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
@@ -125,7 +132,7 @@ private:
     void SetCollisionFoWResponse(class UPrimitiveComponent* Primitive, ECollisionChannel Channel);
 
     //! Try to get the faction using the IGenericTeamAgentInterface
-    FName DeduceFaction();
+    FName DeduceFaction() const;
 
     //! Faction this unit belongs to
     FName Faction;

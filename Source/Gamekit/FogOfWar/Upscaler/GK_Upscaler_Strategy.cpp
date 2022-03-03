@@ -42,7 +42,7 @@ UTexture2D *UGKTransformerStrategyTexture2D::GetFactionTransformTarget(FName nam
     {
         Texture = Result[0];
     }
-    else if (bCreateRenderTarget)
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
         UE_LOG(LogGamekit, Log, TEXT("Creating a Transform Texture for faction %s"), *name.ToString());
         Texture = CreateTransformTarget();
@@ -89,7 +89,7 @@ UCanvasRenderTarget2D *UGKTransformerStrategyCanvas::GetFactionTransformTarget(F
     {
         Texture = Result[0];
     }
-    else if (bCreateRenderTarget)
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
         UE_LOG(LogGamekit, Log, TEXT("Creating a Transform Texture for faction %s"), *name.ToString());
         Texture = CreateTransformTarget();

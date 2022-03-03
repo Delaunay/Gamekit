@@ -79,4 +79,13 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Rendering")
     static void ClearTexture(class UTexture *Texture, FLinearColor ClearColor);
+
+    UFUNCTION(BlueprintPure, Category = "Multiplier", meta = (WorldContext = "World"))
+    static FName GameInstanceMode(const UObject *World);
+
+    UFUNCTION(BlueprintPure, Category = "Multiplier")
+    static FString GetNetConfig(const AActor *Actor);
 };
+
+#define GKLOG(Actor, Level, Format, ...) \
+    UE_LOG(LogGamekit, TEXT("%s" Format), *UGKUtilityLibrary::GetNetConfig(Actor), __VA_ARGS__)

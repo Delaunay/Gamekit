@@ -290,9 +290,6 @@ private:
 
     TArray<class UGKFogOfWarComponent *> ActorComponents;
 
-    //! Post Processing materials
-    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
-
     //! Decal Material used to draw in the editor
     class UMaterialInstanceDynamic *DecalMaterialInstance;
 
@@ -317,10 +314,11 @@ private:
 
     friend class UGKFogOfWarComponent;
 
-    FGKFactionFog &GetFactionFogs(FName Faction);
+    FGKFactionFog GetFactionFogs(FName Faction);
 
     TMap<FName, FGKFactionFog> FactionFogs;
 
+    UPROPERTY(Transient)
     TArray<class UGKFogOfWarComponent *> Blocking; 
 
 protected:
@@ -337,6 +335,10 @@ protected:
 
     UPROPERTY(Transient)
     class UGKTransformerStrategy *Exploration;
+
+    //! Post Processing materials
+    UPROPERTY(Transient)
+    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
 
     bool bReady;
 };

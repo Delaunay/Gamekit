@@ -3,9 +3,10 @@
 #include "GKFogOfWarComponent.h"
 #include "GKFogOfWarVolume.h"
 
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
-#include "GenericTeamAgentInterface.h"
 
+#include "GenericTeamAgentInterface.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
@@ -15,15 +16,16 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 
     // Default Settings
-    Faction = "Default";
-    TraceCount = 360;
-    FieldOfView = 360;
-    Radius = 600.f;
-    GivesVision = true;
-    BlocksVision = false;
-    InnerRadius = 10.f;
+    DefaultFaction     = NAME_None;
+    Faction            = NAME_None;
+    TraceCount         = 360;
+    FieldOfView        = 360;
+    Radius             = 600.f;
+    GivesVision        = true;
+    BlocksVision       = false;
+    InnerRadius        = 10.f;
     UnobstructedVision = false;
-    LineTickness = 2.f;
+    LineTickness       = 2.f;
 }
 
 void UGKFogOfWarComponent::BeginDestroy() {
@@ -45,7 +47,7 @@ UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial() {
 }
 
 
-FName UGKFogOfWarComponent::DeduceFaction() {
+FName UGKFogOfWarComponent::DeduceFaction() const {
     const IGenericTeamAgentInterface* TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
 
     if (!TeamAgent)
@@ -60,7 +62,15 @@ FName UGKFogOfWarComponent::DeduceFaction() {
         return DefaultFaction;
     }
 
-    return Factions->GetNameByIndex(TeamAgent->GetGenericTeamId());
+    auto TeamId      = TeamAgent->GetGenericTeamId().GetId();
+    auto FactionName = Factions->GetNameByIndex(TeamId);
+    
+    if (FactionName == NAME_None)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("TeamID %d is not inside the enum"), TeamId);
+        return DefaultFaction;
+    }
+    return FactionName;
 }
 
 // Called when the game starts
@@ -93,6 +103,10 @@ void UGKFogOfWarComponent::BeginPlay()
     }
 
     vol->RegisterActorComponent(this);
+}
+
+void UGKFogOfWarComponent::NativeOnBeginPlayFogOfWar() {
+    OnBeginPlayFogOfWar.Broadcast();
 }
 
 void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic* Material) {
@@ -159,6 +173,12 @@ void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *Camera
     UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
 }
 
-FName UGKFogOfWarComponent::GetFaction() const {
+FName UGKFogOfWarComponent::GetFaction() {
+    if (Faction == NAME_None)
+    {
+        Faction = DeduceFaction();
+    }
+
+    UE_LOG(LogGamekit, Log, TEXT("%s Faction is %s"), *UGKUtilityLibrary::GetNetConfig(GetOwner()), *Faction.ToString());
     return Faction;
 }

@@ -168,7 +168,7 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bo
     {
         Render = RenderResult[0];
     }
-    else if (bCreateRenderTarget)
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
         Render = CreateRenderTarget();
         FogFactions.Add(Name, Render);

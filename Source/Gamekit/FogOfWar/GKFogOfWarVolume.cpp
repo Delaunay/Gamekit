@@ -117,6 +117,8 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
 void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     name,
                                                       UMaterialInstanceDynamic *Material)
 {
+    ensureMsgf(bReady, TEXT("Fog Of war should be ready"));
+
     if (Material == nullptr)
     {
         UE_LOG(LogGamekit, Warning, TEXT("Material is null"));
@@ -146,6 +148,8 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     
 
 UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name)
 {
+    ensureMsgf(bReady, TEXT("Fog Of war should be ready"));
+
     if (UseFoWDecalRendering)
     {
         UE_LOG(LogGamekit, Warning, TEXT("Cannot generate Post process material when using Decal Rendering"));
@@ -339,6 +343,7 @@ void AGKFogOfWarVolume::InitializeExploration()
 
 void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+    bReady = false;
     if (Strategy != nullptr)
     {
         Strategy->Stop();
@@ -360,8 +365,13 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AGKFogOfWarVolume::BeginPlay()
 {
-    Super::BeginPlay();
+    bReady = false;
+    // Do not accept registering new component before init is done
+    FScopeLock ScopeLock(&Mutex);
+    
+    // FactionFogs.Reset();
     PostProcessMaterials.Reset();
+
     UpdateVolumeSizes();
 
     // Reset the material instance
@@ -374,7 +384,7 @@ void AGKFogOfWarVolume::BeginPlay()
     InitializeExploration();
     InitializeUpscaler();
 
-    bReady = true;
+    Super::BeginPlay();
 
     // Start drawing the fog
     // For this method to work we need a better way to synchronize the textures
@@ -393,16 +403,27 @@ void AGKFogOfWarVolume::BeginPlay()
         GetWorldTimerManager().PauseTimer(FogComputeTimer);
         return;
     }
+    for (auto Component: ActorComponents)
+    {
+        Component->NativeOnBeginPlayFogOfWar();
+    }
+    bReady = true;
 }
 
 void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);
-    GetFactionFogs(c->Faction).Allies.Add(c);
+    GetFactionFogs(c->GetFaction()).Allies.Add(c);
+
     if (c->BlocksVision)
     {
         Blocking.Add(c);
+    }
+
+    if (bReady)
+    {
+        c->NativeOnBeginPlayFogOfWar();
     }
 }
 
@@ -411,6 +432,7 @@ void AGKFogOfWarVolume::UnregisterActorComponent(UGKFogOfWarComponent *c)
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Remove(c);
     GetFactionFogs(c->Faction).Allies.Remove(c);
+
     if (c->BlocksVision)
     {
         Blocking.Remove(c);
@@ -448,16 +470,35 @@ void AGKFogOfWarVolume::DrawFactionFog()
 
 UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) {
 
+    /*
+    if (Exploration)
+        return Exploration->GetFactionTexture(name);
+    */
+
     return GetFactionFogs(name).Exploration; 
 }
 
 UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name)
 { 
+    /*
+    if (Upscaler)
+        return Upscaler->GetFactionTexture(name);
+
+    if (Strategy)
+        return Strategy->GetFactionTexture(name);
+    */
     return GetFactionFogs(name).Vision;
 }
 
 UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name) 
 { 
+    /*
+    if (Upscaler)
+        return Upscaler->GetFactionTexture(name);
+
+    if (Strategy)
+        return Strategy->GetFactionTexture(name);
+    */
     if (bUpscaling)
     {
         return GetFactionFogs(name).UpScaledVision;
@@ -559,8 +600,13 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
 }
 
 
-FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+FGKFactionFog AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
+    if (Faction == NAME_None)
+    {
+        return FGKFactionFog();
+    }
+
     auto *Fog = FactionFogs.Find(Faction);
 
     if (Fog == nullptr)

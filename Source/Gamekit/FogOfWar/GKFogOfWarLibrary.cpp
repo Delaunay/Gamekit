@@ -53,5 +53,6 @@ void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume* Volume,
             return;
         }
     }
+
     CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(FWeightedBlendable(1, Material));
 }
