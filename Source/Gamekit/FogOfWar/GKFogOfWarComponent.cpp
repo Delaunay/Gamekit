@@ -15,15 +15,16 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 
     // Default Settings
-    Faction = "Default";
-    TraceCount = 360;
-    FieldOfView = 360;
-    Radius = 600.f;
-    GivesVision = true;
-    BlocksVision = false;
-    InnerRadius = 10.f;
+    Faction            = NAME_None;
+    DefaultFaction     = "Default";
+    TraceCount         = 360;
+    FieldOfView        = 360;
+    Radius             = 600.f;
+    GivesVision        = true;
+    BlocksVision       = false;
+    InnerRadius        = 10.f;
     UnobstructedVision = false;
-    LineTickness = 2.f;
+    LineTickness       = 2.f;
 }
 
 void UGKFogOfWarComponent::BeginDestroy() {
@@ -45,7 +46,7 @@ UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial() {
 }
 
 
-FName UGKFogOfWarComponent::DeduceFaction() {
+FName UGKFogOfWarComponent::DeduceFaction() const {
     const IGenericTeamAgentInterface* TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
 
     if (!TeamAgent)
@@ -60,7 +61,16 @@ FName UGKFogOfWarComponent::DeduceFaction() {
         return DefaultFaction;
     }
 
-    return Factions->GetNameByIndex(TeamAgent->GetGenericTeamId());
+    auto TeamId      = TeamAgent->GetGenericTeamId().GetId();
+    auto FactionName = Factions->GetNameByIndex(TeamId);
+
+    if (FactionName == NAME_None)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("TeamID %d is not inside the enum"), TeamId);
+        return DefaultFaction;
+    }
+
+    return FactionName;
 }
 
 // Called when the game starts
@@ -159,6 +169,11 @@ void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *Camera
     UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
 }
 
-FName UGKFogOfWarComponent::GetFaction() const {
+FName UGKFogOfWarComponent::GetFaction() {
+    if (Faction == NAME_None)
+    {
+        Faction = DeduceFaction();
+    }
+
     return Faction;
 }

@@ -55,7 +55,7 @@ public:
     class AGKFogOfWarVolume* GetFogOfWarVolume();
 
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    FName GetFaction() const;
+    FName GetFaction();
 
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -125,7 +125,7 @@ private:
     void SetCollisionFoWResponse(class UPrimitiveComponent* Primitive, ECollisionChannel Channel);
 
     //! Try to get the faction using the IGenericTeamAgentInterface
-    FName DeduceFaction();
+    FName DeduceFaction() const;
 
     //! Faction this unit belongs to
     FName Faction;

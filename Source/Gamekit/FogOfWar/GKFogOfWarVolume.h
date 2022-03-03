@@ -288,11 +288,6 @@ private:
 
     FVector2D TextureSize; // == MapSize * TextureScale
 
-    TArray<class UGKFogOfWarComponent *> ActorComponents;
-
-    //! Post Processing materials
-    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
-
     //! Decal Material used to draw in the editor
     class UMaterialInstanceDynamic *DecalMaterialInstance;
 
@@ -317,7 +312,7 @@ private:
 
     friend class UGKFogOfWarComponent;
 
-    FGKFactionFog &GetFactionFogs(FName Faction);
+    FGKFactionFog& GetFactionFogs(FName Faction);
 
     TMap<FName, FGKFactionFog> FactionFogs;
 
@@ -337,6 +332,13 @@ protected:
 
     UPROPERTY(Transient)
     class UGKTransformerStrategy *Exploration;
+
+    UPROPERTY(Transient)
+    TArray<class UGKFogOfWarComponent *> ActorComponents;
+
+    //! Post Processing materials
+    UPROPERTY(Transient)
+    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
 
     bool bReady;
 };

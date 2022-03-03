@@ -399,7 +399,7 @@ void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);
-    GetFactionFogs(c->Faction).Allies.Add(c);
+    GetFactionFogs(c->GetFaction()).Allies.Add(c);
     if (c->BlocksVision)
     {
         Blocking.Add(c);
@@ -410,7 +410,7 @@ void AGKFogOfWarVolume::UnregisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Remove(c);
-    GetFactionFogs(c->Faction).Allies.Remove(c);
+    GetFactionFogs(c->GetFaction()).Allies.Remove(c);
     if (c->BlocksVision)
     {
         Blocking.Remove(c);
@@ -559,17 +559,28 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
 }
 
 
-FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+FGKFactionFog& AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
+    // Returning a reference here has the advantage of not requiring us to
+    // check for nills later on
+    //
+    // NB: DO NOT RETURN A COPY OF THIS
+    static FGKFactionFog None;
+    if (Faction == NAME_None)
+    {
+        return None;
+    }
+
     auto *Fog = FactionFogs.Find(Faction);
 
     if (Fog == nullptr)
     {
-        auto &FogFaction          = FactionFogs.Add(Faction, FGKFactionFog());
+        FGKFactionFog &FogFaction = FactionFogs.Add(Faction, FGKFactionFog());
         FogFaction.Name           = Faction;
         FogFaction.Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true): nullptr;
         FogFaction.UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
         FogFaction.Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
+        
         return FogFaction;
     }
 
