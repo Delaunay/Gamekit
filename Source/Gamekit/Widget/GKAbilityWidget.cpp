@@ -6,7 +6,8 @@
 #include "Abilities/GKGameplayAbility.h"
 
 void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility* InAbility) {
-    if (!InAbility) {
+    if (!InAbility || bBound)
+    {
         return;
     }
 
@@ -38,20 +39,48 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility* InAbility) {
     Ability->OnAbilityLevelUp.AddDynamic(this, &UGKAbilityWidget::OnAbilityLevelUp);
 
     // Listen to Gameplay effect
-
-
+    // TODO: Issue [#6]
+    
     // Start
     // Note Activate should be useless in that case
     CooldownChangedTask->RegisterWithGameInstance(Ability->GetWorld());
-    CooldownChangedTask->Activate();
-
     AttributeChangedTask->RegisterWithGameInstance(Ability->GetWorld());
+
+    CooldownChangedTask->Activate();
     AttributeChangedTask->Activate();
+
+    bBound = true;
 }
 
 void UGKAbilityWidget::NativeDestruct() {
-    // CooldownChangedTask->EndTask();
-    // AttributeChangedTask->EndTask();
+    if (!bBound)
+    {
+        return;
+    }
+
+    if (Ability)
+    {
+        Ability->TargetingStartDelegate.RemoveAll(this);
+        Ability->TargetingResultDelegate.RemoveAll(this);
+        Ability->OnAbilityLevelUp.RemoveAll(this);
+    }
+
+    if (CooldownChangedTask)
+    {
+        CooldownChangedTask->OnCooldownBegin.RemoveAll(this);
+        CooldownChangedTask->OnCooldownEnd.RemoveAll(this);
+        CooldownChangedTask->EndTask();
+        CooldownChangedTask->SetReadyToDestroy();
+    }
+
+    if (AttributeChangedTask)
+    {
+        AttributeChangedTask->OnAttributeChanged.RemoveAll(this);
+        AttributeChangedTask->EndTask();
+        AttributeChangedTask->SetReadyToDestroy();
+    }
+
+    bBound = false;
 }
 
 void UGKAbilityWidget::OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute, float NewValue, float OldValue) {

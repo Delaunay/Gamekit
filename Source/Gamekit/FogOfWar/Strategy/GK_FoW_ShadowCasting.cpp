@@ -83,7 +83,6 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
 
     FVector Corners[4] = {TopLeft, TopRight, BotLeft, BotRight};
 
-
     // Draw Corners
     #if ENABLE_DRAW_DEBUG
     if (FogOfWarVolume->bDebug)
@@ -117,13 +116,24 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     {
         for (int i = 0; i < Width; i++)
         {
-            Buffer(TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking))) = Value;
+            auto Pos = TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking));
+            Buffer(Pos) = Value;
+
+            // TODO: FIXME
+            Pos.Z = 0;
+            PositionToComponent.Add(Pos, c);
         }
     }
 }
 
 void UGKShadowCasting::UpdateTextures(FName Name)
 {
+#if !UE_SERVER
+    if (GetWorld()->GetNetMode() == NM_DedicatedServer)
+    {
+        return;
+    }
+
     auto Texture = GetFactionTexture2D(Name);
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
@@ -141,19 +151,21 @@ void UGKShadowCasting::UpdateTextures(FName Name)
             delete[] Buf;
         }
     );
+#endif
 }
 
 void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 {
     Points.Reset();
+    PositionToComponent.Reset();
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Visible), (uint8)(EGK_TileVisbility::None));
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Blocking), (uint8)(EGK_TileVisbility::None));
+
+    CurrentFaction     = FactionFog;
 
     FactionFog->Vision = GetFactionTexture(FactionFog->Name, true);
     FactionFog->Buffer = static_cast<void *>(&Buffer);
 
-    // TODO: FIXME, maybe have a global blocking layer
-    // Update the blocks
     for (auto &Component: FogOfWarVolume->GetBlocking())
     {
         if (Component->BlocksVision)
@@ -164,6 +176,7 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 
     for (auto &Component: FactionFog->Allies)
     {
+        CurrentComponent = Component;
         if (Component->GivesVision)
         {
             DrawLineOfSight(FactionFog, Component);
@@ -189,18 +202,17 @@ void UGKShadowCasting::Initialize()
     Buffer.Init(0, TileCount.X, TileCount.Y, uint8(EGK_VisbilityLayers::Size));
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
-    //*
     UE_LOG(LogGamekit, Log, TEXT("Map Size is %s"), *MapSize.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileCount Count is %s"), *TileCount.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
-    //*/
 
-    // Try to allocate our buffer early
-    // TSet<FName> Factions;
-    for (auto &Component: FogOfWarVolume->ActorComponents)
+    // Try to allocate our buffers early
+    if (GetWorld()->GetNetMode() != NM_DedicatedServer)
     {
-        GetFactionTexture(Component->GetFaction(), true);
-        // Factions.Add(Component->Faction);
+        for (auto &FactionFog: FogOfWarVolume->FactionFogs)
+        {
+            GetFactionTexture(FactionFog.Key, true);
+        }
     }
 }
 
@@ -210,8 +222,7 @@ void UGKShadowCasting::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogO
 
     auto GridCoord = Grid.WorldToGrid(WorldPos);
     auto Radius    = int(c->Radius / Grid.GetTileSize().X);
-    Points.Add(c, FGKPoints());
-    FGKPoints *ComponentPoints = Points.Find(c);
+    FGKPoints *ComponentPoints = &Points.Add(c, FGKPoints());
 
     /*
     UE_LOG(LogGamekit, Log, TEXT("Actor is %s"), *AActor::GetDebugName(c->GetOwner()));
@@ -229,6 +240,7 @@ bool UGKShadowCasting::BlocksLight(int X, int Y)
 
     if (Buffer.Valid(TexturePos))
     {
+        // TODO: Broadcast Sighting events?
         // Check if wall flag is set
         return bool(Buffer(TexturePos) & (uint8)(EGK_TileVisbility::Wall));
     }
@@ -251,6 +263,16 @@ void UGKShadowCasting::SetVisible(int X, int Y)
     {
         // Set visible flag
         Buffer(TexturePos) |= (uint8)(EGK_TileVisbility::Visible);
+
+        // FIXME
+        TexturePos.Z = 0;
+
+        UGKFogOfWarComponent** SightedResult = PositionToComponent.Find(TexturePos);
+        if (SightedResult != nullptr)
+        {
+            UGKFogOfWarComponent *Sighted = SightedResult[0];
+            AddVisibleComponent(CurrentFaction, CurrentComponent, Sighted);
+        }
     }
     else
     {

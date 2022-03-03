@@ -77,3 +77,23 @@ void UGKFogOfWarStrategy::AddVisibleActor(FGKFactionFog *FactionFog, UGKFogOfWar
         FoWComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
+
+
+void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      FactionFog,
+                                              class UGKFogOfWarComponent *SourceComp,
+                                              class UGKFogOfWarComponent *SightedComp)
+{
+    if (SightedComp == nullptr)
+    {
+        return;
+    }
+
+    SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
+
+    // Avoid multiple broadcast per target
+    if (!FactionFog->VisibleEnemies.Contains(SightedComp))
+    {
+        FactionFog->VisibleEnemies.Add(SightedComp);
+        SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
+    }
+}

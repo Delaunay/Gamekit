@@ -135,7 +135,14 @@ private:
 
 	UPROPERTY(Transient)
     TMap<FName, class UTexture2D *> FogFactions;
+    TMap<FIntVector, class UGKFogOfWarComponent *> PositionToComponent;
 
 	FUpdateTextureRegion2D UpdateRegion;
+
+	// Unused
     TMap<class UGKFogOfWarComponent *, FGKPoints> Points;
+
+	//
+	FGKFactionFog *CurrentFaction;
+    class UGKFogOfWarComponent *CurrentComponent;
 };

@@ -65,9 +65,12 @@ public:
     UFUNCTION(BlueprintCallable)
     virtual void SetupListeners(class UGKGameplayAbility* AbilityIn);
 
-    virtual void NativeDestruct();
+    void NativeDestruct() override;
 
 protected:
+    UPROPERTY()
+    bool                      bBound;
+
     class UGKGameplayAbility* Ability;
 
     class UGKAsyncTaskAttributeChanged* AttributeChangedTask;

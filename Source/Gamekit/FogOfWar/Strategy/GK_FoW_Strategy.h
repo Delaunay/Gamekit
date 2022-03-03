@@ -47,7 +47,13 @@ public:
 	}
 
 	// Check if actor has a FogOfWar component, is so trigger the OnSighted event
-	void AddVisibleActor(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *SourceComp, class AActor* Actor);
+    void AddVisibleActor(struct FGKFactionFog *      FactionFog,
+                         class UGKFogOfWarComponent *SourceComp,
+                         class AActor *              Actor);
+
+	void AddVisibleComponent(struct FGKFactionFog *      FactionFog,
+                             class UGKFogOfWarComponent *SourceComp,
+                             class UGKFogOfWarComponent *SightedComp);
 
     protected:
 	class AGKFogOfWarVolume* FogOfWarVolume;
