@@ -27,7 +27,7 @@ public:
     virtual void DrawFactionFog(struct FGKFactionFog* FactionFog);
 
 	//! Draw the line of sight using the right method
-    virtual void DrawLineOfSight(class UGKFogOfWarComponent *c) {}
+    virtual void DrawLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c) {}
 
 	void DebugDrawComponent(class UGKFogOfWarComponent *c);
 
@@ -45,6 +45,9 @@ public:
 	void OnNewFaction(FName Name) { 
 		GetFactionTexture(Name, true);
 	}
+
+	// Check if actor has a FogOfWar component, is so trigger the OnSighted event
+	void AddVisibleActor(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *SourceComp, class AActor* Actor);
 
     protected:
 	class AGKFogOfWarVolume* FogOfWarVolume;

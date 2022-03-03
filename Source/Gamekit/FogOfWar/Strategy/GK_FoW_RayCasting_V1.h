@@ -32,7 +32,7 @@ public:
     void DrawFactionFog(struct FGKFactionFog *FactionFog);
 
     //! Draw the line of sight using the right method
-    virtual void DrawLineOfSight(class UGKFogOfWarComponent *c);
+    virtual void DrawLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c);
 
     //! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool bCreateRenderTarget = true);
@@ -42,10 +42,12 @@ public:
 protected:
 
     //! Draw the line of sight using LineTrace
-    virtual void DrawObstructedLineOfSight(UGKFogOfWarComponent *c);
+    virtual void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c);
 
     //! Draw the ligne of sight using a material (no collision)
-    virtual void DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c);
+    virtual void DrawUnobstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c);
+
+    void DrawUnobstructedLineOfSight_Draw(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c);
 
     void DrawLines(class UGKFogOfWarComponent *c);
 

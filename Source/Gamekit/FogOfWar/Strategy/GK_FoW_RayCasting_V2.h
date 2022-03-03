@@ -27,7 +27,7 @@ protected:
     //! Even with a low trace count the field of view will still render 
     //! as a circle thanks to its material
     //! 
-    virtual void DrawObstructedLineOfSight(UGKFogOfWarComponent *c);
+    void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c) override;
 
     UPROPERTY(Transient)
     TArray<FCanvasUVTri> Triangles;

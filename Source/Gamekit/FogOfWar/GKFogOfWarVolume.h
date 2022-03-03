@@ -36,7 +36,7 @@ struct FGKFactionFog
     class UTexture *UpScaledVision;
     bool            bDiscrete;
 
-    TArray<class UGKFogOfWarComponent *> VisibleEnemies;
+    TSet<class UGKFogOfWarComponent *> VisibleEnemies;
     TArray<class UGKFogOfWarComponent *> Allies;
 
     void *Buffer;

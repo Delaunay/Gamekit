@@ -94,7 +94,7 @@ public:
 	void Stop() override;
 
 	//! Draw the line of sight using the right method
-    void DrawLineOfSight(class UGKFogOfWarComponent *c) override;
+    void DrawLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c) override;
 
 	void UpdateBlocking(class UGKFogOfWarComponent *c);
 

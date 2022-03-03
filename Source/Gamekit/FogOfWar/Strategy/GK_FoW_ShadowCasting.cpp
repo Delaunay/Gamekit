@@ -166,7 +166,7 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
     {
         if (Component->GivesVision)
         {
-            DrawLineOfSight(Component);
+            DrawLineOfSight(FactionFog, Component);
             DebugDrawComponent(Component);
         }
 
@@ -204,7 +204,7 @@ void UGKShadowCasting::Initialize()
     }
 }
 
-void UGKShadowCasting::DrawLineOfSight(UGKFogOfWarComponent *c)
+void UGKShadowCasting::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
 {
     auto WorldPos = c->GetOwner()->GetActorLocation();
 

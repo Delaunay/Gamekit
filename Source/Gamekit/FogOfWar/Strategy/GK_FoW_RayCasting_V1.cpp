@@ -44,32 +44,11 @@ void UGKRayCasting_Line::DrawFactionFog(FGKFactionFog *FactionFog)
 
     for (auto &Component: FactionFog->Allies)
     {
-        DrawLineOfSight(Component);
+        DrawLineOfSight(FactionFog, Component);
     }
 }
 
-void BroadCastEvents(AActor *Seer, UGKFogOfWarComponent *SeerComponent, AActor *Target)
-{
-    // Send an event that current actor is seeing something
-    SeerComponent->OnSighting.Broadcast(Target);
-
-    UActorComponent *component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
-    if (component == nullptr)
-    {
-        return;
-    }
-
-    UGKFogOfWarComponent *target = Cast<UGKFogOfWarComponent>(component);
-    if (target == nullptr)
-    {
-        return;
-    }
-
-    // Send an event that the hit is being seen
-    target->OnSighted.Broadcast(Seer);
-}
-
-void UGKRayCasting_Line::DrawLineOfSight(UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
 {
     if (!c->GivesVision)
     {
@@ -80,24 +59,22 @@ void UGKRayCasting_Line::DrawLineOfSight(UGKFogOfWarComponent *c)
 
     if (c->UnobstructedVision)
     {
-        DrawUnobstructedLineOfSight(c);
+        DrawUnobstructedLineOfSight(FactionFog, c);
     }
     else
     {
-        DrawObstructedLineOfSight(c);
+        DrawObstructedLineOfSight(FactionFog, c);
     }
 }
 
 
-void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
     FVector          loc            = actor->GetActorLocation();
     TArray<AActor *> ActorsToIgnore = {GetOwner()};
     ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
-
-    TSet<AActor *>   AlreadySighted;
 
     float      step = c->FieldOfView / float(c->TraceCount);
     int        n    = c->TraceCount / 2;
@@ -134,42 +111,40 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class UGKFogOfWarComponent *c
 
         if (hit && OutHit.Actor.IsValid())
         {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(actor, c, Target);
-            }
+            AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
         }
     }
 
     DrawLines(c);
 }
 
+
 void UGKRayCasting_Line::DrawLines(class UGKFogOfWarComponent *c)
 {
     // Rendering is not needed by the server
 #if !UE_SERVER
-    if (GetWorld()->GetNetMode() != NM_DedicatedServer)
+    if (GetWorld()->GetNetMode() == NM_DedicatedServer)
     {
-        UCanvas *                  Canvas;
-        FVector2D                  Size;
-        FDrawToRenderTargetContext Context;
-
-        // Draw lines
-        auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
-        UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
-        for (auto Line: Lines)
-        {
-            auto Start = FogOfWarVolume->GetTextureCoordinate(Line.Start);
-            auto End   = FogOfWarVolume->GetTextureCoordinate(Line.End);
-
-            Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
-        }
-
-        UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+        return;
     }
+
+    UCanvas *                  Canvas;
+    FVector2D                  Size;
+    FDrawToRenderTargetContext Context;
+
+    // Draw lines
+    auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
+    UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
+    for (auto Line: Lines)
+    {
+        auto Start = FogOfWarVolume->GetTextureCoordinate(Line.Start);
+        auto End   = FogOfWarVolume->GetTextureCoordinate(Line.End);
+
+        Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
+    }
+
+    UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+    
 #endif
 }
 
@@ -224,13 +199,22 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
     return Texture;
 }
 
-void UGKRayCasting_Line::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
-{
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c) {
+#if !UE_SERVER
+    if (GetWorld()->GetNetMode() == NM_DedicatedServer)
+    {
+        return;
+    }
+
     AActor *actor   = c->GetOwner();
     FVector forward = actor->GetActorForwardVector();
 
     UMaterialInstanceDynamic *material = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-            GetWorld(), FogOfWarVolume->UnobstructedVisionMaterial, NAME_None, EMIDCreationFlags::None);
+        GetWorld(), 
+        FogOfWarVolume->UnobstructedVisionMaterial, 
+        NAME_None, 
+        EMIDCreationFlags::None
+    );
 
     FLinearColor Value;
     Value.R = forward.X;
@@ -240,8 +224,10 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
     material->SetVectorParameterValue("Direction&FoV", Value);
 
     auto RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
-    auto NewRadius    = FVector2D(c->Radius * FogOfWarVolume->TextureSize.X / FogOfWarVolume->MapSize.X,
-                               c->Radius * FogOfWarVolume->TextureSize.Y / FogOfWarVolume->MapSize.Y);
+    auto NewRadius    = FVector2D(
+        c->Radius * FogOfWarVolume->TextureSize.X / FogOfWarVolume->MapSize.X,
+        c->Radius * FogOfWarVolume->TextureSize.Y / FogOfWarVolume->MapSize.Y
+    );
     auto Start        = FogOfWarVolume->GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;
 
     UCanvas *                  Canvas;
@@ -258,15 +244,30 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
                             FVector2D(0.5f, 0.5f));
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
+#endif
+}
 
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+{
+    DrawUnobstructedLineOfSight_Draw(FactionFog, c);
+
+    AActor *                              Actor = c->GetOwner();
     TArray<AActor *>                      ActorsToIgnore;
+    ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
     UClass *                              ActorClassFilter = AActor::StaticClass();
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarVolume->FogOfWarCollisionChannel, ObjectTypes);
     TArray<AActor *> OutActors;
 
     UKismetSystemLibrary::SphereOverlapActors(
-            GetWorld(), actor->GetActorLocation(), c->Radius, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors);
+        GetWorld(), 
+        Actor->GetActorLocation(), 
+        c->Radius, 
+        ObjectTypes, 
+        ActorClassFilter, 
+        ActorsToIgnore, 
+        OutActors
+    );
 
     for (AActor *Target: OutActors)
     {
@@ -274,7 +275,6 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight(UGKFogOfWarComponent *c)
         {
             continue;
         }
-
-        BroadCastEvents(actor, c, Target);
+        AddVisibleActor(FactionFog, c, Target);
     }
 }

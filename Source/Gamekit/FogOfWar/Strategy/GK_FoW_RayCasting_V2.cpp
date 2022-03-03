@@ -11,7 +11,8 @@
 
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 
-void UGKRayCasting_Triangle::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) {
+void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+{
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
     FVector          loc            = actor->GetActorLocation();
@@ -70,13 +71,7 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(UGKFogOfWarComponent *c) 
 
         if (hit && OutHit.Actor.IsValid())
         {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(actor, c, Target);
-            }
+            AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
         }
     }
 

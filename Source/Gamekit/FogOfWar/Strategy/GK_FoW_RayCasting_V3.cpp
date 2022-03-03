@@ -12,7 +12,7 @@
 
 UGKRayCasting_Less::UGKRayCasting_Less(){}
 
-void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
+void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
 {
     Triangles.Reset(c->TraceCount + 1);
 
@@ -98,16 +98,76 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(UGKFogOfWarComponent *c)
     }
 
     Angles.Sort();
+    // Fill or remove angles
     FillMissingAngles(c, Angles);
-    CastLinesFromAngles(c, Angles);
+    CastLinesFromAngles(FactionFog, c, Angles);
 
     // Only for non-dedicated servers
     GenerateTriangles(c);
     DrawTriangles(c);
 } 
 
+// When a lot of units are in the same area we should cut the number of angles/lines
+void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles)
+{
+    float MaxStep = c->FieldOfView / float(c->TraceCount);
+    float MinStep = MaxStep / 2.f;
+    int   n       = c->TraceCount / 2;
 
-void UGKRayCasting_Less::CastLinesFromAngles(UGKFogOfWarComponent *c, TArray<float> &Angles) {
+    if (Angles.Num() == 0)
+    {
+        for (int i = -n; i <= n; i++)
+        {
+            Angles.Add(float(i) * MaxStep);
+        }
+        return;
+    }
+
+    float MaxAngle = float(n) * MaxStep;
+    float MinAngle = float(-n) * MaxStep;
+
+    float Temp = Angles[0];
+    Angles.Add(Temp + 360.f);
+
+    TArray<float> NewAngles;
+    NewAngles.Reserve(Angles.Num());
+
+    NewAngles.Add(Angles[0]);
+    float PreviousAngle = Angles[0];
+
+    for (int i = 1; i < Angles.Num(); i++)
+    {
+        float Angle = Angles[i];
+        float Range = Angle - PreviousAngle;
+
+        if (Range > MaxStep)
+        {
+            int   Count   = Range / MaxStep;
+            float NewStep = Range / float(Count);
+
+            for (int j = 1; j <= Count; j++)
+            {
+                NewAngles.Add(PreviousAngle + float(j) * NewStep);
+            }
+        }
+
+        // Skip this angle because it is too close to previous one
+        if (Range < MinAngle)
+        {
+            continue;
+        }
+
+        PreviousAngle = Angle;
+        NewAngles.Add(PreviousAngle);
+    }
+    Angles = NewAngles;
+}
+
+
+void UGKRayCasting_Less::CastLinesFromAngles(FGKFactionFog *FactionFog,
+                                             UGKFogOfWarComponent *c,
+                                             TArray<float> &       Angles)
+{
     auto             Actor    = c->GetOwner();
     FVector          Location = Actor->GetActorLocation();
     FVector          Forward  = Actor->GetActorForwardVector();
@@ -164,60 +224,7 @@ void UGKRayCasting_Less::CastLinesFromAngles(UGKFogOfWarComponent *c, TArray<flo
 
         if (hit && OutHit.Actor.IsValid())
         {
-            // Avoid multiple broadcast per target
-            AActor *Target = OutHit.Actor.Get();
-            if (!AlreadySighted.Contains(Target))
-            {
-                AlreadySighted.Add(Target);
-                BroadCastEvents(Actor, c, Target);
-            }
+            AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
         }
     }
-}
-
-void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles)
-{
-    float MaxStep = c->FieldOfView / float(c->TraceCount);
-    int   n       = c->TraceCount / 2;
-
-    if (Angles.Num() == 0)
-    {
-        for (int i = -n; i <= n; i++)
-        {
-            Angles.Add(float(i) * MaxStep);
-        }
-        return;
-    }
-
-    float MaxAngle = float(n) * MaxStep;
-    float MinAngle = float(-n) * MaxStep;
-
-    float Temp = Angles[0];
-    Angles.Add(Temp + 360.f);
-
-    TArray<float> NewAngles;
-    NewAngles.Reserve(Angles.Num());
-
-    NewAngles.Add(Angles[0]);
-    float PreviousAngle = Angles[0];
-
-    for (int i = 1; i < Angles.Num(); i++)
-    {
-        float Angle = Angles[i];
-        float Range = Angle - PreviousAngle;
-
-        if (Range > MaxStep)
-        {
-            int   Count   = Range / MaxStep;
-            float NewStep = Range / float(Count);
-
-            for (int j = 1; j <= Count; j++)
-            {
-                NewAngles.Add(PreviousAngle + float(j) * NewStep);
-            }
-        }
-        PreviousAngle = Angle;
-        NewAngles.Add(PreviousAngle);
-    }
-    Angles = NewAngles;
 }

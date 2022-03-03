@@ -14,7 +14,7 @@ void UGKFogOfWarStrategy::DrawFactionFog(FGKFactionFog *FactionFog)
 
 	for (auto &Component: FactionFog->Allies)
     {
-        DrawLineOfSight(Component);
+            DrawLineOfSight(FactionFog, Component);
     }
 }
 
@@ -60,5 +60,20 @@ void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, flo
             FVector(0, 1, 0),    
             true
         );
+    }
+}
+
+void UGKFogOfWarStrategy::AddVisibleActor(FGKFactionFog *FactionFog, UGKFogOfWarComponent *SourceComp, AActor *Target)
+{
+    UActorComponent *     Component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
+    UGKFogOfWarComponent *FoWComp   = Cast<UGKFogOfWarComponent>(Component);
+
+    SourceComp->OnSighting.Broadcast(Target);
+
+    // Avoid multiple broadcast per target
+    if (FoWComp != nullptr && !FactionFog->VisibleEnemies.Contains(FoWComp))
+    {
+        FactionFog->VisibleEnemies.Add(FoWComp);
+        FoWComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }

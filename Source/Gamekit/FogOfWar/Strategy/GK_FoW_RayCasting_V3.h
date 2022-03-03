@@ -26,9 +26,9 @@ protected:
     //!     * Add Line traces if angle between 2 traces are too wide <--+
     //!     * Generate triangles
     //!     * Draw
-    virtual void DrawObstructedLineOfSight(UGKFogOfWarComponent *c);
+    void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c) override;
 
-    void CastLinesFromAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
+    void CastLinesFromAngles(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles);
 
     //! Make sure we do a full turn
     //! TODO: support field of view != 360
