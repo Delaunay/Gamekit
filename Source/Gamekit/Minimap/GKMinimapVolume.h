@@ -36,6 +36,8 @@ public:
 
     void BeginPlay() override;
 
+    void Tick(float Delta) override;
+
     // This generate a separate texture from the Fog Of War Volume
     // You can combine them using a material 
 
@@ -118,8 +120,7 @@ public:
     TSubclassOf<AActor> AllowClass;
 
 private:
-    FCriticalSection Mutex;               // Mutex to sync adding/removing components with the fog compute
-    FTimerHandle     MinimapComputeTimer; // Compute the fog every few frames (or so)
-    FVector2D        MapSize;  
-    TArray<class UGKMinimapComponent*> ActorComponents;
+    FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute
+    FVector2D                           MapSize;
+    TArray<class UGKMinimapComponent *> ActorComponents;
 };

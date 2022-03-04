@@ -52,7 +52,7 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     {
         Texture = Result[0];
     }
-    else if (bCreateRenderTarget)
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
     {   
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
@@ -165,6 +165,7 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 
     FactionFog->Vision = GetFactionTexture(FactionFog->Name, true);
     FactionFog->Buffer = static_cast<void *>(&Buffer);
+    FactionFog->bDiscrete = true;
 
     for (auto &Component: FogOfWarVolume->GetBlocking())
     {

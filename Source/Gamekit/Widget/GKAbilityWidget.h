@@ -62,7 +62,7 @@ public:
 
     virtual void OnAbilityInsufficientResources_Implementation(bool CostMet) {}
 
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     virtual void SetupListeners(class UGKGameplayAbility* AbilityIn);
 
     void NativeDestruct() override;

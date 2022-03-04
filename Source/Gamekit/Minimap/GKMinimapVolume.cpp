@@ -51,33 +51,18 @@ void AGKMinimapVolume::BeginPlay() {
     Super::BeginPlay();
 
     UpdateSizes();
+}
 
 
-    // Avoid jittering by keeping to 2 versions
-    if (MinimapCanvas)
-    {
-        MinimapCanvas->bNeedsTwoCopies = true;
-    }
-    if (MinimapCaptureTexture)
-    {
-        MinimapCaptureTexture->bNeedsTwoCopies = true;
-    }
-    // ------------
-
-    // Start drawing the fog
-    GetWorldTimerManager().SetTimer(
-        MinimapComputeTimer,
-        this,
-        &AGKMinimapVolume::DrawMinimap,
-        1.f / FramePerSeconds,
-        true,
-        bMinimapEnabled ? 0.f: 1.f
-    );
+void AGKMinimapVolume::Tick(float Delta) { 
+    DrawMinimap(); 
 }
 
 void AGKMinimapVolume::DrawMinimap() {
-    UCanvas* Canvas;
-    FVector2D Size;
+    FScopeLock                 ScopeLock(&Mutex);
+
+    UCanvas *                  Canvas;
+    FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
     if (!MinimapCanvas)

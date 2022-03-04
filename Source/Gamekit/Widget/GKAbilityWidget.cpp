@@ -6,8 +6,14 @@
 #include "Abilities/GKGameplayAbility.h"
 
 void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility* InAbility) {
-    if (!InAbility || bBound)
+    if (!InAbility)
     {
+        return;
+    }
+
+    if (bBound)
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("Calling SetupListeners twice"));
         return;
     }
 

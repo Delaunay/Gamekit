@@ -31,6 +31,7 @@ float3 AverageInt(Texture2D Tex, float2 UV, int Distance, int Size) {
 float3 AverageFloat(Texture2D Tex, float2 UV, float Distance, int Size) {
     float3 acc = 0;
     float n = float(Size / 2);
+    float sum = 0;
 
     for (int j = 0; j < Size; j++){
         for(int i = 0; i < Size; i++) {
@@ -43,9 +44,10 @@ float3 AverageFloat(Texture2D Tex, float2 UV, float Distance, int Size) {
                 UV + float2(x, y) * Distance
             );
 
-            acc += FILTER(value);
+            sum += 1;
+            acc += value;
         }
     }
 
-    return acc / float(Size * Size);
+    return acc / sum;
 }
