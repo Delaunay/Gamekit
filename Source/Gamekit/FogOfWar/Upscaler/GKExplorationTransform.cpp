@@ -68,9 +68,8 @@ void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
                            FVector2D(0, 0),
                            FVector2D(1, 1),
                            FLinearColor(0, 1, 0, 0),
-                           // EBlendMode::BLEND_Masked,
-                           // EBlendMode::BLEND_MAX,
-                           EBlendMode::BLEND_Additive,
+                           // EBlendMode::BLEND_AlphaComposite,
+                           //EBlendMode::BLEND_Additive,
                            0.0,
                            FVector2D(0, 0));
     //*/

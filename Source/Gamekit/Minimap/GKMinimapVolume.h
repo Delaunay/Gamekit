@@ -9,6 +9,23 @@
 
 #include "GKMinimapVolume.generated.h"
 
+
+struct FGKFactionMinimap
+{
+    FGKFactionMinimap()
+    {
+        MinimapCapture = nullptr;
+        MinimapCanvas  = nullptr;
+        Allies.Reserve(128);
+    }
+
+    FName                                Name;
+    class UTexture *                     MinimapCapture;
+    class UTexture *                     MinimapCanvas;
+    bool                                 bDiscrete;
+    TArray<class UGKFogOfWarComponent *> Allies;
+};
+
 /*! Minimap Volume is a static volume for RTS like games
  * 
  * \rst
@@ -42,7 +59,7 @@ public:
     // You can combine them using a material 
 
     //! Represents how often the Minimap is redrawn
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minimap|Async")
     float FramePerSeconds;
 
     //! Texture used to render component on the minimap
@@ -120,6 +137,8 @@ public:
     TSubclassOf<AActor> AllowClass;
 
 private:
+    TMap<FName, FGKFactionMinimap> FactionMinimap;
+
     FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute
     FVector2D                           MapSize;
     TArray<class UGKMinimapComponent *> ActorComponents;

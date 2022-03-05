@@ -25,7 +25,7 @@ Features
 * Support spectator fog (multi fog view)
 
 
-.. image :: /_static/FogOfWar.PNG
+.. image :: /_static/FogOFWarOverview.PNG
 
 
 In a nutshell
