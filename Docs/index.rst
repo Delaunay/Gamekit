@@ -57,6 +57,12 @@ Goals
 
    Tips/Others
 
+
+.. toctree::
+   :caption: Online
+
+   Online/matchmaking
+
 .. toctree::
    :caption: Developer Guide
 
