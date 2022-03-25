@@ -38,9 +38,10 @@ public:
 	}
 
 	//! Retrieve the Texture used to draw the fog of war for a given faction
-    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) {
-		return nullptr;
-	}
+	virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { return nullptr; }
+
+	//! Retrieve the Texture used to draw the fog of war for a given faction
+	virtual class UTexture *GetPreviousFrameFactionTexture(FName name, bool CreateRenderTarget = true) { return nullptr; }
 
 	void OnNewFaction(FName Name) { 
 		GetFactionTexture(Name, true);

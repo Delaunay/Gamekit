@@ -117,6 +117,9 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
 void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     name,
                                                       UMaterialInstanceDynamic *Material)
 {
+    
+    UE_LOG(LogGamekit, Log, TEXT("Setting For of War Materials"));
+
     if (Material == nullptr)
     {
         UE_LOG(LogGamekit, Warning, TEXT("Material is null"));
@@ -132,6 +135,17 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     
     {
         UE_LOG(LogGamekit, Warning, TEXT("Fog of war vision is null"));
     }
+
+    auto PreviousFoWView = Strategy->GetPreviousFrameFactionTexture(name);
+    if (PreviousFoWView != nullptr)
+    {
+        Material->SetTextureParameterValue("PreviousFoWView", PreviousFoWView);
+    }
+    else
+    {
+        UE_LOG(LogGamekit, Warning, TEXT("Previous Fog of war vision is null"));
+    }
+
 
     auto FoWExploration = GetFactionExplorationTexture(name);
     if (FoWExploration != nullptr)
@@ -255,6 +269,15 @@ void AGKFogOfWarVolume::InitDecalRendering()
 
 void AGKFogOfWarVolume::Tick(float DeltaTime)
 {
+    DeltaAccumulator += DeltaTime;
+
+    if (DeltaAccumulator < 1 / LimitFramePerSeconds)
+    {
+        return;
+    }
+    DeltaAccumulator = 0;
+
+
     if (bFogOfWarEnabled)
     {
         DrawFactionFog();
@@ -360,6 +383,7 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AGKFogOfWarVolume::BeginPlay()
 {
+    DeltaAccumulator = 1000;
     Super::BeginPlay();
     PostProcessMaterials.Reset();
     UpdateVolumeSizes();

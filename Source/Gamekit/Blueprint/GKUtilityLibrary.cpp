@@ -1,27 +1,24 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
+#include "ClearQuad.h"
+#include "Components/PanelSlot.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Kismet/GameplayStatics.h"
-#include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetRenderingLibrary.h"
-#include "Math/Rotator.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Math/RotationMatrix.h"
-#include "Components/PanelSlot.h"
-#include "ClearQuad.h"
+#include "Math/Rotator.h"
 
 #include "GKCoordinateLibrary.h"
 #include "GKWorldSettings.h"
 
-AWorldSettings const*UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext) {
-    UWorld* World = GEngine->GetWorldFromContextObject(
-        WorldContext, 
-        EGetWorldErrorMode::LogAndReturnNull
-    );
+AWorldSettings const *UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext)
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
 
     if (!World)
     {
@@ -31,12 +28,13 @@ AWorldSettings const*UGKUtilityLibrary::GetWorldSetting(const UObject *WorldCont
     return World->GetWorldSettings();
 }
 
-FVector2D UGKUtilityLibrary::GetWorldMapSize(const UObject *World) {
+FVector2D UGKUtilityLibrary::GetWorldMapSize(const UObject *World)
+{
     auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
 
     if (!Settings)
         return FVector2D();
-        
+
     return Settings->MapSize;
 }
 
@@ -50,14 +48,11 @@ FString UGKUtilityLibrary::GetProjectVersion()
     return ProjectVersion;
 }
 
+FVector UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext)
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
 
-FVector UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
-    UWorld* World = GEngine->GetWorldFromContextObject(
-        WorldContext, 
-        EGetWorldErrorMode::LogAndReturnNull
-    );
-
-    TArray<AActor*> OutActors;
+    TArray<AActor *> OutActors;
     UGameplayStatics::GetAllActorsOfClass(World, AGKFogOfWarVolume::StaticClass(), OutActors);
 
     if (OutActors.Num() >= 1)
@@ -68,7 +63,6 @@ FVector UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext) {
 
     return FVector();
 }
-
 
 void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
                                                  class APlayerController *Controller,
@@ -83,14 +77,9 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
     auto ViewportSize = FVector2D(SizeX, SizeY) - Margin;
 
     TArray<AActor *> ActorsToIgnore;
-    FHitResult     OutHit;
+    FHitResult       OutHit;
 
-    static TArray<FVector2D> ViewportCorners = {
-        FVector2D(0, 0), 
-        FVector2D(1, 0), 
-        FVector2D(1, 1), 
-        FVector2D(0, 1)
-    };
+    static TArray<FVector2D> ViewportCorners = {FVector2D(0, 0), FVector2D(1, 0), FVector2D(1, 1), FVector2D(0, 1)};
 
     Corners.Reset(4);
 
@@ -101,12 +90,7 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
 
         auto Screen = ViewportSize * Corner;
 
-         UGameplayStatics::DeprojectScreenToWorld(
-            Controller, 
-            Screen, 
-            WorldLocation, 
-            WorldDirection
-        );
+        UGameplayStatics::DeprojectScreenToWorld(Controller, Screen, WorldLocation, WorldDirection);
 
         UKismetSystemLibrary::LineTraceSingle(World,
                                               WorldLocation,
@@ -127,17 +111,15 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
     Corners[2].X = Corners[3].X;
 }
 
-
 void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
                                     class UCanvasRenderTarget2D *Target,
                                     TArray<FVector>              Corners,
                                     FVector2D                    MapSize,
                                     FLinearColor                 Color,
-                                    float                        Thickness
-    )
+                                    float                        Thickness)
 {
     UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
-    
+
     UCanvas *                  Canvas;
     FVector2D                  TextureSize;
     FDrawToRenderTargetContext Context;
@@ -147,25 +129,23 @@ void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
 
     for (int i = 1; i < Corners.Num(); i++)
     {
-        Canvas->K2_DrawLine(
-            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i - 1], MapSize, TextureSize),
-            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i], MapSize, TextureSize),
-            Thickness, 
-            Color);
+        Canvas->K2_DrawLine(UGKCoordinateLibrary::ToScreenCoordinate(Corners[i - 1], MapSize, TextureSize),
+                            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i], MapSize, TextureSize),
+                            Thickness,
+                            Color);
     }
 
     auto Last = Corners.Num() - 1;
-    Canvas->K2_DrawLine(
-        UGKCoordinateLibrary::ToScreenCoordinate(Corners[Last], MapSize, TextureSize),
-        UGKCoordinateLibrary::ToScreenCoordinate(Corners[0], MapSize, TextureSize),
-        Thickness,
-        Color);
+    Canvas->K2_DrawLine(UGKCoordinateLibrary::ToScreenCoordinate(Corners[Last], MapSize, TextureSize),
+                        UGKCoordinateLibrary::ToScreenCoordinate(Corners[0], MapSize, TextureSize),
+                        Thickness,
+                        Color);
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(World, Context);
 }
 
 FRotator UGKUtilityLibrary::BetterLookAtRotation(FVector ActorLocation, FVector LookAt, FVector UpDirection)
-{   
+{
     ActorLocation.Z = 0;
     LookAt.Z        = 0;
 
@@ -173,42 +153,37 @@ FRotator UGKUtilityLibrary::BetterLookAtRotation(FVector ActorLocation, FVector 
     return FRotator(0, Yaw, 0);
 }
 
+UWidget *UGKUtilityLibrary::GetPanelSlotContent(UPanelSlot *Slot) { return Slot->Content; }
 
-UWidget *UGKUtilityLibrary::GetPanelSlotContent(UPanelSlot *Slot) {
-    return Slot->Content;
-}
-
-class UWidget *UGKUtilityLibrary::GetWidgetUnderCursor() {
+class UWidget *UGKUtilityLibrary::GetWidgetUnderCursor()
+{
     // Get a reference to the singleton instance of the slate application.
-     FSlateApplication& App = FSlateApplication::Get();
- 
-     // Find a "widget tree path" of all widgets under the mouse cursor.
-     // This path will contain not only the top-level widget, but all widgets underneath.
-     // For example, if the mouse cursor was over a Button with a Text widget inside of it, then the last 
-     // widget in the widget path would be the Text widget, and the next to last widget would be the Button widget.
-     FWidgetPath WidgetsUnderCursor = App.LocateWindowUnderMouse(
-         App.GetCursorPos(), 
-         App.GetInteractiveTopLevelWindows()
-     );
- 
-     FString Result = TEXT( "" );
-     if (WidgetsUnderCursor.IsValid() )
-     {
-         auto Last = WidgetsUnderCursor.Widgets.Num() - 1;
-         FArrangedWidget& Widget = WidgetsUnderCursor.Widgets[Last];
-         return nullptr;
-     }
-    
-     return nullptr;
-}
+    FSlateApplication &App = FSlateApplication::Get();
 
+    // Find a "widget tree path" of all widgets under the mouse cursor.
+    // This path will contain not only the top-level widget, but all widgets underneath.
+    // For example, if the mouse cursor was over a Button with a Text widget inside of it, then the last
+    // widget in the widget path would be the Text widget, and the next to last widget would be the Button widget.
+    FWidgetPath WidgetsUnderCursor =
+            App.LocateWindowUnderMouse(App.GetCursorPos(), App.GetInteractiveTopLevelWindows());
+
+    FString Result = TEXT("");
+    if (WidgetsUnderCursor.IsValid())
+    {
+        auto             Last   = WidgetsUnderCursor.Widgets.Num() - 1;
+        FArrangedWidget &Widget = WidgetsUnderCursor.Widgets[Last];
+        return nullptr;
+    }
+
+    return nullptr;
+}
 
 EGK_ItemSlot UGKUtilityLibrary::ItemSlotFromInteger(int SlotId) { return EGK_ItemSlot(SlotId); }
 
-
-float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target) {
+float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target)
+{
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Origin, Target);
-    auto TargetYaw = TargetRotator.Yaw;
+    auto TargetYaw     = TargetRotator.Yaw;
 
     if (FMath::Abs(TargetYaw) > 180)
     {
@@ -219,71 +194,161 @@ float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target) {
 }
 
 
-void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) {
+
+
+EGKRelativePosition UGKUtilityLibrary::GetRelativePosition(AActor *Actor, FVector Location)
+{
+    FVector Origin;
+    FVector BoxExtent;
+    Actor->GetActorBounds(true, Origin, BoxExtent);
+
+    auto Centered = Location - Origin;
+    uint8 Pos      = 0;
+
+    if (Centered.Y < -BoxExtent.Y)
+    {
+        Pos |= uint8(EGKRelativePosition::Left);
+    }
+    if (Centered.Y > BoxExtent.Y)
+    {
+        Pos |= uint8(EGKRelativePosition::Right);
+    }
+    if (Centered.X < -BoxExtent.X)
+    {
+        Pos |= uint8(EGKRelativePosition::Bot);
+    }
+    if (Centered.X > BoxExtent.X)
+    {
+        Pos |= uint8(EGKRelativePosition::Top);
+    }
+
+    return EGKRelativePosition(Pos);
+}
+
+
+// Test This
+
+//                  ( 0,  0, 0) Cube
+//  Player Top      ( 1,  0, 0)     # Angle (Top Right, Top, Left)
+//  Player Bot      (-1,  0, 0)     # Angle (Bot Right, Bot Left)
+//  Player Left     ( 0, -1, 0)     # Angle (Top Left , Bot Left)
+//  Player Right    ( 0,  1, 0)     # Angle (Top RIght, Bot Right)
+//
+//  Player TopRight ( 1,  1, 0)     # Angle (TopLeft,  BotRight)
+//  Player TopLeft  ( 1, -1, 0)     # Angle (TopRight, BotLeft)
+//  Player BotLeft  (-1, -1, 0)     # Angle (TopLeft, BotRight)
+//  Player BotRIght (-1,  1, 0)     # Angle (TopRight, BotLeft)
+//
+
+void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax) {
+    
+    auto Relative = GetRelativePosition(Actor, Location);
+
+    FVector Origin;
+    FVector BoxExtent;
+    Actor->GetActorBounds(true, Origin, BoxExtent);
+
+    auto TopRight = Origin + BoxExtent;
+    auto BotRight = Origin + BoxExtent * FVector(-1, 1, 0);
+    auto BotLeft  = Origin - BoxExtent;
+    auto TopLeft  = Origin + BoxExtent * FVector(1, -1, 0);
+
+    /*
+    UE_LOG(LogGamekit,
+           Warning,
+           TEXT("Position %d"), int(Relative));		
+    */
+
+    // clang-format off
+    switch (Relative)
+    {
+        case EGKRelativePosition::Top        : {OutMin = TopLeft;  OutMax = TopRight; return; }
+        case EGKRelativePosition::Bot        : {OutMin = BotLeft;  OutMax = BotRight; return; }
+        case EGKRelativePosition::Left       : {OutMin = TopLeft;  OutMax = BotLeft;  return; }
+        case EGKRelativePosition::Right      : {OutMin = BotRight; OutMax = TopRight; return; }
+        case EGKRelativePosition::TopRight   : {OutMin = TopLeft;  OutMax = BotRight; return; }
+        case EGKRelativePosition::TopLeft    : {OutMin = TopRight; OutMax = BotLeft;  return; }
+        case EGKRelativePosition::BotRight   : {OutMin = TopRight; OutMax = BotLeft;  return; }
+        case EGKRelativePosition::BotLeft    : {OutMin = TopLeft;  OutMax = BotRight; return; }
+        
+        // This means the location is inside the bounding box
+        case EGKRelativePosition::None       : { return;}
+    } 
+    // clang-format on
+
+     UE_LOG(LogGamekit, Warning, TEXT("Point is inside the actors' bounding box"));
+}
+
+
+void UGKUtilityLibrary::GetVisibleBounds_Math(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax)
+{
     FVector Origin;
     FVector BoxExtent;
     Actor->GetActorBounds(true, Origin, BoxExtent);
 
     BoxExtent.Z = 0;
-    Origin.Z = Location.Z;
+    Origin.Z    = Location.Z;
 
-    TArray<FVector> Corners = {
-        Origin + BoxExtent,
-        Origin + BoxExtent * FVector(-1, 1, 0),
-        Origin - BoxExtent,
-        Origin + BoxExtent * FVector(1, -1, 0)
+    TArray<FVector> Corners = {Origin + BoxExtent,                      // Top Right
+                               Origin + BoxExtent * FVector(-1, 1, 0),  // Bot Right
+                               Origin - BoxExtent,                      // Bot Left
+                               Origin + BoxExtent * FVector(1, -1, 0)}; // Top Left
+
+
+    auto  Dir      = Location;
+    float MidAngle = GetYaw(Dir, Origin);
+
+    auto GetYaw = [&MidAngle](FVector x, FVector y) -> float
+    {
+        auto yaw = UKismetMathLibrary::FindLookAtRotation(x, y).Yaw;
+
+        return FMath::Abs(MidAngle) * FMath::Sign(yaw) - yaw;
     };
-
-    #define GET_YAW(x, y) UKismetMathLibrary::FindLookAtRotation(x, y).Yaw
 
     OutMax = Corners[0];
     OutMin = Corners[0];
 
+    float AngleMax = GetYaw(Dir, OutMax);
+    float AngleMin = GetYaw(Dir, OutMin);
 
-
-    auto  Dir      = Location;
-    float AngleMax = GET_YAW(Dir, OutMax);
-    float AngleMin = GET_YAW(Dir, OutMin);
 
     // The Corners that matters are the one with the widest angles
     // but this does not really do that it finds the min max angles
     for (int i = 1; i < 4; i++)
     {
-        float Angle = GET_YAW(Dir, Corners[i]);
+        float Angle = GetYaw(Dir, Corners[i]);
 
         if (Angle > AngleMax)
         {
             AngleMax = Angle;
-            OutMax = Corners[i];
+            OutMax   = Corners[i];
         }
 
         if (Angle < AngleMin)
         {
             AngleMin = Angle;
-            OutMin = Corners[i];
+            OutMin   = Corners[i];
         }
     }
 }
-
 
 void UGKUtilityLibrary::ClearTexture(class UTexture *Texture, FLinearColor ClearColor)
 {
     ENQUEUE_RENDER_COMMAND(ClearRTCommand)
     (
-        [Texture, ClearColor](FRHICommandList &RHICmdList)
-        {
-            FRHIRenderPassInfo RPInfo(Texture->GetResource()->GetTexture2DRHI(),
-                                        ERenderTargetActions::DontLoad_Store);
+            [Texture, ClearColor](FRHICommandList &RHICmdList)
+            {
+                FRHIRenderPassInfo RPInfo(Texture->GetResource()->GetTexture2DRHI(),
+                                          ERenderTargetActions::DontLoad_Store);
 
-            TransitionRenderPassTargets(RHICmdList, RPInfo);
-            RHICmdList.BeginRenderPass(RPInfo, TEXT("ClearTexture"));
-            DrawClearQuad(RHICmdList, ClearColor);
-            RHICmdList.EndRenderPass();
+                TransitionRenderPassTargets(RHICmdList, RPInfo);
+                RHICmdList.BeginRenderPass(RPInfo, TEXT("ClearTexture"));
+                DrawClearQuad(RHICmdList, ClearColor);
+                RHICmdList.EndRenderPass();
 
-            RHICmdList.Transition(FRHITransitionInfo(
-                    Texture->GetResource()->GetTexture2DRHI(), ERHIAccess::RTV, ERHIAccess::SRVMask));
-        }
-    );
+                RHICmdList.Transition(FRHITransitionInfo(
+                        Texture->GetResource()->GetTexture2DRHI(), ERHIAccess::RTV, ERHIAccess::SRVMask));
+            });
 }
 
 FName UGKUtilityLibrary::GameInstanceMode(const UObject *WorldContext)

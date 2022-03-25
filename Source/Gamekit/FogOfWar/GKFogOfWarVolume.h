@@ -33,6 +33,7 @@ struct FGKFactionFog
     FName           Name;
     class UTexture *Exploration;
     class UTexture *Vision;
+    class UTexture *PreviousFrameVision;
     class UTexture *UpScaledVision;
     bool            bDiscrete;
 
@@ -91,6 +92,10 @@ public:
 
     // Properties
     // ----------
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|TickLimit")
+    float LimitFramePerSeconds;
+    float DeltaAccumulator;
 
     //! Represents how often the fog is updated when AsyncDraw is true
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")

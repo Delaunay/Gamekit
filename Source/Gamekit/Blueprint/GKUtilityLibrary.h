@@ -9,6 +9,22 @@
 
 #include "GKUtilityLibrary.generated.h"
 
+
+UENUM(BlueprintType)
+enum class EGKRelativePosition : uint8
+{
+    None  = 0,
+    Top   = 1, // 0001
+    Bot   = 2, // 0010
+    Left  = 4, // 0100
+    Right = 8, // 1000
+
+    TopLeft  = Top | Left,  // 0101 i.e  5
+    BotLeft  = Bot | Left,  // 0110 i.e  6
+    TopRight = Top | Right, // 1001 i.e  9
+    BotRight = Bot | Right, // 1010 i.e 10
+};
+
 /**
  * 
  */
@@ -73,9 +89,18 @@ public:
 
     static float GetYaw(FVector Origin, FVector Target);
 
+    //! Returns the relative postition of location given an actor
+    UFUNCTION(BlueprintPure, Category = "Bounds")
+    static EGKRelativePosition GetRelativePosition(AActor *Actor, FVector Location);
+
     //! Returns the two points of an actor that are visible from Location
+    //! This uses a lookup table to know which points are visisble
     UFUNCTION(BlueprintPure, Category = "Bounds")
     static void GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) ;
+
+    //! this is not as stable as `GetVisibleBounds`
+    UFUNCTION(BlueprintPure, Category = "Bounds")
+    static void GetVisibleBounds_Math(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax);
 
     UFUNCTION(BlueprintCallable, Category = "Rendering")
     static void ClearTexture(class UTexture *Texture, FLinearColor ClearColor);

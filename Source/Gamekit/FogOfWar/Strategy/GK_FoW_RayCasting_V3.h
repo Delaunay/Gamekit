@@ -33,4 +33,28 @@ protected:
     //! Make sure we do a full turn
     //! TODO: support field of view != 360
     void FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
+
+    void Generate3Triangles(FGKFactionFog *       FactionFog, 
+                            UGKFogOfWarComponent *c, 
+                            FVector4 const &      Angles);
+
+    FGKLinePoints CastLineFromAngle(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, float Angle);
+     
+    void GenerateTriangle(UGKFogOfWarComponent *c, FVector Start, FVector End1, FVector End2);
+
+    TArray<FVector2D> Coverage;
+
+
+    private:
+    TArray<AActor *> ActorsToIgnore;
+    UClass *         ActorClassFilter;
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+    AActor *         ComponentOwner;
+    FVector          OwnerLocation;
+    FVector          OwnerForward;
+    FHitResult       OutHit;
+    ETraceTypeQuery  TraceType;
+    TSet<AActor *>   AlreadySighted;
+    bool             bHasPrevious;
+    float            PreviousAngle;
 };

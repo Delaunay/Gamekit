@@ -104,7 +104,15 @@ public:
 
 	class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
 
+	class UTexture2D *GetPreviousFrameFactionTexture2D(FName name, bool bCreateRenderTarget = true);
+
 	class UTexture2D *CreateTexture2D();
+
+	class UTexture *GetPreviousFrameFactionTexture(FName name, bool CreateRenderTarget = true);
+
+	void UpdatePreviousFrameTexturesTex(FName Name);
+
+	void UpdatePreviousFrameTextures(FName Name);
 
 private:
     void Compute(FIntVector origin, int rangeLimit, FGKPoints *Points);
@@ -134,7 +142,8 @@ private:
 	TMatrix3D<uint8>			   Buffer;
 
 	UPROPERTY(Transient)
-    TMap<FName, class UTexture2D *> FogFactions;
+    TMap<FName, class UTexture2D *>                FogFactions;
+    TMap<FName, class UTexture2D *>                PreviousFogFactions;
     TMap<FIntVector, class UGKFogOfWarComponent *> PositionToComponent;
 
 	FUpdateTextureRegion2D UpdateRegion;
@@ -145,4 +154,6 @@ private:
 	//
 	FGKFactionFog *CurrentFaction;
     class UGKFogOfWarComponent *CurrentComponent;
+
+	bool bPreviousIsPrevious;
 };

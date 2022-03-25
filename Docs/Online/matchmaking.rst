@@ -1,9 +1,14 @@
 Matchmaking
 ===========
 
+
+.. image :: /_static/Matchmaking.png
+
+
 Skill Distribution
 ^^^^^^^^^^^^^^^^^^
 
+.. image :: /_static/SkilDistribution.png
 
 Ranking Systems
 ^^^^^^^^^^^^^^^
@@ -276,3 +281,4 @@ References
 .. [3] `Glicko <https://en.wikipedia.org/wiki/Glicko_rating_system>`_
 .. [4] `Bradley-Terry model <https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model>`_
 .. [5] `Chess rating <https://en.wikipedia.org/wiki/Chess_rating_system>`_
+.. [6] `Ranked <https://github.com/Delaunay/Ranked>`_

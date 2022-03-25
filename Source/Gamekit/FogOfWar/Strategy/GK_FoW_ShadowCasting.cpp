@@ -19,16 +19,38 @@ void UGKShadowCasting::Stop()
 
 UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool bCreateRenderTarget)
 {
-    return GetFactionTexture2D(Name, bCreateRenderTarget);
+    return GetFactionTexture2D(Name);
+
+    if (bPreviousIsPrevious)
+    {
+        return GetFactionTexture2D(Name);
+    }
+    else
+    {
+        return GetPreviousFrameFactionTexture2D(Name);
+    }
 }
 
+UTexture *UGKShadowCasting::GetPreviousFrameFactionTexture(FName Name, bool bCreateRenderTarget)
+{
+    return GetPreviousFrameFactionTexture2D(Name);
+
+    if (!bPreviousIsPrevious)
+    {
+        return GetFactionTexture2D(Name);
+    }
+    else
+    {
+        return GetPreviousFrameFactionTexture2D(Name);
+    }
+}
 
 UTexture2D *UGKShadowCasting::CreateTexture2D() {
     auto Texture = UTexture2D::CreateTransient(Buffer.Width(), Buffer.Height(), EPixelFormat::PF_G8);
 
     Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
     Texture->SRGB                = false;
-    Texture->Filter              = TextureFilter::TF_Default;
+    Texture->Filter              = TextureFilter::TF_Trilinear;
     Texture->AddressX            = TextureAddress::TA_Clamp;
     Texture->AddressY            = TextureAddress::TA_Clamp;
     Texture->MipGenSettings      = TextureMipGenSettings::TMGS_NoMipmaps;
@@ -45,18 +67,37 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
 
 UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRenderTarget)
 {
-    UTexture2D ** Result = FogFactions.Find(name);
-    UTexture2D* Texture = nullptr;
+    UTexture2D **Result  = FogFactions.Find(name);
+    UTexture2D * Texture = nullptr;
 
     if (Result != nullptr)
     {
         Texture = Result[0];
     }
     else if (bCreateRenderTarget && !IsBeingDestroyed())
-    {   
+    {
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
         FogFactions.Add(name, Texture);
+    }
+
+    return Texture;
+}
+
+UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool bCreateRenderTarget)
+{
+    UTexture2D **Result  = PreviousFogFactions.Find(name);
+    UTexture2D * Texture = nullptr;
+
+    if (Result != nullptr)
+    {
+        Texture = Result[0];
+    }
+    else if (bCreateRenderTarget && !IsBeingDestroyed())
+    {
+        UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
+        Texture = CreateTexture2D();
+        PreviousFogFactions.Add(name, Texture);
     }
 
     return Texture;
@@ -127,14 +168,18 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
 }
 
 void UGKShadowCasting::UpdateTextures(FName Name)
-{
+{ 
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
     {
         return;
     }
 
-    auto Texture = GetFactionTexture2D(Name);
+    UpdatePreviousFrameTexturesTex(Name);
+
+    UTexture2D *Texture = GetFactionTexture2D(Name);
+    bPreviousIsPrevious = !bPreviousIsPrevious;
+
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
@@ -154,8 +199,59 @@ void UGKShadowCasting::UpdateTextures(FName Name)
 #endif
 }
 
+void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name) {
+
+    UTexture2D *Texture = GetFactionTexture2D(Name);
+    UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
+
+    ENQUEUE_RENDER_COMMAND(CopyTexture)
+    (
+            [Texture, PrevTexture](FRHICommandListImmediate &RHICmdList) {
+                FResolveParams Params;
+
+                /*
+                RHICmdList.CopyToResolveTarget(
+                    Texture->GetResource()->GetTexture2DRHI(), 
+                    PrevTexture->GetResource()->GetTexture2DRHI(),
+                    Params
+                );
+                */
+                FRHICopyTextureInfo CopyParams;
+                RHICmdList.CopyTexture(
+                    Texture->GetResource()->GetTexture2DRHI(),
+                    PrevTexture->GetResource()->GetTexture2DRHI(),
+                    CopyParams);
+            }
+    );
+}
+
+void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
+{
+#if !UE_SERVER
+    if (Buffer.Num() > 0 && GetWorld()->GetNetMode() != NM_DedicatedServer)
+    {
+        // Copy Previous Frame Before reseting
+        UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
+
+        UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
+
+        uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
+        FMemory::Memcpy(NewBuffer, Buffer.GetLayer(uint8(EGK_VisbilityLayers::Visible)), Buffer.GetLayerSizeBytes());
+
+        PrevTexture->UpdateTextureRegions(0,
+                                          1,
+                                          &UpdateRegion,
+                                          UpdateRegion.Width,
+                                          sizeof(uint8),
+                                          NewBuffer,
+                                          [&](uint8 *Buf, const FUpdateTextureRegion2D *) { delete[] Buf; });
+    }
+#endif
+}
+
 void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 {
+    // Reset
     Points.Reset();
     PositionToComponent.Reset();
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Visible), (uint8)(EGK_TileVisbility::None));
@@ -163,9 +259,10 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
 
     CurrentFaction     = FactionFog;
 
-    FactionFog->Vision = GetFactionTexture(FactionFog->Name, true);
-    FactionFog->Buffer = static_cast<void *>(&Buffer);
-    FactionFog->bDiscrete = true;
+    FactionFog->Vision              = GetFactionTexture(FactionFog->Name, true);
+    FactionFog->PreviousFrameVision = GetPreviousFrameFactionTexture(FactionFog->Name, true);
+    FactionFog->Buffer              = static_cast<void *>(&Buffer);
+    FactionFog->bDiscrete           = true;
 
     for (auto &Component: FogOfWarVolume->GetBlocking())
     {
@@ -213,6 +310,8 @@ void UGKShadowCasting::Initialize()
         for (auto &FactionFog: FogOfWarVolume->FactionFogs)
         {
             GetFactionTexture(FactionFog.Key, true);
+            UpdateTextures(FactionFog.Key);
+            UpdatePreviousFrameTexturesTex(FactionFog.Key);
         }
     }
 }

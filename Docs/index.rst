@@ -61,7 +61,9 @@ Goals
 .. toctree::
    :caption: Online
 
-   Online/matchmaking
+   Online/Multiplayer
+   Online/Matchmaking
+   Online/Cheating
 
 .. toctree::
    :caption: Developer Guide

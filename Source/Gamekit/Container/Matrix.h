@@ -24,6 +24,8 @@ struct TMatrix3D {
         }
     }
 
+    FORCEINLINE int Num() const { return Row * Col * Depth;  }
+
     FORCEINLINE T &operator()(int r, int c, int d = 0) { return Data[c + r * Col + d * (Col * Row)]; }
 
     FORCEINLINE T &operator()(FIntVector v) { return Data[v.Y + v.X * Col + v.Z * (Col * Row)]; }

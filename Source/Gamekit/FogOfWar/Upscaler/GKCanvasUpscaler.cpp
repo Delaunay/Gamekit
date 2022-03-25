@@ -31,6 +31,7 @@ void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
 
     auto Material = GetFactionMaterialInstance(FactionFog->Name);
     Material->SetTextureParameterValue("Texture", FactionFog->Vision);
+    Material->SetTextureParameterValue("Previous", FactionFog->PreviousFrameVision);
     Material->SetScalarParameterValue("IsDiscrete", FactionFog->bDiscrete);
 
     Canvas->K2_DrawMaterial(
