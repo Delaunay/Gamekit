@@ -25,6 +25,25 @@ enum class EGKRelativePosition : uint8
     BotRight = Bot | Right, // 1010 i.e 10
 };
 
+
+USTRUCT(BlueprintType)
+struct FGKNetworkMetrics
+{  
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    int32 PacketLoss;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    float DownKiB;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    float UpKiB;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    float  PingMs;
+};
+
 /**
  * 
  */
@@ -105,9 +124,12 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Rendering")
     static void ClearTexture(class UTexture *Texture, FLinearColor ClearColor);
 
-    UFUNCTION(BlueprintPure, Category = "Multiplayer", meta = (WorldContext = "World"))
-    static FName GameInstanceMode(const UObject *World);
+    UFUNCTION(BlueprintPure, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
+    static FName GameInstanceMode(const UObject *WorldContext);
 
     UFUNCTION(BlueprintPure, Category = "Multiplayer")
     static FString GetNetConfig(const AActor *Actor);
+
+    UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
+    static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext);
 };

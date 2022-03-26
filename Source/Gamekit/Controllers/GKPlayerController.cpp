@@ -7,6 +7,9 @@
 #include "GKSaveGame.h"
 #include "Items/GKItem.h"
 
+#include "Engine/NetDriver.h"
+#include "GameFramework/GameNetworkManager.h"
+
 
 AGKPlayerController::AGKPlayerController() {
 }
@@ -30,4 +33,11 @@ void AGKPlayerController::AcknowledgePossession(APawn* P)
 	{
 		CharacterBase->GetAbilitySystemComponent()->InitAbilityActorInfo(CharacterBase, CharacterBase);
 	}
+}
+
+
+void AGKPlayerController::GetNetworkMetrics() { 
+	auto NetDriver = GetWorld()->GetNetDriver();
+	// NetDriver->DrawNetDriverDebug
+
 }

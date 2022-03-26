@@ -282,3 +282,4 @@ References
 .. [4] `Bradley-Terry model <https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model>`_
 .. [5] `Chess rating <https://en.wikipedia.org/wiki/Chess_rating_system>`_
 .. [6] `Ranked <https://github.com/Delaunay/Ranked>`_
+.. [7] `Online Session & Matchmaking <https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Online/SessionInterface/>`_

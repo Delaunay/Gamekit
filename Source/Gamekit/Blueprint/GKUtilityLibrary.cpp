@@ -2,19 +2,20 @@
 
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "GKCoordinateLibrary.h"
+#include "GKWorldSettings.h"
+
+#include "GameFramework/PlayerState.h"
 #include "ClearQuad.h"
 #include "Components/PanelSlot.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Math/RotationMatrix.h"
 #include "Math/Rotator.h"
-
-#include "GKCoordinateLibrary.h"
-#include "GKWorldSettings.h"
 
 AWorldSettings const *UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext)
 {
@@ -405,4 +406,36 @@ FString UGKUtilityLibrary::GetNetConfig(const AActor *Actor)
                                       FStringFormatArg(NetRoleToString(Actor->GetLocalRole()).ToString()),
                                       FStringFormatArg(NetRoleToString(Actor->GetRemoteRole()).ToString())};
     return FString::Format(TEXT("[NM: {0}] [LR: {1}] [RR: {2}]"), Frags);
+}
+
+FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldContext) {
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
+    
+    if (!World)
+    {
+        return FGKNetworkMetrics();
+    }
+
+    auto Driver = World->GetNetDriver();
+
+    if (!Driver)
+    {
+        return FGKNetworkMetrics();
+    }
+    
+    auto Metrics = FGKNetworkMetrics();
+
+    Metrics.PacketLoss = Driver->InPacketsLost + Driver->OutPacketsLost;
+    Metrics.DownKiB = float(Driver->InBytesPerSecond) / 1024.f;
+    Metrics.UpKiB = float(Driver->OutBytesPerSecond) / 1024.f;
+    Metrics.PingMs = Driver->ServerConnection->PlayerController->PlayerState->ExactPing;
+
+    return Metrics;
+    // Unresolved symbol ??
+    // the driver should be inside the Engine module though
+    // Driver->DrawNetDriverDebug();
+
+    // Connection to the server
+    // auto Connection = Driver->ServerConnection;
+
 }
