@@ -37,15 +37,25 @@ enum class EGK_AbilityBehavior : uint8
 	Toggle			UMETA(DisplayName = "Toggle"),			// Ability is Active or not
 };
 
-// Used to defined what kind of target is allowed
-UENUM(BlueprintType, meta = (Bitflags))
-enum class EGK_FriendOrFoe : uint8
+
+template<typename Enum>
+bool IsSet(uint32 Value, Enum Flag)
 {
-    None    = 0		   UMETA(DisplayName = "None"),
-    Friend  = (1 << 0) UMETA(DisplayName = "Friend"), 
-    Enemy   = (1 << 1) UMETA(DisplayName = "Enemy"),
-    Neutral = (1 << 2) UMETA(DisplayName = "Neutral"),
-};
+    return (Value & (1 << static_cast<uint32>(Flag))) > 0;
+}
+
+template<typename Enum>
+uint32 SetFlag(uint32 Value, Enum Flag)
+{
+    return (Value | (1 << static_cast<uint32>(Flag)));
+}
+
+template<typename Enum>
+uint32 RemoveFlag(uint32 Value, Enum Flag)
+{
+    return (Value & ~(1 << static_cast<uint32>(Flag)));
+}
+
 
 // This is create because we cannot use include AGKAbilityTarget_Actor
 // in AbilityStatic
@@ -188,8 +198,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
 	EGK_AbilityBehavior AbilityBehavior;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "EGK_FriendOrFoe"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "ETeamAttitude"))
     int32 TargetActorFaction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+	TSubclassOf<AActor> TargetFilterClass;
 
 	//! The AbilityTarget Actor this ability will use to select a target
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)

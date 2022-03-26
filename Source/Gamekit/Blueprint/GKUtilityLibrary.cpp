@@ -424,11 +424,16 @@ FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldConte
     }
     
     auto Metrics = FGKNetworkMetrics();
-
+    Metrics.PingMs = -1;
     Metrics.PacketLoss = Driver->InPacketsLost + Driver->OutPacketsLost;
     Metrics.DownKiB = float(Driver->InBytesPerSecond) / 1024.f;
     Metrics.UpKiB = float(Driver->OutBytesPerSecond) / 1024.f;
-    Metrics.PingMs = Driver->ServerConnection->PlayerController->PlayerState->ExactPing;
+
+    if (Driver->ServerConnection && Driver->ServerConnection->PlayerController &&
+        Driver->ServerConnection->PlayerController->PlayerState)
+    {
+        Metrics.PingMs = Driver->ServerConnection->PlayerController->PlayerState->ExactPing;
+    }
 
     return Metrics;
     // Unresolved symbol ??

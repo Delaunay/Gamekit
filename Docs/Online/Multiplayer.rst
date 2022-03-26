@@ -122,6 +122,7 @@ to display warning to users when network is being slow.
 
 * ``UFindSessionsCallbackProxy::GetPingInMs``
 * The ping is store in ``PlayerController->PlayerState->ExactPing``
+* Checkout :cpp:func:`UGKUtilityLibrary::GetNetworkMetrics` and :cpp:class:`FGKNetworkMetrics`
 
 +--------+--------------------------------+
 | double | LastTickDispatchRealtime;      |
@@ -224,3 +225,13 @@ to display warning to users when network is being slow.
 +--------+--------------------------------+
 | bool   | DebugRelevantActors;           |
 +--------+--------------------------------+
+
+Testing
+--------
+
+
+
+References
+----------
+
+.. [1] `Simulate Network Conditions <https://www.unrealengine.com/en-US/blog/finding-network-based-exploits?sessionInvalidated=true>`_

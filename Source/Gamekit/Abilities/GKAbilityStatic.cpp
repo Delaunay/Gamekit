@@ -3,6 +3,9 @@
 #include "Abilities/GKAbilityStatic.h"
 #include "Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
 
+#include "GenericTeamAgentInterface.h"
+
+
 FGKAbilityStatic::FGKAbilityStatic()
 	: MaxLevel(1)
 	, Price(0)
@@ -18,7 +21,7 @@ FGKAbilityStatic::FGKAbilityStatic()
     Price            = 0;
     Duration         = 1;
     AbilityBehavior  = EGK_AbilityBehavior::NoTarget;
-    TargetActorFaction = static_cast<int32>(EGK_FriendOrFoe::None);
+    TargetActorFaction = SetFlag(0, ETeamAttitude::Hostile);
     CastTime           = 1;
     ChannelTime        = 0;
     AbilityAnimation   = EGK_AbilityAnimation::Attack;

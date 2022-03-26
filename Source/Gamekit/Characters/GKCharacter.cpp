@@ -446,10 +446,21 @@ void AGKCharacterBase::MoveToLocation(FVector Loc) {
     ETeamAttitude::Type AGKCharacterBase::GetTeamAttitudeTowards(const AActor &Other) const {
 		const IGenericTeamAgentInterface* OtherTeamAgent = Cast<const IGenericTeamAgentInterface>(&Other);
 
+		// We have no information on that guy so assume neutral
 		if (!OtherTeamAgent)
         {
 			return ETeamAttitude::Neutral;  
 		}
 
-		return FGenericTeamId::GetAttitude(GetGenericTeamId(), OtherTeamAgent->GetGenericTeamId());
+		// No team means everybody is neutral with everybody
+		// so 2 people with no teams are neutral with each other not allies
+		auto MyTeam = GetGenericTeamId();
+		auto OtherTeam = OtherTeamAgent->GetGenericTeamId();
+
+		if (MyTeam == FGenericTeamId::NoTeam || OtherTeam == FGenericTeamId::NoTeam)
+        {
+			return ETeamAttitude::Neutral;  
+		}
+
+		return FGenericTeamId::GetAttitude(MyTeam, OtherTeam);
 	}

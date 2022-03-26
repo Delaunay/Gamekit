@@ -32,7 +32,10 @@ void AGKAbilityTarget_PlayerControllerTrace::InitializeFromAbilityData(FGKAbilit
     MinRange = AbilityData.CastMinRange;
     AreaOfEffect = AbilityData.AreaOfEffect;
     ObjectTypes = AbilityData.TargetObjectTypes;
+    ClassFilter = AbilityData.TargetFilterClass;
+    TargetActorFaction = AbilityData.TargetActorFaction;
 
+    // Blueprint overrides
     Super::InitializeFromAbilityData(AbilityData);
 }
 
@@ -241,31 +244,27 @@ void AGKAbilityTarget_PlayerControllerTrace::FilterActors()
         }
     }
 
-    auto isFriend  = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Friendly; };
-    auto isEnemy   = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Hostile; };
-    auto isNeutral = [&Me](AActor *Him) -> bool { return Me->GetTeamAttitudeTowards(*Him) == ETeamAttitude::Neutral; };
-    
+    if (Me == nullptr)
+    {
+        ABILITY_LOG(Warning, TEXT("AGKAbilityTarget_PlayerControllerTrace::FilterActors, Owner does not implement TeamAgentInterface"));
+        return;
+    }
+
     for (auto &Actor: ActorsUnderCursor)
     {
         bool Valid = false;
+        
+        // Create the bit flag we will check against
+        auto TeamAttitude  = SetFlag(0, Me->GetTeamAttitudeTowards(*Actor));
+    
+        ABILITY_LOG(Log, TEXT("Looking for (Kind: %d) (Attitude: %d)"), 
+            TargetActorFaction,
+            TeamAttitude
+        );
 
-        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Friend) && isFriend(Actor))
+        if (TeamAttitude & uint32(TargetActorFaction))
         {
-            Valid = true;
-        }
-
-        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Enemy) && isEnemy(Actor))
-        {
-            Valid = true;
-        }
-
-        if (TargetActorFaction & static_cast<uint32>(EGK_FriendOrFoe::Neutral) && isNeutral(Actor))
-        {
-            Valid = true;
-        }
-
-        if (Valid)
-        {
+            ABILITY_LOG(Log, TEXT("Match!"));
             Actors.Add(Actor);
         }
     }
