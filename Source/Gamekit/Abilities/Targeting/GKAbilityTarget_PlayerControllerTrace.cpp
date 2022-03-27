@@ -34,6 +34,7 @@ void AGKAbilityTarget_PlayerControllerTrace::InitializeFromAbilityData(FGKAbilit
     ObjectTypes = AbilityData.TargetObjectTypes;
     ClassFilter = AbilityData.TargetFilterClass;
     TargetActorFaction = AbilityData.TargetActorFaction;
+    TargetMode = AbilityData.AbilityBehavior;
 
     // Blueprint overrides
     Super::InitializeFromAbilityData(AbilityData);
@@ -107,7 +108,7 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
 
     TraceEndPoint = LatestHitResult.Component.IsValid() ? LatestHitResult.ImpactPoint : LatestHitResult.TraceEnd;
 
-    if (TraceMode == EGK_TraceMode::ActorTarget)
+    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
     {
         Deselect();
 
@@ -143,12 +144,12 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const {
         return false;
     }
 
-    if (TraceMode == EGK_TraceMode::ActorTarget)
+    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
     {
         return ActorsUnderCursor.Num() > 0;
     }
 
-    if (TraceMode == EGK_TraceMode::PointTarget)
+    if (TargetMode == EGK_AbilityBehavior::PointTarget)
     {
         float DistanceSqr = FVector::DistSquared(SourceActor->GetActorLocation(), TraceEndPoint);
         return MaxRange * MaxRange >= DistanceSqr && DistanceSqr >= MinRange * MinRange;
@@ -198,7 +199,7 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
         return;
     }
 
-    if (TraceMode == EGK_TraceMode::ActorTarget)
+    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
     {
         TArray<TWeakObjectPtr<AActor>> Actors;
         Actors.Reset(ActorsUnderCursor.Num());
@@ -214,7 +215,7 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
         return;
     }
 
-    if (TraceMode == EGK_TraceMode::PointTarget)
+    if (TargetMode == EGK_AbilityBehavior::PointTarget)
     {
         // Target is ready, send the data now
         auto Handle = StartLocation.MakeTargetDataHandleFromHitResult(OwningAbility, LatestHitResult);
@@ -252,19 +253,11 @@ void AGKAbilityTarget_PlayerControllerTrace::FilterActors()
 
     for (auto &Actor: ActorsUnderCursor)
     {
-        bool Valid = false;
-        
         // Create the bit flag we will check against
         auto TeamAttitude  = SetFlag(0, Me->GetTeamAttitudeTowards(*Actor));
     
-        ABILITY_LOG(Log, TEXT("Looking for (Kind: %d) (Attitude: %d)"), 
-            TargetActorFaction,
-            TeamAttitude
-        );
-
         if (TeamAttitude & uint32(TargetActorFaction))
         {
-            ABILITY_LOG(Log, TEXT("Match!"));
             Actors.Add(Actor);
         }
     }

@@ -34,6 +34,7 @@ enum class EGK_AbilityBehavior : uint8
 	NoTarget		UMETA(DisplayName = "NoTarget"),		// Ability is cast as soon as the input is pressed
 	ActorTarget	    UMETA(DisplayName = "ActorTarget"),		// Ability targets another actor
 	PointTarget		UMETA(DisplayName = "PointTarget"),		// Ability targets the ground
+	VectorTarget    UMETA(DisplayName = "VectorTarget"),	// Ability targets 2 points
 	Toggle			UMETA(DisplayName = "Toggle"),			// Ability is Active or not
 };
 
@@ -185,6 +186,12 @@ public:
 	//! item in a single stack
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
 	int32 MaxStack;
+
+	//! If true, the target can be selected while out of range
+	//! the players will start moving toward the enemy to reach the
+	//! minimal rang
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+	bool bIgnoreRange;
 
 	// Should be a TArray | Ability Level can change this
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)

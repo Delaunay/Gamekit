@@ -4,12 +4,14 @@
 
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/GKLog.h"
 
 #include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
 #include "Gamekit.h"
 #include "Kismet/KismetMathLibrary.h"
+
 
 UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObjectInitializer &ObjectInitializer):
     Super(ObjectInitializer)
@@ -22,15 +24,73 @@ UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObject
     bDebug            = false;
 }
 
-UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(UGameplayAbility *OwningAbility,
-                                                                                      FName   TaskInstanceName,
-                                                                                      FVector Destination,
-                                                                                      float   DistanceTolerance,
-                                                                                      float   AngleTolerance,
-                                                                                      float   TurnRate,
-                                                                                      float   Speed,
-                                                                                      bool    MoveToTarget,
-                                                                                      bool    Debug)
+
+UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget(
+    UGameplayAbility *OwningAbility,
+    FName             TaskInstanceName,
+    const FGameplayAbilityTargetDataHandle& TargetData,
+    float             DistanceTolerance,
+    float             AngleTolerance,
+    float             TurnRate ,
+    float             Speed ,
+    bool              MoveToTarget,
+    bool              Debug)
+{
+    UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
+        OwningAbility, 
+        TaskInstanceName
+    );
+
+    // TODO: Move this to some generic GKAbilityTask
+    auto GKAbility = Cast<UGKGameplayAbility>(OwningAbility);
+    if (GKAbility)
+    {
+        GKAbility->CurrentTask = MyObj;   
+    }
+
+    MyObj->TargetData        = TargetData; 
+    MyObj->DistanceTolerance = DistanceTolerance;
+    MyObj->AngleTolerance    = AngleTolerance;
+    MyObj->TurnRate          = TurnRate;
+    MyObj->MaxSpeed          = Speed;
+    MyObj->bDebug            = Debug;
+    MyObj->bTurnOnly         = !MoveToTarget;
+
+    MyObj->InitFromTargetData();
+    MyObj->Init();
+
+    GK_WARNING(TEXT("Moving to target"));
+    return MyObj;
+}
+
+
+void UGKAbilityTask_MoveToDestination::InitFromTargetData() { 
+    if (TargetData.IsValid(0)) {
+        auto FirstTarget = TargetData.Get(0);
+        
+        if (FirstTarget->HasHitResult())
+        {
+            Destination = FirstTarget->GetHitResult()->ImpactPoint;
+        }
+
+        auto Actors = FirstTarget->GetActors();
+        if (Actors.Num() > 0)
+        {
+            TargetActor = Actors[0];
+        }
+    } 
+}
+
+UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(
+    UGameplayAbility *OwningAbility,
+    FName   TaskInstanceName,
+    FVector Destination,
+    float   DistanceTolerance,
+    float   AngleTolerance,
+    float   TurnRate,
+    float   Speed,
+    bool    MoveToTarget,
+    bool    Debug)
 {
     UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
         OwningAbility, 
@@ -50,7 +110,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
     MyObj->TurnRate          = TurnRate;
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
-    MyObj->MoveToTarget      = MoveToTarget;
+    MyObj->bTurnOnly         = !MoveToTarget;
 
     MyObj->Init();
     return MyObj;
@@ -95,6 +155,10 @@ void UGKAbilityTask_MoveToDestination::Init()
 void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameReplayTasksComponent)
 {
     Init();
+    if (TargetData.IsValid(0))
+    {
+        InitFromTargetData();
+    }
     Super::InitSimulatedTask(InGameReplayTasksComponent);
 }
 
@@ -137,10 +201,20 @@ void UGKAbilityTask_MoveToDestination::DebugDraw()
 
 void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 {
+    GK_WARNING(TEXT("TickTask"));
+
     if (bIsFinished)
     {
         EndTask();
         return;
+    }
+
+    Super::TickTask(DeltaTime);
+
+    // If our target is an actor update the target location to his
+    if (TargetActor.IsValid())
+    {
+        Destination = TargetActor->GetActorLocation();
     }
 
     DebugDraw();
@@ -161,8 +235,9 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 
     if (bRotationFinished && Distance < DistanceTolerance)
     {
+        GK_WARNING(TEXT("Reached destination"));
         bIsFinished = true;
-        OnCompleted.Broadcast();
+        OnCompleted.Broadcast(TargetData);
         EndTask();
         return;
     }
@@ -192,21 +267,24 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     // that might not be a good idea for some edge cases
     Character->AddControllerYawInput(TurnStep);
 
+    GK_WARNING(TEXT("Turning toward target %f"), TurnStep);
+
     // Is our direction close enough ?
     if (FMath::Abs(TargetYaw) < AngleTolerance)
     {
         if (!bRotationFinished)
         {
-            OnTurnDone.Broadcast();
+            OnTurnDone.Broadcast(TargetData);
+            GK_WARNING(TEXT("Finished turning"));
         }
         bRotationFinished = true;
 
 
-        if (!MoveToTarget)
+        if (bTurnOnly)
         {
             // Rotation is finished
             bIsFinished = true;
-            OnCompleted.Broadcast();
+            OnCompleted.Broadcast(TargetData);
             EndTask();
         }
         else
@@ -218,9 +296,10 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
             auto MaxMoveStep = MaxSpeed * DeltaTime;
             auto MoveStep    = Direction.GetClampedToSize(-MaxMoveStep, MaxMoveStep);
 
+            GK_WARNING(TEXT("Moving toward target %s"), *MoveStep.ToString());
             Character->AddMovementInput(MoveStep, 1.f, false);
         }
-    }
+    } 
 }
 
 void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { 
@@ -244,7 +323,7 @@ void UGKAbilityTask_MoveToDestination::Activate() {}
 void UGKAbilityTask_MoveToDestination::ExternalCancel()
 {
     bIsFinished = true;
-    OnCancelled.Broadcast();
+    OnCancelled.Broadcast(TargetData);
     EndTask();
 }
 

@@ -4,20 +4,16 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "Engine/EngineTypes.h"
+
+#include "Abilities/GKAbilityStatic.h"
 #include "Abilities/Targeting/GKAbilityTarget_Actor.h"
+
+
 #include "GKAbilityTarget_PlayerControllerTrace.generated.h"
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult&, TraceHit, bool, IsValid);
 
-
-UENUM(BlueprintType)
-enum class EGK_TraceMode : uint8
-{
-    PointTarget  UMETA(DisplayName = "PointTarget"),  // Targets the ground
-    ActorTarget  UMETA(DisplayName = "ActorTarget"),  // Targets another actor
-    VectorTarget UMETA(DisplayName = "VectorTarget")  // Targets 2 points on the ground
-};
 
 /**
 * Basic Trace for a top down game, we do not really need more than that
@@ -72,7 +68,7 @@ public:
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
-    EGK_TraceMode TraceMode;
+    EGK_AbilityBehavior TargetMode;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
 	float MaxRange;

@@ -7,7 +7,7 @@
 #include "GKAbilityTask_MoveToDestination.generated.h"
 
 /** Delegate type used, EventTag and Payload may be empty if it came from the montage callbacks */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKMoveToDestinationDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKMoveToDestinationDelegate, const FGameplayAbilityTargetDataHandle &, TargetData);
 
 /**
  * This is different from the Gameplay Ability MoveToLocation built-in
@@ -73,6 +73,19 @@ public:
                                                                bool              MoveToTarget      = true,
                                                                bool              Debug             = false);
 
+    UFUNCTION(BlueprintCallable,
+              Category = "Ability|Tasks",
+              meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "TRUE"))
+    static UGKAbilityTask_MoveToDestination *MoveToTarget(UGameplayAbility *OwningAbility,
+                                                               FName             TaskInstanceName,
+                                                               const FGameplayAbilityTargetDataHandle& TargetData,
+                                                               float             DistanceTolerance = 10.f,
+                                                               float             AngleTolerance    = 15.f,
+                                                               float             TurnRate          = 45.f,
+                                                               float             Speed             = 600.f,
+                                                               bool              MoveToTarget      = true,
+                                                               bool              Debug             = false);
+
     /** Reached Destination */
     UPROPERTY(BlueprintAssignable)
     FGKMoveToDestinationDelegate OnCompleted;
@@ -85,6 +98,8 @@ public:
     FGKMoveToDestinationDelegate OnTurnDone;
 
     virtual void InitSimulatedTask(UGameplayTasksComponent &InGameplayTasksComponent) override;
+
+    void InitFromTargetData();
 
     virtual void TickTask(float DeltaTime) override;
 
@@ -101,20 +116,39 @@ public:
     void DebugDraw();
 
     // Arguments
+    UPROPERTY()
     float   TurnRate;
+
+    UPROPERTY()
     float   MaxSpeed;
 
-    // UPROPERTY(replicated)
+    UPROPERTY(replicated)
     FVector Destination;
 
+    UPROPERTY()
     bool    bDebug;
+
+    UPROPERTY()
     float   DistanceTolerance;
+
+    UPROPERTY()
     float   AngleTolerance;
-    bool    MoveToTarget;
+
+    UPROPERTY()
+    bool    bTurnOnly;
+
+    UPROPERTY()
+    FGameplayAbilityTargetDataHandle TargetData;
 
     // States
-    bool  bIsFinished;
-    bool  bRotationFinished;
+    UPROPERTY()
+    TWeakObjectPtr<AActor> TargetActor;
+
+    UPROPERTY()
+    bool bIsFinished;
+
+    UPROPERTY()
+    bool bRotationFinished;
 
     // Cached Variables
     class APawn                     *Character;
