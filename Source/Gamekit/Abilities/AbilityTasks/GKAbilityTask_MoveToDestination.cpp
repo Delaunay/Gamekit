@@ -2,6 +2,7 @@
 
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
+#include "Gamekit.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/GKLog.h"
@@ -9,8 +10,16 @@
 #include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
-#include "Gamekit.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+
+// #define DEBUG_MOVEMENT
+
+#ifdef DEBUG_MOVEMENT
+#    define DEBUG_MVT(...) GK_WARNING(__VA_ARGS__)
+#else
+#   define  DEBUG_MVT(...)
+#endif
 
 
 UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObjectInitializer &ObjectInitializer):
@@ -26,15 +35,17 @@ UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObject
 
 
 UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget(
-    UGameplayAbility *OwningAbility,
-    FName             TaskInstanceName,
+    UGameplayAbility *                      OwningAbility,
+    FName                                   TaskInstanceName,
     const FGameplayAbilityTargetDataHandle& TargetData,
-    float             DistanceTolerance,
-    float             AngleTolerance,
-    float             TurnRate ,
-    float             Speed ,
-    bool              MoveToTarget,
-    bool              Debug)
+    float                                   DistanceTolerance,
+    float                                   AngleTolerance,
+    float                                   TurnRate ,
+    float                                   Speed ,
+    bool                                    MoveToTarget,
+    bool                                    bUseMovementComponent,
+    EGK_AbilityBehavior                     TargetKind,
+    bool                                    Debug)
 {
     UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
         OwningAbility, 
@@ -55,11 +66,22 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
+    MyObj->TargetKind        = TargetKind;
+
+    if (bUseMovementComponent)
+    {
+        auto Avatar = OwningAbility->GetAvatarActorFromActorInfo();
+        auto Movement = Cast<UCharacterMovementComponent>(Avatar->GetComponentByClass(UCharacterMovementComponent::StaticClass()));
+
+        if (Movement)
+        {
+            MyObj->TurnRate = Movement->RotationRate.Yaw;
+            MyObj->MaxSpeed = Movement->MaxWalkSpeed;
+        }
+    }
 
     MyObj->InitFromTargetData();
     MyObj->Init();
-
-    GK_WARNING(TEXT("Moving to target"));
     return MyObj;
 }
 
@@ -67,18 +89,36 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
 void UGKAbilityTask_MoveToDestination::InitFromTargetData() { 
     if (TargetData.IsValid(0)) {
         auto FirstTarget = TargetData.Get(0);
-        
-        if (FirstTarget->HasHitResult())
+
+        if (TargetKind == EGK_AbilityBehavior::PointTarget)
         {
-            Destination = FirstTarget->GetHitResult()->ImpactPoint;
+            if (FirstTarget->HasHitResult())
+            {
+                Destination = FirstTarget->GetHitResult()->ImpactPoint;
+            }
+            return;
         }
 
         auto Actors = FirstTarget->GetActors();
         if (Actors.Num() > 0)
         {
-            TargetActor = Actors[0];
+            auto Actor = Actors[0];
+
+            if (TargetActor.IsValid())
+            {
+                Destination = Actor->GetActorLocation();
+            }
+
+            if (TargetKind == EGK_AbilityBehavior::ActorTarget)
+            {
+                 TargetActor = Actors[0];
+            }
         }
-    } 
+    }
+    else
+    {
+        GK_WARNING(TEXT("No valid target!"));
+    }
 }
 
 UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(
@@ -90,6 +130,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
     float   TurnRate,
     float   Speed,
     bool    MoveToTarget,
+    EGK_AbilityBehavior TargetKind,
     bool    Debug)
 {
     UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
@@ -111,6 +152,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
+    MyObj->TargetKind        = TargetKind;
 
     MyObj->Init();
     return MyObj;
@@ -201,7 +243,7 @@ void UGKAbilityTask_MoveToDestination::DebugDraw()
 
 void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 {
-    GK_WARNING(TEXT("TickTask"));
+    DEBUG_MVT(TEXT("TickTask"));
 
     if (bIsFinished)
     {
@@ -225,7 +267,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     // vector will be exactly Zero after input consumption
     if (!Character->GetPendingMovementInputVector().IsZero())
     {
-        UE_LOG(LogGamekit, Log, TEXT("Movement Input was not consumed yet"));
+        GK_WARNING(TEXT("Movement Input was not consumed yet"));
         return;
     }
 
@@ -235,7 +277,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
 
     if (bRotationFinished && Distance < DistanceTolerance)
     {
-        GK_WARNING(TEXT("Reached destination"));
+        DEBUG_MVT(TEXT("Reached destination"));
         bIsFinished = true;
         OnCompleted.Broadcast(TargetData);
         EndTask();
@@ -248,14 +290,16 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
     auto CurrentRot    = RootComponent->GetComponentRotation();
     auto TargetYaw     = (TargetRotator.Yaw - CurrentRot.Yaw);
-
-    // This is the most reliable way of getting the smallest angle
     auto Before = TargetYaw;
 
-    // I think there is a bug when the angle is close to 180
-    if (FMath::Abs(TargetYaw) > 180)
+    // This is the most reliable way of getting the smallest angle
+    if (TargetYaw > 180)
     {
-        TargetYaw = FMath::RadiansToDegrees(FMath::Asin(FMath::Sin(FMath::DegreesToRadians(TargetYaw))));
+        TargetYaw = 360 - TargetYaw;
+    }
+    if (TargetYaw < -180)
+    {
+        TargetYaw = TargetYaw + 360;
     }
     // -----------------
 
@@ -266,8 +310,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     // We continue tweaking the Yaw throughout the movement
     // that might not be a good idea for some edge cases
     Character->AddControllerYawInput(TurnStep);
-
-    GK_WARNING(TEXT("Turning toward target %f"), TurnStep);
+    DEBUG_MVT(TEXT("Turning toward target %f (%f, %f)"), TurnStep, Before, TargetYaw);
 
     // Is our direction close enough ?
     if (FMath::Abs(TargetYaw) < AngleTolerance)
@@ -275,7 +318,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         if (!bRotationFinished)
         {
             OnTurnDone.Broadcast(TargetData);
-            GK_WARNING(TEXT("Finished turning"));
+            DEBUG_MVT(TEXT("Finished turning"));
         }
         bRotationFinished = true;
 
@@ -296,7 +339,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
             auto MaxMoveStep = MaxSpeed * DeltaTime;
             auto MoveStep    = Direction.GetClampedToSize(-MaxMoveStep, MaxMoveStep);
 
-            GK_WARNING(TEXT("Moving toward target %s"), *MoveStep.ToString());
+            DEBUG_MVT(TEXT("Moving toward target %s"), *MoveStep.ToString());
             Character->AddMovementInput(MoveStep, 1.f, false);
         }
     } 

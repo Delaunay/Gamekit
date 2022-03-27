@@ -270,26 +270,6 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
     }
     // ------------------
 
-    /*
-    bool IsValid;
-    auto Location = GetImpactPoint(Data, 0, IsValid);
-    AActor* OwningActor = GetOwningActorFromActorInfo();
-    auto    Range       = (Location - OwningActor->GetActorLocation())
-                         .Size2D();
-    auto Speed = 600;
-    auto Duration = Range / Speed;
-
-    MoveToTargetTask = UAbilityTask_MoveToLocation::MoveToLocation(
-        this,
-        NAME_None,
-        Location,
-        Duration,
-        nullptr,
-        nullptr
-    );
-    // MoveToTargetTask->OnTargetLocationReached.AddDynamic(this, &UGKGameplayAbility::OnAbilityMoveToTargetCompleted);
-    */
-
     //*
     // Both rotates to face target and move towarsd it
     MoveToTargetTask = UGKAbilityTask_MoveToDestination::MoveToTarget(
@@ -300,10 +280,11 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
         15.f,   // Angle Tol
         150.f,  // Turn Rate
         600.f,  // Speed
-        true,
+        true,   // Move to target
+        true,   // Use Movement Component
+        GetAbilityStatic()->AbilityBehavior,
         true
     );
-
 
     // MoveToTargetStartDelegate.Broadcast();
     MoveToTargetTask->OnCancelled.AddDynamic(this, &UGKGameplayAbility::OnAbilityMoveToTargetCancelled);

@@ -2,8 +2,11 @@
 
 #pragma once
 
-#include "Abilities/Tasks/AbilityTask.h"
 #include "CoreMinimal.h"
+#include "Abilities/Tasks/AbilityTask.h"
+
+#include "Gamekit/Abilities/GKAbilityStatic.h"
+
 #include "GKAbilityTask_MoveToDestination.generated.h"
 
 /** Delegate type used, EventTag and Payload may be empty if it came from the montage callbacks */
@@ -71,20 +74,34 @@ public:
                                                                float             TurnRate          = 45.f,
                                                                float             Speed             = 600.f,
                                                                bool              MoveToTarget      = true,
+                                                               EGK_AbilityBehavior TargetKind      = EGK_AbilityBehavior::PointTarget,
                                                                bool              Debug             = false);
 
-    UFUNCTION(BlueprintCallable,
+    /**
+     *  TargetData       : Target information, used to derive the final destination
+     *  DistanceTolerance: When can we consider the target reached
+     *  AngleTolerance   : When do we consider ourself facing the target
+     *  TurnRate         : Rotation speed
+     *  Speed            : Walk Speed
+     *  MoveToTarget     : Move towards the target after the rotation
+     *  bUseMovementComp : Use the movement component to set Rotation Speed & walk speed
+     *  TargetKind       : PointTarget or ActorTarget
+     */
+    UFUNCTION(BlueprintCallable, 
               Category = "Ability|Tasks",
               meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "TRUE"))
-    static UGKAbilityTask_MoveToDestination *MoveToTarget(UGameplayAbility *OwningAbility,
-                                                               FName             TaskInstanceName,
-                                                               const FGameplayAbilityTargetDataHandle& TargetData,
-                                                               float             DistanceTolerance = 10.f,
-                                                               float             AngleTolerance    = 15.f,
-                                                               float             TurnRate          = 45.f,
-                                                               float             Speed             = 600.f,
-                                                               bool              MoveToTarget      = true,
-                                                               bool              Debug             = false);
+    static UGKAbilityTask_MoveToDestination *MoveToTarget(
+        UGameplayAbility *                      OwningAbility,
+        FName                                   TaskInstanceName,
+        const FGameplayAbilityTargetDataHandle& TargetData,
+        float                                   DistanceTolerance       = 10.f,
+        float                                   AngleTolerance          = 15.f,
+        float                                   TurnRate                = 45.f,
+        float                                   Speed                   = 600.f,
+        bool                                    MoveToTarget            = true,
+        bool                                    bUseMovementComponent   = true,
+        EGK_AbilityBehavior                     TargetKind              = EGK_AbilityBehavior::PointTarget,
+        bool                                    Debug                   = false);
 
     /** Reached Destination */
     UPROPERTY(BlueprintAssignable)
@@ -114,6 +131,9 @@ public:
     void Init();
 
     void DebugDraw();
+
+    UPROPERTY()
+    EGK_AbilityBehavior TargetKind;
 
     // Arguments
     UPROPERTY()
