@@ -12,7 +12,7 @@
 
 /**
  *
- */
+ */ 
 UCLASS()
 class GAMEKIT_API UGKHexGridUtilities : public UBlueprintFunctionLibrary
 {

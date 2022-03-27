@@ -1,7 +1,7 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
 
-#include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
+#include "FogOfWar/Upscaler/GKExplorationTransform.h"
 
 #include "FogOfWar/GKFogOfWarVolume.h"
 

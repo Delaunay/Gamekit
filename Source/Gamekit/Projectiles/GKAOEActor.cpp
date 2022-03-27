@@ -1,7 +1,7 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
 
-#include "Gamekit/Projectiles/GKAOEActor.h"
+#include "Projectiles/GKAOEActor.h"
 
 // Sets default values
 AGKAOEActor::AGKAOEActor()

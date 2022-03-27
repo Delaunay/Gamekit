@@ -1,11 +1,11 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-#include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
+#include "Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
 #include "Gamekit.h"
-#include "Gamekit/Abilities/GKGameplayAbility.h"
-#include "Gamekit/Blueprint/GKUtilityLibrary.h"
-#include "Gamekit/GKLog.h"
+#include "Abilities/GKGameplayAbility.h"
+#include "Blueprint/GKUtilityLibrary.h"
+#include "GKLog.h"
 
 #include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
@@ -13,7 +13,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
-// #define DEBUG_MOVEMENT
+//#define DEBUG_MOVEMENT
 
 #ifdef DEBUG_MOVEMENT
 #    define DEBUG_MVT(...) GK_WARNING(__VA_ARGS__)

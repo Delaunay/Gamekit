@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
-#include "Gamekit/Ad/OpenRTB/GKBidRequest.h"
-#include "Gamekit/Ad/OpenRTB/GKBidResponse.h"
-#include "Gamekit/Ad/OpenRTB/GKNative.h"
+#include "Ad/OpenRTB/GKBidRequest.h"
+#include "Ad/OpenRTB/GKBidResponse.h"
+#include "Ad/OpenRTB/GKNative.h"
 
 #include "GKAdWidget.generated.h"
 

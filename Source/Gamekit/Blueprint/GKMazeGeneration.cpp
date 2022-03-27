@@ -1,8 +1,7 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-#include "Gamekit/Blueprint/GKMazeGeneration.h"
-
-#include "Gamekit/Container/Matrix.h"
+#include "Blueprint/GKMazeGeneration.h"
+#include "Container/Matrix.h"
 
 #include "Kismet/KismetMathLibrary.h"
 #include "Math/IntVector.h"

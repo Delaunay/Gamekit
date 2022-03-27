@@ -26,18 +26,17 @@ Releases
 Setup
 -----
 
-* UE4 - 4.26 - compilled from source
+* UE4 - 4.27+ - compilled from source
 
 .. code-block:: bash
 
-   git clone git@gitlab.com:Delaunay/gamekit.git
+   cd UnrealProject/
+   git clone git@gitlab.com:Delaunay/gamekit.git Plugins/Gamekit
 
 FAQ
 ---
 
-* Is linux supported? yes
-* why gitlab ? bigger LFS storage
-
+* Is linux supported? Yes
 
 Plot Palette
 ------------

@@ -4,7 +4,7 @@
 #include "Math/Vector.h"
 #include "Math/IntVector.h"
 
-#include "Gamekit/Grid/GKHexGridUtilities.h"
+#include "Grid/GKHexGridUtilities.h"
 
 #include "GKGrid.generated.h"
 

@@ -1,8 +1,8 @@
-#include "Gamekit/FogOfWar/Upscaler/GK_GPU_Upscaler.h"
+#include "FogOfWar/Upscaler/GK_GPU_Upscaler.h"
 
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "FogOfWar/GKFogOfWarVolume.h"
 
-#include "Gamekit/Shaders/GKUpscalingShader.h"
+#include "Shaders/GKUpscalingShader.h"
 
 
 void UGKGPUUpscalerStrategy::Initialize()

@@ -1,5 +1,5 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
-#include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
+#include "Abilities/GKAbilitySystemGlobals.h"
 
 UGKAbilitySystemGlobals::UGKAbilitySystemGlobals(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer) 

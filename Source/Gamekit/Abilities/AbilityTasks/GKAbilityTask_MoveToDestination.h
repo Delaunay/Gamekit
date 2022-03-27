@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Abilities/Tasks/AbilityTask.h"
 
-#include "Gamekit/Abilities/GKAbilityStatic.h"
+#include "Abilities/GKAbilityStatic.h"
 
 #include "GKAbilityTask_MoveToDestination.generated.h"
 

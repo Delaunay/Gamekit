@@ -1,6 +1,6 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-#include "Gamekit/Characters/GKEnhancedInputInterface.h"
+#include "Characters/GKEnhancedInputInterface.h"
 
 #include "InputTriggers.h"
 #include "InputMappingContext.h"

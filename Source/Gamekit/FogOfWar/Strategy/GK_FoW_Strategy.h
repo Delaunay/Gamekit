@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-#include "Gamekit/Container/Matrix.h"
+#include "Container/Matrix.h"
 
 #include "GK_FoW_Strategy.generated.h"
 

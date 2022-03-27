@@ -1,7 +1,7 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
 
-#include "Gamekit/Abilities/GKCastPointAnimNotify.h"
+#include "Abilities/GKCastPointAnimNotify.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 

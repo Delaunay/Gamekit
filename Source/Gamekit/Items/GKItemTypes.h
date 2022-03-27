@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------------------------------------------
 
 #include "UObject/PrimaryAssetId.h"
-#include "Gamekit/Abilities/GKAbilityInputs.h"
+#include "Abilities/GKAbilityInputs.h"
 
 #include "GKItemTypes.generated.h"
 

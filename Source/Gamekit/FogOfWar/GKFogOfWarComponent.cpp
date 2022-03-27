@@ -3,9 +3,9 @@
 #include "GKFogOfWarComponent.h"
 #include "GKFogOfWarVolume.h"
 
-#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
-#include "GenericTeamAgentInterface.h"
+#include "FogOfWar/GKFogOfWarLibrary.h"
 
+#include "GenericTeamAgentInterface.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties

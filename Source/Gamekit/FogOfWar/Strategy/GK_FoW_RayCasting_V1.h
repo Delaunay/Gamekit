@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
 
 #include "Components/ActorComponent.h"
 #include "CoreMinimal.h"

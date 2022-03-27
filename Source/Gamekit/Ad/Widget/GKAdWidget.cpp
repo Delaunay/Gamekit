@@ -1,6 +1,6 @@
 #include "GKAdWidget.h"
 
-#include "Gamekit/Ad/GKAsyncAdRequest.h"
+#include "Ad/GKAsyncAdRequest.h"
 #include "Components/PanelWidget.h"
 
 

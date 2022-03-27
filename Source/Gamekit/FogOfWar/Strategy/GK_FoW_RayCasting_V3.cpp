@@ -1,4 +1,4 @@
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
+#include "FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
 
 #include "FogOfWar/GKFogOfWarVolume.h"
 #include "FogOfWar/GKFogOfWarComponent.h"

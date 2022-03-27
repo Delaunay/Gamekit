@@ -1,4 +1,4 @@
-#include "Gamekit/Shaders/GKUpscalingShader.h"
+#include "Shaders/GKUpscalingShader.h"
 
 #include "Engine/CanvasRenderTarget2D.h"
 

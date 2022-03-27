@@ -1,8 +1,8 @@
 // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
 
-#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Blueprint/GKUtilityLibrary.h"
 
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "FogOfWar/GKFogOfWarVolume.h"
 #include "GKCoordinateLibrary.h"
 #include "GKWorldSettings.h"
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Gamekit/Projectiles/GKAOEActor.h"
+#include "Projectiles/GKAOEActor.h"
 #include "GKAOEActorNiagara.generated.h"
 
 /**

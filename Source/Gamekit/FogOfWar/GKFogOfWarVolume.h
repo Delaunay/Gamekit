@@ -9,9 +9,9 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
 
-#include "Gamekit/Grid/GKGrid.h"
-#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Grid/GKGrid.h"
+#include "FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
 
 #include "GKFogOfWarVolume.generated.h"
 

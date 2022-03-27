@@ -1,2 +1,2 @@
-#include "Gamekit/Grid/GKGrid.h"
+#include "Grid/GKGrid.h"
 

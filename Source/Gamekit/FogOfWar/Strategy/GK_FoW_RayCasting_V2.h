@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
+#include "FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 
 #include "GK_FoW_RayCasting_V2.generated.h"
 

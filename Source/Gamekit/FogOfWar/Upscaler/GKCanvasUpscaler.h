@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
 #include "GKCanvasUpscaler.generated.h"
 
 /**

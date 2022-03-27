@@ -7,11 +7,11 @@
 #include "Blueprint/GKCoordinateLibrary.h"
 #include "Blueprint/GKUtilityLibrary.h"
 
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
 
-#include "Gamekit/FogOfWar/Upscaler/GKCanvasUpscaler.h"
-#include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
+#include "FogOfWar/Upscaler/GKCanvasUpscaler.h"
+#include "FogOfWar/Upscaler/GKExplorationTransform.h"
 
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"

@@ -2,9 +2,9 @@
 
 #pragma once 
 
-#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
-#include "Gamekit/Container/Matrix.h"
-#include "Gamekit/Grid/GKGrid.h"
+#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Container/Matrix.h"
+#include "Grid/GKGrid.h"
 
 #include "GK_FoW_ShadowCasting.generated.h"
 
