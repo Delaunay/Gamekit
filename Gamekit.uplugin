@@ -1,40 +1,45 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
-	"FriendlyName": "Gamekit",
-	"Description": "Widget & Shader Library",
-	"Category": "Other",
-	"CreatedBy": "Pierre Delaunay",
-	"CreatedByURL": "",
-	"DocsURL": "https://gamekit.readthedocs.io/en/latest/",
-	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/",
-	"SupportURL": "https://gitlab.com/Delaunay/gamekit",
-	"EngineVersion": "4.27",
-	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": false,
-	"Modules": [
-		{
-			"Name": "Gamekit",
-			"Type": "Runtime",
-			"LoadingPhase": "PostConfigInit",
-			"WhitelistPlatforms": [ "Win64" ]
-		}
-	],
-	"Plugins": [
-		{
-			"Name": "GameplayAbilities",
-			"Enabled": true
-		},
-		{
-			"Name": "EnhancedInput",
-			"Enabled": true
-		},
-		{
-			"Name": "Niagara",
-			"Enabled": true
-		}
-	]
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Gamekit",
+  "Description": "Widget & Shader Library",
+  "Category": "Other",
+  "CreatedBy": "Pierre Delaunay",
+  "CreatedByURL": "",
+  "DocsURL": "https://gamekit.readthedocs.io/en/latest/",
+  "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/",
+  "SupportURL": "https://gitlab.com/Delaunay/gamekit",
+  "EngineVersion": "4.27",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "Gamekit",
+      "Type": "Runtime",
+      "LoadingPhase": "PostConfigInit",
+      "WhitelistPlatforms": [ "Win64" ]
+    },
+    {
+      "Name": "GamekitTestSuite",
+      "Type": "DeveloperTool",
+      "LoadingPhase": "PostConfigInit"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "Niagara",
+      "Enabled": true
+    }
+  ]
 }
