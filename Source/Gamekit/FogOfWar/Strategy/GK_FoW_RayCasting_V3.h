@@ -8,20 +8,19 @@
 // Unreal Engine
 #include "GK_FoW_RayCasting_V3.generated.h"
 
-
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKRayCasting_Less: public UGKRayCasting_Triangle
 {
     GENERATED_BODY()
 
-public:
+    public:
     UGKRayCasting_Less();
 
-protected:
+    protected:
     //! V3 find all the obstacle and try to draw more traces neat the bounds
     //! There is a sorting problem, the angles behaves a bit strangely
     //! although they are sorted the triangles are not drawn correctly
-    //! 
+    //!
     //!     * Generate minimum Line traces <----------------------------+
     //!     * Get all obstacle in a radius                              |
     //!     * For each obstacle add 2 traces                            |
@@ -36,27 +35,24 @@ protected:
     //! TODO: support field of view != 360
     void FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
 
-    void Generate3Triangles(FGKFactionFog *       FactionFog, 
-                            UGKFogOfWarComponent *c, 
-                            FVector4 const &      Angles);
+    void Generate3Triangles(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles);
 
     FGKLinePoints CastLineFromAngle(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, float Angle);
-     
+
     void GenerateTriangle(UGKFogOfWarComponent *c, FVector Start, FVector End1, FVector End2);
 
     TArray<FVector2D> Coverage;
 
-
     private:
-    TArray<AActor *> ActorsToIgnore;
-    UClass *         ActorClassFilter;
+    TArray<AActor *>                      ActorsToIgnore;
+    UClass *                              ActorClassFilter;
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-    AActor *         ComponentOwner;
-    FVector          OwnerLocation;
-    FVector          OwnerForward;
-    FHitResult       OutHit;
-    ETraceTypeQuery  TraceType;
-    TSet<AActor *>   AlreadySighted;
-    bool             bHasPrevious;
-    float            PreviousAngle;
+    AActor *                              ComponentOwner;
+    FVector                               OwnerLocation;
+    FVector                               OwnerForward;
+    FHitResult                            OutHit;
+    ETraceTypeQuery                       TraceType;
+    TSet<AActor *>                        AlreadySighted;
+    bool                                  bHasPrevious;
+    float                                 PreviousAngle;
 };

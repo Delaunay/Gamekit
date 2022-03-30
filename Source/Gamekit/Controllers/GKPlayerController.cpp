@@ -12,34 +12,28 @@
 #include "Engine/NetDriver.h"
 #include "GameFramework/GameNetworkManager.h"
 
+AGKPlayerController::AGKPlayerController() {}
 
-AGKPlayerController::AGKPlayerController() {
-}
-
-
-const TArray<FInputActionKeyMapping>& AGKPlayerController::GetKeysForAction(const FName ActionName) {
-	return PlayerInput->GetKeysForAction(ActionName);
-}
-
-void AGKPlayerController::BeginPlay()
+const TArray<FInputActionKeyMapping> &AGKPlayerController::GetKeysForAction(const FName ActionName)
 {
-	Super::BeginPlay();
+    return PlayerInput->GetKeysForAction(ActionName);
 }
 
-void AGKPlayerController::AcknowledgePossession(APawn* P)
+void AGKPlayerController::BeginPlay() { Super::BeginPlay(); }
+
+void AGKPlayerController::AcknowledgePossession(APawn *P)
 {
-	Super::AcknowledgePossession(P);
+    Super::AcknowledgePossession(P);
 
-	AGKCharacterBase* CharacterBase = Cast<AGKCharacterBase>(P);
-	if (CharacterBase)
-	{
-		CharacterBase->GetAbilitySystemComponent()->InitAbilityActorInfo(CharacterBase, CharacterBase);
-	}
+    AGKCharacterBase *CharacterBase = Cast<AGKCharacterBase>(P);
+    if (CharacterBase)
+    {
+        CharacterBase->GetAbilitySystemComponent()->InitAbilityActorInfo(CharacterBase, CharacterBase);
+    }
 }
 
-
-void AGKPlayerController::GetNetworkMetrics() { 
-	auto NetDriver = GetWorld()->GetNetDriver();
-	// NetDriver->DrawNetDriverDebug
-
+void AGKPlayerController::GetNetworkMetrics()
+{
+    auto NetDriver = GetWorld()->GetNetDriver();
+    // NetDriver->DrawNetDriverDebug
 }

@@ -8,27 +8,25 @@
 // Generated
 #include "GK_FoW_RayCasting_V2.generated.h"
 
-
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKRayCasting_Triangle: public UGKRayCasting_Line
 {
     GENERATED_BODY()
 
-public:
+    public:
     UGKRayCasting_Triangle();
 
-protected:
-
+    protected:
     void GenerateTriangles(UGKFogOfWarComponent *c);
-    
-	void DrawTriangles(UGKFogOfWarComponent *c);
+
+    void DrawTriangles(UGKFogOfWarComponent *c);
 
     //! Generates Triangles of vision per actor and draw them
     //! Drawing triangles is more expensive than simple lines, you should lower
     //! the number of trace done by each actors
-    //! Even with a low trace count the field of view will still render 
+    //! Even with a low trace count the field of view will still render
     //! as a circle thanks to its material
-    //! 
+    //!
     void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c) override;
 
     UPROPERTY(Transient)

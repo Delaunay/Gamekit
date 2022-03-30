@@ -10,14 +10,11 @@
 
 /** Native base class for skills, should be blueprinted */
 UCLASS(Blueprintable)
-class GAMEKIT_API UGKSkillItem : public UGKItem
+class GAMEKIT_API UGKSkillItem: public UGKItem
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	/** Constructor */
-	UGKSkillItem()
-	{
-		
-	}
+    public:
+    /** Constructor */
+    UGKSkillItem() {}
 };

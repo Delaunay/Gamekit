@@ -10,15 +10,15 @@
 
 /** Native base class for tokens/currency, should be blueprinted */
 UCLASS(Blueprintable)
-class GAMEKIT_API UGKTokenItem : public UGKItem
+class GAMEKIT_API UGKTokenItem: public UGKItem
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	/** Constructor */
-	UGKTokenItem()
-	{
+    public:
+    /** Constructor */
+    UGKTokenItem()
+    {
 
-		MaxCount = 0; // Infinite
-	}
+        MaxCount = 0; // Infinite
+    }
 };

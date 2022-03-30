@@ -1,17 +1,16 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
 
 // Gamekit
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
-#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 // Unreal Engine
 #include "Kismet/KismetSystemLibrary.h"
 
-
-UGKRayCasting_Less::UGKRayCasting_Less(){}
+UGKRayCasting_Less::UGKRayCasting_Less() {}
 
 void TrackCoverage(TArray<FVector2D> &Coverage,
                    float              AngleMin,
@@ -31,9 +30,9 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
     TraceType      = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
     ActorsToIgnore = {ComponentOwner};
     AlreadySighted.Reset();
-    bHasPrevious  = false;
+    bHasPrevious = false;
 
-    ActorsToIgnore   = {c->GetOwner()};
+    ActorsToIgnore = {c->GetOwner()};
     ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
 
     ActorClassFilter = AActor::StaticClass();
@@ -46,19 +45,19 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
     UKismetSystemLibrary::CapsuleOverlapActors(
             GetWorld(), OwnerLocation, c->Radius, 1.f, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors);
 
-    FVector2D       PreviousAngleRange;
-    auto            BaseYaw     = ComponentOwner->GetActorRotation().Yaw;
-    bool            HasCoverage = false;
+    FVector2D PreviousAngleRange;
+    auto      BaseYaw     = ComponentOwner->GetActorRotation().Yaw;
+    bool      HasCoverage = false;
 
     // Disable making the angle relative to the forward vector
     if (c->FieldOfView >= 360)
     {
-        BaseYaw = 0;
+        BaseYaw      = 0;
         OwnerForward = FVector(1, 0, 0);
     }
 
-    float Offset   = 0;
-    float Margin   = FogOfWarVolume->Margin;
+    float Offset = 0;
+    float Margin = FogOfWarVolume->Margin;
 
     OutActors.Sort(
             [Location = OwnerLocation](const AActor &a, const AActor &b) -> bool
@@ -89,7 +88,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
 
         FMath::PolarToCartesian(Radius - Margin, Angle, Point.X, Point.Y);
         auto Angle2 = UGKUtilityLibrary::GetYaw(OwnerLocation, Point + Origin) - BaseYaw;
-        
+
         // Other Side
         // ----------
 
@@ -99,7 +98,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
 
         DebugDrawPoint(Point + Origin);
         auto Angle3 = UGKUtilityLibrary::GetYaw(OwnerLocation, Point + Origin) - BaseYaw;
-        
+
         FMath::PolarToCartesian(Radius + Margin, Angle, Point.X, Point.Y);
         auto Angle4 = UGKUtilityLibrary::GetYaw(OwnerLocation, Point + Origin) - BaseYaw;
 
@@ -112,10 +111,9 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
 
         // Generates Triangles for this object
         // -------------------
-        //Generate3Triangles(FactionFog, c, FVector4(Angle1, Angle2, Angle3, Angle4));
-        //TrackCoverage(Coverage, Angle1, Angle4, HasCoverage, PreviousAngleRange);
+        // Generate3Triangles(FactionFog, c, FVector4(Angle1, Angle2, Angle3, Angle4));
+        // TrackCoverage(Coverage, Angle1, Angle4, HasCoverage, PreviousAngleRange);
     }
-
 
     /*/ Do a full turn
     auto Start = c->GetOwner()->GetActorLocation();
@@ -133,7 +131,7 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
     */
 
     // Fill or remove angles
-    // Do not sort the order is correct 
+    // Do not sort the order is correct
     // Angles.Sort();
     FillMissingAngles(c, Angles);
     CastLinesFromAngles(FactionFog, c, Angles);
@@ -141,9 +139,13 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UG
     // Only for non-dedicated servers
     GenerateTriangles(c);
     DrawTriangles(c);
-} 
+}
 
-void TrackCoverage(TArray<FVector2D>& Coverage, float AngleMin, float AngleMax, bool &HasCoverage, FVector2D &PreviousAngle)
+void TrackCoverage(TArray<FVector2D> &Coverage,
+                   float              AngleMin,
+                   float              AngleMax,
+                   bool &             HasCoverage,
+                   FVector2D &        PreviousAngle)
 {
     auto AngleCoverage = FVector2D(AngleMin, AngleMax);
     Coverage.Add(AngleCoverage);
@@ -168,13 +170,12 @@ void TrackCoverage(TArray<FVector2D>& Coverage, float AngleMin, float AngleMax, 
     HasCoverage   = true;
 }
 
- 
 void UGKRayCasting_Less::Generate3Triangles(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles)
 {
     auto p1 = CastLineFromAngle(FactionFog, c, Angles.X).End;
     auto p2 = CastLineFromAngle(FactionFog, c, Angles.Y).End;
     auto p3 = CastLineFromAngle(FactionFog, c, Angles.Z).End;
-    auto p4 = CastLineFromAngle(FactionFog, c, Angles.W).End; 
+    auto p4 = CastLineFromAngle(FactionFog, c, Angles.W).End;
 
     auto Start = c->GetOwner()->GetActorLocation();
 
@@ -236,19 +237,17 @@ void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float
         PreviousAngle = Angle;
         NewAngles.Add(PreviousAngle);
     }
-    Angles = NewAngles;
+    Angles       = NewAngles;
     bHasPrevious = false;
 }
 
-void UGKRayCasting_Less::CastLinesFromAngles(FGKFactionFog *FactionFog,
-                                             UGKFogOfWarComponent *c,
-                                             TArray<float> &       Angles)
+void UGKRayCasting_Less::CastLinesFromAngles(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles)
 {
     Lines.Reset(c->TraceCount + 1);
     for (auto Angle: Angles)
     {
         Lines.Add(CastLineFromAngle(FactionFog, c, Angle));
-    } 
+    }
 }
 
 FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, float Angle)
@@ -261,7 +260,7 @@ FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(FGKFactionFog *FactionFog, U
     // perfectly completing each other
     FVector LineStart = OwnerLocation; // + dir * c->InnerRadius;
     FVector LineEnd   = OwnerLocation + dir * c->Radius;
-    DebugDrawPoint(LineEnd); 
+    DebugDrawPoint(LineEnd);
 
     bool Hit = UKismetSystemLibrary::LineTraceSingle(GetWorld(),
                                                      OwnerLocation,
@@ -284,19 +283,18 @@ FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(FGKFactionFog *FactionFog, U
                 FMath::Square(c->Radius));
     }
 
-    bHasPrevious = true;
+    bHasPrevious  = true;
     PreviousAngle = Angle;
 
     LineEnd = Hit ? OutHit.Location - dir : OwnerLocation + dir * ExtendedRadius;
-    
+
     if (Hit && OutHit.Actor.IsValid())
     {
         AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
     }
 
-    return FGKLinePoints{LineStart, LineEnd}; 
+    return FGKLinePoints{LineStart, LineEnd};
 }
-
 
 void UGKRayCasting_Less::GenerateTriangle(UGKFogOfWarComponent *c, FVector Start, FVector End1, FVector End2)
 {
@@ -320,4 +318,4 @@ void UGKRayCasting_Less::GenerateTriangle(UGKFogOfWarComponent *c, FVector Start
     Triangle.V2_UV  = UGKCoordinateLibrary::ToTextureCoordinate((End2 - Start), TriangleSize);
 
     Triangles.Add(Triangle);
-} 
+}

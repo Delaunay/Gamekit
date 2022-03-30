@@ -4,14 +4,13 @@
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Shaders/GKUpscalingShader.h"
 
-
 void UGKGPUUpscalerStrategy::Initialize()
-{ 
+{
     Super::Initialize();
     Multiplier   = 2;
     bFixedSize   = false;
     bInitialized = true;
-    
+
     auto Grid           = FogOfWarVolume->Grid;
     auto MapSize        = FogOfWarVolume->MapSize;
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
@@ -24,10 +23,10 @@ void UGKGPUUpscalerStrategy::Initialize()
 }
 
 void UGKGPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
-{ 
+{
     static uint32 CallCount = 0;
 
-    auto Upscaled = GetFactionTransformTarget(FactionFog->Name, true);
+    auto Upscaled              = GetFactionTransformTarget(FactionFog->Name, true);
     FactionFog->UpScaledVision = Upscaled;
 
     FUpscalingParameter Params;
@@ -40,6 +39,4 @@ void UGKGPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
     UpscalingDispatcher->UpdateParameters(Params);
 }
 
-void UGKGPUUpscalerStrategy::Stop() { 
-    UpscalingDispatcher->EndRendering(); 
-}
+void UGKGPUUpscalerStrategy::Stop() { UpscalingDispatcher->EndRendering(); }

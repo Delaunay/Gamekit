@@ -12,31 +12,30 @@
 // Generated
 #include "GKPlayerController.generated.h"
 
-
 /** Base class for PlayerController, should be blueprinted */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKPlayerController : public APlayerController
+class GAMEKIT_API AGKPlayerController: public APlayerController
 {
     GENERATED_BODY()
 
-public:
+    public:
     // Constructor and overrides
     AGKPlayerController();
 
     virtual void BeginPlay() override;
 
-    /** Get the input key binded to a given action; it is used to display the expected key press to trigger the action */
+    /** Get the input key binded to a given action; it is used to display the expected key press to trigger the action
+     */
     UFUNCTION(BlueprintCallable, Category = InputKeys)
-    const TArray<FInputActionKeyMapping>& GetKeysForAction(const FName ActionName);
+    const TArray<FInputActionKeyMapping> &GetKeysForAction(const FName ActionName);
 
     void GetNetworkMetrics();
 
-protected:
+    protected:
     /** Called when a global save game as been loaded */
-    void HandleSaveGameLoaded(class UGKSaveGame* NewSaveGame);
+    void HandleSaveGameLoaded(class UGKSaveGame *NewSaveGame);
 
-public:
-
+    public:
     // Sets up Client info for GAS
-    void AcknowledgePossession(APawn* P) override;
+    void AcknowledgePossession(APawn *P) override;
 };

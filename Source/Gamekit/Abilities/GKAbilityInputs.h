@@ -40,6 +40,6 @@ enum class EGK_MOBA_AbilityInputID : uint8
 	FollowTarget	UMETA(DisplayName = "FollowTarget"), // Follow Ally
 	Patrol			UMETA(DisplayName = "Patrol"),		 // Go through multiple points
 
-	Size 
+	Size
     // clang-format on
 };

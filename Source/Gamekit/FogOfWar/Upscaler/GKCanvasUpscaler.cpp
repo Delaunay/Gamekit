@@ -8,10 +8,9 @@
 // Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
+#include "Kismet/KismetMaterialLibrary.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "Kismet/KismetMaterialLibrary.h"
-
 
 void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
 {
@@ -20,13 +19,13 @@ void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
         UE_LOG(LogGamekit, Warning, TEXT("No upscaling material set"));
         return;
     }
-    
+
     UCanvas *                  Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
-    auto           RenderCanvas = GetFactionTransformTarget(FactionFog->Name, true);
-    FactionFog->UpScaledVision  = RenderCanvas;
+    auto RenderCanvas          = GetFactionTransformTarget(FactionFog->Name, true);
+    FactionFog->UpScaledVision = RenderCanvas;
 
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
 
@@ -35,18 +34,13 @@ void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
     Material->SetTextureParameterValue("Previous", FactionFog->PreviousFrameVision);
     Material->SetScalarParameterValue("IsDiscrete", FactionFog->bDiscrete);
 
-    Canvas->K2_DrawMaterial(
-        Material,
-        FVector2D::ZeroVector,
-        Size,
-        FVector2D::ZeroVector
-    );
+    Canvas->K2_DrawMaterial(Material, FVector2D::ZeroVector, Size, FVector2D::ZeroVector);
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
 }
 
 class UMaterialInstanceDynamic *UGKCanvasUpscaler::GetFactionMaterialInstance(FName Name)
-{ 
+{
     class UMaterialInstanceDynamic **Result   = UpscaleMaterialInstance.Find(Name);
     class UMaterialInstanceDynamic * Instance = nullptr;
 
@@ -57,19 +51,15 @@ class UMaterialInstanceDynamic *UGKCanvasUpscaler::GetFactionMaterialInstance(FN
     else
     {
         Instance = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-            GetWorld(), 
-            UpscalingMaterial, 
-            NAME_None, 
-            EMIDCreationFlags::None
-        );
-        
+                GetWorld(), UpscalingMaterial, NAME_None, EMIDCreationFlags::None);
+
         UpscaleMaterialInstance.Add(Name, Instance);
     }
     return Instance;
 }
 
-
-void UGKCanvasUpscaler::Initialize() { 
-    Super::Initialize(); 
+void UGKCanvasUpscaler::Initialize()
+{
+    Super::Initialize();
     UpscalingMaterial = FogOfWarVolume->UpscaleMaterial;
 }

@@ -16,25 +16,24 @@
  * Standard Unit in a RTS-like game
  */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKUnitCharacter : public ACharacter
+class GAMEKIT_API AGKUnitCharacter: public ACharacter
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	// Sets default values for this character's properties
-	AGKUnitCharacter();
+    public:
+    // Sets default values for this character's properties
+    AGKUnitCharacter();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    protected:
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-	virtual void Tick(float DeltaTime) override;
+    virtual void Tick(float DeltaTime) override;
 
-public:
-	UFUNCTION(BlueprintCallable)
-	void MoveUnit(FVector dest);
+    public:
+    UFUNCTION(BlueprintCallable)
+    void MoveUnit(FVector dest);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attributes, meta = (AllowPrivateAccess = "true"))
-	class UWidgetComponent* StatusDisplay;
-
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attributes, meta = (AllowPrivateAccess = "true"))
+    class UWidgetComponent *StatusDisplay;
 };

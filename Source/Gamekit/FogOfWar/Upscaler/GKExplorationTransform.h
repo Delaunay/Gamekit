@@ -12,14 +12,14 @@
 #include "GKExplorationTransform.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class GAMEKIT_API UGKExplorationTransform: public UGKTransformerStrategyCanvas
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
+    public:
     void Initialize();
 
     void Transform(struct FGKFactionFog *FactionFog) override;

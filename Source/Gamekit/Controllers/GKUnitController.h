@@ -6,8 +6,8 @@
 #pragma once
 
 // Unreal Engine
-#include "CoreMinimal.h"
 #include "AIController.h"
+#include "CoreMinimal.h"
 
 // Generated
 #include "GKUnitController.generated.h"
@@ -17,11 +17,10 @@
  * but could be
  */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKUnitAIController : public AAIController
+class GAMEKIT_API AGKUnitAIController: public AAIController
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	AGKUnitAIController();
-
+    public:
+    AGKUnitAIController();
 };

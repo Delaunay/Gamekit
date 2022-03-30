@@ -12,7 +12,6 @@
 // Generated
 #include "GK_FoW_RayCasting_V1.generated.h"
 
-
 void BroadCastEvents(AActor *Seer, UGKFogOfWarComponent *SeerComponent, AActor *Target);
 
 struct FGKLinePoints
@@ -21,13 +20,12 @@ struct FGKLinePoints
     FVector End;
 };
 
-
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
 {
     GENERATED_BODY()
 
-public:
+    public:
     UGKRayCasting_Line();
 
     virtual void Initialize();
@@ -42,8 +40,7 @@ public:
 
     class UCanvasRenderTarget2D *GetFactionRenderTarget(FName name, bool bCreateRenderTarget = true);
 
-protected:
-
+    protected:
     //! Draw the line of sight using LineTrace
     virtual void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c);
 

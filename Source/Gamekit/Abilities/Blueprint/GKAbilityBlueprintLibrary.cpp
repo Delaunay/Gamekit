@@ -8,7 +8,6 @@
 // Unreal Engine
 #include "Misc/ConfigCacheIni.h"
 
-
 UGKAbilityBlueprintLibrary::UGKAbilityBlueprintLibrary(const FObjectInitializer &ObjectInitializer):
     Super(ObjectInitializer)
 {

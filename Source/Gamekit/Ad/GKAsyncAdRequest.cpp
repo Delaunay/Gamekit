@@ -3,9 +3,9 @@
 #include "Interfaces/IHttpResponse.h"
 #include "JsonObjectConverter.h"
 
-
-UGKAsyncAdRequest* UGKAsyncAdRequest::MakeAdRequest(FGKBidRequest const& Request) {
-    UGKAsyncAdRequest* AsyncAdRequest = NewObject<UGKAsyncAdRequest>();
+UGKAsyncAdRequest *UGKAsyncAdRequest::MakeAdRequest(FGKBidRequest const &Request)
+{
+    UGKAsyncAdRequest *AsyncAdRequest = NewObject<UGKAsyncAdRequest>();
 
     FString URL = "";
     FString OutPayload;
@@ -25,26 +25,34 @@ UGKAsyncAdRequest* UGKAsyncAdRequest::MakeAdRequest(FGKBidRequest const& Request
     return AsyncAdRequest;
 }
 
-void UGKAsyncAdRequest::Activate() {
-    if (!HttpRequest->ProcessRequest()) {
+void UGKAsyncAdRequest::Activate()
+{
+    if (!HttpRequest->ProcessRequest())
+    {
         this->OnAdRequestResponse_Failure_Native(nullptr, nullptr);
     }
 }
 
-void UGKAsyncAdRequest::OnAdRequestResponse_Native(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful) {
-    if (bWasSuccessful) {
+void UGKAsyncAdRequest::OnAdRequestResponse_Native(FHttpRequestPtr  Request,
+                                                   FHttpResponsePtr Response,
+                                                   bool             bWasSuccessful)
+{
+    if (bWasSuccessful)
+    {
         return OnAdRequestResponse_Success_Native(Request, Response);
     }
 
     return OnAdRequestResponse_Failure_Native(Request, Response);
 }
 
-void UGKAsyncAdRequest::OnAdRequestResponse_Success_Native(FHttpRequestPtr Request, FHttpResponsePtr Response) {
+void UGKAsyncAdRequest::OnAdRequestResponse_Success_Native(FHttpRequestPtr Request, FHttpResponsePtr Response)
+{
     FString inPayload = Response->GetContentAsString();
-    
+
     FGKBidResponse BidResponse;
 
-    if (!FJsonObjectConverter::JsonObjectStringToUStruct(inPayload, &BidResponse, 0, 0)) {
+    if (!FJsonObjectConverter::JsonObjectStringToUStruct(inPayload, &BidResponse, 0, 0))
+    {
         OnDeserializationFailure.Broadcast();
         return;
     }
@@ -52,6 +60,7 @@ void UGKAsyncAdRequest::OnAdRequestResponse_Success_Native(FHttpRequestPtr Reque
     OnAdRequestSuccess.Broadcast(BidResponse);
 }
 
-void UGKAsyncAdRequest::OnAdRequestResponse_Failure_Native(FHttpRequestPtr Request, FHttpResponsePtr Response) {
+void UGKAsyncAdRequest::OnAdRequestResponse_Failure_Native(FHttpRequestPtr Request, FHttpResponsePtr Response)
+{
     OnRequestSendFailure.Broadcast();
 }

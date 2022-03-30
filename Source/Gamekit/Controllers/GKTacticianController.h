@@ -13,42 +13,42 @@
 #include "GKTacticianController.generated.h"
 
 UCLASS(Blueprintable)
-class AGKTacticianController : public APlayerController
+class AGKTacticianController: public APlayerController
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	AGKTacticianController();
+    public:
+    AGKTacticianController();
 
-protected:
-	// Begin PlayerController interface
-	virtual void PlayerTick(float DeltaTime) override;
-	virtual void SetupInputComponent() override;
-	// End PlayerController interface
+    protected:
+    // Begin PlayerController interface
+    virtual void PlayerTick(float DeltaTime) override;
+    virtual void SetupInputComponent() override;
+    // End PlayerController interface
 
-	UFUNCTION(BlueprintCallable)
-	void OnCameraZoom(float delta);
+    UFUNCTION(BlueprintCallable)
+    void OnCameraZoom(float delta);
 
-	// UI State
-	UFUNCTION(BlueprintCallable)
-	void OnSelect();
+    // UI State
+    UFUNCTION(BlueprintCallable)
+    void OnSelect();
 
-	UPROPERTY()
-	class AGKUnitCharacter* SelectedUnit;
+    UPROPERTY()
+    class AGKUnitCharacter *SelectedUnit;
 
-	UFUNCTION(BlueprintCallable)
-	void SetSelectedUnit(class AGKUnitCharacter* unit);
+    UFUNCTION(BlueprintCallable)
+    void SetSelectedUnit(class AGKUnitCharacter *unit);
 
-	UFUNCTION(BlueprintCallable)
-	class AGKUnitCharacter* GetSelectedUnit();
+    UFUNCTION(BlueprintCallable)
+    class AGKUnitCharacter *GetSelectedUnit();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Selection")
-	void OnUnitSelection();
+    UFUNCTION(BlueprintNativeEvent, Category = "Selection")
+    void OnUnitSelection();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Selection")
-	void OnUnitUnselect();
+    UFUNCTION(BlueprintNativeEvent, Category = "Selection")
+    void OnUnitUnselect();
 
-	void OnUnitSelection_Implementation();
+    void OnUnitSelection_Implementation();
 
-	void OnUnitUnselect_Implementation();
+    void OnUnitUnselect_Implementation();
 };

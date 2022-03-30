@@ -10,13 +10,11 @@
 
 /** Native base class for potions, should be blueprinted */
 UCLASS(Blueprintable)
-class GAMEKIT_API UGKPotionItem : public UGKItem
+class GAMEKIT_API UGKPotionItem: public UGKItem
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	/** Constructor */
-	UGKPotionItem()
-	{
-	}
+    public:
+    /** Constructor */
+    UGKPotionItem() {}
 };

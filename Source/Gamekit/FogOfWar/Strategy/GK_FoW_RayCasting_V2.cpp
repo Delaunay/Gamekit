@@ -1,16 +1,15 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
 
 // Gamekit
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
-
 
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 
@@ -22,9 +21,9 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *Fac
     TArray<AActor *> ActorsToIgnore = {actor};
     ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
 
-    TSet<AActor *>   AlreadySighted;
+    TSet<AActor *> AlreadySighted;
 
-     // Disable making the angle relative to the forward vector
+    // Disable making the angle relative to the forward vector
     if (c->FieldOfView >= 360)
     {
         forward = FVector(1, 0, 0);
@@ -33,8 +32,8 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *Fac
     float step = c->FieldOfView / float(c->TraceCount);
     int   n    = c->TraceCount / 2;
 
-    FHitResult   OutHit;
-    auto         TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
+    FHitResult OutHit;
+    auto       TraceType = UEngineTypes::ConvertToTraceType(FogOfWarVolume->FogOfWarCollisionChannel);
 
     // Because we are drawing triangles but our field of view is arched
     // we make the radius bigger the circle outline will be drawn using the texture
@@ -53,20 +52,18 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *Fac
         FVector LineStart = loc; // + dir * c->InnerRadius;
         FVector LineEnd   = loc + dir * c->Radius;
 
-        bool hit = UKismetSystemLibrary::LineTraceSingle(
-            FogOfWarVolume->GetWorld(),
-            LineStart,
-            LineEnd,
-            TraceType,
-            false,                  // bTraceComplex
-            ActorsToIgnore,
-            FogOfWarVolume->DebugTrace(),
-            OutHit,
-            true,                   // Ignore Self
-            FLinearColor::Red,
-            FLinearColor::Green,
-            0
-        );
+        bool hit = UKismetSystemLibrary::LineTraceSingle(FogOfWarVolume->GetWorld(),
+                                                         LineStart,
+                                                         LineEnd,
+                                                         TraceType,
+                                                         false, // bTraceComplex
+                                                         ActorsToIgnore,
+                                                         FogOfWarVolume->DebugTrace(),
+                                                         OutHit,
+                                                         true, // Ignore Self
+                                                         FLinearColor::Red,
+                                                         FLinearColor::Green,
+                                                         0);
 
         // Increase the radius slightly
         LineEnd = hit ? OutHit.Location : loc + dir * ExtendedRadius;
@@ -82,7 +79,8 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *Fac
     DrawTriangles(c);
 }
 
-void UGKRayCasting_Triangle::GenerateTriangles(UGKFogOfWarComponent *c) {
+void UGKRayCasting_Triangle::GenerateTriangles(UGKFogOfWarComponent *c)
+{
     // Rendering is not needed by the server
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
@@ -91,10 +89,10 @@ void UGKRayCasting_Triangle::GenerateTriangles(UGKFogOfWarComponent *c) {
     }
 
     FCanvasUVTri Triangle;
-    FVector2D Previous;
-    FVector   LinePrevious;
-    bool      bHasPrevious = false;
-    auto      TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
+    FVector2D    Previous;
+    FVector      LinePrevious;
+    bool         bHasPrevious = false;
+    auto         TriangleSize = FVector2D(c->Radius, c->Radius) * 2.f;
 
     Triangles.Reset(c->TraceCount + 1);
 
@@ -144,15 +142,10 @@ void UGKRayCasting_Triangle::DrawTriangles(UGKFogOfWarComponent *c)
     UCanvasRenderTarget2D *RenderCanvas = GetFactionRenderTarget(c->GetFaction(), true);
 
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(
-        FogOfWarVolume->GetWorld(), 
-        RenderCanvas, 
-        Canvas, 
-        Size, 
-        Context
-    );
+            FogOfWarVolume->GetWorld(), RenderCanvas, Canvas, Size, Context);
 
     Canvas->K2_DrawMaterialTriangle(FogOfWarVolume->TrianglesMaterial, Triangles);
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
 #endif
-} 
+}

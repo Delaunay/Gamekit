@@ -1,99 +1,90 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-
 #include "Gamekit/Utilities/GKSelection.h"
 
 // Unreal Engine
 #include "GameFramework/PlayerController.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-
-UGKBoxSelectionComponent::UGKBoxSelectionComponent() { 
+UGKBoxSelectionComponent::UGKBoxSelectionComponent()
+{
     ActorClassFilter = AActor::StaticClass();
     ExtentMargin     = FVector(0.f, 0.f, 100.f);
     ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
 }
 
-
-void UGKBoxSelectionComponent::StartOrUpdateBoxSelection(class APlayerController *Controller,
-                                                         ETraceTypeQuery          Trace) 
+void UGKBoxSelectionComponent::StartOrUpdateBoxSelection(class APlayerController *Controller, ETraceTypeQuery Trace)
 {
-    if (Selecting) {
+    if (Selecting)
+    {
         StartBoxSelection(Controller, Trace);
-    } else {
+    }
+    else
+    {
         UpdateBoxSelection(Controller);
     }
 }
 
-void UGKBoxSelectionComponent::StartBoxSelection(APlayerController * Controller,
-                                                 ETraceTypeQuery Trace) 
-{ 
-    if (Controller == nullptr) {
+void UGKBoxSelectionComponent::StartBoxSelection(APlayerController *Controller, ETraceTypeQuery Trace)
+{
+    if (Controller == nullptr)
+    {
         UE_LOG(LogGamekit, Log, TEXT("StartBoxSelection: Controller == null"));
         return;
     }
 
-    if (Selecting) {
+    if (Selecting)
+    {
         UE_LOG(LogGamekit, Log, TEXT("StartBoxSelection: Already selecting"));
         return;
     }
 
     TraceChannel = Trace;
-    Controller->GetHitResultUnderCursorByChannel(
-        TraceChannel,
-        false,
-        HitResult
-    );
+    Controller->GetHitResultUnderCursorByChannel(TraceChannel, false, HitResult);
 
-    Start = HitResult.ImpactPoint;
-    Box   = FBox(Start, Start);
+    Start     = HitResult.ImpactPoint;
+    Box       = FBox(Start, Start);
     Selecting = true;
 }
 
-void UGKBoxSelectionComponent::UpdateBoxSelection(APlayerController *Controller) {
-    if (!Selecting) {
+void UGKBoxSelectionComponent::UpdateBoxSelection(APlayerController *Controller)
+{
+    if (!Selecting)
+    {
         UE_LOG(LogGamekit, Log, TEXT("UpdateBoxSelection: Not selecting!"));
         return;
     }
-    if (Controller == nullptr) {
+    if (Controller == nullptr)
+    {
         UE_LOG(LogGamekit, Log, TEXT("UpdateBoxSelection: Controller == null"));
         return;
     }
 
-    Controller->GetHitResultUnderCursorByChannel(
-        TraceChannel, 
-        false,
-        HitResult
-    );
+    Controller->GetHitResultUnderCursorByChannel(TraceChannel, false, HitResult);
 
     End = HitResult.ImpactPoint;
     Box = FBox(Start, Start);
     Box += End;
 }
 
-void UGKBoxSelectionComponent::FetchBoxSelection(const UObject *World,  TArray<AActor *> &Out) {
-    if (!Selecting) {
+void UGKBoxSelectionComponent::FetchBoxSelection(const UObject *World, TArray<AActor *> &Out)
+{
+    if (!Selecting)
+    {
         UE_LOG(LogGamekit, Log, TEXT("FetchBoxSelection: Not selecting!"));
         return;
     }
 
     UKismetSystemLibrary::BoxOverlapActors(
-        World,
-        Box.GetCenter(), 
-        Box.GetExtent() + ExtentMargin,
-        ObjectTypes, 
-        ActorClassFilter, 
-        ActorsToIgnore,
-        Out
-    );
+            World, Box.GetCenter(), Box.GetExtent() + ExtentMargin, ObjectTypes, ActorClassFilter, ActorsToIgnore, Out);
 }
 
-void UGKBoxSelectionComponent::EndBoxSelection(const UObject *World) {
-    Selecting = false;
-}
+void UGKBoxSelectionComponent::EndBoxSelection(const UObject *World) { Selecting = false; }
 
-void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World) {
-    if (!Selecting) {
+void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World)
+{
+    if (!Selecting)
+    {
         UE_LOG(LogGamekit, Log, TEXT("DrawBoxSelection: Not selecting!"));
         return;
     }
@@ -102,7 +93,7 @@ void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World) {
     auto Extent = Box.GetExtent();
 
     UKismetSystemLibrary::DrawDebugSphere(World,
-                                          Start,  // Center
+                                          Start,             // Center
                                           10.f,              // Radius
                                           12,                // Segements
                                           FLinearColor::Red, // Color
@@ -111,24 +102,23 @@ void UGKBoxSelectionComponent::DrawBoxSelection(const UObject *World) {
     );
 
     UKismetSystemLibrary::DrawDebugSphere(World,
-                                          End,    // Center
+                                          End,               // Center
                                           10.f,              // Radius
                                           12,                // Segements
                                           FLinearColor::Red, // Color
                                           1.f,               // Duration
                                           2.f                // Thickness
     );
-    UKismetSystemLibrary::DrawDebugBox(World, 
-                                       Center, 
+    UKismetSystemLibrary::DrawDebugBox(World,
+                                       Center,
                                        Extent + ExtentMargin,
                                        FLinearColor::White,
                                        FRotator::ZeroRotator,
-                                       0.f,                   // Duration
-                                       2.f                    // Thickness
+                                       0.f, // Duration
+                                       2.f  // Thickness
     );
 }
 
-
 FVector UGKBoxSelectionComponent::GetCenter() { return Box.GetCenter(); }
 FVector UGKBoxSelectionComponent::GetExtent() { return Box.GetExtent(); }
-FVector UGKBoxSelectionComponent::GetSize()   { return Box.GetSize();   }
+FVector UGKBoxSelectionComponent::GetSize() { return Box.GetSize(); }

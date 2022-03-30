@@ -19,11 +19,11 @@
  * we simply replace it with something much simplier
  */
 UCLASS(Blueprintable)
-class GAMEKIT_API UGKHexGridPathFollowingComponent : public UPathFollowingComponent
+class GAMEKIT_API UGKHexGridPathFollowingComponent: public UPathFollowingComponent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-	UGKHexGridPathFollowingComponent();
+    UGKHexGridPathFollowingComponent();
 
-	bool HasReachedDestination(const FVector& CurrentLocation) const override;
+    bool HasReachedDestination(const FVector &CurrentLocation) const override;
 };

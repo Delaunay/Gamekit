@@ -132,7 +132,7 @@ void UGKCPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
 
     auto Upscaled              = GetFactionTransformTarget(FactionFog->Name, true);
     FactionFog->UpScaledVision = Upscaled;
-    auto Original = static_cast<TMatrix3D<uint8>*>(FactionFog->Buffer);
+    auto Original              = static_cast<TMatrix3D<uint8> *>(FactionFog->Buffer);
 
     const uint8 PAT_WIDTH = 4;
 
@@ -162,15 +162,11 @@ void UGKCPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
     FMemory::Memcpy(NewBuffer, UpscaledBuffer.GetLayer(0), UpscaledBuffer.GetLayerSizeBytes());
 
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, UpscaledBuffer.Width(), UpscaledBuffer.Height());
-    Upscaled->UpdateTextureRegions(
-        0,
-        1,
-        &UpdateRegion,
-        UpdateRegion.Width,
-        sizeof(uint8),
-        NewBuffer,
-        [&](uint8 *Buf, const FUpdateTextureRegion2D *) {
-            delete[] Buf;
-        }
-    );
+    Upscaled->UpdateTextureRegions(0,
+                                   1,
+                                   &UpdateRegion,
+                                   UpdateRegion.Width,
+                                   sizeof(uint8),
+                                   NewBuffer,
+                                   [&](uint8 *Buf, const FUpdateTextureRegion2D *) { delete[] Buf; });
 }

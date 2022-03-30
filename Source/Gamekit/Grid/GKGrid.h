@@ -5,12 +5,11 @@
 
 // Unreal Engine
 #include "CoreMinimal.h"
-#include "Math/Vector.h"
 #include "Math/IntVector.h"
+#include "Math/Vector.h"
 
 // Generated
 #include "GKGrid.generated.h"
-
 
 UENUM(BlueprintType)
 enum class EGK_GridKind : uint8
@@ -19,54 +18,48 @@ enum class EGK_GridKind : uint8
     Hexagonal
 };
 
-
-USTRUCT(BlueprintType) 
+USTRUCT(BlueprintType)
 struct FGKGrid
 {
     GENERATED_BODY()
 
     public:
-
-    FGKGrid() {
+    FGKGrid()
+    {
         TileSize = FVector(100, 100, 50);
         GridKind = EGK_GridKind::Square;
     }
 
-	FIntVector WorldToGrid(FVector World) const;
+    FIntVector WorldToGrid(FVector World) const;
 
-    FVector    SnapToGrid(FVector World) const;
+    FVector SnapToGrid(FVector World) const;
 
-    FVector    GridToWorld(FIntVector Grid) const;
+    FVector GridToWorld(FIntVector Grid) const;
 
-    FVector    GetTileSize() const;
+    FVector GetTileSize() const;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tile)
-	FVector TileSize;
+    FVector TileSize;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tile)
     EGK_GridKind GridKind;
-
 };
 
-
-inline FIntVector FGKGrid::WorldToGrid(FVector World) const { 
+inline FIntVector FGKGrid::WorldToGrid(FVector World) const
+{
     switch (GridKind)
     {
     case EGK_GridKind::Hexagonal:
     {
         auto Result = UGKHexGridUtilities::WorldToGrid(FVector2D(TileSize.X, TileSize.Y), World);
-        Result.Z = int(FMath::GridSnap(World.Z, TileSize.Z));
+        Result.Z    = int(FMath::GridSnap(World.Z, TileSize.Z));
         return Result;
     }
-        
+
     case EGK_GridKind::Square:
     default:
         World = World - TileSize / 2.f;
-        return FIntVector(
-            int(World.X / TileSize.X),
-            int(World.Y / TileSize.Y),
-            int(World.Z / TileSize.Z)
-        );
+        return FIntVector(int(World.X / TileSize.X), int(World.Y / TileSize.Y), int(World.Z / TileSize.Z));
     }
 }
 
@@ -88,13 +81,14 @@ inline FVector FGKGrid::SnapToGrid(FVector World) const
     }
 }
 
-inline FVector    FGKGrid::GridToWorld(FIntVector Grid) const {
+inline FVector FGKGrid::GridToWorld(FIntVector Grid) const
+{
     switch (GridKind)
     {
     case EGK_GridKind::Hexagonal:
     {
         auto Result = UGKHexGridUtilities::GridToWorld(FVector2D(TileSize.X, TileSize.Y), Grid);
-        Result.Z = TileSize.Z * Grid.Z;
+        Result.Z    = TileSize.Z * Grid.Z;
         return Result;
     }
 
@@ -104,6 +98,4 @@ inline FVector    FGKGrid::GridToWorld(FIntVector Grid) const {
     }
 }
 
-inline FVector    FGKGrid::GetTileSize() const {
-    return TileSize;
-}
+inline FVector FGKGrid::GetTileSize() const { return TileSize; }

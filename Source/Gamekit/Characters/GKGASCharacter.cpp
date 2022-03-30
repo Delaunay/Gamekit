@@ -2,51 +2,48 @@
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
-#include "Gamekit/Abilities/GKAttributeSet.h"
 #include "Gamekit/Abilities/GKAbilityTypes.h"
+#include "Gamekit/Abilities/GKAttributeSet.h"
 
 // Unreal Engine
-#include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
-
-
-AGKGASCharacter::AGKGASCharacter() {
+AGKGASCharacter::AGKGASCharacter()
+{
     PrimaryActorTick.bCanEverTick = false;
-    GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Overlap);
+    GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility,
+                                                         ECollisionResponse::ECR_Overlap);
     bAlwaysRelevant = true;
-    
-    TagDead = FGameplayTag::RequestGameplayTag(FName("State.Dead"));
+
+    TagDead        = FGameplayTag::RequestGameplayTag(FName("State.Dead"));
     TagDeathDispel = FGameplayTag::RequestGameplayTag(FName("Dispel.Death"));
 }
 
-UAbilitySystemComponent* AGKGASCharacter::GetAbilitySystemComponent() const {
-    return AbilitySystemComponent;
-}
+UAbilitySystemComponent *AGKGASCharacter::GetAbilitySystemComponent() const { return AbilitySystemComponent; }
 
-UGKAttributeSet* AGKGASCharacter::GetAttributeSet() const {
-    return AttributeSet;
-}
+UGKAttributeSet *AGKGASCharacter::GetAttributeSet() const { return AttributeSet; }
 
-void AGKGASCharacter::InitializeGameplayAbilities() {
-    if (GetLocalRole() != ROLE_Authority || AbilitySystemComponent == nullptr || AbilitySystemComponent->Initialized) {
+void AGKGASCharacter::InitializeGameplayAbilities()
+{
+    if (GetLocalRole() != ROLE_Authority || AbilitySystemComponent == nullptr || AbilitySystemComponent->Initialized)
+    {
         return;
     }
-    
-    for (TSubclassOf<UGKGameplayAbility>& Ability : DefaultAbilities)
+
+    for (TSubclassOf<UGKGameplayAbility> &Ability: DefaultAbilities)
     {
-        AbilitySystemComponent->GiveAbility(
-            FGameplayAbilitySpec(Ability, 1, INDEX_NONE, this)
-        );
+        AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability, 1, INDEX_NONE, this));
     }
-    
+
     AbilitySystemComponent->Initialized = true;
 }
 
-void AGKGASCharacter::GetActivatableAbilities(TArray<FGameplayAbilitySpecHandle>& Abilities) {
+void AGKGASCharacter::GetActivatableAbilities(TArray<FGameplayAbilitySpecHandle> &Abilities)
+{
     auto ASC = GetAbilitySystemComponent();
 
-    for (const FGameplayAbilitySpec& Spec : ASC->GetActivatableAbilities())
+    for (const FGameplayAbilitySpec &Spec: ASC->GetActivatableAbilities())
     {
         if ((Spec.SourceObject == this) && DefaultAbilities.Contains(Spec.Ability->GetClass()))
         {
@@ -55,28 +52,31 @@ void AGKGASCharacter::GetActivatableAbilities(TArray<FGameplayAbilitySpecHandle>
     }
 }
 
-void AGKGASCharacter::ClearGameplayAbilities() {
-    if (GetLocalRole() != ROLE_Authority || AbilitySystemComponent == nullptr || !AbilitySystemComponent->Initialized) {
+void AGKGASCharacter::ClearGameplayAbilities()
+{
+    if (GetLocalRole() != ROLE_Authority || AbilitySystemComponent == nullptr || !AbilitySystemComponent->Initialized)
+    {
         return;
     }
-    
+
     TArray<FGameplayAbilitySpecHandle> Abilities;
     GetActivatableAbilities(Abilities);
-    
-    for (auto& Ability: Abilities)
+
+    for (auto &Ability: Abilities)
     {
         AbilitySystemComponent->ClearAbility(Ability);
     }
-    
+
     AbilitySystemComponent->Initialized = false;
 }
 
-void AGKGASCharacter::AGKGASCharacter::Die() {
+void AGKGASCharacter::AGKGASCharacter::Die()
+{
     ClearGameplayAbilities();
 
     GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     GetCharacterMovement()->GravityScale = 0;
-    GetCharacterMovement()->Velocity = FVector(0);
+    GetCharacterMovement()->Velocity     = FVector(0);
 
     OnCharacterDied.Broadcast(this);
 
@@ -90,7 +90,7 @@ void AGKGASCharacter::AGKGASCharacter::Die() {
 
         AbilitySystemComponent->AddLooseGameplayTag(TagDead);
     }
-    
+
     if (DeathMontage)
     {
         PlayAnimMontage(DeathMontage);

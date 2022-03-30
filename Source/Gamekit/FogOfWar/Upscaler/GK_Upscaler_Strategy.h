@@ -1,13 +1,13 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 // Gamekit
 #include "Gamekit/Container/Matrix.h"
 
 // Unreal Engine
-#include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "CoreMinimal.h"
 
 // Generated
 #include "GK_Upscaler_Strategy.generated.h"
@@ -20,7 +20,7 @@ class GAMEKIT_API UGKTransformerStrategy: public UActorComponent
 {
     GENERATED_BODY()
 
-public:
+    public:
     UGKTransformerStrategy();
 
     virtual void Initialize();
@@ -30,11 +30,10 @@ public:
     virtual void Transform(struct FGKFactionFog *FactionFog) {}
 
     //! Retrieve the Texture used to draw the fog of war for a given faction
-    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { 
-        return nullptr;
-    }
+    virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { return nullptr; }
 
-    FORCEINLINE FIntVector UpscaledTextureSize() const { 
+    FORCEINLINE FIntVector UpscaledTextureSize() const
+    {
         if (bFixedSize)
             return FixedSize;
         return TextureSize * Multiplier;
@@ -42,17 +41,16 @@ public:
 
     void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
 
-protected:
+    protected:
     bool                     bUseUpscaledVision;
     FIntVector               FixedSize;
-    bool                     bFixedSize;  
+    bool                     bFixedSize;
     FIntVector               TextureSize;
     uint8                    Multiplier;
     bool                     bInitialized;
     class AGKFogOfWarVolume *FogOfWarVolume;
     FUpdateTextureRegion2D   UpdateRegion;
 };
-
 
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKTransformerStrategyTexture2D: public UGKTransformerStrategy
@@ -72,7 +70,6 @@ class GAMEKIT_API UGKTransformerStrategyTexture2D: public UGKTransformerStrategy
     UPROPERTY(Transient)
     TMap<FName, class UTexture2D *> TransformedTarget;
 };
-
 
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKTransformerStrategyCanvas: public UGKTransformerStrategy

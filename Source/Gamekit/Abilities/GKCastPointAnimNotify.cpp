@@ -5,14 +5,13 @@
 // Unreal Engine
 #include "AbilitySystemBlueprintLibrary.h"
 
-
-void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent* MeshComp, class UAnimSequenceBase* Animation)
+void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation)
 {
-	UAnimNotify::Notify(MeshComp, Animation);
+    UAnimNotify::Notify(MeshComp, Animation);
 
-	// Send Game play event
-	AActor* Owner = MeshComp->GetOwner();
+    // Send Game play event
+    AActor *Owner = MeshComp->GetOwner();
 
-	// How can I populate the TargetData here
-	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Owner, CastPointEventTag, FGameplayEventData());
+    // How can I populate the TargetData here
+    UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Owner, CastPointEventTag, FGameplayEventData());
 }

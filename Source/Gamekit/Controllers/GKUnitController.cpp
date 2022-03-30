@@ -7,10 +7,10 @@
 
 #include "Gamekit/Grid/GKHexGridPathFollowingComponent.h"
 
-AGKUnitAIController::AGKUnitAIController(){
-	auto cmp = CreateDefaultSubobject<UGKHexGridPathFollowingComponent>(TEXT("HexPathFollowingComponent"));
-	cmp->OnRequestFinished.AddUObject(this, &AAIController::OnMoveCompleted);
-	this->SetPathFollowingComponent(cmp);
-	this->GetPathFollowingComponent()->SetAcceptanceRadius(1);
+AGKUnitAIController::AGKUnitAIController()
+{
+    auto cmp = CreateDefaultSubobject<UGKHexGridPathFollowingComponent>(TEXT("HexPathFollowingComponent"));
+    cmp->OnRequestFinished.AddUObject(this, &AAIController::OnMoveCompleted);
+    this->SetPathFollowingComponent(cmp);
+    this->GetPathFollowingComponent()->SetAcceptanceRadius(1);
 }
-

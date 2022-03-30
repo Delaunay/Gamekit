@@ -1,18 +1,17 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 // Gamekit
 #include "Gamekit/Container/Matrix.h"
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
 
 // Unreal Engine
-#include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "CoreMinimal.h"
 
 // Generated
 #include "GK_GPU_Upscaler.generated.h"
-
 
 /*
  *
@@ -21,17 +20,16 @@
 UCLASS(BlueprintType)
 class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
 {
-	GENERATED_BODY()
-		 
-public:
+    GENERATED_BODY()
 
+    public:
     void Initialize() override;
 
     void Stop() override;
 
-	//! Draw the fog of war for each factions
+    //! Draw the fog of war for each factions
     void Transform(struct FGKFactionFog *FactionFog);
 
-private:
+    private:
     class FUpscalingDispatcher *UpscalingDispatcher;
 };

@@ -3,26 +3,25 @@
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
 // Gamekit
-#include "Gamekit/Gamekit.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/GKLog.h"
+#include "Gamekit/Gamekit.h"
 
 // Unreal Engine
-#include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Net/UnrealNetwork.h"
 
 //#define DEBUG_MOVEMENT
 
 #ifdef DEBUG_MOVEMENT
 #    define DEBUG_MVT(...) GK_WARNING(__VA_ARGS__)
 #else
-#   define  DEBUG_MVT(...)
+#    define DEBUG_MVT(...)
 #endif
-
 
 UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObjectInitializer &ObjectInitializer):
     Super(ObjectInitializer)
@@ -35,33 +34,30 @@ UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObject
     bDebug            = false;
 }
 
-
 UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget(
-    UGameplayAbility *                      OwningAbility,
-    FName                                   TaskInstanceName,
-    const FGameplayAbilityTargetDataHandle& TargetData,
-    float                                   DistanceTolerance,
-    float                                   AngleTolerance,
-    float                                   TurnRate ,
-    float                                   Speed ,
-    bool                                    MoveToTarget,
-    bool                                    bUseMovementComponent,
-    EGK_AbilityBehavior                     TargetKind,
-    bool                                    Debug)
+        UGameplayAbility *                      OwningAbility,
+        FName                                   TaskInstanceName,
+        const FGameplayAbilityTargetDataHandle &TargetData,
+        float                                   DistanceTolerance,
+        float                                   AngleTolerance,
+        float                                   TurnRate,
+        float                                   Speed,
+        bool                                    MoveToTarget,
+        bool                                    bUseMovementComponent,
+        EGK_AbilityBehavior                     TargetKind,
+        bool                                    Debug)
 {
-    UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
-        OwningAbility, 
-        TaskInstanceName
-    );
+    UGKAbilityTask_MoveToDestination *MyObj =
+            NewAbilityTask<UGKAbilityTask_MoveToDestination>(OwningAbility, TaskInstanceName);
 
     // TODO: Move this to some generic GKAbilityTask
     auto GKAbility = Cast<UGKGameplayAbility>(OwningAbility);
     if (GKAbility)
     {
-        GKAbility->CurrentTask = MyObj;   
+        GKAbility->CurrentTask = MyObj;
     }
 
-    MyObj->TargetData        = TargetData; 
+    MyObj->TargetData        = TargetData;
     MyObj->DistanceTolerance = DistanceTolerance;
     MyObj->AngleTolerance    = AngleTolerance;
     MyObj->TurnRate          = TurnRate;
@@ -72,8 +68,9 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
 
     if (bUseMovementComponent)
     {
-        auto Avatar = OwningAbility->GetAvatarActorFromActorInfo();
-        auto Movement = Cast<UCharacterMovementComponent>(Avatar->GetComponentByClass(UCharacterMovementComponent::StaticClass()));
+        auto Avatar   = OwningAbility->GetAvatarActorFromActorInfo();
+        auto Movement = Cast<UCharacterMovementComponent>(
+                Avatar->GetComponentByClass(UCharacterMovementComponent::StaticClass()));
 
         if (Movement)
         {
@@ -87,9 +84,10 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
     return MyObj;
 }
 
-
-void UGKAbilityTask_MoveToDestination::InitFromTargetData() { 
-    if (TargetData.IsValid(0)) {
+void UGKAbilityTask_MoveToDestination::InitFromTargetData()
+{
+    if (TargetData.IsValid(0))
+    {
         auto FirstTarget = TargetData.Get(0);
 
         if (TargetKind == EGK_AbilityBehavior::PointTarget)
@@ -113,7 +111,7 @@ void UGKAbilityTask_MoveToDestination::InitFromTargetData() {
 
             if (TargetKind == EGK_AbilityBehavior::ActorTarget)
             {
-                 TargetActor = Actors[0];
+                TargetActor = Actors[0];
             }
         }
     }
@@ -123,31 +121,28 @@ void UGKAbilityTask_MoveToDestination::InitFromTargetData() {
     }
 }
 
-UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(
-    UGameplayAbility *OwningAbility,
-    FName   TaskInstanceName,
-    FVector Destination,
-    float   DistanceTolerance,
-    float   AngleTolerance,
-    float   TurnRate,
-    float   Speed,
-    bool    MoveToTarget,
-    EGK_AbilityBehavior TargetKind,
-    bool    Debug)
+UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestination(UGameplayAbility *OwningAbility,
+                                                                                      FName   TaskInstanceName,
+                                                                                      FVector Destination,
+                                                                                      float   DistanceTolerance,
+                                                                                      float   AngleTolerance,
+                                                                                      float   TurnRate,
+                                                                                      float   Speed,
+                                                                                      bool    MoveToTarget,
+                                                                                      EGK_AbilityBehavior TargetKind,
+                                                                                      bool                Debug)
 {
-    UGKAbilityTask_MoveToDestination *MyObj = NewAbilityTask<UGKAbilityTask_MoveToDestination>(
-        OwningAbility, 
-        TaskInstanceName
-    );
+    UGKAbilityTask_MoveToDestination *MyObj =
+            NewAbilityTask<UGKAbilityTask_MoveToDestination>(OwningAbility, TaskInstanceName);
 
     // TODO: Move this to some generic GKAbilityTask
     auto GKAbility = Cast<UGKGameplayAbility>(OwningAbility);
     if (GKAbility)
     {
-        GKAbility->CurrentTask = MyObj;   
+        GKAbility->CurrentTask = MyObj;
     }
 
-    MyObj->Destination = Destination;
+    MyObj->Destination       = Destination;
     MyObj->DistanceTolerance = DistanceTolerance;
     MyObj->AngleTolerance    = AngleTolerance;
     MyObj->TurnRate          = TurnRate;
@@ -191,9 +186,8 @@ void UGKAbilityTask_MoveToDestination::Init()
         return;
     }
 
-    Ability->OnGameplayAbilityCancelled.Add(
-        FOnGameplayAbilityCancelled::FDelegate::CreateUObject(this, &UGKAbilityTask_MoveToDestination::ExternalCancel)
-    );
+    Ability->OnGameplayAbilityCancelled.Add(FOnGameplayAbilityCancelled::FDelegate::CreateUObject(
+            this, &UGKAbilityTask_MoveToDestination::ExternalCancel));
 }
 
 void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameReplayTasksComponent)
@@ -235,7 +229,6 @@ void UGKAbilityTask_MoveToDestination::DebugDraw()
     }
 #endif // ENABLE_DRAW_DEBUG
 }
-
 
 /* void UGKAbilityTask_MoveToDestination::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
 {
@@ -292,7 +285,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
     auto CurrentRot    = RootComponent->GetComponentRotation();
     auto TargetYaw     = (TargetRotator.Yaw - CurrentRot.Yaw);
-    auto Before = TargetYaw;
+    auto Before        = TargetYaw;
 
     // This is the most reliable way of getting the smallest angle
     if (TargetYaw > 180)
@@ -324,7 +317,6 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         }
         bRotationFinished = true;
 
-
         if (bTurnOnly)
         {
             // Rotation is finished
@@ -344,11 +336,12 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
             DEBUG_MVT(TEXT("Moving toward target %s"), *MoveStep.ToString());
             Character->AddMovementInput(MoveStep, 1.f, false);
         }
-    } 
+    }
 }
 
-void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) { 
-    Super::OnDestroy(AbilityIsEnding); 
+void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding)
+{
+    Super::OnDestroy(AbilityIsEnding);
 
     if (!IsSimulatedTask())
     {
@@ -358,7 +351,7 @@ void UGKAbilityTask_MoveToDestination::OnDestroy(bool AbilityIsEnding) {
         auto GKAbility = Cast<UGKGameplayAbility>(Ability);
         if (GKAbility)
         {
-            GKAbility->CurrentTask = nullptr;   
+            GKAbility->CurrentTask = nullptr;
         }
     }
 }

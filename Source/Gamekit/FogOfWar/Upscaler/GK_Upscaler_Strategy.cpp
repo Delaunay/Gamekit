@@ -7,32 +7,32 @@
 // Unreal Engine
 #include "Engine/CanvasRenderTarget2D.h"
 
-
 UGKTransformerStrategy::UGKTransformerStrategy()
-{ 
-    TextureSize = FIntVector::ZeroValue; 
+{
+    TextureSize  = FIntVector::ZeroValue;
     bInitialized = false;
     Multiplier   = 2;
 }
 
 void UGKTransformerStrategy::Initialize()
-{ 
-    FogOfWarVolume = Cast<AGKFogOfWarVolume>(GetOwner());
-    bFixedSize     = FogOfWarVolume->bFixedSize;
-    Multiplier     = FogOfWarVolume->Multiplier;
-    FixedSize      = FogOfWarVolume->FixedSize;
+{
+    FogOfWarVolume     = Cast<AGKFogOfWarVolume>(GetOwner());
+    bFixedSize         = FogOfWarVolume->bFixedSize;
+    Multiplier         = FogOfWarVolume->Multiplier;
+    FixedSize          = FogOfWarVolume->FixedSize;
     bUseUpscaledVision = FogOfWarVolume->bUseUpscaledVision;
 }
 
-
-void UGKTransformerStrategyTexture2D::Initialize() { 
+void UGKTransformerStrategyTexture2D::Initialize()
+{
     Super::Initialize();
-    // TransformedTarget.Reset(); 
+    // TransformedTarget.Reset();
 }
 
-void UGKTransformerStrategyCanvas::Initialize() { 
+void UGKTransformerStrategyCanvas::Initialize()
+{
     Super::Initialize();
-    // TransformedTarget.Reset();  
+    // TransformedTarget.Reset();
 }
 
 UTexture2D *UGKTransformerStrategyTexture2D::GetFactionTransformTarget(FName name, bool bCreateRenderTarget)
@@ -60,11 +60,7 @@ UTexture2D *UGKTransformerStrategyTexture2D::CreateTransformTarget()
     // FIXME: why is the strategy not initialized alread
     Initialize();
 
-    auto Texture = UTexture2D::CreateTransient(
-        UpscaledTextureSize().X, 
-        UpscaledTextureSize().Y, 
-        EPixelFormat::PF_G8
-    );
+    auto Texture = UTexture2D::CreateTransient(UpscaledTextureSize().X, UpscaledTextureSize().Y, EPixelFormat::PF_G8);
 
     Texture->CompressionSettings = TextureCompressionSettings::TC_Default;
     Texture->SRGB                = false;
@@ -108,11 +104,7 @@ UCanvasRenderTarget2D *UGKTransformerStrategyCanvas::CreateTransformTarget()
     Initialize();
 
     auto Texture = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(
-        GetWorld(),
-        UCanvasRenderTarget2D::StaticClass(),
-        UpscaledTextureSize().X,
-        UpscaledTextureSize().Y
-    );
+            GetWorld(), UCanvasRenderTarget2D::StaticClass(), UpscaledTextureSize().X, UpscaledTextureSize().Y);
 
     return Texture;
 }
@@ -121,5 +113,3 @@ class UTexture *UGKTransformerStrategyCanvas::GetFactionTexture(FName name, bool
 {
     return GetFactionTransformTarget(name, CreateRenderTarget);
 }
-
-

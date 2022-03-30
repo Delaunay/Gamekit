@@ -3,14 +3,14 @@
 #pragma once
 
 // Gamekit
-#include "Gamekit/Gamekit.h"
 #include "Gamekit/Abilities/GKAbilityTypes.h"
 #include "Gamekit/Animation/GKAnimationSet.h"
+#include "Gamekit/Gamekit.h"
 #include "Gamekit/Items/GKItemTypes.h"
 
 // Unreal Engine
-#include "Kismet/BlueprintFunctionLibrary.h"
 #include "Abilities/GameplayAbility.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 
 // Generated
 #include "GKAbilityBlueprintLibrary.generated.h"
@@ -24,7 +24,6 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
     GENERATED_UCLASS_BODY()
 
     public:
-
     // Debug FGameplayAbilitySpec
     // --------------------------
     UFUNCTION(BlueprintPure, Category = "Debug")
@@ -68,6 +67,6 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
                                              int32                                   Index,
                                              bool &                                  HasHitResult);
 
-	UFUNCTION(BlueprintPure, Category = "AbilitySlot")
-	static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput);
+    UFUNCTION(BlueprintPure, Category = "AbilitySlot")
+    static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput);
 };

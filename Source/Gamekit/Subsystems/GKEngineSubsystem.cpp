@@ -5,9 +5,9 @@
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
-void UGKEngineSubsystem::Initialize(FSubsystemCollectionBase& Collection)
+void UGKEngineSubsystem::Initialize(FSubsystemCollectionBase &Collection)
 {
-	Super::Initialize(Collection);
+    Super::Initialize(Collection);
 
-	UGKAbilitySystemGlobals::Get().InitGlobalData();
+    UGKAbilitySystemGlobals::Get().InitGlobalData();
 }

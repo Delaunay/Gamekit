@@ -3,12 +3,12 @@
 #pragma once
 
 // Gamekit
-#include "Gamekit/Items/GKInventoryInterface.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
+#include "Gamekit/Items/GKInventoryInterface.h"
 
 // Unreal Engine
-#include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "CoreMinimal.h"
 #include "GameplayAbilitySpec.h"
 
 // Generated
@@ -17,13 +17,13 @@
 /* Simple Widget that receives ability state update through a top level UGKAbilityWidgetContainer
  */
 UCLASS(BlueprintType, Blueprintable, meta = (DisableNativeTick))
-class GAMEKIT_API UGKAbilityWidget : public UUserWidget
-{  
+class GAMEKIT_API UGKAbilityWidget: public UUserWidget
+{
     // I tried to implement Delegate binding here but I get a LOT of issues
     // from the ability not bein instantiated to some event tag simply not firing
     GENERATED_BODY()
 
-public:
+    public:
     //! This ability cooldown started
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnAbilityCooldownBegin(float TimeRemaining, float Duration);
@@ -68,19 +68,19 @@ public:
     virtual void OnAbilityInsufficientResources_Implementation(bool CostMet) {}
 
     UFUNCTION(BlueprintCallable, BlueprintCosmetic)
-    virtual void SetupListeners(class UGKGameplayAbility* AbilityIn);
+    virtual void SetupListeners(class UGKGameplayAbility *AbilityIn);
 
     void NativeDestruct() override;
 
-protected:
+    protected:
     UPROPERTY()
-    bool                      bBound;
+    bool bBound;
 
-    class UGKGameplayAbility* Ability;
+    class UGKGameplayAbility *Ability;
 
-    class UGKAsyncTaskAttributeChanged* AttributeChangedTask;
+    class UGKAsyncTaskAttributeChanged *AttributeChangedTask;
 
-    class UGKAsyncTaskCooldownChanged* CooldownChangedTask;
+    class UGKAsyncTaskCooldownChanged *CooldownChangedTask;
 
     UFUNCTION()
     void OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute, float NewValue, float OldValue);

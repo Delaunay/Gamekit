@@ -8,16 +8,12 @@
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 // Unreal Engine
+#include "DrawDebugHelpers.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
-#include "DrawDebugHelpers.h"
 
-
-
-void UGKShadowCasting::Stop()
-{
-}
+void UGKShadowCasting::Stop() {}
 
 UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool bCreateRenderTarget)
 {
@@ -47,7 +43,8 @@ UTexture *UGKShadowCasting::GetPreviousFrameFactionTexture(FName Name, bool bCre
     }
 }
 
-UTexture2D *UGKShadowCasting::CreateTexture2D() {
+UTexture2D *UGKShadowCasting::CreateTexture2D()
+{
     auto Texture = UTexture2D::CreateTransient(Buffer.Width(), Buffer.Height(), EPixelFormat::PF_G8);
 
     Texture->CompressionSettings = TextureCompressionSettings::TC_Grayscale;
@@ -61,7 +58,6 @@ UTexture2D *UGKShadowCasting::CreateTexture2D() {
     // Texture->VirtualTextureStreaming = 1;
     // Texture->NeverStream = 0;
     Texture->UpdateResource();
-
 
     // UGKUtilityLibrary::ClearTexture(Texture, FLinearColor::Black);
     return Texture;
@@ -126,24 +122,24 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
 
     FVector Corners[4] = {TopLeft, TopRight, BotLeft, BotRight};
 
-    // Draw Corners
-    #if ENABLE_DRAW_DEBUG
+// Draw Corners
+#if ENABLE_DRAW_DEBUG
     if (FogOfWarVolume->bDebug)
     {
         for (auto &Corner: Corners)
         {
             DebugDrawPoint(Corner, FLinearColor::White, 25.f);
 
-            auto CornerGrid  = Grid.SnapToGrid(Corner);
+            auto CornerGrid = Grid.SnapToGrid(Corner);
 
             DebugDrawPoint(CornerGrid, FLinearColor::Red, 30.f);
         }
     }
-    #endif
+#endif
 
     //*
-    auto TopLeftCornerGrid  = Grid.WorldToGrid(TopRight);
-    auto TopLeftTexure      = FogOfWarVolume->ToGridTexture(TopLeftCornerGrid);
+    auto TopLeftCornerGrid = Grid.WorldToGrid(TopRight);
+    auto TopLeftTexure     = FogOfWarVolume->ToGridTexture(TopLeftCornerGrid);
 
     auto BotRightCornerGrid = Grid.WorldToGrid(BotLeft);
     auto BotRightTexture    = FogOfWarVolume->ToGridTexture(BotRightCornerGrid);
@@ -151,15 +147,15 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     int Width  = BotRightTexture.X - TopLeftTexure.X + 1;
     int Height = TopLeftTexure.Y - BotRightTexture.Y + 1;
 
-    uint8 ZHeight = 0; 
+    uint8 ZHeight = 0;
     // ZHeight = Origin.Z / TileSize.Z;
-    uint8 Value   = (uint8)(EGK_TileVisbility::Wall) | (ZHeight << 1);
+    uint8 Value = (uint8)(EGK_TileVisbility::Wall) | (ZHeight << 1);
 
     for (int j = 0; j < Height; j++)
     {
         for (int i = 0; i < Width; i++)
         {
-            auto Pos = TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking));
+            auto Pos    = TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking));
             Buffer(Pos) = Value;
 
             // TODO: FIXME
@@ -170,7 +166,7 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
 }
 
 void UGKShadowCasting::UpdateTextures(FName Name)
-{ 
+{
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
     {
@@ -187,44 +183,40 @@ void UGKShadowCasting::UpdateTextures(FName Name)
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
     FMemory::Memcpy(NewBuffer, Buffer.GetLayer(uint8(EGK_VisbilityLayers::Visible)), Buffer.GetLayerSizeBytes());
 
-    Texture->UpdateTextureRegions(
-        0, 
-        1, 
-        &UpdateRegion, 
-        UpdateRegion.Width, 
-        sizeof(uint8), 
-        NewBuffer, 
-        [&](uint8* Buf, const FUpdateTextureRegion2D*) {
-            delete[] Buf;
-        }
-    );
+    Texture->UpdateTextureRegions(0,
+                                  1,
+                                  &UpdateRegion,
+                                  UpdateRegion.Width,
+                                  sizeof(uint8),
+                                  NewBuffer,
+                                  [&](uint8 *Buf, const FUpdateTextureRegion2D *) { delete[] Buf; });
 #endif
 }
 
-void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name) {
+void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name)
+{
 
-    UTexture2D *Texture = GetFactionTexture2D(Name);
+    UTexture2D *Texture     = GetFactionTexture2D(Name);
     UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
 
     ENQUEUE_RENDER_COMMAND(CopyTexture)
     (
-            [Texture, PrevTexture](FRHICommandListImmediate &RHICmdList) {
+            [Texture, PrevTexture](FRHICommandListImmediate &RHICmdList)
+            {
                 FResolveParams Params;
 
                 /*
                 RHICmdList.CopyToResolveTarget(
-                    Texture->GetResource()->GetTexture2DRHI(), 
+                    Texture->GetResource()->GetTexture2DRHI(),
                     PrevTexture->GetResource()->GetTexture2DRHI(),
                     Params
                 );
                 */
                 FRHICopyTextureInfo CopyParams;
-                RHICmdList.CopyTexture(
-                    Texture->GetResource()->GetTexture2DRHI(),
-                    PrevTexture->GetResource()->GetTexture2DRHI(),
-                    CopyParams);
-            }
-    );
+                RHICmdList.CopyTexture(Texture->GetResource()->GetTexture2DRHI(),
+                                       PrevTexture->GetResource()->GetTexture2DRHI(),
+                                       CopyParams);
+            });
 }
 
 void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
@@ -259,7 +251,7 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Visible), (uint8)(EGK_TileVisbility::None));
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Blocking), (uint8)(EGK_TileVisbility::None));
 
-    CurrentFaction     = FactionFog;
+    CurrentFaction = FactionFog;
 
     FactionFog->Vision              = GetFactionTexture(FactionFog->Name, true);
     FactionFog->PreviousFrameVision = GetPreviousFrameFactionTexture(FactionFog->Name, true);
@@ -282,7 +274,6 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
             DrawLineOfSight(FactionFog, Component);
             DebugDrawComponent(Component);
         }
-
     }
 
     // Update Textures for rendering
@@ -322,8 +313,8 @@ void UGKShadowCasting::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogO
 {
     auto WorldPos = c->GetOwner()->GetActorLocation();
 
-    auto GridCoord = Grid.WorldToGrid(WorldPos);
-    auto Radius    = int(c->Radius / Grid.GetTileSize().X);
+    auto       GridCoord       = Grid.WorldToGrid(WorldPos);
+    auto       Radius          = int(c->Radius / Grid.GetTileSize().X);
     FGKPoints *ComponentPoints = &Points.Add(c, FGKPoints());
 
     /*
@@ -350,7 +341,8 @@ bool UGKShadowCasting::BlocksLight(int X, int Y)
     return true;
 }
 
-int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff) { 
+int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff)
+{
     Origin.Z = 0;
     Diff.Z   = 0;
     return (Origin - Diff).Size();
@@ -369,7 +361,7 @@ void UGKShadowCasting::SetVisible(int X, int Y)
         // FIXME
         TexturePos.Z = 0;
 
-        UGKFogOfWarComponent** SightedResult = PositionToComponent.Find(TexturePos);
+        UGKFogOfWarComponent **SightedResult = PositionToComponent.Find(TexturePos);
         if (SightedResult != nullptr)
         {
             UGKFogOfWarComponent *Sighted = SightedResult[0];
@@ -386,7 +378,7 @@ void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit, FGKPoints *CPo
 {
     SetVisible(origin.X, origin.Y);
 
-    for (uint8 octant = 0; octant < 8; octant++) 
+    for (uint8 octant = 0; octant < 8; octant++)
     {
         Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), CPoints);
     }
@@ -407,9 +399,10 @@ void UGKShadowCasting::Compute(uint8      octant,
         // enters the column (on the left). this equals (x+0.5)*top+0.5 and (x-0.5)*bottom+0.5 respectively, which can
         // be computed like (x+0.5)*top+0.5 = (2(x+0.5)*top+1)/2 = ((2x+1)*top+1)/2 to avoid floating point math
 
-        int topY    = top.X == 1 ? x : ((x * 2 + 1) * top.Y + top.X - 1) / (top.X * 2); // the rounding is a bit tricky, though
-        int bottomY = bottom.Y == 0 ? 0 : ((x * 2 - 1) * bottom.Y + bottom.X) / (bottom.X * 2);
-        int wasOpaque = -1; // 0:false, 
+        int topY      = top.X == 1 ? x
+                                   : ((x * 2 + 1) * top.Y + top.X - 1) / (top.X * 2); // the rounding is a bit tricky, though
+        int bottomY   = bottom.Y == 0 ? 0 : ((x * 2 - 1) * bottom.Y + bottom.X) / (bottom.X * 2);
+        int wasOpaque = -1; // 0:false,
                             // 1:true, -1:not applicable
 
         for (int y = topY; y >= bottomY; y--)

@@ -2,41 +2,39 @@
 
 #pragma once
 
-
 // Unreal Engine
-#include "CoreMinimal.h"
-#include "Math/Box.h"
-#include "Engine/EngineTypes.h"
-#include "Math/Vector.h"
-#include "GameFramework/Actor.h"
-#include "Containers/Array.h"
 #include "Components/ActorComponent.h"
+#include "Containers/Array.h"
+#include "CoreMinimal.h"
+#include "Engine/EngineTypes.h"
+#include "GameFramework/Actor.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Math/Box.h"
+#include "Math/Vector.h"
 
 // Generated
 #include "GKSelection.generated.h"
 
 USTRUCT(BlueprintType)
-struct GAMEKIT_API FGKUnitGroup 
+struct GAMEKIT_API FGKUnitGroup
 {
     GENERATED_USTRUCT_BODY()
 
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<AActor *> Units;
 };
 
-
 /* Select a group of actors that is inside a box.
- * The box bound is given by the cursor. 
- * 
+ * The box bound is given by the cursor.
+ *
  */
 UCLASS(Blueprintable, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class GAMEKIT_API UGKBoxSelectionComponent: public UActorComponent 
+class GAMEKIT_API UGKBoxSelectionComponent: public UActorComponent
 {
     GENERATED_BODY()
 
-public:
+    public:
     UGKBoxSelectionComponent();
 
     //! Start a box selection using the cursor position as the starting point
@@ -50,7 +48,7 @@ public:
 
     //! Update the box selection using the cursor position as the end point
     UFUNCTION(BlueprintCallable, Category = "Selection")
-    void UpdateBoxSelection(class APlayerController* Controller);
+    void UpdateBoxSelection(class APlayerController *Controller);
 
     //! Returns the list of selected pawn given the current selection box
     UFUNCTION(BlueprintCallable, Category = "Selection", meta = (WorldContext = "World"))
@@ -90,7 +88,7 @@ public:
 
     //! Selection box, only valid when Selecting is true
     UPROPERTY(BlueprintReadOnly)
-	FBox Box;
+    FBox Box;
 
     //! Set to true when currently selecting
     UPROPERTY(BlueprintReadOnly)

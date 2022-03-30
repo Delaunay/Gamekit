@@ -1,28 +1,22 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 
 // Gamekit
-#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-
-UGKFogOfWarStrategy::UGKFogOfWarStrategy() {
-
-}
+UGKFogOfWarStrategy::UGKFogOfWarStrategy() {}
 
 void UGKFogOfWarStrategy::DrawFactionFog(FGKFactionFog *FactionFog)
 {
     TSet<FName> Factions;
 
-	for (auto &Component: FactionFog->Allies)
+    for (auto &Component: FactionFog->Allies)
     {
-            DrawLineOfSight(FactionFog, Component);
+        DrawLineOfSight(FactionFog, Component);
     }
 }
 
-void UGKFogOfWarStrategy::Initialize() { 
-	FogOfWarVolume = Cast<AGKFogOfWarVolume>(GetOwner());
-}
-
+void UGKFogOfWarStrategy::Initialize() { FogOfWarVolume = Cast<AGKFogOfWarVolume>(GetOwner()); }
 
 void UGKFogOfWarStrategy::DebugDrawComponent(class UGKFogOfWarComponent *Component)
 {
@@ -30,37 +24,26 @@ void UGKFogOfWarStrategy::DebugDrawComponent(class UGKFogOfWarComponent *Compone
     {
         auto Location = Component->GetOwner()->GetActorLocation();
 
-        UKismetSystemLibrary::DrawDebugCircle(GetWorld(),            // World
-                                              Location,              // Center
-                                              Component->Radius,     // Radius
-                                              72,                    // NumSegments
-                                              FLinearColor::White,   // LineColor
-                                              0.f,                   // LifeTime
-                                              5.f,                   // Tickness
-                                              FVector(1, 0, 0),      // YAxis
-                                              FVector(0, 1, 0),      // ZAxis
-                                              true                   // DrawAxes
+        UKismetSystemLibrary::DrawDebugCircle(GetWorld(),          // World
+                                              Location,            // Center
+                                              Component->Radius,   // Radius
+                                              72,                  // NumSegments
+                                              FLinearColor::White, // LineColor
+                                              0.f,                 // LifeTime
+                                              5.f,                 // Tickness
+                                              FVector(1, 0, 0),    // YAxis
+                                              FVector(0, 1, 0),    // ZAxis
+                                              true                 // DrawAxes
         );
     }
 }
 
-
 void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, float Radius)
-{                                      
-    if (FogOfWarVolume->bDebug)                                    
-    {                                                              
+{
+    if (FogOfWarVolume->bDebug)
+    {
         UKismetSystemLibrary::DrawDebugCircle(
-            GetWorld(),          
-            Center,                  
-            Radius,                
-            36,                  
-            Color, 
-            0.f,                 
-            5.f,                 
-            FVector(1, 0, 0),    
-            FVector(0, 1, 0),    
-            true
-        );
+                GetWorld(), Center, Radius, 36, Color, 0.f, 5.f, FVector(1, 0, 0), FVector(0, 1, 0), true);
     }
 }
 
@@ -78,7 +61,6 @@ void UGKFogOfWarStrategy::AddVisibleActor(FGKFactionFog *FactionFog, UGKFogOfWar
         FoWComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
-
 
 void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      FactionFog,
                                               class UGKFogOfWarComponent *SourceComp,
