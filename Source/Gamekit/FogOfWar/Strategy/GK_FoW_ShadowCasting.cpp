@@ -198,25 +198,24 @@ void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name)
 
     UTexture2D *Texture     = GetFactionTexture2D(Name);
     UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
-
+    /*
     ENQUEUE_RENDER_COMMAND(CopyTexture)
     (
             [Texture, PrevTexture](FRHICommandListImmediate &RHICmdList)
             {
-                FResolveParams Params;
-
-                /*
-                RHICmdList.CopyToResolveTarget(
-                    Texture->GetResource()->GetTexture2DRHI(),
-                    PrevTexture->GetResource()->GetTexture2DRHI(),
-                    Params
-                );
-                */
+                //FResolveParams Params;
+                //RHICmdList.CopyToResolveTarget(
+                //    Texture->GetResource()->GetTexture2DRHI(),
+                //    PrevTexture->GetResource()->GetTexture2DRHI(),
+                //    Params
+                //);
+                
                 FRHICopyTextureInfo CopyParams;
                 RHICmdList.CopyTexture(Texture->GetResource()->GetTexture2DRHI(),
                                        PrevTexture->GetResource()->GetTexture2DRHI(),
                                        CopyParams);
             });
+    */
 }
 
 void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)

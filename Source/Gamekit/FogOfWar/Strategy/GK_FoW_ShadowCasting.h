@@ -43,7 +43,7 @@ enum class EGK_TileVisbility : uint8
     Height5 = uint8(1 << 4),
     Height6 = uint8(1 << 5),
     Wall    = uint8(1 << 6), // Blocks Light
-    Visible = uint8(1 << 7), // Visible
+    Visible = uint8(-1), // Visible
 };
 
 enum class EGK_VisbilityLayers : uint8
