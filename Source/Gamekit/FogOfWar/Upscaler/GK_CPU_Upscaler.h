@@ -2,13 +2,15 @@
 
 #pragma once 
 
+// Gamekit
+#include "Gamekit/Container/Matrix.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-#include "Container/Matrix.h"
-
-#include "GK_Upscaler_Strategy.h"
-
+// Generated
 #include "GK_CPU_Upscaler.generated.h"
 
 

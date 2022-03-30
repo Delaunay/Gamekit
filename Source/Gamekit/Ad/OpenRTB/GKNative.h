@@ -1,19 +1,19 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKFormat.h"
+#include "Gamekit/Ad/OpenRTB/GKFormat.h"
 
 #include "GKNative.generated.h"
 
 UCLASS(BlueprintType)
-class UGKNative : public UObject
+class UGKNative: public UObject
 {
     GENERATED_BODY()
 
-public:
+    public:
     // This is UGKNativeMarkupRequest encoded in json
     UPROPERTY()
     FString request;
@@ -21,7 +21,7 @@ public:
     // TODO: add a setter that sets request from UGKNativeMarkupRequest
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNativeMarkupRequest* request_native;
+    class UGKNativeMarkupRequest *request_native;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString ver;
@@ -37,7 +37,8 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct FGKNative_EventTrackerRequest {
+struct FGKNative_EventTrackerRequest
+{
     GENERATED_USTRUCT_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -51,7 +52,8 @@ struct FGKNative_EventTrackerRequest {
 };
 
 USTRUCT(BlueprintType)
-struct FGKNative_AssetRequest {
+struct FGKNative_AssetRequest
+{
 
     GENERATED_USTRUCT_BODY()
 
@@ -62,25 +64,26 @@ struct FGKNative_AssetRequest {
     int required;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNative_Title* title;
+    class UGKNative_Title *title;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNative_Img* img;
+    class UGKNative_Img *img;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNative_Video* video;
+    class UGKNative_Video *video;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNative_Data* data;
+    class UGKNative_Data *data;
 
     // UPROPERTY()
     // class UGKAssetRequestExt* ext;
 };
 
 UCLASS(BlueprintType)
-class UGKNativeMarkupRequest : public UObject {
+class UGKNativeMarkupRequest: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString ver;
 
@@ -119,9 +122,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_Title : public UObject {
+class UGKNative_Title: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int len;
 
@@ -130,15 +134,16 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_Img : public UObject {
+class UGKNative_Img: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int type;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int w;
-    
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int wmin;
 
@@ -156,9 +161,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_Video : public UObject {
+class UGKNative_Video: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<FString> mimes;
 
@@ -170,15 +176,16 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<int> protocols;
-    
+
     // UPROPERTY()
     // class UGKNative_VideoExt* ext;
 };
 
 UCLASS(BlueprintType)
-class UGKNative_Data : public UObject {
+class UGKNative_Data: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int type;
 

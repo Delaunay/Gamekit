@@ -1,7 +1,9 @@
 #pragma once
 
+// Unreal Engine
 #include "Blueprint/UserWidget.h"
 
+// Generated
 #include "GKWidgetDragVisual.generated.h"
 
 

@@ -1,14 +1,17 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Ad/OpenRTB/GKBidRequest.h"
+#include "Gamekit/Ad/OpenRTB/GKBidResponse.h"
+#include "Gamekit/Ad/OpenRTB/GKNative.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
-#include "Ad/OpenRTB/GKBidRequest.h"
-#include "Ad/OpenRTB/GKBidResponse.h"
-#include "Ad/OpenRTB/GKNative.h"
-
+// Generated
 #include "GKAdWidget.generated.h"
 
 /**

@@ -1,8 +1,9 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "GKEngineSubsystem.h"
+#include "Gamekit/Subsystems/GKEngineSubsystem.h"
 
-#include "Abilities/GKAbilitySystemGlobals.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 void UGKEngineSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {

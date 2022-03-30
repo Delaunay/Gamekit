@@ -1,7 +1,9 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Math/Box.h"
 #include "Engine/EngineTypes.h"
@@ -11,6 +13,7 @@
 #include "Components/ActorComponent.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 
+// Generated
 #include "GKSelection.generated.h"
 
 USTRUCT(BlueprintType)

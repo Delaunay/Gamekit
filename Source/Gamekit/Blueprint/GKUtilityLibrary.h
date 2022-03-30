@@ -1,14 +1,16 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityStatic.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 
-#include "Abilities/GKAbilityStatic.h"
-
+// Generated
 #include "GKUtilityLibrary.generated.h"
-
 
 UENUM(BlueprintType)
 enum class EGKRelativePosition : uint8
@@ -25,10 +27,9 @@ enum class EGKRelativePosition : uint8
     BotRight = Bot | Right, // 1010 i.e 10
 };
 
-
 USTRUCT(BlueprintType)
 struct FGKNetworkMetrics
-{  
+{
     GENERATED_USTRUCT_BODY()
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -41,21 +42,21 @@ struct FGKNetworkMetrics
     float UpKiB;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    float  PingMs;
+    float PingMs;
 };
 
 /**
- * 
+ *
  */
 UCLASS()
-class GAMEKIT_API UGKUtilityLibrary : public UBlueprintFunctionLibrary
+class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
 {
     GENERATED_BODY()
-    
-public:
+
+    public:
     //! This cannot be exposed to blueprint because fo the const
     //! It is fine though we should create accessor lile the GetMapSize
-    static class AWorldSettings const* GetWorldSetting(const UObject *World);
+    static class AWorldSettings const *GetWorldSetting(const UObject *World);
 
     //! Return the map size stored inside WorldSettings
     UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
@@ -73,11 +74,11 @@ public:
     //! Given a player controller it will output the 4 corners seen by the player
     //! projected on the ground
     UFUNCTION(BlueprintCallable, Category = "Controller", meta = (WorldContext = "World"))
-    static void GetControllerFieldOfView(const UObject *           World,
-                                         class APlayerController * Controller,
-                                         ETraceTypeQuery           TraceChannel,
-                                         TArray<FVector>         & Corners, 
-                                         FVector2D                 Margin = FVector2D(0, 0));
+    static void GetControllerFieldOfView(const UObject *          World,
+                                         class APlayerController *Controller,
+                                         ETraceTypeQuery          TraceChannel,
+                                         TArray<FVector> &        Corners,
+                                         FVector2D                Margin = FVector2D(0, 0));
 
     //! Draw a polygon given its corners
     //! It will close the polygon at the end
@@ -89,15 +90,13 @@ public:
                             FLinearColor                 Color,
                             float                        Thickness);
 
-
     UFUNCTION(BlueprintPure, Category = "Rotation")
     static FRotator BetterLookAtRotation(FVector ActorLocation,
                                          FVector LookAt,
                                          FVector UpDirection = FVector(0, 0, 1.f));
 
-
     UFUNCTION(BlueprintPure, Category = "Widget")
-    static class UWidget *GetPanelSlotContent(class UPanelSlot* Slot);
+    static class UWidget *GetPanelSlotContent(class UPanelSlot *Slot);
 
     // UFUNCTION(BlueprintPure, Category = "Widget")
     // Don't use
@@ -110,12 +109,15 @@ public:
 
     //! Returns the relative postition of location given an actor
     UFUNCTION(BlueprintPure, Category = "Bounds")
-    static EGKRelativePosition GetRelativePosition(AActor *Actor, FVector Location);
+    static EGKRelativePosition GetRelativePosition(FVector Origin, FVector BoxExtent, FVector Location);
+
+    UFUNCTION(BlueprintPure, Category = "Bounds")
+    static EGKRelativePosition GetRelativePositionFromActor(AActor *Actor, FVector Location);
 
     //! Returns the two points of an actor that are visible from Location
     //! This uses a lookup table to know which points are visisble
     UFUNCTION(BlueprintPure, Category = "Bounds")
-    static void GetVisibleBounds(FVector Location, AActor* Actor, FVector& OutMin, FVector& OutMax) ;
+    static void GetVisibleBounds(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax);
 
     //! this is not as stable as `GetVisibleBounds`
     UFUNCTION(BlueprintPure, Category = "Bounds")

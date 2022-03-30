@@ -1,12 +1,14 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
+#include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 
-#include "Gamekit.h"
-#include "Abilities/GKGameplayAbility.h"
-#include "Blueprint/GKUtilityLibrary.h"
-#include "GKLog.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+#include "Gamekit/Abilities/GKGameplayAbility.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/GKLog.h"
 
+// Unreal Engine
 #include "Net/UnrealNetwork.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"

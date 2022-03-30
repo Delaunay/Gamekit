@@ -1,5 +1,6 @@
-#include "GKWidgetDragVisual.h"
+#include "Gamekit/Widget/DragDrop/GKWidgetDragVisual.h"
 
+// Unreal Engine
 #include "Blueprint/DragDropOperation.h"
 #include "Components/PanelWidget.h"
 

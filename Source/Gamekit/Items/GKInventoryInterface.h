@@ -1,12 +1,13 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+#include "Gamekit/Items/GKItem.h"
+#include "Gamekit/Items/GKItemTypes.h"
 
-#include "Items/GKItem.h"
-#include "Items/GKItemTypes.h"
-
+// Generated
 #include "GKInventoryInterface.generated.h"
 
 /**
@@ -15,29 +16,28 @@
  * It is designed only for use by native classes
  */
 UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
-class UGKInventoryInterface : public UInterface
+class UGKInventoryInterface: public UInterface
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 };
 
 class GAMEKIT_API IGKInventoryInterface
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	/** Returns the map of items to data */
-	virtual const TMap<UGKItem*, FGKItemData>& GetInventoryDataMap() const = 0;
+    public:
+    /** Returns the map of items to data */
+    virtual const TMap<UGKItem *, FGKItemData> &GetInventoryDataMap() const = 0;
 
-	/** Returns the map of slots to items */
-	virtual const TMap<FGKAbilitySlot, UGKItem*>& GetSlottedItemMap() const = 0;
+    /** Returns the map of slots to items */
+    virtual const TMap<FGKAbilitySlot, UGKItem *> &GetSlottedItemMap() const = 0;
 
-	/** Gets the delegate for inventory item changes */
-	virtual FOnInventoryItemChangedNative& GetInventoryItemChangedDelegate() = 0;
+    /** Gets the delegate for inventory item changes */
+    virtual FOnInventoryItemChangedNative &GetInventoryItemChangedDelegate() = 0;
 
-	/** Gets the delegate for inventory slot changes */
-	virtual FOnSlottedItemChangedNative& GetSlottedItemChangedDelegate() = 0;
+    /** Gets the delegate for inventory slot changes */
+    virtual FOnSlottedItemChangedNative &GetSlottedItemChangedDelegate() = 0;
 
-	/** Gets the delegate for when the inventory loads */
-	virtual FOnInventoryLoadedNative& GetInventoryLoadedDelegate() = 0;
+    /** Gets the delegate for when the inventory loads */
+    virtual FOnInventoryLoadedNative &GetInventoryLoadedDelegate() = 0;
 };
-

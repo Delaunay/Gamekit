@@ -1,7 +1,8 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/Object.h"
@@ -13,6 +14,7 @@
 #include "Components/RichTextBlockDecorator.h"
 #include "Engine/DataTable.h"
 
+// Generated
 #include "GKRichTextBlockDecorator.generated.h"
 
 class ISlateStyle;

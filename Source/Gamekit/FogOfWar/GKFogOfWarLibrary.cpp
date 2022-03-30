@@ -1,50 +1,52 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 
-#include "FogOfWar/GKFogOfWarLibrary.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-#include "GKFogOfWarVolume.h"
-
+// Unreal Engine
 #include "Camera/CameraComponent.h"
 #include "Engine/CollisionProfile.h"
-
-
 
 class UCollisionProfileHack
 {
     public:
-	TArray<ECollisionChannel> ObjectTypeMapping;
+    TArray<ECollisionChannel> ObjectTypeMapping;
 };
 
-void UGKFogOfWarLibrary::ConvertToObjectType(ECollisionChannel CollisionChannel, TArray<TEnumAsByte<EObjectTypeQuery>>& ObjectTypes)
+void UGKFogOfWarLibrary::ConvertToObjectType(ECollisionChannel                      CollisionChannel,
+                                             TArray<TEnumAsByte<EObjectTypeQuery>> &ObjectTypes)
 {
-	if (CollisionChannel < ECC_MAX)
-	{
-		int32 ObjectTypeIndex = 0;
-		// ofc it is private
-		UCollisionProfileHack* CollisionProfile = reinterpret_cast<UCollisionProfileHack*>(UCollisionProfile::Get());
+    if (CollisionChannel < ECC_MAX)
+    {
+        int32 ObjectTypeIndex = 0;
+        // ofc it is private
+        UCollisionProfileHack *CollisionProfile = reinterpret_cast<UCollisionProfileHack *>(UCollisionProfile::Get());
 
-		for(const auto& MappedCollisionChannel : CollisionProfile->ObjectTypeMapping)
-		{
-			if(MappedCollisionChannel == CollisionChannel)
-			{
-				ObjectTypes.Add((EObjectTypeQuery)ObjectTypeIndex);
-			}
+        for (const auto &MappedCollisionChannel: CollisionProfile->ObjectTypeMapping)
+        {
+            if (MappedCollisionChannel == CollisionChannel)
+            {
+                ObjectTypes.Add((EObjectTypeQuery)ObjectTypeIndex);
+            }
 
-			ObjectTypeIndex++;
-		}
-	}
+            ObjectTypeIndex++;
+        }
+    }
 }
 
-void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume* Volume, FName Faction, UCameraComponent *CameraComponent)
+void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume *Volume,
+                                                      FName              Faction,
+                                                      UCameraComponent * CameraComponent)
 {
     auto Material = Volume->GetFogOfWarPostprocessMaterial(Faction);
 
-	if (Material == nullptr)
+    if (Material == nullptr)
     {
         UE_LOG(LogGamekit, Log, TEXT("Postprocess Material was null, Are you using decal rendering?"));
-		return;
-	}
+        return;
+    }
 
     for (auto &Blendable: CameraComponent->PostProcessSettings.WeightedBlendables.Array)
     {

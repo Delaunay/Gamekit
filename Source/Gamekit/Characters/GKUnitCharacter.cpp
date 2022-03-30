@@ -1,14 +1,16 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
-#include "Characters/GKUnitCharacter.h"
+#include "Gamekit/Characters/GKUnitCharacter.h"
 
-#include "Controllers/GKUnitController.h"
-#include "Grid/GKMovementUtility.h"
-#include "Characters/GKTopDownPawn.h"
+// Gamekit
+#include "Gamekit/Controllers/GKUnitController.h"
+#include "Gamekit/Grid/GKMovementUtility.h"
+#include "Gamekit/Characters/GKTopDownPawn.h"
 
+// Unreal Engine
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Blueprint/BlueprintExtension.h"
 #include "GameFramework/CharacterMovementComponent.h"

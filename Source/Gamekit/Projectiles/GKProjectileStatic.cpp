@@ -1,4 +1,4 @@
-#include "Projectiles/GKProjectileStatic.h"
+#include "Gamekit/Projectiles/GKProjectileStatic.h"
 
 
 FGKProjectileStatic::FGKProjectileStatic()

@@ -41,8 +41,8 @@ Landscape Generation
 Lanscape can be generated from a height map which can be a regular image.
 To make a complex landscape multiple layers of maps can be used for different entity.
 
-For that kind of image generation you will want to use `GP-GPU compute capabilities <https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu>`_ 
-to parallelize the generation process as much as possible. 
+For that kind of image generation you will want to use `GP-GPU compute capabilities <https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu>`_
+to parallelize the generation process as much as possible.
 
 
 .. note::
@@ -55,3 +55,12 @@ to parallelize the generation process as much as possible.
 
 .. _tangrams: https://tangrams.github.io/heightmapper/
 .. _terrain.party: https://terrain.party/
+
+
+
+References
+----------
+
+.. [1] `Procedural Generation <https://www.iquilezles.org/www/articles/morenoise/morenoise.htm>`_
+.. [2] `The Book of Shaders <https://thebookofshaders.com/13/>`_
+.. [3] `TerraForge3D <https://github.com/Jaysmito101/TerraForge3D>`_

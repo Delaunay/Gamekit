@@ -1,11 +1,13 @@
 
-#include "FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-#include "FogOfWar/GKFogOfWarComponent.h"
-#include "FogOfWar/GKFogOfWarLibrary.h"
-#include "FogOfWar/GKFogOfWarVolume.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
+// Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"

@@ -1,9 +1,12 @@
-#pragma once
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+#pragma once
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
+// Generated
 #include "GKMinimapComponent.generated.h"
 
 /*! \brief UGKMinimapComponent is used to define how an actor is renderer on the minimap

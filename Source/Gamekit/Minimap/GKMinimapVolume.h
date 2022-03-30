@@ -1,14 +1,17 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
-#include "Runtime/Core/Public/HAL/ThreadingBase.h"
 #include "GameFramework/Volume.h"
+#include "Runtime/Core/Public/HAL/ThreadingBase.h"
 
+// Generated
 #include "GKMinimapVolume.generated.h"
-
 
 struct FGKFactionMinimap
 {
@@ -27,28 +30,28 @@ struct FGKFactionMinimap
 };
 
 /*! Minimap Volume is a static volume for RTS like games
- * 
+ *
  * \rst
- * 
+ *
  * .. note::
- *    
+ *
  *    This is not Blueprintable, the blueprint version does not work
  *    as expected, the Brush size is incorrect.
- * 
+ *
  * .. note::
- * 
+ *
  *    This is the static version that works on a entire fixed map
- * 
+ *
  * \endrst
- * 
+ *
  * TODO: create a radar version that follows the actor
  */
 UCLASS()
-class GAMEKIT_API AGKMinimapVolume : public AVolume
+class GAMEKIT_API AGKMinimapVolume: public AVolume
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
+    public:
     AGKMinimapVolume();
 
     void BeginPlay() override;
@@ -56,7 +59,7 @@ public:
     void Tick(float Delta) override;
 
     // This generate a separate texture from the Fog Of War Volume
-    // You can combine them using a material 
+    // You can combine them using a material
 
     //! Represents how often the Minimap is redrawn
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minimap|Async")
@@ -64,11 +67,11 @@ public:
 
     //! Texture used to render component on the minimap
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
-    class UCanvasRenderTarget2D* MinimapCanvas;
+    class UCanvasRenderTarget2D *MinimapCanvas;
 
     //! Texture used to render the minimap capture from the scene
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
-    class UCanvasRenderTarget2D* MinimapCaptureTexture;
+    class UCanvasRenderTarget2D *MinimapCaptureTexture;
 
     //! Toggle to disable Minimap drawing altogether
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
@@ -78,19 +81,19 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     FVector CameraPosition;
 
-public:
+    public:
     //! Called by UGKMinimapComponent to register themselves
-    void RegisterActorComponent(class UGKMinimapComponent* c);
+    void RegisterActorComponent(class UGKMinimapComponent *c);
 
     //! Called by UGKMinimapComponent to unregister themselves
-    void UnregisterActorComponent(class UGKMinimapComponent* c);
+    void UnregisterActorComponent(class UGKMinimapComponent *c);
 
-    //! Iterate through all the actor component and draw each component 
+    //! Iterate through all the actor component and draw each component
     //! on the minimap
     void DrawMinimap();
 
     //! Draw a single component on the given canvas
-    void DrawActorCompoment(class UGKMinimapComponent* Compoment, class UCanvas* Canvas);
+    void DrawActorCompoment(class UGKMinimapComponent *Compoment, class UCanvas *Canvas);
 
     //! Fetch the Volume size and update MapSize
     //! It will update the capture component with the new size
@@ -99,24 +102,18 @@ public:
 
     //! Returns the texture (UV) coordinate given a world coordinates
     UFUNCTION(BlueprintPure, Category = Coordinate)
-    inline FVector2D GetTextureCoordinate(FVector loc) const {
-        return FVector2D(
-            (loc.X / MapSize.X + 0.5),
-            (0.5 - loc.Y / MapSize.Y)
-        );
+    inline FVector2D GetTextureCoordinate(FVector loc) const
+    {
+        return FVector2D((loc.X / MapSize.X + 0.5), (0.5 - loc.Y / MapSize.Y));
     }
 
     //! Returns the screen (Pixel) coordinate given a world coordinates
     UFUNCTION(BlueprintPure, Category = Coordinate)
-    inline FVector2D GetScreenCoordinate(FVector loc) const {
-        return GetTextureCoordinate(loc) * GetTextureSize();
-    }
+    inline FVector2D GetScreenCoordinate(FVector loc) const { return GetTextureCoordinate(loc) * GetTextureSize(); }
 
     //! Returns the volume size
     UFUNCTION(BlueprintPure, Category = Coordinate)
-    inline FVector2D GetMapSize() const {
-        return MapSize;
-    }
+    inline FVector2D GetMapSize() const { return MapSize; }
 
     //! Returns the size of the texture we are writing to
     UFUNCTION(BlueprintPure, Category = Coordinate)
@@ -125,18 +122,18 @@ public:
     //! List of actors that are rendered on the minimap
     //! Your landscape should be there
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
-	TArray<AActor*> ShowOnlyActors;
+    TArray<AActor *> ShowOnlyActors;
 
     //! The scene capture component used to generate the minimap
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap")
-    class USceneCaptureComponent2D* MinimapCapture;
+    class USceneCaptureComponent2D *MinimapCapture;
 
     // Fetch all the actors of a given class and add them to our allow list
     // Defaults to ALandscape
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
     TSubclassOf<AActor> AllowClass;
 
-private:
+    private:
     TMap<FName, FGKFactionMinimap> FactionMinimap;
 
     FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute

@@ -1,46 +1,49 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+#include "Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
 
-#include "Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityStatic.h"
+#include "Gamekit/Characters/GKSelectableInterface.h"
 
-#include "Abilities/GKAbilityStatic.h"
-#include "Characters/GKSelectableInterface.h"
-
+// Unreal Engine
+#include "Abilities/GameplayAbility.h"
+#include "AbilitySystemComponent.h"
+#include "Components/DecalComponent.h"
+#include "DrawDebugHelpers.h"
 #include "GenericTeamAgentInterface.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "AbilitySystemComponent.h"
-#include "Abilities/GameplayAbility.h"
-#include "DrawDebugHelpers.h"
-#include "Components/DecalComponent.h"
 
-
-AGKAbilityTarget_PlayerControllerTrace::AGKAbilityTarget_PlayerControllerTrace(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer) 
+AGKAbilityTarget_PlayerControllerTrace::AGKAbilityTarget_PlayerControllerTrace(
+        const FObjectInitializer &ObjectInitializer):
+    Super(ObjectInitializer)
 {
     // NOTE: Gamekit is deprecating this
     bDestroyOnConfirmation = false;
     // ---------------------------------
 
-    bTickEnabled = true;
+    bTickEnabled                  = true;
     PrimaryActorTick.bCanEverTick = true;
-    PrimaryActorTick.TickGroup = TG_PostUpdateWork;
-    IsInputBound = false;
+    PrimaryActorTick.TickGroup    = TG_PostUpdateWork;
+    IsInputBound                  = false;
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::InitializeFromAbilityData(FGKAbilityStatic const& AbilityData) {
-    MaxRange = AbilityData.CastMaxRange;
-    MinRange = AbilityData.CastMinRange;
-    AreaOfEffect = AbilityData.AreaOfEffect;
-    ObjectTypes = AbilityData.TargetObjectTypes;
-    ClassFilter = AbilityData.TargetFilterClass;
+void AGKAbilityTarget_PlayerControllerTrace::InitializeFromAbilityData(FGKAbilityStatic const &AbilityData)
+{
+    MaxRange           = AbilityData.CastMaxRange;
+    MinRange           = AbilityData.CastMinRange;
+    AreaOfEffect       = AbilityData.AreaOfEffect;
+    ObjectTypes        = AbilityData.TargetObjectTypes;
+    ClassFilter        = AbilityData.TargetFilterClass;
     TargetActorFaction = AbilityData.TargetActorFaction;
-    TargetMode = AbilityData.AbilityBehavior;
+    TargetMode         = AbilityData.AbilityBehavior;
 
     // Blueprint overrides
     Super::InitializeFromAbilityData(AbilityData);
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::StartTargeting(UGKGameplayAbility* Ability) {
+void AGKAbilityTarget_PlayerControllerTrace::StartTargeting(UGKGameplayAbility *Ability)
+{
     Super::StartTargeting(Ability);
 
     SourceActor = OwningAbility->GetActorInfo().AvatarActor.Get();
@@ -49,18 +52,20 @@ void AGKAbilityTarget_PlayerControllerTrace::StartTargeting(UGKGameplayAbility* 
     TargetValidityChanged.Broadcast(LatestHitResult, bIsTargetValid);
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::Deselect() {
+void AGKAbilityTarget_PlayerControllerTrace::Deselect()
+{
     for (auto &Actor: ActorsUnderCursor)
     {
         auto Selectable = Cast<IGKSelectableInterface>(Actor);
-        if (Selectable) 
+        if (Selectable)
         {
             Selectable->Deselect();
         }
     }
-} 
+}
 
-void AGKAbilityTarget_PlayerControllerTrace::Select() {
+void AGKAbilityTarget_PlayerControllerTrace::Select()
+{
     for (auto &Actor: ActorsUnderCursor)
     {
         auto Selectable = Cast<IGKSelectableInterface>(Actor);
@@ -71,8 +76,8 @@ void AGKAbilityTarget_PlayerControllerTrace::Select() {
     }
 }
 
-
-void AGKAbilityTarget_PlayerControllerTrace::DebugDraw() {
+void AGKAbilityTarget_PlayerControllerTrace::DebugDraw()
+{
 #if ENABLE_DRAW_DEBUG
     if (bDebug)
     {
@@ -97,11 +102,12 @@ void AGKAbilityTarget_PlayerControllerTrace::DebugDraw() {
 void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
 {
     // Server and launching client only
-    if (!OwningAbility) {
+    if (!OwningAbility)
+    {
         return;
     }
 
-    APlayerController* PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
+    APlayerController *PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
     check(PC);
 
     PC->GetHitResultUnderCursorForObjects(ObjectTypes, false, LatestHitResult);
@@ -113,24 +119,17 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
         Deselect();
 
         UKismetSystemLibrary::SphereOverlapActors(
-                GetWorld(), 
-                TraceEndPoint, 
-                AreaOfEffect, 
-                ObjectTypes, 
-                ClassFilter, 
-                ActorsToIgnore, 
-                ActorsUnderCursor
-        );
+                GetWorld(), TraceEndPoint, AreaOfEffect, ObjectTypes, ClassFilter, ActorsToIgnore, ActorsUnderCursor);
 
         FilterActors();
 
         Select();
-
     }
 
     auto valid = IsConfirmTargetingAllowed();
 
-    if (valid) {
+    if (valid)
+    {
         LatestValidHitResult = LatestHitResult;
     }
 
@@ -139,8 +138,10 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
     SetActorLocationAndRotation(TraceEndPoint, SourceActor->GetActorRotation());
 }
 
-bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const {
-    if (!SourceActor) {
+bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const
+{
+    if (!SourceActor)
+    {
         return false;
     }
 
@@ -156,13 +157,15 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const {
     }
 
     return false;
-} 
+}
 
-bool AGKAbilityTarget_PlayerControllerTrace::IsConfirmTargetingAllowed() {
+bool AGKAbilityTarget_PlayerControllerTrace::IsConfirmTargetingAllowed()
+{
 
     bool newValidity = IsTargetValid();
 
-    if (newValidity != bIsTargetValid) {
+    if (newValidity != bIsTargetValid)
+    {
         TargetValidityChanged.Broadcast(LatestHitResult, newValidity);
         bIsTargetValid = newValidity;
     }
@@ -170,32 +173,38 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsConfirmTargetingAllowed() {
     return newValidity;
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::CancelTargeting() {
+void AGKAbilityTarget_PlayerControllerTrace::CancelTargeting()
+{
     CanceledDelegate.Broadcast(FGameplayAbilityTargetDataHandle());
     Deselect();
 }
 
 //! Select the current target as our final target
-void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting() {
+void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting()
+{
     if (!IsConfirmTargetingAllowed())
     {
         // Everytime confirmed input is pressed the callbacks are cleared.
         // if we have not been able to produce a valid target now we need to re-register our inputs
-        if (!GenericDelegateBoundASC) {
+        if (!GenericDelegateBoundASC)
+        {
             return;
         }
 
-        AbilitySystemComponent->GenericLocalConfirmCallbacks.AddDynamic(this, &AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting);
+        AbilitySystemComponent->GenericLocalConfirmCallbacks.AddDynamic(
+                this, &AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting);
         return;
     }
 
     ConfirmTargetingAndContinue();
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
+void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue()
+{
     check(ShouldProduceTargetData());
 
-    if (!IsConfirmTargetingAllowed()) {
+    if (!IsConfirmTargetingAllowed())
+    {
         return;
     }
 
@@ -226,12 +235,12 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue() {
     Deselect();
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::FilterActors() 
+void AGKAbilityTarget_PlayerControllerTrace::FilterActors()
 {
     TArray<AActor *> Actors;
     Actors.Reset(ActorsUnderCursor.Num());
 
-    APlayerController *PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
+    APlayerController *         PC = OwningAbility->GetCurrentActorInfo()->PlayerController.Get();
     IGenericTeamAgentInterface *Me = nullptr;
 
     {
@@ -247,15 +256,17 @@ void AGKAbilityTarget_PlayerControllerTrace::FilterActors()
 
     if (Me == nullptr)
     {
-        ABILITY_LOG(Warning, TEXT("AGKAbilityTarget_PlayerControllerTrace::FilterActors, Owner does not implement TeamAgentInterface"));
+        ABILITY_LOG(Warning,
+                    TEXT("AGKAbilityTarget_PlayerControllerTrace::FilterActors, Owner does not implement "
+                         "TeamAgentInterface"));
         return;
     }
 
     for (auto &Actor: ActorsUnderCursor)
     {
         // Create the bit flag we will check against
-        auto TeamAttitude  = SetFlag(0, Me->GetTeamAttitudeTowards(*Actor));
-    
+        auto TeamAttitude = SetFlag(0, Me->GetTeamAttitudeTowards(*Actor));
+
         if (TeamAttitude & uint32(TargetActorFaction))
         {
             Actors.Add(Actor);
@@ -265,81 +276,97 @@ void AGKAbilityTarget_PlayerControllerTrace::FilterActors()
     ActorsUnderCursor = Actors;
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::BindToConfirmCancelInputs() {
+void AGKAbilityTarget_PlayerControllerTrace::BindToConfirmCancelInputs()
+{
     check(OwningAbility);
 
-    if (!AbilitySystemComponent){
-        ABILITY_LOG(Warning, TEXT("AGameplayAbilityTargetActor::BindToConfirmCancelInputs called with null ASC! Actor %s"), *GetName())
+    if (!AbilitySystemComponent)
+    {
+        ABILITY_LOG(Warning,
+                    TEXT("AGameplayAbilityTargetActor::BindToConfirmCancelInputs called with null ASC! Actor %s"),
+                    *GetName())
         return;
     }
 
-    const FGameplayAbilityActorInfo* Info = (OwningAbility ? OwningAbility->GetCurrentActorInfo() : nullptr);
+    const FGameplayAbilityActorInfo *Info = (OwningAbility ? OwningAbility->GetCurrentActorInfo() : nullptr);
 
     // Client
     if (Info && Info->IsLocallyControlled())
     {
         // We have to wait for the callback from the AbilitySystemComponent. Which will always be instigated locally
-        AbilitySystemComponent->GenericLocalConfirmCallbacks.AddDynamic(this, &AGameplayAbilityTargetActor::ConfirmTargeting);	// Tell me if the confirm input is pressed
-        AbilitySystemComponent->GenericLocalCancelCallbacks.AddDynamic(this, &AGameplayAbilityTargetActor::CancelTargeting);	// Tell me if the cancel input is pressed
+        AbilitySystemComponent->GenericLocalConfirmCallbacks.AddDynamic(
+                this, &AGameplayAbilityTargetActor::ConfirmTargeting); // Tell me if the confirm input is pressed
+        AbilitySystemComponent->GenericLocalCancelCallbacks.AddDynamic(
+                this, &AGameplayAbilityTargetActor::CancelTargeting); // Tell me if the cancel input is pressed
 
         // Save off which ASC we bound so that we can error check that we're removing them later
         GenericDelegateBoundASC = AbilitySystemComponent;
-        IsInputBound = true;
+        IsInputBound            = true;
         return;
     }
 
     // Server
-    FGameplayAbilitySpecHandle Handle = OwningAbility->GetCurrentAbilitySpecHandle();
-    FPredictionKey PredKey = OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey();
+    FGameplayAbilitySpecHandle Handle  = OwningAbility->GetCurrentAbilitySpecHandle();
+    FPredictionKey             PredKey = OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey();
 
     // Setup replication for Confirm & Cancel
-    GenericConfirmHandle = AbilitySystemComponent->AbilityReplicatedEventDelegate(
-        EAbilityGenericReplicatedEvent::GenericConfirm, 
-        Handle, 
-        PredKey
-    ).AddUObject(this, &AGameplayAbilityTargetActor::ConfirmTargeting);
+    GenericConfirmHandle =
+            AbilitySystemComponent
+                    ->AbilityReplicatedEventDelegate(EAbilityGenericReplicatedEvent::GenericConfirm, Handle, PredKey)
+                    .AddUObject(this, &AGameplayAbilityTargetActor::ConfirmTargeting);
 
-    GenericCancelHandle = AbilitySystemComponent->AbilityReplicatedEventDelegate(
-        EAbilityGenericReplicatedEvent::GenericCancel, 
-        Handle, 
-        PredKey
-    ).AddUObject(this, &AGameplayAbilityTargetActor::CancelTargeting);
+    GenericCancelHandle =
+            AbilitySystemComponent
+                    ->AbilityReplicatedEventDelegate(EAbilityGenericReplicatedEvent::GenericCancel, Handle, PredKey)
+                    .AddUObject(this, &AGameplayAbilityTargetActor::CancelTargeting);
 
     IsInputBound = true;
 
     // if the input was already sent force replication now
-    // Calls a given Generic Replicated Event delegate if the event has already been sent 
-    if (AbilitySystemComponent->CallReplicatedEventDelegateIfSet(EAbilityGenericReplicatedEvent::GenericConfirm, Handle, PredKey)) {
+    // Calls a given Generic Replicated Event delegate if the event has already been sent
+    if (AbilitySystemComponent->CallReplicatedEventDelegateIfSet(
+                EAbilityGenericReplicatedEvent::GenericConfirm, Handle, PredKey))
+    {
         return;
     }
 
-    if (AbilitySystemComponent->CallReplicatedEventDelegateIfSet(EAbilityGenericReplicatedEvent::GenericCancel, Handle, PredKey)) {
+    if (AbilitySystemComponent->CallReplicatedEventDelegateIfSet(
+                EAbilityGenericReplicatedEvent::GenericCancel, Handle, PredKey))
+    {
         return;
     }
 }
 
-void AGKAbilityTarget_PlayerControllerTrace::StopTargeting() {
+void AGKAbilityTarget_PlayerControllerTrace::StopTargeting()
+{
     Super::StopTargeting();
 
-    if (!IsInputBound) {
+    if (!IsInputBound)
+    {
         return;
     }
 
-    if (!AbilitySystemComponent) {
-        ABILITY_LOG(Warning, TEXT("AGameplayAbilityTargetActor::CleanupBindings called with null ASC! Actor %s"), *GetName());
+    if (!AbilitySystemComponent)
+    {
+        ABILITY_LOG(Warning,
+                    TEXT("AGameplayAbilityTargetActor::CleanupBindings called with null ASC! Actor %s"),
+                    *GetName());
         return;
     }
 
-    const FGameplayAbilityActorInfo* Info = (OwningAbility ? OwningAbility->GetCurrentActorInfo() : nullptr);
+    const FGameplayAbilityActorInfo *Info = (OwningAbility ? OwningAbility->GetCurrentActorInfo() : nullptr);
     Deselect();
 
     // i.e Locally Controlled
-    if (GenericDelegateBoundASC && Info && Info->IsLocallyControlled()){
-        // We must remove ourselves from GenericLocalConfirmCallbacks/GenericLocalCancelCallbacks, 
+    if (GenericDelegateBoundASC && Info && Info->IsLocallyControlled())
+    {
+        // We must remove ourselves from GenericLocalConfirmCallbacks/GenericLocalCancelCallbacks,
         // since while these are bound they will inhibit any *other* abilities
         // that are bound to the same key.
-        AbilitySystemComponent->GenericLocalConfirmCallbacks.RemoveDynamic(this, &AGameplayAbilityTargetActor::ConfirmTargeting);
-        AbilitySystemComponent->GenericLocalCancelCallbacks.RemoveDynamic(this, &AGameplayAbilityTargetActor::CancelTargeting);
+        AbilitySystemComponent->GenericLocalConfirmCallbacks.RemoveDynamic(
+                this, &AGameplayAbilityTargetActor::ConfirmTargeting);
+        AbilitySystemComponent->GenericLocalCancelCallbacks.RemoveDynamic(
+                this, &AGameplayAbilityTargetActor::CancelTargeting);
 
         // Error checking that we have removed delegates from the same ASC we bound them to
         // FIXME: how could this ever be !=
@@ -350,16 +377,16 @@ void AGKAbilityTarget_PlayerControllerTrace::StopTargeting() {
     // Server
     // Remove Replicated events
     // Remove Confirm event
-    AbilitySystemComponent->AbilityReplicatedEventDelegate(
-        EAbilityGenericReplicatedEvent::GenericConfirm,
-        OwningAbility->GetCurrentAbilitySpecHandle(),
-        OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey()
-    ).Remove(GenericConfirmHandle);
+    AbilitySystemComponent
+            ->AbilityReplicatedEventDelegate(EAbilityGenericReplicatedEvent::GenericConfirm,
+                                             OwningAbility->GetCurrentAbilitySpecHandle(),
+                                             OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey())
+            .Remove(GenericConfirmHandle);
 
     // Remove Cancel event
-    AbilitySystemComponent->AbilityReplicatedEventDelegate(
-        EAbilityGenericReplicatedEvent::GenericCancel,
-        OwningAbility->GetCurrentAbilitySpecHandle(),
-        OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey()
-    ).Remove(GenericCancelHandle);
+    AbilitySystemComponent
+            ->AbilityReplicatedEventDelegate(EAbilityGenericReplicatedEvent::GenericCancel,
+                                             OwningAbility->GetCurrentAbilitySpecHandle(),
+                                             OwningAbility->GetCurrentActivationInfo().GetActivationPredictionKey())
+            .Remove(GenericCancelHandle);
 }

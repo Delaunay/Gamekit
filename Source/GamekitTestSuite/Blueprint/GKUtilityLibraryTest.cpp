@@ -1,51 +1,50 @@
+// Gamekit
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+
+// Unreal Engine
 #include "Misc/AutomationTest.h"
 
-// namespace EAutomationTestFlags
-// {
-// enum Type
-// {
-//     EditorContext          = 0x00000001,
-//     ClientContext          = 0x00000002,
-//     ServerContext          = 0x00000004,
-//     CommandletContext      = 0x00000008,
-//     ApplicationContextMask = EditorContext | ClientContext | ServerContext | CommandletContext,
-//     NonNullRHI             = 0x00000100,
-//     RequiresUser           = 0x00000200,
-//     FeatureMask            = NonNullRHI | RequiresUser,
-//     Disabled               = 0x00010000,
-//     CriticalPriority       = 0x00100000,
-//     HighPriority           = 0x00200000,
-//     HighPriorityAndAbove   = CriticalPriority | HighPriority,
-//     MediumPriority         = 0x00400000,
-//     MediumPriorityAndAbove = CriticalPriority | HighPriority | MediumPriority,
-//     LowPriority            = 0x00800000,
-//     PriorityMask           = CriticalPriority | HighPriority | MediumPriority | LowPriority,
-//     SmokeFilter            = 0x01000000,
-//     EngineFilter           = 0x02000000,
-//     ProductFilter          = 0x04000000,
-//     PerfFilter             = 0x08000000,
-//     StressFilter           = 0x10000000,
-//     NegativeFilter         = 0x20000000,
-//     FilterMask             = SmokeFilter | EngineFilter | ProductFilter | PerfFilter | StressFilter | NegativeFilter,
-// }
-// } // namespace EAutomationTestFlags
 
-IMPLEMENT_COMPLEX_AUTOMATION_TEST(FGKBlueprintUtilityTest,
-                                  "Gamekit.Blueprint.Utilities",
-                                  EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::EngineFilter)
 
-void FGKBlueprintUtilityTest::GetTests(TArray<FString> &OutBeautifiedNames, TArray<FString> &OutTestCommands) const
-{
-    OutBeautifiedNames.Add("SubTest1");
-    OutTestCommands.Add("1");
-}
+#define GAMEKIT_TEST(Namespace, Section, Function)\
+    IMPLEMENT_SIMPLE_AUTOMATION_TEST(\
+        F##Section##Function##Test,\
+        "Gamekit." #Namespace " " #Function,\
+        EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::EngineFilter\
+    )\
+    bool F##Section##Function##Test::RunTest(const FString &Parameters)
 
-bool FGKBlueprintUtilityTest::RunTest(const FString &Parameters)
-{
-    FString Id = Parameters;
 
-    // Id is either "1" or "2".
-    // Use it to test something.
+GAMEKIT_TEST("Blueprint.Utility", UGKUtilityLibrary, GetRelativePosition)
+{ 
+    auto Origin = FVector(0, 0, 0);
+    auto Extent = FVector(1, 1, 0);
 
-    return true; // Or false.
+
+    TestEqual("Top", 
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(2, 0, 0)), 
+              EGKRelativePosition::Top);
+    TestEqual("Bot", 
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(-2, 0, 0)), 
+              EGKRelativePosition::Bot);
+    TestEqual("Left",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(0, -2, 0)),
+              EGKRelativePosition::Left);
+    TestEqual("Right",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(0, 2, 0)),
+              EGKRelativePosition::Right);
+    TestEqual("TopRight",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(2, 2, 0)),
+              EGKRelativePosition::TopRight);
+    TestEqual("TopLeft",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(2, -2, 0)),
+              EGKRelativePosition::TopLeft);
+    TestEqual("BotRight",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(-2, -2, 0)),
+              EGKRelativePosition::BotRight);
+    TestEqual("BotLeft",
+              UGKUtilityLibrary::GetRelativePosition(Origin, Extent, FVector(-2, 0, 0)),
+              EGKRelativePosition::BotLeft);
+
+    return true;
 }

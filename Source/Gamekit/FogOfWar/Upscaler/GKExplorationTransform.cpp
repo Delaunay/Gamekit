@@ -1,21 +1,16 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+// Gamekit
+#include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-#include "FogOfWar/Upscaler/GKExplorationTransform.h"
-
-#include "FogOfWar/GKFogOfWarVolume.h"
-
+// Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
-#include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetMaterialLibrary.h"
+#include "Kismet/KismetRenderingLibrary.h"
 
-
-void UGKExplorationTransform::Initialize()
-{
-    Super::Initialize();
-}
-
+void UGKExplorationTransform::Initialize() { Super::Initialize(); }
 
 void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
 {
@@ -23,12 +18,12 @@ void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
-    UCanvasRenderTarget2D* RenderTarget       = GetFactionTransformTarget(FactionFog->Name, true);
-    FactionFog->Exploration = RenderTarget;
-    RenderTarget->bNeedsTwoCopies = true;
+    UCanvasRenderTarget2D *RenderTarget = GetFactionTransformTarget(FactionFog->Name, true);
+    FactionFog->Exploration             = RenderTarget;
+    RenderTarget->bNeedsTwoCopies       = true;
 
-    UTexture* VisionTexture = nullptr;
-    
+    UTexture *VisionTexture = nullptr;
+
     if (bUseUpscaledVision)
     {
         VisionTexture = FactionFog->UpScaledVision;
@@ -37,7 +32,7 @@ void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
             UE_LOG(LogGamekit, Warning, TEXT("Could not use Upscaled texture for exploration"));
         }
     }
- 
+
     if (VisionTexture == nullptr)
     {
         VisionTexture = FactionFog->Vision;
@@ -54,9 +49,9 @@ void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
 
     /*
     Canvas->K2_DrawMaterial(
-        Material, 
-        FVector2D::ZeroVector, 
-        Size, 
+        Material,
+        FVector2D::ZeroVector,
+        Size,
         FVector2D::ZeroVector
     );
     */
@@ -76,7 +71,6 @@ void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
 }
-
 
 /*
 class UMaterialInstanceDynamic *UGKExplorationTransform::GetFactionMaterialInstance(FName Name)

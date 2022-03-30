@@ -1,8 +1,9 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 
-#include "Utilities/GKSelection.h"
+#include "Gamekit/Utilities/GKSelection.h"
 
+// Unreal Engine
 #include "GameFramework/PlayerController.h"
 #include "Kismet/KismetSystemLibrary.h"
 

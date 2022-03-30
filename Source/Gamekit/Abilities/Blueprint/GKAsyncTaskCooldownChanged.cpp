@@ -1,6 +1,6 @@
 //  MIT License Copyright(c) 2020 Dan Kestranek
 
-#include "Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
+#include "Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
 
 UGKAsyncTaskCooldownChanged * UGKAsyncTaskCooldownChanged::ListenForCooldownChange(UAbilitySystemComponent * AbilitySystemComponent, FGameplayTagContainer InCooldownTags, bool InUseServerCooldown)
 {

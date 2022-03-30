@@ -1,13 +1,16 @@
-#include "FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-#include "FogOfWar/GKFogOfWarComponent.h"
-#include "Blueprint/GKCoordinateLibrary.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 
+// Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
+
 
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 

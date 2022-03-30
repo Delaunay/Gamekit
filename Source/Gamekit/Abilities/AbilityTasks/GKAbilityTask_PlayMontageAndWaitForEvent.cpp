@@ -1,9 +1,11 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h"
+#include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h"
 
-#include "Abilities/GKAbilitySystemComponent.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 
+// Unreal Engine
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
 #include "Animation/AnimInstance.h"

@@ -1,7 +1,8 @@
-#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-#include "FogOfWar/GKFogOfWarComponent.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 
 
 UGKFogOfWarStrategy::UGKFogOfWarStrategy() {

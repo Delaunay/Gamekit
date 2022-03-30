@@ -1,13 +1,15 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
-#include "Characters/GKTopDownPawn.h"
+#include "Gamekit/Characters/GKTopDownPawn.h"
 
-#include "Characters/GKUnitCharacter.h"
-#include "Grid/GKHexGridUtilities.h"
+// Gamekit
+#include "Gamekit/Characters/GKUnitCharacter.h"
+#include "Gamekit/Grid/GKHexGridUtilities.h"
 
+// Unreal Engine
 #include "UObject/ConstructorHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"

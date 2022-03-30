@@ -2,9 +2,12 @@
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "AbilitySystemComponent.h"
+
+// Generated
 #include "GKAsyncTaskAttributeChanged.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttributeChanged, FGameplayAttribute, Attribute, float, NewValue, float, OldValue);

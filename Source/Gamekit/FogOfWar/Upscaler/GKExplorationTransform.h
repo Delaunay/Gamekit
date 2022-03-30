@@ -1,9 +1,14 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
-#include "FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+
+// Generated
 #include "GKExplorationTransform.generated.h"
 
 /**

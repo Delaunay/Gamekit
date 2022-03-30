@@ -2,8 +2,10 @@
 
 #pragma once
 
-#include "FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
+// Gamekit
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
 
+// Unreal Engine
 #include "GK_FoW_RayCasting_V3.generated.h"
 
 

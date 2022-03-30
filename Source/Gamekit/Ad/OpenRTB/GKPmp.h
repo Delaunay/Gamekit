@@ -1,18 +1,18 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKDeal.h"
+#include "Gamekit/Ad/OpenRTB/GKDeal.h"
 
 #include "GKPmp.generated.h"
 
 UCLASS(BlueprintType)
-class UGKPmp : public UObject
+class UGKPmp: public UObject
 {
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int private_auction;
 

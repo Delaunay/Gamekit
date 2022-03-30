@@ -1,18 +1,20 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/Gamekit.h"
+#include "Gamekit/Grid/GKGrid.h"
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
 
-#include "Grid/GKGrid.h"
-#include "FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
-#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
-
+// Generated
 #include "GKFogOfWarVolume.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
@@ -21,7 +23,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 struct FGKFactionFog
 {
-    FGKFactionFog() { 
+    FGKFactionFog()
+    {
         Buffer         = nullptr;
         Exploration    = nullptr;
         Vision         = nullptr;
@@ -37,7 +40,7 @@ struct FGKFactionFog
     class UTexture *UpScaledVision;
     bool            bDiscrete;
 
-    TSet<class UGKFogOfWarComponent *> VisibleEnemies;
+    TSet<class UGKFogOfWarComponent *>   VisibleEnemies;
     TArray<class UGKFogOfWarComponent *> Allies;
 
     void *Buffer;
@@ -47,11 +50,12 @@ struct FGKFactionFog
  * All units inside the same faction share visions.
  *
  * \rst
- * 
+ *
  * .. note::
  *
  *    The fog of war will darken your screen, it is advised to disable UE4 default auto exposure using a Post Process
- *    Volume and enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness to 1
+ *    Volume and enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness
+ * to 1
  *
  * \endrst
  *
@@ -62,7 +66,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 {
     GENERATED_BODY()
 
-public:
+    public:
     AGKFogOfWarVolume();
 
     void BeginPlay();
@@ -88,7 +92,7 @@ public:
     class UMaterialInterface *GetFogOfWarPostprocessMaterial(FName name);
 
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    TArray<class UGKFogOfWarComponent *> const& GetBlocking() const { return Blocking;  }
+    TArray<class UGKFogOfWarComponent *> const &GetBlocking() const { return Blocking; }
 
     // Properties
     // ----------
@@ -101,14 +105,14 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
     float FramePerSeconds;
 
-    //! Enable Async drawing 
+    //! Enable Async drawing
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
     bool bAsyncDraw;
 
     //! Enumeration of all the possible factions
     //! The faction enum is used to map TeamID to the fog of war faction names
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
-	UEnum* FactionEnum;
+    UEnum *FactionEnum;
 
     //! class used to draw the vision
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
@@ -229,7 +233,7 @@ public:
 
     void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-protected:
+    protected:
     //! Draw the fog of war for each factions
     void DrawFactionFog();
 
@@ -250,7 +254,7 @@ protected:
 
     void DumpToDebugRenderTarget();
 
-public:
+    public:
     //! Size of the Volume box
     UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = FogOfWar)
     FVector MapSize;
@@ -263,8 +267,7 @@ public:
         SetMaterialParam_TextureSize(Size);
     }
 
-public:
-
+    public:
     // Helpers
     // -----------------------------
 
@@ -285,7 +288,7 @@ public:
         return FIntVector(Pos.X - TextureSize.X / 2, TextureSize.Y / 2 - Pos.Y, Pos.Z);
     }
 
-private:
+    private:
     void InitDecalRendering();
 
     FCriticalSection Mutex;           // Mutex to sync adding/removing components with the fog compute
@@ -296,19 +299,19 @@ private:
     //! Decal Material used to draw in the editor
     class UMaterialInstanceDynamic *DecalMaterialInstance;
 
-public:
+    public:
     // Editor Stuff
     // -------------
     void PostEditChangeProperty(struct FPropertyChangedEvent &e);
 
-public:
+    public:
     // TODO: Remove this
     friend class UGKFogOfWarStrategy;
     friend class UGKShadowCasting;
     friend class UGKRayCasting_Line;
     friend class UGKRayCasting_Triangles;
 
-private:
+    private:
     //! Register a new actor to the fog of war volume
     void RegisterActorComponent(class UGKFogOfWarComponent *c);
 
@@ -317,13 +320,13 @@ private:
 
     friend class UGKFogOfWarComponent;
 
-    FGKFactionFog& GetFactionFogs(FName Faction);
+    FGKFactionFog &GetFactionFogs(FName Faction);
 
     TMap<FName, FGKFactionFog> FactionFogs;
 
-    TArray<class UGKFogOfWarComponent *> Blocking; 
+    TArray<class UGKFogOfWarComponent *> Blocking;
 
-protected:
+    protected:
     void InitializeStrategy();
     void InitializeUpscaler();
     void InitializeExploration();
@@ -347,4 +350,3 @@ protected:
 
     bool bReady;
 };
- 

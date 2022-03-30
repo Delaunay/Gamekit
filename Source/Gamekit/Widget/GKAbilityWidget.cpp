@@ -1,9 +1,10 @@
-#include "Widget/GKAbilityWidget.h"
+#include "Gamekit/Widget/GKAbilityWidget.h"
 
-#include "Abilities/Blueprint/GKAsyncTaskAttributeChanged.h"
-#include "Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
+// Gamekit
+#include "Gamekit/Abilities/Blueprint/GKAsyncTaskAttributeChanged.h"
+#include "Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
+#include "Gamekit/Abilities/GKGameplayAbility.h"
 
-#include "Abilities/GKGameplayAbility.h"
 
 void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility* InAbility) {
     if (!InAbility)

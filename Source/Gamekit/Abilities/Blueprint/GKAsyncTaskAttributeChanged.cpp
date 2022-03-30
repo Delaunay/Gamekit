@@ -1,6 +1,6 @@
 //  MIT License Copyright(c) 2020 Dan Kestranek
 
-#include "Abilities/Blueprint/GKAsyncTaskAttributeChanged.h"
+#include "Gamekit/Abilities/Blueprint/GKAsyncTaskAttributeChanged.h"
 
 UGKAsyncTaskAttributeChanged *UGKAsyncTaskAttributeChanged::ListenForAttributeChange(
         UAbilitySystemComponent *AbilitySystemComponent,

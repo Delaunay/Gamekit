@@ -1,13 +1,19 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
+// Unreal Engine
 #include "GameFramework/Pawn.h"
+
+// Generated
 #include "GKTopDownPawn.generated.h"
+
 
 /**
  * A Edge paning camera and a cursor

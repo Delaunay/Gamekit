@@ -1,37 +1,40 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "GKEnhancedInputInterface.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "GKEnhancedInputInterface.h"
+
+// Generated
 #include "GKPawnEnchancedInput.generated.h"
 
-
 UCLASS()
-class GAMEKIT_API AGKPawnEnchancedInput: public APawn //, public IGKPawnEnhancedInputInterface 
+class GAMEKIT_API AGKPawnEnchancedInput: public APawn //, public IGKPawnEnhancedInputInterface
 {
     public:
     GENERATED_BODY()
 
-public:
-	// Sets default values for this pawn's properties
-	AGKPawnEnchancedInput();
+    public:
+    // Sets default values for this pawn's properties
+    AGKPawnEnchancedInput();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    protected:
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    public:
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    // Called to bind functionality to input
+    virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 
-
-	// Enhanced Input Interface
-	// ------------------------
+    // Enhanced Input Interface
+    // ------------------------
 
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
     TMap<class UInputAction *, FName> const &GetActionNameOverrides();
@@ -39,17 +42,16 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
     class UInputMappingContext *GetDefaultInputMapping();
 
-	UPROPERTY(EditAnywhere)
-	class UInputMappingContext *      DefaultInputMapping;
-       
-	UPROPERTY(EditAnywhere)
-	TMap<class UInputAction *, FName> InputNames;
+    UPROPERTY(EditAnywhere)
+    class UInputMappingContext *DefaultInputMapping;
+
+    UPROPERTY(EditAnywhere)
+    TMap<class UInputAction *, FName> InputNames;
 
     //*
-	// Setup the Enhanced Input system, add the default mapping context if set
+    // Setup the Enhanced Input system, add the default mapping context if set
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
-    void InitializeEnhancedInput(class AController *    MyController,
-                                 class UInputComponent *PlayerInputComponent);
+    void InitializeEnhancedInput(class AController *MyController, class UInputComponent *PlayerInputComponent);
 
     // Add an input context to existing InputSubsystem
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
@@ -61,9 +63,6 @@ public:
 
     // Cached pointer, populated after `SetupPlayerInputComponent`
     class UEnhancedInputLocalPlayerSubsystem *InputSubsystem;
-    class UEnhancedInputComponent *           PlayerEnhancedInputComponent; 
+    class UEnhancedInputComponent *           PlayerEnhancedInputComponent;
     // */
- };
-
-
-
+};

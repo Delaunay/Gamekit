@@ -1,12 +1,11 @@
-#include "Shaders/GKUpscalingShader.h"
+#include "Gamekit/Shaders/GKUpscalingShader.h"
 
+// Unreal Engine
 #include "Engine/CanvasRenderTarget2D.h"
-
 #include "GlobalShader.h"
 #include "ShaderParameterStruct.h"
 #include "RenderGraphUtils.h"
 #include "RenderTargetPool.h"
-
 #include "Modules/ModuleManager.h" 
 
 #define NUM_THREADS_PER_GROUP_DIMENSION 32

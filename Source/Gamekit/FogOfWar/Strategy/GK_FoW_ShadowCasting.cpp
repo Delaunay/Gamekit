@@ -1,16 +1,18 @@
 
 
-#include "FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
+// Gamekit
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+
+// Unreal Engine
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
 #include "DrawDebugHelpers.h"
 
-
-#include "Blueprint/GKUtilityLibrary.h"
-#include "FogOfWar/GKFogOfWarComponent.h"
-#include "FogOfWar/GKFogOfWarVolume.h"
 
 
 void UGKShadowCasting::Stop()

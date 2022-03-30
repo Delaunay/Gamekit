@@ -1,9 +1,11 @@
-#include "FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
 
+// Gamekit
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+
+// Unreal Engine
 #include "Engine/CanvasRenderTarget2D.h"
-
-#include "Blueprint/GKUtilityLibrary.h"
-#include "FogOfWar/GKFogOfWarVolume.h"
 
 
 UGKTransformerStrategy::UGKTransformerStrategy()

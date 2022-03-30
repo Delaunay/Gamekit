@@ -1,10 +1,10 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKMetric.h"
+#include "Gamekit/Ad/OpenRTB/GKMetric.h"
 
 #include "GKImp.generated.h"
 
@@ -20,19 +20,19 @@ struct FGKImp
     TArray<FGKMetric> metric;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKBanner* banner;
+    class UGKBanner *banner;
 
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    //class UGKVideo* video;
+    // UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    // class UGKVideo* video;
 
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    //class UGKAudio* audio;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKNative* native;
+    // UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    // class UGKAudio* audio;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKPmp* pmp;
+    class UGKNative *native;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    class UGKPmp *pmp;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString displaymanager;

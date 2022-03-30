@@ -1,6 +1,6 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
@@ -33,7 +33,7 @@ struct FGKBid
     FString adm;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNativeMarkupResponse* adm_native;
+    class UGKNativeMarkupResponse *adm_native;
 
     UPROPERTY(BlueprintReadOnly)
     FString adid;
@@ -96,9 +96,9 @@ struct FGKBid
     // class UGKBidExt* ext;
 };
 
-
 USTRUCT(BlueprintType)
-struct FGKNative_AssetResponse {
+struct FGKNative_AssetResponse
+{
     GENERATED_USTRUCT_BODY()
 
     UPROPERTY(BlueprintReadOnly)
@@ -108,26 +108,27 @@ struct FGKNative_AssetResponse {
     int required;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_TitleResponse* title;
+    class UGKNative_TitleResponse *title;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_ImgResponse* img;
+    class UGKNative_ImgResponse *img;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_VideoResponse* video;
+    class UGKNative_VideoResponse *video;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_DataResponse* data;
+    class UGKNative_DataResponse *data;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_LinkResponse* link;
+    class UGKNative_LinkResponse *link;
 
     // UPROPERTY()
     // class UGKNative_AssetResponseExt* ext;
 };
 
 USTRUCT(BlueprintType)
-struct FGKNative_Pair {
+struct FGKNative_Pair
+{
     GENERATED_USTRUCT_BODY()
 
     UPROPERTY(BlueprintReadOnly)
@@ -138,7 +139,8 @@ struct FGKNative_Pair {
 };
 
 USTRUCT(BlueprintType)
-struct FGKNative_EventTrackerResponse {
+struct FGKNative_EventTrackerResponse
+{
     GENERATED_USTRUCT_BODY()
 
     UPROPERTY(BlueprintReadOnly)
@@ -158,9 +160,10 @@ struct FGKNative_EventTrackerResponse {
 };
 
 UCLASS(BlueprintType)
-class UGKNativeMarkupResponse : public UObject {
+class UGKNativeMarkupResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     FString ver;
 
@@ -174,7 +177,7 @@ public:
     FString dcourl;
 
     UPROPERTY(BlueprintReadOnly)
-    class UGKNative_LinkResponse* link;
+    class UGKNative_LinkResponse *link;
 
     UPROPERTY(BlueprintReadOnly)
     TArray<FString> imptrackers;
@@ -193,9 +196,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_TitleResponse : public UObject {
+class UGKNative_TitleResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     FString text;
 
@@ -207,9 +211,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_ImgResponse : public UObject {
+class UGKNative_ImgResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     int type;
 
@@ -227,9 +232,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_DataResponse : public UObject {
+class UGKNative_DataResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     int type;
 
@@ -244,9 +250,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_VideoResponse : public UObject {
+class UGKNative_VideoResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     FString vasttag;
 
@@ -255,9 +262,10 @@ public:
 };
 
 UCLASS(BlueprintType)
-class UGKNative_LinkResponse : public UObject {
+class UGKNative_LinkResponse: public UObject
+{
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(BlueprintReadOnly)
     FString url;
 

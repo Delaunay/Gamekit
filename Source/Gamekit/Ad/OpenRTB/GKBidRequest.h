@@ -1,13 +1,12 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKImp.h"
+#include "Gamekit/Ad/OpenRTB/GKImp.h"
 
 #include "GKBidRequest.generated.h"
-
 
 USTRUCT(BlueprintType)
 struct FGKBidRequest
@@ -21,16 +20,16 @@ struct FGKBidRequest
     TArray<FGKImp> imp;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKSite* site;
+    class UGKSite *site;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKApp* app;
+    class UGKApp *app;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKDevice* device;
+    class UGKDevice *device;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKUser* user;
+    class UGKUser *user;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int test;
@@ -66,10 +65,10 @@ struct FGKBidRequest
     TArray<FString> bapp;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKSource* source;
+    class UGKSource *source;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKRegs* regs;
+    class UGKRegs *regs;
 
     // UPROPERTY()
     // FGKBidRequestExt ext;

@@ -1,11 +1,15 @@
 //  MIT License Copyright(c) 2020 Dan Kestranek
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "AbilitySystemComponent.h"
 #include "GameplayTagContainer.h"
+
+// Generated
 #include "GKAsyncTaskCooldownChanged.generated.h"
+
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCooldownChanged, FGameplayTag, CooldownTag, float, TimeRemaining, float, Duration);
 

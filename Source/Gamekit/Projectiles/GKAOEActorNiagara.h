@@ -1,24 +1,29 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Projectiles/GKAOEActor.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
-#include "Projectiles/GKAOEActor.h"
+
+// Generated
 #include "GKAOEActorNiagara.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
-class GAMEKIT_API AGKAOEActorNiagara : public AGKAOEActor
+class GAMEKIT_API AGKAOEActorNiagara: public AGKAOEActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	AGKAOEActorNiagara();
+    public:
+    AGKAOEActorNiagara();
 
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly);
-	class UNiagaraComponent* NiagaraEffect;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    class UNiagaraComponent *NiagaraEffect;
 };

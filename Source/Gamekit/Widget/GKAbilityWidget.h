@@ -1,12 +1,17 @@
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+
 #pragma once
 
+// Gamekit
+#include "Gamekit/Items/GKInventoryInterface.h"
+#include "Gamekit/Abilities/GKGameplayAbility.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "GameplayAbilitySpec.h"
 
-#include "Items/GKInventoryInterface.h"
-#include "Abilities/GKGameplayAbility.h"
-
+// Generated
 #include "GKAbilityWidget.generated.h"
 
 /* Simple Widget that receives ability state update through a top level UGKAbilityWidgetContainer

@@ -1,8 +1,11 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Items/GKItem.h"
+// Gamekit
+#include "Gamekit/Items/GKItem.h"
+
+// Generated
 #include "GKTokenItem.generated.h"
 
 /** Native base class for tokens/currency, should be blueprinted */

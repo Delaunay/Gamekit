@@ -1,11 +1,15 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
+// Unreal Engine
 #include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
 
+// Generated
 #include "GKAttributeSet.generated.h"
 
 

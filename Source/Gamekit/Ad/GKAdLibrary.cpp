@@ -1,6 +1,6 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Ad/GKAdLibrary.h"
+#include "Gamekit/Ad/GKAdLibrary.h"
 
 #include "ImageUtils.h"
 

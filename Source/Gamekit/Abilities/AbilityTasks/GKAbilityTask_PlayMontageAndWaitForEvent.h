@@ -1,11 +1,14 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
 
+// Unreal Engine
 #include "Abilities/Tasks/AbilityTask.h"
 
+// Generated
 #include "GKAbilityTask_PlayMontageAndWaitForEvent.generated.h"
 
 class UGKAbilitySystemComponent;

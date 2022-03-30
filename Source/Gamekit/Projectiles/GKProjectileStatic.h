@@ -1,13 +1,16 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
+// Unreal Engine
 #include "Engine/DataTable.h"
 #include "Styling/SlateBrush.h"
 
+// Generated
 #include "GKProjectileStatic.generated.h"
-
 
 UENUM(BlueprintType)
 enum class EGK_ProjectileBehavior : uint8
@@ -15,7 +18,6 @@ enum class EGK_ProjectileBehavior : uint8
     UnitTarget  UMETA(DisplayName = "UnitTarget"),  // Target seeking Projectile
     Directional UMETA(DisplayName = "Directional"), // Projectile goes in straight line
 };
-
 
 /*! Holds customization data for projectiles
  */

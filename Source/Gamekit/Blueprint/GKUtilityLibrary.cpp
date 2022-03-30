@@ -1,16 +1,18 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-#include "GKCoordinateLibrary.h"
-#include "GKWorldSettings.h"
+// Gamekit
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/GKWorldSettings.h"
 
-#include "GameFramework/PlayerState.h"
+// Unreal Engine
 #include "ClearQuad.h"
 #include "Components/PanelSlot.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
+#include "GameFramework/PlayerState.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -194,16 +196,9 @@ float UGKUtilityLibrary::GetYaw(FVector Origin, FVector Target)
     return TargetYaw;
 }
 
-
-
-
-EGKRelativePosition UGKUtilityLibrary::GetRelativePosition(AActor *Actor, FVector Location)
+EGKRelativePosition UGKUtilityLibrary::GetRelativePosition(FVector Origin, FVector BoxExtent, FVector Location)
 {
-    FVector Origin;
-    FVector BoxExtent;
-    Actor->GetActorBounds(true, Origin, BoxExtent);
-
-    auto Centered = Location - Origin;
+    auto  Centered = Location - Origin;
     uint8 Pos      = 0;
 
     if (Centered.Y < -BoxExtent.Y)
@@ -226,6 +221,34 @@ EGKRelativePosition UGKUtilityLibrary::GetRelativePosition(AActor *Actor, FVecto
     return EGKRelativePosition(Pos);
 }
 
+EGKRelativePosition UGKUtilityLibrary::GetRelativePositionFromActor(AActor *Actor, FVector Location)
+{
+    FVector Origin;
+    FVector BoxExtent;
+    Actor->GetActorBounds(true, Origin, BoxExtent);
+
+    auto  Centered = Location - Origin;
+    uint8 Pos      = 0;
+
+    if (Centered.Y < -BoxExtent.Y)
+    {
+        Pos |= uint8(EGKRelativePosition::Left);
+    }
+    if (Centered.Y > BoxExtent.Y)
+    {
+        Pos |= uint8(EGKRelativePosition::Right);
+    }
+    if (Centered.X < -BoxExtent.X)
+    {
+        Pos |= uint8(EGKRelativePosition::Bot);
+    }
+    if (Centered.X > BoxExtent.X)
+    {
+        Pos |= uint8(EGKRelativePosition::Top);
+    }
+
+    return EGKRelativePosition(Pos);
+}
 
 // Test This
 
@@ -241,9 +264,10 @@ EGKRelativePosition UGKUtilityLibrary::GetRelativePosition(AActor *Actor, FVecto
 //  Player BotRIght (-1,  1, 0)     # Angle (TopRight, BotLeft)
 //
 
-void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax) {
-    
-    auto Relative = GetRelativePosition(Actor, Location);
+void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax)
+{
+
+    auto Relative = GetRelativePositionFromActor(Actor, Location);
 
     FVector Origin;
     FVector BoxExtent;
@@ -257,7 +281,7 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor *Actor, FVecto
     /*
     UE_LOG(LogGamekit,
            Warning,
-           TEXT("Position %d"), int(Relative));		
+           TEXT("Position %d"), int(Relative));
     */
 
     // clang-format off
@@ -271,15 +295,14 @@ void UGKUtilityLibrary::GetVisibleBounds(FVector Location, AActor *Actor, FVecto
         case EGKRelativePosition::TopLeft    : {OutMin = TopRight; OutMax = BotLeft;  return; }
         case EGKRelativePosition::BotRight   : {OutMin = TopRight; OutMax = BotLeft;  return; }
         case EGKRelativePosition::BotLeft    : {OutMin = TopLeft;  OutMax = BotRight; return; }
-        
+
         // This means the location is inside the bounding box
         case EGKRelativePosition::None       : { return;}
-    } 
+    }
     // clang-format on
 
-     UE_LOG(LogGamekit, Warning, TEXT("Point is inside the actors' bounding box"));
+    UE_LOG(LogGamekit, Warning, TEXT("Point is inside the actors' bounding box"));
 }
-
 
 void UGKUtilityLibrary::GetVisibleBounds_Math(FVector Location, AActor *Actor, FVector &OutMin, FVector &OutMax)
 {
@@ -294,7 +317,6 @@ void UGKUtilityLibrary::GetVisibleBounds_Math(FVector Location, AActor *Actor, F
                                Origin + BoxExtent * FVector(-1, 1, 0),  // Bot Right
                                Origin - BoxExtent,                      // Bot Left
                                Origin + BoxExtent * FVector(1, -1, 0)}; // Top Left
-
 
     auto  Dir      = Location;
     float MidAngle = GetYaw(Dir, Origin);
@@ -311,7 +333,6 @@ void UGKUtilityLibrary::GetVisibleBounds_Math(FVector Location, AActor *Actor, F
 
     float AngleMax = GetYaw(Dir, OutMax);
     float AngleMin = GetYaw(Dir, OutMin);
-
 
     // The Corners that matters are the one with the widest angles
     // but this does not really do that it finds the min max angles
@@ -408,9 +429,10 @@ FString UGKUtilityLibrary::GetNetConfig(const AActor *Actor)
     return FString::Format(TEXT("[NM: {0}] [LR: {1}] [RR: {2}]"), Frags);
 }
 
-FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldContext) {
+FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldContext)
+{
     UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
-    
+
     if (!World)
     {
         return FGKNetworkMetrics();
@@ -422,12 +444,12 @@ FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldConte
     {
         return FGKNetworkMetrics();
     }
-    
-    auto Metrics = FGKNetworkMetrics();
-    Metrics.PingMs = -1;
+
+    auto Metrics       = FGKNetworkMetrics();
+    Metrics.PingMs     = -1;
     Metrics.PacketLoss = Driver->InPacketsLost + Driver->OutPacketsLost;
-    Metrics.DownKiB = float(Driver->InBytesPerSecond) / 1024.f;
-    Metrics.UpKiB = float(Driver->OutBytesPerSecond) / 1024.f;
+    Metrics.DownKiB    = float(Driver->InBytesPerSecond) / 1024.f;
+    Metrics.UpKiB      = float(Driver->OutBytesPerSecond) / 1024.f;
 
     if (Driver->ServerConnection && Driver->ServerConnection->PlayerController &&
         Driver->ServerConnection->PlayerController->PlayerState)
@@ -442,5 +464,4 @@ FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldConte
 
     // Connection to the server
     // auto Connection = Driver->ServerConnection;
-
 }

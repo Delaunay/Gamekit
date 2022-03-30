@@ -1,12 +1,13 @@
-#include "FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-#include "FogOfWar/GKFogOfWarComponent.h"
-#include "FogOfWar/GKFogOfWarLibrary.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
-#include "Blueprint/GKCoordinateLibrary.h"
-#include "Blueprint/GKUtilityLibrary.h"
-
+// Unreal Engine
 #include "Kismet/KismetSystemLibrary.h"
 
 

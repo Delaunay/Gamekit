@@ -1,16 +1,18 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+#include "Gamekit/Abilities/GKAbilityTypes.h"
+#include "Gamekit/Animation/GKAnimationSet.h"
+#include "Gamekit/Items/GKItemTypes.h"
 
+// Unreal Engine
 #include "Kismet/BlueprintFunctionLibrary.h"
-
-#include "Abilities/GKAbilityTypes.h"
 #include "Abilities/GameplayAbility.h"
-#include "Animation/GKAnimationSet.h"
-#include "Items/GKItemTypes.h"
 
+// Generated
 #include "GKAbilityBlueprintLibrary.generated.h"
 
 /**

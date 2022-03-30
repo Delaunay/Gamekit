@@ -1,17 +1,18 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
-#include "GKMovementUtility.h"
+#include "Gamekit/Grid/GKMovementUtility.h"
 
+// Unreal Engine
 #include "AIController.h"
 #include "NavigationPath.h"
 #include "NavigationData.h"
 #include "NavigationSystem.h"
-
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+
 
 #define LOCTEXT_NAMESPACE "GKMovementUtility"
 

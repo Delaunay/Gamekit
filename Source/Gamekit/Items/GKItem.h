@@ -1,13 +1,16 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "Gamekit.h"
-#include "GKAssetManager.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+#include "Gamekit/GKAssetManager.h"
 
+// Unreal Engine
 #include "Engine/DataAsset.h"
 #include "Styling/SlateBrush.h"
 
+// Generated
 #include "GKItem.generated.h"
 
 class UGKGameplayAbility;

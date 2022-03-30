@@ -1,16 +1,16 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
 #include "GKDevice.generated.h"
 
 UCLASS(BlueprintType)
-class UGKDevice : public UObject
+class UGKDevice: public UObject
 {
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString id;
 

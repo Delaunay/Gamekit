@@ -1,18 +1,20 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
-#include "Kismet/BlueprintFunctionLibrary.h"
 #include "InputActionValue.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 
+// Generated
 #include "GKInputLibrary.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
-class GAMEKIT_API UGKInputLibrary : public UBlueprintFunctionLibrary
+class GAMEKIT_API UGKInputLibrary: public UBlueprintFunctionLibrary
 {
     GENERATED_BODY()
 

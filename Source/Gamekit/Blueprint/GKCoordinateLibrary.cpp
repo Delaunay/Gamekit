@@ -1,7 +1,7 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 
-#include "Blueprint/GKCoordinateLibrary.h"
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 
 
 FVector2D UGKCoordinateLibrary::ToTextureCoordinate(FVector WorldLocation, FVector2D MapSize)

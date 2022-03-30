@@ -1,7 +1,7 @@
-#include "GKWidgetDropZone.h"
+#include "Gamekit/Widget/DragDrop/GKWidgetDropZone.h"
 
+// Unreal Engine
 #include "Components/PanelWidget.h"
-
 #include "Kismet/KismetInputLibrary.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 #include "Blueprint/DragDropOperation.h"

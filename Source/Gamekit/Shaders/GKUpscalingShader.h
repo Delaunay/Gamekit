@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Gamekit.h"
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
+// Unreal Engine
 #include "Runtime/Engine/Classes/Engine/TextureRenderTarget2D.h"
 
 //This struct act as a container for all the parameters that the client needs to pass to the Compute Shader Manager.

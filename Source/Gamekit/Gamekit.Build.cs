@@ -1,4 +1,4 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 using UnrealBuildTool;
 
@@ -9,7 +9,6 @@ public class Gamekit : ModuleRules
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PrivateIncludePaths.AddRange(new string[]{
-            "Gamekit",
         });
 
         PublicDependencyModuleNames.AddRange(new string[]{
@@ -18,7 +17,7 @@ public class Gamekit : ModuleRules
             "RHI"
         });
 
-        PrivateDependencyModuleNames.AddRange(new string[] { 
+        PrivateDependencyModuleNames.AddRange(new string[] {
             // Gameplay Abilities
             "GameplayAbilities",
             "GameplayTags",
@@ -30,7 +29,7 @@ public class Gamekit : ModuleRules
             "HTTP",
             "Json",
             "JsonUtilities",
-            // Defaults 
+            // Defaults
             "CoreUObject",
             "Engine",
             "MoviePlayer",
@@ -43,7 +42,7 @@ public class Gamekit : ModuleRules
             "SlateCore",
             // Particles
             "Niagara",
-            // 
+            //
             "EnhancedInput",
             "Landscape",
         });

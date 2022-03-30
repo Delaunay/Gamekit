@@ -1,11 +1,14 @@
 #pragma once
 
+// Gamekit
+#include "Gamekit/Grid/GKHexGridUtilities.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Math/Vector.h"
 #include "Math/IntVector.h"
 
-#include "Grid/GKHexGridUtilities.h"
-
+// Generated
 #include "GKGrid.generated.h"
 
 

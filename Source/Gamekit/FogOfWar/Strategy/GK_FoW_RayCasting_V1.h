@@ -2,11 +2,14 @@
 
 #pragma once
 
-#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
+// Gamekit
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 
+// Unreal Engine
 #include "Components/ActorComponent.h"
 #include "CoreMinimal.h"
 
+// Generated
 #include "GK_FoW_RayCasting_V1.generated.h"
 
 

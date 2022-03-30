@@ -1,10 +1,10 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKSeatBid.h"
+#include "Gamekit/Ad/OpenRTB/GKSeatBid.h"
 
 #include "GKBidResponse.generated.h"
 

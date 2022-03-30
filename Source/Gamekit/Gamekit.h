@@ -1,4 +1,4 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
@@ -7,8 +7,9 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogGamekit, Log, All);
 
-class FGamekitModule: public IModuleInterface {
-public:
+class FGamekitModule: public IModuleInterface
+{
+    public:
     virtual void StartupModule() override;
 
     virtual void ShutdownModule() override;

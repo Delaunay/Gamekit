@@ -1,51 +1,53 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Projectiles/GKAbilityEffectActor.h"
+#include "Gamekit/Projectiles/GKProjectileStatic.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 
-#include "Projectiles/GKAbilityEffectActor.h"
-#include "Projectiles/GKProjectileStatic.h"
-
+// Generated
 #include "GKProjectile.generated.h"
 
-
 UCLASS(BlueprintType)
-class GAMEKIT_API AGKProjectile : public AGKAbilityEffectActor
+class GAMEKIT_API AGKProjectile: public AGKAbilityEffectActor
 {
-	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AGKProjectile();
+    GENERATED_BODY()
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    public:
+    // Sets default values for this actor's properties
+    AGKProjectile();
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    protected:
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    public:
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
 
-	void InitProjectileMovement();
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	FGKProjectileStatic ProjectileData;
+    void InitProjectileMovement();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	FVector Direction;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    FGKProjectileStatic ProjectileData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
-	AActor* Target;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    FVector Direction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
-	class UProjectileMovementComponent* ProjectileMovementComponent;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);
+    AActor *Target;
 
-	UPROPERTY()
-	float DistanceTravelled = 0.f;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    class UProjectileMovementComponent *ProjectileMovementComponent;
 
-	UPROPERTY()
-	FVector PreviousLoc;
+    UPROPERTY()
+    float DistanceTravelled = 0.f;
+
+    UPROPERTY()
+    FVector PreviousLoc;
 };

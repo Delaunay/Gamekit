@@ -1,6 +1,6 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
@@ -10,7 +10,7 @@ UCLASS(BlueprintType)
 class UGKApp: public UObject
 {
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString id;
 
@@ -45,10 +45,10 @@ public:
     int paid;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKPublisher* publisher;
+    class UGKPublisher *publisher;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    class UGKContent* content;
+    class UGKContent *content;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString keywords;

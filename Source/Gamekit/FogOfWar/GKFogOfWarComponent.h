@@ -1,13 +1,15 @@
 #pragma once
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "CoreMinimal.h"
+// Unreal Engine
 #include "Components/ActorComponent.h"
+#include "CoreMinimal.h"
+
+// Generated
 #include "GKFogOfWarComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor*, Actor);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor*, Actor);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor *, Actor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor);
 
 /*! UGKFogOfWarComponent is used to defines the spec of the actor participating in the fog of war
  * the fog of war itself is computed inside the AGKFogOfWarVolume in a separate thread.
@@ -23,22 +25,22 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor*, Act
  *
  */
 UCLASS(Blueprintable, ClassGroup = (FogOfWar), meta = (BlueprintSpawnableComponent))
-class GAMEKIT_API UGKFogOfWarComponent : public UActorComponent
+class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
 {
     GENERATED_BODY()
 
-public:
-	// Sets default values for this component's properties
+    public:
+    // Sets default values for this component's properties
     UGKFogOfWarComponent();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+    protected:
+    // Called when the game starts
+    virtual void BeginPlay() override;
 
     // Unregister the component
     virtual void BeginDestroy() override;
 
-public:
+    public:
     //! Default faction the unit will fallbacl to if it does not implement IGenericTeamAgentInterface
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     FName DefaultFaction;
@@ -52,21 +54,21 @@ public:
 
     //! Returns the fog of war volume this component is associated to
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    class AGKFogOfWarVolume* GetFogOfWarVolume();
+    class AGKFogOfWarVolume *GetFogOfWarVolume();
 
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     FName GetFaction();
 
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    class UMaterialInterface* GetFogOfWarPostprocessMaterial();
+    class UMaterialInterface *GetFogOfWarPostprocessMaterial();
 
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    void SetCameraPostprocessMaterial(class UCameraComponent* CameraComponent);
+    void SetCameraPostprocessMaterial(class UCameraComponent *CameraComponent);
 
     //! Sets the texture parameters FoWView & FoWExploration
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
-    void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic* Material);
+    void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic *Material);
 
     //! Line Tickness to draw sights, smaller tickness is more precise but requires more rays
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
@@ -110,7 +112,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float FieldOfView;
 
-public:
+    public:
     //! Called when the actor is seeing another actor in its line of sight
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightingEventSignature OnSighting;
@@ -119,10 +121,10 @@ public:
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightedEventSignature OnSighted;
 
-private:
-    class AGKFogOfWarVolume* FogOfWarVolume;
+    private:
+    class AGKFogOfWarVolume *FogOfWarVolume;
 
-    void SetCollisionFoWResponse(class UPrimitiveComponent* Primitive, ECollisionChannel Channel);
+    void SetCollisionFoWResponse(class UPrimitiveComponent *Primitive, ECollisionChannel Channel);
 
     //! Try to get the faction using the IGenericTeamAgentInterface
     FName DeduceFaction() const;

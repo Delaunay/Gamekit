@@ -1,30 +1,32 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
+
+// Generated
 #include "GKEnhancedInputInterface.generated.h"
 
-
 UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
-class UGKPawnEnhancedInputInterface: public UInterface {
+class UGKPawnEnhancedInputInterface: public UInterface
+{
     GENERATED_BODY()
 };
 
 // Using the interface on our Pawn is not working :/
 // No logs are printed
-class GAMEKIT_API IGKPawnEnhancedInputInterface {
+class GAMEKIT_API IGKPawnEnhancedInputInterface
+{
     public:
-
     GENERATED_BODY()
 
-public:
+    public:
     // Setup the Enhanced Input system, add the default mapping context if set
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
-    virtual void InitializeEnhancedInput(class AController *    MyController,
-                                         class UInputComponent *PlayerInputComponent);
+    virtual void InitializeEnhancedInput(class AController *MyController, class UInputComponent *PlayerInputComponent);
 
-	// Add an input context to existing InputSubsystem
+    // Add an input context to existing InputSubsystem
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
     virtual void AddMappingContext(class UInputMappingContext *Input, int32 Priority);
 
@@ -38,9 +40,9 @@ public:
 
     // if enhanced input system enabled will push the input mapping
     UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
-    virtual class UInputMappingContext * GetDefaultInputMapping();
+    virtual class UInputMappingContext *GetDefaultInputMapping();
 
-protected:
+    protected:
     // Cached pointer, populated after `SetupPlayerInputComponent`
     class UEnhancedInputLocalPlayerSubsystem *InputSubsystem;
     class UEnhancedInputComponent *           PlayerEnhancedInputComponent;

@@ -1,18 +1,18 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#pragma once 
+#pragma once
 
 #include "CoreMinimal.h"
 
-#include "GKFormat.h"
+#include "Gamekit/Ad/OpenRTB/GKFormat.h"
 
 #include "GKBanner.generated.h"
 
 UCLASS(BlueprintType)
-class UGKBanner : public UObject
+class UGKBanner: public UObject
 {
     GENERATED_BODY()
-public:
+    public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString id;
 

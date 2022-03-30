@@ -1,8 +1,12 @@
 #pragma once
 
+// Gamekit
+#include "Gamekit/Widget/DragDrop/GKWidgetDragVisual.h"
+
+// Unreal Engine
 #include "Blueprint/UserWidget.h"
 
-#include "GKWidgetDragVisual.h"
+// Generated
 #include "GKWidgetDraggable.generated.h"
 
     // UFUNCTION(BlueprintImplementableEvent

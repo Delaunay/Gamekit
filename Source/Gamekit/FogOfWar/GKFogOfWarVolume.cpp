@@ -1,28 +1,27 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-#include "FogOfWar/GKFogOfWarComponent.h"
-#include "FogOfWar/GKFogOfWarLibrary.h"
-#include "Blueprint/GKCoordinateLibrary.h"
-#include "Blueprint/GKUtilityLibrary.h"
+// Gamekit
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Gamekit/FogOfWar/Upscaler/GKCanvasUpscaler.h"
+#include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
 
-#include "FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
-#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
-
-#include "FogOfWar/Upscaler/GKCanvasUpscaler.h"
-#include "FogOfWar/Upscaler/GKExplorationTransform.h"
-
-#include "Engine/Canvas.h"
-#include "Engine/CanvasRenderTarget2D.h"
-#include "Kismet/KismetRenderingLibrary.h"
-#include "Kismet/KismetSystemLibrary.h"
-#include "Kismet/KismetMaterialLibrary.h"
+// Unreal Engine
 #include "Components/BrushComponent.h"
 #include "Components/DecalComponent.h"
+#include "Engine/Canvas.h"
+#include "Engine/CanvasRenderTarget2D.h"
+#include "Kismet/KismetMaterialLibrary.h"
+#include "Kismet/KismetRenderingLibrary.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
-
 #include "TimerManager.h"
 
 AGKFogOfWarVolume::AGKFogOfWarVolume()
@@ -85,12 +84,12 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     GetBrushComponent()->Mobility = EComponentMobility::Static;
 
     // Defaults
-    bAsyncDraw               = false;
-    FramePerSeconds          = 30.f;
+    bAsyncDraw      = false;
+    FramePerSeconds = 30.f;
 
     // Editor
-    bDebug                   = false;
-    UseFoWDecalRendering     = false;
+    bDebug               = false;
+    UseFoWDecalRendering = false;
 
     // Ray Cast
     TextureScale             = 1.f;
@@ -98,15 +97,15 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     FogOfWarCollisionChannel = DEFAULT_FoW_COLLISION;
 
     // Top level
-    bExploration             = true;
-    bFogOfWarEnabled         = true;
+    bExploration     = true;
+    bFogOfWarEnabled = true;
 
     // Upscaling
-    FixedSize                = FIntVector(2048, 2048, 0);
-    Multiplier               = 2;
-    bFixedSize               = true;
-   
-    // Default Classes 
+    FixedSize  = FIntVector(2048, 2048, 0);
+    Multiplier = 2;
+    bFixedSize = true;
+
+    // Default Classes
     ExplorationClass      = UGKExplorationTransform::StaticClass();
     UpscalerClass         = UGKCanvasUpscaler::StaticClass();
     VisionDrawingStrategy = UGKShadowCasting::StaticClass();
@@ -114,10 +113,9 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     bReady = false;
 }
 
-void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     name,
-                                                      UMaterialInstanceDynamic *Material)
+void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
 {
-    
+
     UE_LOG(LogGamekit, Log, TEXT("Setting For of War Materials"));
 
     if (Material == nullptr)
@@ -145,7 +143,6 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName                     
     {
         UE_LOG(LogGamekit, Warning, TEXT("Previous Fog of war vision is null"));
     }
-
 
     auto FoWExploration = GetFactionExplorationTexture(name);
     if (FoWExploration != nullptr)
@@ -277,7 +274,6 @@ void AGKFogOfWarVolume::Tick(float DeltaTime)
     }
     DeltaAccumulator = 0;
 
-
     if (bFogOfWarEnabled)
     {
         DrawFactionFog();
@@ -293,12 +289,11 @@ void AGKFogOfWarVolume::InitializeStrategy()
         Strategy->DestroyComponent();
     }
 
-    Strategy = Cast<UGKFogOfWarStrategy>(AddComponentByClass(
-        VisionDrawingStrategy,  // class
-        false,                  // Manual Attachment
-        FTransform(),           // Transform
-        false                   // Deferred
-    ));
+    Strategy = Cast<UGKFogOfWarStrategy>(AddComponentByClass(VisionDrawingStrategy, // class
+                                                             false,                 // Manual Attachment
+                                                             FTransform(),          // Transform
+                                                             false                  // Deferred
+                                                             ));
 
     Strategy->Initialize();
     for (auto &Faction: FactionFogs)
@@ -319,12 +314,11 @@ void AGKFogOfWarVolume::InitializeUpscaler()
         Upscaler->DestroyComponent();
     }
 
-    Upscaler = Cast<UGKTransformerStrategy>(AddComponentByClass(
-        UpscalerClass,  // class
-        false,          // Manual Attachment
-        FTransform(),   // Transform
-        false           // Deferred
-    ));
+    Upscaler = Cast<UGKTransformerStrategy>(AddComponentByClass(UpscalerClass, // class
+                                                                false,         // Manual Attachment
+                                                                FTransform(),  // Transform
+                                                                false          // Deferred
+                                                                ));
 
     Upscaler->Initialize();
     for (auto &Faction: FactionFogs)
@@ -345,12 +339,11 @@ void AGKFogOfWarVolume::InitializeExploration()
         Exploration->DestroyComponent();
     }
 
-    Exploration = Cast<UGKTransformerStrategy>(AddComponentByClass(
-        ExplorationClass,   // class
-        false,              // Manual Attachment
-        FTransform(),       // Transform
-        false               // Deferred
-    ));
+    Exploration = Cast<UGKTransformerStrategy>(AddComponentByClass(ExplorationClass, // class
+                                                                   false,            // Manual Attachment
+                                                                   FTransform(),     // Transform
+                                                                   false             // Deferred
+                                                                   ));
 
     Exploration->Initialize();
     for (auto &Faction: FactionFogs)
@@ -358,7 +351,6 @@ void AGKFogOfWarVolume::InitializeExploration()
         Exploration->OnNewFaction(Faction.Key);
     }
 }
-
 
 void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
@@ -459,7 +451,7 @@ void AGKFogOfWarVolume::DrawFactionFog()
         {
             Upscaler->Transform(&FactionFog.Value);
         }
-                
+
         if (bExploration)
         {
             Exploration->Transform(&FactionFog.Value);
@@ -470,18 +462,12 @@ void AGKFogOfWarVolume::DrawFactionFog()
 // Texture Accessors
 // -----------------
 
-UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) {
+UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) { return GetFactionFogs(name).Exploration; }
 
-    return GetFactionFogs(name).Exploration; 
-}
+UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { return GetFactionFogs(name).Vision; }
 
-UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name)
-{ 
-    return GetFactionFogs(name).Vision;
-}
-
-UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name) 
-{ 
+UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name)
+{
     if (bUpscaling)
     {
         return GetFactionFogs(name).UpScaledVision;
@@ -566,7 +552,6 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
         // InitializeStrategy();
     }
 
-
     if (PropertyName == GET_MEMBER_NAME_CHECKED(AGKFogOfWarVolume, TextureSize))
     {
         return;
@@ -582,8 +567,7 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
     Super::PostEditChangeProperty(e);
 }
 
-
-FGKFactionFog& AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
     // Returning a reference here has the advantage of not requiring us to
     // check for nills later on
@@ -601,18 +585,17 @@ FGKFactionFog& AGKFogOfWarVolume::GetFactionFogs(FName Faction)
     {
         FGKFactionFog &FogFaction = FactionFogs.Add(Faction, FGKFactionFog());
         FogFaction.Name           = Faction;
-        FogFaction.Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true): nullptr;
+        FogFaction.Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true) : nullptr;
         FogFaction.UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
         FogFaction.Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
-        
+
         return FogFaction;
     }
 
     return *Fog;
 }
 
-
-void CopyTexture(UObject* World, class UCanvasRenderTarget2D * Dest, class UTexture* Src)
+void CopyTexture(UObject *World, class UCanvasRenderTarget2D *Dest, class UTexture *Src)
 {
     UCanvas *                  Canvas;
     FVector2D                  Size;
@@ -626,7 +609,6 @@ void CopyTexture(UObject* World, class UCanvasRenderTarget2D * Dest, class UText
 
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(World, Context);
 }
-
 
 void AGKFogOfWarVolume::DumpToDebugRenderTarget()
 {

@@ -1,13 +1,15 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
-#include "GKHexGrid.h"
+#include "Gamekit/Grid/GKHexGrid.h"
 
+// Gamekit
+#include "Gamekit/Grid/GKHexGridUtilities.h"
+
+// Unreal Engine
 #include "UObject/ConstructorHelpers.h"
-#include "Grid/GKHexGridUtilities.h"
-
 #include "Materials/Material.h"
 #include "Engine/StaticMesh.h"
 

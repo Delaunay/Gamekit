@@ -1,10 +1,11 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+#include "Gamekit/FogOfWar/Upscaler/GKCanvasUpscaler.h"
 
-#include "FogOfWar/Upscaler/GKCanvasUpscaler.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-
+// Unreal Engine
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Kismet/KismetRenderingLibrary.h"

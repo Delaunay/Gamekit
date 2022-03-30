@@ -1,43 +1,44 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "CoreMinimal.h"
+// Unreal Engine
 #include "AbilitySystemGlobals.h"
+#include "CoreMinimal.h"
 
+// Generated
 #include "GKAbilitySystemGlobals.generated.h"
 
 /**
- *  
+ *
  */
 UCLASS(config = Game)
 class GAMEKIT_API UGKAbilitySystemGlobals: public UAbilitySystemGlobals
 {
     GENERATED_UCLASS_BODY()
-public:
+    public:
+    /** TryActivate failed due to the ability not being learned */
+    UPROPERTY()
+    FGameplayTag ActivateFailNotYetLearnedTag;
 
-	/** TryActivate failed due to the ability not being learned */
-	UPROPERTY()
-	FGameplayTag ActivateFailNotYetLearnedTag;
+    UPROPERTY(config)
+    FName ActivateFailNotYetLearnedName;
 
-	UPROPERTY(config)
-	FName ActivateFailNotYetLearnedName;
-
-	UPROPERTY()
+    UPROPERTY()
     FGameplayTag DeathTag;
 
-	UPROPERTY(config)
-	FName DeathName;
+    UPROPERTY(config)
+    FName DeathName;
 
-	UPROPERTY()
+    UPROPERTY()
     FGameplayTag DeathDispelTag;
 
-	UPROPERTY(config)
+    UPROPERTY(config)
     FName DeathDispelName;
 
-	virtual void InitGlobalTags() override;
+    virtual void InitGlobalTags() override;
 
-	//
-	// THINK: We could a secondary global curve here for our curve generation system
-	//
+    //
+    // THINK: We could a secondary global curve here for our curve generation system
+    //
 };

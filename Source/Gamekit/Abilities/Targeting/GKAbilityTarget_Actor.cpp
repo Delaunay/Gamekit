@@ -1,9 +1,9 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Abilities/Targeting/GKAbilityTarget_Actor.h"
+#include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
 
+// Unreal Engine
 #include "Abilities/GameplayAbility.h"
-
 #include "GameplayAbilitySpec.h"
 #include "GameFramework/PlayerController.h"
 #include "AbilitySystemComponent.h"

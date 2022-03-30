@@ -1,4 +1,4 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
@@ -8,9 +8,13 @@
 // It's also a good place to put things like data table row structs
 // ----------------------------------------------------------------------------------------------------------------
 
-#include "UObject/PrimaryAssetId.h"
-#include "Abilities/GKAbilityInputs.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityInputs.h"
 
+// Unreal Engine
+#include "UObject/PrimaryAssetId.h"
+
+// Generated
 #include "GKItemTypes.generated.h"
 
 class UGKItem;

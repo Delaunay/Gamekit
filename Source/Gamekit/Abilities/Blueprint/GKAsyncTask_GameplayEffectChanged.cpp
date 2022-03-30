@@ -1,7 +1,8 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h"
+#include "Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h"
 
+// Unreal Engine
 #include "TimerManager.h"
 
 UGKAsyncTask_GameplayEffectChanged *UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(

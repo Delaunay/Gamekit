@@ -1,10 +1,13 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "GKAbilityBlueprintLibrary.h"
+#include "Gamekit/Abilities/Blueprint/GKAbilityBlueprintLibrary.h"
 
-#include "Abilities/GKAbilitySystemComponent.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 
+// Unreal Engine
 #include "Misc/ConfigCacheIni.h"
+
 
 UGKAbilityBlueprintLibrary::UGKAbilityBlueprintLibrary(const FObjectInitializer &ObjectInitializer):
     Super(ObjectInitializer)

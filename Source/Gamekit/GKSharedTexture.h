@@ -1,9 +1,9 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "CoreMinimal.h"
 
 #include "GKSharedTexture.generated.h"
 
@@ -25,49 +25,50 @@
  * (0, 0) (top-left corner) (1, 1) (bottom-right corner)
  *
  */
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class GAMEKIT_API UGKSharedTexture : public UActorComponent
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+class GAMEKIT_API UGKSharedTexture: public UActorComponent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	// Sets default values for this component's properties
-	UGKSharedTexture();
+    public:
+    // Sets default values for this component's properties
+    UGKSharedTexture();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+    protected:
+    // Called when the game starts
+    virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	// virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+    public:
+    // Called every frame
+    // virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+    // override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Texture, meta = (AllowPrivateAccess = "true"))
-	class UCanvasRenderTarget2D* RenderTarget;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Texture, meta = (AllowPrivateAccess = "true"))
+    class UCanvasRenderTarget2D *RenderTarget;
 
-	UFUNCTION(BlueprintGetter)
-    class UCanvasRenderTarget2D* GetRenderTarget() const { return RenderTarget; }
+    UFUNCTION(BlueprintGetter)
+    class UCanvasRenderTarget2D *GetRenderTarget() const { return RenderTarget; }
 
-	UFUNCTION(BlueprintSetter)
-    void SetRenderTarget(class UCanvasRenderTarget2D* v) { RenderTarget = v; }
+    UFUNCTION(BlueprintSetter)
+    void SetRenderTarget(class UCanvasRenderTarget2D *v) { RenderTarget = v; }
 
-	// (0, 0) is top-left corner
-	UFUNCTION(BlueprintCallable)
-	void AddPoint(FIntPoint Index, FLinearColor Value);
+    // (0, 0) is top-left corner
+    UFUNCTION(BlueprintCallable)
+    void AddPoint(FIntPoint Index, FLinearColor Value);
 
-	//! Same as AddPoint but (0, 0) is in the middle of the texture
-	UFUNCTION(BlueprintCallable)
-	void AddPointCentered(FIntPoint Index, FLinearColor Value);
+    //! Same as AddPoint but (0, 0) is in the middle of the texture
+    UFUNCTION(BlueprintCallable)
+    void AddPointCentered(FIntPoint Index, FLinearColor Value);
 
-	UFUNCTION(BlueprintCallable)
-	void RemovePoint(FIntPoint Index);
+    UFUNCTION(BlueprintCallable)
+    void RemovePoint(FIntPoint Index);
 
-	UFUNCTION(BlueprintCallable)
-	FColor ReadPoint(FIntPoint p);
+    UFUNCTION(BlueprintCallable)
+    FColor ReadPoint(FIntPoint p);
 
-	UFUNCTION(BlueprintCallable)
-	FColor ReadCenteredPoint(FIntPoint p);
+    UFUNCTION(BlueprintCallable)
+    FColor ReadCenteredPoint(FIntPoint p);
 
-private:
-	class UTexture2D* CPUTexture;
+    private:
+    class UTexture2D *CPUTexture;
 };

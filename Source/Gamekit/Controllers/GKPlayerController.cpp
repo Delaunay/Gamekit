@@ -1,12 +1,14 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "GKPlayerController.h"
+#include "Gamekit/Controllers/GKPlayerController.h"
 
-#include "Characters/GKCharacter.h"
-#include "GKGameInstance.h"
-#include "GKSaveGame.h"
-#include "Items/GKItem.h"
+// Gamekit
+#include "Gamekit/Characters/GKCharacter.h"
+#include "Gamekit/GKGameInstance.h"
+#include "Gamekit/GKSaveGame.h"
+#include "Gamekit/Items/GKItem.h"
 
+// Unreal Engine
 #include "Engine/NetDriver.h"
 #include "GameFramework/GameNetworkManager.h"
 

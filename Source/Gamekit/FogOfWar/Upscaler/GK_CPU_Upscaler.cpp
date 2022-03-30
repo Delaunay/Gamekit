@@ -1,8 +1,8 @@
-#include "FogOfWar/Upscaler/GK_CPU_Upscaler.h"
+#include "Gamekit/FogOfWar/Upscaler/GK_CPU_Upscaler.h"
 
-#include "FogOfWar/GKFogOfWarVolume.h"
-
-#include "FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
 
 #define TEXEL_2x2(a, b, c, d) uint8(uint8(a) << 3 | (uint8(b) << 2) | (uint8(c) << 1) | (uint8(d)))
 

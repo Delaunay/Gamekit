@@ -1,10 +1,13 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 #pragma once
 
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityStatic.h"
+
+// Unreal Engine
 #include "Abilities/GameplayAbilityTargetActor.h"
 
-#include "Abilities/GKAbilityStatic.h"
-
+// Generated
 #include "GKAbilityTarget_Actor.generated.h"
 
 class APlayerController;

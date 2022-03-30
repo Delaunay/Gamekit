@@ -1,12 +1,15 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
+// Generated
 #include "GKUnitCharacter.generated.h"
 
 /** Simple character that is controlled by an AI by default and can be possed by a player

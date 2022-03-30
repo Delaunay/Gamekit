@@ -2,13 +2,14 @@
 
 #pragma once 
 
+// Gamekit
+#include "Gamekit/Container/Matrix.h"
 
-
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-#include "Container/Matrix.h"
-
+// Generated
 #include "GK_Upscaler_Strategy.generated.h"
 
 #define UpscaledTextureType UTexture2D

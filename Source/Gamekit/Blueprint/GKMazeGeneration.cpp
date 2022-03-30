@@ -1,33 +1,42 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Blueprint/GKMazeGeneration.h"
-#include "Container/Matrix.h"
+#include "Gamekit/Blueprint/GKMazeGeneration.h"
 
+// Gamekit
+#include "Gamekit/Container/Matrix.h"
+
+// Unreal Engine
 #include "Kismet/KismetMathLibrary.h"
 #include "Math/IntVector.h"
 #include "Math/RandomStream.h"
 
-int32_t GetY(uint64_t k) {
+int32_t GetY(uint64_t k)
+{
     uint32_t y = k & 0xffffffffUL;
     return int(y);
 }
 
-int32_t GetX(uint64_t k) {
+int32_t GetX(uint64_t k)
+{
     uint32_t y = k >> 32;
     return int(y);
 }
 
-void UGKMazeGeneration::RandomWall(int GridX, int GridY, float Density, TArray<FIntVector> &Walls) {
+void UGKMazeGeneration::RandomWall(int GridX, int GridY, float Density, TArray<FIntVector> &Walls)
+{
     int           HalfX = GridX / 2;
     int           HalfY = GridY / 2;
     FRandomStream Stream(0);
 
-    for (int i = -HalfX; i <= HalfX; i++) {
-        for (int j = -HalfY; j <= HalfY; j++) {
+    for (int i = -HalfX; i <= HalfX; i++)
+    {
+        for (int j = -HalfY; j <= HalfY; j++)
+        {
             int X = i * GridX;
             int Y = j * GridY;
 
-            if (UKismetMathLibrary::RandomFloatFromStream(Stream) < Density) {
+            if (UKismetMathLibrary::RandomFloatFromStream(Stream) < Density)
+            {
                 Walls.Emplace(X, Y, 0);
             }
         }
@@ -37,13 +46,13 @@ void UGKMazeGeneration::RandomWall(int GridX, int GridY, float Density, TArray<F
 #define VISITED 1
 #define WALL    0
 
-void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
-                                                   TArray<FIntVector> &Walls) {
+void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY, TArray<FIntVector> &Walls)
+{
     TArray<FIntVector> Stack;
 
     Stack.Reserve(GridX * GridY);
     TMatrix3D<int> Grid(GridX, GridY);
-    FRandomStream Stream(0);
+    FRandomStream  Stream(0);
 
     // Choose the initial cell,
     int X = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
@@ -53,21 +62,25 @@ void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
     Grid(Cell) = VISITED; // mark it as visited
     Stack.Push(Cell);     // push it to the stack
 
-    while (Stack.Num() > 0) {
+    while (Stack.Num() > 0)
+    {
         Cell = Stack.Pop(false); // Pop a cell from the stack and make it a current cell
 
         X = Cell.X;
         Y = Cell.Y;
 
         TArray<FIntVector> Neighbours;
-        for (auto &n: Grid.GetNeighbours(Cell)) {
-            if (Grid(Cell + n) == VISITED) {
+        for (auto &n: Grid.GetNeighbours(Cell))
+        {
+            if (Grid(Cell + n) == VISITED)
+            {
                 continue;
             }
             Neighbours.Add(n);
         }
 
-        if (Neighbours.Num() <= 0) {
+        if (Neighbours.Num() <= 0)
+        {
             continue;
         }
 
@@ -86,9 +99,12 @@ void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
 
     int HalfX = GridX / 2;
     int HalfY = GridY / 2;
-    for (int i = 0; i < GridX; i++) {
-        for (int j = 0; j < GridY; j++) {
-            if (Grid(i, j) == WALL) {
+    for (int i = 0; i < GridX; i++)
+    {
+        for (int j = 0; j < GridY; j++)
+        {
+            if (Grid(i, j) == WALL)
+            {
                 X = (i - HalfX) * GridX;
                 Y = (j - HalfY) * GridY;
                 Walls.Emplace(X, Y, 0);
@@ -98,10 +114,11 @@ void UGKMazeGeneration::RandomizedDepthFirstSearch(int GridX, int GridY,
 }
 
 // The stopping condition is probably not that great
-void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out) {
+void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out)
+{
     TMatrix3D<int> Grid(GridX, GridY);
-    FRandomStream Stream(0);
-    int           count = 0;
+    FRandomStream  Stream(0);
+    int            count = 0;
 
     {
         int  X     = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
@@ -119,7 +136,8 @@ void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out) {
     auto pending_count = count + 1;
 
     TMatrix3D<int> Pending = Grid;
-    do {
+    do
+    {
         auto Neighbours = Grid.GetNeighbours(Cell);
 
         auto i = UKismetMathLibrary::RandomIntegerInRange(0, Neighbours.Num() - 1);
@@ -127,30 +145,32 @@ void WilsonWalk(int GridX, int GridY, int Stop, TArray<FIntVector> &Out) {
         pending_count += 1;
 
         // we found a a visited square
-        if (Grid(Cell) == VISITED) {
+        if (Grid(Cell) == VISITED)
+        {
             // persist the change
             Grid  = Pending;
             count = pending_count;
 
             // Start a new walk
-            X        = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
-            Y        = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridY - 1, Stream);
-            Starting = FIntVector(X, Y, 0);
+            X              = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
+            Y              = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridY - 1, Stream);
+            Starting       = FIntVector(X, Y, 0);
             Grid(Starting) = VISITED; // mark it as visited
             Cell           = Starting;
         }
 
         // We made a loop with our own path, restart
-        if (Pending(Cell) == VISITED) {
+        if (Pending(Cell) == VISITED)
+        {
             // Reset our starting point
             Grid(Starting) = WALL;
             Pending        = Grid;
             pending_count  = count;
 
             // Start a new walk
-            X        = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
-            Y        = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridY - 1, Stream);
-            Starting = FIntVector(X, Y, 0);
+            X              = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridX - 1, Stream);
+            Y              = UKismetMathLibrary::RandomIntegerInRangeFromStream(0, GridY - 1, Stream);
+            Starting       = FIntVector(X, Y, 0);
             Grid(Starting) = VISITED; // mark it as visited
             Cell           = Starting;
             continue;

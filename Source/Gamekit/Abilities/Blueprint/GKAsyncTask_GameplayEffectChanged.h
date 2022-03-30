@@ -1,10 +1,12 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 #pragma once
 
+// Unreal Engine
 #include "AbilitySystemComponent.h"
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 
+// Generated
 #include "GKAsyncTask_GameplayEffectChanged.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FGKOnGameplayEffectAdded,
@@ -23,9 +25,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged,
                                              int32,
                                              StackCount);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, 
-                                            FActiveGameplayEffectHandle, 
-                                            GameplayHandle);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle);
 
 /**
  * Avoids to update UI values on tick

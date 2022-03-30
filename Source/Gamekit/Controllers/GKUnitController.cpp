@@ -1,11 +1,11 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
-#include "GKUnitController.h"
+#include "Gamekit/Controllers/GKUnitController.h"
 
-#include "Grid/GKHexGridPathFollowingComponent.h"
+#include "Gamekit/Grid/GKHexGridPathFollowingComponent.h"
 
 AGKUnitAIController::AGKUnitAIController(){
 	auto cmp = CreateDefaultSubobject<UGKHexGridPathFollowingComponent>(TEXT("HexPathFollowingComponent"));

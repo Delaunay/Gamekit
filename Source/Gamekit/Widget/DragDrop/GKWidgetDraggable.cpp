@@ -1,7 +1,9 @@
-#include "GKWidgetDraggable.h"
+#include "Gamekit/Widget/DragDrop/GKWidgetDraggable.h"
 
-#include "Widget/DragDrop/GKWidgetDropZone.h"
+// Gamekit
+#include "Gamekit/Widget/DragDrop/GKWidgetDropZone.h"
 
+// Unreal Engine
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
 

@@ -1,13 +1,15 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2019, Pierre Delaunay
+// Copyright (c) 2022, Pierre Delaunay
 // All rights reserved.
 
 #pragma once
 
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "AIController.h"
 
+// Generated
 #include "GKUnitController.generated.h"
 
 /**

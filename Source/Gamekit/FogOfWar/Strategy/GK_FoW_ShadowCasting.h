@@ -2,13 +2,16 @@
 
 #pragma once 
 
-#include "FogOfWar/Strategy/GK_FoW_Strategy.h"
-#include "Container/Matrix.h"
-#include "Grid/GKGrid.h"
+// Gamekit
+#include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+#include "Gamekit/Container/Matrix.h"
+#include "Gamekit/Grid/GKGrid.h"
 
+// Generated
 #include "GK_FoW_ShadowCasting.generated.h"
 
- // represents the slope Y/X as a rational number
+
+// represents the slope Y/X as a rational number
 struct FGKSlope
 {
     FGKSlope(int y, int x)

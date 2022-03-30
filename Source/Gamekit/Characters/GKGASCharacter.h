@@ -1,13 +1,16 @@
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Abilities/GKAttributeSet.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "GameplayTagContainer.h"
 
-#include "Abilities/GKAttributeSet.h"
-
+// Generated
 #include "GKGASCharacter.generated.h"
 
 

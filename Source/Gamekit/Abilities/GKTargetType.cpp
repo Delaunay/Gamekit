@@ -1,29 +1,41 @@
-// BSD 3-Clause License Copyright (c) 2021, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Abilities/GKTargetType.h"
+// Gamekit
+#include "Gamekit/Abilities/GKTargetType.h"
+#include "Gamekit/Abilities/GKGameplayAbility.h"
+#include "Gamekit/Characters/GKCharacter.h"
 
-#include "Abilities/GKGameplayAbility.h"
-#include "Characters/GKCharacter.h"
-
-void UGKTargetType::GetTargets_Implementation(AGKCharacterBase* TargetingCharacter, AActor* TargetingActor, FGameplayEventData EventData, TArray<FHitResult>& OutHitResults, TArray<AActor*>& OutActors) const
+void UGKTargetType::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                              AActor *            TargetingActor,
+                                              FGameplayEventData  EventData,
+                                              TArray<FHitResult> &OutHitResults,
+                                              TArray<AActor *> &  OutActors) const
 {
-	return;
+    return;
 }
 
-void UGKTargetType_UseOwner::GetTargets_Implementation(AGKCharacterBase* TargetingCharacter, AActor* TargetingActor, FGameplayEventData EventData, TArray<FHitResult>& OutHitResults, TArray<AActor*>& OutActors) const
+void UGKTargetType_UseOwner::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                                       AActor *            TargetingActor,
+                                                       FGameplayEventData  EventData,
+                                                       TArray<FHitResult> &OutHitResults,
+                                                       TArray<AActor *> &  OutActors) const
 {
-	OutActors.Add(TargetingCharacter);
+    OutActors.Add(TargetingCharacter);
 }
 
-void UGKTargetType_UseEventData::GetTargets_Implementation(AGKCharacterBase* TargetingCharacter, AActor* TargetingActor, FGameplayEventData EventData, TArray<FHitResult>& OutHitResults, TArray<AActor*>& OutActors) const
+void UGKTargetType_UseEventData::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                                           AActor *            TargetingActor,
+                                                           FGameplayEventData  EventData,
+                                                           TArray<FHitResult> &OutHitResults,
+                                                           TArray<AActor *> &  OutActors) const
 {
-	const FHitResult* FoundHitResult = EventData.ContextHandle.GetHitResult();
-	if (FoundHitResult)
-	{
-		OutHitResults.Add(*FoundHitResult);
-	}
-	else if (EventData.Target)
-	{
-		OutActors.Add(const_cast<AActor*>(EventData.Target));
-	}
+    const FHitResult *FoundHitResult = EventData.ContextHandle.GetHitResult();
+    if (FoundHitResult)
+    {
+        OutHitResults.Add(*FoundHitResult);
+    }
+    else if (EventData.Target)
+    {
+        OutActors.Add(const_cast<AActor *>(EventData.Target));
+    }
 }

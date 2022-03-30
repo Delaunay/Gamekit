@@ -1,9 +1,11 @@
-#include "GKGASCharacter.h"
+#include "Gamekit/Characters/GKGASCharacter.h"
 
-#include "Abilities/GKAbilitySystemComponent.h"
-#include "Abilities/GKAttributeSet.h"
-#include "Abilities/GKAbilityTypes.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilitySystemComponent.h"
+#include "Gamekit/Abilities/GKAttributeSet.h"
+#include "Gamekit/Abilities/GKAbilityTypes.h"
 
+// Unreal Engine
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 

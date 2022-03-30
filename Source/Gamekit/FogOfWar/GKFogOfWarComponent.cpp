@@ -1,18 +1,20 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "GKFogOfWarComponent.h"
-#include "GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 
-#include "FogOfWar/GKFogOfWarLibrary.h"
+// Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
+// Unreal Engine
 #include "GenericTeamAgentInterface.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UGKFogOfWarComponent::UGKFogOfWarComponent()
 {
-	// The component does not tick in itself the FogVolume will compute for everybody
-	PrimaryComponentTick.bCanEverTick = false;
+    // The component does not tick in itself the FogVolume will compute for everybody
+    PrimaryComponentTick.bCanEverTick = false;
 
     // Default Settings
     Faction            = NAME_None;
@@ -27,27 +29,31 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
     LineTickness       = 2.f;
 }
 
-void UGKFogOfWarComponent::BeginDestroy() {
+void UGKFogOfWarComponent::BeginDestroy()
+{
     auto vol = GetFogOfWarVolume();
-    if (vol != nullptr) {
+    if (vol != nullptr)
+    {
         vol->UnregisterActorComponent(this);
     }
     Super::BeginDestroy();
 }
 
-UMaterialInterface* UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial() {
+UMaterialInterface *UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial()
+{
     auto vol = GetFogOfWarVolume();
 
-    if (vol == nullptr) {
+    if (vol == nullptr)
+    {
         return nullptr;
     }
 
     return vol->GetFogOfWarPostprocessMaterial(Faction);
 }
 
-
-FName UGKFogOfWarComponent::DeduceFaction() const {
-    const IGenericTeamAgentInterface* TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
+FName UGKFogOfWarComponent::DeduceFaction() const
+{
+    const IGenericTeamAgentInterface *TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
 
     if (!TeamAgent)
     {
@@ -76,21 +82,22 @@ FName UGKFogOfWarComponent::DeduceFaction() const {
 // Called when the game starts
 void UGKFogOfWarComponent::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
     bool CollisionTweaked = false;
 
     // Find the level volume to register itself
     auto vol = GetFogOfWarVolume();
-    if (vol == nullptr) {
+    if (vol == nullptr)
+    {
         return;
     }
 
     Faction = DeduceFaction();
 
     // Tweak the collision response channel
-    for (UActorComponent* ActorComponent : GetOwner()->GetComponents())
+    for (UActorComponent *ActorComponent: GetOwner()->GetComponents())
     {
-        UPrimitiveComponent* Primitive = Cast<UPrimitiveComponent>(ActorComponent);
+        UPrimitiveComponent *Primitive = Cast<UPrimitiveComponent>(ActorComponent);
         if (Primitive && Primitive->IsCollisionEnabled())
         {
             SetCollisionFoWResponse(Primitive, vol->FogOfWarCollisionChannel);
@@ -98,35 +105,41 @@ void UGKFogOfWarComponent::BeginPlay()
         }
     }
 
-    if (!CollisionTweaked) {
+    if (!CollisionTweaked)
+    {
         UE_LOG(LogGamekit, Log, TEXT("Did not find a component to set the FoW collision"));
     }
 
     vol->RegisterActorComponent(this);
 }
 
-void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic* Material) {
+void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic *Material)
+{
     auto FoWVolume = GetFogOfWarVolume();
 
-    if (FoWVolume == nullptr) {
+    if (FoWVolume == nullptr)
+    {
         return;
     }
 
     return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material);
 }
 
-void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent* Primitive, ECollisionChannel Channel) {
-    if (BlocksVision) {
+void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent *Primitive, ECollisionChannel Channel)
+{
+    if (BlocksVision)
+    {
         // Default
         Primitive->SetCollisionResponseToChannel(Channel, ECR_Block);
     }
-    else {
+    else
+    {
         Primitive->SetCollisionResponseToChannel(Channel, ECR_Ignore);
     }
 }
 
-
-class UTexture *UGKFogOfWarComponent::GetExplorationTexture() {
+class UTexture *UGKFogOfWarComponent::GetExplorationTexture()
+{
     auto FoWVolume = GetFogOfWarVolume();
 
     if (FoWVolume == nullptr)
@@ -137,26 +150,32 @@ class UTexture *UGKFogOfWarComponent::GetExplorationTexture() {
     return FoWVolume->GetFactionExplorationTexture(Faction);
 }
 
-class UTexture* UGKFogOfWarComponent::GetVisionTexture() {
+class UTexture *UGKFogOfWarComponent::GetVisionTexture()
+{
     auto FoWVolume = GetFogOfWarVolume();
 
-    if (FoWVolume == nullptr) {
+    if (FoWVolume == nullptr)
+    {
         return nullptr;
     }
 
     return FoWVolume->GetFactionTexture(Faction);
 }
 
-AGKFogOfWarVolume* UGKFogOfWarComponent::GetFogOfWarVolume() {
-    if (FogOfWarVolume == nullptr) {
-        TArray<AActor*> OutActors;
+AGKFogOfWarVolume *UGKFogOfWarComponent::GetFogOfWarVolume()
+{
+    if (FogOfWarVolume == nullptr)
+    {
+        TArray<AActor *> OutActors;
         UGameplayStatics::GetAllActorsOfClass(GetWorld(), AGKFogOfWarVolume::StaticClass(), OutActors);
-        
-        if (OutActors.Num() != 1) {
+
+        if (OutActors.Num() != 1)
+        {
             UE_LOG(LogGamekit, Warning, TEXT("You need one FogOfWar volume per level"));
             return nullptr;
         }
-        else {
+        else
+        {
             UE_LOG(LogGamekit, Log, TEXT("Found the level FogOfWar volume"));
         }
 
@@ -165,11 +184,13 @@ AGKFogOfWarVolume* UGKFogOfWarComponent::GetFogOfWarVolume() {
     return FogOfWarVolume;
 }
 
-void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *CameraComponent) { 
+void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *CameraComponent)
+{
     UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
 }
 
-FName UGKFogOfWarComponent::GetFaction() {
+FName UGKFogOfWarComponent::GetFaction()
+{
     if (Faction == NAME_None)
     {
         Faction = DeduceFaction();

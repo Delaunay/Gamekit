@@ -1,11 +1,13 @@
-// BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #pragma once
 
-#include "CoreMinimal.h"
+// Unreal Engine
 #include "Animation/AnimNotifies/AnimNotify.h"
+#include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 
+// Generated
 #include "GKCastPointAnimNotify.generated.h"
 
 /**
@@ -13,14 +15,14 @@
  * cast point and ability activation is triggered
  */
 UCLASS()
-class GAMEKIT_API UGKCastPointAnimNotify : public UAnimNotify
+class GAMEKIT_API UGKCastPointAnimNotify: public UAnimNotify
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-public:
-	void Notify(class USkeletalMeshComponent* MeshComp, class UAnimSequenceBase* Animation) override;
+    public:
+    void Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation) override;
 
-	// Gameplay tag broadcasted to the owner of the ability
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
-	FGameplayTag CastPointEventTag;
+    // Gameplay tag broadcasted to the owner of the ability
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+    FGameplayTag CastPointEventTag;
 };
