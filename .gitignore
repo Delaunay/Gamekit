@@ -30,4 +30,5 @@ enc_temp_folder/
 Docs/Doxyfile
 Docs/_build/
 Docs/Developer/api/
+Docs/generated_api/
 
