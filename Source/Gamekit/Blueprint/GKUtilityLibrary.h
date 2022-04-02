@@ -64,15 +64,13 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
     static FVector2D GetWorldMapSize(const UObject *World);
 
-    //! Return the team enumeration
+    //! Retrive the Team info struct
     UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-    static TArray<FGKTeamInfo> GetTeams(const UObject *World);
+    static void GetTeamInfoFromName(const UObject *World, FName Name, FGKTeamInfo& TeamInfo, bool &bValid);
 
+    //! Retrive the Team inf struct
     UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-    static FGenericTeamId GetTeamFromName(const UObject *World, FName Name);
-
-    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-    static FName GetTeamName(const UObject *World, FGenericTeamId Team);
+    static void GetTeamInfo(const UObject *World, FGenericTeamId Team, FGKTeamInfo& TeamInfo, bool &bValid);
 
     // Returns the project version set in the 'Project Settings' > 'Description' section
     // of the editor 

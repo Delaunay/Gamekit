@@ -5,15 +5,18 @@
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/WorldSettings.h"
+#include "Engine/DataTable.h"
 
 // Generated
 #include "GKWorldSettings.generated.h"
 
 USTRUCT(BlueprintType)
-struct FGKTeamInfo
+struct GAMEKIT_API FGKTeamInfo: public FTableRowBase
 {
     GENERATED_BODY()
     public:
+
+    uint8_t      TeamId;
 
     //! Internal Name
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -51,13 +54,28 @@ class GAMEKIT_API AGKWorldSettings: public AWorldSettings
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level|Constants")
     FVector2D MapSize;
 
-    //! Enumeration of all the teams
-    //! This could be a map or an array
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Teams")
-    TArray<FGKTeamInfo> Teams;
-
     //! Name of the default team to assign actors if not specified
     //! This will also be used to set NoTeam
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Teams")
     FName DefaultTeam;
+
+    //! Retrieve the Teams
+    class UDataTable const* GetTeams() const;
+
+    //! Fetch Team info using TeamID
+    FGKTeamInfo const* GetTeamInfo(int Index) const;
+
+    //! Fetch Team info using 
+    FGKTeamInfo const* GetTeamInfoFromName(FName) const;
+
+    //! Build an array of TeamInfo from the DataTable
+    void BuildTeamCache() const;
+
+private:
+    //! List of all the teams in this game
+    UPROPERTY(EditDefaultsOnly, Category = "Teams")
+    class UDataTable *Teams;
+
+public:
+    mutable TArray<FGKTeamInfo*> TeamCache;
 };

@@ -65,9 +65,23 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
 
     if (PlayerStart && TeamActor)
     {
-        GK_WARNING(TEXT("Setting %s"), *PlayerStart->TeamName.ToString());
-        auto TeamId = UGKUtilityLibrary::GetTeamFromName(GetWorld(), PlayerStart->TeamName);
-        TeamActor->SetGenericTeamId(TeamId);
+        auto Settings = Cast<AGKWorldSettings const>(GetWorld()->GetWorldSettings());
+
+        if (!Settings)
+        {
+            GK_WARNING(TEXT("WorldSetting does not hold Team info"));
+            return Actor;
+        }
+        
+        auto TeamInfo = Settings->GetTeamInfoFromName(PlayerStart->TeamName);
+
+        if (!TeamInfo)
+        {
+            GK_WARNING(TEXT("Could not find Team %s"), *PlayerStart->TeamName.ToString());
+            return Actor;
+        }
+        
+         TeamActor->SetGenericTeamId(TeamInfo->TeamId);
     }
     else
     {

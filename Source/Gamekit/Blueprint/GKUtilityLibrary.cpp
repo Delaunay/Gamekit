@@ -43,71 +43,29 @@ FVector2D UGKUtilityLibrary::GetWorldMapSize(const UObject *World)
     return Settings->MapSize;
 }
 
-TArray<FGKTeamInfo> UGKUtilityLibrary::GetTeams(const UObject *World)
-{
-    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
 
-    if (!Settings)
-    { 
-        GK_WARNING(TEXT("AWorldSettings does not have team info"));
-        return TArray<FGKTeamInfo>();
+void UGKUtilityLibrary::GetTeamInfoFromName(const UObject *World, FName Name, FGKTeamInfo &TeamInfo, bool &bValid) {
+    auto WorldSetting = Cast<AGKWorldSettings>(GetWorldSetting(World));
+    auto Result = WorldSetting->GetTeamInfoFromName(Name);
+    bValid = false;
+
+    if (Result != nullptr)
+    {
+        TeamInfo = *Result;
+        bValid = true;
     }
-        
-    return Settings->Teams;
 }
 
-FGenericTeamId UGKUtilityLibrary::GetTeamFromName(const UObject *World, FName Name) {
-    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
+void UGKUtilityLibrary::GetTeamInfo(const UObject *World, FGenericTeamId Team, FGKTeamInfo &TeamInfo, bool &bValid) {
+    auto WorldSetting = Cast<AGKWorldSettings>(GetWorldSetting(World));
+    auto Result = WorldSetting->GetTeamInfo(Team);
+    bValid = false;
 
-    if (!Settings)
+    if (Result != nullptr)
     {
-        GK_WARNING(TEXT("AWorldSetting does not have team info"));
-        return FGenericTeamId();
+        TeamInfo = *Result;
+        bValid = true;
     }
-
-    if (Name == NAME_None)
-    {
-        GK_WARNING(TEXT("Team name was not specified"));
-        return FGenericTeamId();
-    }
-
-    for (int i = 0; i < Settings->Teams.Num(); ++i)
-    {
-        auto const &Info = Settings->Teams[i];
-
-        if (Info.Name == Name)
-        {
-            return FGenericTeamId(i);
-        }
-    }
-
-    GK_WARNING(TEXT("Could not find Team %s"), *Name.ToString());
-    return FGenericTeamId();
-}
-
-FName UGKUtilityLibrary::GetTeamName(const UObject *World, FGenericTeamId Team) {
-    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
-
-    if (!Settings)
-    {
-        GK_WARNING(TEXT("AWorldSetting does not have team info"));
-        return NAME_None;
-    }
-
-    if (Team.GetId() == 255)
-    {
-        GK_WARNING(TEXT("Team Id is invalid"));
-        return NAME_None;
-    }
-
-    if (Team.GetId() >= Settings->Teams.Num())
-    {
-        GK_WARNING(TEXT("Team Id is out of bounds"));
-        return NAME_None;   
-    }
-
-    auto const &Info = Settings->Teams[Team.GetId()];
-    return Info.Name;
 }
 
 FString UGKUtilityLibrary::GetProjectVersion()

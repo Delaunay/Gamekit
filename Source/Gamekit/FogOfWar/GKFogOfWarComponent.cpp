@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
 // Unreal Engine
 #include "GenericTeamAgentInterface.h"
@@ -60,23 +61,23 @@ FName UGKFogOfWarComponent::DeduceFaction() const
         return DefaultFaction;
     }
 
-    auto Factions = FogOfWarVolume->FactionEnum;
-
-    if (!Factions)
+    auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    
+    if (!Settings)
     {
         return DefaultFaction;
     }
 
-    auto TeamId      = TeamAgent->GetGenericTeamId().GetId();
-    auto FactionName = Factions->GetNameByIndex(TeamId);
+    auto TeamId   = TeamAgent->GetGenericTeamId().GetId();
+    auto TeamInfo = Settings->GetTeamInfo(TeamId);
 
-    if (FactionName == NAME_None)
+    if (!TeamInfo || TeamInfo->Name == NAME_None)
     {
         UE_LOG(LogGamekit, Warning, TEXT("TeamID %d is not inside the enum"), TeamId);
         return DefaultFaction;
     }
 
-    return FactionName;
+    return TeamInfo->Name;
 }
 
 // Called when the game starts
