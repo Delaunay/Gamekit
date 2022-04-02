@@ -58,14 +58,14 @@ FName UGKFogOfWarComponent::DeduceFaction() const
 
     if (!TeamAgent)
     {
-        return DefaultFaction;
+        return NAME_None;
     }
 
     auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
     
     if (!Settings)
     {
-        return DefaultFaction;
+        return NAME_None;
     }
 
     auto TeamId   = TeamAgent->GetGenericTeamId().GetId();
@@ -74,7 +74,7 @@ FName UGKFogOfWarComponent::DeduceFaction() const
     if (!TeamInfo || TeamInfo->Name == NAME_None)
     {
         UE_LOG(LogGamekit, Warning, TEXT("TeamID %d is not inside the enum"), TeamId);
-        return DefaultFaction;
+        return NAME_None;
     }
 
     return TeamInfo->Name;

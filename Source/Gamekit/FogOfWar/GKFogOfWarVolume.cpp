@@ -445,6 +445,12 @@ void AGKFogOfWarVolume::DrawFactionFog()
 
     for (auto FactionFog: FactionFogs)
     {
+        // Invalid faction
+        if (FactionFog.Key == NAME_None)
+        {
+            continue;
+        }
+
         Strategy->DrawFactionFog(&FactionFog.Value);
 
         if (bUpscaling)
