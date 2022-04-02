@@ -22,6 +22,9 @@ Multiplayer
 +----------------------------+----------+------------+
 
 
+GameInstance
+
+
 * ACharacter are setup for replications
 
 Common Actor Configurations

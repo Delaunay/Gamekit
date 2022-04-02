@@ -25,10 +25,16 @@ public class Gamekit : ModuleRules
 
             "Renderer",
             "Projects",
+
             // Used for ads
             "HTTP",
             "Json",
             "JsonUtilities",
+
+            // Matchmaking
+            "OnlineSubsystem",
+            "OnlineSubsystemUtils",
+
             // Defaults
             "CoreUObject",
             "Engine",
@@ -40,6 +46,7 @@ public class Gamekit : ModuleRules
             "UMG",
             "Slate",
             "SlateCore",
+
             // Particles
             "Niagara",
             //

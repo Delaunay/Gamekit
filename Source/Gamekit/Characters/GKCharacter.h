@@ -198,13 +198,16 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     bool InputsBound;
 
-    public:
+public:
+    // CheatDetection, this cannot change after spawn
+    UPROPERTY(replicated)
     FGenericTeamId Faction;
 
     // IGenericTeamAgentInterface
     void SetGenericTeamId(const FGenericTeamId &TeamID) override;
 
     /** Retrieve team identifier in form of FGenericTeamId */
+    UFUNCTION(BlueprintPure, Category = "Team")
     FGenericTeamId GetGenericTeamId() const override;
 
     /** Retrieved owner attitude toward given Other object */

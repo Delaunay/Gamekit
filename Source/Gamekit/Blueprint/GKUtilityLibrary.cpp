@@ -6,6 +6,7 @@
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/GKWorldSettings.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "ClearQuad.h"
@@ -18,6 +19,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Math/RotationMatrix.h"
 #include "Math/Rotator.h"
+
 
 AWorldSettings const *UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext)
 {
@@ -39,6 +41,73 @@ FVector2D UGKUtilityLibrary::GetWorldMapSize(const UObject *World)
         return FVector2D();
 
     return Settings->MapSize;
+}
+
+TArray<FGKTeamInfo> UGKUtilityLibrary::GetTeams(const UObject *World)
+{
+    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
+
+    if (!Settings)
+    { 
+        GK_WARNING(TEXT("AWorldSettings does not have team info"));
+        return TArray<FGKTeamInfo>();
+    }
+        
+    return Settings->Teams;
+}
+
+FGenericTeamId UGKUtilityLibrary::GetTeamFromName(const UObject *World, FName Name) {
+    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
+
+    if (!Settings)
+    {
+        GK_WARNING(TEXT("AWorldSetting does not have team info"));
+        return FGenericTeamId();
+    }
+
+    if (Name == NAME_None)
+    {
+        GK_WARNING(TEXT("Team name was not specified"));
+        return FGenericTeamId();
+    }
+
+    for (int i = 0; i < Settings->Teams.Num(); ++i)
+    {
+        auto const &Info = Settings->Teams[i];
+
+        if (Info.Name == Name)
+        {
+            return FGenericTeamId(i);
+        }
+    }
+
+    GK_WARNING(TEXT("Could not find Team %s"), *Name.ToString());
+    return FGenericTeamId();
+}
+
+FName UGKUtilityLibrary::GetTeamName(const UObject *World, FGenericTeamId Team) {
+    auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
+
+    if (!Settings)
+    {
+        GK_WARNING(TEXT("AWorldSetting does not have team info"));
+        return NAME_None;
+    }
+
+    if (Team.GetId() == 255)
+    {
+        GK_WARNING(TEXT("Team Id is invalid"));
+        return NAME_None;
+    }
+
+    if (Team.GetId() >= Settings->Teams.Num())
+    {
+        GK_WARNING(TEXT("Team Id is out of bounds"));
+        return NAME_None;   
+    }
+
+    auto const &Info = Settings->Teams[Team.GetId()];
+    return Info.Name;
 }
 
 FString UGKUtilityLibrary::GetProjectVersion()
@@ -391,7 +460,7 @@ FName UGKUtilityLibrary::GameInstanceMode(const UObject *WorldContext)
     return NAME_None;
 }
 
-FName NetModeToString(ENetMode NetMode)
+FName UGKUtilityLibrary::NetModeToString(ENetMode NetMode)
 {
     switch (NetMode)
     {
@@ -407,7 +476,7 @@ FName NetModeToString(ENetMode NetMode)
     return NAME_None;
 }
 
-FName NetRoleToString(ENetRole NetRole)
+FName UGKUtilityLibrary::NetRoleToString(ENetRole NetRole)
 {
     switch (NetRole)
     {

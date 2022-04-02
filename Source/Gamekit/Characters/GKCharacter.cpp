@@ -8,6 +8,7 @@
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Items/GKItem.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "AbilitySystemGlobals.h"
@@ -299,6 +300,11 @@ void AGKCharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Out
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AGKCharacterBase, CharacterLevel);
+
+    // this property never changes once it is set by the game mode 
+    // COND_InitialOnly
+    // but it could be modified on the user side by cheats
+    DOREPLIFETIME(AGKCharacterBase, Faction);
 }
 
 int32 AGKCharacterBase::GetCharacterLevel() const { return CharacterLevel; }
@@ -442,7 +448,10 @@ void AGKCharacterBase::MoveToLocation(FVector Loc)
     AbilitySystemComponent->TryActivateAbility_Point(Spec->Handle, Loc);
 }
 
-void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) { Faction = TeamID; }
+void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) { 
+    GK_WARNING(TEXT("%d"), TeamID.GetId());
+    Faction = TeamID; 
+}
 
 FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Faction; }
 

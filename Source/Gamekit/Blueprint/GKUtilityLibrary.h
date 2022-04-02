@@ -4,8 +4,10 @@
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilityStatic.h"
+#include "Gamekit/GKWorldSettings.h"
 
 // Unreal Engine
+#include "GenericTeamAgentInterface.h"
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 
@@ -62,8 +64,18 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
     static FVector2D GetWorldMapSize(const UObject *World);
 
+    //! Return the team enumeration
+    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
+    static TArray<FGKTeamInfo> GetTeams(const UObject *World);
+
+    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
+    static FGenericTeamId GetTeamFromName(const UObject *World, FName Name);
+
+    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
+    static FName GetTeamName(const UObject *World, FGenericTeamId Team);
+
     // Returns the project version set in the 'Project Settings' > 'Description' section
-    // of the editor
+    // of the editor 
     UFUNCTION(BlueprintPure, Category = "Project")
     static FString GetProjectVersion();
 
@@ -131,6 +143,10 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintPure, Category = "Multiplayer")
     static FString GetNetConfig(const AActor *Actor);
+
+    static FName NetModeToString(ENetMode NetMode); 
+
+    static FName NetRoleToString(ENetRole NetRole);
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
     static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext);

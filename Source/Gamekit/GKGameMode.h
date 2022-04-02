@@ -11,7 +11,25 @@
 // Generated
 #include "GKGameMode.generated.h"
 
-/** Base class for GameMode, should be blueprinted */
+/**
+ *  
+ *  Player Team assignment
+ * 
+ *  #. Method
+ * 
+ *     #. Team Assignment is done with player start
+ *     #. Once assigned player restart reuse the same set of starting point
+ *     
+ *  #. Method
+ * 
+ *      #. Team Assignment is done on player join
+ *      #. Team Assignment is done my match maker
+ * 
+ * 
+ *  1. Player are assigned to teams
+ *  2. Teams are assigned to players
+ *
+ */
 UCLASS(Blueprintable)
 class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
 {
@@ -20,6 +38,18 @@ class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
     public:
     /** Constructor */
     AGKGameModeBaseBase();
+
+    FString InitNewPlayer(
+        APlayerController * NewPlayerController,
+        const FUniqueNetIdRepl & UniqueId,
+        const FString & Options,
+        const FString & Portal) override;
+
+    //! Spawn the default pawn for a given player & set the team assignment
+    APawn* SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot) override;
+
+    //! Set the faction for a given controller
+    // void GenericPlayerInitialization(AController* Controller) override; 
 
     /** Overriding this function is not essential to this sample since this function
      *	is not being called in normal circumstances. Added just to streamline
