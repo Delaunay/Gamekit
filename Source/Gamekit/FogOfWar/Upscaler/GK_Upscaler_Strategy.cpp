@@ -3,6 +3,7 @@
 // Gamekit
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
 
 // Unreal Engine
 #include "Engine/CanvasRenderTarget2D.h"

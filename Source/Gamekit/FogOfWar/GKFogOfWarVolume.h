@@ -21,30 +21,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
-struct FGKFactionFog
-{
-    FGKFactionFog()
-    {
-        Buffer         = nullptr;
-        Exploration    = nullptr;
-        Vision         = nullptr;
-        UpScaledVision = nullptr;
-        VisibleEnemies.Reserve(128);
-        Allies.Reserve(128);
-    }
-
-    FName           Name;
-    class UTexture *Exploration;
-    class UTexture *Vision;
-    class UTexture *PreviousFrameVision;
-    class UTexture *UpScaledVision;
-    bool            bDiscrete;
-
-    TSet<class UGKFogOfWarComponent *>   VisibleEnemies;
-    TArray<class UGKFogOfWarComponent *> Allies;
-
-    void *Buffer;
-};
 
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
@@ -315,9 +291,9 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     friend class UGKFogOfWarComponent;
 
-    FGKFactionFog &GetFactionFogs(FName Faction);
+    class AGKFogOfWarActorTeam* GetFactionFogs(FName Faction);
 
-    TMap<FName, FGKFactionFog> FactionFogs;
+    TMap<FName, class AGKFogOfWarActorTeam*> FactionFogs;
 
     TArray<class UGKFogOfWarComponent *> Blocking;
 

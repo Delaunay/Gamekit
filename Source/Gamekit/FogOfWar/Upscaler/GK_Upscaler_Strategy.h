@@ -27,7 +27,7 @@ class GAMEKIT_API UGKTransformerStrategy: public UActorComponent
 
     virtual void Stop() {}
 
-    virtual void Transform(struct FGKFactionFog *FactionFog) {}
+    virtual void Transform(class AGKFogOfWarActorTeam *FactionFog) {}
 
     //! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { return nullptr; }

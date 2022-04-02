@@ -6,6 +6,8 @@
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
+
 
 // Unreal Engine
 #include "DrawDebugHelpers.h"
@@ -242,7 +244,7 @@ void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
 #endif
 }
 
-void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
+void UGKShadowCasting::DrawFactionFog(class AGKFogOfWarActorTeam *FactionFog)
 {
     // Reset
     Points.Reset();
@@ -308,7 +310,7 @@ void UGKShadowCasting::Initialize()
     }
 }
 
-void UGKShadowCasting::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKShadowCasting::DrawLineOfSight(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     auto WorldPos = c->GetOwner()->GetActorLocation();
 

@@ -4,6 +4,7 @@
 
 // Gamekit
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
 
 // Unreal Engine
 #include "CoreMinimal.h"
@@ -22,7 +23,7 @@ class GAMEKIT_API UGKExplorationTransform: public UGKTransformerStrategyCanvas
     public:
     void Initialize();
 
-    void Transform(struct FGKFactionFog *FactionFog) override;
+    void Transform(class AGKFogOfWarActorTeam *FactionFog) override;
 
     /*
     class UMaterialInstanceDynamic *GetFactionMaterialInstance(FName Name);

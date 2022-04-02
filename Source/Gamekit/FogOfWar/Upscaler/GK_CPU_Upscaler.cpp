@@ -3,6 +3,8 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
+
 
 #define TEXEL_2x2(a, b, c, d) uint8(uint8(a) << 3 | (uint8(b) << 2) | (uint8(c) << 1) | (uint8(d)))
 
@@ -123,7 +125,7 @@ void UGKCPUUpscalerStrategy::Initialize()
     UpscaledBuffer.Init(0, TileCount.X * Multiplier, TileCount.Y * Multiplier, 1);
 }
 
-void UGKCPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
+void UGKCPUUpscalerStrategy::Transform(class AGKFogOfWarActorTeam *FactionFog)
 {
     if (FactionFog->Buffer == nullptr)
     {

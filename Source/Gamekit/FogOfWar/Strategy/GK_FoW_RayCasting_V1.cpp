@@ -5,6 +5,8 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
+
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -36,7 +38,7 @@ void UGKRayCasting_Line::Initialize()
     FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X, MapSize.Y) * TexScale);
 }
 
-void UGKRayCasting_Line::DrawFactionFog(FGKFactionFog *FactionFog)
+void UGKRayCasting_Line::DrawFactionFog(class AGKFogOfWarActorTeam *FactionFog)
 {
     auto Texture = GetFactionRenderTarget(FactionFog->Name);
 
@@ -49,7 +51,7 @@ void UGKRayCasting_Line::DrawFactionFog(FGKFactionFog *FactionFog)
     }
 }
 
-void UGKRayCasting_Line::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawLineOfSight(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     if (!c->GivesVision)
     {
@@ -65,10 +67,10 @@ void UGKRayCasting_Line::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFo
     else
     {
         DrawObstructedLineOfSight(FactionFog, c);
-    }
+    } 
 }
 
-void UGKRayCasting_Line::DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawObstructedLineOfSight(class AGKFogOfWarActorTeam *FactionFog, class UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
@@ -194,7 +196,7 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
     return Texture;
 }
 
-void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c)
 {
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
@@ -237,7 +239,7 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(FGKFactionFog *Faction
 #endif
 }
 
-void UGKRayCasting_Line::DrawUnobstructedLineOfSight(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     DrawUnobstructedLineOfSight_Draw(FactionFog, c);
 

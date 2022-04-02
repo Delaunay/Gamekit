@@ -4,6 +4,7 @@
 
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -12,7 +13,7 @@
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
+void UGKCanvasUpscaler::Transform(class AGKFogOfWarActorTeam *FactionFog)
 {
     if (UpscalingMaterial == nullptr)
     {

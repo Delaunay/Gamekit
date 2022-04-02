@@ -7,7 +7,7 @@
 #include "Gamekit/Experimental/GKGameState.h"
 #include "Gamekit/GKLog.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
-#include "Gamekit/GKTeamPlayerStart.h"
+#include "Gamekit/Team/GKTeamPlayerStart.h"
 
 // Unreal Engine
 #include "GameFramework/PlayerStart.h"

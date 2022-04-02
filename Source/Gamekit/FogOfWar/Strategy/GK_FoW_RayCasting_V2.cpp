@@ -4,6 +4,7 @@
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -11,9 +12,10 @@
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
+
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 
-void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Triangle::DrawObstructedLineOfSight(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();

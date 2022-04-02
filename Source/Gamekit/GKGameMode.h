@@ -4,6 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Gamekit.h"
+#include "Gamekit/Team/GKTeamState.h"
 
 // Unreal Engine
 #include "GameFramework/GameModeBase.h"
@@ -80,4 +81,21 @@ class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
 
     UPROPERTY(BlueprintReadOnly, Category = Game)
     uint32 bGameOver : 1;
+
+    UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category=Classes)
+	TSubclassOf<AGKTeamState> TeamStateClass;
+
+    /** TeamState is used to replicate game state that is specific to teams */
+    UPROPERTY(Transient)
+    TArray<AGKTeamState*> TeamStates;
+
+    /** Helper template to returns the current TeamState casted to the desired type. */
+	template< class T >
+	T* GetTeamState(int Index) const
+	{
+        if (Index < TeamStates.Num())
+            return Cast<T>(TeamStates[Index]);
+
+        return nullptr;
+	}
 };

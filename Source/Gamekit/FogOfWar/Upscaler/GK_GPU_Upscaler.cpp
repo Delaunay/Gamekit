@@ -3,6 +3,8 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Shaders/GKUpscalingShader.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
+
 
 void UGKGPUUpscalerStrategy::Initialize()
 {
@@ -22,7 +24,7 @@ void UGKGPUUpscalerStrategy::Initialize()
     UpscalingDispatcher->BeginRendering();
 }
 
-void UGKGPUUpscalerStrategy::Transform(struct FGKFactionFog *FactionFog)
+void UGKGPUUpscalerStrategy::Transform(class AGKFogOfWarActorTeam *FactionFog)
 {
     static uint32 CallCount = 0;
 

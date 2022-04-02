@@ -14,7 +14,7 @@ Relevant classes:
 Features
 --------
 
-* Multi Faction
+* Multi Faction (Faction is driven by team assignment and the :cpp:class:`IGenericTeamAgentInterface`)
 * Multi Actors
 * Many customization & performance parameters to try
 * Automatic PostProcessingMaterial setup on the controlled pawn's camera
@@ -175,7 +175,6 @@ Comparison
 | Shadow      | * Easy to Query     |                               |
 | Casting     |                     |                               |
 +-------------+---------------------+-------------------------------+
-
 
 Exploration
 -----------

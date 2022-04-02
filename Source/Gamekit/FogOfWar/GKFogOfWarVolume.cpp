@@ -11,10 +11,13 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Upscaler/GKCanvasUpscaler.h"
 #include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
+#include "Gamekit/FogOfWar/GKFogOfWarActorTeam.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "Components/BrushComponent.h"
 #include "Components/DecalComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Kismet/KismetMaterialLibrary.h"
@@ -415,7 +418,16 @@ void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);
-    GetFactionFogs(c->GetFaction()).Allies.Add(c);
+    auto Fog = GetFactionFogs(c->GetFaction());
+    
+    if (Fog)
+    {
+        Fog->Allies.Add(c);
+    } else
+    {
+        GK_WARNING(TEXT("Coulld not add component to team"));
+    }
+    
     if (c->BlocksVision)
     {
         Blocking.Add(c);
@@ -426,7 +438,12 @@ void AGKFogOfWarVolume::UnregisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Remove(c);
-    GetFactionFogs(c->GetFaction()).Allies.Remove(c);
+    auto Fog = GetFactionFogs(c->GetFaction());
+    
+    if (Fog)
+    {
+        Fog->Allies.Remove(c);
+    }
     if (c->BlocksVision)
     {
         Blocking.Remove(c);
@@ -451,16 +468,16 @@ void AGKFogOfWarVolume::DrawFactionFog()
             continue;
         }
 
-        Strategy->DrawFactionFog(&FactionFog.Value);
+        Strategy->DrawFactionFog(FactionFog.Value);
 
         if (bUpscaling)
         {
-            Upscaler->Transform(&FactionFog.Value);
+            Upscaler->Transform(FactionFog.Value);
         }
 
         if (bExploration)
         {
-            Exploration->Transform(&FactionFog.Value);
+            Exploration->Transform(FactionFog.Value);
         }
     }
 }
@@ -468,17 +485,30 @@ void AGKFogOfWarVolume::DrawFactionFog()
 // Texture Accessors
 // -----------------
 
-UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) { return GetFactionFogs(name).Exploration; }
+UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) { 
+    auto Fog = GetFactionFogs(name);
+    return Fog ? Fog->Exploration: nullptr; 
+}
 
-UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { return GetFactionFogs(name).Vision; }
+UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { 
+     auto Fog = GetFactionFogs(name);
+    return Fog ? Fog->Vision: nullptr; 
+}
 
 UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name)
 {
+    auto Fog = GetFactionFogs(name);
+
+    if (!Fog)
+    {
+        return nullptr;
+    }
+
     if (bUpscaling)
     {
-        return GetFactionFogs(name).UpScaledVision;
+        return Fog->UpScaledVision;
     }
-    return GetFactionFogs(name).Vision;
+    return Fog->Vision;
 }
 
 // Material Parameter Collection
@@ -573,29 +603,33 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
     Super::PostEditChangeProperty(e);
 }
 
-FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+AGKFogOfWarActorTeam* AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
-    // Returning a reference here has the advantage of not requiring us to
-    // check for nills later on
-    //
-    // NB: DO NOT RETURN A COPY OF THIS
-    static FGKFactionFog None;
     if (Faction == NAME_None)
     {
-        return None;
+        return nullptr;
     }
 
     auto *Fog = FactionFogs.Find(Faction);
 
     if (Fog == nullptr)
     {
-        FGKFactionFog &FogFaction = FactionFogs.Add(Faction, FGKFactionFog());
-        FogFaction.Name           = Faction;
-        FogFaction.Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true) : nullptr;
-        FogFaction.UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
-        FogFaction.Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
+        FActorSpawnParameters SpawnInfo;
+        SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+        SpawnInfo.Owner                          = this;
+        SpawnInfo.Instigator                     = nullptr;
+        SpawnInfo.bDeferConstruction             = true;
 
-        return FogFaction;
+        AGKFogOfWarActorTeam* Team = GetWorld()->SpawnActor<AGKFogOfWarActorTeam>(SpawnInfo);
+        FactionFogs.Add(Faction, Team);
+
+        Team->Name           = Faction;
+        Team->Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true) : nullptr;
+        Team->UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
+        Team->Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
+
+        UGameplayStatics::FinishSpawningActor(Team, FTransform());
+        return Team;
     }
 
     return *Fog;

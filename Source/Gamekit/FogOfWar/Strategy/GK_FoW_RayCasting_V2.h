@@ -27,7 +27,7 @@ class GAMEKIT_API UGKRayCasting_Triangle: public UGKRayCasting_Line
     //! Even with a low trace count the field of view will still render
     //! as a circle thanks to its material
     //!
-    void DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c) override;
+    void DrawObstructedLineOfSight(class AGKFogOfWarActorTeam *FactionFog, UGKFogOfWarComponent *c) override;
 
     UPROPERTY(Transient)
     TArray<FCanvasUVTri> Triangles;
