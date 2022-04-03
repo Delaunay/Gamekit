@@ -6,6 +6,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/WorldSettings.h"
 #include "Engine/DataTable.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKWorldSettings.generated.h"
@@ -16,7 +17,7 @@ struct GAMEKIT_API FGKTeamInfo: public FTableRowBase
     GENERATED_BODY()
     public:
 
-    uint8_t      TeamId;
+    FGenericTeamId TeamId;
 
     //! Internal Name
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -59,9 +60,6 @@ class GAMEKIT_API AGKWorldSettings: public AWorldSettings
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Teams")
     FName DefaultTeam;
 
-    //! Retrieve the Teams
-    class UDataTable const* GetTeams() const;
-
     //! Fetch Team info using TeamID
     FGKTeamInfo const* GetTeamInfo(int Index) const;
 
@@ -70,6 +68,11 @@ class GAMEKIT_API AGKWorldSettings: public AWorldSettings
 
     //! Build an array of TeamInfo from the DataTable
     void BuildTeamCache() const;
+
+    TArray<FGKTeamInfo *> const &GetTeams() const { 
+        BuildTeamCache();
+        return TeamCache;
+}
 
 private:
     //! List of all the teams in this game

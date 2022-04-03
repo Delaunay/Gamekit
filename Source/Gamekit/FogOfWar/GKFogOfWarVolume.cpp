@@ -27,6 +27,15 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "TimerManager.h"
 
+
+
+void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(AGKFogOfWarVolume, TeamFogs);
+}
+
+
 AGKFogOfWarVolume::AGKFogOfWarVolume()
 {
     PrimaryActorTick.bCanEverTick = true;
@@ -114,6 +123,8 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     VisionDrawingStrategy = UGKShadowCasting::StaticClass();
 
     bReady = false;
+    bReplicates = true;
+    bAlwaysRelevant = true;
 }
 
 void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
@@ -299,10 +310,6 @@ void AGKFogOfWarVolume::InitializeStrategy()
                                                              ));
 
     Strategy->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Strategy->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::InitializeUpscaler()
@@ -324,10 +331,6 @@ void AGKFogOfWarVolume::InitializeUpscaler()
                                                                 ));
 
     Upscaler->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Upscaler->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::InitializeExploration()
@@ -349,10 +352,6 @@ void AGKFogOfWarVolume::InitializeExploration()
                                                                    ));
 
     Exploration->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Exploration->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -393,6 +392,17 @@ void AGKFogOfWarVolume::BeginPlay()
     InitializeExploration();
     InitializeUpscaler();
 
+    // All our strategies got created
+    // create the team actor for replication
+    if (GetNetMode() != ENetMode::NM_Client)
+    {
+        auto WorldSettings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+        for (auto const &TeamInfo: WorldSettings->GetTeams())
+        {
+            CreateNewTeam(TeamInfo);
+        }
+    }
+
     bReady = true;
 
     // Start drawing the fog
@@ -416,9 +426,15 @@ void AGKFogOfWarVolume::BeginPlay()
 
 void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
+    // clients cannot register components
+    if (GetNetMode() == NM_Client)
+    {
+        return;
+    }
+
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);
-    auto Fog = GetFactionFogs(c->GetFaction());
+    auto Fog = GetFactionFogs(c->GetTeam());
     
     if (Fog)
     {
@@ -438,7 +454,7 @@ void AGKFogOfWarVolume::UnregisterActorComponent(UGKFogOfWarComponent *c)
 {
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Remove(c);
-    auto Fog = GetFactionFogs(c->GetFaction());
+    auto Fog = GetFactionFogs(c->GetTeam());
     
     if (Fog)
     {
@@ -460,24 +476,18 @@ void AGKFogOfWarVolume::DrawFactionFog()
     // We are drawing to the targets we cannot change the fog components right now
     FScopeLock ScopeLock(&Mutex);
 
-    for (auto FactionFog: FactionFogs)
+    for (auto FactionFog: TeamFogs)
     {
-        // Invalid faction
-        if (FactionFog.Key == NAME_None)
-        {
-            continue;
-        }
-
-        Strategy->DrawFactionFog(FactionFog.Value);
+        Strategy->DrawFactionFog(FactionFog);
 
         if (bUpscaling)
         {
-            Upscaler->Transform(FactionFog.Value);
+            Upscaler->Transform(FactionFog);
         }
 
         if (bExploration)
         {
-            Exploration->Transform(FactionFog.Value);
+            Exploration->Transform(FactionFog);
         }
     }
 }
@@ -598,41 +608,40 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
         return;
     }
 
-    UE_LOG(LogGamekit, Warning, TEXT("Property changed %s"), *PropertyName.ToString());
+    GK_WARNING(TEXT("Property changed %s"), *PropertyName.ToString());
     UpdateVolumeSizes();
     Super::PostEditChangeProperty(e);
 }
 
-AGKFogOfWarActorTeam* AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+
+AGKFogOfWarActorTeam* AGKFogOfWarVolume::CreateNewTeam(FGKTeamInfo* TeamInfo) {
+    FActorSpawnParameters SpawnInfo;
+    SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    SpawnInfo.Owner                          = this;
+    SpawnInfo.Instigator                     = nullptr;
+    SpawnInfo.bDeferConstruction             = true;
+
+    AGKFogOfWarActorTeam* Team = GetWorld()->SpawnActor<AGKFogOfWarActorTeam>(SpawnInfo);
+    TeamFogs.Add(Team);
+
+    Team->FogOfWar       = this;
+    Team->Name           = TeamInfo->Name;
+    Team->Vision         = Strategy ? Strategy->GetFactionTexture(TeamInfo->Name, true) : nullptr;
+    Team->UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(TeamInfo->Name, true) : nullptr;
+    Team->Exploration    = Exploration ? Exploration->GetFactionTexture(TeamInfo->Name, true) : nullptr;
+
+    UGameplayStatics::FinishSpawningActor(Team, FTransform());
+    return Team;
+}
+
+AGKFogOfWarActorTeam* AGKFogOfWarVolume::GetFactionFogs(FGenericTeamId Team)
 {
-    if (Faction == NAME_None)
-    {
-        return nullptr;
+    if (Team.GetId() >= TeamFogs.Num())
+    { 
+        return nullptr; 
     }
 
-    auto *Fog = FactionFogs.Find(Faction);
-
-    if (Fog == nullptr)
-    {
-        FActorSpawnParameters SpawnInfo;
-        SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-        SpawnInfo.Owner                          = this;
-        SpawnInfo.Instigator                     = nullptr;
-        SpawnInfo.bDeferConstruction             = true;
-
-        AGKFogOfWarActorTeam* Team = GetWorld()->SpawnActor<AGKFogOfWarActorTeam>(SpawnInfo);
-        FactionFogs.Add(Faction, Team);
-
-        Team->Name           = Faction;
-        Team->Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true) : nullptr;
-        Team->UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
-        Team->Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
-
-        UGameplayStatics::FinishSpawningActor(Team, FTransform());
-        return Team;
-    }
-
-    return *Fog;
+    return TeamFogs[Team.GetId()];
 }
 
 void CopyTexture(UObject *World, class UCanvasRenderTarget2D *Dest, class UTexture *Src)

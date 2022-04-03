@@ -4,11 +4,11 @@
 
 // Gamekit
 #include "Gamekit/Gamekit.h"
+#include "Gamekit/Team/GKTeamAgentMixin.h"
 
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Info.h"
-#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKFogOfWarActorTeam.generated.h"
@@ -34,6 +34,7 @@ public:
 
 	FGenericTeamId  TeamId;
 	FName           Name;
+	class AGKFogOfWarVolume* FogOfWar;
     class UTexture *Exploration;
     class UTexture *Vision;
     class UTexture *PreviousFrameVision;
@@ -43,28 +44,14 @@ public:
 
 	// Replicated only when relevant i.e when client PC is an ally
 	//
-	// UPROPERTY(replicated)
-    TSet<class UGKFogOfWarComponent *>   VisibleEnemies;
+	UPROPERTY(Replicated)
+    TArray<class UGKFogOfWarComponent *> VisibleEnemies;
 
-	UPROPERTY(replicated)
+	UPROPERTY(Replicated, ReplicatedUsing=OnRep_Allies)
     TArray<class UGKFogOfWarComponent *> Allies;
 
-	// Team Interface
-	// --------------
-	
-	/** Assigns Team Agent to given TeamID */
-	virtual void SetGenericTeamId(const FGenericTeamId& TeamID) {
-		TeamId = TeamID;
-	}
-	
-	/** Retrieve team identifier in form of FGenericTeamId */
-	virtual FGenericTeamId GetGenericTeamId() const { return TeamId; }
+	UFUNCTION()
+	void OnRep_Allies();
 
-	/** Retrieved owner attitude toward given Other object */
-	virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const
-	{ 
-		const IGenericTeamAgentInterface* OtherTeamAgent = Cast<const IGenericTeamAgentInterface>(&Other);
-		return OtherTeamAgent ? FGenericTeamId::GetAttitude(GetGenericTeamId(), OtherTeamAgent->GetGenericTeamId())
-			: ETeamAttitude::Neutral;
-	}
+	DEFINE_TEAM_AGENT()
 }; 

@@ -59,6 +59,9 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     FName GetFaction();
 
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    FGenericTeamId GetTeam() const;
+
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UMaterialInterface *GetFogOfWarPostprocessMaterial();

@@ -9,11 +9,11 @@
 #include "Gamekit/Characters/GKUnitStatic.h"
 #include "Gamekit/Gamekit.h"
 #include "Gamekit/Items/GKInventoryInterface.h"
+#include "Gamekit/Team/GKTeamAgentMixin.h"
 
 // Unreal Engine
 #include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
-#include "GenericTeamAgentInterface.h"
 #include "UObject/ScriptInterface.h"
 
 // Generated
@@ -52,6 +52,8 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
                                     public IGKSelectableInterface
 {
     GENERATED_BODY()
+
+    DEFINE_TEAM_AGENT()
 
     public:
     // Constructor and overrides
@@ -197,22 +199,4 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     TMap<FGKAbilitySlot, FGameplayAbilitySpec> AbilitySpecs;
 
     bool InputsBound;
-
-public:
-    // CheatDetection, this cannot change after spawn
-    UPROPERTY(replicated)
-    FGenericTeamId Faction;
-
-    // IGenericTeamAgentInterface
-    void SetGenericTeamId(const FGenericTeamId &TeamID) override;
-
-    /** Retrieve team identifier in form of FGenericTeamId */
-    UFUNCTION(BlueprintPure, Category = "Team")
-    FGenericTeamId GetGenericTeamId() const override;
-
-    /** Retrieved owner attitude toward given Other object */
-    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor &Other) const override;
-
-    UFUNCTION(BlueprintCallable, Category = "FriendOrFoe")
-    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor *Other) const { return GetTeamAttitudeTowards(*Other); }
 };

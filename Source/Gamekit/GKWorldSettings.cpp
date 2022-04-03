@@ -15,7 +15,7 @@ void AGKWorldSettings::BuildTeamCache() const {
         for (auto RowMapIter(Teams->GetRowMap().CreateConstIterator()); RowMapIter; ++RowMapIter)
 	    {
             FGKTeamInfo* Info = reinterpret_cast<FGKTeamInfo*>(RowMapIter.Value());
-            Info->TeamId = i;
+            Info->TeamId = FGenericTeamId(i);
             TeamCache.Add(Info);
             i += 1;
         }
@@ -25,11 +25,6 @@ void AGKWorldSettings::BuildTeamCache() const {
     {
         GK_WARNING(TEXT("Team count changed at runtime!"));
     }
-}
-
-class UDataTable const *AGKWorldSettings::GetTeams() const { 
-    BuildTeamCache();
-    return Teams;
 }
 
 FGKTeamInfo const *AGKWorldSettings::GetTeamInfo(int Index) const {

@@ -190,6 +190,18 @@ void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *Camera
     UGKFogOfWarLibrary::SetCameraPostprocessMaterial(FogOfWarVolume, Faction, CameraComponent);
 }
 
+
+FGenericTeamId UGKFogOfWarComponent::GetTeam() const{
+    const IGenericTeamAgentInterface *TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
+
+    if (!TeamAgent)
+    {
+        return FGenericTeamId();
+    }
+
+    return TeamAgent->GetGenericTeamId();
+}
+
 FName UGKFogOfWarComponent::GetFaction()
 {
     return Faction;

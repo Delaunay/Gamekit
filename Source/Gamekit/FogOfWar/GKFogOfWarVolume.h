@@ -13,11 +13,10 @@
 #include "GameFramework/Volume.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKFogOfWarVolume.generated.h"
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
@@ -289,13 +288,21 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     //! Unregister the actor to the fog of war volume
     void UnregisterActorComponent(class UGKFogOfWarComponent *c);
 
-    friend class UGKFogOfWarComponent;
+    friend class UGKFogOfWarComponent; 
 
-    class AGKFogOfWarActorTeam* GetFactionFogs(FName Faction);
+    class AGKFogOfWarActorTeam* GetFactionFogs(FGenericTeamId Team);
 
-    TMap<FName, class AGKFogOfWarActorTeam*> FactionFogs;
+    class AGKFogOfWarActorTeam* CreateNewTeam(struct FGKTeamInfo* TeamInfo);
 
+    UPROPERTY(Transient, Replicated)
+    TArray<class AGKFogOfWarActorTeam*> TeamFogs;
+
+    // FIXME: find al the blocking component around the 
+    // the actor and add them then
+    UPROPERTY(Transient, Replicated)
     TArray<class UGKFogOfWarComponent *> Blocking;
+
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
     protected:
     void InitializeStrategy();
