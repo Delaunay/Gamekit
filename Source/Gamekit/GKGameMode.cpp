@@ -4,7 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Controllers/GKPlayerController.h"
-#include "Gamekit/Experimental/GKGameState.h"
+#include "Gamekit/States/GKGameState.h"
 #include "Gamekit/GKLog.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/GKTeamPlayerStart.h"
@@ -55,13 +55,9 @@ FString AGKGameModeBaseBase::InitNewPlayer(
     return ErrorMessage;
 }
 
-APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot)
-{
+void AGKGameModeBaseBase::SetGenericTeamIdFromPlayerStart(AController *NewPlayer, AActor *StartSpot) {
     auto PlayerStart = Cast<AGKTeamPlayerStart>(StartSpot);
-
-    auto Actor = AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
-
-    auto TeamActor = Cast<IGenericTeamAgentInterface>(Actor);
+    auto TeamActor = Cast<IGenericTeamAgentInterface>(NewPlayer);
 
     if (PlayerStart && TeamActor)
     {
@@ -70,7 +66,7 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
         if (!Settings)
         {
             GK_WARNING(TEXT("WorldSetting does not hold Team info"));
-            return Actor;
+            return;
         }
         
         auto TeamInfo = Settings->GetTeamInfoFromName(PlayerStart->TeamName);
@@ -78,7 +74,7 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
         if (!TeamInfo)
         {
             GK_WARNING(TEXT("Could not find Team %s"), *PlayerStart->TeamName.ToString());
-            return Actor;
+            return;
         }
         
          TeamActor->SetGenericTeamId(TeamInfo->TeamId);
@@ -91,6 +87,11 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
         if (!TeamActor)
             GK_WARNING(TEXT("Player Pawn does not implement IGenericTeamAgentInterface"));
     }
+}
 
-    return Actor;
+APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot)
+{
+    SetGenericTeamIdFromPlayerStart(NewPlayer, StartSpot);
+
+    return AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
 }

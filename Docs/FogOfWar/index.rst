@@ -23,6 +23,7 @@ Features
 * Sample post process materials
 * Customizable Components
 * Support spectator fog (multi fog view)
+* Replication friendly
 
 
 .. image :: /_static/FogOFWarOverview.PNG
@@ -53,6 +54,15 @@ In a nutshell
    2. Update materials to make sure out of sight units are not rendered.
 
    3. Configure the actor' sight settings
+
+Multiplayer
+-----------
+
+* ``AActor::IsNetRelevantFor`` needs to be update to only flag actor as relevant if visible
+* The set of visible units is produced by the server and replicated to the clients.
+  Clients can only access the visible set of their faction.
+* Spectators receive all the visible sets
+
 
 
 Versions

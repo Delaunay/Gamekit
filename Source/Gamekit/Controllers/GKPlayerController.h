@@ -8,13 +8,22 @@
 // Unreal Engine
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
+#include "GenericTeamAgentInterface.h"
+
 
 // Generated
 #include "GKPlayerController.generated.h"
 
-/** Base class for PlayerController, should be blueprinted */
+/** Base class for PlayerController, should be blueprinted 
+ * The controller is the one with the Team Agent interface because it is the top
+ * level object we see when `IsNetRelevantFor` is called, which makes it easy for us
+ * to replicate based on the Team attitude.
+ * 
+ * We can also change pawn teamid on possession
+ */
 UCLASS(Blueprintable)
-class GAMEKIT_API AGKPlayerController: public APlayerController
+class GAMEKIT_API AGKPlayerController: public APlayerController, 
+                                       public IGenericTeamAgentInterface
 {
     GENERATED_BODY()
 
@@ -38,4 +47,31 @@ class GAMEKIT_API AGKPlayerController: public APlayerController
     public:
     // Sets up Client info for GAS
     void AcknowledgePossession(APawn *P) override;
+
+    // Set Generic Team ID on possession
+    void ServerAcknowledgePossession_Implementation(APawn *P) override;
+
+    // Replication
+    // -----------
+
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
+     
+    // IGenericTeamAgentInterface
+    // --------------------------
+    public:
+    UPROPERTY(BlueprintReadOnly, Replicated, ReplicatedUsing=OnRep_TeamChange)
+    FGenericTeamId TeamId;
+    
+    UFUNCTION()
+    void OnRep_TeamChange();
+
+    // Called when the controller team changed
+    virtual void OnTeamChange();
+    
+public:
+    /** Assigns Team Agent to given TeamID */
+	void SetGenericTeamId(const FGenericTeamId& TeamID) override;
+	
+	/** Retrieve team identifier in form of FGenericTeamId */
+	FGenericTeamId GetGenericTeamId() const override { return TeamId; }
 };

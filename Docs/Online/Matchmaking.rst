@@ -1,17 +1,43 @@
-Matchmaking
+Competitive
 ===========
 
+* Small number of players on a single instance (10-100)
+* Teams of players (2-10)
+* Game instance is short lived (20-60 minutes)
+* Players are grouped by skill to provide interesting matches (i.e no stomp)
+* Map/Level is small (all assets are loaded, no streaming)
+* Latency is critical (10-100ms) (< 50ms LAN, < 100 ms Ranked)
+  * 30 FPS is one frame every 30 ms
+* Avoid latency spikes at all cost
 
-.. image :: /_static/Matchmaking.png
+System Overview
+^^^^^^^^^^^^^^^
 
+.. image :: /_static/Competitive/CompetitiveOverview.png
 
-Skill Distribution
-^^^^^^^^^^^^^^^^^^
+#. Client start matchaming by sending a matchmaking request to the game coordinator
+#. Game coordinator group players of similar skill into teams
+#. Game coordinator find an empty server instance
+#. Game coordinator create a session on the server instance
+#. Game coordinator reply to clients with the only session to join
+#. Client join the online session
+#. Dedicated server update player stats
+
+The game coordinator
+^^^^^^^^^^^^^^^^^^^^
 
 .. image :: /_static/SkilDistribution.png
 
+Its goal is to group players with similar skill, to provide interesting games;
+To group players it needs first to estimate skill of each players using a rating system.
+
+Its secondary goal is to load balance session on different instances.
+Typically servers will be able to handle multiple instance of a dedicated server,
+but spliting the load accross many servers will improve the experience (lower latency).
+
+
 Ranking Systems
-^^^^^^^^^^^^^^^
+---------------
 
 Goals:
 
@@ -59,7 +85,7 @@ You can tweak the ranking algorithm to make larger updates at the beginning.
 
 
 Elo Systems
------------
++++++++++++
 
 .. note::
 
@@ -67,7 +93,7 @@ Elo Systems
 
 
 Updates
-~~~~~~~
+*******
 
 .. code-block::
 
@@ -124,7 +150,7 @@ to the high skill stage.
 
 
 Issues
-~~~~~~
+******
 
 * Inflation/Deflation: Elo has a fixed amount of points in its pool (win-loss) is a zero sum game so inflation/deflation should not happen
    * New players add new points in the Elo pool (inflation)
@@ -135,13 +161,13 @@ Issues
 
 
 Glicko-2
---------
+++++++++
 
 The `paper <http://www.glicko.net/glicko/glicko2.pdf>`_ goes in great details how to implement such a ranking system.
 
 
 Initialization
-~~~~~~~~~~~~~~
+**************
 
 * Starts with calibration matches (n=~10)
 * Unrated player starts with
@@ -161,8 +187,8 @@ Initialization
      phi = RD / 173.7178
 
 
-TrueSkill
----------
+TrueSkill Like
+++++++++++++++
 
 Baysian Generative Model for skill
 
@@ -227,7 +253,7 @@ Baysian Generative Model for skill
 
 
 Concerns
-^^^^^^^^
+--------
 
 * Alternate accounts; as the score of player increase match becomes fair
   Some player will be actively looking for easier matches by creating
@@ -272,6 +298,21 @@ Concerns
 
 * Party queuing, friends queuing together have a greater skill than
   a simple sum of their solo skills.
+
+
+Team Assignment
+^^^^^^^^^^^^^^^
+
+* Assigned using :cpp:class:`AGKTeamPlayerStart` simple method the player start is selected at random
+  by the :cpp:class:`AGameMode`; it extract the team from the player start and assign it
+  to the pawn.
+
+* Assigned by the matchmaker: optimal for balanced games, so teams skill can be as close
+  as possible
+
+
+TODO
+
 
 References
 ^^^^^^^^^^

@@ -134,6 +134,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
         UE_LOG(LogGamekit, Warning, TEXT("Fog of war vision is null"));
     }
 
+    /*
     auto PreviousFoWView = Strategy->GetPreviousFrameFactionTexture(name);
     if (PreviousFoWView != nullptr)
     {
@@ -143,6 +144,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     {
         UE_LOG(LogGamekit, Warning, TEXT("Previous Fog of war vision is null"));
     }
+    */
 
     auto FoWExploration = GetFactionExplorationTexture(name);
     if (FoWExploration != nullptr)

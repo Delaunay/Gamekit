@@ -11,6 +11,7 @@
 // Unreal Engine
 #include "Engine/NetDriver.h"
 #include "GameFramework/GameNetworkManager.h"
+#include "Net/UnrealNetwork.h"
 
 AGKPlayerController::AGKPlayerController() {}
 
@@ -32,8 +33,43 @@ void AGKPlayerController::AcknowledgePossession(APawn *P)
     }
 }
 
+void AGKPlayerController::ServerAcknowledgePossession_Implementation(APawn *P) {
+    Super::ServerAcknowledgePossession_Implementation(P);
+
+    // Possessed Pawn get the same TeamId
+    auto Agent = Cast<IGenericTeamAgentInterface>(P);
+    if (Agent)
+    {
+        Agent->SetGenericTeamId(GetGenericTeamId());
+    }
+}
+
 void AGKPlayerController::GetNetworkMetrics()
 {
     auto NetDriver = GetWorld()->GetNetDriver();
     // NetDriver->DrawNetDriverDebug
+}
+
+
+void AGKPlayerController::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(AGKPlayerController, TeamId);
+}
+
+// IGenericTeamAgentInterface
+// --------------------------
+
+void AGKPlayerController::OnRep_TeamChange() { OnTeamChange();}
+
+void AGKPlayerController::OnTeamChange() {}
+
+void AGKPlayerController::SetGenericTeamId(const FGenericTeamId& TeamID) { 
+    // Only authority can change TeamID
+    if (GetNetMode() == ENetMode::NM_Client)
+    {
+        return;
+    }
+
+    TeamId = TeamID;
+    OnTeamChange();
 }

@@ -1,7 +1,11 @@
 Dedicated Servers
 =================
 
+Security
+--------
 
+Monitoring
+----------
 
 References
 ----------

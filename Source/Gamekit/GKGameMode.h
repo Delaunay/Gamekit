@@ -80,4 +80,6 @@ class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
 
     UPROPERTY(BlueprintReadOnly, Category = Game)
     uint32 bGameOver : 1;
+
+    void SetGenericTeamIdFromPlayerStart(AController *NewPlayer, AActor *StartSpot);
 };

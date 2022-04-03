@@ -28,6 +28,7 @@ struct FGKFactionFog
         Buffer         = nullptr;
         Exploration    = nullptr;
         Vision         = nullptr;
+        PreviousFrameVision = nullptr;
         UpScaledVision = nullptr;
         VisibleEnemies.Reserve(128);
         Allies.Reserve(128);

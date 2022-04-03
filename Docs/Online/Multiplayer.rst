@@ -71,6 +71,13 @@ Character will move beyond their target, or the actions of other players will no
 Code Snippet
 ~~~~~~~~~~~~
 
+.. code-block:: cpp
+
+   HasAuthority           = GetNetMode() != ENetMode::NM_Client
+   ShouldShowUI           = GetNetMode() != ENetMode::NM_DedicatedServer
+   AcceptRemoteConnection = GetNetMode() == NM_DedicatedServer || GetNetMode() == NM_ListenServer
+
+
 Server Only code blocks
 -----------------------
 
@@ -228,6 +235,26 @@ to display warning to users when network is being slow.
 +--------+--------------------------------+
 | bool   | DebugRelevantActors;           |
 +--------+--------------------------------+
+
+
+Replication
+-----------
+
+.. code-block:: cpp
+
+   #include "Net/Core/PushModel/PushModel.h"
+
+	FDoRepLifetimeParams SharedParams;
+	SharedParams.bIsPushBased = true;
+
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, Score, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bIsSpectator, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bOnlySpectator, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bFromPreviousLevel, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, StartTime, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, PlayerNamePrivate, SharedParams);
+
+   MARK_PROPERTY_DIRTY_FROM_NAME(APlayerState, Score, this);
 
 Testing
 --------

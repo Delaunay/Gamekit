@@ -14,6 +14,8 @@
 #include "AbilitySystemGlobals.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Net/UnrealNetwork.h"
+
 
 AGKCharacterBase::AGKCharacterBase()
 {
@@ -304,7 +306,7 @@ void AGKCharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Out
     // this property never changes once it is set by the game mode 
     // COND_InitialOnly
     // but it could be modified on the user side by cheats
-    DOREPLIFETIME(AGKCharacterBase, Faction);
+    DOREPLIFETIME(AGKCharacterBase, Team);
 }
 
 int32 AGKCharacterBase::GetCharacterLevel() const { return CharacterLevel; }
@@ -449,31 +451,12 @@ void AGKCharacterBase::MoveToLocation(FVector Loc)
 }
 
 void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) { 
-    GK_WARNING(TEXT("%d"), TeamID.GetId());
-    Faction = TeamID; 
+    // Only authority can change the TeamID    
+    if (GetNetMode() == ENetMode::NM_Client)
+        return;
+
+    Team = TeamID; 
 }
 
-FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Faction; }
+FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Team; }
 
-ETeamAttitude::Type AGKCharacterBase::GetTeamAttitudeTowards(const AActor &Other) const
-{
-    const IGenericTeamAgentInterface *OtherTeamAgent = Cast<const IGenericTeamAgentInterface>(&Other);
-
-    // We have no information on that guy so assume neutral
-    if (!OtherTeamAgent)
-    {
-        return ETeamAttitude::Neutral;
-    }
-
-    // No team means everybody is neutral with everybody
-    // so 2 people with no teams are neutral with each other not allies
-    auto MyTeam    = GetGenericTeamId();
-    auto OtherTeam = OtherTeamAgent->GetGenericTeamId();
-
-    if (MyTeam == FGenericTeamId::NoTeam || OtherTeam == FGenericTeamId::NoTeam)
-    {
-        return ETeamAttitude::Neutral;
-    }
-
-    return FGenericTeamId::GetAttitude(MyTeam, OtherTeam);
-}

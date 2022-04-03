@@ -192,10 +192,5 @@ void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *Camera
 
 FName UGKFogOfWarComponent::GetFaction()
 {
-    if (Faction == NAME_None)
-    {
-        Faction = DeduceFaction();
-    }
-
     return Faction;
 }
