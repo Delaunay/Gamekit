@@ -28,6 +28,7 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
     InnerRadius        = 10.f;
     UnobstructedVision = false;
     LineTickness       = 2.f;
+    bWasRegistered = false;
 }
 
 void UGKFogOfWarComponent::BeginDestroy()
@@ -93,8 +94,6 @@ void UGKFogOfWarComponent::BeginPlay()
         return;
     }
 
-    Faction = DeduceFaction();
-
     // Tweak the collision response channel
     for (UActorComponent *ActorComponent: GetOwner()->GetComponents())
     {
@@ -111,7 +110,36 @@ void UGKFogOfWarComponent::BeginPlay()
         UE_LOG(LogGamekit, Log, TEXT("Did not find a component to set the FoW collision"));
     }
 
-    vol->RegisterActorComponent(this);
+    RegisterComponent();
+}
+
+bool UGKFogOfWarComponent::RegisterComponent() {
+    // only server can register fog of war components
+    // Even if the client registered the components itself
+    // it is not going to receive the replication updates
+    // FIXME
+    // if (GetNetMode() == ENetMode::NM_Client)
+    //    return;
+
+    auto Volume = GetFogOfWarVolume();
+
+    if (Faction == NAME_None) 
+    {
+        Faction = DeduceFaction();
+    }
+
+    if (Faction != NAME_None && Volume)
+    {
+        if (bWasRegistered)
+        {
+            Volume->UnregisterActorComponent(this);
+        }
+
+        Volume->RegisterActorComponent(this);
+        bWasRegistered = true;
+    }
+
+    return bWasRegistered;
 }
 
 void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic *Material)

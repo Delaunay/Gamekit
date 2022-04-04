@@ -3,6 +3,8 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/Utilities/GKBitFlag.h"
+
 
 UGKFogOfWarStrategy::UGKFogOfWarStrategy() {}
 
@@ -71,6 +73,8 @@ void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      Factio
         return;
     }
 
+    // FIXME
+    // SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GeTeamId());
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
 
     // Avoid multiple broadcast per target
@@ -80,3 +84,4 @@ void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      Factio
         SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
+ 

@@ -40,7 +40,22 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     // Unregister the component
     virtual void BeginDestroy() override;
 
+    //! Attempts to register the component
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    bool RegisterComponent();
+
     public:
+    bool bWasRegistered;
+
+    // True if the unit is currently visible by the client PlayerController
+    // this value is on the server side, the unit can be seen by many teams
+    // This represent a bitflag
+    // 
+    // IsSet(Visible, GenericTeamId.GetId())
+    // SetFlag(Visible, GenericTeamId.GetId())
+    // 
+    uint32 TeamVisibility;
+
     //! Default faction the unit will fallbacl to if it does not implement IGenericTeamAgentInterface
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     FName DefaultFaction;

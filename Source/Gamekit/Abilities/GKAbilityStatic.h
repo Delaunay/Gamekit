@@ -7,6 +7,7 @@
 #include "Gamekit/GKAssetManager.h"
 #include "Gamekit/Gamekit.h"
 #include "Gamekit/Projectiles/GKProjectile.h"
+#include "Gamekit/Utilities/GKBitFlag.h"
 
 // Unreal Engine
 #include "Abilities/GameplayAbilityTargetActor.h"
@@ -41,23 +42,7 @@ enum class EGK_AbilityBehavior : uint8
     Toggle       UMETA(DisplayName = "Toggle"),       // Ability is Active or not
 };
 
-template <typename Enum>
-bool IsSet(uint32 Value, Enum Flag)
-{
-    return (Value & (1 << static_cast<uint32>(Flag))) > 0;
-}
 
-template <typename Enum>
-uint32 SetFlag(uint32 Value, Enum Flag)
-{
-    return (Value | (1 << static_cast<uint32>(Flag)));
-}
-
-template <typename Enum>
-uint32 RemoveFlag(uint32 Value, Enum Flag)
-{
-    return (Value & ~(1 << static_cast<uint32>(Flag)));
-}
 
 // This is create because we cannot use include AGKAbilityTarget_Actor
 // in AbilityStatic

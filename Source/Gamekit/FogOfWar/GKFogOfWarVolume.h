@@ -112,7 +112,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! class used to draw the vision
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
-    TSubclassOf<UGKFogOfWarStrategy> VisionDrawingStrategy;
+    TSubclassOf<class UGKFogOfWarStrategy> VisionDrawingStrategy;
 
     //! Used to control the size of the underlying texture given the terrain size
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")

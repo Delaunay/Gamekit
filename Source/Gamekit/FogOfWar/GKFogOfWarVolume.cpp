@@ -115,6 +115,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
 
 void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
 {
+    ensure(name != NAME_None);
 
     UE_LOG(LogGamekit, Log, TEXT("Setting For of War Materials"));
 

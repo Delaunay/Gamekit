@@ -66,6 +66,7 @@ class GAMEKIT_API AGKPlayerController: public APlayerController,
     void OnRep_TeamChange();
 
     // Called when the controller team changed
+    // Called on the server and client
     virtual void OnTeamChange();
     
 public:

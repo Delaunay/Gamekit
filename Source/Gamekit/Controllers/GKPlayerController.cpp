@@ -61,7 +61,8 @@ void AGKPlayerController::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &
 
 void AGKPlayerController::OnRep_TeamChange() { OnTeamChange();}
 
-void AGKPlayerController::OnTeamChange() {}
+void AGKPlayerController::OnTeamChange() { 
+}
 
 void AGKPlayerController::SetGenericTeamId(const FGenericTeamId& TeamID) { 
     // Only authority can change TeamID
@@ -71,5 +72,14 @@ void AGKPlayerController::SetGenericTeamId(const FGenericTeamId& TeamID) {
     }
 
     TeamId = TeamID;
+
+    // Change Possessed pawn to the new TeamId
+    auto Agent = Cast<IGenericTeamAgentInterface>(GetPawn());
+    if (Agent)
+    {
+        Agent->SetGenericTeamId(TeamId);
+    }
+
+    //
     OnTeamChange();
 }

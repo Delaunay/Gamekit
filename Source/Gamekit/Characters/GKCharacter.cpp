@@ -456,6 +456,7 @@ void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) {
         return;
 
     Team = TeamID; 
+    OnTeamAssigned.Broadcast(Team);
 }
 
 FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Team; }

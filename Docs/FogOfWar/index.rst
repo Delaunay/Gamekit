@@ -64,6 +64,19 @@ Multiplayer
 * Spectators receive all the visible sets
 
 
+Limitations
+-----------
+
+* If used in multiplayer the number of teams is limited to 32.
+  This is because a `uint32` is used to represent the visibility of a unit.
+  Each bit representing the unit visiblity by a given team.
+  This is used to compute conditional replication to avoid replicating
+  actors that are not visible, this is both to limit bandwidth usage and
+  prevent cheating.
+
+
+The limit could be increased further to support 64 teams by using a uint64 but
+it seems unnecessary.
 
 Versions
 --------
