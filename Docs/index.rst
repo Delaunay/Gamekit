@@ -62,7 +62,8 @@ Goals
    :caption: Online
 
    Online/Multiplayer
-   Online/Matchmaking
+   Online/MMO
+   Online/Competitive
    Online/Cheating
 
 .. toctree::

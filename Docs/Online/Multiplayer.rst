@@ -3,27 +3,29 @@ Multiplayer
 
 * How classes are used inside a multiplayer game
 
-+----------------------------+----------+------------+
-| Class                      | Location | Replicated |
-+----------------------------+----------+------------+
-| GameMode (Match State API) | Server   | No         |
-+----------------------------+----------+------------+
-| GameModeBase (No Match)    | Server   | No         |
-+----------------------------+----------+------------+
-| GameSession                | Server   | No         |
-+----------------------------+----------+------------+
-| GameNetwork Manager        | Server   | No         |
-+----------------------------+----------+------------+
-| GameStateBase              | Server   | Yes        |
-+----------------------------+----------+------------+
-| GameState                  | Server   | Yes        |
-+----------------------------+----------+------------+
-| PlayerState                | Server   | Yes        |
-+----------------------------+----------+------------+
-
++------------------------------+----------+------------+
+| Class                        | Location | Replicated |
++------------------------------+----------+------------+
+| GameMode (Match State API)   | Server   | No         |
++------------------------------+----------+------------+
+| GameModeBase (No Match)      | Server   | No         |
++------------------------------+----------+------------+
+| GameSession                  | Server   | No         |
++------------------------------+----------+------------+
+| GameNetwork Manager          | Server   | No         |
++------------------------------+----------+------------+
+| GameStateBase                | Server   | All        |
++------------------------------+----------+------------+
+| GameState                    | Server   | All        |
++------------------------------+----------+------------+
+| PlayerState                  | Server   | All        |
++------------------------------+----------+------------+
+| PrivatePlayerState (Gamekit) | Server   | Teammates  |
++------------------------------+----------+------------+
+| TeamVision (Fog Of War)      | Server   | Teammates  |
++------------------------------+----------+------------+
 
 GameInstance
-
 
 * ACharacter are setup for replications
 
@@ -60,8 +62,8 @@ The games are truely only running on the server. Clients forwards their inputs t
 and render the state of the game. The state of the game between the clients and the server is
 kept in sync through replication.
 
-To limit bandwidth usage so actions will get simulated on clients, for example when moving
-a character from A to B, there is no need to replicated the position of the character on each frame.
+To limit bandwidth usage some actions will get simulated on clients, for example when moving
+a character from A to B, there is no need to replicate the position of the character on each frame.
 Instead, we can interpolate its location given its current location, destination and speed.
 
 Bad network condition will hinder the synchronisaton which can cause jittering.
@@ -258,6 +260,16 @@ Replication
 
 Testing
 --------
+
+.. code-block:: ini
+
+   # DefaultEngine.ini
+   [PacketSimulationSettings]
+   PktLag=10
+   PktLagVariance=10
+   PktLoss=0
+   PktOrder=0
+   PktDup=0
 
 
 
