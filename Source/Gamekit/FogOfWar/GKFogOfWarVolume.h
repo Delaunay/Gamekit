@@ -21,6 +21,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
+// TODO: make this an actor for replication purposes
 struct FGKFactionFog
 {
     FGKFactionFog()
@@ -41,7 +42,10 @@ struct FGKFactionFog
     class UTexture *UpScaledVision;
     bool            bDiscrete;
 
+    // Make this an array for replication
     TSet<class UGKFogOfWarComponent *>   VisibleEnemies;
+
+    // replicate this
     TArray<class UGKFogOfWarComponent *> Allies;
 
     void *Buffer;
