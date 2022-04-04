@@ -1,26 +1,37 @@
 Welcome to GameKit's documentation!
 ===================================
 
-What is this
-~~~~~~~~~~~~
+.. image:: https://readthedocs.org/projects/gamekit/badge/?version=latest
+   :target: https://gamekit.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
-This is my journal written while exploring UE4.
-Might contain some useful information.
 
 
 Goals
 ~~~~~
 
-* Setup basic repository for effective development
-* Favour community development
+High level game framework built on top of Unreal Engine.
 
-   * C++ > Blueprint
-   * Shader Code > Materials
+* Data Driven
+   * Configure your ability in json
+   * Bootstrap Game wikis with data
 
-* Implement common blocs
+* Multiplayer Ready
+   * Hosted
+   * Dedicated
+   * Standalone
 
-   * UI
-   * Menus
+* Ever growing documentation
+
+* Community Friendly
+   * Favour source code (C++, HLSL) for easier contribution flow
+
+* Base UI & Menus for debugging and prototyping
+
+* Automation framework on top of UAT
+   * CI/CD
+   * Testing Utilities
+
 
 .. warning::
 
@@ -34,13 +45,12 @@ Goals
    Welcome/Installation
 
 .. toctree::
-   :caption: Abilities
+   :caption: Data Driven
    :maxdepth: 1
 
-   Abilities/index
-   Abilities/items
-   Abilities/skills
-   Abilities/projectiles
+   DataDriven/Abilities
+   DataDriven/Units
+   DataDriven/Teams
 
 .. toctree::
    :caption: Unsorted
@@ -50,13 +60,6 @@ Goals
    Minimaps/index
    Level/index
    MachineLearning/index
-
-.. toctree::
-   :caption: Tips & Tricks
-   :maxdepth: 1
-
-   Tips/Others
-
 
 .. toctree::
    :caption: Online
@@ -73,6 +76,7 @@ Goals
    Developer/Compilation
    Developer/Shaders/index
    Developer/Doxygen
+   Developer/Contribution
    Developer/ci
    generated_api/GamekitAPI
 

@@ -1,11 +1,6 @@
 Abilities
 =========
 
-.. warning:::
-
-   The gameplay ability system is highly experimental
-
-
 Relevant classes:
 
 * :class:`UGKGameplayAbility`: basic Gameplay Ability for skills and items, implements a few top down casting options
@@ -23,6 +18,56 @@ Features
 * **Generic**: Ability does not assume a specific Character/Skeleton
 * **Multiplayer ready**
 * **Basic UI**: easier debugging
+
+
+Define Abilities
+----------------
+
+Abilities are define inside a json file.
+The list of customizable properties can be found here :class:`FGKAbilityStatic`
+
+.. code-block:: json
+
+	{
+		"Name": "Fireball",
+		"AbilityKind": "Skill",
+		"LocalName": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"EC9BA0DD417F0C07C07E3DBB00F88785\", \"Fire Ball\")",
+		"LocalDescription": "NSLOCTEXT(\"[0A85C43C484A243EF7B6B7B642AD2ACB]\", \"9CB2744E447BF19F751B929142E6F484\", \"Launch a roaring ball of fire in a straight line\")",
+		"Icon": "Texture2D'/Gamekit/Textures/IconsSkills/fireball-red-1.fireball-red-1'",
+		"MaxLevel": 4,
+		"Duration": 0,
+		"AbilityEffects":
+		{
+		},
+		"Cost":
+		{
+			"Attribute":
+			{
+				"AttributeName": "Mana",
+				"Attribute": "/Script/Gamekit.GKAttributeSet:Mana",
+				"AttributeOwner": "Class'/Script/Gamekit.GKAttributeSet'"
+			},
+			"Value": [ 10, 9, 8, 7 ]
+		},
+		"Cooldown": [ 0.5, 9, 8, 5 ],
+		"Price": 0,
+		"MaxStack": 1,
+		"AreaOfEffect": 50,
+		"CastMaxRange": 500,
+		"CastMinRange": 0,
+		"AbilityBehavior": "PointTarget",
+		"AbilityTargetActorClass": "BlueprintGeneratedClass'/Game/Abilities/TargetActors/ControllerTrace.ControllerTrace_C'",
+		"TargetObjectTypes": [],
+		"CastTime": 0.20000000298023224,
+		"ChannelTime": 0,
+		"AbilityAnimation": "Attack",
+		"ProjectileActorClass": "BlueprintGeneratedClass'/Game/Abilities/Projectiles/BP_GA_Projectile.BP_GA_Projectile_C'",
+		"ProjectileSpeed": 1000,
+		"ProjectileBehavior": "Directional",
+		"ProjectileRange": 1600,
+		"AOEActorClass": "None"
+	}
+
 
 Overview
 --------
@@ -153,6 +198,8 @@ The easiest way to bind the ability to a UI element is to use async task that wi
 * :cpp:class:`UGKAsyncTaskCooldownChanged`: can be used to keep track of the cooldowns.
 * :cpp:class:`UGKAsyncTaskAttributeChanged`: can be used to listen to energy level and detect when an ability lacks its resources to be cast.
 * :cpp:class:`UGKAsyncTask_GameplayEffectChanged`: can be used to listen to debuff that will disable spell casting.
+
+
 
 
 Resources
