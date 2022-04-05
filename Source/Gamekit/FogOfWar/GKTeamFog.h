@@ -5,6 +5,7 @@
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/Info.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKTeamFog.generated.h"
