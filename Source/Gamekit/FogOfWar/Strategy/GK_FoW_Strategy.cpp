@@ -4,6 +4,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Utilities/GKBitFlag.h"
+#include "Gamekit/GKLog.h"
 
 
 UGKFogOfWarStrategy::UGKFogOfWarStrategy() {}
@@ -52,16 +53,9 @@ void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, flo
 void UGKFogOfWarStrategy::AddVisibleActor(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *SourceComp, AActor *Target)
 {
     UActorComponent *     Component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
-    UGKFogOfWarComponent *FoWComp   = Cast<UGKFogOfWarComponent>(Component);
+    UGKFogOfWarComponent *SightedComp = Cast<UGKFogOfWarComponent>(Component);
 
-    SourceComp->OnSighting.Broadcast(Target);
-
-    // Avoid multiple broadcast per target
-    if (FoWComp != nullptr && !FactionFog->VisibleSoFar.Contains(FoWComp))
-    {
-        FactionFog->VisibleSoFar.Add(FoWComp);
-        FoWComp->OnSighted.Broadcast(SourceComp->GetOwner());
-    }
+    AddVisibleComponent(FactionFog, SourceComp, SightedComp);
 }
 
 void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog,
@@ -69,13 +63,21 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog
                                               class UGKFogOfWarComponent *SightedComp)
 {
     if (SightedComp == nullptr)
-    {
+    { 
         return;
     }
 
-    // FIXME
-    // SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GeTeamId());
+    // Vision is symetric 
+    SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GetGenericTeamId().GetId());
+    SourceComp->TeamVisibility  = SetFlag(SourceComp->TeamVisibility, SightedComp->GetGenericTeamId().GetId());
+    
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
+
+    GK_WARNING(TEXT("Server: %s sees %s (%d)"),
+        *AActor::GetDebugName(SourceComp->GetOwner()),
+        *AActor::GetDebugName(SightedComp->GetOwner()),
+        SightedComp->TeamVisibility);
+
 
     // Avoid multiple broadcast per target
     if (!FactionFog->VisibleSoFar.Contains(SightedComp))

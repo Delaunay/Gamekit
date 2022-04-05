@@ -58,6 +58,10 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     // Constructor and overrides
     AGKCharacterBase();
 
+    bool IsNetRelevantFor(const AActor  *RealViewer,
+                          const AActor  *ViewTarget,
+                          const FVector &SrcLocation) const override;
+
     virtual void BeginPlay() override;
 
     virtual void PossessedBy(AController *NewController) override;

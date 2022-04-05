@@ -9,6 +9,7 @@
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Items/GKItem.h"
 #include "Gamekit/GKLog.h"
+#include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 
 // Unreal Engine
 #include "AbilitySystemGlobals.h"
@@ -28,6 +29,37 @@ AGKCharacterBase::AGKCharacterBase()
 
     CharacterLevel = 1;
     InputsBound    = false;
+}
+
+
+bool AGKCharacterBase::IsNetRelevantFor(const AActor  *RealViewer,
+                                        const AActor  *ViewTarget,
+                                        const FVector &SrcLocation) const
+{
+    auto FogComp = Cast<UGKFogOfWarComponent>(GetComponentByClass(UGKFogOfWarComponent::StaticClass()));
+
+    // FIXME: there is an issue in visibility detection
+    if (FogComp)
+    {
+        bool bSuccess = false;
+        bool bIsVisible = false;
+
+        FogComp->IsVisibleBy(RealViewer, bIsVisible, bSuccess);
+
+        GK_WARNING(TEXT("%s sees %s %d (%d)"), 
+            *GetDebugName(RealViewer),
+            *GetDebugName(this), 
+            bIsVisible, 
+            FogComp->TeamVisibility
+        );
+
+        if (bSuccess)
+        {
+            return bIsVisible;
+        }
+    }
+
+    return Super::IsNetRelevantFor(RealViewer, ViewTarget, SrcLocation);
 }
 
 void AGKCharacterBase::OnDataTableChanged_Native()

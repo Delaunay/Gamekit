@@ -528,6 +528,24 @@ void AGKFogOfWarVolume::DrawFactionFog()
     // We are drawing to the targets we cannot change the fog components right now
     FScopeLock ScopeLock(&Mutex);
 
+    //
+    // -------------------------
+    if (GetNetMode() != ENetMode::NM_Client)
+    {
+        for (auto TeamFog: TeamFogs)
+        {
+            auto DefaultViz = SetFlag(0, TeamFog->TeamId.GetId());
+
+            for (auto Comp: TeamFog->Allies)
+            {
+                Comp->TeamVisibility = DefaultViz;
+            }
+        }
+    }
+
+
+    //
+    //  -------------------------
     for (auto TeamFog: TeamFogs)
     {
         if (!TeamFog)

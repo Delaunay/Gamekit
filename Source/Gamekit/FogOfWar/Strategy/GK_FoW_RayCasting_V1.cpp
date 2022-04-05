@@ -5,6 +5,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -107,8 +108,9 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog,
         LineEnd = hit ? OutHit.Location : LineEnd;
         Lines.Add(FGKLinePoints{LineStart, LineEnd});
 
-        if (hit && OutHit.Actor.IsValid())
+        if (OutHit.Actor.IsValid())
         {
+            // this only works if the actors are blocking the light
             AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
         }
     }

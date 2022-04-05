@@ -29,6 +29,9 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
     UnobstructedVision = false;
     LineTickness       = 2.f;
     bWasRegistered     = false;
+    // Force it to 1 so everyone is visible for the first few frames
+    // that means all the actors get replicated on clients
+    TeamVisibility     = -1;
 }
 
 void UGKFogOfWarComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
@@ -67,15 +70,14 @@ UMaterialInterface *UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial()
     return vol->GetFogOfWarPostprocessMaterial(Faction);
 }
 
+
+FGenericTeamId UGKFogOfWarComponent::GetGenericTeamId() const {
+    const IGenericTeamAgentInterface *TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
+    return GKGETATTR(TeamAgent, GetGenericTeamId(), FGenericTeamId());
+}
+
 FName UGKFogOfWarComponent::DeduceFaction() const
 {
-    const IGenericTeamAgentInterface *TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
-
-    if (!TeamAgent)
-    {
-        return NAME_None;
-    }
-
     auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
     
     if (!Settings)
@@ -83,7 +85,7 @@ FName UGKFogOfWarComponent::DeduceFaction() const
         return NAME_None;
     }
 
-    auto TeamId   = TeamAgent->GetGenericTeamId().GetId();
+    auto TeamId   = GetGenericTeamId().GetId();
     auto TeamInfo = Settings->GetTeamInfo(TeamId);
 
     if (!TeamInfo || TeamInfo->Name == NAME_None)

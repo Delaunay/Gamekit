@@ -1,9 +1,14 @@
 #pragma once
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+// Gamekit
+#include "Gamekit/Utilities/GKBitFlag.h"
+
+
 // Unreal Engine
 #include "Components/ActorComponent.h"
 #include "CoreMinimal.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKFogOfWarComponent.generated.h"
@@ -51,6 +56,18 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     // -----------
 
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+
+    void IsVisibleBy(AActor const*Actor, bool& bIsVisible, bool& bSuccess) const { 
+        bIsVisible = false;
+        bSuccess   = false;
+        auto Agent = Cast<IGenericTeamAgentInterface>(Actor);
+
+        if (Agent)
+        {
+            bSuccess = true;
+            bIsVisible = IsSet(TeamVisibility, Agent->GetGenericTeamId().GetId());
+        }
+    }
 
     bool bWasRegistered;
 
@@ -143,6 +160,9 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     //! Executed on the server only
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightedEventSignature OnSighted;
+
+
+    FGenericTeamId GetGenericTeamId() const;
 
     private:
     // Keep track of materials this unit belongs to, so they can be 
