@@ -27,11 +27,6 @@ void AGKWorldSettings::BuildTeamCache() const {
     }
 }
 
-class UDataTable const *AGKWorldSettings::GetTeams() const { 
-    BuildTeamCache();
-    return Teams;
-}
-
 FGKTeamInfo const *AGKWorldSettings::GetTeamInfo(int Index) const {
     BuildTeamCache();
 

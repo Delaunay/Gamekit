@@ -25,10 +25,10 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
     virtual void Stop() {}
 
     //! Draw the fog of war for each factions
-    virtual void DrawFactionFog(struct FGKFactionFog *FactionFog);
+    virtual void DrawFactionFog(class AGKTeamFog *FactionFog);
 
     //! Draw the line of sight using the right method
-    virtual void DrawLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c) {}
+    virtual void DrawLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c) {}
 
     void DebugDrawComponent(class UGKFogOfWarComponent *c);
 
@@ -48,9 +48,9 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
     void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
 
     // Check if actor has a FogOfWar component, is so trigger the OnSighted event
-    void AddVisibleActor(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *SourceComp, class AActor *Actor);
+    void AddVisibleActor(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *SourceComp, class AActor *Actor);
 
-    void AddVisibleComponent(struct FGKFactionFog *      FactionFog,
+    void AddVisibleComponent(class AGKTeamFog *      FactionFog,
                              class UGKFogOfWarComponent *SourceComp,
                              class UGKFogOfWarComponent *SightedComp);
 

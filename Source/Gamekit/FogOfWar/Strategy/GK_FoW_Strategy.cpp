@@ -3,10 +3,12 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/Utilities/GKBitFlag.h"
+
 
 UGKFogOfWarStrategy::UGKFogOfWarStrategy() {}
 
-void UGKFogOfWarStrategy::DrawFactionFog(FGKFactionFog *FactionFog)
+void UGKFogOfWarStrategy::DrawFactionFog(class AGKTeamFog *FactionFog)
 {
     TSet<FName> Factions;
 
@@ -47,7 +49,7 @@ void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, flo
     }
 }
 
-void UGKFogOfWarStrategy::AddVisibleActor(FGKFactionFog *FactionFog, UGKFogOfWarComponent *SourceComp, AActor *Target)
+void UGKFogOfWarStrategy::AddVisibleActor(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *SourceComp, AActor *Target)
 {
     UActorComponent *     Component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
     UGKFogOfWarComponent *FoWComp   = Cast<UGKFogOfWarComponent>(Component);
@@ -55,14 +57,14 @@ void UGKFogOfWarStrategy::AddVisibleActor(FGKFactionFog *FactionFog, UGKFogOfWar
     SourceComp->OnSighting.Broadcast(Target);
 
     // Avoid multiple broadcast per target
-    if (FoWComp != nullptr && !FactionFog->VisibleEnemies.Contains(FoWComp))
+    if (FoWComp != nullptr && !FactionFog->VisibleSoFar.Contains(FoWComp))
     {
-        FactionFog->VisibleEnemies.Add(FoWComp);
+        FactionFog->VisibleSoFar.Add(FoWComp);
         FoWComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
 
-void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      FactionFog,
+void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog,
                                               class UGKFogOfWarComponent *SourceComp,
                                               class UGKFogOfWarComponent *SightedComp)
 {
@@ -71,12 +73,15 @@ void UGKFogOfWarStrategy::AddVisibleComponent(struct FGKFactionFog *      Factio
         return;
     }
 
+    // FIXME
+    // SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GeTeamId());
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
 
     // Avoid multiple broadcast per target
-    if (!FactionFog->VisibleEnemies.Contains(SightedComp))
+    if (!FactionFog->VisibleSoFar.Contains(SightedComp))
     {
-        FactionFog->VisibleEnemies.Add(SightedComp);
+        FactionFog->VisibleSoFar.Add(SightedComp);
         SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
+ 

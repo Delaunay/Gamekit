@@ -10,6 +10,7 @@
 // Unreal Engine
 #include "GenericTeamAgentInterface.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values for this component's properties
 UGKFogOfWarComponent::UGKFogOfWarComponent()
@@ -19,7 +20,6 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
 
     // Default Settings
     Faction            = NAME_None;
-    DefaultFaction     = "Default";
     TraceCount         = 360;
     FieldOfView        = 360;
     Radius             = 600.f;
@@ -28,6 +28,21 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
     InnerRadius        = 10.f;
     UnobstructedVision = false;
     LineTickness       = 2.f;
+    bWasRegistered     = false;
+}
+
+void UGKFogOfWarComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+    // Those should not change often
+    DOREPLIFETIME(UGKFogOfWarComponent, LineTickness);
+    DOREPLIFETIME(UGKFogOfWarComponent, TraceCount);
+    DOREPLIFETIME(UGKFogOfWarComponent, Radius);
+    DOREPLIFETIME(UGKFogOfWarComponent, InnerRadius);
+    DOREPLIFETIME(UGKFogOfWarComponent, UnobstructedVision);
+    DOREPLIFETIME(UGKFogOfWarComponent, GivesVision);
+    DOREPLIFETIME(UGKFogOfWarComponent, BlocksVision);
+    DOREPLIFETIME(UGKFogOfWarComponent, FieldOfView);
 }
 
 void UGKFogOfWarComponent::BeginDestroy()
@@ -93,8 +108,6 @@ void UGKFogOfWarComponent::BeginPlay()
         return;
     }
 
-    Faction = DeduceFaction();
-
     // Tweak the collision response channel
     for (UActorComponent *ActorComponent: GetOwner()->GetComponents())
     {
@@ -111,7 +124,29 @@ void UGKFogOfWarComponent::BeginPlay()
         UE_LOG(LogGamekit, Log, TEXT("Did not find a component to set the FoW collision"));
     }
 
-    vol->RegisterActorComponent(this);
+    RegisterComponent();
+}
+
+bool UGKFogOfWarComponent::RegisterComponent() {
+    if (Faction == NAME_None)
+    {
+        Faction = DeduceFaction();
+    }
+
+    auto Volume = GetFogOfWarVolume();
+
+    if (Volume)
+    {
+        if (bWasRegistered)
+        {
+            Volume->UnregisterActorComponent(this);
+        }
+
+        Volume->RegisterActorComponent(this);
+        bWasRegistered = true;
+    }
+
+    return bWasRegistered;
 }
 
 void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynamic *Material)
@@ -192,10 +227,5 @@ void UGKFogOfWarComponent::SetCameraPostprocessMaterial(UCameraComponent *Camera
 
 FName UGKFogOfWarComponent::GetFaction()
 {
-    if (Faction == NAME_None)
-    {
-        Faction = DeduceFaction();
-    }
-
     return Faction;
 }

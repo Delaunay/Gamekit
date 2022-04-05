@@ -65,7 +65,8 @@ High level game framework built on top of Unreal Engine.
    :caption: Online
 
    Online/Multiplayer
-   Online/Matchmaking
+   Online/MMO
+   Online/Competitive
    Online/Cheating
 
 .. toctree::

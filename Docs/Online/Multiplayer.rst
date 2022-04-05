@@ -3,27 +3,29 @@ Multiplayer
 
 * How classes are used inside a multiplayer game
 
-+----------------------------+----------+------------+
-| Class                      | Location | Replicated |
-+----------------------------+----------+------------+
-| GameMode (Match State API) | Server   | No         |
-+----------------------------+----------+------------+
-| GameModeBase (No Match)    | Server   | No         |
-+----------------------------+----------+------------+
-| GameSession                | Server   | No         |
-+----------------------------+----------+------------+
-| GameNetwork Manager        | Server   | No         |
-+----------------------------+----------+------------+
-| GameStateBase              | Server   | Yes        |
-+----------------------------+----------+------------+
-| GameState                  | Server   | Yes        |
-+----------------------------+----------+------------+
-| PlayerState                | Server   | Yes        |
-+----------------------------+----------+------------+
-
++------------------------------+----------+------------+
+| Class                        | Location | Replicated |
++------------------------------+----------+------------+
+| GameMode (Match State API)   | Server   | No         |
++------------------------------+----------+------------+
+| GameModeBase (No Match)      | Server   | No         |
++------------------------------+----------+------------+
+| GameSession                  | Server   | No         |
++------------------------------+----------+------------+
+| GameNetwork Manager          | Server   | No         |
++------------------------------+----------+------------+
+| GameStateBase                | Server   | All        |
++------------------------------+----------+------------+
+| GameState                    | Server   | All        |
++------------------------------+----------+------------+
+| PlayerState                  | Server   | All        |
++------------------------------+----------+------------+
+| PrivatePlayerState (Gamekit) | Server   | Teammates  |
++------------------------------+----------+------------+
+| TeamVision (Fog Of War)      | Server   | Teammates  |
++------------------------------+----------+------------+
 
 GameInstance
-
 
 * ACharacter are setup for replications
 
@@ -60,8 +62,8 @@ The games are truely only running on the server. Clients forwards their inputs t
 and render the state of the game. The state of the game between the clients and the server is
 kept in sync through replication.
 
-To limit bandwidth usage so actions will get simulated on clients, for example when moving
-a character from A to B, there is no need to replicated the position of the character on each frame.
+To limit bandwidth usage some actions will get simulated on clients, for example when moving
+a character from A to B, there is no need to replicate the position of the character on each frame.
 Instead, we can interpolate its location given its current location, destination and speed.
 
 Bad network condition will hinder the synchronisaton which can cause jittering.
@@ -70,6 +72,13 @@ Character will move beyond their target, or the actions of other players will no
 
 Code Snippet
 ~~~~~~~~~~~~
+
+.. code-block:: cpp
+
+   HasAuthority           = GetNetMode() != ENetMode::NM_Client
+   ShouldShowUI           = GetNetMode() != ENetMode::NM_DedicatedServer
+   AcceptRemoteConnection = GetNetMode() == NM_DedicatedServer || GetNetMode() == NM_ListenServer
+
 
 Server Only code blocks
 -----------------------
@@ -229,8 +238,38 @@ to display warning to users when network is being slow.
 | bool   | DebugRelevantActors;           |
 +--------+--------------------------------+
 
+
+Replication
+-----------
+
+.. code-block:: cpp
+
+   #include "Net/Core/PushModel/PushModel.h"
+
+	FDoRepLifetimeParams SharedParams;
+	SharedParams.bIsPushBased = true;
+
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, Score, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bIsSpectator, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bOnlySpectator, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, bFromPreviousLevel, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, StartTime, SharedParams);
+	DOREPLIFETIME_WITH_PARAMS_FAST(APlayerState, PlayerNamePrivate, SharedParams);
+
+   MARK_PROPERTY_DIRTY_FROM_NAME(APlayerState, Score, this);
+
 Testing
 --------
+
+.. code-block:: ini
+
+   # DefaultEngine.ini
+   [PacketSimulationSettings]
+   PktLag=10
+   PktLagVariance=10
+   PktLoss=0
+   PktOrder=0
+   PktDup=0
 
 
 

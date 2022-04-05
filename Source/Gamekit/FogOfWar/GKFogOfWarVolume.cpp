@@ -11,6 +11,7 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Upscaler/GKCanvasUpscaler.h"
 #include "Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "Components/BrushComponent.h"
@@ -23,6 +24,9 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "TimerManager.h"
+#include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
+
 
 AGKFogOfWarVolume::AGKFogOfWarVolume()
 {
@@ -111,10 +115,22 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     VisionDrawingStrategy = UGKShadowCasting::StaticClass();
 
     bReady = false;
+
+    //
+    bReplicates = true;
+    bAlwaysRelevant = true;
+}
+
+
+void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(AGKFogOfWarVolume, TeamFogs);
+    DOREPLIFETIME(AGKFogOfWarVolume, Blocking);
 }
 
 void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
 {
+    ensure(name != NAME_None);
 
     UE_LOG(LogGamekit, Log, TEXT("Setting For of War Materials"));
 
@@ -134,6 +150,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
         UE_LOG(LogGamekit, Warning, TEXT("Fog of war vision is null"));
     }
 
+    /*
     auto PreviousFoWView = Strategy->GetPreviousFrameFactionTexture(name);
     if (PreviousFoWView != nullptr)
     {
@@ -143,6 +160,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     {
         UE_LOG(LogGamekit, Warning, TEXT("Previous Fog of war vision is null"));
     }
+    */
 
     auto FoWExploration = GetFactionExplorationTexture(name);
     if (FoWExploration != nullptr)
@@ -296,10 +314,6 @@ void AGKFogOfWarVolume::InitializeStrategy()
                                                              ));
 
     Strategy->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Strategy->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::InitializeUpscaler()
@@ -321,10 +335,6 @@ void AGKFogOfWarVolume::InitializeUpscaler()
                                                                 ));
 
     Upscaler->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Upscaler->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::InitializeExploration()
@@ -346,10 +356,6 @@ void AGKFogOfWarVolume::InitializeExploration()
                                                                    ));
 
     Exploration->Initialize();
-    for (auto &Faction: FactionFogs)
-    {
-        Exploration->OnNewFaction(Faction.Key);
-    }
 }
 
 void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -373,6 +379,61 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
     }
 }
 
+
+void AGKFogOfWarVolume::OnRep_TeamFogs()
+{
+    for (auto TeamFog: TeamFogs)
+    {
+        if (TeamFog == nullptr)
+        {
+            GK_WARNING(TEXT("Replicated a nullptr TeamFog"));
+            continue;
+        }
+        else 
+        {
+            GK_WARNING(TEXT("Got the fog %s"), *TeamFog->Name.ToString());
+        }
+        NameToFogs.Add(TeamFog->Name, TeamFog);
+    }
+}
+
+void AGKFogOfWarVolume::InitializeBuffers() { 
+    if (GetNetMode() == ENetMode::NM_Client)
+        return;
+
+    auto World = GetWorld(); 
+    auto WorldSettings = Cast<AGKWorldSettings>(World->GetWorldSettings());
+
+    ensureMsgf(Strategy, TEXT("Strategy should be populated"));
+
+    int i = 0;
+    for (auto TeamInfo: WorldSettings->GetTeams())
+    {
+        FActorSpawnParameters SpawnInfo;
+        SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+        SpawnInfo.Owner                          = this;
+        SpawnInfo.Instigator                     = GetInstigator();
+        SpawnInfo.bDeferConstruction             = true;
+
+        ensureMsgf(TeamInfo->Name != NAME_None, TEXT("Team name cannot be none"));
+
+        auto TeamFog = World->SpawnActor<AGKTeamFog>(SpawnInfo);
+        TeamFog->TeamId         = FGenericTeamId(TeamInfo->TeamId);
+        TeamFog->Name           = TeamInfo->Name;
+        TeamFog->Vision         = GKGETATTR(Strategy, GetFactionTexture(TeamInfo->Name, true), nullptr);
+        TeamFog->UpScaledVision = GKGETATTR(Upscaler, GetFactionTexture(TeamInfo->Name, true), nullptr);
+        TeamFog->Exploration    = GKGETATTR(Exploration, GetFactionTexture(TeamInfo->Name, true), nullptr);
+
+        UGameplayStatics::FinishSpawningActor(TeamFog, FTransform());
+        
+        ensureMsgf(TeamInfo->TeamId == i, TEXT("TeamId should be consistent %d != %d"), TeamInfo->TeamId, i);
+
+        TeamFogs.Add(TeamFog);
+        NameToFogs.Add(TeamInfo->Name, TeamFog);
+        i += 1;
+    }
+}
+
 void AGKFogOfWarVolume::BeginPlay()
 {
     DeltaAccumulator = 1000;
@@ -389,7 +450,8 @@ void AGKFogOfWarVolume::BeginPlay()
     InitializeStrategy();
     InitializeExploration();
     InitializeUpscaler();
-
+    InitializeBuffers();
+    
     bReady = true;
 
     // Start drawing the fog
@@ -413,20 +475,38 @@ void AGKFogOfWarVolume::BeginPlay()
 
 void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
+    if (GetNetMode() == ENetMode::NM_Client)
+        return;
+
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);
-    GetFactionFogs(c->GetFaction()).Allies.Add(c);
+
+    auto Name = c->GetFaction();
+
+    if (Name != NAME_None)
+    {
+        auto Fog = GetFactionFogs(Name);
+        GKGETATTR(Fog, Allies.Add(c), void());
+    }
+
     if (c->BlocksVision)
     {
+        GK_WARNING(TEXT("Register blocking"));
         Blocking.Add(c);
     }
 }
 
 void AGKFogOfWarVolume::UnregisterActorComponent(UGKFogOfWarComponent *c)
 {
+    if (GetNetMode() == ENetMode::NM_Client)
+        return;
+
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Remove(c);
-    GetFactionFogs(c->GetFaction()).Allies.Remove(c);
+
+    auto Fog = GetFactionFogs(c->GetFaction());
+    GKGETATTR(Fog, Allies.Remove(c), void());
+
     if (c->BlocksVision)
     {
         Blocking.Remove(c);
@@ -443,24 +523,35 @@ void AGKFogOfWarVolume::DrawFactionFog()
     // We are drawing to the targets we cannot change the fog components right now
     FScopeLock ScopeLock(&Mutex);
 
-    for (auto FactionFog: FactionFogs)
+    for (auto TeamFog: TeamFogs)
     {
+        if (!TeamFog)
+            continue;
+
         // Invalid faction
-        if (FactionFog.Key == NAME_None)
+        if (TeamFog->Name == NAME_None)
         {
             continue;
         }
+        TeamFog->VisibleSoFar.Reset();
 
-        Strategy->DrawFactionFog(&FactionFog.Value);
+        Strategy->DrawFactionFog(TeamFog);
+
+        // Generates the list of visible enemies for clients
+        if (GetNetMode() != ENetMode::NM_Client)
+        {
+            for (auto Comp: TeamFog->VisibleSoFar)
+                TeamFog->VisibleEnemies.Add(Comp);
+        }
 
         if (bUpscaling)
         {
-            Upscaler->Transform(&FactionFog.Value);
+            Upscaler->Transform(TeamFog);
         }
 
         if (bExploration)
         {
-            Exploration->Transform(&FactionFog.Value);
+            Exploration->Transform(TeamFog);
         }
     }
 }
@@ -468,17 +559,24 @@ void AGKFogOfWarVolume::DrawFactionFog()
 // Texture Accessors
 // -----------------
 
-UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) { return GetFactionFogs(name).Exploration; }
+UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) {
+    auto Fog = GetFactionFogs(name);
+    return GKGETATTR(Fog, Exploration, nullptr);
+}
 
-UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { return GetFactionFogs(name).Vision; }
+UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { 
+     auto Fog = GetFactionFogs(name);
+    return GKGETATTR(Fog, Vision, nullptr);
+}
 
 UTexture *AGKFogOfWarVolume::GetFactionTexture(FName name)
 {
+    auto Fog = GetFactionFogs(name);
     if (bUpscaling)
     {
-        return GetFactionFogs(name).UpScaledVision;
+        return GKGETATTR(Fog, UpScaledVision, nullptr);
     }
-    return GetFactionFogs(name).Vision;
+    return GKGETATTR(Fog, Vision, nullptr);
 }
 
 // Material Parameter Collection
@@ -573,33 +671,16 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
     Super::PostEditChangeProperty(e);
 }
 
-FGKFactionFog &AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+class AGKTeamFog *AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
-    // Returning a reference here has the advantage of not requiring us to
-    // check for nills later on
-    //
-    // NB: DO NOT RETURN A COPY OF THIS
-    static FGKFactionFog None;
-    if (Faction == NAME_None)
+    auto Result = NameToFogs.Find(Faction);
+    if (Result)
     {
-        return None;
+        return Result[0];
     }
-
-    auto *Fog = FactionFogs.Find(Faction);
-
-    if (Fog == nullptr)
-    {
-        FGKFactionFog &FogFaction = FactionFogs.Add(Faction, FGKFactionFog());
-        FogFaction.Name           = Faction;
-        FogFaction.Vision         = Strategy ? Strategy->GetFactionTexture(Faction, true) : nullptr;
-        FogFaction.UpScaledVision = Upscaler ? Upscaler->GetFactionTexture(Faction, true) : nullptr;
-        FogFaction.Exploration    = Exploration ? Exploration->GetFactionTexture(Faction, true) : nullptr;
-
-        return FogFaction;
-    }
-
-    return *Fog;
+    return nullptr;
 }
+
 
 void CopyTexture(UObject *World, class UCanvasRenderTarget2D *Dest, class UTexture *Src)
 {

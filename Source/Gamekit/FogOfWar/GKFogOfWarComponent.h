@@ -40,10 +40,26 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     // Unregister the component
     virtual void BeginDestroy() override;
 
+    //! Attempts to register the component
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    bool RegisterComponent();
+
     public:
-    //! Default faction the unit will fallbacl to if it does not implement IGenericTeamAgentInterface
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
-    FName DefaultFaction;
+    // Replication
+    // -----------
+
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+
+    bool bWasRegistered;
+
+    // True if the unit is currently visible by the client PlayerController
+    // this value is on the server side, the unit can be seen by many teams
+    // This represent a bitflag
+    // 
+    // IsSet(Visible, GenericTeamId.GetId())
+    // SetFlag(Visible, GenericTeamId.GetId())
+    // 
+    uint32 TeamVisibility;
 
     //! Returns the render target associated with its faction
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -70,20 +86,23 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic *Material);
 
+    // Properties
+    // ----------
+    
     //! Line Tickness to draw sights, smaller tickness is more precise but requires more rays
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float LineTickness;
 
     //! Number of rays to cast to draw the line of sight
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     int TraceCount;
 
     //! View max size
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float Radius;
 
     //! Vision offset
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float InnerRadius;
 
     /*! If true vision will be given around the the actor ignoring all collisions.
@@ -91,25 +110,25 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
      * This means it is fairly cheap but it comes at the cost of not being able to
      * broadcast sighting events when the field of view is inferior to 360 degree.
      */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool UnobstructedVision;
 
     /*! if false, the actor will not be reducing the fog arround him
      * No sighting event will be broadcasted
      */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool GivesVision;
 
     /*! if true, other actors will not be able to see through this actor.
      * if false it will indirectly disable ``OnSighted`` broadcast events as a side effect.
      */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     bool BlocksVision;
 
     /*! Field of view of the actor, 360 is all around like real time strategy,
      * Humans vision span is about 120 but most of it peripheral vision (i.e super bad),
      * central vision is about 60 degree */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+    UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     float FieldOfView;
 
     public:
@@ -122,6 +141,12 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     FSightedEventSignature OnSighted;
 
     private:
+    // Keep track of materials this unit belongs to, so they can be 
+    // updated in case of a faction change
+    // in case of cheating the fog will simply stop working as it will draw the wrong fog
+    // but the fog drawing is driven by server data which will be outdated
+    // TArray<class UMaterialInstanceDynamic *> Materials;
+
     class AGKFogOfWarVolume *FogOfWarVolume;
 
     void SetCollisionFoWResponse(class UPrimitiveComponent *Primitive, ECollisionChannel Channel);

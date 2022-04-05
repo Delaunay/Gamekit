@@ -24,6 +24,7 @@ class UGameplayEffect;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTeamAssignedDelegate, FGenericTeamId, Team); 
 
 /** Base class for Character, Designed to be blueprinted
 
@@ -199,20 +200,26 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     bool InputsBound;
 
 public:
-    // CheatDetection, this cannot change after spawn
-    UPROPERTY(replicated)
-    FGenericTeamId Faction;
-
     // IGenericTeamAgentInterface
+    // --------------------------
+    
+    //! This is set by the Player Controller on possession
+    UPROPERTY(replicated, BlueprintReadOnly, Category = "Team", ReplicatedUsing=OnRep_Team)
+    FGenericTeamId Team;
+
+    UFUNCTION()
+    void OnRep_Team() { 
+        OnTeamAssigned.Broadcast(Team);
+    }
+
     void SetGenericTeamId(const FGenericTeamId &TeamID) override;
 
     /** Retrieve team identifier in form of FGenericTeamId */
     UFUNCTION(BlueprintPure, Category = "Team")
     FGenericTeamId GetGenericTeamId() const override;
 
-    /** Retrieved owner attitude toward given Other object */
-    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor &Other) const override;
-
-    UFUNCTION(BlueprintCallable, Category = "FriendOrFoe")
-    ETeamAttitude::Type GetTeamAttitudeTowards(const AActor *Other) const { return GetTeamAttitudeTowards(*Other); }
+    //! Called when a new team is assigned to the Pawn
+    //! Called both on the server and client
+    UPROPERTY(BlueprintAssignable, Category = "Team")
+    FGKTeamAssignedDelegate OnTeamAssigned;
 };

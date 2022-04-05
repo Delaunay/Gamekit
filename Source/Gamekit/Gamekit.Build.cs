@@ -12,6 +12,7 @@ public class Gamekit : ModuleRules
         });
 
         PublicDependencyModuleNames.AddRange(new string[]{
+            "NetCore",
             "Core",
             "RenderCore",
             "RHI"

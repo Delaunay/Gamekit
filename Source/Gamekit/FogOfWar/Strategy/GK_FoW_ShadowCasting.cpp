@@ -91,6 +91,7 @@ UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool 
     {
         Texture = Result[0];
     }
+
     else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
         UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
@@ -242,7 +243,7 @@ void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
 #endif
 }
 
-void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
+void UGKShadowCasting::DrawFactionFog(class AGKTeamFog *FactionFog)
 {
     // Reset
     Points.Reset();
@@ -257,6 +258,7 @@ void UGKShadowCasting::DrawFactionFog(FGKFactionFog *FactionFog)
     FactionFog->Buffer              = static_cast<void *>(&Buffer);
     FactionFog->bDiscrete           = true;
 
+    // FactionFog->GetBlocking(
     for (auto &Component: FogOfWarVolume->GetBlocking())
     {
         if (Component->BlocksVision)
@@ -295,20 +297,9 @@ void UGKShadowCasting::Initialize()
     UE_LOG(LogGamekit, Log, TEXT("Map Size is %s"), *MapSize.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileCount Count is %s"), *TileCount.ToString());
     UE_LOG(LogGamekit, Log, TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
-
-    // Try to allocate our buffers early
-    if (GetWorld()->GetNetMode() != NM_DedicatedServer)
-    {
-        for (auto &FactionFog: FogOfWarVolume->FactionFogs)
-        {
-            GetFactionTexture(FactionFog.Key, true);
-            UpdateTextures(FactionFog.Key);
-            UpdatePreviousFrameTexturesTex(FactionFog.Key);
-        }
-    }
 }
 
-void UGKShadowCasting::DrawLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKShadowCasting::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
 {
     auto WorldPos = c->GetOwner()->GetActorLocation();
 

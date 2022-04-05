@@ -13,7 +13,7 @@
 
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 
-void UGKRayCasting_Triangle::DrawObstructedLineOfSight(struct FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Triangle::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
 {
     AActor *         actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();

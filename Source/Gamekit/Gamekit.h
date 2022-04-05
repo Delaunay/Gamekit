@@ -7,6 +7,8 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogGamekit, Log, All);
 
+#define GKGETATTR(Obj, Attr, Default) Obj ? Obj->Attr : Default
+
 class FGamekitModule: public IModuleInterface
 {
     public:
