@@ -18,7 +18,7 @@ void TrackCoverage(TArray<FVector2D> &Coverage,
                    bool &             HasCoverage,
                    FVector2D &        PreviousAngle);
 
-void UGKRayCasting_Less::DrawObstructedLineOfSight(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Less::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
 {
     Triangles.Reset(c->TraceCount + 1);
     Coverage.Reset();
@@ -170,7 +170,7 @@ void TrackCoverage(TArray<FVector2D> &Coverage,
     HasCoverage   = true;
 }
 
-void UGKRayCasting_Less::Generate3Triangles(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles)
+void UGKRayCasting_Less::Generate3Triangles(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles)
 {
     auto p1 = CastLineFromAngle(FactionFog, c, Angles.X).End;
     auto p2 = CastLineFromAngle(FactionFog, c, Angles.Y).End;
@@ -241,7 +241,7 @@ void UGKRayCasting_Less::FillMissingAngles(UGKFogOfWarComponent *c, TArray<float
     bHasPrevious = false;
 }
 
-void UGKRayCasting_Less::CastLinesFromAngles(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles)
+void UGKRayCasting_Less::CastLinesFromAngles(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles)
 {
     Lines.Reset(c->TraceCount + 1);
     for (auto Angle: Angles)
@@ -250,7 +250,7 @@ void UGKRayCasting_Less::CastLinesFromAngles(FGKFactionFog *FactionFog, UGKFogOf
     }
 }
 
-FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(FGKFactionFog *FactionFog, UGKFogOfWarComponent *c, float Angle)
+FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, float Angle)
 {
     // We need to use forward vector in case the FieldOfView is not 360
     // Rotating by 0 is actually not stable

@@ -71,8 +71,9 @@ class GAMEKIT_API AGKPlayerController: public APlayerController,
     
 public:
     /** Assigns Team Agent to given TeamID */
-	void SetGenericTeamId(const FGenericTeamId& TeamID) override;
-	
-	/** Retrieve team identifier in form of FGenericTeamId */
-	FGenericTeamId GetGenericTeamId() const override { return TeamId; }
+    UFUNCTION(BlueprintCallable, Category = "Team")
+    void SetGenericTeamId(const FGenericTeamId& TID) override;
+    
+    /** Retrieve team identifier in form of FGenericTeamId */
+    FGenericTeamId GetGenericTeamId() const override { return TeamId; }
 };

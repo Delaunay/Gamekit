@@ -37,7 +37,7 @@ class GAMEKIT_API UGKCPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
 
     Texel2x2 GetTexel(TMatrix3D<uint8> const &Mat, FIntVector v);
 
-    void Transform(struct FGKFactionFog *FactionFog);
+    void Transform(class AGKTeamFog *FactionFog);
 
     private:
     TMatrix3D<uint8> UpscaledBuffer;

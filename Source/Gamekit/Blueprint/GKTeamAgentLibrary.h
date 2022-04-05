@@ -2,6 +2,10 @@
 
 #pragma once
 
+
+// Gamekit
+#include "Gamekit/Gamekit.h"
+
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
@@ -10,8 +14,6 @@
 // Generated
 #include "GKTeamAgentLibrary.generated.h"
 
-
-#define GKGETATTR(Obj, Attr, Default) Obj? Obj->Attr : Default
 
 /**
  * 

@@ -87,12 +87,12 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     public:
     void Initialize() override;
 
-    void DrawFactionFog(struct FGKFactionFog *FactionFog) override;
+    void DrawFactionFog(class AGKTeamFog *FactionFog) override;
 
     void Stop() override;
 
     //! Draw the line of sight using the right method
-    void DrawLineOfSight(struct FGKFactionFog *FactionFog, class UGKFogOfWarComponent *c) override;
+    void DrawLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c) override;
 
     void UpdateBlocking(class UGKFogOfWarComponent *c);
 
@@ -150,7 +150,7 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     TMap<class UGKFogOfWarComponent *, FGKPoints> Points;
 
     //
-    FGKFactionFog *             CurrentFaction;
+    class AGKTeamFog *             CurrentFaction;
     class UGKFogOfWarComponent *CurrentComponent;
 
     bool bPreviousIsPrevious;

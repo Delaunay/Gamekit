@@ -22,7 +22,7 @@ class GAMEKIT_API UGKExplorationTransform: public UGKTransformerStrategyCanvas
     public:
     void Initialize();
 
-    void Transform(struct FGKFactionFog *FactionFog) override;
+    void Transform(class AGKTeamFog *FactionFog) override;
 
     /*
     class UMaterialInstanceDynamic *GetFactionMaterialInstance(FName Name);

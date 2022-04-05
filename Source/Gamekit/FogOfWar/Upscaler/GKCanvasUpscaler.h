@@ -23,7 +23,7 @@ class GAMEKIT_API UGKCanvasUpscaler: public UGKTransformerStrategyCanvas
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
     class UMaterialInterface *UpscalingMaterial;
 
-    void Transform(struct FGKFactionFog *FactionFog) override;
+    void Transform(class AGKTeamFog *FactionFog) override;
 
     void Initialize() override;
 

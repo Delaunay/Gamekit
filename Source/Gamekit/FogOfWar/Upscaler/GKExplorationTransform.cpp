@@ -12,7 +12,7 @@
 
 void UGKExplorationTransform::Initialize() { Super::Initialize(); }
 
-void UGKExplorationTransform::Transform(FGKFactionFog *FactionFog)
+void UGKExplorationTransform::Transform(class AGKTeamFog *FactionFog)
 {
     UCanvas *                  Canvas;
     FVector2D                  Size;

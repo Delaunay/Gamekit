@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+#include "Gamekit/FogOfWar/GKTeamFog.h"
 #include "Gamekit/Gamekit.h"
 #include "Gamekit/Grid/GKGrid.h"
 
@@ -21,35 +22,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
-// TODO: make this an actor for replication purposes
-struct FGKFactionFog
-{
-    FGKFactionFog()
-    {
-        Buffer         = nullptr;
-        Exploration    = nullptr;
-        Vision         = nullptr;
-        PreviousFrameVision = nullptr;
-        UpScaledVision = nullptr;
-        VisibleEnemies.Reserve(128);
-        Allies.Reserve(128);
-    }
-
-    FName           Name;
-    class UTexture *Exploration;
-    class UTexture *Vision;
-    class UTexture *PreviousFrameVision;
-    class UTexture *UpScaledVision;
-    bool            bDiscrete;
-
-    // Make this an array for replication
-    TSet<class UGKFogOfWarComponent *>   VisibleEnemies;
-
-    // replicate this
-    TArray<class UGKFogOfWarComponent *> Allies;
-
-    void *Buffer;
-};
 
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
@@ -75,6 +47,8 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     AGKFogOfWarVolume();
 
     void BeginPlay();
+
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
     //! Returns the vision texture
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -320,13 +294,12 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     friend class UGKFogOfWarComponent;
 
-    FGKFactionFog &GetFactionFogs(FName Faction);
-
-    TMap<FName, FGKFactionFog> FactionFogs;
-
-    TArray<class UGKFogOfWarComponent *> Blocking;
+    class AGKTeamFog *GetFactionFogs(FName Faction);
 
     protected:
+    //! After that functions all the  data necessary for
+    //! drawing and replicating the fog of war is setup
+    void InitializeBuffers();
     void InitializeStrategy();
     void InitializeUpscaler();
     void InitializeExploration();
@@ -348,5 +321,21 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(Transient)
     TMap<FName, class UMaterialInterface *> PostProcessMaterials;
 
+    //! TODO: change this to initial replication only
+    UPROPERTY(Replicated, Transient, ReplicatedUsing = OnRep_TeamFogs)
+    TArray<class AGKTeamFog*> TeamFogs;
+
+    //! TODO: make this dynamic
+    UPROPERTY(Replicated, Transient)
+    TArray<class UGKFogOfWarComponent *> Blocking;
+
+    //! Dealing with Faction name instead of their teamid is easier
+    //! for debugging
+    TMap<FName, class AGKTeamFog *> NameToFogs;
+
     bool bReady;
+
+    // Insert TeamFogs into NameToFogs on replication
+    UFUNCTION()
+    void OnRep_TeamFogs();
 };

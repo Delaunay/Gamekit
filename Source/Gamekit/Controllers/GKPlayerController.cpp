@@ -71,6 +71,11 @@ void AGKPlayerController::SetGenericTeamId(const FGenericTeamId& TeamID) {
         return;
     }
 
+    if (TeamId == TeamID)
+    {
+        return;
+    }
+
     TeamId = TeamID;
 
     // Change Possessed pawn to the new TeamId

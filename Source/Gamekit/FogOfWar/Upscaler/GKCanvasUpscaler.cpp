@@ -12,7 +12,7 @@
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UGKCanvasUpscaler::Transform(FGKFactionFog *FactionFog)
+void UGKCanvasUpscaler::Transform(class AGKTeamFog *FactionFog)
 {
     if (UpscalingMaterial == nullptr)
     {
