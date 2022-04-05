@@ -141,7 +141,9 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     int32 MaxLevel;
 
-    // Should be a TArray | Ability Level can change this
+    //! Duration the ability linger after being cast
+    //! used for damage overtime abilities or active buffs
+    //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     float Duration;
 
@@ -162,19 +164,20 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
     int32 Price;
 
+    //! Slot ID, this is used to define equipment slots
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
     EGK_ItemSlot Slot;
 
-    // TODO: make a token tag if we have different kind of money
-
     //! If AbilityKind == Item, specifies the max count of the given
     //! item in a single stack
+    //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
     int32 MaxStack;
 
     //! If true, the target can be selected while out of range
     //! the players will start moving toward the enemy to reach the
-    //! minimal rang
+    //! minimal rang, if false the target will not be able to be selected
+    //! and the user will have to get closer to the target to cast the spell
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     bool bIgnoreRange;
 
@@ -186,17 +189,20 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     float CastMinRange;
 
-    //! Specifies how the ability is activated
+    //! Specifies how the ability is activated (Point Target, Actor Target, Vector Target)
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     EGK_AbilityBehavior AbilityBehavior;
 
+    //! Required targets attitue to the spell caster
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "ETeamAttitude"))
     int32 TargetActorFaction;
 
+    //! Class of actors that is an acceptable target for this ability
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     TSubclassOf<AActor> TargetFilterClass;
 
     //! The AbilityTarget Actor this ability will use to select a target
+    //! The actor spawn is cached inside the Ability System Component
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     TSubclassOf<AGameplayAbilityTargetActor> AbilityTargetActorClass;
 
@@ -206,10 +212,12 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
 
     //! Time this ability needs before it is cast
     //! Player can be interrupted during that time
+    //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
     float CastTime;
 
     //! Only usefull when AbilityBehavior is set to channel
+    //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
     float ChannelTime;
 
@@ -229,11 +237,12 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile)
     FGKProjectileStatic ProjectileData;
 
-    //!
+    //! Actor that is spawn on impact
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AreaOfEffect);
-    TSubclassOf<AActor> AOEActorClass;
+    TSubclassOf<AActor> ImpactActorClass;
 
-    // Should be a TArray | Ability Level can change this
+    //! Area of effect used by the ImpactActor
+    //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AreaOfEffect)
     float AreaOfEffect;
 };
