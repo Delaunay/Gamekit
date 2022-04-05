@@ -386,14 +386,15 @@ void AGKFogOfWarVolume::OnRep_TeamFogs()
     {
         if (TeamFog == nullptr)
         {
-            GK_WARNING(TEXT("Replicated a nullptr TeamFog"));
             continue;
         }
-        else 
-        {
-            GK_WARNING(TEXT("Got the fog %s"), *TeamFog->Name.ToString());
-        }
+
         NameToFogs.Add(TeamFog->Name, TeamFog);
+
+        for (auto Comp: TeamFog->Allies)
+        {
+            
+        }
     }
 }
 
@@ -434,10 +435,9 @@ void AGKFogOfWarVolume::InitializeBuffers() {
     }
 }
 
-void AGKFogOfWarVolume::BeginPlay()
-{
-    DeltaAccumulator = 1000;
-    Super::BeginPlay();
+void AGKFogOfWarVolume::PostInitializeComponents() { 
+    Super::PostInitializeComponents();
+    DeltaAccumulator = 1000; 
     PostProcessMaterials.Reset();
     UpdateVolumeSizes();
 
@@ -451,8 +451,13 @@ void AGKFogOfWarVolume::BeginPlay()
     InitializeExploration();
     InitializeUpscaler();
     InitializeBuffers();
-    
+
     bReady = true;
+}
+
+void AGKFogOfWarVolume::BeginPlay()
+{
+    Super::BeginPlay();
 
     // Start drawing the fog
     // For this method to work we need a better way to synchronize the textures

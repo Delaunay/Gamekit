@@ -11,6 +11,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor *, Actor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor);
 
+
 /*! UGKFogOfWarComponent is used to defines the spec of the actor participating in the fog of war
  * the fog of war itself is computed inside the AGKFogOfWarVolume in a separate thread.
  *
@@ -34,6 +35,7 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     UGKFogOfWarComponent();
 
     protected:
+
     // Called when the game starts
     virtual void BeginPlay() override;
 
@@ -133,10 +135,12 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
 
     public:
     //! Called when the actor is seeing another actor in its line of sight
+    //! Executed on the server only
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightingEventSignature OnSighting;
 
     //! Called when the actor is entering the line of sight of another actor
+    //! Executed on the server only
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightedEventSignature OnSighted;
 

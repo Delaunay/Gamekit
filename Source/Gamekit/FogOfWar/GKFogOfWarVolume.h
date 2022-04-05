@@ -203,6 +203,8 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
         return EDrawDebugTrace::None;
     }
 
+    void PostInitializeComponents() override;
+
     void Tick(float DeltaTime);
 
     void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
