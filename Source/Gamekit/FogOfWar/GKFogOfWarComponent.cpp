@@ -29,9 +29,6 @@ UGKFogOfWarComponent::UGKFogOfWarComponent()
     UnobstructedVision = false;
     LineTickness       = 2.f;
     bWasRegistered     = false;
-    // Force it to 1 so everyone is visible for the first few frames
-    // that means all the actors get replicated on clients
-    TeamVisibility     = -1;
 }
 
 void UGKFogOfWarComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
@@ -74,6 +71,14 @@ UMaterialInterface *UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial()
 FGenericTeamId UGKFogOfWarComponent::GetGenericTeamId() const {
     const IGenericTeamAgentInterface *TeamAgent = Cast<const IGenericTeamAgentInterface>(GetOwner());
     return GKGETATTR(TeamAgent, GetGenericTeamId(), FGenericTeamId());
+}
+
+
+bool UGKFogOfWarComponent::IsVisible(AActor const* Target) const {
+    if (FGenericTeamId::GetTeamIdentifier(Target) == GetGenericTeamId())
+        return true;
+
+    return GKGETATTR(FogOfWarVolume, IsVisible(GetGenericTeamId(), Target), false);
 }
 
 FName UGKFogOfWarComponent::DeduceFaction() const

@@ -7,6 +7,7 @@
 
 // Unreal Engine
 #include "Components/ActorComponent.h"
+#include "GenericTeamAgentInterface.h"
 #include "CoreMinimal.h"
 
 // Generated
@@ -19,6 +20,16 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
 
     public:
     UGKFogOfWarStrategy();
+
+    //! return true when `IsVisible` is implemented
+    virtual bool SupportVisbilityQuery() const {
+        return false;
+    } 
+
+    //! return true if the Seer team sees the target actor
+    virtual bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+        return true;
+    }
 
     virtual void Initialize();
 

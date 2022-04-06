@@ -57,28 +57,7 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
 
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
-    void IsVisibleBy(AActor const*Actor, bool& bIsVisible, bool& bSuccess) const { 
-        bIsVisible = false;
-        bSuccess   = false;
-        auto Agent = Cast<IGenericTeamAgentInterface>(Actor);
-
-        if (Agent)
-        {
-            bSuccess = true;
-            bIsVisible = IsSet(TeamVisibility, Agent->GetGenericTeamId().GetId());
-        }
-    }
-
     bool bWasRegistered;
-
-    // True if the unit is currently visible by the client PlayerController
-    // this value is on the server side, the unit can be seen by many teams
-    // This represent a bitflag
-    // 
-    // IsSet(Visible, GenericTeamId.GetId())
-    // SetFlag(Visible, GenericTeamId.GetId())
-    // 
-    uint32 TeamVisibility;
 
     //! Returns the render target associated with its faction
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -161,8 +140,10 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     UPROPERTY(BlueprintAssignable, Category = FogOfWar)
     FSightedEventSignature OnSighted;
 
-
     FGenericTeamId GetGenericTeamId() const;
+
+    //! Returns true if current team can see the target
+    bool IsVisible(AActor const* Target) const ;
 
     private:
     // Keep track of materials this unit belongs to, so they can be 

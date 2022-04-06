@@ -6,7 +6,7 @@ Relevant classes:
 * :cpp:class:`AGKMinimapVolume`
 * :cpp:class:`UGKMinimapComponent`
 
-.. image :: /_static/MinimapVolume.png
+.. image :: /_static/Minimap/MinimapVolume.png
 
 The minimap volume creates a SceneCaptureComponent that generates an image of the minimap.
 The volume is used to set the size of the orthographic view.
@@ -23,3 +23,8 @@ The example above combines 5 textures
 * Minimap Capture
 * Minimap Component Drawings
 * Controller Field of View
+
+
+.. note::
+
+   Minimaps are ignored for dedicated server builds.

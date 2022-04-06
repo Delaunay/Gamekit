@@ -68,16 +68,17 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog
     }
 
     // Vision is symetric 
-    SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GetGenericTeamId().GetId());
-    SourceComp->TeamVisibility  = SetFlag(SourceComp->TeamVisibility, SightedComp->GetGenericTeamId().GetId());
+    // SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GetGenericTeamId().GetId());
+    // SourceComp->TeamVisibility  = SetFlag(SourceComp->TeamVisibility, SightedComp->GetGenericTeamId().GetId());
     
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
 
+    /*
     GK_WARNING(TEXT("Server: %s sees %s (%d)"),
         *AActor::GetDebugName(SourceComp->GetOwner()),
         *AActor::GetDebugName(SightedComp->GetOwner()),
         SightedComp->TeamVisibility);
-
+    */
 
     // Avoid multiple broadcast per target
     if (!FactionFog->VisibleSoFar.Contains(SightedComp))

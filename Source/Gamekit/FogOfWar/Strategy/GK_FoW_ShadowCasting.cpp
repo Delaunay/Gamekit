@@ -6,6 +6,7 @@
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "DrawDebugHelpers.h"
@@ -80,6 +81,25 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     }
 
     return Texture;
+}
+
+bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+    // this returns true only if the center of the actor is inside vision
+    // THINK: should we check for its bounds ?
+    if (SeerTeam == FGenericTeamId::NoTeam){
+        return true;
+    }
+
+    auto ActorPosition = Grid.WorldToGrid(Target->GetActorLocation());
+
+    auto BufferPos = FogOfWarVolume->ToGridTexture(FIntVector(ActorPosition.X, ActorPosition.Y, 0));
+
+    BufferPos.Z = uint8(EGK_VisbilityLayers::Size) + SeerTeam.GetId();
+
+    if (Buffer.Valid(BufferPos)) {
+        return Buffer(BufferPos) & (uint8)(EGK_TileVisbility::Visible);
+    }
+    return false;
 }
 
 UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool bCreateRenderTarget)
@@ -158,15 +178,11 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
         {
             auto Pos    = TopLeftTexure + FIntVector(i, -j, uint8(EGK_VisbilityLayers::Blocking));
             Buffer(Pos) = Value;
-
-            // TODO: FIXME
-            Pos.Z = 0;
-            PositionToComponent.Add(Pos, c);
         }
     }
 }
 
-void UGKShadowCasting::UpdateTextures(FName Name)
+void UGKShadowCasting::UpdateTextures(class AGKTeamFog* TeamFog)
 {
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
@@ -174,15 +190,17 @@ void UGKShadowCasting::UpdateTextures(FName Name)
         return;
     }
 
-    UpdatePreviousFrameTexturesTex(Name);
+    UpdatePreviousFrameTexturesTex(TeamFog);
 
-    UTexture2D *Texture = GetFactionTexture2D(Name);
+    UTexture2D *Texture = GetFactionTexture2D(TeamFog->Name);
     bPreviousIsPrevious = !bPreviousIsPrevious;
 
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
-    FMemory::Memcpy(NewBuffer, Buffer.GetLayer(uint8(EGK_VisbilityLayers::Visible)), Buffer.GetLayerSizeBytes());
+    uint8 *SrcData = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
+
+    FMemory::Memcpy(NewBuffer, SrcData, Buffer.GetLayerSizeBytes());
 
     Texture->UpdateTextureRegions(0,
                                   1,
@@ -194,11 +212,11 @@ void UGKShadowCasting::UpdateTextures(FName Name)
 #endif
 }
 
-void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name)
+void UGKShadowCasting::UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog)
 {
 
-    UTexture2D *Texture     = GetFactionTexture2D(Name);
-    UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
+    UTexture2D *Texture     = GetFactionTexture2D(TeamFog->Name);
+    UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(TeamFog->Name);
     /*
     ENQUEUE_RENDER_COMMAND(CopyTexture)
     (
@@ -219,18 +237,20 @@ void UGKShadowCasting::UpdatePreviousFrameTexturesTex(FName Name)
     */
 }
 
-void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
+void UGKShadowCasting::UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog)
 {
 #if !UE_SERVER
     if (Buffer.Num() > 0 && GetWorld()->GetNetMode() != NM_DedicatedServer)
     {
         // Copy Previous Frame Before reseting
-        UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(Name);
+        UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(TeamFog->Name);
 
         UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
-
+        
         uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
-        FMemory::Memcpy(NewBuffer, Buffer.GetLayer(uint8(EGK_VisbilityLayers::Visible)), Buffer.GetLayerSizeBytes());
+        uint8* SrcData = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
+
+        FMemory::Memcpy(NewBuffer, SrcData, Buffer.GetLayerSizeBytes());
 
         PrevTexture->UpdateTextureRegions(0,
                                           1,
@@ -246,9 +266,7 @@ void UGKShadowCasting::UpdatePreviousFrameTextures(FName Name)
 void UGKShadowCasting::DrawFactionFog(class AGKTeamFog *FactionFog)
 {
     // Reset
-    Points.Reset();
-    PositionToComponent.Reset();
-    Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Visible), (uint8)(EGK_TileVisbility::None));
+    Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Size) + FactionFog->TeamId.GetId(), (uint8)(EGK_TileVisbility::None));
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Blocking), (uint8)(EGK_TileVisbility::None));
 
     CurrentFaction = FactionFog;
@@ -278,7 +296,7 @@ void UGKShadowCasting::DrawFactionFog(class AGKTeamFog *FactionFog)
     }
 
     // Update Textures for rendering
-    UpdateTextures(FactionFog->Name);
+    UpdateTextures(FactionFog);
 }
 
 void UGKShadowCasting::Initialize()
@@ -290,13 +308,16 @@ void UGKShadowCasting::Initialize()
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
+    auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    auto TeamCount = GKGETATTR(Settings, GetTeams().Num(), 1);
+
     TextureSize = TileCount;
-    Buffer.Init(0, TileCount.X, TileCount.Y, uint8(EGK_VisbilityLayers::Size));
+    Buffer.Init(0, TileCount.X, TileCount.Y, uint8(EGK_VisbilityLayers::Size) + TeamCount);
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
-    UE_LOG(LogGamekit, Log, TEXT("Map Size is %s"), *MapSize.ToString());
-    UE_LOG(LogGamekit, Log, TEXT("TileCount Count is %s"), *TileCount.ToString());
-    UE_LOG(LogGamekit, Log, TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
+    GK_LOG(TEXT("Map Size is %s"), *MapSize.ToString());
+    GK_LOG(TEXT("TileCount Count is %s"), *TileCount.ToString());
+    GK_LOG(TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
 }
 
 void UGKShadowCasting::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
@@ -305,15 +326,8 @@ void UGKShadowCasting::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWar
 
     auto       GridCoord       = Grid.WorldToGrid(WorldPos);
     auto       Radius          = int(c->Radius / Grid.GetTileSize().X);
-    FGKPoints *ComponentPoints = &Points.Add(c, FGKPoints());
 
-    /*
-    UE_LOG(LogGamekit, Log, TEXT("Actor is %s"), *AActor::GetDebugName(c->GetOwner()));
-    UE_LOG(LogGamekit, Log, TEXT("Grid Position is %s -> %s "), *GridCoord.ToString(), *WorldPos.ToString());
-    UE_LOG(LogGamekit, Log, TEXT("Radius is %f %d"), c->Radius, Radius);
-    //*/
-
-    Compute(GridCoord, Radius, ComponentPoints);
+    Compute(GridCoord, Radius, FactionFog->TeamId.GetId());
 }
 
 bool UGKShadowCasting::BlocksLight(int X, int Y)
@@ -338,17 +352,19 @@ int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff)
     return (Origin - Diff).Size();
 }
 
-void UGKShadowCasting::SetVisible(int X, int Y)
+void UGKShadowCasting::SetVisible(int X, int Y, uint8 TeamId)
 {
-    auto TexturePos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
-    TexturePos.Z    = uint8(EGK_VisbilityLayers::Visible);
+    auto BufferPos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
+    BufferPos.Z    = uint8(EGK_VisbilityLayers::Size) + TeamId;
 
-    if (Buffer.Valid(TexturePos))
+    if (Buffer.Valid(BufferPos))
     {
         // Set visible flag
-        Buffer(TexturePos) |= (uint8)(EGK_TileVisbility::Visible);
+        Buffer(BufferPos) |= (uint8)(EGK_TileVisbility::Visible);
 
-        // FIXME
+
+        /* This cannot work because we would need to insert N units into the `PositionToComponent`
+         * which would be very slow as N could be quite big 
         TexturePos.Z = 0;
 
         UGKFogOfWarComponent **SightedResult = PositionToComponent.Find(TexturePos);
@@ -357,20 +373,21 @@ void UGKShadowCasting::SetVisible(int X, int Y)
             UGKFogOfWarComponent *Sighted = SightedResult[0];
             AddVisibleComponent(CurrentFaction, CurrentComponent, Sighted);
         }
+        */
     }
     else
     {
-        UE_LOG(LogGamekit, Log, TEXT("Cannot set %d x %d as visisble %s"), X, Y, *TexturePos.ToString());
+        GK_LOG(TEXT("Cannot set %d x %d as visisble %s"), X, Y, *BufferPos.ToString());
     }
 }
 
-void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit, FGKPoints *CPoints)
+void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit, uint8 TeamId)
 {
-    SetVisible(origin.X, origin.Y);
+    SetVisible(origin.X, origin.Y, TeamId);
 
     for (uint8 octant = 0; octant < 8; octant++)
     {
-        Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), CPoints);
+        Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), TeamId);
     }
 }
 
@@ -380,7 +397,7 @@ void UGKShadowCasting::Compute(uint8      octant,
                                int        x,
                                FGKSlope   top,
                                FGKSlope   bottom,
-                               FGKPoints *CPoints)
+                               uint8 TeamId)
 {
     // rangeLimit < 0 || x <= rangeLimit
     for (; (uint8)x <= (uint8)rangeLimit; x++)
@@ -416,7 +433,7 @@ void UGKShadowCasting::Compute(uint8      octant,
             bool inRange = rangeLimit < 0 || GetDistance(origin, FIntVector(tx, ty, 0)) <= rangeLimit;
 
             if (inRange){
-                SetVisible(tx, ty);
+                SetVisible(tx, ty, TeamId);
             }
 
             // NOTE: use the next line instead if you want the algorithm to be symmetrical
@@ -440,7 +457,7 @@ void UGKShadowCasting::Compute(uint8      octant,
                             break;
                         }
                         else {
-                            Compute(octant, origin, rangeLimit, x+1, top, newBottom, CPoints);
+                            Compute(octant, origin, rangeLimit, x+1, top, newBottom, TeamId);
                         }
                     }
                     wasOpaque = 1;

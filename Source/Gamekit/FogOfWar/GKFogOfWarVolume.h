@@ -340,4 +340,16 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     // Insert TeamFogs into NameToFogs on replication
     UFUNCTION()
     void OnRep_TeamFogs();
+
+
+    bool IsVisible(FName TeamName, AActor const* Target) const {
+        auto Team = NameToFogs.Find(TeamName);
+        if (Team)
+            return IsVisible(Team[0]->TeamId, Target);
+        return false;
+    }
+
+    bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+        return GKGETATTR(Strategy, IsVisible(SeerTeam, Target), false);
+    }
 };

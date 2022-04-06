@@ -48,7 +48,6 @@ enum class EGK_TileVisbility : uint8
 
 enum class EGK_VisbilityLayers : uint8
 {
-    Visible,
     Terrain, // Permanent Layer
     Blocking,
     Size,
@@ -85,6 +84,15 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     GENERATED_BODY()
 
     public:
+
+    //! return true when `IsVisible` is implemented
+    bool SupportVisbilityQuery() const override {
+        return true;
+    }
+
+    //! return true if the Seer team sees the target actor
+    bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const override; 
+
     void Initialize() override;
 
     void DrawFactionFog(class AGKTeamFog *FactionFog) override;
@@ -96,7 +104,7 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 
     void UpdateBlocking(class UGKFogOfWarComponent *c);
 
-    void UpdateTextures(FName Name);
+    void UpdateTextures(class AGKTeamFog* TeamFog);
 
     class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
 
@@ -108,12 +116,12 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 
     class UTexture *GetPreviousFrameFactionTexture(FName name, bool CreateRenderTarget = true);
 
-    void UpdatePreviousFrameTexturesTex(FName Name);
+    void UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog);
 
-    void UpdatePreviousFrameTextures(FName Name);
+    void UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog); 
 
     private:
-    void Compute(FIntVector origin, int rangeLimit, FGKPoints *Points);
+    void Compute(FIntVector origin, int rangeLimit, uint8 TeamId);
 
     void Compute(uint8      octant,
                  FIntVector origin,
@@ -121,7 +129,7 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
                  int        x,
                  FGKSlope   top,
                  FGKSlope   bottom,
-                 FGKPoints *Points);
+                 uint8      TeamId);
 
     //! BlocksLight takes X and Y coordinates of a tile and determines whether the
     //! given tile blocks the passage of light.
@@ -133,7 +141,7 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 
     //! SetVisible marks a tile as visible, given its X and Y coordinates.
     //! The function ignorse coordinates that are out of bounds
-    void SetVisible(int X, int Y);
+    void SetVisible(int X, int Y, uint8 TeamId);
 
     FIntVector       TextureSize;
     FGKGrid          Grid;
@@ -142,12 +150,8 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     UPROPERTY(Transient)
     TMap<FName, class UTexture2D *>                FogFactions;
     TMap<FName, class UTexture2D *>                PreviousFogFactions;
-    TMap<FIntVector, class UGKFogOfWarComponent *> PositionToComponent;
 
     FUpdateTextureRegion2D UpdateRegion;
-
-    // Unused
-    TMap<class UGKFogOfWarComponent *, FGKPoints> Points;
 
     //
     class AGKTeamFog *             CurrentFaction;

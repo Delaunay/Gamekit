@@ -9,6 +9,11 @@ Implementations
 ---------------
 
 All fog implementations inherit from :cpp:class:`UGKFogOfWarStrategy`.
+Drawing the fog is half of the problem, has you will need to be able to query
+the fog to know if a unit from Team X is visible by Team Y for replication purposes.
+If the feature is not implemented, clients will receive replication updates for hidden units
+and cheater could use the data to gain an unfair advantage.
+
 
 RayCast V1
 ~~~~~~~~~~

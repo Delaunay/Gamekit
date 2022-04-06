@@ -290,6 +290,8 @@ FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(class AGKTeamFog *FactionFog
 
     if (Hit && OutHit.Actor.IsValid())
     {
+        // this only works if the actors are blocking the light
+        // because our rays stops on obstacle only
         AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
     }
 

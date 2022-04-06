@@ -38,25 +38,17 @@ bool AGKCharacterBase::IsNetRelevantFor(const AActor  *RealViewer,
 {
     auto FogComp = Cast<UGKFogOfWarComponent>(GetComponentByClass(UGKFogOfWarComponent::StaticClass()));
 
-    // FIXME: there is an issue in visibility detection
     if (FogComp)
     {
-        bool bSuccess = false;
-        bool bIsVisible = false;
-
-        FogComp->IsVisibleBy(RealViewer, bIsVisible, bSuccess);
-
-        GK_WARNING(TEXT("%s sees %s %d (%d)"),
-            *GetDebugName(RealViewer),
-            *GetDebugName(this),
-            bIsVisible,
-            FogComp->TeamVisibility
+        /*
+        GK_WARNING(TEXT("%d sees %d => %d"),
+            FGenericTeamId::GetTeamIdentifier(RealViewer).GetId(),
+            FGenericTeamId::GetTeamIdentifier(this).GetId(),
+            FogComp->IsVisible(RealViewer)
         );
+        */
 
-        if (bSuccess)
-        {
-            return bIsVisible;
-        }
+        return FogComp->IsVisible(ViewTarget);
     }
 
     return Super::IsNetRelevantFor(RealViewer, ViewTarget, SrcLocation);
