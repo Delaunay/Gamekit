@@ -63,9 +63,10 @@ Multiplayer
   Clients can only access the visible set of their faction.
 * Spectators receive all the visible sets
 
+.. image :: /_static/FogOfWar/FogReplication.png
 
 Limitations
------------
+~~~~~~~~~~~
 
 * If used in multiplayer the number of teams is limited to 32.
   This is because a `uint32` is used to represent the visibility of a unit.

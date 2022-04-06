@@ -9,6 +9,10 @@ Releases
    :alt: Documentation Status
 
 
+.. image:: https://github.com/Delaunay/Gamekit/blob/master/Docs/_static/Patron.png?raw=true
+   :target: https://www.patreon.com/bePatron?u=10394303
+   :alt: Patreon
+
 * Latest Release
 
   * `Binaries`_

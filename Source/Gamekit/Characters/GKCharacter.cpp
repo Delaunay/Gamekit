@@ -46,10 +46,10 @@ bool AGKCharacterBase::IsNetRelevantFor(const AActor  *RealViewer,
 
         FogComp->IsVisibleBy(RealViewer, bIsVisible, bSuccess);
 
-        GK_WARNING(TEXT("%s sees %s %d (%d)"), 
+        GK_WARNING(TEXT("%s sees %s %d (%d)"),
             *GetDebugName(RealViewer),
-            *GetDebugName(this), 
-            bIsVisible, 
+            *GetDebugName(this),
+            bIsVisible,
             FogComp->TeamVisibility
         );
 
