@@ -1,43 +1,4 @@
-Welcome to GameKit's documentation!
-===================================
-
-.. image:: https://readthedocs.org/projects/gamekit/badge/?version=latest
-   :target: https://gamekit.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation Status
-
-
-.. image:: https://github.com/Delaunay/Gamekit/blob/master/Docs/_static/Patron.png?raw=true
-   :target: https://www.patreon.com/bePatron?u=10394303
-   :alt: Patreon
-
-Goals
-~~~~~
-
-High level game framework built on top of Unreal Engine.
-
-* Data Driven
-   * Configure your ability in json
-   * Bootstrap Game wikis with the raw data
-
-* Multiplayer Ready
-   * Hosted
-   * Dedicated
-   * Standalone
-
-* Ever growing documentation
-   * Architecture Diagram
-   * Replication Diagram
-   * Code Search
-
-* Community Friendly
-   * Favour source code (C++, HLSL) for easier contribution workflow
-
-* Base UI & Menus for debugging and prototyping
-
-* Automation framework on top of UAT
-   * CI/CD
-   * Testing Utilities
-
+.. include:: ../README.rst
 
 .. warning::
 
@@ -58,11 +19,18 @@ High level game framework built on top of Unreal Engine.
    DataDriven/Units
    DataDriven/Teams
 
+
+.. toctree::
+   :caption: Fog Of War
+   :maxdepth: 1
+
+   FogOfWar/index
+   FogOfWar/Strategies
+
 .. toctree::
    :caption: Unsorted
    :maxdepth: 1
 
-   FogOfWar/index
    Minimaps/index
    Level/index
    MachineLearning/index
