@@ -75,10 +75,11 @@ FGenericTeamId UGKFogOfWarComponent::GetGenericTeamId() const {
 
 
 bool UGKFogOfWarComponent::IsVisible(AActor const* Target) const {
-    if (FGenericTeamId::GetTeamIdentifier(Target) == GetGenericTeamId())
-        return true;
-
     return GKGETATTR(FogOfWarVolume, IsVisible(GetGenericTeamId(), Target), false);
+}
+
+bool UGKFogOfWarComponent::IsVisible(FVector Loc) const {
+    return GKGETATTR(FogOfWarVolume, IsVisible(GetGenericTeamId(), Loc), false);
 }
 
 FName UGKFogOfWarComponent::DeduceFaction() const

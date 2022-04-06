@@ -341,7 +341,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UFUNCTION()
     void OnRep_TeamFogs();
 
-
+    public:
     bool IsVisible(FName TeamName, AActor const* Target) const {
         auto Team = NameToFogs.Find(TeamName);
         if (Team)
@@ -350,6 +350,13 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     }
 
     bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+        if (FGenericTeamId::GetTeamIdentifier(Target) == SeerTeam)
+            return true;
+
         return GKGETATTR(Strategy, IsVisible(SeerTeam, Target), false);
+    }
+
+    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
+        return GKGETATTR(Strategy, IsVisible(SeerTeam, Loc), false);
     }
 };

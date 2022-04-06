@@ -58,9 +58,9 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     // Constructor and overrides
     AGKCharacterBase();
 
-    bool IsNetRelevantFor(const AActor  *RealViewer,
-                          const AActor  *ViewTarget,
-                          const FVector &SrcLocation) const override;
+    bool IsReplicationPausedForConnection(const FNetViewer& ConnectionOwnerNetViewer);
+
+    void OnReplicationPausedChanged(bool bIsReplicationPaused);
 
     virtual void BeginPlay() override;
 
@@ -69,6 +69,8 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     virtual void UnPossessed() override;
 
     virtual void OnRep_Controller() override;
+
+    void Tick(float Delta) override;
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
@@ -226,4 +228,6 @@ public:
     //! Called both on the server and client
     UPROPERTY(BlueprintAssignable, Category = "Team")
     FGKTeamAssignedDelegate OnTeamAssigned;
+
+    bool bPreviousVisibility;
 };

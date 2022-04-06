@@ -8,6 +8,8 @@
 // Unreal Engine
 #include "Camera/CameraComponent.h"
 #include "Engine/CollisionProfile.h"
+#include "Kismet/GameplayStatics.h"
+
 
 class UCollisionProfileHack
 {
@@ -56,4 +58,28 @@ void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume *Volume,
         }
     }
     CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(FWeightedBlendable(1, Material));
+}
+
+
+bool UGKFogOfWarLibrary::IsVisible(UObject* WorldCtx, AActor const* Target) {
+    UWorld* World = GEngine->GetWorldFromContextObject(WorldCtx, EGetWorldErrorMode::LogAndReturnNull);
+    if (!World){
+        return false;
+    }
+    ULocalPlayer* Player = World->GetFirstLocalPlayerFromController();
+    if (!Player){
+        return false;
+    }
+
+    auto Controller = Player->GetPlayerController(World);
+    if (!Controller){
+        return false;
+    }
+
+    TArray<AActor*> OutActors;
+    UGameplayStatics::GetAllActorsOfClass(World, AGKFogOfWarVolume::StaticClass(), OutActors);
+
+    auto FogOfWarVolume = Cast<AGKFogOfWarVolume>(OutActors[0]);
+
+    return FogOfWarVolume->IsVisible(FGenericTeamId::GetTeamIdentifier(Controller), Target);
 }

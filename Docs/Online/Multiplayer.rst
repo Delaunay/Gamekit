@@ -258,6 +258,34 @@ Replication
 
    MARK_PROPERTY_DIRTY_FROM_NAME(APlayerState, Score, this);
 
+
+Advanced Replication
+--------------------
+
+.. code-block::
+
+   NetDormancy    = DORM_DormantPartial;
+
+   // this seems to work
+   bool AGKCharacterBase::IsReplicationPausedForConnection(const FNetViewer& ConnectionOwnerNetViewer)
+
+   // What is the purpose of this
+   bool AGKCharacterBase::GetNetDormancy(const FVector& ViewPos,    // ConnectionViewers[viewerIdx].ViewLocation
+                                         const FVector& ViewDir,    // ConnectionViewers[viewerIdx].ViewDir
+                                         class AActor*  Viewer,     // ConnectionViewers[viewerIdx].InViewer
+                                         AActor*        ViewTarget, // ConnectionViewers[viewerIdx].ViewTarget
+                                         UActorChannel* InChannel,
+                                         float          Time,
+                                         bool           bLowBandwidth)
+
+   // When tweaking this method, the replication does not stop right away
+   // the channel closes after a few seconds
+   // LogNetDormancy: Verbose: UChannel::Close: Sending CloseBunch. Reason: Relevancy
+   bool AGKCharacterBase::IsNetRelevantFor(const AActor  *RealViewer,  // InViewer
+                                           const AActor  *ViewTarget,  // ViewTarget
+                                           const FVector &ViewLocation) const
+
+
 Testing
 --------
 

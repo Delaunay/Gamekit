@@ -10,12 +10,16 @@
 #include "Gamekit/Items/GKItem.h"
 #include "Gamekit/GKLog.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
+#include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 
 // Unreal Engine
 #include "AbilitySystemGlobals.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Engine/NetworkObjectList.h"
+#include "Engine/ActorChannel.h"
 
 
 AGKCharacterBase::AGKCharacterBase()
@@ -29,29 +33,54 @@ AGKCharacterBase::AGKCharacterBase()
 
     CharacterLevel = 1;
     InputsBound    = false;
+    NetDormancy    = DORM_DormantPartial;
+    bPreviousVisibility = true;
 }
 
 
-bool AGKCharacterBase::IsNetRelevantFor(const AActor  *RealViewer,
-                                        const AActor  *ViewTarget,
-                                        const FVector &SrcLocation) const
-{
+void AGKCharacterBase::Tick(float Delta) {
+    // Is this current actor visible, by local player
+    if (GetNetMode() == ENetMode::NM_Client){
+        auto bVisible = UGKFogOfWarLibrary::IsVisible(GetWorld(), this);
+        SetActorHiddenInGame(!bVisible);
+
+        UKismetSystemLibrary::DrawDebugString(
+            GetWorld(),
+            GetActorLocation(),
+            FString::Format(TEXT("Replicated {0}"), FStringFormatOrderedArguments{
+                FStringFormatArg(bVisible)
+            })
+        );
+    }
+}
+
+void AGKCharacterBase::OnReplicationPausedChanged(bool bIsReplicationPaused) {
+    // Stop the current interpolation to continue, since we are not going to receive
+    // position updates
+    if (bIsReplicationPaused){
+        Cast<UCharacterMovementComponent>(GetMovementComponent())->DisableMovement();
+    }
+}
+
+
+bool AGKCharacterBase::IsReplicationPausedForConnection(const FNetViewer& ConnectionOwnerNetViewer) {
+    if (ConnectionOwnerNetViewer.ViewTarget == this)
+        return false;
+    
+    //*
     auto FogComp = Cast<UGKFogOfWarComponent>(GetComponentByClass(UGKFogOfWarComponent::StaticClass()));
 
     if (FogComp)
     {
-        /*
-        GK_WARNING(TEXT("%d sees %d => %d"),
-            FGenericTeamId::GetTeamIdentifier(RealViewer).GetId(),
-            FGenericTeamId::GetTeamIdentifier(this).GetId(),
-            FogComp->IsVisible(RealViewer)
-        );
-        */
+        auto ViewTarget = ConnectionOwnerNetViewer.ViewTarget;
 
-        return FogComp->IsVisible(ViewTarget);
+        auto bVisible = FogComp->IsVisible(ViewTarget);
+
+        return !bVisible;
     }
+    //*/
 
-    return Super::IsNetRelevantFor(RealViewer, ViewTarget, SrcLocation);
+    return false;
 }
 
 void AGKCharacterBase::OnDataTableChanged_Native()
@@ -64,17 +93,6 @@ void AGKCharacterBase::OnDataTableChanged_Native()
 void AGKCharacterBase::PostInitProperties()
 {
     Super::PostInitProperties();
-
-    /*
-    if (AttributeSet == nullptr) {
-            UE_LOG(LogGamekit, Warning, TEXT("AttributeSet is Invalid"));
-            return;
-    }
-
-    if (UnitDataTable && UnitRowName.IsValid()) {
-            UE_LOG(LogGamekit, Warning, TEXT("Loading Unit Config From DataTable"));
-            OnDataTableChanged_Native();
-    }*/
 }
 
 void AGKCharacterBase::AddPassiveEffect(UGameplayEffect *Effect)
@@ -117,15 +135,21 @@ void AGKCharacterBase::LoadFromDataTable(FGKUnitStatic &UnitDef)
     AttributeSet->SetMaxHealth(UnitDef.Health);
     AttributeSet->SetMaxMana(UnitDef.Mana);
 
-    auto ManaRegen =
-            NewPassiveRegenEffect(AbilitySystemComponent, UGKAttributeSet::GetManaAttribute(), UnitDef.ManaRegen, 0.1
-                                  //, TEXT("GameplayEffect.ManaRegen")
-            );
+    auto ManaRegen = NewPassiveRegenEffect(
+        AbilitySystemComponent, 
+        UGKAttributeSet::GetManaAttribute(), 
+        UnitDef.ManaRegen, 
+        0.1
+        //, TEXT("GameplayEffect.ManaRegen")
+    );
     AddPassiveEffect(ManaRegen);
 
     auto HealthRegen = NewPassiveRegenEffect(
-            AbilitySystemComponent, UGKAttributeSet::GetHealthAttribute(), UnitDef.HealthRegen, 0.1
-            //, TEXT("GameplayEffect.HealthRegen")
+        AbilitySystemComponent, 
+        UGKAttributeSet::GetHealthAttribute(), 
+        UnitDef.HealthRegen, 
+        0.1
+        //, TEXT("GameplayEffect.HealthRegen")
     );
     AddPassiveEffect(HealthRegen);
 

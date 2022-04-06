@@ -90,8 +90,8 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
         return true;
     }
 
-    //! return true if the Seer team sees the target actor
-    bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const override; 
+    //! return true if the Seer team sees the location
+    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const override; 
 
     void Initialize() override;
 

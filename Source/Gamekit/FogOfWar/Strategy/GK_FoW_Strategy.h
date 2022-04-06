@@ -28,6 +28,10 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
 
     //! return true if the Seer team sees the target actor
     virtual bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+        return IsVisible(SeerTeam, Target->GetActorLocation());
+    }
+
+    virtual bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
         return true;
     }
 

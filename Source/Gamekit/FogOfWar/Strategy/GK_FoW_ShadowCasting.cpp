@@ -83,14 +83,12 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     return Texture;
 }
 
-bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
-    // this returns true only if the center of the actor is inside vision
-    // THINK: should we check for its bounds ?
-    if (SeerTeam == FGenericTeamId::NoTeam){
+bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
+
+    if (SeerTeam == FGenericTeamId::NoTeam) {
         return true;
     }
-
-    auto ActorPosition = Grid.WorldToGrid(Target->GetActorLocation());
+    auto ActorPosition = Grid.WorldToGrid(Loc);
 
     auto BufferPos = FogOfWarVolume->ToGridTexture(FIntVector(ActorPosition.X, ActorPosition.Y, 0));
 

@@ -143,7 +143,9 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
     FGenericTeamId GetGenericTeamId() const;
 
     //! Returns true if current team can see the target
-    bool IsVisible(AActor const* Target) const ;
+    bool IsVisible(AActor const* Target) const;
+
+    bool IsVisible(FVector Loc) const;
 
     private:
     // Keep track of materials this unit belongs to, so they can be 
