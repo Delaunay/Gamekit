@@ -5,10 +5,10 @@ Welcome to GameKit's documentation!
    :target: https://gamekit.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-.. image:: Docs/_static/PatreonBadge.png
+
+.. image:: https://github.com/Delaunay/Gamekit/blob/master/Docs/_static/Patron.png?raw=true
    :target: https://www.patreon.com/bePatron?u=10394303
    :alt: Patreon
-
 
 Goals
 ~~~~~
@@ -17,7 +17,7 @@ High level game framework built on top of Unreal Engine.
 
 * Data Driven
    * Configure your ability in json
-   * Bootstrap Game wikis with data
+   * Bootstrap Game wikis with the raw data
 
 * Multiplayer Ready
    * Hosted
@@ -30,7 +30,7 @@ High level game framework built on top of Unreal Engine.
    * Code Search
 
 * Community Friendly
-   * Favour source code (C++, HLSL) for easier contribution flow
+   * Favour source code (C++, HLSL) for easier contribution workflow
 
 * Base UI & Menus for debugging and prototyping
 
