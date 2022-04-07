@@ -176,16 +176,17 @@ void FUpscalingDispatcher::CopyOutputTargetToOutputTexture(FRHICommandListImmedi
             GetTextureRHI(CachedParams.UpscaledTexture), ERHIAccess::CopyDest, ERHIAccess::SRVGraphics));
 }
 
-void FUpscalingDispatcher::Execute_RenderThread(FRHICommandListImmediate & RHICmdList,
-                                                class FSceneRenderTargets &SceneContext)
+void FUpscalingDispatcher::Execute_RenderThread(FRDGBuilder& GraphBuilder,
+                                                struct FSceneTextures const& SceneTextures)
 {
     if (!(bCachedParamsAreValid && CachedParams.UpscaledTexture && CachedParams.OriginalTexture))
     {
         UE_LOG(LogGamekit, Warning, TEXT("Skip update, no valid input %d"), bCachedParamsAreValid);
-        return;
+        return; 
     }
 
     check(IsInRenderingThread());
+    auto& RHICmdList = GraphBuilder.RHICmdList;
 
     ReserveRenderTargets(RHICmdList);
     CopyInputTextureToInputTarget(RHICmdList);

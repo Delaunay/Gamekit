@@ -61,7 +61,7 @@ void UGKAsyncTaskCooldownChanged::EndTask()
     }
 
     SetReadyToDestroy();
-    MarkPendingKill();
+    MarkAsGarbage();
 }
 
 void UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent *   Target,

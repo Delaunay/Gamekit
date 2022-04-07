@@ -6,6 +6,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+#include "Gamekit/GKTypes.h"
 
 // Unreal Engine
 #include "Kismet/KismetSystemLibrary.h"
@@ -13,8 +14,8 @@
 UGKRayCasting_Less::UGKRayCasting_Less() {}
 
 void TrackCoverage(TArray<FVector2D> &Coverage,
-                   float              AngleMin,
-                   float              AngleMax,
+                   float64            AngleMin,
+                   float64            AngleMax,
                    bool &             HasCoverage,
                    FVector2D &        PreviousAngle);
 
@@ -56,8 +57,8 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog,
         OwnerForward = FVector(1, 0, 0);
     }
 
-    float Offset = 0;
-    float Margin = FogOfWarVolume->Margin;
+    float64 Offset = 0;
+    float64 Margin = FogOfWarVolume->Margin;
 
     OutActors.Sort(
             [Location = OwnerLocation](const AActor &a, const AActor &b) -> bool
@@ -76,8 +77,8 @@ void UGKRayCasting_Less::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog,
 
         UGKUtilityLibrary::GetVisibleBounds(OwnerLocation, OutActor, MinPoint, MaxPoint);
 
-        float Angle;
-        float Radius;
+        float64 Angle;
+        float64 Radius;
 
         MinPoint = MinPoint - Origin;
         FMath::CartesianToPolar(MinPoint.X, MinPoint.Y, Radius, Angle);
@@ -288,11 +289,13 @@ FGKLinePoints UGKRayCasting_Less::CastLineFromAngle(class AGKTeamFog *FactionFog
 
     LineEnd = Hit ? OutHit.Location - dir : OwnerLocation + dir * ExtendedRadius;
 
-    if (Hit && OutHit.Actor.IsValid())
+    auto HitActor = OutHit.HitObjectHandle.FetchActor<AActor>();
+
+    if (Hit && HitActor)
     {
         // this only works if the actors are blocking the light
         // because our rays stops on obstacle only
-        AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
+        AddVisibleActor(FactionFog, c, HitActor);
     }
 
     return FGKLinePoints{LineStart, LineEnd};

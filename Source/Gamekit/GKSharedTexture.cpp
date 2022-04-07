@@ -81,10 +81,10 @@ ETextureSourceFormat GetTextureFormat(UCanvasRenderTarget2D *RenderTarget)
 FColor UGKSharedTexture::ReadPoint(FIntPoint p)
 {
     RenderTarget->UpdateTexture2D(CPUTexture, GetTextureFormat(RenderTarget));
-    const FColor *FormatedImageData = (const FColor *)(CPUTexture->PlatformData->Mips[0].BulkData.LockReadOnly());
+    const FColor *FormatedImageData = (const FColor *)(CPUTexture->GetPlatformData()->Mips[0].BulkData.LockReadOnly());
 
     FColor PixelColor = FormatedImageData[p.Y * CPUTexture->GetSizeX() + p.X];
-    CPUTexture->PlatformData->Mips[0].BulkData.Unlock();
+    CPUTexture->GetPlatformData()->Mips[0].BulkData.Unlock();
 
     return PixelColor;
 }

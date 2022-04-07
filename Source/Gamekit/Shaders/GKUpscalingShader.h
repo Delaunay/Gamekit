@@ -61,6 +61,7 @@ class GAMEKIT_API FUpscalingDispatcher
     void CopyInputTextureToInputTarget(FRHICommandListImmediate &RHICmdList);
     void CopyOutputTargetToOutputTexture(FRHICommandListImmediate &RHICmdList);
 
-    public:
-    void Execute_RenderThread(FRHICommandListImmediate &RHICmdList, class FSceneRenderTargets &SceneContext);
+    public: 
+    void Execute_RenderThread(class FRDGBuilder& GraphBuilder,
+                              struct FSceneTextures const& SceneTextures);
 };

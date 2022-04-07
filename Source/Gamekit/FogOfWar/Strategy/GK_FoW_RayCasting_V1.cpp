@@ -108,11 +108,12 @@ void UGKRayCasting_Line::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog,
         LineEnd = hit ? OutHit.Location : LineEnd;
         Lines.Add(FGKLinePoints{LineStart, LineEnd});
 
-        if (OutHit.Actor.IsValid())
+        auto HitActor = OutHit.HitObjectHandle.FetchActor<AActor>();
+        if (HitActor)
         {
             // this only works if the actors are blocking the light
             // because our rays stops on obstacle only
-            AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
+            AddVisibleActor(FactionFog, c, HitActor);
         }
     }
 

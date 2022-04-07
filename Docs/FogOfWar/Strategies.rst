@@ -1,5 +1,5 @@
-Strategies
-==========
+Drawing Strategies
+==================
 
 :cpp:class:`AGKFogOfWarVolume` implements different strategies that implements the fog of war drawing.
 The default implementation is :cpp:class:`UGKShadowCasting`, other strategies are provided for their
@@ -134,8 +134,8 @@ Comparison
 +-------------+---------------------+-------------------------------+
 
 
-Transform
----------
+Transforms (Exploration & Upscaling)
+------------------------------------
 
 :cpp:class:`UGKTransformerStrategy` can be used to implement post processing steps on the fog textures, to
 tweak its final look.
@@ -143,13 +143,13 @@ tweak its final look.
 Exploration & Upscaling are both implemented using :cpp:class:`UGKTransformerStrategy`.
 
 
-Line of Sight
--------------
-
-The fog of war can be used for stealth games; line of sights are cast to determine which part of the map is visible.
-
 Idea
 ----
+
+* Change the drawing backend per actors
+  * Make client use a prettier/slower implementation
+  * Server use faster implementation
+
 
 I thought I could improve my fog of war by using a point light for the tracing and draw the point light on a render target but it does not seem possible in UE4.
 There are 3 light channels but they cant be rendered separately or I have not found a way to do so

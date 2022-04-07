@@ -69,6 +69,8 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
                              class UGKFogOfWarComponent *SourceComp,
                              class UGKFogOfWarComponent *SightedComp);
 
+    // void RegisterActorHit(FHitResult& OutHit, UGKFogOfWarComponent* c);
+
     protected:
     class AGKFogOfWarVolume *FogOfWarVolume;
 };

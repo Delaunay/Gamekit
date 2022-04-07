@@ -88,3 +88,15 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog
     }
 }
  
+
+/*
+void UGKFogOfWarStrategy::RegisterActorHit(FHitResult& OutHit, UGKFogOfWarComponent* c) {
+    auto HitActor = OutHit.HitObjectHandle.FetchActor<AActor>();
+    if (hit && HitActor)
+    {
+        // this only works if the actors are blocking the light
+        // because our rays stops on obstacle only
+        AddVisibleActor(FactionFog, c, HitActor);
+    }
+}
+*/

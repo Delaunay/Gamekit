@@ -9,6 +9,7 @@ public class Gamekit : ModuleRules
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PrivateIncludePaths.AddRange(new string[]{
+            "Gamekit"
         });
 
         PublicDependencyModuleNames.AddRange(new string[]{
