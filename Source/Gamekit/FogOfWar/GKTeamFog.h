@@ -52,10 +52,8 @@ public:
     FGenericTeamId TeamId;
 
     //! Used to avoid double insert inside Visible Enenmies
-    TSet<class UGKFogOfWarComponent *> VisibleSoFar;
-
-    UPROPERTY(Replicated)
-    TArray<class UGKFogOfWarComponent *> VisibleEnemies;
+    //! not need to replicate this
+    TSet<class UGKFogOfWarComponent *> Visible;
 
     UPROPERTY(Replicated)
     TArray<class UGKFogOfWarComponent *> Allies;

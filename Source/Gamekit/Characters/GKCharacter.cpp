@@ -39,26 +39,22 @@ AGKCharacterBase::AGKCharacterBase()
 
 
 void AGKCharacterBase::Tick(float Delta) {
-    // Is this current actor visible, by local player
-    if (GetNetMode() == ENetMode::NM_Client){
-        auto bVisible = UGKFogOfWarLibrary::IsVisible(GetWorld(), this);
-        SetActorHiddenInGame(!bVisible);
-
-        UKismetSystemLibrary::DrawDebugString(
-            GetWorld(),
-            GetActorLocation(),
-            FString::Format(TEXT("Replicated {0}"), FStringFormatOrderedArguments{
-                FStringFormatArg(bVisible)
-            })
-        );
-    }
 }
 
 void AGKCharacterBase::OnReplicationPausedChanged(bool bIsReplicationPaused) {
     // Stop the current interpolation to continue, since we are not going to receive
     // position updates
+    //
+    // Tempering with this would only cause the client to see ghost actors
     if (bIsReplicationPaused){
         Cast<UCharacterMovementComponent>(GetMovementComponent())->DisableMovement();
+        SetActorHiddenInGame(true);
+        SetActorEnableCollision(false);
+        SetActorTickEnabled(false);
+    } else {
+        SetActorHiddenInGame(false);
+        SetActorEnableCollision(true);
+        SetActorTickEnabled(true);
     }
 }
 

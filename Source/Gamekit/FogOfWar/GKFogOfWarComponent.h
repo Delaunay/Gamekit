@@ -59,11 +59,14 @@ class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
 
     bool bWasRegistered;
 
-    //! Returns the render target associated with its faction
-    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    //! Returns the render target associated with its faction, only use for debugging
+    //! the texture cannot be changed to refelect team change
+    UFUNCTION(BlueprintCallable, Category = "FogOfWar|Debug")
     class UTexture *GetVisionTexture();
 
-    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    //! Returns the render target associated with its faction, only use for debugging
+    //! the texture cannot be changed to refelect team change
+    UFUNCTION(BlueprintCallable, Category = "FogOfWar|Debug")
     class UTexture *GetExplorationTexture();
 
     //! Returns the fog of war volume this component is associated to

@@ -20,9 +20,8 @@ AGKTeamFog::AGKTeamFog() {
     Vision              = nullptr;
     PreviousFrameVision = nullptr;
     UpScaledVision      = nullptr;
-    VisibleEnemies.Reserve(128);
+    Visible.Reserve(128);
     Allies.Reserve(128);
-    VisibleSoFar.Reserve(128);
 }
 
 bool AGKTeamFog::IsNetRelevantFor(const AActor *RealViewer, const AActor *ViewTarget, const FVector &SrcLocation) const
@@ -42,7 +41,6 @@ void AGKTeamFog::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifeti
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AGKTeamFog, Name);
     DOREPLIFETIME(AGKTeamFog, TeamId);
-    DOREPLIFETIME(AGKTeamFog, VisibleEnemies);
     DOREPLIFETIME(AGKTeamFog, Allies);
 }
 
@@ -59,7 +57,7 @@ TArray<class UGKFogOfWarComponent *> const &AGKTeamFog::GetBlocking()
         }
     }
 
-    for (auto Comp: VisibleEnemies)
+    for (auto Comp: Visible)
     {
         if (Comp->BlocksVision)
         {

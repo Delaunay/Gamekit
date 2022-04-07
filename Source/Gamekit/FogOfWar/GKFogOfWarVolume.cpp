@@ -132,11 +132,10 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
 {
     ensure(name != NAME_None);
 
-    UE_LOG(LogGamekit, Log, TEXT("Setting For of War Materials"));
-
+    GK_LOG(TEXT("Setting For of War Materials"));
     if (Material == nullptr)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Material is null"));
+        GK_WARNING(TEXT("Material is null"));
         return;
     }
 
@@ -147,7 +146,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Fog of war vision is null"));
+        GK_WARNING(TEXT("Fog of war vision is null"));
     }
 
     /*
@@ -169,8 +168,15 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Fog of war exploration is null"));
+        GK_WARNING(TEXT("Fog of war exploration is null"));
     }
+
+    auto Result = NameToFogs.Find(name);
+    auto TeamId = FGenericTeamId::NoTeam;
+    if (Result){
+        TeamId = Result[0]->TeamId;
+    }
+    Materials.Add(FGKDynamicFogMaterial{name, TeamId, Material});
 }
 
 UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name)
@@ -187,40 +193,28 @@ UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name
         return nullptr;
     }
 
-    UMaterialInterface **LookupResult = PostProcessMaterials.Find(name);
+    UMaterialInstanceDynamic**LookupResult = PostProcessMaterials.Find(name);
 
     if (LookupResult != nullptr)
     {
         return LookupResult[0];
     }
 
-    auto FoWView        = GetFactionTexture(name);
-    auto FoWExploration = GetFactionExplorationTexture(name);
-
-    if (FoWView == nullptr)
-    {
-        UE_LOG(LogGamekit, Warning, TEXT("Missing FoWView to create FoW post process material"));
-        return nullptr;
-    }
-
+    // Technically we should only have one, since we have one view per instance
     UMaterialInstanceDynamic *Material = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-            GetWorld(), BasePostProcessMaterial, NAME_None, EMIDCreationFlags::None);
+        GetWorld(), 
+        BasePostProcessMaterial, 
+        NAME_None, 
+        EMIDCreationFlags::None
+    );
 
     if (Material == nullptr)
-    {
+    { 
         UE_LOG(LogGamekit, Warning, TEXT("Could not create FoW post process material"));
         return nullptr;
     }
 
-    if (FoWView != nullptr)
-    {
-        Material->SetTextureParameterValue("FoWView", FoWView);
-    }
-
-    if (FoWExploration != nullptr)
-    {
-        Material->SetTextureParameterValue("FoWExploration", FoWExploration);
-    }
+    SetFogOfWarMaterialParameters(name, Material);
 
     PostProcessMaterials.Add(name, Material);
     return Material;
@@ -379,7 +373,6 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
     }
 }
 
-
 void AGKFogOfWarVolume::OnRep_TeamFogs()
 {
     for (auto TeamFog: TeamFogs)
@@ -391,10 +384,15 @@ void AGKFogOfWarVolume::OnRep_TeamFogs()
 
         NameToFogs.Add(TeamFog->Name, TeamFog);
 
-        for (auto Comp: TeamFog->Allies)
-        {
-            
-        }
+        // Make sure the vision texture are setup
+        TeamFog->Vision         = GKGETATTR(Strategy, GetFactionTexture(TeamFog->Name, true), nullptr);
+        TeamFog->UpScaledVision = GKGETATTR(Upscaler, GetFactionTexture(TeamFog->Name, true), nullptr);
+        TeamFog->Exploration    = GKGETATTR(Exploration, GetFactionTexture(TeamFog->Name, true), nullptr);
+    }
+
+    // Update materials
+    for(auto& Material: Materials){
+        SetFogOfWarMaterialParameters(Material.Name, Material.Material);
     }
 }
 
@@ -435,8 +433,8 @@ void AGKFogOfWarVolume::InitializeBuffers() {
     }
 }
 
-void AGKFogOfWarVolume::PostInitializeComponents() { 
-    Super::PostInitializeComponents();
+void AGKFogOfWarVolume::PreInitializeComponents() { 
+    Super::PreInitializeComponents();
     DeltaAccumulator = 1000; 
     PostProcessMaterials.Reset();
     UpdateVolumeSizes();
@@ -540,16 +538,8 @@ void AGKFogOfWarVolume::DrawFactionFog()
         {
             continue;
         }
-        TeamFog->VisibleSoFar.Reset();
-
+        TeamFog->Visible.Reset();
         Strategy->DrawFactionFog(TeamFog);
-
-        // Generates the list of visible enemies for clients
-        if (GetNetMode() != ENetMode::NM_Client)
-        {
-            for (auto Comp: TeamFog->VisibleSoFar)
-                TeamFog->VisibleEnemies.Add(Comp);
-        }
 
         if (bUpscaling)
         {

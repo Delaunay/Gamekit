@@ -23,6 +23,20 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
 
+// Use to keep track of all the materials
+// this is mainly because we need to update materials
+// after the initial replication which can lag a bit
+USTRUCT()
+struct FGKDynamicFogMaterial
+{
+    GENERATED_USTRUCT_BODY()
+
+    FName                           Name;
+    FGenericTeamId                  TeamId;
+    class UMaterialInstanceDynamic* Material;
+};
+
+
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
  *
@@ -203,7 +217,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
         return EDrawDebugTrace::None;
     }
 
-    void PostInitializeComponents() override;
+    void PreInitializeComponents() override;
 
     void Tick(float DeltaTime);
 
@@ -321,7 +335,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! Post Processing materials
     UPROPERTY(Transient)
-    TMap<FName, class UMaterialInterface *> PostProcessMaterials;
+    TMap<FName, class UMaterialInstanceDynamic*> PostProcessMaterials;
 
     //! TODO: change this to initial replication only
     UPROPERTY(Replicated, Transient, ReplicatedUsing = OnRep_TeamFogs)
@@ -334,6 +348,8 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     //! Dealing with Faction name instead of their teamid is easier
     //! for debugging
     TMap<FName, class AGKTeamFog *> NameToFogs;
+
+    TArray<FGKDynamicFogMaterial> Materials;
 
     bool bReady;
 

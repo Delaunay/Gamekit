@@ -81,9 +81,9 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog
     */
 
     // Avoid multiple broadcast per target
-    if (!FactionFog->VisibleSoFar.Contains(SightedComp))
+    if (!FactionFog->Visible.Contains(SightedComp))
     {
-        FactionFog->VisibleSoFar.Add(SightedComp);
+        FactionFog->Visible.Add(SightedComp);
         SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
