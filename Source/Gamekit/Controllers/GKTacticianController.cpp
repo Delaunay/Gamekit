@@ -58,14 +58,16 @@ worldPos = UGKHexGridUtilities::GridToWorld(size, gridPos);
         SelectedUnit->MoveUnit(worldPos);
     }
 
-    if (!Hit.Actor.IsValid())
+    auto HitActor = Hit.HitObjectHandle.FetchActor<AActor>();
+
+    if (!HitActor)
     {
         SetSelectedUnit(nullptr);
         UE_LOG(LogTemp, Warning, TEXT("Selection is invalid"));
         return;
     }
 
-    SetSelectedUnit(Cast<AGKUnitCharacter>(Hit.Actor));
+    SetSelectedUnit(Cast<AGKUnitCharacter>(HitActor));
 }
 
 void AGKTacticianController::SetSelectedUnit(AGKUnitCharacter *unit)

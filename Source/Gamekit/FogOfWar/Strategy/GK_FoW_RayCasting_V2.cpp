@@ -69,11 +69,12 @@ void UGKRayCasting_Triangle::DrawObstructedLineOfSight(class AGKTeamFog *Faction
         LineEnd = hit ? OutHit.Location : loc + dir * ExtendedRadius;
         Lines.Add(FGKLinePoints{LineStart, LineEnd});
 
-        if (hit && OutHit.Actor.IsValid())
+        auto HitActor = OutHit.HitObjectHandle.FetchActor<AActor>();
+        if (hit && HitActor)
         {
             // this only works if the actors are blocking the light
             // because our rays stops on obstacle only
-            AddVisibleActor(FactionFog, c, OutHit.Actor.Get());
+            AddVisibleActor(FactionFog, c, HitActor);
         }
     }
 

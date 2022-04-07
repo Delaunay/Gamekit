@@ -58,7 +58,7 @@ void UGKAsyncTask_GameplayEffectChanged::EndTask()
     }
 
     SetReadyToDestroy();
-    MarkPendingKill();
+    MarkAsGarbage();
 }
 
 void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySystemComponent *   Target,

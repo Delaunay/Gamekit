@@ -204,12 +204,17 @@ float ResolveAnimationPlayRate(FGKAbilityStatic const &Data, class UAnimMontage 
     }
     float Rate = 1.f;
 
-    TArray<FAnimNotifyEventReference> OutActiveNotifies;
-    Montage->GetAnimNotifies(0, Montage->GetPlayLength(), false, OutActiveNotifies);
-    for (auto &NotifyRef: OutActiveNotifies)
+    // 4.27
+    // TArray<FAnimNotifyEventReference> OutActiveNotifies;
+    // Montage->GetAnimNotifies(0, Montage->GetPlayLength(), false, OutActiveNotifies);
+    
+    FAnimNotifyContext NotifyContext;
+    Montage->GetAnimNotifies(0.f, Montage->GetPlayLength(), NotifyContext);
+
+    for (auto &NotifyRef: NotifyContext.ActiveNotifies)
     {
-        auto NotifyEvent = NotifyRef.GetNotify();
-        auto Notify      = Cast<UGKCastPointAnimNotify>(NotifyEvent->Notify);
+        FAnimNotifyEvent const* NotifyEvent = NotifyRef.GetNotify();
+        auto Notify = Cast<UGKCastPointAnimNotify>(NotifyEvent->Notify);
 
         // Find the ability Cast point on this animation
         // Create a CastPointAnimNotify class and check here
@@ -880,7 +885,8 @@ bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle Targ
 
     if (TargetData.Get(Index)->HasHitResult())
     {
-        Target   = TargetData.Get(Index)->GetHitResult()->Actor.Get();
+        auto HitActor = TargetData.Get(Index)->GetHitResult()->HitObjectHandle.FetchActor<AActor>();
+        Target   = HitActor;
         Position = TargetData.Get(Index)->GetHitResult()->ImpactPoint;
         return true;
     }

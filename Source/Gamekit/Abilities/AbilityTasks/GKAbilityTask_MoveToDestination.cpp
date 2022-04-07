@@ -34,6 +34,11 @@ UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination(const FObject
     bDebug            = false;
 }
 
+void UGKAbilityTask_MoveToDestination::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(UGKAbilityTask_MoveToDestination, Destination);
+}
+
 UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget(
         UGameplayAbility *                      OwningAbility,
         FName                                   TaskInstanceName,

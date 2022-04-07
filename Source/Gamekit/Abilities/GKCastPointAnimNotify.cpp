@@ -5,9 +5,9 @@
 // Unreal Engine
 #include "AbilitySystemBlueprintLibrary.h"
 
-void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation)
+void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference& EventReference)
 {
-    UAnimNotify::Notify(MeshComp, Animation);
+    UAnimNotify::Notify(MeshComp, Animation, EventReference);
 
     // Send Game play event
     AActor *Owner = MeshComp->GetOwner();

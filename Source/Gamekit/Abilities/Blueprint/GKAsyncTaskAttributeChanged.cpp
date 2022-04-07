@@ -58,7 +58,7 @@ void UGKAsyncTaskAttributeChanged::EndTask()
     }
 
     SetReadyToDestroy();
-    MarkPendingKill();
+    MarkAsGarbage();
 }
 
 void UGKAsyncTaskAttributeChanged::AttributeChanged(const FOnAttributeChangeData &Data)

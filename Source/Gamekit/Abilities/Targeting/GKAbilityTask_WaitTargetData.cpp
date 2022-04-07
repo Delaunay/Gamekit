@@ -44,7 +44,7 @@ void UGKAbilityTask_WaitForTargetData::Activate()
 
     RegisterTargetDataCallbacks();
 
-    if (IsPendingKill())
+    if (IsValid(this))
     {
         return;
     }
@@ -122,7 +122,7 @@ void UGKAbilityTask_WaitForTargetData::FinalizeTargetActor() const
 
 void UGKAbilityTask_WaitForTargetData::RegisterTargetDataCallbacks()
 {
-    if (!ensure(IsPendingKill() == false))
+    if (!ensure(IsValid(this) == false))
     {
         return;
     }

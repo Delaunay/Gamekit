@@ -264,12 +264,15 @@ Advanced Replication
 
 .. code-block::
 
-   NetDormancy    = DORM_DormantPartial;
-
-   // this seems to work
+   // this seems to work well, channel does not close
    bool AGKCharacterBase::IsReplicationPausedForConnection(const FNetViewer& ConnectionOwnerNetViewer)
 
+   // use this to stop simulation on remote clients
+   AGKCharacterBase::OnReplicationPausedChanged
+
    // What is the purpose of this
+   // NetDormancy seems hard to get right
+   NetDormancy    = DORM_DormantPartial;
    bool AGKCharacterBase::GetNetDormancy(const FVector& ViewPos,    // ConnectionViewers[viewerIdx].ViewLocation
                                          const FVector& ViewDir,    // ConnectionViewers[viewerIdx].ViewDir
                                          class AActor*  Viewer,     // ConnectionViewers[viewerIdx].InViewer
@@ -285,6 +288,23 @@ Advanced Replication
                                            const AActor  *ViewTarget,  // ViewTarget
                                            const FVector &ViewLocation) const
 
+
+.. code-block::
+
+   You can play with FNetworkObjectList, but it is a bit finicky
+
+   bool FNetworkObjectList::MarkActive(
+         AActor*const Actor,
+         UNetConnection*const Connection,
+         UNetDriver* NetDriver)
+
+   void FNetworkObjectList::MarkDormant(
+         AActor*const Actor,
+         UNetConnection*const Connection,
+         const int32 NumConnections,
+         UNetDriver* NetDriver)
+
+.. [1] https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/FNetworkObjectList/
 
 Testing
 --------

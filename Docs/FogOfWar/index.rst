@@ -22,20 +22,18 @@ Features
 * Multi Faction
 * Multi Actors
 * Many customization & performance parameters to try
-* Automatic PostProcessingMaterial setup on the controlled pawn's camera
+* Simple PostProcessingMaterial setup on the controlled pawn's camera
 * Upscaler
-* Mutliple fog of war drawing trategy
-* Sample post process materials
-* Customizable Components
+* Post process materials examples
+* Customizable components
 * Support spectator fog (multi fog view)
 * Replication friendly
-
 
 .. image :: /_static/FogOFWarOverview.PNG
 
 
-In a nutshell
--------------
+Get Started
+-----------
 
 1. Create a ``AGKFogOfWarVolume`` over the area that will be covered by the fog
 
@@ -63,24 +61,48 @@ In a nutshell
 Multiplayer
 -----------
 
-* ``AActor::IsNetRelevantFor`` needs to be update to only flag actor as relevant if visible
+* ``AActor::IsReplicationPausedForConnection`` needs to be updated to only enable
+  replication for actors that are visible to the player controller's team.
+  :cpp:class:`AGKCharacterBase` provide a default implementation.
 * The set of visible units is produced by the server and replicated to the clients.
   Clients can only access the visible set of their faction.
 * Spectators receive all the visible sets
 
 .. image :: /_static/FogOfWar/FogReplication.png
 
-Limitations
-~~~~~~~~~~~
 
-* If used in multiplayer the number of teams is limited to 32.
-  This is because a `uint32` is used to represent the visibility of a unit.
-  Each bit representing the unit visiblity by a given team.
-  This is used to compute conditional replication to avoid replicating
-  actors that are not visible, this is both to limit bandwidth usage and
-  prevent cheating.
+Memory Usage
+------------
 
+The map is split in tiles, there are 2 permanent layers
 
-The limit could be increased further to support 64 teams by using a uint64 but
-it seems unnecessary.
+* Terrain
+* Blocking
+
+By Default 3 teams are defined (Neutral, GoodGuys, BadGuys).
+
+* Memory Usage
+  * CPU: (MapSize / TileSize) * (#Team + 2)
+  * GPU: (MapSize / TileSize) * #Team * UpscalingMutiplier
+
+.. note::
+
+   ``NoTeam`` is its own separate concept, they will not be registered
+   to the fog of war (but they can be registered as obstacle).
+
+Examples
+~~~~~~~~
+
+* Map Size 400'000 x 400'000 (400x400 meters)
+* Grid Size: 16 x 16 x 32
+* RAM usage per team = (400000/16) ^ 2 / 1024 / 1024 ~= 596 Mio
+
+* Map Size 400'000 x 400'000 (400x400 meters)
+* Grid Size: 32 x 32 x 32
+* RAM usage per team = (400000/32) ^ 2 / 1024 / 1024 ~= 149 Mio
+
+.. note::
+
+   Image is gray scale, using colors would multuple the memory usage by 3 or 4 with an alpha channel.
+
 
