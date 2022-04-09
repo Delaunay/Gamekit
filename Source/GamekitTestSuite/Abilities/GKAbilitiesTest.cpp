@@ -5,7 +5,7 @@
 #include "GamekitTestSuite/GKTestUtilities.h"
 
 
-GAMEKIT_TEST("Abilities.Something", UGKGameplayability, GetRelativePosition)
+GAMEKIT_TEST(Abilities.Something, UGKGameplayability, GetRelativePosition)
 {
 
     return true;

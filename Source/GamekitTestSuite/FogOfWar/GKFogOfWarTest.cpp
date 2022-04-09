@@ -8,7 +8,7 @@
 #include "Tests/AutomationEditorCommon.h"
 
 
-GAMEKIT_TEST("FogOfWar.Something", AGKFogOfWarVolume, GetRelativePosition)
+GAMEKIT_TEST(FogOfWar.Something, AGKFogOfWarVolume, GetRelativePosition)
 {
     UWorld* World = FAutomationEditorCommonUtils::CreateNewMap();
 
