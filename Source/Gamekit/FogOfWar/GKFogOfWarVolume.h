@@ -200,6 +200,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     class UMaterialInterface *BasePostProcessMaterial;
 
+    //test
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     TArray<AActor *> ActorsToIgnore;
 

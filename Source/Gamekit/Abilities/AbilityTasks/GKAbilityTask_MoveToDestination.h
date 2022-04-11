@@ -138,7 +138,6 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 
     void DebugDraw();
 
-
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
     UPROPERTY()

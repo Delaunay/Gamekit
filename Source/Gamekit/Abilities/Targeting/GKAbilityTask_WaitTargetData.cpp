@@ -44,7 +44,7 @@ void UGKAbilityTask_WaitForTargetData::Activate()
 
     RegisterTargetDataCallbacks();
 
-    if (IsValid(this))
+    if (!IsValid(this))
     {
         return;
     }
@@ -122,15 +122,16 @@ void UGKAbilityTask_WaitForTargetData::FinalizeTargetActor() const
 
 void UGKAbilityTask_WaitForTargetData::RegisterTargetDataCallbacks()
 {
-    if (!ensure(IsValid(this) == false))
+    if (!ensure(IsValid(this) == true))
     {
         return;
     }
 
     check(Ability);
 
-    const AGameplayAbilityTargetActor *CDO =
-            CastChecked<AGameplayAbilityTargetActor>(TargetActor->GetClass()->GetDefaultObject());
+    const AGameplayAbilityTargetActor *CDO = CastChecked<AGameplayAbilityTargetActor>(
+        TargetActor->GetClass()->GetDefaultObject()
+    );
 
     const bool bIsLocallyControlled             = Ability->GetCurrentActorInfo()->IsLocallyControlled();
     const bool bShouldProduceTargetDataOnServer = CDO->ShouldProduceTargetDataOnServer;
