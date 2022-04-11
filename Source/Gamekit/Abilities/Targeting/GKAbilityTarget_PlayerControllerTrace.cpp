@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/Abilities/GKAbilityStatic.h"
 #include "Gamekit/Characters/GKSelectableInterface.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "Abilities/GameplayAbility.h"
@@ -104,6 +105,8 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
     // Server and launching client only
     if (!OwningAbility)
     {
+        GK_WARNING(TEXT("Owning ability is null"));
+        CancelTargeting();
         return;
     }
 
@@ -119,7 +122,14 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
         Deselect();
 
         UKismetSystemLibrary::SphereOverlapActors(
-                GetWorld(), TraceEndPoint, AreaOfEffect, ObjectTypes, ClassFilter, ActorsToIgnore, ActorsUnderCursor);
+            GetWorld(), 
+            TraceEndPoint, 
+            AreaOfEffect, 
+            ObjectTypes, 
+            ClassFilter, 
+            ActorsToIgnore, 
+            ActorsUnderCursor
+        );
 
         FilterActors();
 

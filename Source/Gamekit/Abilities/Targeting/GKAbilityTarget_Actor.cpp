@@ -2,6 +2,9 @@
 
 #include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
 
+// Gamekit
+#include "Gamekit/GKLog.h"
+
 // Unreal Engine
 #include "Abilities/GameplayAbility.h"
 #include "AbilitySystemComponent.h"
@@ -16,6 +19,8 @@ void AGKAbilityTarget_Actor::StartTargeting(class UGameplayAbility *Ability)
     if (GKAbility)
     {
         StartTargeting(GKAbility);
+    } else {
+        GK_WARNING(TEXT("Received invalid ability!"));
     }
 }
 
