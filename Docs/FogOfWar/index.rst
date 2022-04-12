@@ -19,7 +19,7 @@ Relevant classes:
 Features
 --------
 
-* Multi Faction
+* Multi Team (uses :cpp:class:`IGenericTeamAgentInterface`)
 * Multi Actors
 * Many customization & performance parameters to try
 * Simple PostProcessingMaterial setup on the controlled pawn's camera

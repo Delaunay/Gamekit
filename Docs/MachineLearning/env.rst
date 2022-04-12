@@ -3,7 +3,7 @@ UnrealEnv
 
 .. note::
 
-   A lot of the work is delegated to the UE4 instance, the environment simply
+   A lot of the work is delegated to the UE instance, the environment simply
    query it using remote function calls.
 
 
@@ -11,8 +11,8 @@ Setup
 ~~~~~
 
 #. Launch client ``Client``
-#. Launch UE4  ``UE4Runner.run``
-#. Connect to UE4 ``UnrealEnv.connect``
+#. Launch UE  ``UERunner.run``
+#. Connect to UE ``UnrealEnv.connect``
 #. Setup Agents
 
     #. new_agent / configure agent

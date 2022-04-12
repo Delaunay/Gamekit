@@ -28,10 +28,11 @@
    FogOfWar/Strategies
 
 .. toctree::
-   :caption: Unsorted
+   :caption: Game
    :maxdepth: 1
 
-   Minimaps/index
+   Game/GameFlow
+   Game/Minimaps
    Level/index
    MachineLearning/index
 

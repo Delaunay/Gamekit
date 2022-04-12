@@ -1,5 +1,6 @@
 import os
 import json
+import configparser
 
 from gamekit.conf import load_conf, Command
 
@@ -14,6 +15,29 @@ class VSCode(Command):
 
     @staticmethod
     def execute(args):
+        VSCode.enable_python_editor(args)
+        VSCode.add_stub_to_path(args)
+
+    @staticmethod
+    def enable_python_editor(args):
+        projects_folder = load_conf().get('project_path')
+        project_folder = os.path.join(projects_folder, args.name)
+
+        conf = os.path.join(project_folder, 'Config')
+        default_engine = os.path.join(conf, 'DefaultEngine.ini')
+
+        config = configparser.ConfigParser()
+        config.read(default_engine)
+
+        python_section = "[/Script/PythonScriptPlugin.PythonScriptPluginUserSettings]"
+        config[python_section]["bDeveloperMode"] = True
+        config[python_section]["bEnableContentBrowserIntegration"] = True
+
+        with open(default_engine, 'r') as file:
+            config.write(file)
+
+    @staticmethod
+    def add_stub_to_path(args):
         name = args.name
         projects_folder = load_conf().get('project_path')
 
@@ -54,5 +78,6 @@ class VSCode(Command):
 
         with open(vscode_settings, 'w') as file:
             json.dump(vssetting, file, indent=2)
+
 
 COMMAND = VSCode

@@ -5,6 +5,7 @@ Massively Multiplayer
 * Game instance is long-lived (24h/7)
 * Map/Level is big (levels are streamed seamlessly)
 * Latency is not too critical (100-200ms)
+
   * PvP will prefer lower latency
   * PvE is manageable with higer latency
 

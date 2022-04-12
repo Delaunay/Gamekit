@@ -7,7 +7,9 @@ Competitive
 * Players are grouped by skill to provide interesting matches (i.e no stomp)
 * Map/Level is small (all assets are loaded, no streaming)
 * Latency is critical (10-100ms) (< 50ms LAN, < 100 ms Ranked)
+
   * 30 FPS is one frame every 30 ms
+
 * Avoid latency spikes at all cost
 
 System Overview
@@ -303,15 +305,20 @@ Concerns
 Team Assignment
 ^^^^^^^^^^^^^^^
 
+The game mode is in charge of the team assignment, teams need to be assigned to Pawn (for targeting)
+and PlayerControllers. PlayerController team assignment will drive all the logic.
+The team assignment needs to be on both the pawn & the controller for effect like Possession
+(i.e enemy player taking control of an ally unit.
+
+Tha player controller factions cannot change during gameplay (but its attitude towards other faction could change)
+Pawns' faction could change as part of regular gameplay interaction.
+
 * Assigned using :cpp:class:`AGKTeamPlayerStart` simple method the player start is selected at random
   by the :cpp:class:`AGameMode`; it extract the team from the player start and assign it
   to the pawn.
 
 * Assigned by the matchmaker: optimal for balanced games, so teams skill can be as close
   as possible
-
-
-TODO
 
 
 References

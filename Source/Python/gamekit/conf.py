@@ -10,6 +10,7 @@ CONFIG = user_config_dir(NAME, AUTHOR)
 CONFIGNAME = 'loc.json'
 LATEST_CONF = None
 
+
 def load_conf():
     global LATEST_CONF
     config = os.path.join(CONFIG, CONFIGNAME)
