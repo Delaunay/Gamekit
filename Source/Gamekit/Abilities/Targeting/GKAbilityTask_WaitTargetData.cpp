@@ -4,6 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
+#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "AbilitySystemComponent.h"
@@ -122,8 +123,9 @@ void UGKAbilityTask_WaitForTargetData::FinalizeTargetActor() const
 
 void UGKAbilityTask_WaitForTargetData::RegisterTargetDataCallbacks()
 {
-    if (!ensure(IsValid(this) == true))
+    if (!ensure(IsValid(this)))
     {
+        GK_WARNING(TEXT("UGKAbilityTask_WaitForTargetData is not valid"));
         return;
     }
 
