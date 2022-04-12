@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup_kwargs = dict(
-    name='gamkekit',
+    name='gamekit',
     version='0.0.0',
     description='Gamekit python utilities',
     author='Pierre Delaunay',

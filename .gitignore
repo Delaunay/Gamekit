@@ -32,5 +32,5 @@ Docs/_build/
 Docs/Developer/api/
 Docs/generated_api/
 __pycache__/
-gamkekit.egg-info/
+gamekit.egg-info/
 

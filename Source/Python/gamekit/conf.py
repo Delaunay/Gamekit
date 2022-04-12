@@ -29,3 +29,12 @@ def save_conf(conf):
     with open(config, 'w') as conffile:
         json.dump(conf, conffile)
 
+
+class Command:
+    @staticmethod
+    def arguments(subparsers):
+        raise NotImplementedError()
+
+    @staticmethod
+    def execute(args):
+        raise NotImplementedError()

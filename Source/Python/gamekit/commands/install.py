@@ -1,8 +1,8 @@
+from gamekit.conf import Command
 
 
-
-class Install:
-    name: str = "Instrall"
+class Install(Command):
+    name: str = "instrall"
 
     @staticmethod
     def arguments(subparsers):
