@@ -5,7 +5,7 @@ from gamekit.conf import Command, load_conf
 
 
 class CookGame(Command):
-    """Execute the tests for gamekit"""
+    """Builds and cook your main game"""
 
     name: str = "cook"
 
@@ -85,7 +85,7 @@ class CookGame(Command):
         )
 
         print(f"Subprocess terminated with (rc: {p.returncode})")
-        print(p.stdout, p.stderr)
         return
+
 
 COMMAND = CookGame

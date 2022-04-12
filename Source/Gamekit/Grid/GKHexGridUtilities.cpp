@@ -16,7 +16,7 @@
 // using Vec3 = FVector
 // using FVectori = FIntVector
 
-//        Blender	      UE4
+//        Blender	      UE
 // Radius	  1.000	  100.000
 // W	      2.000	  200.000	150.000
 // H   	    1.732	  173.205	 86.603

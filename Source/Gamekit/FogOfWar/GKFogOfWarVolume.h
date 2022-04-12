@@ -3,9 +3,9 @@
 #pragma once
 
 // Gamekit
+#include "Gamekit/FogOfWar/GKTeamFog.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
-#include "Gamekit/FogOfWar/GKTeamFog.h"
 #include "Gamekit/Gamekit.h"
 #include "Gamekit/Grid/GKGrid.h"
 
@@ -22,7 +22,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
 
 #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
 
-
 // Use to keep track of all the materials
 // this is mainly because we need to update materials
 // after the initial replication which can lag a bit
@@ -33,9 +32,8 @@ struct FGKDynamicFogMaterial
 
     FName                           Name;
     FGenericTeamId                  TeamId;
-    class UMaterialInstanceDynamic* Material;
+    class UMaterialInstanceDynamic *Material;
 };
-
 
 /*! AGKFogOfWarVolume manages fog of war for multiple factions.
  * All units inside the same faction share visions.
@@ -44,7 +42,7 @@ struct FGKDynamicFogMaterial
  *
  * .. note::
  *
- *    The fog of war will darken your screen, it is advised to disable UE4 default auto exposure using a Post Process
+ *    The fog of war will darken your screen, it is advised to disable UE default auto exposure using a Post Process
  *    Volume and enabling ``Exposure > Metering Mode > Auto Exposure Basic`` as well as setting min and max brightness
  * to 1
  *
@@ -200,7 +198,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     class UMaterialInterface *BasePostProcessMaterial;
 
-    //test
+    // test
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
     TArray<AActor *> ActorsToIgnore;
 
@@ -336,11 +334,11 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! Post Processing materials
     UPROPERTY(Transient)
-    TMap<FName, class UMaterialInstanceDynamic*> PostProcessMaterials;
+    TMap<FName, class UMaterialInstanceDynamic *> PostProcessMaterials;
 
     //! TODO: change this to initial replication only
     UPROPERTY(Replicated, Transient, ReplicatedUsing = OnRep_TeamFogs)
-    TArray<class AGKTeamFog*> TeamFogs;
+    TArray<class AGKTeamFog *> TeamFogs;
 
     //! TODO: make this dynamic
     UPROPERTY(Replicated, Transient)
@@ -359,21 +357,24 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     void OnRep_TeamFogs();
 
     public:
-    bool IsVisible(FName TeamName, AActor const* Target) const {
+    bool IsVisible(FName TeamName, AActor const *Target) const
+    {
         auto Team = NameToFogs.Find(TeamName);
         if (Team)
             return IsVisible(Team[0]->TeamId, Target);
         return false;
     }
 
-    bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+    bool IsVisible(FGenericTeamId SeerTeam, AActor const *Target) const
+    {
         if (FGenericTeamId::GetTeamIdentifier(Target) == SeerTeam)
             return true;
 
         return GKGETATTR(Strategy, IsVisible(SeerTeam, Target), false);
     }
 
-    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
+    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const
+    {
         return GKGETATTR(Strategy, IsVisible(SeerTeam, Loc), false);
     }
 };

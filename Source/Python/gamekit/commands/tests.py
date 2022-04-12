@@ -11,9 +11,10 @@ class RunTests(Command):
 
     @staticmethod
     def arguments(subparsers):
-        uat = subparsers.add_parser(RunTests.name, help='Run Unreal Automation Test (UAT)')
-        uat.add_argument("name", type=str, help='Project name')
-        uat.add_argument("map", type=str, help='map name')
+        tests = subparsers.add_parser(RunTests.name, help='Run Unreal Automation Test (UAT)')
+        tests.add_argument("name", type=str, help='Project name')
+        tests.add_argument("map", type=str, help='map name')
+        tests.add_argument("test", type=str, default='Gamekit', help="Test section to run")
 
     @staticmethod
     def editor():
@@ -50,7 +51,7 @@ class RunTests(Command):
             f'-ReportOutputPath="{project_folder}/Saved/Automation/Report"',
             f'ABSLOG="{project_folder}/Saved/Automation/Log.txt"',
             '-TestExit=Automation Test Queue Empty',
-            '-ExecCmds=Automation RunTests Gamekit',
+            f'-ExecCmds=Automation RunTests {args.test}',
         ]
 
         p = subprocess.run(args,

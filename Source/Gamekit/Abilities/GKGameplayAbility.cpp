@@ -121,13 +121,13 @@ void UGKGameplayAbility::K2_GetAbilityStatic(FGKAbilityStatic &AbilityStaticOut,
 
 FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromContainer(
         const FGKGameplayEffectContainer &Container,
-        const FGameplayEventData &        EventData,
+        const FGameplayEventData         &EventData,
         int32                             OverrideGameplayLevel)
 {
     // First figure out our actor info
     FGKGameplayEffectContainerSpec ReturnSpec;
-    AActor *                       OwningActor     = GetOwningActorFromActorInfo();
-    AGKCharacterBase *             OwningCharacter = Cast<AGKCharacterBase>(OwningActor);
+    AActor                        *OwningActor     = GetOwningActorFromActorInfo();
+    AGKCharacterBase              *OwningCharacter = Cast<AGKCharacterBase>(OwningActor);
     UGKAbilitySystemComponent *OwningASC = UGKAbilitySystemComponent::GetAbilitySystemComponentFromActor(OwningActor);
 
     if (OwningASC)
@@ -138,7 +138,7 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromCo
             TArray<FHitResult>   HitResults;
             TArray<AActor *>     TargetActors;
             const UGKTargetType *TargetTypeCDO = Container.TargetType.GetDefaultObject();
-            AActor *             AvatarActor   = GetAvatarActorFromActorInfo();
+            AActor              *AvatarActor   = GetAvatarActorFromActorInfo();
             TargetTypeCDO->GetTargets(OwningCharacter, AvatarActor, EventData, HitResults, TargetActors);
             ReturnSpec.AddTargets(HitResults, TargetActors);
         }
@@ -207,14 +207,14 @@ float ResolveAnimationPlayRate(FGKAbilityStatic const &Data, class UAnimMontage 
     // 4.27
     // TArray<FAnimNotifyEventReference> OutActiveNotifies;
     // Montage->GetAnimNotifies(0, Montage->GetPlayLength(), false, OutActiveNotifies);
-    
+
     FAnimNotifyContext NotifyContext;
     Montage->GetAnimNotifies(0.f, Montage->GetPlayLength(), NotifyContext);
 
     for (auto &NotifyRef: NotifyContext.ActiveNotifies)
     {
-        FAnimNotifyEvent const* NotifyEvent = NotifyRef.GetNotify();
-        auto Notify = Cast<UGKCastPointAnimNotify>(NotifyEvent->Notify);
+        FAnimNotifyEvent const *NotifyEvent = NotifyRef.GetNotify();
+        auto                    Notify      = Cast<UGKCastPointAnimNotify>(NotifyEvent->Notify);
 
         // Find the ability Cast point on this animation
         // Create a CastPointAnimNotify class and check here
@@ -424,9 +424,9 @@ bool UGKGameplayAbility::K2_CheckTagRequirements(FGameplayTagContainer &Relevant
 
 bool UGKGameplayAbility::CanActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                             const FGameplayAbilityActorInfo *ActorInfo,
-                                            const FGameplayTagContainer *    SourceTags,
-                                            const FGameplayTagContainer *    TargetTags,
-                                            FGameplayTagContainer *          OptionalRelevantTags) const
+                                            const FGameplayTagContainer     *SourceTags,
+                                            const FGameplayTagContainer     *TargetTags,
+                                            FGameplayTagContainer           *OptionalRelevantTags) const
 {
     auto ASC = GetAbilitySystemComponentFromActorInfo();
     if (!ASC)
@@ -452,7 +452,7 @@ bool UGKGameplayAbility::CanActivateAbility(const FGameplayAbilitySpecHandle Han
 }
 
 void UGKGameplayAbility::CancelAbility(const FGameplayAbilitySpecHandle     Handle,
-                                       const FGameplayAbilityActorInfo *    ActorInfo,
+                                       const FGameplayAbilityActorInfo     *ActorInfo,
                                        const FGameplayAbilityActivationInfo ActivationInfo,
                                        bool                                 bReplicateCancelAbility)
 {
@@ -467,7 +467,7 @@ void UGKGameplayAbility::CancelAbility(const FGameplayAbilitySpecHandle     Hand
 }
 
 void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Handle,
-                                       const FGameplayAbilityActorInfo *    ActorInfo,
+                                       const FGameplayAbilityActorInfo     *ActorInfo,
                                        const FGameplayAbilityActivationInfo ActivationInfo) const
 {
     // No generated Effect
@@ -482,7 +482,7 @@ void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Hand
 }
 
 void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle     Handle,
-                                   const FGameplayAbilityActorInfo *    ActorInfo,
+                                   const FGameplayAbilityActorInfo     *ActorInfo,
                                    const FGameplayAbilityActivationInfo ActivationInfo) const
 {
     // No generated Effect
@@ -497,9 +497,9 @@ void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle     Handle,
 }
 
 void UGKGameplayAbility::ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle     Handle,
-                                                           const FGameplayAbilityActorInfo *    ActorInfo,
+                                                           const FGameplayAbilityActorInfo     *ActorInfo,
                                                            const FGameplayAbilityActivationInfo ActivationInfo,
-                                                           const UGameplayEffect *              GameplayEffect,
+                                                           const UGameplayEffect               *GameplayEffect,
                                                            float                                GameplayEffectLevel,
                                                            int32                                Stacks) const
 {
@@ -769,7 +769,7 @@ UGameplayEffect *UGKGameplayAbility::NewCostEffectFromConfig(FGKAbilityCost &Con
     return CostEffect;
 };
 
-UGameplayEffect *NewPassiveRegenEffect(UObject *          Parent,
+UGameplayEffect *NewPassiveRegenEffect(UObject           *Parent,
                                        FGameplayAttribute Attribute,
                                        float              Value,
                                        float              Period,
@@ -868,8 +868,8 @@ FGameplayTagContainer UGKGameplayAbility::GetActivationBlockedTag() { return Act
 FGameplayTagContainer UGKGameplayAbility::GetActivationRequiredTag() { return ActivationRequiredTags; }
 
 bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle TargetData,
-                                           FVector &                        Position,
-                                           AActor *&                        Target,
+                                           FVector                         &Position,
+                                           AActor                         *&Target,
                                            int32                            Index)
 {
     if (TargetData.Num() == 0)
@@ -886,8 +886,8 @@ bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle Targ
     if (TargetData.Get(Index)->HasHitResult())
     {
         auto HitActor = TargetData.Get(Index)->GetHitResult()->HitObjectHandle.FetchActor<AActor>();
-        Target   = HitActor;
-        Position = TargetData.Get(Index)->GetHitResult()->ImpactPoint;
+        Target        = HitActor;
+        Position      = TargetData.Get(Index)->GetHitResult()->ImpactPoint;
         return true;
     }
     else
@@ -942,7 +942,7 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
     // > If the executing client could wait execution until the server createsand replicate sthe
     // > actor down to him.We could potentially also use this to do predictive actor spawning / reconciliation.
     //
-    // Pending UE4 does it we might have to do it here
+    // Pending UE does it we might have to do it here
     FActorSpawnParameters SpawnInfo;
     SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     SpawnInfo.Owner                          = Pawn;
@@ -1001,7 +1001,7 @@ UAnimMontage *UGKGameplayAbility::GetAnimation()
 }
 
 void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handle,
-                                      const FGameplayAbilityActorInfo *    ActorInfo,
+                                      const FGameplayAbilityActorInfo     *ActorInfo,
                                       const FGameplayAbilityActivationInfo ActivationInfo)
 {
 

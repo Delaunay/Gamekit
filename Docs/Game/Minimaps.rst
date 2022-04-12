@@ -28,3 +28,10 @@ The example above combines 5 textures
 .. note::
 
    Minimaps are ignored for dedicated server builds.
+
+
+Radar
+----
+
+
+Minimaps that display around the player

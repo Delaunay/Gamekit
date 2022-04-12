@@ -46,4 +46,5 @@ class Init(Command):
         save_conf(conf)
         print(f'Updated Engine paths inside `{config}`')
 
+
 COMMAND = Init
