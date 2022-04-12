@@ -1,10 +1,10 @@
 import os
 import json
 
-from gamekit.conf import load_conf
+from gamekit.conf import load_conf, Command
 
 
-class VSCode:
+class VSCode(Command):
     name: str = 'vscode'
 
     @staticmethod
