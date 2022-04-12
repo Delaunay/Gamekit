@@ -1,3 +1,3 @@
-`Doxygen <http://gamekit.readthedocs.org/doxygen>`_
----------------------------------------------------
+`Doxygen <https://gamekit.readthedocs.io/en/latest/doxy.html>`_
+===============================================================
 

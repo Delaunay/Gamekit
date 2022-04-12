@@ -5,7 +5,7 @@ Multiplayer
 
 +------------------------------+----------+------------+
 | Class                        | Location | Replicated |
-+------------------------------+----------+------------+
++==============================+==========+============+
 | GameMode (Match State API)   | Server   | No         |
 +------------------------------+----------+------------+
 | GameModeBase (No Match)      | Server   | No         |
@@ -40,7 +40,7 @@ Common Actor Configurations
 
 +------------------------------+------------+------------+-------------+
 | Actor                        | Net Mode   | Local Role | Remote Role |
-+------------------------------+------------+------------+-------------+
++==============================+============+============+=============+
 | Hosting Client               | Listen     | Authority  | Simulated   |
 +------------------------------+------------+------------+-------------+
 | Remote Clients on Server     | Dedicated  | Authority  | Simulated   |
@@ -137,6 +137,8 @@ to display warning to users when network is being slow.
 * Checkout :cpp:func:`UGKUtilityLibrary::GetNetworkMetrics` and :cpp:class:`FGKNetworkMetrics`
 
 +--------+--------------------------------+
+| Type   | Metric Name                    |
++========+================================+
 | double | LastTickDispatchRealtime;      |
 +--------+--------------------------------+
 | bool   | bIsPeer;                       |
