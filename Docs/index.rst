@@ -52,6 +52,7 @@
    Developer/Shaders/index
    Developer/Doxygen
    Developer/Contribution
+   Developer/CommandLine
    Developer/ci
    generated_api/GamekitAPI
 
