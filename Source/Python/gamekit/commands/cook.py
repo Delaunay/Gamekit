@@ -13,7 +13,6 @@ class CookGame(Command):
     def arguments(subparsers):
         uat = subparsers.add_parser(CookGame.name, help='Run Unreal Automation Test (UAT)')
         uat.add_argument("name", type=str, help='Project name')
-        uat.add_argument("map", type=str, help='map name')
 
     @staticmethod
     def uat():
