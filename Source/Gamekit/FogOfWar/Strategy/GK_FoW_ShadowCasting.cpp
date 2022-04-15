@@ -13,6 +13,8 @@
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
 #include "Rendering/Texture2DResource.h"
+#include "LandscapeComponent.h"
+#include "Landscape.h"
 
 void UGKShadowCasting::Stop() {}
 
@@ -112,12 +114,67 @@ UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool 
 
     else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
-        UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
+        GK_LOG(TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
         PreviousFogFactions.Add(name, Texture);
     }
 
     return Texture;
+}
+
+void UGKShadowCasting::ExtractLandscapeHeight() {
+    if (!Landscape)
+        return;
+
+    TArray<UTexture2D*> HeightMaps;
+    TArray<FVector4> HeightmapScaleBiases;
+    TArray<FBox> BBoxes;
+
+    for(ULandscapeComponent* Comp: Landscape->LandscapeComponents){
+        auto Texture = Comp->GetHeightmap();
+        HeightMaps.Add(Texture);
+        HeightmapScaleBiases.Add(Comp->HeightmapScaleBias);
+        BBoxes.Add(Comp->CachedLocalBox);
+    }
+
+    if (HeightMaps.Num() > 1){
+        GK_WARNING(TEXT("Extracted multiple heightmaps"));
+    }
+
+    if (HeightMaps.Num() == 0) {
+        GK_WARNING(TEXT("no heightmaps were found"));
+        return;
+    }
+
+    // so mow that we have the texure, how do we convert the pixel into
+    // heights
+    UTexture2D* HeightMap          = HeightMaps[0];
+    FVector4    HeightmapScaleBias = HeightmapScaleBiases[0];   // why is this Vec4
+    FBox        BoundBox           = BBoxes[0];
+    
+    //  X=0.016 Y=0.016 Z=0.000 W=0.000
+    GK_WARNING(TEXT("HeightmapScaleBias %s"), *HeightmapScaleBias.ToString());
+
+    // Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=63.000 Y=63.000 Z=224.117)
+    GK_WARNING(TEXT("FBox               %s"), *BoundBox.ToString());
+
+    // then we need to so something similar to 
+    // FLinearColor UBlueprintMaterialTextureNodesBPLibrary::Texture2D_SampleUV_EditorOnly(UTexture2D* Texture, FVector2D UV)
+    // but for the entire height map
+    //  1. We need to findout the size of the landscape
+    //  2. only fetch the data from the landscape that is inside the Fog volume
+
+    int Mip = 0;
+    FTexture2DMipMap* CurMip = &HeightMap->GetPlatformData()->Mips[Mip];
+    FByteBulkData* ImageData = &CurMip->BulkData;
+
+    int32 MipWidth = CurMip->SizeX;
+    int32 MipHeight = CurMip->SizeY;
+
+    GK_WARNING(TEXT("Size             %d x %d"), MipWidth, MipHeight);          // 64 x 64
+    GK_WARNING(TEXT("IsBulkDataLoaded %d"), ImageData->IsBulkDataLoaded());     // 1
+    GK_WARNING(TEXT("GetBulkDataSize  %d"), ImageData->GetBulkDataSize());      // 16384 => 128 x 128
+    GK_WARNING(TEXT("GetPixelFormat   %d"), int(HeightMap->GetPixelFormat()));  // 2     => PF_B8G8R8A8
 }
 
 void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
@@ -316,6 +373,10 @@ void UGKShadowCasting::Initialize()
     GK_LOG(TEXT("Map Size is %s"), *MapSize.ToString());
     GK_LOG(TEXT("TileCount Count is %s"), *TileCount.ToString());
     GK_LOG(TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
+
+
+    Landscape = FogOfWarVolume->Landscape;
+    ExtractLandscapeHeight();
 }
 
 void UGKShadowCasting::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)

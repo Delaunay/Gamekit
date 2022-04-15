@@ -29,7 +29,7 @@ doxygen_version_file = os.path.join(doxygen_out_xml, "version.txt")
 # Generate the HTML in the sphinx folder so it will be made
 # available in read the docs
 doxygen_out_html = os.path.join(project_root, "Docs", "_build", "doxygen", "doxygen")
-
+os.makedirs(doxygen_out_html, exist_ok=True)
 
 try:
     version_tag = subprocess.check_output(

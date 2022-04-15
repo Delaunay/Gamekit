@@ -127,6 +127,10 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
     FGKGrid Grid;
 
+    //! Landscape we use to extract landscape height
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
+    class ALandscape* Landscape;
+
     //! Class used to perform the upscaling
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
     TSubclassOf<UGKTransformerStrategy> UpscalerClass;

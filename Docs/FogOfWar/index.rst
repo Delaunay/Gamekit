@@ -103,6 +103,6 @@ Examples
 
 .. note::
 
-   Image is gray scale, using colors would multuple the memory usage by 3 or 4 with an alpha channel.
+   Image is gray scale, using colors would multiple the memory usage by 3 or 4 with an alpha channel.
 
 

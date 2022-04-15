@@ -106,6 +106,8 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 
     void UpdateTextures(class AGKTeamFog* TeamFog);
 
+    void ExtractLandscapeHeight();
+
     class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
 
     class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
@@ -148,10 +150,14 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     TMatrix3D<uint8> Buffer;
 
     UPROPERTY(Transient)
-    TMap<FName, class UTexture2D *>                FogFactions;
-    TMap<FName, class UTexture2D *>                PreviousFogFactions;
+    TMap<FName, class UTexture2D*> FogFactions;
 
-    FUpdateTextureRegion2D UpdateRegion;
+    UPROPERTY(Transient)
+    TMap<FName, class UTexture2D*> PreviousFogFactions;
+
+    class ALandscape*              Landscape;
+
+    FUpdateTextureRegion2D         UpdateRegion;
 
     //
     class AGKTeamFog *             CurrentFaction;
