@@ -13,9 +13,9 @@
 
 UGKRayCasting_Triangle::UGKRayCasting_Triangle() {}
 
-void UGKRayCasting_Triangle::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Triangle::DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
 {
-    AActor *         actor          = c->GetOwner();
+    AActor          *actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
     FVector          loc            = actor->GetActorLocation();
     TArray<AActor *> ActorsToIgnore = {actor};
@@ -138,7 +138,7 @@ void UGKRayCasting_Triangle::DrawTriangles(UGKFogOfWarComponent *c)
     }
 
     // Draw all Triangles
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 

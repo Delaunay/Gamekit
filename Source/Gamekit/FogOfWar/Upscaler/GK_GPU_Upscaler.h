@@ -28,7 +28,7 @@ class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
     void Stop() override;
 
     //! Draw the fog of war for each factions
-    void Transform(class AGKTeamFog *FactionFog);
+    void Transform(class AGKFogOfWarTeam *FactionFog);
 
     private:
     class FUpscalingDispatcher *UpscalingDispatcher;

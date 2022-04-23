@@ -27,17 +27,17 @@ class GAMEKIT_API UGKRayCasting_Less: public UGKRayCasting_Triangle
     //!     * Add Line traces if angle between 2 traces are too wide <--+
     //!     * Generate triangles
     //!     * Draw
-    void DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c) override;
+    void DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c) override;
 
-    void CastLinesFromAngles(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles);
+    void CastLinesFromAngles(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles);
 
     //! Make sure we do a full turn
     //! TODO: support field of view != 360
     void FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
 
-    void Generate3Triangles(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles);
+    void Generate3Triangles(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles);
 
-    FGKLinePoints CastLineFromAngle(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c, float Angle);
+    FGKLinePoints CastLineFromAngle(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, float Angle);
 
     void GenerateTriangle(UGKFogOfWarComponent *c, FVector Start, FVector End1, FVector End2);
 
@@ -45,9 +45,9 @@ class GAMEKIT_API UGKRayCasting_Less: public UGKRayCasting_Triangle
 
     private:
     TArray<AActor *>                      ActorsToIgnore;
-    UClass *                              ActorClassFilter;
+    UClass                               *ActorClassFilter;
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-    AActor *                              ComponentOwner;
+    AActor                               *ComponentOwner;
     FVector                               OwnerLocation;
     FVector                               OwnerForward;
     FHitResult                            OutHit;

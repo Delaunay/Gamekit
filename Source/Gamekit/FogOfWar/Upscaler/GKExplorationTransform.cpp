@@ -12,9 +12,9 @@
 
 void UGKExplorationTransform::Initialize() { Super::Initialize(); }
 
-void UGKExplorationTransform::Transform(class AGKTeamFog *FactionFog)
+void UGKExplorationTransform::Transform(class AGKFogOfWarTeam *FactionFog)
 {
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 

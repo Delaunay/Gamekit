@@ -3,6 +3,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 
 // Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
@@ -96,7 +97,7 @@ FName UGKFogOfWarComponent::DeduceFaction() const
 
     if (!TeamInfo || TeamInfo->Name == NAME_None)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("TeamID %d is not inside the enum"), TeamId);
+        GKFOG_WARNING(TEXT("TeamID %d is not inside the enum"), TeamId);
         return NAME_None;
     }
 
@@ -129,7 +130,7 @@ void UGKFogOfWarComponent::BeginPlay()
 
     if (!CollisionTweaked)
     {
-        UE_LOG(LogGamekit, Log, TEXT("Did not find a component to set the FoW collision"));
+        GKFOG_LOG(TEXT("Did not find a component to set the FoW collision"));
     }
 
     RegisterComponent();

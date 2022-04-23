@@ -12,7 +12,7 @@
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UGKCanvasUpscaler::Transform(class AGKTeamFog *FactionFog)
+void UGKCanvasUpscaler::Transform(class AGKFogOfWarTeam *FactionFog)
 {
     if (UpscalingMaterial == nullptr)
     {
@@ -20,7 +20,7 @@ void UGKCanvasUpscaler::Transform(class AGKTeamFog *FactionFog)
         return;
     }
 
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
@@ -42,7 +42,7 @@ void UGKCanvasUpscaler::Transform(class AGKTeamFog *FactionFog)
 class UMaterialInstanceDynamic *UGKCanvasUpscaler::GetFactionMaterialInstance(FName Name)
 {
     class UMaterialInstanceDynamic **Result   = UpscaleMaterialInstance.Find(Name);
-    class UMaterialInstanceDynamic * Instance = nullptr;
+    class UMaterialInstanceDynamic  *Instance = nullptr;
 
     if (Result != nullptr)
     {

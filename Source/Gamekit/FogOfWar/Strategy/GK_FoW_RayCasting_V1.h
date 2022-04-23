@@ -30,10 +30,10 @@ class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
 
     virtual void Initialize();
 
-    void DrawFactionFog(class AGKTeamFog *FactionFog);
+    void DrawFactionFog(class AGKFogOfWarTeam *FactionFog);
 
     //! Draw the line of sight using the right method
-    virtual void DrawLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c);
+    virtual void DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, class UGKFogOfWarComponent *c);
 
     //! Retrieve the Texture used to draw the fog of war for a given faction
     virtual class UTexture *GetFactionTexture(FName name, bool bCreateRenderTarget = true);
@@ -42,12 +42,12 @@ class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
 
     protected:
     //! Draw the line of sight using LineTrace
-    virtual void DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c);
+    virtual void DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c);
 
     //! Draw the ligne of sight using a material (no collision)
-    virtual void DrawUnobstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c);
+    virtual void DrawUnobstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c);
 
-    void DrawUnobstructedLineOfSight_Draw(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c);
+    void DrawUnobstructedLineOfSight_Draw(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c);
 
     void DrawLines(class UGKFogOfWarComponent *c);
 

@@ -123,7 +123,7 @@ void UGKCPUUpscalerStrategy::Initialize()
     UpscaledBuffer.Init(0, TileCount.X * Multiplier, TileCount.Y * Multiplier, 1);
 }
 
-void UGKCPUUpscalerStrategy::Transform(class AGKTeamFog *FactionFog)
+void UGKCPUUpscalerStrategy::Transform(class AGKFogOfWarTeam *FactionFog)
 {
     if (FactionFog->Buffer == nullptr)
     {

@@ -43,13 +43,15 @@ enum class EGK_TileVisbility : uint8
     Height5 = uint8(1 << 4),
     Height6 = uint8(1 << 5),
     Wall    = uint8(1 << 6), // Blocks Light
-    Visible = uint8(-1), // Visible
+    Visible = uint8(-1),     // Visible
 };
 
 enum class EGK_VisbilityLayers : uint8
 {
-    Terrain, // Permanent Layer
+    // Permanent Layers
+    Terrain, 
     Blocking,
+    // Team layers after that point
     Size,
 };
 
@@ -57,7 +59,7 @@ struct FGKPoints
 {
     TArray<FIntVector> Points;
 };
- 
+
 /**
  *
  * /rst
@@ -84,29 +86,26 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
     GENERATED_BODY()
 
     public:
-
     //! return true when `IsVisible` is implemented
-    bool SupportVisbilityQuery() const override {
-        return true;
-    }
+    bool SupportVisbilityQuery() const override { return true; }
 
     //! return true if the Seer team sees the location
-    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const override; 
+    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const override;
 
     void Initialize() override;
 
-    void DrawFactionFog(class AGKTeamFog *FactionFog) override;
+    void DrawFactionFog(class AGKFogOfWarTeam *FactionFog) override;
 
     void Stop() override;
 
     //! Draw the line of sight using the right method
-    void DrawLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c) override;
+    void DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, class UGKFogOfWarComponent *c) override;
 
     void UpdateBlocking(class UGKFogOfWarComponent *c);
 
-    void UpdateTextures(class AGKTeamFog* TeamFog);
+    void UpdateTextures(class AGKFogOfWarTeam *TeamFog);
 
-    void ExtractLandscapeHeight();
+    void ExtractLandscapeHeightMap();
 
     class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
 
@@ -118,49 +117,46 @@ class UGKShadowCasting: public UGKFogOfWarStrategy
 
     class UTexture *GetPreviousFrameFactionTexture(FName name, bool CreateRenderTarget = true);
 
-    void UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog);
+    void UpdatePreviousFrameTexturesTex(class AGKFogOfWarTeam *TeamFog);
 
-    void UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog); 
+    void UpdatePreviousFrameTextures(class AGKFogOfWarTeam *TeamFog);
 
     private:
     void Compute(FIntVector origin, int rangeLimit, uint8 TeamId);
 
-    void Compute(uint8      octant,
-                 FIntVector origin,
-                 int        rangeLimit,
-                 int        x,
-                 FGKSlope   top,
-                 FGKSlope   bottom,
-                 uint8      TeamId);
+    void Compute(uint8 octant, FIntVector origin, int rangeLimit, int x, FGKSlope top, FGKSlope bottom, uint8 TeamId);
 
     //! BlocksLight takes X and Y coordinates of a tile and determines whether the
     //! given tile blocks the passage of light.
     //! The function must be able to accept coordinates that are out of bounds.
-    bool BlocksLight(int X, int Y);
+    bool IsBlockingLight(FIntVector Location);
 
     //! GetDistance returns the distance from the point to the origin.
     int GetDistance(FIntVector Origin, FIntVector Diff);
 
     //! SetVisible marks a tile as visible, given its X and Y coordinates.
     //! The function ignorse coordinates that are out of bounds
-    void SetVisible(int X, int Y, uint8 TeamId);
+    void SetVisible(FIntVector Location, uint8 TeamId);
 
     FIntVector       TextureSize;
     FGKGrid          Grid;
     TMatrix3D<uint8> Buffer;
 
     UPROPERTY(Transient)
-    TMap<FName, class UTexture2D*> FogFactions;
+    TMap<FName, class UTexture2D *> FogFactions;
 
     UPROPERTY(Transient)
-    TMap<FName, class UTexture2D*> PreviousFogFactions;
+    TMap<FName, class UTexture2D *> PreviousFogFactions;
 
-    class ALandscape*              Landscape;
+    UPROPERTY()
+    TArray<uint8> CachedData;
 
-    FUpdateTextureRegion2D         UpdateRegion;
+    class ALandscape *Landscape;
+
+    FUpdateTextureRegion2D UpdateRegion;
 
     //
-    class AGKTeamFog *             CurrentFaction;
+    class AGKFogOfWarTeam      *CurrentFaction;
     class UGKFogOfWarComponent *CurrentComponent;
 
     bool bPreviousIsPrevious;

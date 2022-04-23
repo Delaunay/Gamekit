@@ -8,21 +8,23 @@
 #include "GenericTeamAgentInterface.h"
 
 // Generated
-#include "GKTeamFog.generated.h"
+#include "GKFogOfWarTeam.generated.h"
 
 /**
  * Team Fog information, this needs to be an actor for replication purposes.
  * It is only replicated to teammates
  */
 UCLASS()
-class GAMEKIT_API AGKTeamFog : public AInfo
+class GAMEKIT_API AGKFogOfWarTeam: public AInfo
 {
     GENERATED_BODY()
-    
-public:
-    AGKTeamFog();
 
-    bool IsNetRelevantFor(const AActor *RealViewer, const AActor *ViewTarget, const FVector &SrcLocation) const override;
+    public:
+    AGKFogOfWarTeam();
+
+    bool IsNetRelevantFor(const AActor  *RealViewer,
+                          const AActor  *ViewTarget,
+                          const FVector &SrcLocation) const override;
 
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
@@ -41,7 +43,7 @@ public:
     class UTexture *UpScaledVision;
 
     //! Using discrete algorithm
-    bool            bDiscrete;
+    bool bDiscrete;
 
     //! Team Name
     UPROPERTY(Replicated)

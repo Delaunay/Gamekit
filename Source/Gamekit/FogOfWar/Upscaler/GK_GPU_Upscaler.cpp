@@ -22,7 +22,7 @@ void UGKGPUUpscalerStrategy::Initialize()
     UpscalingDispatcher->BeginRendering();
 }
 
-void UGKGPUUpscalerStrategy::Transform(class AGKTeamFog *FactionFog)
+void UGKGPUUpscalerStrategy::Transform(class AGKFogOfWarTeam *FactionFog)
 {
     static uint32 CallCount = 0;
 

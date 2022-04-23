@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h"
@@ -18,15 +19,14 @@
 #include "Components/DecalComponent.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMaterialLibrary.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
-#include "TimerManager.h"
 #include "Net/UnrealNetwork.h"
-#include "Kismet/GameplayStatics.h"
-
+#include "TimerManager.h"
 
 AGKFogOfWarVolume::AGKFogOfWarVolume()
 {
@@ -38,12 +38,11 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
 
     if (FoWParameterCollection.Succeeded())
     {
-        UE_LOG(LogGamekit, Log, TEXT("Found FoW Parameter collection"));
         FogMaterialParameters = FoWParameterCollection.Object;
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Could not find FoW Parameter collection"));
+        GKFOG_WARNING(TEXT("Could not find FoW Parameter collection"));
     }
 
     static ConstructorHelpers::FObjectFinder<UMaterialInterface> FoWUnostructedVisionMaterial(
@@ -55,7 +54,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Could not find UnobstructedVision Material"));
+        GKFOG_WARNING(TEXT("Could not find UnobstructedVision Material"));
     }
 
     static ConstructorHelpers::FObjectFinder<UMaterialInterface> FoWPostProcessMaterial(
@@ -67,7 +66,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Could not find Default Post Process Material"));
+        GKFOG_WARNING(TEXT("Could not find Default Post Process Material"));
     }
 
     PreviewDecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
@@ -81,7 +80,7 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     }
     else
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Could not find Default Decal Material Material"));
+        GKFOG_WARNING(TEXT("Could not find Default Decal Material Material"));
     }
 
     GetBrushComponent()->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
@@ -117,12 +116,12 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     bReady = false;
 
     //
-    bReplicates = true;
+    bReplicates     = true;
     bAlwaysRelevant = true;
 }
 
-
-void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
+void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
+{
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     DOREPLIFETIME(AGKFogOfWarVolume, TeamFogs);
     DOREPLIFETIME(AGKFogOfWarVolume, Blocking);
@@ -132,10 +131,10 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
 {
     ensure(name != NAME_None);
 
-    GK_LOG(TEXT("Setting For of War Materials"));
+    GKFOG_LOG(TEXT("Setting For of War Materials"));
     if (Material == nullptr)
     {
-        GK_WARNING(TEXT("Material is null"));
+        GKFOG_WARNING(TEXT("Material is null"));
         return;
     }
 
@@ -146,7 +145,7 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     }
     else
     {
-        GK_WARNING(TEXT("Fog of war vision is null"));
+        GKFOG_WARNING(TEXT("Fog of war vision is null"));
     }
 
     /*
@@ -168,12 +167,13 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     }
     else
     {
-        GK_WARNING(TEXT("Fog of war exploration is null"));
+        GKFOG_WARNING(TEXT("Fog of war exploration is null"));
     }
 
     auto Result = NameToFogs.Find(name);
     auto TeamId = FGenericTeamId::NoTeam;
-    if (Result){
+    if (Result)
+    {
         TeamId = Result[0]->TeamId;
     }
     Materials.Add(FGKDynamicFogMaterial{name, TeamId, Material});
@@ -183,17 +183,17 @@ UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name
 {
     if (UseFoWDecalRendering)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Cannot generate Post process material when using Decal Rendering"));
+        GKFOG_WARNING(TEXT("Cannot generate Post process material when using Decal Rendering"));
         return nullptr;
     }
 
     if (BasePostProcessMaterial == nullptr)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("No base post process material to create FoW material"));
+        GKFOG_WARNING(TEXT("No base post process material to create FoW material"));
         return nullptr;
     }
 
-    UMaterialInstanceDynamic**LookupResult = PostProcessMaterials.Find(name);
+    UMaterialInstanceDynamic **LookupResult = PostProcessMaterials.Find(name);
 
     if (LookupResult != nullptr)
     {
@@ -202,15 +202,11 @@ UMaterialInterface *AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial(FName name
 
     // Technically we should only have one, since we have one view per instance
     UMaterialInstanceDynamic *Material = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
-        GetWorld(), 
-        BasePostProcessMaterial, 
-        NAME_None, 
-        EMIDCreationFlags::None
-    );
+            GetWorld(), BasePostProcessMaterial, NAME_None, EMIDCreationFlags::None);
 
     if (Material == nullptr)
-    { 
-        UE_LOG(LogGamekit, Warning, TEXT("Could not create FoW post process material"));
+    {
+        GKFOG_WARNING(TEXT("Could not create FoW post process material"));
         return nullptr;
     }
 
@@ -237,7 +233,7 @@ void AGKFogOfWarVolume::GetBrushSizes(FVector2D &TextureSize_, FVector &MapSize_
 
     if (MapSize_.X == 0 || MapSize_.Y == 0)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Map size too small (%.2f x %.2f)"), MapSize_.X, MapSize_.Y);
+        GKFOG_WARNING(TEXT("Map size too small (%.2f x %.2f)"), MapSize_.X, MapSize_.Y);
 
         // If size == 0 it will trigger assert on the RHI side
         MapSize_.X = 100.f;
@@ -391,16 +387,18 @@ void AGKFogOfWarVolume::OnRep_TeamFogs()
     }
 
     // Update materials
-    for(auto& Material: Materials){
+    for (auto &Material: Materials)
+    {
         SetFogOfWarMaterialParameters(Material.Name, Material.Material);
     }
 }
 
-void AGKFogOfWarVolume::InitializeBuffers() { 
+void AGKFogOfWarVolume::InitializeBuffers()
+{
     if (GetNetMode() == ENetMode::NM_Client)
         return;
 
-    auto World = GetWorld(); 
+    auto World         = GetWorld();
     auto WorldSettings = Cast<AGKWorldSettings>(World->GetWorldSettings());
 
     ensureMsgf(Strategy, TEXT("Strategy should be populated"));
@@ -416,7 +414,7 @@ void AGKFogOfWarVolume::InitializeBuffers() {
 
         ensureMsgf(TeamInfo->Name != NAME_None, TEXT("Team name cannot be none"));
 
-        auto TeamFog = World->SpawnActor<AGKTeamFog>(SpawnInfo);
+        auto TeamFog            = World->SpawnActor<AGKFogOfWarTeam>(SpawnInfo);
         TeamFog->TeamId         = FGenericTeamId(TeamInfo->TeamId);
         TeamFog->Name           = TeamInfo->Name;
         TeamFog->Vision         = GKGETATTR(Strategy, GetFactionTexture(TeamInfo->Name, true), nullptr);
@@ -424,7 +422,7 @@ void AGKFogOfWarVolume::InitializeBuffers() {
         TeamFog->Exploration    = GKGETATTR(Exploration, GetFactionTexture(TeamInfo->Name, true), nullptr);
 
         UGameplayStatics::FinishSpawningActor(TeamFog, FTransform());
-        
+
         ensureMsgf(TeamInfo->TeamId == i, TEXT("TeamId should be consistent %d != %d"), TeamInfo->TeamId, i);
 
         TeamFogs.Add(TeamFog);
@@ -433,9 +431,10 @@ void AGKFogOfWarVolume::InitializeBuffers() {
     }
 }
 
-void AGKFogOfWarVolume::PreInitializeComponents() { 
+void AGKFogOfWarVolume::PreInitializeComponents()
+{
     Super::PreInitializeComponents();
-    DeltaAccumulator = 1000; 
+    DeltaAccumulator = 1000;
     PostProcessMaterials.Reset();
     UpdateVolumeSizes();
 
@@ -494,7 +493,7 @@ void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 
     if (c->BlocksVision)
     {
-        GK_WARNING(TEXT("Register blocking"));
+        GKFOG_WARNING(TEXT("Register blocking"));
         Blocking.Add(c);
     }
 }
@@ -556,13 +555,15 @@ void AGKFogOfWarVolume::DrawFactionFog()
 // Texture Accessors
 // -----------------
 
-UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name) {
+UTexture *AGKFogOfWarVolume::GetFactionExplorationTexture(FName name)
+{
     auto Fog = GetFactionFogs(name);
     return GKGETATTR(Fog, Exploration, nullptr);
 }
 
-UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name) { 
-     auto Fog = GetFactionFogs(name);
+UTexture *AGKFogOfWarVolume::GetOriginalFactionTexture(FName name)
+{
+    auto Fog = GetFactionFogs(name);
     return GKGETATTR(Fog, Vision, nullptr);
 }
 
@@ -663,12 +664,12 @@ void AGKFogOfWarVolume::PostEditChangeProperty(struct FPropertyChangedEvent &e)
         return;
     }
 
-    UE_LOG(LogGamekit, Warning, TEXT("Property changed %s"), *PropertyName.ToString());
+    GKFOG_WARNING(TEXT("Property changed %s"), *PropertyName.ToString());
     UpdateVolumeSizes();
     Super::PostEditChangeProperty(e);
 }
 
-class AGKTeamFog *AGKFogOfWarVolume::GetFactionFogs(FName Faction)
+class AGKFogOfWarTeam *AGKFogOfWarVolume::GetFactionFogs(FName Faction)
 {
     auto Result = NameToFogs.Find(Faction);
     if (Result)
@@ -678,10 +679,9 @@ class AGKTeamFog *AGKFogOfWarVolume::GetFactionFogs(FName Faction)
     return nullptr;
 }
 
-
 void CopyTexture(UObject *World, class UCanvasRenderTarget2D *Dest, class UTexture *Src)
 {
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 

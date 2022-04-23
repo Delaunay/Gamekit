@@ -1,9 +1,10 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 
-#include "Gamekit/FogOfWar/GKTeamFog.h"
+#include "Gamekit/FogOfWar/GKFogOfWarTeam.h"
 
 // Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 
 // Unreal Engine
@@ -11,7 +12,7 @@
 #include "Net/UnrealNetwork.h"
 
 
-AGKTeamFog::AGKTeamFog() {
+AGKFogOfWarTeam::AGKFogOfWarTeam() {
     bReplicates = true;
     bAlwaysRelevant = false;
 
@@ -24,7 +25,7 @@ AGKTeamFog::AGKTeamFog() {
     Allies.Reserve(128);
 }
 
-bool AGKTeamFog::IsNetRelevantFor(const AActor *RealViewer, const AActor *ViewTarget, const FVector &SrcLocation) const
+bool AGKFogOfWarTeam::IsNetRelevantFor(const AActor *RealViewer, const AActor *ViewTarget, const FVector &SrcLocation) const
 {
     bool bRelevant = false;
     auto Attitude  = FGenericTeamId::GetAttitude(TeamId, FGenericTeamId::GetTeamIdentifier(RealViewer));
@@ -37,15 +38,15 @@ bool AGKTeamFog::IsNetRelevantFor(const AActor *RealViewer, const AActor *ViewTa
     return bRelevant;
 }
 
-void AGKTeamFog::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
+void AGKFogOfWarTeam::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    DOREPLIFETIME(AGKTeamFog, Name);
-    DOREPLIFETIME(AGKTeamFog, TeamId);
-    DOREPLIFETIME(AGKTeamFog, Allies);
+    DOREPLIFETIME(AGKFogOfWarTeam, Name);
+    DOREPLIFETIME(AGKFogOfWarTeam, TeamId);
+    DOREPLIFETIME(AGKFogOfWarTeam, Allies);
 }
 
 
-TArray<class UGKFogOfWarComponent *> const &AGKTeamFog::GetBlocking()
+TArray<class UGKFogOfWarComponent *> const &AGKFogOfWarTeam::GetBlocking()
 {
     Blocking.Reset();
 

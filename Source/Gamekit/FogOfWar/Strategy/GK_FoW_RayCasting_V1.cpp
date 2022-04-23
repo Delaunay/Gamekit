@@ -5,7 +5,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/GKLog.h"
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -28,7 +28,7 @@ void UGKRayCasting_Line::Initialize()
 
     if (TexScale == 0)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("TextureScale cannot be zero"));
+        GKFOG_WARNING(TEXT("TextureScale cannot be zero"));
 
         // If size == 0 it will trigger assert on the RHI side
         TexScale = 1.f;
@@ -37,7 +37,7 @@ void UGKRayCasting_Line::Initialize()
     FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X, MapSize.Y) * TexScale);
 }
 
-void UGKRayCasting_Line::DrawFactionFog(class AGKTeamFog *FactionFog)
+void UGKRayCasting_Line::DrawFactionFog(class AGKFogOfWarTeam *FactionFog)
 {
     auto Texture = GetFactionRenderTarget(FactionFog->Name);
 
@@ -50,7 +50,7 @@ void UGKRayCasting_Line::DrawFactionFog(class AGKTeamFog *FactionFog)
     }
 }
 
-void UGKRayCasting_Line::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     if (!c->GivesVision)
     {
@@ -69,9 +69,9 @@ void UGKRayCasting_Line::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfW
     }
 }
 
-void UGKRayCasting_Line::DrawObstructedLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, class UGKFogOfWarComponent *c)
 {
-    AActor *         actor          = c->GetOwner();
+    AActor          *actor          = c->GetOwner();
     FVector          forward        = actor->GetActorForwardVector();
     FVector          loc            = actor->GetActorLocation();
     TArray<AActor *> ActorsToIgnore = {GetOwner()};
@@ -129,7 +129,7 @@ void UGKRayCasting_Line::DrawLines(class UGKFogOfWarComponent *c)
         return;
     }
 
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
 
@@ -158,7 +158,7 @@ UTexture *UGKRayCasting_Line::GetFactionTexture(FName name, bool bCreateRenderTa
 UCanvasRenderTarget2D *UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bool bCreateRenderTarget)
 {
     UCanvasRenderTarget2D **RenderResult = FogFactions.Find(Name);
-    UCanvasRenderTarget2D * Render       = nullptr;
+    UCanvasRenderTarget2D  *Render       = nullptr;
 
     if (RenderResult != nullptr)
     {
@@ -176,11 +176,9 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
 {
     FogOfWarVolume->GetBrushSizes(FogOfWarVolume->TextureSize, FogOfWarVolume->MapSize);
 
-    UE_LOG(LogGamekit,
-           Log,
-           TEXT("Creating a new render target (%.2f x %.2f)"),
-           FogOfWarVolume->TextureSize.X,
-           FogOfWarVolume->TextureSize.Y);
+    GKFOG_LOG(TEXT("Creating a new render target (%.2f x %.2f)"),
+              FogOfWarVolume->TextureSize.X,
+              FogOfWarVolume->TextureSize.Y);
 
     auto Texture = UCanvasRenderTarget2D::CreateCanvasRenderTarget2D(GetWorld(),
                                                                      UCanvasRenderTarget2D::StaticClass(),
@@ -198,7 +196,7 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
     return Texture;
 }
 
-void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
 {
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
@@ -224,7 +222,7 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(class AGKTeamFog *Fact
                                c->Radius * FogOfWarVolume->TextureSize.Y / FogOfWarVolume->MapSize.Y);
     auto Start        = FogOfWarVolume->GetTextureCoordinate(actor->GetActorLocation()) - NewRadius;
 
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  Size;
     FDrawToRenderTargetContext Context;
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
@@ -241,14 +239,14 @@ void UGKRayCasting_Line::DrawUnobstructedLineOfSight_Draw(class AGKTeamFog *Fact
 #endif
 }
 
-void UGKRayCasting_Line::DrawUnobstructedLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKRayCasting_Line::DrawUnobstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     DrawUnobstructedLineOfSight_Draw(FactionFog, c);
 
-    AActor *         Actor = c->GetOwner();
+    AActor          *Actor = c->GetOwner();
     TArray<AActor *> ActorsToIgnore;
     ActorsToIgnore.Append(FogOfWarVolume->ActorsToIgnore);
-    UClass *                              ActorClassFilter = AActor::StaticClass();
+    UClass                               *ActorClassFilter = AActor::StaticClass();
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
     UGKFogOfWarLibrary::ConvertToObjectType(FogOfWarVolume->FogOfWarCollisionChannel, ObjectTypes);
     TArray<AActor *> OutActors;

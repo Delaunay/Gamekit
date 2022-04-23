@@ -4,19 +4,22 @@
 
 // Gamekit
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/GKLog.h"
 
 // Unreal Engine
 #include "DrawDebugHelpers.h"
 #include "Engine/CanvasRenderTarget2D.h"
 #include "Engine/TextureRenderTarget2DArray.h"
-#include "Rendering/Texture2DResource.h"
-#include "LandscapeComponent.h"
 #include "Landscape.h"
+#include "LandscapeComponent.h"
+#include "Rendering/Texture2DResource.h"
 
-void UGKShadowCasting::Stop() {}
+
+void UGKShadowCasting::Stop() {
+
+}
 
 UTexture *UGKShadowCasting::GetFactionTexture(FName Name, bool bCreateRenderTarget)
 {
@@ -69,7 +72,7 @@ UTexture2D *UGKShadowCasting::CreateTexture2D()
 UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRenderTarget)
 {
     UTexture2D **Result  = FogFactions.Find(name);
-    UTexture2D * Texture = nullptr;
+    UTexture2D  *Texture = nullptr;
 
     if (Result != nullptr)
     {
@@ -77,7 +80,7 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     }
     else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
-        UE_LOG(LogGamekit, Log, TEXT("Creating a Texture for faction %s"), *name.ToString());
+        GKFOG_LOG(TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
         FogFactions.Add(name, Texture);
     }
@@ -85,9 +88,11 @@ UTexture2D *UGKShadowCasting::GetFactionTexture2D(FName name, bool bCreateRender
     return Texture;
 }
 
-bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
+bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const
+{
 
-    if (SeerTeam == FGenericTeamId::NoTeam) {
+    if (SeerTeam == FGenericTeamId::NoTeam)
+    {
         return true;
     }
     auto ActorPosition = Grid.WorldToGrid(Loc);
@@ -96,7 +101,8 @@ bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
 
     BufferPos.Z = uint8(EGK_VisbilityLayers::Size) + SeerTeam.GetId();
 
-    if (Buffer.Valid(BufferPos)) {
+    if (Buffer.Valid(BufferPos))
+    {
         return Buffer(BufferPos) & (uint8)(EGK_TileVisbility::Visible);
     }
     return false;
@@ -105,7 +111,7 @@ bool UGKShadowCasting::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
 UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool bCreateRenderTarget)
 {
     UTexture2D **Result  = PreviousFogFactions.Find(name);
-    UTexture2D * Texture = nullptr;
+    UTexture2D  *Texture = nullptr;
 
     if (Result != nullptr)
     {
@@ -114,7 +120,7 @@ UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool 
 
     else if (bCreateRenderTarget && !IsBeingDestroyed())
     {
-        GK_LOG(TEXT("Creating a Texture for faction %s"), *name.ToString());
+        GKFOG_LOG(TEXT("Creating a Texture for faction %s"), *name.ToString());
         Texture = CreateTexture2D();
         PreviousFogFactions.Add(name, Texture);
     }
@@ -122,59 +128,69 @@ UTexture2D *UGKShadowCasting::GetPreviousFrameFactionTexture2D(FName name, bool 
     return Texture;
 }
 
-void UGKShadowCasting::ExtractLandscapeHeight() {
+void ShowHeightMapInfo(int i, ULandscapeComponent *Comp)
+{
+    GKFOG_WARNING(TEXT("%d. ULandscapeComponent"), i);
+
+    UTexture2D *HeightMap          = Comp->GetHeightmap();
+    FVector4    HeightmapScaleBias = Comp->HeightmapScaleBias; // why is this Vec4
+    FBox        BoundBox           = Comp->CachedLocalBox;
+
+    GKFOG_WARNING(TEXT(" - GetSectionBase %s"), *Comp->GetSectionBase().ToString());
+
+    // I have seen cases where W is used
+    //  X=0.016 Y=0.016 Z=0.000 W=0.000
+    GKFOG_WARNING(TEXT(" - HeightmapScaleBias %s"), *HeightmapScaleBias.ToString());
+
+    // Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=63.000 Y=63.000 Z=224.117)
+    GKFOG_WARNING(TEXT(" - FBox               %s"), *BoundBox.ToString());
+
+    int               Mip       = 0;
+    FTexture2DMipMap *CurMip    = &HeightMap->GetPlatformData()->Mips[Mip];
+    FByteBulkData    *ImageData = &CurMip->BulkData;
+
+    int32 MipWidth  = CurMip->SizeX;
+    int32 MipHeight = CurMip->SizeY;
+
+    GKFOG_WARNING(TEXT(" - Size             %d x %d"), MipWidth, MipHeight);         // 64 x 64
+    GKFOG_WARNING(TEXT(" - IsBulkDataLoaded %d"), ImageData->IsBulkDataLoaded());    // 1
+    GKFOG_WARNING(TEXT(" - GetBulkDataSize  %d"), ImageData->GetBulkDataSize());     // 16384 => 128 x 128
+    GKFOG_WARNING(TEXT(" - GetPixelFormat   %d"), int(HeightMap->GetPixelFormat())); // 2     => PF_B8G8R8A8
+}
+
+// So this could work but I am a bit lazy to try and fetch the data rightaway
+void UGKShadowCasting::ExtractLandscapeHeightMap()
+{
     if (!Landscape)
         return;
 
-    TArray<UTexture2D*> HeightMaps;
-    TArray<FVector4> HeightmapScaleBiases;
-    TArray<FBox> BBoxes;
+    Grid                = FogOfWarVolume->Grid;
+    auto TileSize       = Grid.GetTileSize();
+    auto MapSize        = FogOfWarVolume->MapSize;
+    auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / TileSize;
+    auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
-    for(ULandscapeComponent* Comp: Landscape->LandscapeComponents){
-        auto Texture = Comp->GetHeightmap();
-        HeightMaps.Add(Texture);
-        HeightmapScaleBiases.Add(Comp->HeightmapScaleBias);
-        BBoxes.Add(Comp->CachedLocalBox);
+    auto Start = - MapSize / 2.f + TileSize / 2.f;
+    auto xStep = - MapSize.X / TileCount.X;
+    auto yStep = MapSize.Y / TileCount.Y;
+
+    for (float x = Start.X; x < MapSize.X; x += TileSize.X)
+    {
+        for (float y = Start.Y; y < MapSize.Y; y += TileSize.Y)
+        {
+            auto WorldPos = FVector(x, y, 0);
+            auto Height = Landscape->GetHeightAtLocation(WorldPos);    
+                
+            auto GridPos = Grid.WorldToGrid(WorldPos);
+            auto BufferPos = FogOfWarVolume->ToGridTexture(FIntVector(GridPos.X, GridPos.Y, 0));
+            BufferPos.Z = int(EGK_VisbilityLayers::Terrain);
+
+            if (Height.IsSet() && Buffer.Valid(BufferPos))
+            {
+                Buffer(BufferPos) = Height.GetValue() / TileSize.Z;
+            }
+        }
     }
-
-    if (HeightMaps.Num() > 1){
-        GK_WARNING(TEXT("Extracted multiple heightmaps"));
-    }
-
-    if (HeightMaps.Num() == 0) {
-        GK_WARNING(TEXT("no heightmaps were found"));
-        return;
-    }
-
-    // so mow that we have the texure, how do we convert the pixel into
-    // heights
-    UTexture2D* HeightMap          = HeightMaps[0];
-    FVector4    HeightmapScaleBias = HeightmapScaleBiases[0];   // why is this Vec4
-    FBox        BoundBox           = BBoxes[0];
-    
-    //  X=0.016 Y=0.016 Z=0.000 W=0.000
-    GK_WARNING(TEXT("HeightmapScaleBias %s"), *HeightmapScaleBias.ToString());
-
-    // Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=63.000 Y=63.000 Z=224.117)
-    GK_WARNING(TEXT("FBox               %s"), *BoundBox.ToString());
-
-    // then we need to so something similar to 
-    // FLinearColor UBlueprintMaterialTextureNodesBPLibrary::Texture2D_SampleUV_EditorOnly(UTexture2D* Texture, FVector2D UV)
-    // but for the entire height map
-    //  1. We need to findout the size of the landscape
-    //  2. only fetch the data from the landscape that is inside the Fog volume
-
-    int Mip = 0;
-    FTexture2DMipMap* CurMip = &HeightMap->GetPlatformData()->Mips[Mip];
-    FByteBulkData* ImageData = &CurMip->BulkData;
-
-    int32 MipWidth = CurMip->SizeX;
-    int32 MipHeight = CurMip->SizeY;
-
-    GK_WARNING(TEXT("Size             %d x %d"), MipWidth, MipHeight);          // 64 x 64
-    GK_WARNING(TEXT("IsBulkDataLoaded %d"), ImageData->IsBulkDataLoaded());     // 1
-    GK_WARNING(TEXT("GetBulkDataSize  %d"), ImageData->GetBulkDataSize());      // 16384 => 128 x 128
-    GK_WARNING(TEXT("GetPixelFormat   %d"), int(HeightMap->GetPixelFormat()));  // 2     => PF_B8G8R8A8
 }
 
 void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
@@ -237,7 +253,7 @@ void UGKShadowCasting::UpdateBlocking(class UGKFogOfWarComponent *c)
     }
 }
 
-void UGKShadowCasting::UpdateTextures(class AGKTeamFog* TeamFog)
+void UGKShadowCasting::UpdateTextures(class AGKFogOfWarTeam *TeamFog)
 {
 #if !UE_SERVER
     if (GetWorld()->GetNetMode() == NM_DedicatedServer)
@@ -253,7 +269,7 @@ void UGKShadowCasting::UpdateTextures(class AGKTeamFog* TeamFog)
     UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
 
     uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
-    uint8 *SrcData = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
+    uint8 *SrcData   = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
 
     FMemory::Memcpy(NewBuffer, SrcData, Buffer.GetLayerSizeBytes());
 
@@ -267,7 +283,7 @@ void UGKShadowCasting::UpdateTextures(class AGKTeamFog* TeamFog)
 #endif
 }
 
-void UGKShadowCasting::UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog)
+void UGKShadowCasting::UpdatePreviousFrameTexturesTex(class AGKFogOfWarTeam *TeamFog)
 {
 
     UTexture2D *Texture     = GetFactionTexture2D(TeamFog->Name);
@@ -283,7 +299,7 @@ void UGKShadowCasting::UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog)
                 //    PrevTexture->GetResource()->GetTexture2DRHI(),
                 //    Params
                 //);
-                
+
                 FRHICopyTextureInfo CopyParams;
                 RHICmdList.CopyTexture(Texture->GetResource()->GetTexture2DRHI(),
                                        PrevTexture->GetResource()->GetTexture2DRHI(),
@@ -292,7 +308,7 @@ void UGKShadowCasting::UpdatePreviousFrameTexturesTex(class AGKTeamFog* TeamFog)
     */
 }
 
-void UGKShadowCasting::UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog)
+void UGKShadowCasting::UpdatePreviousFrameTextures(class AGKFogOfWarTeam *TeamFog)
 {
 #if !UE_SERVER
     if (Buffer.Num() > 0 && GetWorld()->GetNetMode() != NM_DedicatedServer)
@@ -301,9 +317,9 @@ void UGKShadowCasting::UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog)
         UTexture2D *PrevTexture = GetPreviousFrameFactionTexture2D(TeamFog->Name);
 
         UpdateRegion = FUpdateTextureRegion2D(0, 0, 0, 0, Buffer.Width(), Buffer.Height());
-        
+
         uint8 *NewBuffer = new uint8[Buffer.GetLayerSize()];
-        uint8* SrcData = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
+        uint8 *SrcData   = Buffer.GetLayer(uint8(EGK_VisbilityLayers::Size) + TeamFog->TeamId.GetId());
 
         FMemory::Memcpy(NewBuffer, SrcData, Buffer.GetLayerSizeBytes());
 
@@ -318,7 +334,7 @@ void UGKShadowCasting::UpdatePreviousFrameTextures(class AGKTeamFog* TeamFog)
 #endif
 }
 
-void UGKShadowCasting::DrawFactionFog(class AGKTeamFog *FactionFog)
+void UGKShadowCasting::DrawFactionFog(class AGKFogOfWarTeam *FactionFog)
 {
     // Reset
     Buffer.ResetLayer(uint8(EGK_VisbilityLayers::Size) + FactionFog->TeamId.GetId(), (uint8)(EGK_TileVisbility::None));
@@ -363,42 +379,70 @@ void UGKShadowCasting::Initialize()
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
-    auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    auto Settings  = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
     auto TeamCount = GKGETATTR(Settings, GetTeams().Num(), 1);
 
     TextureSize = TileCount;
     Buffer.Init(0, TileCount.X, TileCount.Y, uint8(EGK_VisbilityLayers::Size) + TeamCount);
     FogOfWarVolume->SetTextureSize(FVector2D(TileCount.X, TileCount.Y));
 
-    GK_LOG(TEXT("Map Size is %s"), *MapSize.ToString());
-    GK_LOG(TEXT("TileCount Count is %s"), *TileCount.ToString());
-    GK_LOG(TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
-
+    GKFOG_LOG(TEXT("Map Size is %s"), *MapSize.ToString());
+    GKFOG_LOG(TEXT("TileCount Count is %s"), *TileCount.ToString());
+    GKFOG_LOG(TEXT("TileSize is %s"), *Grid.GetTileSize().ToString());
 
     Landscape = FogOfWarVolume->Landscape;
-    ExtractLandscapeHeight();
+    ExtractLandscapeHeightMap();
 }
 
-void UGKShadowCasting::DrawLineOfSight(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *c)
+void UGKShadowCasting::DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
 {
     auto WorldPos = c->GetOwner()->GetActorLocation();
 
-    auto       GridCoord       = Grid.WorldToGrid(WorldPos);
-    auto       Radius          = int(c->Radius / Grid.GetTileSize().X);
+    auto GridCoord = Grid.WorldToGrid(WorldPos);
+    auto Radius    = int(c->Radius / Grid.GetTileSize().X);
+
+    /*
+    {
+        auto BasePos = FogOfWarVolume->ToGridTexture(GridCoord);
+        auto Terrain = BasePos;
+
+        Terrain.Z = uint8(EGK_VisbilityLayers::Terrain);
+        auto TerrainHeight = Buffer(Terrain);
+        GKFOG_WARNING(TEXT("%s Terrain Height %d"), *GridCoord.ToString(), TerrainHeight);
+    }*/
 
     Compute(GridCoord, Radius, FactionFog->TeamId.GetId());
 }
 
-bool UGKShadowCasting::BlocksLight(int X, int Y)
+bool UGKShadowCasting::IsBlockingLight(FIntVector Position)
 {
-    auto TexturePos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
-    TexturePos.Z    = uint8(EGK_VisbilityLayers::Blocking);
+    auto BasePos = FogOfWarVolume->ToGridTexture(Position);
 
-    if (Buffer.Valid(TexturePos))
+    // Check for terrain height
+    auto Terrain = BasePos;
+    Terrain.Z = uint8(EGK_VisbilityLayers::Terrain);
+
+    if (Buffer.Valid(Terrain))
+    {
+        auto TerrainHeight = Buffer(Terrain);
+        if (TerrainHeight > BasePos.Z)
+        {
+            return true;
+        }
+    }
+    else
+    {
+        GKFOG_WARNING(TEXT("Imposible to be outside of terrain %d"), BasePos.Z);
+    }
+
+    // Check blocking layer for actors that blocks light
+    auto Blocking = BasePos;
+    Blocking.Z    = uint8(EGK_VisbilityLayers::Blocking);
+    if (Buffer.Valid(Blocking))
     {
         // TODO: Broadcast Sighting events?
         // Check if wall flag is set
-        return bool(Buffer(TexturePos) & (uint8)(EGK_TileVisbility::Wall));
+        return bool(Buffer(Blocking) & (uint8)(EGK_TileVisbility::Wall));
     }
 
     return true;
@@ -411,9 +455,9 @@ int UGKShadowCasting::GetDistance(FIntVector Origin, FIntVector Diff)
     return (Origin - Diff).Size();
 }
 
-void UGKShadowCasting::SetVisible(int X, int Y, uint8 TeamId)
+void UGKShadowCasting::SetVisible(FIntVector Location, uint8 TeamId)
 {
-    auto BufferPos = FogOfWarVolume->ToGridTexture(FIntVector(X, Y, 0));
+    auto BufferPos = FogOfWarVolume->ToGridTexture(Location);
     BufferPos.Z    = uint8(EGK_VisbilityLayers::Size) + TeamId;
 
     if (Buffer.Valid(BufferPos))
@@ -421,9 +465,8 @@ void UGKShadowCasting::SetVisible(int X, int Y, uint8 TeamId)
         // Set visible flag
         Buffer(BufferPos) |= (uint8)(EGK_TileVisbility::Visible);
 
-
         /* This cannot work because we would need to insert N units into the `PositionToComponent`
-         * which would be very slow as N could be quite big 
+         * which would be very slow as N could be quite big
         TexturePos.Z = 0;
 
         UGKFogOfWarComponent **SightedResult = PositionToComponent.Find(TexturePos);
@@ -436,17 +479,17 @@ void UGKShadowCasting::SetVisible(int X, int Y, uint8 TeamId)
     }
     else
     {
-        GK_LOG(TEXT("Cannot set %d x %d as visisble %s"), X, Y, *BufferPos.ToString());
+        GKFOG_LOG(TEXT("Cannot set %s as visisble %s"), *Location.ToString(), *BufferPos.ToString());
     }
 }
 
-void UGKShadowCasting::Compute(FIntVector origin, int rangeLimit, uint8 TeamId)
+void UGKShadowCasting::Compute(FIntVector Origin, int rangeLimit, uint8 TeamId)
 {
-    SetVisible(origin.X, origin.Y, TeamId);
+    SetVisible(Origin, TeamId);
 
     for (uint8 octant = 0; octant < 8; octant++)
     {
-        Compute(octant, origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), TeamId);
+        Compute(octant, Origin, rangeLimit, 1, FGKSlope(1, 1), FGKSlope(0, 1), TeamId);
     }
 }
 
@@ -456,7 +499,7 @@ void UGKShadowCasting::Compute(uint8      octant,
                                int        x,
                                FGKSlope   top,
                                FGKSlope   bottom,
-                               uint8 TeamId)
+                               uint8      TeamId)
 {
     // rangeLimit < 0 || x <= rangeLimit
     for (; (uint8)x <= (uint8)rangeLimit; x++)
@@ -488,17 +531,18 @@ void UGKShadowCasting::Compute(uint8      octant,
                 case 7: tx += x; ty += y; break;
             }
             // clang-format off
+            auto tPos = FIntVector(tx, ty, origin.Z);
 
-            bool inRange = rangeLimit < 0 || GetDistance(origin, FIntVector(tx, ty, 0)) <= rangeLimit;
+            bool inRange = rangeLimit < 0 || GetDistance(origin, tPos) <= rangeLimit;
 
             if (inRange){
-                SetVisible(tx, ty, TeamId);
+                SetVisible(tPos, TeamId);
             }
 
             // NOTE: use the next line instead if you want the algorithm to be symmetrical
             // if(inRange && (y != topY || top.Y*x >= top.X*y) && (y != bottomY || bottom.Y*x <= bottom.X*y)) SetVisible(tx, ty);
 
-            bool isOpaque = !inRange || BlocksLight(tx, ty);
+            bool isOpaque = !inRange || IsBlockingLight(tPos);
             if(x != rangeLimit)
             {
                 if(isOpaque)

@@ -3,7 +3,7 @@
 #pragma once
 
 // Gamekit
-#include "Gamekit/FogOfWar/GKTeamFog.h"
+#include "Gamekit/FogOfWar/GKFogOfWarTeam.h"
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
 #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
 #include "Gamekit/Gamekit.h"
@@ -129,7 +129,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! Landscape we use to extract landscape height
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
-    class ALandscape* Landscape;
+    class ALandscape *Landscape;
 
     //! Class used to perform the upscaling
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
@@ -313,7 +313,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     friend class UGKFogOfWarComponent;
 
-    class AGKTeamFog *GetFactionFogs(FName Faction);
+    class AGKFogOfWarTeam *GetFactionFogs(FName Faction);
 
     protected:
     //! After that functions all the  data necessary for
@@ -342,7 +342,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! TODO: change this to initial replication only
     UPROPERTY(Replicated, Transient, ReplicatedUsing = OnRep_TeamFogs)
-    TArray<class AGKTeamFog *> TeamFogs;
+    TArray<class AGKFogOfWarTeam *> TeamFogs;
 
     //! TODO: make this dynamic
     UPROPERTY(Replicated, Transient)
@@ -350,7 +350,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
 
     //! Dealing with Faction name instead of their teamid is easier
     //! for debugging
-    TMap<FName, class AGKTeamFog *> NameToFogs;
+    TMap<FName, class AGKFogOfWarTeam *> NameToFogs;
 
     TArray<FGKDynamicFogMaterial> Materials;
 

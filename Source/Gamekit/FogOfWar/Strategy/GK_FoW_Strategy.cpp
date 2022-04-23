@@ -3,13 +3,12 @@
 // Gamekit
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/Utilities/GKBitFlag.h"
 #include "Gamekit/GKLog.h"
-
+#include "Gamekit/Utilities/GKBitFlag.h"
 
 UGKFogOfWarStrategy::UGKFogOfWarStrategy() {}
 
-void UGKFogOfWarStrategy::DrawFactionFog(class AGKTeamFog *FactionFog)
+void UGKFogOfWarStrategy::DrawFactionFog(class AGKFogOfWarTeam *FactionFog)
 {
     TSet<FName> Factions;
 
@@ -50,31 +49,33 @@ void UGKFogOfWarStrategy::DebugDrawPoint(FVector Center, FLinearColor Color, flo
     }
 }
 
-void UGKFogOfWarStrategy::AddVisibleActor(class AGKTeamFog *FactionFog, UGKFogOfWarComponent *SourceComp, AActor *Target)
+void UGKFogOfWarStrategy::AddVisibleActor(class AGKFogOfWarTeam *FactionFog,
+                                          UGKFogOfWarComponent  *SourceComp,
+                                          AActor                *Target)
 {
-    UActorComponent *     Component = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
+    UActorComponent      *Component   = Target->GetComponentByClass(UGKFogOfWarComponent::StaticClass());
     UGKFogOfWarComponent *SightedComp = Cast<UGKFogOfWarComponent>(Component);
 
     AddVisibleComponent(FactionFog, SourceComp, SightedComp);
 }
 
-void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog,
+void UGKFogOfWarStrategy::AddVisibleComponent(class AGKFogOfWarTeam      *FactionFog,
                                               class UGKFogOfWarComponent *SourceComp,
                                               class UGKFogOfWarComponent *SightedComp)
 {
     if (SightedComp == nullptr)
-    { 
+    {
         return;
     }
 
-    // Vision is symetric 
+    // Vision is symetric
     // SightedComp->TeamVisibility = SetFlag(SightedComp->TeamVisibility, SourceComp->GetGenericTeamId().GetId());
     // SourceComp->TeamVisibility  = SetFlag(SourceComp->TeamVisibility, SightedComp->GetGenericTeamId().GetId());
-    
+
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
 
     /*
-    GK_WARNING(TEXT("Server: %s sees %s (%d)"),
+    GKFOG_WARNING(TEXT("Server: %s sees %s (%d)"),
         *AActor::GetDebugName(SourceComp->GetOwner()),
         *AActor::GetDebugName(SightedComp->GetOwner()),
         SightedComp->TeamVisibility);
@@ -87,7 +88,6 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKTeamFog *      FactionFog
         SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
 }
- 
 
 /*
 void UGKFogOfWarStrategy::RegisterActorHit(FHitResult& OutHit, UGKFogOfWarComponent* c) {

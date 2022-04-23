@@ -3,6 +3,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 
 // Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 
 // Unreal Engine
@@ -46,7 +47,7 @@ void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume *Volume,
 
     if (Material == nullptr)
     {
-        UE_LOG(LogGamekit, Log, TEXT("Postprocess Material was null, Are you using decal rendering?"));
+        GKFOG_WARNING(TEXT("Postprocess Material was null, Are you using decal rendering?"));
         return;
     }
 

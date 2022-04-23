@@ -7,8 +7,8 @@
 
 // Unreal Engine
 #include "Components/ActorComponent.h"
-#include "GenericTeamAgentInterface.h"
 #include "CoreMinimal.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GK_FoW_Strategy.generated.h"
@@ -22,28 +22,25 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
     UGKFogOfWarStrategy();
 
     //! return true when `IsVisible` is implemented
-    virtual bool SupportVisbilityQuery() const {
-        return false;
-    } 
+    virtual bool SupportVisbilityQuery() const { return false; }
 
     //! return true if the Seer team sees the target actor
-    virtual bool IsVisible(FGenericTeamId SeerTeam, AActor const* Target) const {
+    virtual bool IsVisible(FGenericTeamId SeerTeam, AActor const *Target) const
+    {
         return IsVisible(SeerTeam, Target->GetActorLocation());
     }
 
-    virtual bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const {
-        return true;
-    }
+    virtual bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const { return true; }
 
     virtual void Initialize();
 
     virtual void Stop() {}
 
     //! Draw the fog of war for each factions
-    virtual void DrawFactionFog(class AGKTeamFog *FactionFog);
+    virtual void DrawFactionFog(class AGKFogOfWarTeam *FactionFog);
 
     //! Draw the line of sight using the right method
-    virtual void DrawLineOfSight(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *c) {}
+    virtual void DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, class UGKFogOfWarComponent *c) {}
 
     void DebugDrawComponent(class UGKFogOfWarComponent *c);
 
@@ -63,9 +60,11 @@ class GAMEKIT_API UGKFogOfWarStrategy: public UActorComponent
     void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
 
     // Check if actor has a FogOfWar component, is so trigger the OnSighted event
-    void AddVisibleActor(class AGKTeamFog *FactionFog, class UGKFogOfWarComponent *SourceComp, class AActor *Actor);
+    void AddVisibleActor(class AGKFogOfWarTeam      *FactionFog,
+                         class UGKFogOfWarComponent *SourceComp,
+                         class AActor               *Actor);
 
-    void AddVisibleComponent(class AGKTeamFog *      FactionFog,
+    void AddVisibleComponent(class AGKFogOfWarTeam      *FactionFog,
                              class UGKFogOfWarComponent *SourceComp,
                              class UGKFogOfWarComponent *SightedComp);
 
