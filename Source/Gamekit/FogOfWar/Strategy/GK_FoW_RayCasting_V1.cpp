@@ -21,30 +21,49 @@ UGKRayCasting_Line::UGKRayCasting_Line() {}
 
 bool UGKRayCasting_Line::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const
 {
+    static bool bWarning = false;
+
+    // ListenServer could work maybe
+    if (GetWorld()->GetNetMode() == NM_DedicatedServer || GetWorld()->GetNetMode() == NM_ListenServer)
+    {
+        if (!bWarning)
+        {
+            GKFOG_WARNING(TEXT(
+                "Ray based Fog of war cannot work in multiplayer setting.\n"
+                "Rays are drawn to a render target which requires a GPU.\n"
+                "Dedicated servers do not have GPUs\n"
+                "Only the conditional replicaiton is not working so it could still be used\n"
+                "For non competitive games\n"
+            ));
+            bWarning = true;
+        }
+        return true;
+    }
+
+    //
     if (SeerTeam == FGenericTeamId::NoTeam)
     {
         return true;
     }
 
-    // this does not work
-    // the Position seems to not fetch anything
-
     auto TeamFog = FogOfWarVolume->TeamFogs[SeerTeam.GetId()];
     ensure(TeamFog->TeamId == SeerTeam);
     ensure(!DrawingFog);
 
+    FVector TileSize = FogOfWarVolume->Grid.GetTileSize();
+    auto    MapSize  = FogOfWarVolume->MapSize;
+    auto    TextureSize = FVector2D(MapSize.X / TileSize.X, MapSize.Y / TileSize.Y);
+
     auto Position = FogOfWarVolume->GetTextureCoordinate(Loc);
-    // auto RenderTarget = GetFactionRenderTarget(TeamFog->Name);
+    auto RenderTarget = Cast<UTextureRenderTarget2D>(TeamFog->Vision);
 
-    FLinearColor Color = UGKFogOfWarLibrary::SamplePixelRenderTarget(
+    FLinearColor Color = UGKFogOfWarLibrary::SampleRenderTarget(
             // Why is this not working
-            Cast<UTextureRenderTarget2D>(TeamFog->Vision),
+            RenderTarget,
             // RenderTarget,
-            Position);
+            Position / TextureSize);
 
-    // We draw white on the texture
-    GKFOG_WARNING(TEXT("Position %s, Coord %s, Color is %s"), *Loc.ToString(), *Position.ToString(), *Color.ToString());
-    return Color.R >= 1;
+   return Color.R >= 1;
 }
 
 void UGKRayCasting_Line::Initialize()
@@ -221,14 +240,16 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
                                                                      FogOfWarVolume->TextureSize.Y);
 
     Texture->bNeedsTwoCopies = true;
-    /*
+    Texture->RenderTargetFormat = RTF_RGBA8;
+    Texture->AddressX = TA_Clamp;
+    Texture->AddressY = TA_Clamp;
     Texture->InitCustomFormat(
         FogOfWarVolume->TextureSize.X,
         FogOfWarVolume->TextureSize.Y,
-        EPixelFormat::PF_G16, // G8 is not supported
+        EPixelFormat::PF_R8G8B8A8,      // G8 is not supported
         false
     );
-    */
+
     return Texture;
 }
 

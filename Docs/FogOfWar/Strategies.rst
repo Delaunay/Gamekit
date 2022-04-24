@@ -116,21 +116,25 @@ Comparison
 | Strategy    |  Pros               | Cons                          |
 +-------------+---------------------+-------------------------------+
 | RayCast V1  |                     | * x 2 Slow                    |
+|             |                     | * No Mutiplayer               |
 |             |                     |                               |
 +-------------+---------------------+-------------------------------+
 | RayCast V2  | * Less Rays than V1 | * 2x Jittery                  |
 |             |                     | * Slow                        |
+|             |                     | * No Mutiplayer               |
 |             |                     |                               |
 +-------------+---------------------+-------------------------------+
 | RayCast V3  | * Less Rays than V1 | * 2x Jittery                  |
 |             | * Better defined    | * Slow                        |
-|             |   Shadows that V2   |                               |
+|             |   Shadows that V2   | * No Mutiplayer               |
+|             |                     |                               |
 |             |                     |                               |
 +-------------+---------------------+-------------------------------+
 | Discrete V1 | * Fast              | * 1x Jittery                  |
 |             | * CPU Texture       |                               |
 | Shadow      | * Easy to Query     |                               |
-| Casting     |                     |                               |
+| Casting     | * Multiplayer       |                               |
+|             |                     |                               |
 +-------------+---------------------+-------------------------------+
 
 
