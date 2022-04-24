@@ -104,10 +104,6 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     TSubclassOf<class UGKFogOfWarStrategy> VisionDrawingStrategy;
 
-    //! Used to control the size of the underlying texture given the terrain size
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
-    float TextureScale;
-
     //! Collision Channel used to draw the line of sight
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     TEnumAsByte<ECollisionChannel> FogOfWarCollisionChannel;
@@ -124,7 +120,10 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
     float Margin;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
+    //! Specify the grid size, used to derivate the texture size we need
+    //! to draw the fog; a grid size of 10x10 and a map size of 20000
+    //! will result in a texture size of 2000x2000 (20000/10)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
     FGKGrid Grid;
 
     //! Landscape we use to extract landscape height
@@ -287,7 +286,7 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     FCriticalSection Mutex;           // Mutex to sync adding/removing components with the fog compute
     FTimerHandle     FogComputeTimer; // Compute the fog every few frames (or so)
 
-    FVector2D TextureSize; // == MapSize * TextureScale
+    FVector2D TextureSize; // == MapSize / Grid
 
     //! Decal Material used to draw in the editor
     class UMaterialInstanceDynamic *DecalMaterialInstance;

@@ -30,6 +30,14 @@ class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
 
     virtual void Initialize();
 
+    //! return true when `IsVisible` is implemented
+    bool SupportVisbilityQuery() const override { return true; }
+
+    //! return true if the Seer team sees the location
+    //! This might be slow; it has the query the render target directly
+    //! UE usually expects that kind of thing to only happen when the editor is on
+    bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const override;
+
     void DrawFactionFog(class AGKFogOfWarTeam *FactionFog);
 
     //! Draw the line of sight using the right method
@@ -39,6 +47,8 @@ class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
     virtual class UTexture *GetFactionTexture(FName name, bool bCreateRenderTarget = true);
 
     class UCanvasRenderTarget2D *GetFactionRenderTarget(FName name, bool bCreateRenderTarget = true);
+
+    class UCanvasRenderTarget2D *GetFactionRenderTarget(FName Name) const;
 
     protected:
     //! Draw the line of sight using LineTrace
@@ -57,4 +67,6 @@ class GAMEKIT_API UGKRayCasting_Line: public UGKFogOfWarStrategy
 
     UPROPERTY(Transient)
     TMap<FName, class UCanvasRenderTarget2D *> FogFactions;
+
+    bool DrawingFog;
 };

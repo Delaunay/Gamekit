@@ -2,10 +2,10 @@
 #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
 
 // Gamekit
+#include "Gamekit/FogOfWar/GKFogOfWar.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/FogOfWar/GKFogOfWar.h"
 
 // Unreal Engine
 #include "Engine/Canvas.h"
@@ -19,22 +19,42 @@
 
 UGKRayCasting_Line::UGKRayCasting_Line() {}
 
+bool UGKRayCasting_Line::IsVisible(FGenericTeamId SeerTeam, FVector Loc) const
+{
+    if (SeerTeam == FGenericTeamId::NoTeam)
+    {
+        return true;
+    }
+
+    // this does not work
+    // the Position seems to not fetch anything
+
+    auto TeamFog = FogOfWarVolume->TeamFogs[SeerTeam.GetId()];
+    ensure(TeamFog->TeamId == SeerTeam);
+    ensure(!DrawingFog);
+
+    auto Position = FogOfWarVolume->GetTextureCoordinate(Loc);
+    // auto RenderTarget = GetFactionRenderTarget(TeamFog->Name);
+
+    FLinearColor Color = UGKFogOfWarLibrary::SamplePixelRenderTarget(
+            // Why is this not working
+            Cast<UTextureRenderTarget2D>(TeamFog->Vision),
+            // RenderTarget,
+            Position);
+
+    // We draw white on the texture
+    GKFOG_WARNING(TEXT("Position %s, Coord %s, Color is %s"), *Loc.ToString(), *Position.ToString(), *Color.ToString());
+    return Color.R >= 1;
+}
+
 void UGKRayCasting_Line::Initialize()
 {
     Super::Initialize();
 
-    auto TexScale = FogOfWarVolume->TextureScale;
-    auto MapSize  = FogOfWarVolume->MapSize;
+    FVector TileSize = FogOfWarVolume->Grid.GetTileSize();
+    auto    MapSize  = FogOfWarVolume->MapSize;
 
-    if (TexScale == 0)
-    {
-        GKFOG_WARNING(TEXT("TextureScale cannot be zero"));
-
-        // If size == 0 it will trigger assert on the RHI side
-        TexScale = 1.f;
-    }
-
-    FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X, MapSize.Y) * TexScale);
+    FogOfWarVolume->SetTextureSize(FVector2D(MapSize.X / TileSize.X, MapSize.Y / TileSize.Y));
 }
 
 void UGKRayCasting_Line::DrawFactionFog(class AGKFogOfWarTeam *FactionFog)
@@ -43,11 +63,14 @@ void UGKRayCasting_Line::DrawFactionFog(class AGKFogOfWarTeam *FactionFog)
 
     FactionFog->Vision = Texture;
     UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), Texture);
+    DrawingFog = true;
 
     for (auto &Component: FactionFog->Allies)
     {
         DrawLineOfSight(FactionFog, Component);
     }
+
+    DrawingFog = false;
 }
 
 void UGKRayCasting_Line::DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c)
@@ -138,8 +161,8 @@ void UGKRayCasting_Line::DrawLines(class UGKFogOfWarComponent *c)
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), RenderCanvas, Canvas, Size, Context);
     for (auto Line: Lines)
     {
-        auto Start = FogOfWarVolume->GetTextureCoordinate(Line.Start);
-        auto End   = FogOfWarVolume->GetTextureCoordinate(Line.End);
+        FVector2D Start = FogOfWarVolume->GetTextureCoordinate(Line.Start);
+        FVector2D End   = FogOfWarVolume->GetTextureCoordinate(Line.End);
 
         Canvas->K2_DrawLine(Start, End, c->LineTickness, FLinearColor::White);
     }
@@ -154,7 +177,19 @@ UTexture *UGKRayCasting_Line::GetFactionTexture(FName name, bool bCreateRenderTa
     return GetFactionRenderTarget(name, bCreateRenderTarget);
 }
 
-//!
+UCanvasRenderTarget2D *UGKRayCasting_Line::GetFactionRenderTarget(FName Name) const
+{
+    UCanvasRenderTarget2D *const *RenderResult = FogFactions.Find(Name);
+    UCanvasRenderTarget2D        *Render       = nullptr;
+
+    if (RenderResult != nullptr)
+    {
+        Render = RenderResult[0];
+    }
+
+    return Render;
+}
+
 UCanvasRenderTarget2D *UGKRayCasting_Line::GetFactionRenderTarget(FName Name, bool bCreateRenderTarget)
 {
     UCanvasRenderTarget2D **RenderResult = FogFactions.Find(Name);
@@ -185,6 +220,7 @@ UCanvasRenderTarget2D *UGKRayCasting_Line::CreateRenderTarget()
                                                                      FogOfWarVolume->TextureSize.X,
                                                                      FogOfWarVolume->TextureSize.Y);
 
+    Texture->bNeedsTwoCopies = true;
     /*
     Texture->InitCustomFormat(
         FogOfWarVolume->TextureSize.X,

@@ -9,8 +9,8 @@
 // Unreal Engine
 #include "Camera/CameraComponent.h"
 #include "Engine/CollisionProfile.h"
+#include "Engine/TextureRenderTarget2D.h"
 #include "Kismet/GameplayStatics.h"
-
 
 class UCollisionProfileHack
 {
@@ -41,7 +41,7 @@ void UGKFogOfWarLibrary::ConvertToObjectType(ECollisionChannel                  
 
 void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume *Volume,
                                                       FName              Faction,
-                                                      UCameraComponent * CameraComponent)
+                                                      UCameraComponent  *CameraComponent)
 {
     auto Material = Volume->GetFogOfWarPostprocessMaterial(Faction);
 
@@ -61,26 +61,96 @@ void UGKFogOfWarLibrary::SetCameraPostprocessMaterial(AGKFogOfWarVolume *Volume,
     CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(FWeightedBlendable(1, Material));
 }
 
-
-bool UGKFogOfWarLibrary::IsVisible(UObject* WorldCtx, AActor const* Target) {
-    UWorld* World = GEngine->GetWorldFromContextObject(WorldCtx, EGetWorldErrorMode::LogAndReturnNull);
-    if (!World){
+bool UGKFogOfWarLibrary::IsVisible(UObject *WorldCtx, AActor const *Target)
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldCtx, EGetWorldErrorMode::LogAndReturnNull);
+    if (!World)
+    {
         return false;
     }
-    ULocalPlayer* Player = World->GetFirstLocalPlayerFromController();
-    if (!Player){
+    ULocalPlayer *Player = World->GetFirstLocalPlayerFromController();
+    if (!Player)
+    {
         return false;
     }
 
     auto Controller = Player->GetPlayerController(World);
-    if (!Controller){
+    if (!Controller)
+    {
         return false;
     }
 
-    TArray<AActor*> OutActors;
+    TArray<AActor *> OutActors;
     UGameplayStatics::GetAllActorsOfClass(World, AGKFogOfWarVolume::StaticClass(), OutActors);
 
     auto FogOfWarVolume = Cast<AGKFogOfWarVolume>(OutActors[0]);
 
     return FogOfWarVolume->IsVisible(FGenericTeamId::GetTeamIdentifier(Controller), Target);
+}
+
+FLinearColor UGKFogOfWarLibrary::SampleRenderTarget(UTextureRenderTarget2D *InRenderTarget, FVector2D UV)
+{
+    if (!InRenderTarget)
+    {
+        GKFOG_WARNING(TEXT("SampleRenderTarget::RenderTarget is null"));
+        return FLinearColor(0, 0, 0, 0);
+    }
+
+    UV.X *= InRenderTarget->SizeX;
+    UV.Y *= InRenderTarget->SizeY;
+
+    return SamplePixelRenderTarget(InRenderTarget, UV);
+}
+
+FLinearColor UGKFogOfWarLibrary::SamplePixelRenderTarget(UTextureRenderTarget2D *InRenderTarget, FVector2D Pixel)
+{
+    if (!InRenderTarget)
+    {
+        GKFOG_WARNING(TEXT("SampleRenderTarget::RenderTarget is null"));
+        return FLinearColor(0, 0, 0, 0);
+    }
+
+    if (!InRenderTarget->GetResource())
+    {
+        GKFOG_WARNING(TEXT("SampleRenderTarget::RenderTarget.Resources was released"));
+        return FLinearColor(0, 0, 0, 0);
+    }
+
+    ETextureRenderTargetFormat format = (InRenderTarget->RenderTargetFormat);
+    if ((format == (RTF_RGBA16f)) || (format == (RTF_RGBA32f)) || (format == (RTF_RGBA8)))
+    {
+        FTextureRenderTargetResource *RTResource = InRenderTarget->GameThread_GetRenderTargetResource();
+
+        Pixel.X = FMath::Clamp(Pixel.X, 0.0f, float(InRenderTarget->SizeX) - 1);
+        Pixel.Y = FMath::Clamp(Pixel.Y, 0.0f, float(InRenderTarget->SizeY) - 1);
+
+        FIntRect              Rect = FIntRect(Pixel.X, Pixel.Y, Pixel.X + 1, Pixel.Y + 1);
+        FReadSurfaceDataFlags ReadPixelFlags(RCM_MinMax);
+
+        TArray<FColor>       OutLDR;
+        TArray<FLinearColor> OutHDR;
+        TArray<FLinearColor> OutVals;
+
+        bool ishdr = ((format == (RTF_R16f)) || (format == (RTF_RG16f)) || (format == (RTF_RGBA16f)) ||
+                      (format == (RTF_R32f)) || (format == (RTF_RG32f)) || (format == (RTF_RGBA32f)));
+
+        if (!ishdr)
+        {
+            RTResource->ReadPixels(OutLDR, ReadPixelFlags, Rect);
+            for (auto i: OutLDR)
+            {
+                OutVals.Add(FLinearColor(float(i.R), float(i.G), float(i.B), float(i.A)) / 255.0f);
+            }
+        }
+        else
+        {
+            RTResource->ReadLinearColorPixels(OutHDR, ReadPixelFlags, Rect);
+            return OutHDR[0];
+        }
+
+        return OutVals[0];
+    }
+
+    GKFOG_WARNING(TEXT("SampleRenderTarget Unsupported pixel format %d"), int(format));
+    return FLinearColor(0, 0, 0, 0);
 }

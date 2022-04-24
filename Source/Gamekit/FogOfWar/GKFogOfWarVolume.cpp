@@ -95,7 +95,6 @@ AGKFogOfWarVolume::AGKFogOfWarVolume()
     UseFoWDecalRendering = false;
 
     // Ray Cast
-    TextureScale             = 1.f;
     Margin                   = 25.f;
     FogOfWarCollisionChannel = DEFAULT_FoW_COLLISION;
 

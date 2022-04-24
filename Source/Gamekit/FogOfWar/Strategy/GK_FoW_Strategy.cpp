@@ -63,6 +63,8 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKFogOfWarTeam      *Factio
                                               class UGKFogOfWarComponent *SourceComp,
                                               class UGKFogOfWarComponent *SightedComp)
 {
+    // This cannot work right now
+    /*
     if (SightedComp == nullptr)
     {
         return;
@@ -74,12 +76,12 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKFogOfWarTeam      *Factio
 
     SourceComp->OnSighting.Broadcast(SightedComp->GetOwner());
 
-    /*
+
     GKFOG_WARNING(TEXT("Server: %s sees %s (%d)"),
         *AActor::GetDebugName(SourceComp->GetOwner()),
         *AActor::GetDebugName(SightedComp->GetOwner()),
         SightedComp->TeamVisibility);
-    */
+
 
     // Avoid multiple broadcast per target
     if (!FactionFog->Visible.Contains(SightedComp))
@@ -87,6 +89,7 @@ void UGKFogOfWarStrategy::AddVisibleComponent(class AGKFogOfWarTeam      *Factio
         FactionFog->Visible.Add(SightedComp);
         SightedComp->OnSighted.Broadcast(SourceComp->GetOwner());
     }
+    */
 }
 
 /*
