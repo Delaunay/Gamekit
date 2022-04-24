@@ -126,9 +126,8 @@ void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
     DOREPLIFETIME(AGKFogOfWarVolume, Blocking);
 }
 
-void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
-{
-    ensure(name != NAME_None);
+void AGKFogOfWarVolume::UpdateFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material) {
+  ensure(name != NAME_None);
 
     GKFOG_LOG(TEXT("Setting For of War Materials"));
     if (Material == nullptr)
@@ -168,13 +167,22 @@ void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInsta
     {
         GKFOG_WARNING(TEXT("Fog of war exploration is null"));
     }
+}
+
+void AGKFogOfWarVolume::SetFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material)
+{
+    UpdateFogOfWarMaterialParameters(name, Material);
+
+    FScopeLock ScopeLock(&Mutex);
 
     auto Result = NameToFogs.Find(name);
     auto TeamId = FGenericTeamId::NoTeam;
+
     if (Result)
     {
         TeamId = Result[0]->TeamId;
     }
+
     Materials.Add(FGKDynamicFogMaterial{name, TeamId, Material});
 }
 
@@ -370,6 +378,8 @@ void AGKFogOfWarVolume::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AGKFogOfWarVolume::OnRep_TeamFogs()
 {
+    FScopeLock ScopeLock(&Mutex);
+
     for (auto TeamFog: TeamFogs)
     {
         if (TeamFog == nullptr)
@@ -388,7 +398,7 @@ void AGKFogOfWarVolume::OnRep_TeamFogs()
     // Update materials
     for (auto &Material: Materials)
     {
-        SetFogOfWarMaterialParameters(Material.Name, Material.Material);
+        UpdateFogOfWarMaterialParameters(Material.Name, Material.Material);
     }
 }
 

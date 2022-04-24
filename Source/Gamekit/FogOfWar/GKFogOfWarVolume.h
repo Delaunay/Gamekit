@@ -78,6 +78,9 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     void SetFogOfWarMaterialParameters(FName name, class UMaterialInstanceDynamic *Material);
 
+    UFUNCTION(BlueprintCallable, Category = FogOfWar)
+    void UpdateFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material);
+
     //! Returns the post process material the actor should use for its camera
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
     class UMaterialInterface *GetFogOfWarPostprocessMaterial(FName name);
