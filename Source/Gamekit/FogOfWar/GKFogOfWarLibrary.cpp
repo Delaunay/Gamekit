@@ -96,8 +96,8 @@ FLinearColor UGKFogOfWarLibrary::SampleRenderTarget(UTextureRenderTarget2D *InRe
         return FLinearColor(0, 0, 0, 0);
     }
 
-    UV.X *= InRenderTarget->SizeX;
-    UV.Y *= InRenderTarget->SizeY;
+    UV.X = FMath::Floor(UV.X * InRenderTarget->SizeX);
+    UV.Y = FMath::Floor(UV.Y * InRenderTarget->SizeY);
 
     return SamplePixelRenderTarget(InRenderTarget, UV);
 }

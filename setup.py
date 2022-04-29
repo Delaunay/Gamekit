@@ -19,10 +19,10 @@ setup_kwargs = dict(
     install_requires=[],
     python_requires='>=3.7.*',
     entry_points={
-            'console_scripts': [
-                'gkcli = gamekit.cli:main',
-            ]
-        }
+        'console_scripts': [
+            'gkcli = gamekit.cli:main',
+        ]
+    }
 )
 
 if __name__ == "__main__":

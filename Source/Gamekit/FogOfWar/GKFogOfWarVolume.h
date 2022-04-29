@@ -58,9 +58,24 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
     public:
     AGKFogOfWarVolume();
 
+    // Lifecycle
+    // ---------
+
+    // Basic Initialization
+    void PreInitializeComponents() override;
+
+    // void PostInitializeComponents() override;
+
     void BeginPlay();
 
+    void Tick(float DeltaTime);
+
+    void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+
+    // Properties
+    // ----------
 
     //! Returns the vision texture
     UFUNCTION(BlueprintCallable, Category = FogOfWar)
@@ -221,12 +236,6 @@ class GAMEKIT_API AGKFogOfWarVolume: public AVolume
             return EDrawDebugTrace::ForOneFrame;
         return EDrawDebugTrace::None;
     }
-
-    void PreInitializeComponents() override;
-
-    void Tick(float DeltaTime);
-
-    void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     protected:
     //! Draw the fog of war for each factions

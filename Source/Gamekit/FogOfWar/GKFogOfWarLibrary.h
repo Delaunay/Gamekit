@@ -36,10 +36,11 @@ class GAMEKIT_API UGKFogOfWarLibrary: public UBlueprintFunctionLibrary
     static bool IsVisible(UObject *WorldCtx, AActor const *Target);
 
     // UV is [0, 1]
-    // This is a sampling method i.e it might do some interpolation
+    // Try to fetch the closest pixel by rounding the final coordinate
     static FLinearColor SampleRenderTarget(class UTextureRenderTarget2D *InRenderTarget, FVector2D UV);
 
     // Pixel is [0, TextureSize]
-    // This is a sampling method i.e it might do some interpolation
+    // interpolation is not done, only one pixel is fetched
+    // the pixel is not even the closest in term of distance as the pixel coord gets truncated
     static FLinearColor SamplePixelRenderTarget(class UTextureRenderTarget2D *InRenderTarget, FVector2D Pixel);
 };
