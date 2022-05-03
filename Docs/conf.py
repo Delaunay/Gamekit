@@ -87,7 +87,13 @@ def configure_doxyfile():
         file.write(filedata)
 
 
-read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
+def is_rtd_build():
+    return os.environ.get("READTHEDOCS") is not None
+
+def is_github_build():
+    return  os.environ.get("GITHUB_ACTIONS") is not None
+
+read_the_docs_build = is_rtd_build() or is_github_build()
 
 if read_the_docs_build:
     if is_new_version():
