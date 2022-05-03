@@ -1,0 +1,14 @@
+.. _exhale_variable_Upscaling_8usf_1a9c171bce78d5e82750a112d00b13368f:
+
+Variable TimeStamp
+==================
+
+- Defined in :ref:`file_Shaders_Upscaling.usf`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: TimeStamp
+   :project: GameKit

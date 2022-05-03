@@ -1,0 +1,80 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h:
+
+Program Listing for File GKAsyncTask_GameplayEffectChanged.h
+============================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h>` (``Source/Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   #pragma once
+   
+   // Unreal Engine
+   #include "AbilitySystemComponent.h"
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintAsyncActionBase.h"
+   
+   // Generated
+   #include "GKAsyncTask_GameplayEffectChanged.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FGKOnGameplayEffectAdded,
+                                                 FActiveGameplayEffectHandle,
+                                                 GameplayHandle,
+                                                 UGameplayEffect *,
+                                                 GameplayEffect,
+                                                 FGameplayTagContainer,
+                                                 GameplayTags,
+                                                 float,
+                                                 Duration);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged,
+                                                FActiveGameplayEffectHandle,
+                                                GameplayHandle,
+                                                int32,
+                                                StackCount);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle);
+   
+   UCLASS(BlueprintType, meta = (ExposedAsyncProxy = AsyncTask))
+   class GAMEKIT_API UGKAsyncTask_GameplayEffectChanged: public UBlueprintAsyncActionBase
+   {
+       GENERATED_BODY()
+   
+       public:
+       UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
+       static UGKAsyncTask_GameplayEffectChanged *ListenForGameplayEffectChange(
+               UAbilitySystemComponent *AbilitySystemComponent);
+   
+       public:
+       virtual void OnGameplayEffectAdded_Native(UAbilitySystemComponent *   Target,
+                                                 const FGameplayEffectSpec & SpecApplied,
+                                                 FActiveGameplayEffectHandle ActiveHandle);
+   
+       virtual void OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &EffectRemoved);
+   
+       virtual void OnGameplayEffectStackChange_Native(FActiveGameplayEffectHandle EffectHandle,
+                                                       int32                       NewStackCount,
+                                                       int32                       PreviousStackCount);
+   
+       public:
+       UPROPERTY(BlueprintAssignable)
+       FGKOnGameplayEffectAdded OnGameplayEffectAdded;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKOnGameplayEffectStackChanged OnGameplayEffectStackChanged;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKOnGameplayEffectRemoved OnGameplayEffectRemoved;
+   
+       public:
+       UFUNCTION(BlueprintCallable)
+       void EndTask();
+   
+       protected:
+       UPROPERTY()
+       UAbilitySystemComponent *AbilitySystemComponent;
+   };

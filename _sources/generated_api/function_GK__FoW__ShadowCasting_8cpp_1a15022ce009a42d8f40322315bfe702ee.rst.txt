@@ -1,0 +1,14 @@
+.. _exhale_function_GK__FoW__ShadowCasting_8cpp_1a15022ce009a42d8f40322315bfe702ee:
+
+Function ShowHeightMapInfo
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ShowHeightMapInfo(int, ULandscapeComponent *)
+   :project: GameKit

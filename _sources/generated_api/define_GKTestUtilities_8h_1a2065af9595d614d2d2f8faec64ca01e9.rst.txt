@@ -1,0 +1,14 @@
+.. _exhale_define_GKTestUtilities_8h_1a2065af9595d614d2d2f8faec64ca01e9:
+
+Define GK_CONCAT
+================
+
+- Defined in :ref:`file_Source_GamekitTestSuite_GKTestUtilities.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GK_CONCAT
+   :project: GameKit

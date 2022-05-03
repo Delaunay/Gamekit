@@ -1,0 +1,7 @@
+<map id="AGKFogOfWarVolume::UpdateVolumeSizes" name="AGKFogOfWarVolume::UpdateVolumeSizes">
+<area shape="rect" id="node1" title="Updates the Texture Size, given the size covered by the Fog of War volume." alt="" coords="5,71,176,112"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#a4d720bc82c2854aba2b85c4aa0a86476" title=" " alt="" coords="249,5,419,47"/>
+<area shape="rect" id="node3" href="$classAGKFogOfWarVolume.html#ae7f8a6f5662a3af1f74af4025b7e1200" title=" " alt="" coords="234,71,434,112"/>
+<area shape="rect" id="node5" href="$classAGKFogOfWarVolume.html#a07d50dd7848b4ebc627e819c9c676a73" title=" " alt="" coords="224,136,444,177"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#ad20a4329d83110707ad71cb93f0c1f28" title="Returns the material parameter collection used to configure the Fog of War." alt="" coords="492,104,723,145"/>
+</map>

@@ -1,0 +1,27 @@
+
+.. _namespace_gamekit__commands__init:
+
+Namespace gamekit::commands::init
+=================================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1commands_1_1init_1_1Init`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1commands_1_1init_1a375c9bc600ae63436b3ef3602b4f1b12`

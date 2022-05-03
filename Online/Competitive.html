@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cheating" href="Cheating.html" />
+    <link rel="prev" title="Massively Multiplayer" href="MMO.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Competitive</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-game-coordinator">The game coordinator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ranking-systems">Ranking Systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#concerns">Concerns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#team-assignment">Team Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Competitive</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Online/Competitive.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="competitive">
+<h1>Competitive<a class="headerlink" href="#competitive" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Small number of players on a single instance (10-100)</p></li>
+<li><p>Teams of players (2-10)</p></li>
+<li><p>Game instance is short lived (20-60 minutes)</p></li>
+<li><p>Players are grouped by skill to provide interesting matches (i.e no stomp)</p></li>
+<li><p>Map/Level is small (all assets are loaded, no streaming)</p></li>
+<li><p>Latency is critical (10-100ms) (&lt; 50ms LAN, &lt; 100 ms Ranked)</p>
+<ul>
+<li><p>30 FPS is one frame every 30 ms</p></li>
+</ul>
+</li>
+<li><p>Avoid latency spikes at all cost</p></li>
+</ul>
+<section id="system-overview">
+<h2>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline"></a></h2>
+<img alt="../_images/CompetitiveOverview.png" src="../_images/CompetitiveOverview.png" />
+<ol class="arabic simple">
+<li><p>Client start matchaming by sending a matchmaking request to the game coordinator</p></li>
+<li><p>Game coordinator group players of similar skill into teams</p></li>
+<li><p>Game coordinator find an empty server instance</p></li>
+<li><p>Game coordinator create a session on the server instance</p></li>
+<li><p>Game coordinator reply to clients with the only session to join</p></li>
+<li><p>Client join the online session</p></li>
+<li><p>Dedicated server update player stats</p></li>
+</ol>
+</section>
+<section id="the-game-coordinator">
+<h2>The game coordinator<a class="headerlink" href="#the-game-coordinator" title="Permalink to this headline"></a></h2>
+<img alt="../_images/SkilDistribution.png" src="../_images/SkilDistribution.png" />
+<p>Its goal is to group players with similar skill, to provide interesting games;
+To group players it needs first to estimate skill of each players using a rating system.</p>
+<p>Its secondary goal is to load balance session on different instances.
+Typically servers will be able to handle multiple instance of a dedicated server,
+but spliting the load accross many servers will improve the experience (lower latency).</p>
+<section id="ranking-systems">
+<h3>Ranking Systems<a class="headerlink" href="#ranking-systems" title="Permalink to this headline"></a></h3>
+<p>Goals:</p>
+<ul class="simple">
+<li><p>Put players of similar skills together to create interesting matches</p></li>
+<li><p>Avoid low quality match (stomps)</p></li>
+<li><p><a class="reference external" href="https://github.com/Delaunay/Ranked">https://github.com/Delaunay/Ranked</a></p></li>
+</ul>
+<section id="initialization">
+<h4>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Give new players a fixed amount of points</p></li>
+</ol>
+<p>Simple, high skill player will need to grind/win a lot to move to their skill bracket (which might become boring too quickly).
+Low skill player will lose a lot which will be boring/annoying.
+You can tweak the ranking algorithm to make larger updates at the beginning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If new games have enough mechanic to learn the win/lose streak might not be too bad as people
+used those to learn how to play the game.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Do a binary search</p>
+<ul class="simple">
+<li><p>Make new players take 10 calibration match</p></li>
+<li><p>Starts at a medium Level</p></li>
+<li><p>If loss try lower rank</p></li>
+<li><p>If high try higher rank</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Binary search allow us to quickly find the rank a player is by
+jumping divisions without going through standard ranking updates,
+but the estimate is noisy so player can lose/win games due to external factors.
+We can reduce the binary search range to avoid jumping too far.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Regression model; if match data is available a regression model can be implemented
+to estimate the rank from match data <code class="docutils literal notranslate"><span class="pre">NetWorth</span> <span class="pre">*</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">Damage</span> <span class="pre">*</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">Death</span> <span class="pre">*</span> <span class="pre">c</span> <span class="pre">+</span> <span class="pre">Kills</span> <span class="pre">*</span> <span class="pre">d</span> <span class="pre">+</span> <span class="pre">Assist</span> <span class="pre">*</span> <span class="pre">e</span> <span class="pre">+</span> <span class="pre">Hero</span> <span class="pre">*</span> <span class="pre">f</span> <span class="pre">=</span> <span class="pre">Rank</span></code></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regression models requires a fair amount of data before it can be implemented, as such it is not a valid approach for
+boostraping a new game.</p>
+</div>
+<section id="elo-systems">
+<h5>Elo Systems<a class="headerlink" href="#elo-systems" title="Permalink to this headline"></a></h5>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This system is considered outdated</p>
+</div>
+<section id="updates">
+<h6>Updates<a class="headerlink" href="#updates" title="Permalink to this headline"></a></h6>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>pi ~ N(ui, s ** 2)  # Performance is normally distributed around their skill
+
+Probbility of winning is:
+
+   P(p1 &gt; p2 | u1, u2) = CDF((s1 - s2) / sqrt(2 * s))
+
+On match result y (1, 0, -1) for win, draw, loss, score is updated as
+
+   K = alpha * s * sqrt(pi)
+
+   delta = K * ((y + 1) / 2 - CDF((s1 - s2) / sqrt(2 * s)))
+
+   s1 = s1 + y * delta
+   s2 = s2 - y * delta
+
+where alpha is a weighting factor, which is often summerized as K
+
+The normal distribution can be substituted by the logistic distribution which
+has a easier cdf than the normal distribution.
+</pre></div>
+</div>
+<p>For chess;</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="k">new</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">old</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">We</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">We</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="p">((</span><span class="n">R</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OR</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">We</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">QO</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Q</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="p">(</span><span class="n">R</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">400</span><span class="p">)</span><span class="w"></span>
+<span class="n">QO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="p">(</span><span class="n">RO</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">400</span><span class="p">)</span><span class="w"></span>
+
+<span class="nl">R</span><span class="p">:</span><span class="w"> </span><span class="n">Rating</span><span class="w"></span>
+<span class="nl">OR</span><span class="p">:</span><span class="w"> </span><span class="n">Oponents</span><span class="w"> </span><span class="n">Rating</span><span class="w"></span>
+<span class="nl">C</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"></span>
+<span class="nl">K</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w"></span>
+<span class="nl">W</span><span class="p">:</span><span class="w"> </span><span class="n">Actual</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">loss</span><span class="p">)</span><span class="w"></span>
+<span class="nl">We</span><span class="p">:</span><span class="w"> </span><span class="n">Expected</span><span class="w"> </span><span class="n">result</span><span class="w"></span>
+<span class="nl">K</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">K</span></code> is a constant that can be tweaked, it sets the maximum adjustmnent
+per game i.e the rating can at most increase/decrease by <code class="docutils literal notranslate"><span class="pre">K</span></code>.
+<code class="docutils literal notranslate"><span class="pre">K</span></code> is critical to the algorithm.
+If too low the score will not adapt fast enough, if too high the score will
+be too volatile.</p>
+<p>You can use a layered approach where <code class="docutils literal notranslate"><span class="pre">K</span></code> gets smaller has the
+rank increase, so high skill player will quickly climb the ladder
+to the high skill stage.</p>
+</section>
+<section id="issues">
+<h6>Issues<a class="headerlink" href="#issues" title="Permalink to this headline"></a></h6>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Inflation/Deflation: Elo has a fixed amount of points in its pool (win-loss) is a zero sum game so inflation/deflation should not happen</dt><dd><ul>
+<li><p>New players add new points in the Elo pool (inflation)</p></li>
+<li><p>Old players retired and remove points from the Elo pool (deflation)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Player can stop playing to protected their rating,</dt><dd><p>or cause them to create alternate accounts.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="glicko-2">
+<h5>Glicko-2<a class="headerlink" href="#glicko-2" title="Permalink to this headline"></a></h5>
+<p>The <a class="reference external" href="http://www.glicko.net/glicko/glicko2.pdf">paper</a> goes in great details how to implement such a ranking system.</p>
+<section id="id1">
+<h6>Initialization<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h6>
+<ul>
+<li><p>Starts with calibration matches (n=~10)</p></li>
+<li><p>Unrated player starts with</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span># Starting values, Glicko-1 Scale
+r = 1500
+rd = 350
+s = 0.06  # Tweakable
+
+## Glicko-2 Scale
+# Rating location
+mu = (r - 1500) / 173.7178
+
+# Rating deviation
+phi = RD / 173.7178
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="trueskill-like">
+<h5>TrueSkill Like<a class="headerlink" href="#trueskill-like" title="Permalink to this headline"></a></h5>
+<p>Baysian Generative Model for skill</p>
+<ul class="simple">
+<li><p>Takes into account teams, so performance is function of the teammates permutation</p></li>
+<li><p><a class="reference external" href="https://papers.nips.cc/paper/2006/file/f44ee263952e65b3610b8ba51229d1f9-Paper.pdf">TrueSkill</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Factor_graph">https://en.wikipedia.org/wiki/Factor_graph</a></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>Skill ~ N(mu, sigma)  # Skill inside the game
+                      # sigma models the consistency of the player
+                      # To infer
+
+Perf ~ N(s, Beta)     # Performance for a specific match
+                      # with Beta modeling the randomness inherent to the game
+                      # Observed
+
+Team ~ Sum(Perf for each Teammate)  # Performance of the team
+                                    # Observed
+
+Rank = (Team_i - Team_(i - 1))      # Rank
+                                    # Observed
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Posterior</span><span class="w"> </span><span class="nf">distribution</span><span class="w"> </span><span class="p">(</span><span class="n">assumed</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">gaussian</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">p</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">P</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+
+<span class="nl">r</span><span class="p">:</span><span class="w"> </span><span class="n">Team</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">k</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="no">draws</span><span class="p">)</span><span class="w"></span>
+<span class="no">A</span><span class="p">:</span><span class="w"> </span><span class="n">Team</span><span class="w"> </span><span class="n">assignment</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">n</span><span class="p">}</span><span class="w"></span>
+<span class="nl">k</span><span class="p">:</span><span class="w"> </span><span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Teams</span><span class="w"></span>
+<span class="nl">n</span><span class="p">:</span><span class="w"> </span><span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Players</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="n">p</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prod</span><span class="p">({</span><span class="mi">1</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">n</span><span class="p">},</span><span class="w"> </span><span class="n">N</span><span class="p">(</span><span class="n">s_i</span><span class="p">,</span><span class="w"> </span><span class="n">mu_i</span><span class="p">,</span><span class="w"> </span><span class="n">sigma_i</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+
+
+<span class="n">Player</span><span class="w"> </span><span class="n">performance</span><span class="w"> </span><span class="n">is</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">p_i</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">N</span><span class="p">(</span><span class="n">p_i</span><span class="p">;</span><span class="w"> </span><span class="n">s_i</span><span class="p">,</span><span class="w"> </span><span class="n">Beta</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Team</span><span class="w"> </span><span class="n">performance</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="n">performance</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">t_j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">A_j</span><span class="p">,</span><span class="w"> </span><span class="n">p_i</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Reorder</span><span class="w"> </span><span class="n">teams</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">ascending</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">rank</span><span class="w"></span>
+
+<span class="n">Probability</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">P</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="n">t_1</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">t_k</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">(</span><span class="n">t_r1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">t_r2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">t_rk</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">training</span><span class="w"> </span><span class="n">needs</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">online</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="n">realtime</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="n">update</span><span class="p">)</span><span class="w"></span>
+
+<span class="o">*</span><span class="w"> </span><span class="n">Gaussian</span><span class="w"> </span><span class="n">density</span><span class="w"> </span><span class="n">filtering</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n">message</span><span class="o">-</span><span class="n">passing</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n">sum</span><span class="o">-</span><span class="n">product</span><span class="w"> </span><span class="n">algorithm</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n">Expectation</span><span class="w"> </span><span class="n">propagation</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="concerns">
+<h3>Concerns<a class="headerlink" href="#concerns" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p>Alternate accounts; as the score of player increase match becomes fair
+Some player will be actively looking for easier matches by creating
+alternative accounts to lower their rank.</p></li>
+<li><p>Toxicity: It is not recommended to display the exact rating number
+as it can cause players to obsses too much on their rating.
+A discrete rank/division system provides an overall rating, which
+might help the players focus on getting out of their devision instead of
+focusing on +/- of their ratings.
+Note, that toxicity will still happen at the entrance of each division
+as players can feel like they need to win to stay in their division.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Behaviour score which decrease in function of teammate reports
+pair toxic players with each other.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Player can stop playing to protected their rating;
+The game can implement seasons which will reset the ranking every year.</p></li>
+<li><p>Rank inflation/deflation; season system can alleviate the effect</p></li>
+<li><p>Account buying; restrictions on the account that can enter ranked matchmaking
+will reduce the number of account sold</p>
+<blockquote>
+<div><ul>
+<li><p>Restrictions</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Force account verification through a phone number</p></li>
+<li><p>Require a minimum play time before enabling ranked</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Attack the account black market</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Sell booster kits that allow players to play in lower/higher ranks for a limited number of games.
+Booster are cheaper than boosted accounts (which reduce the appeal of boosted accounts),
+reduces the amount of games ruined by account buyers.
+Additionally boosted players are known by the matchmaking server, it can balance teams to reduce the skill gap.
+Increase the K factor (or similar) to allow players to switch division if they do win.
+Players might pay for account boosting because they might feel stuck in <a class="reference external" href="https://en.wikipedia.org/wiki/Elo_hell">Elo Hell</a>
+While its existence is still debated, the booster kit could help them skip over it (if it does in fact exist),
+burst their bubble, they could also use the opportunity to learn.
+In fact boosted player will have a bad reputation from the get go it might help to reframe boosted player as
+students/apprentice and promote the community to be teachers.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Party queuing, friends queuing together have a greater skill than
+a simple sum of their solo skills.</p></li>
+</ul>
+</section>
+</section>
+<section id="team-assignment">
+<h2>Team Assignment<a class="headerlink" href="#team-assignment" title="Permalink to this headline"></a></h2>
+<p>The game mode is in charge of the team assignment, teams need to be assigned to Pawn (for targeting)
+and PlayerControllers. PlayerController team assignment will drive all the logic.
+The team assignment needs to be on both the pawn &amp; the controller for effect like Possession
+(i.e enemy player taking control of an ally unit.</p>
+<p>Tha player controller factions cannot change during gameplay (but its attitude towards other faction could change)
+Pawns’ faction could change as part of regular gameplay interaction.</p>
+<ul class="simple">
+<li><p>Assigned using <a class="reference internal" href="../generated_api/classAGKTeamPlayerStart.html#_CPPv418AGKTeamPlayerStart" title="AGKTeamPlayerStart"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKTeamPlayerStart</span></code></a> simple method the player start is selected at random
+by the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGameMode</span></code>; it extract the team from the player start and assign it
+to the pawn.</p></li>
+<li><p>Assigned by the matchmaker: optimal for balanced games, so teams skill can be as close
+as possible</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo rating</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/TrueSkill">TrueSkill</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">3</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Glicko_rating_system">Glicko</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">4</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model">Bradley-Terry model</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">5</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Chess_rating_system">Chess rating</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">6</span></dt>
+<dd><p><a class="reference external" href="https://github.com/Delaunay/Ranked">Ranked</a></p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">7</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Online/SessionInterface/">Online Session &amp; Matchmaking</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MMO.html" class="btn btn-neutral float-left" title="Massively Multiplayer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Cheating.html" class="btn btn-neutral float-right" title="Cheating" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

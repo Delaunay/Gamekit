@@ -1,0 +1,20 @@
+
+.. _namespace_UnrealBuildTool:
+
+Namespace UnrealBuildTool
+=========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_UnrealBuildTool__Rules`

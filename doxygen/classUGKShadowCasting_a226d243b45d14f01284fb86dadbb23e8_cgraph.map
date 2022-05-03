@@ -1,0 +1,11 @@
+<map id="UGKShadowCasting::IsVisible" name="UGKShadowCasting::IsVisible">
+<area shape="rect" id="node1" title="return true if the Seer team sees the location" alt="" coords="5,71,220,98"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#abc61a88505e96f58df60ce23c0fdd17d" title=" " alt="" coords="268,5,439,47"/>
+<area shape="rect" id="node3" href="$structTMatrix3D.html#a0fe97f709a882f0439a39fa7cbe26c92" title=" " alt="" coords="288,71,419,98"/>
+<area shape="rect" id="node4" href="$structFGKGrid.html#a05843c5fa3a9234fbde373ce9edbbef5" title=" " alt="" coords="272,122,435,149"/>
+<area shape="rect" id="node5" href="$classUGKHexGridUtilities.html#a311e820f520e4b1cd312fe60e23ccd78" title="Convert world map position to hex grid position." alt="" coords="487,115,641,156"/>
+<area shape="rect" id="node6" href="$classUGKHexGridUtilities.html#ae269e32a1d0290daca5d9673d20205ff" title="Round axial hex coordinate to nearest hex." alt="" coords="689,115,844,156"/>
+<area shape="rect" id="node7" href="$classUGKHexGridUtilities.html#ab6540d700ce981787fb092fc39a2127e" title="Convert axial hex coordinate to cube hex coordinate." alt="" coords="892,49,1047,91"/>
+<area shape="rect" id="node8" href="$classUGKHexGridUtilities.html#af24a7546d9d8c8eb1f9e69f878e8bbee" title="Round cube hex coordinate to nearest hex." alt="" coords="892,115,1047,156"/>
+<area shape="rect" id="node9" href="$classUGKHexGridUtilities.html#a61d6c31bd1a578eb222930c4fdfa4d60" title="Convert cube hex coordinate to axial hex coordinate." alt="" coords="892,180,1047,221"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="UGKAbilityTask_WaitForTargetData::Activate" name="UGKAbilityTask_WaitForTargetData::Activate">
+<area shape="rect" id="node1" title=" " alt="" coords="5,235,224,276"/>
+<area shape="rect" id="node2" href="$classUGKAbilityTask__WaitForTargetData.html#a7f6b76a9a2c2456cd87e29c095c75398" title=" " alt="" coords="287,71,506,112"/>
+<area shape="rect" id="node5" href="$classUGKAbilityTask__WaitForTargetData.html#a92c88985a1fd05d6586213f6d3dff8a1" title=" " alt="" coords="287,201,506,243"/>
+<area shape="rect" id="node9" href="$classUGKAbilityTask__WaitForTargetData.html#a5ae39004b3fbc1a9d0fdaab72d7d6603" title=" " alt="" coords="272,267,521,308"/>
+<area shape="rect" id="node12" href="$classUGKAbilityTask__WaitForTargetData.html#a294e3a3f6f10b318f16a6ece99155741" title=" " alt="" coords="283,332,511,373"/>
+<area shape="rect" id="node3" href="$classAGKAbilityTarget__Actor.html#ab3857b7fdc53536dee6c9cc569e5ff27" title="Enable use input." alt="" coords="624,5,797,47"/>
+<area shape="rect" id="node4" href="$classAGKAbilityTarget__Actor.html#a8bfe52f39825d16bbb35bc6879516c22" title="Enable the targeting actor." alt="" coords="624,71,797,112"/>
+<area shape="rect" id="node6" href="$classUGKAbilityTask__WaitForTargetData.html#ab0fabcd3504e672b9a10162b93b22acc" title=" " alt="" coords="575,136,846,177"/>
+<area shape="rect" id="node7" href="$classUGKAbilityTask__WaitForTargetData.html#a22668b8f11bde0b92b82db2a64ac8003" title=" " alt="" coords="587,201,834,243"/>
+<area shape="rect" id="node8" href="$classUGKAbilityTask__WaitForTargetData.html#ad37a8e4a82a4cd754ad46c74119438db" title=" " alt="" coords="900,201,1153,243"/>
+<area shape="rect" id="node10" href="$classUGKAbilityTask__WaitForTargetData.html#a324a5bf6d2ef650a8b88246b23e7a032" title=" " alt="" coords="573,267,848,308"/>
+<area shape="rect" id="node11" href="$classUGKAbilityTask__WaitForTargetData.html#a1b4a5587b8ccfe18cdbcb42419bcd5da" title=" " alt="" coords="569,333,852,389"/>
+</map>

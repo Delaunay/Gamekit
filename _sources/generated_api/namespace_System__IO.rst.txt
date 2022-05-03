@@ -1,0 +1,13 @@
+
+.. _namespace_System__IO:
+
+Namespace System::IO
+====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+

@@ -1,0 +1,60 @@
+
+.. _file_Source_Gamekit_Projectiles_GKProjectile.h:
+
+File GKProjectile.h
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Projectiles>` (``Source/Gamekit/Projectiles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Projectiles/GKProjectile.h``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Projectiles_GKProjectile.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKProjectile.generated.h``
+
+- ``Gamekit/Projectiles/GKAbilityEffectActor.h`` (:ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h`)
+
+- ``Gamekit/Projectiles/GKProjectileStatic.h`` (:ref:`file_Source_Gamekit_Projectiles_GKProjectileStatic.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKProjectile`
+

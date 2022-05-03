@@ -1,0 +1,25 @@
+
+.. _program_listing_file_Source_Gamekit_Characters_GKUnitStatic.cpp:
+
+Program Listing for File GKUnitStatic.cpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Characters_GKUnitStatic.cpp>` (``Source/Gamekit/Characters/GKUnitStatic.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "Gamekit/Characters/GKUnitStatic.h"
+   
+   FGKUnitStatic::FGKUnitStatic(): Health(100.0f), HealthRegen(1.0f), Mana(100.0f), ManaRegen(1.0f)
+   {
+       AttackRate           = 1;
+       AttackAnimationPoint = 1.f;
+       AttackRange          = 300.f;
+       Damage               = 50;
+       MovementSpeed        = 300;
+       Icon                 = nullptr;
+   }

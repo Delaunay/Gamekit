@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class AGKCharacterBase &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class AGKFogOfWarTeam" href="classAGKFogOfWarTeam.html" />
+    <link rel="prev" title="Class AGKAOEActorNiagara" href="classAGKAOEActorNiagara.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityCost.html">Struct FGKAbilityCost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityEffect.html">Struct FGKAbilityEffect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilitySlot.html">Struct FGKAbilitySlot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityStatic.html">Struct FGKAbilityStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationArray.html">Struct FGKAnimationArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationSet.html">Struct FGKAnimationSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKDynamicFogMaterial.html">Struct FGKDynamicFogMaterial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKInputAbilityPair.html">Struct FGKInputAbilityPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKItemData.html">Struct FGKItemData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKLinePoints.html">Struct FGKLinePoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKNetworkMetrics.html">Struct FGKNetworkMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKPoints.html">Struct FGKPoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKProjectileStatic.html">Struct FGKProjectileStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestData.html">Struct FGKQuestData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestObjectives.html">Struct FGKQuestObjectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQueuedAbility.html">Struct FGKQueuedAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKRichRow.html">Struct FGKRichRow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSimpleObjective.html">Struct FGKSimpleObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSlope.html">Struct FGKSlope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKTeamInfo.html">Struct FGKTeamInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitGroup.html">Struct FGKUnitGroup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitStatic.html">Struct FGKUnitStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKWidgetLocationData.html">Struct FGKWidgetLocationData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFStatQuery.html">Struct FStatQuery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFUpscalingParameter.html">Struct FUpscalingParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGKDamageStatics.html">Struct GKDamageStatics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structTMatrix3D.html">Template Struct TMatrix3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityEffectActor.html">Class AGKAbilityEffectActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__Actor.html">Class AGKAbilityTarget_Actor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__PlayerControllerTrace.html">Class AGKAbilityTarget_PlayerControllerTrace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAIController.html">Class AGKAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActor.html">Class AGKAOEActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActorNiagara.html">Class AGKAOEActorNiagara</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class AGKCharacterBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarTeam.html">Class AGKFogOfWarTeam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarVolume.html">Class AGKFogOfWarVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameModeBaseBase.html">Class AGKGameModeBaseBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameResource.html">Class AGKGameResource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameStateBase.html">Class AGKGameStateBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGASCharacter.html">Class AGKGASCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKHexGrid.html">Class AGKHexGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKMinimapVolume.html">Class AGKMinimapVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPawnEnchancedInput.html">Class AGKPawnEnchancedInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerController.html">Class AGKPlayerController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerState.html">Class AGKPlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPrivatePlayerState.html">Class AGKPrivatePlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKProjectile.html">Class AGKProjectile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTacticianController.html">Class AGKTacticianController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTeamPlayerStart.html">Class AGKTeamPlayerStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTopDownPawn.html">Class AGKTopDownPawn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTurnGameState.html">Class AGKTurnGameState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitAIController.html">Class AGKUnitAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitCharacter.html">Class AGKUnitCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKWorldSettings.html">Class AGKWorldSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitModule.html">Class FGamekitModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitTestSuiteModule.html">Class FGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGKRichStruct.html">Class FGKRichStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingDispatcher.html">Class FUpscalingDispatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingShader.html">Class FUpscalingShader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamekit.html">Class Gamekit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1cook_1_1CookGame.html">Class CookGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1disable_1_1Disable.html">Class Disable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1init_1_1Init.html">Class Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1install_1_1Install.html">Class Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1tests_1_1RunTests.html">Class RunTests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1vscode_1_1VSCode.html">Class VSCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1conf_1_1Command.html">Class Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1FractionalBrownianmotion.html">Class FractionalBrownianmotion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1Vec2.html">Class Vec2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGamekitTestSuiteModule.html">Class IGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKCachedAbilityTargetActorInterface.html">Class IGKCachedAbilityTargetActorInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKInventoryInterface.html">Class IGKInventoryInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKPawnEnhancedInputInterface.html">Class IGKPawnEnhancedInputInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKSelectableInterface.html">Class IGKSelectableInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUCollisionProfileHack.html">Class UCollisionProfileHack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityBlueprintLibrary.html">Class UGKAbilityBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemComponent.html">Class UGKAbilitySystemComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemGlobals.html">Class UGKAbilitySystemGlobals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__MoveToDestination.html">Class UGKAbilityTask_MoveToDestination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html">Class UGKAbilityTask_PlayMontageAndWaitForEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__WaitForTargetData.html">Class UGKAbilityTask_WaitForTargetData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityWidget.html">Class UGKAbilityWidget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAssetManager.html">Class UGKAssetManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTask__GameplayEffectChanged.html">Class UGKAsyncTask_GameplayEffectChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskAttributeChanged.html">Class UGKAsyncTaskAttributeChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskCooldownChanged.html">Class UGKAsyncTaskCooldownChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAttributeSet.html">Class UGKAttributeSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCanvasUpscaler.html">Class UGKCanvasUpscaler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCastPointAnimNotify.html">Class UGKCastPointAnimNotify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCoordinateLibrary.html">Class UGKCoordinateLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCPUUpscalerStrategy.html">Class UGKCPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKDamageExecution.html">Class UGKDamageExecution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKEngineSubsystem.html">Class UGKEngineSubsystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKExplorationTransform.html">Class UGKExplorationTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarLibrary.html">Class UGKFogOfWarLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarStrategy.html">Class UGKFogOfWarStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameInstanceBase.html">Class UGKGameInstanceBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayAbility.html">Class UGKGameplayAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayEffectDyn.html">Class UGKGameplayEffectDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGPUUpscalerStrategy.html">Class UGKGPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridPathFollowingComponent.html">Class UGKHexGridPathFollowingComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKPotionItem.html">Class UGKPotionItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestBlueprintLibrary.html">Class UGKQuestBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestDataRef.html">Class UGKQuestDataRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestObjectiveRef.html">Class UGKQuestObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestSimpleObjectiveRef.html">Class UGKQuestSimpleObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Less.html">Class UGKRayCasting_Less</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Line.html">Class UGKRayCasting_Line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Triangle.html">Class UGKRayCasting_Triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseEventData.html">Class UGKTargetType_UseEventData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseOwner.html">Class UGKTargetType_UseOwner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTeamAgentLibrary.html">Class UGKTeamAgentLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTokenItem.html">Class UGKTokenItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategy.html">Class UGKTransformerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyCanvas.html">Class UGKTransformerStrategyCanvas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyTexture2D.html">Class UGKTransformerStrategyTexture2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKUtilityLibrary.html">Class UGKUtilityLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWeaponItem.html">Class UGKWeaponItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDraggable.html">Class UGKWidgetDraggable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDragVisual.html">Class UGKWidgetDragVisual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDropZone.html">Class UGKWidgetDropZone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite.html">Class GamekitTestSuite</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Class AGKCharacterBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/classAGKCharacterBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-agkcharacterbase">
+<span id="exhale-class-classagkcharacterbase"></span><h1>Class AGKCharacterBase<a class="headerlink" href="#class-agkcharacterbase" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_Characters_GKCharacter.h.html#file-source-gamekit-characters-gkcharacter-h"><span class="std std-ref">File GKCharacter.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-types">
+<h3>Base Types<a class="headerlink" href="#base-types" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">ACharacter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">IAbilitySystemInterface</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">IGenericTeamAgentInterface</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">IGKSelectableInterface</span></code> (<a class="reference internal" href="classIGKSelectableInterface.html#exhale-class-classigkselectableinterface"><span class="std std-ref">Class IGKSelectableInterface</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv416AGKCharacterBase">
+<span id="_CPPv316AGKCharacterBase"></span><span id="_CPPv216AGKCharacterBase"></span><span id="AGKCharacterBase"></span><span class="target" id="classAGKCharacterBase"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AGKCharacterBase</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">ACharacter</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">IAbilitySystemInterface</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">IGenericTeamAgentInterface</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classIGKSelectableInterface.html#_CPPv422IGKSelectableInterface" title="IGKSelectableInterface"><span class="n"><span class="pre">IGKSelectableInterface</span></span></a><a class="headerlink" href="#_CPPv416AGKCharacterBase" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Base class for Character, Designed to be blueprinted</p>
+<p>Automatic input binding</p>
+<p>.. code-block:: cpp <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">BindAbilityActivationToInputComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">InputComponent</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGameplayAbilityInputBinds</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;ConfirmTarget&quot;</span><span class="p">),</span><span class="w">                           </span><span class="c1">//</span>
+</pre></div>
+</div>
+ InConfirmTargetCommand&amp;#8212;+ FString(“CancelTarget”), // InCancelTargetCommand &amp;#8212;+&amp;#8212;+ FString(“EGDAbilityInputID”), // InEnumName | | static_cast&lt;int32&gt;(EGKAbilityInputID::Confirm), // InConfirmTargetInputID &lt;-+ | static_cast&lt;int32&gt;(EGKAbilityInputID::Cancel) // InCancelTargetInputID &lt;-&amp;#8212;+ ) ); </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16AGKCharacterBaseEv">
+<span id="_CPPv3N16AGKCharacterBase16AGKCharacterBaseEv"></span><span id="_CPPv2N16AGKCharacterBase16AGKCharacterBaseEv"></span><span id="AGKCharacterBase::AGKCharacterBase"></span><span class="target" id="classAGKCharacterBase_1a358558ff71d709b6c8be1602dcbbbb19"></span><span class="sig-name descname"><span class="n"><span class="pre">AGKCharacterBase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16AGKCharacterBaseEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase32IsReplicationPausedForConnectionERK10FNetViewer">
+<span id="_CPPv3N16AGKCharacterBase32IsReplicationPausedForConnectionERK10FNetViewer"></span><span id="_CPPv2N16AGKCharacterBase32IsReplicationPausedForConnectionERK10FNetViewer"></span><span id="AGKCharacterBase::IsReplicationPausedForConnection__FNetViewerCR"></span><span class="target" id="classAGKCharacterBase_1a5f9ee7baa0ff710336496bf7cd75687d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsReplicationPausedForConnection</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FNetViewer</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ConnectionOwnerNetViewer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase32IsReplicationPausedForConnectionERK10FNetViewer" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase26OnReplicationPausedChangedEb">
+<span id="_CPPv3N16AGKCharacterBase26OnReplicationPausedChangedEb"></span><span id="_CPPv2N16AGKCharacterBase26OnReplicationPausedChangedEb"></span><span id="AGKCharacterBase::OnReplicationPausedChanged__b"></span><span class="target" id="classAGKCharacterBase_1a5455169ed23821d15f6a6d6ff547c4ff"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnReplicationPausedChanged</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bIsReplicationPaused</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase26OnReplicationPausedChangedEb" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase9BeginPlayEv">
+<span id="_CPPv3N16AGKCharacterBase9BeginPlayEv"></span><span id="_CPPv2N16AGKCharacterBase9BeginPlayEv"></span><span id="AGKCharacterBase::BeginPlay"></span><span class="target" id="classAGKCharacterBase_1a4712d2b4ba9328621d64fabad0961a0b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BeginPlay</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase9BeginPlayEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase11PossessedByEP11AController">
+<span id="_CPPv3N16AGKCharacterBase11PossessedByEP11AController"></span><span id="_CPPv2N16AGKCharacterBase11PossessedByEP11AController"></span><span id="AGKCharacterBase::PossessedBy__AControllerP"></span><span class="target" id="classAGKCharacterBase_1a71b4842e4ccc53792068706194cfb04d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PossessedBy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">AController</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">NewController</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase11PossessedByEP11AController" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase11UnPossessedEv">
+<span id="_CPPv3N16AGKCharacterBase11UnPossessedEv"></span><span id="_CPPv2N16AGKCharacterBase11UnPossessedEv"></span><span id="AGKCharacterBase::UnPossessed"></span><span class="target" id="classAGKCharacterBase_1a0b7690f7f2c4f307955162d8be3c2ee6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnPossessed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase11UnPossessedEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16OnRep_ControllerEv">
+<span id="_CPPv3N16AGKCharacterBase16OnRep_ControllerEv"></span><span id="_CPPv2N16AGKCharacterBase16OnRep_ControllerEv"></span><span id="AGKCharacterBase::OnRep_Controller"></span><span class="target" id="classAGKCharacterBase_1ab4929e24e5282ac4192b073340c192ad"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_Controller</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16OnRep_ControllerEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase4TickEf">
+<span id="_CPPv3N16AGKCharacterBase4TickEf"></span><span id="_CPPv2N16AGKCharacterBase4TickEf"></span><span id="AGKCharacterBase::Tick__float"></span><span class="target" id="classAGKCharacterBase_1aeafa240a18aeee7a9defc3fc17686cd6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tick</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Delta</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase4TickEf" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16AGKCharacterBase26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE">
+<span id="_CPPv3NK16AGKCharacterBase26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="_CPPv2NK16AGKCharacterBase26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="AGKCharacterBase::GetLifetimeReplicatedProps__TArray:FLifetimeProperty:RC"></span><span class="target" id="classAGKCharacterBase_1a8b9c9741d5cd90d2e59ccd93c88b3812"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetLifetimeReplicatedProps</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FLifetimeProperty</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OutLifetimeProps</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16AGKCharacterBase26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16AGKCharacterBase25GetAbilitySystemComponentEv">
+<span id="_CPPv3NK16AGKCharacterBase25GetAbilitySystemComponentEv"></span><span id="_CPPv2NK16AGKCharacterBase25GetAbilitySystemComponentEv"></span><span id="AGKCharacterBase::GetAbilitySystemComponentC"></span><span class="target" id="classAGKCharacterBase_1af3c4ba4aef3dca123c72e796dee0df78"></span><span class="n"><span class="pre">UAbilitySystemComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetAbilitySystemComponent</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16AGKCharacterBase25GetAbilitySystemComponentEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16AGKCharacterBase17GetCharacterLevelEv">
+<span id="_CPPv3NK16AGKCharacterBase17GetCharacterLevelEv"></span><span id="_CPPv2NK16AGKCharacterBase17GetCharacterLevelEv"></span><span id="AGKCharacterBase::GetCharacterLevelC"></span><span class="target" id="classAGKCharacterBase_1a84546e92bcddeb568ceeebf9bcf80f19"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCharacterLevel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AGKCharacterBase17GetCharacterLevelEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the character level that is passed to the ability system </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase17SetCharacterLevelE5int32">
+<span id="_CPPv3N16AGKCharacterBase17SetCharacterLevelE5int32"></span><span id="_CPPv2N16AGKCharacterBase17SetCharacterLevelE5int32"></span><span id="AGKCharacterBase::SetCharacterLevel__int32"></span><span class="target" id="classAGKCharacterBase_1a2ddc3bc87c0b76daef40d575bd2e5a4f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetCharacterLevel</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">NewLevel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase17SetCharacterLevelE5int32" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Modifies the character level, this may change abilities. Returns true on success </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase22OnHealthChanged_NativeERK22FOnAttributeChangeData">
+<span id="_CPPv3N16AGKCharacterBase22OnHealthChanged_NativeERK22FOnAttributeChangeData"></span><span id="_CPPv2N16AGKCharacterBase22OnHealthChanged_NativeERK22FOnAttributeChangeData"></span><span id="AGKCharacterBase::OnHealthChanged_Native__FOnAttributeChangeDataCR"></span><span class="target" id="classAGKCharacterBase_1a36849166872cf4a99a6807af698b323e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnHealthChanged_Native</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FOnAttributeChangeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Data</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase22OnHealthChanged_NativeERK22FOnAttributeChangeData" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase22ClearGameplayAbilitiesEv">
+<span id="_CPPv3N16AGKCharacterBase22ClearGameplayAbilitiesEv"></span><span id="_CPPv2N16AGKCharacterBase22ClearGameplayAbilitiesEv"></span><span id="AGKCharacterBase::ClearGameplayAbilities"></span><span class="target" id="classAGKCharacterBase_1a8e36043d5d7518ab8384e9f15c68c5a6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ClearGameplayAbilities</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase22ClearGameplayAbilitiesEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase6IsDeadEv">
+<span id="_CPPv3N16AGKCharacterBase6IsDeadEv"></span><span id="_CPPv2N16AGKCharacterBase6IsDeadEv"></span><span id="AGKCharacterBase::IsDead"></span><span class="target" id="classAGKCharacterBase_1a80ea608c73edccf5544a167d907a9226"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsDead</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase6IsDeadEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase3DieEv">
+<span id="_CPPv3N16AGKCharacterBase3DieEv"></span><span id="_CPPv2N16AGKCharacterBase3DieEv"></span><span id="AGKCharacterBase::Die"></span><span class="target" id="classAGKCharacterBase_1aaa634fafbee198ea90673ae787861f45"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Die</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase3DieEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase8DeselectEv">
+<span id="_CPPv3N16AGKCharacterBase8DeselectEv"></span><span id="_CPPv2N16AGKCharacterBase8DeselectEv"></span><span id="AGKCharacterBase::Deselect"></span><span class="target" id="classAGKCharacterBase_1abe3b0f2ec151e8c8740bd48bb720e296"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Deselect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase8DeselectEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase6SelectEv">
+<span id="_CPPv3N16AGKCharacterBase6SelectEv"></span><span id="_CPPv2N16AGKCharacterBase6SelectEv"></span><span id="AGKCharacterBase::Select"></span><span class="target" id="classAGKCharacterBase_1a84e87007ed6430b70453c855ec3925d1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Select</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase6SelectEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase8OnSelectEv">
+<span id="_CPPv3N16AGKCharacterBase8OnSelectEv"></span><span id="_CPPv2N16AGKCharacterBase8OnSelectEv"></span><span id="AGKCharacterBase::OnSelect"></span><span class="target" id="classAGKCharacterBase_1ae53303a2162d6035566ff2f9409aef3b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnSelect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase8OnSelectEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase10OnDeselectEv">
+<span id="_CPPv3N16AGKCharacterBase10OnDeselectEv"></span><span id="_CPPv2N16AGKCharacterBase10OnDeselectEv"></span><span id="AGKCharacterBase::OnDeselect"></span><span class="target" id="classAGKCharacterBase_1acbf60803193e37369950d23b88c4196b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnDeselect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase10OnDeselectEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent">
+<span id="_CPPv3N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent"></span><span id="_CPPv2N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent"></span><span id="AGKCharacterBase::SetupPlayerInputComponent__UInputComponentP"></span><span class="target" id="classAGKCharacterBase_1aeb061d8918eb72747e119d438e4ad835"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetupPlayerInputComponent</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UInputComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">PlayerInputComponent</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase12GrantAbilityE14FGKAbilitySlot11TSubclassOfI18UGKGameplayAbilityE">
+<span id="_CPPv3N16AGKCharacterBase12GrantAbilityE14FGKAbilitySlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="_CPPv2N16AGKCharacterBase12GrantAbilityE14FGKAbilitySlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="AGKCharacterBase::GrantAbility__FGKAbilitySlot.TSubclassOf:UGKGameplayAbility:"></span><span class="target" id="classAGKCharacterBase_1a942e5f281edbfc0a68f87d9f5d6aeb25"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GrantAbility</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span>, <span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><span class="n"><span class="pre">UGKGameplayAbility</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AbilityClass</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase12GrantAbilityE14FGKAbilitySlot11TSubclassOfI18UGKGameplayAbilityE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Can only be called by the Authority,. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE">
+<span id="_CPPv3N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="_CPPv2N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="AGKCharacterBase::EquipItem__EGK_ItemSlot.TSubclassOf:UGKGameplayAbility:"></span><span class="target" id="classAGKCharacterBase_1a5d17b44503fb294d4ef7e25b3c738979"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EquipItem</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda.html#_CPPv412EGK_ItemSlot" title="EGK_ItemSlot"><span class="n"><span class="pre">EGK_ItemSlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span>, <span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><span class="n"><span class="pre">UGKGameplayAbility</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AbilityClass</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase20OnGiveAbility_NativeER20FGameplayAbilitySpec">
+<span id="_CPPv3N16AGKCharacterBase20OnGiveAbility_NativeER20FGameplayAbilitySpec"></span><span id="_CPPv2N16AGKCharacterBase20OnGiveAbility_NativeER20FGameplayAbilitySpec"></span><span id="AGKCharacterBase::OnGiveAbility_Native__FGameplayAbilitySpecR"></span><span class="target" id="classAGKCharacterBase_1a1ceb6a88e4320958f67bd77af5018039"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnGiveAbility_Native</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">AbilitySpec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase20OnGiveAbility_NativeER20FGameplayAbilitySpec" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Client side register the granted ability. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase15ActivateAbilityE14FGKAbilitySlot">
+<span id="_CPPv3N16AGKCharacterBase15ActivateAbilityE14FGKAbilitySlot"></span><span id="_CPPv2N16AGKCharacterBase15ActivateAbilityE14FGKAbilitySlot"></span><span id="AGKCharacterBase::ActivateAbility__FGKAbilitySlot"></span><span class="target" id="classAGKCharacterBase_1acb76e6120076ce16854139dcd124906b"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ActivateAbility</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase15ActivateAbilityE14FGKAbilitySlot" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Low level ability activation. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase14MoveToLocationE7FVector">
+<span id="_CPPv3N16AGKCharacterBase14MoveToLocationE7FVector"></span><span id="_CPPv2N16AGKCharacterBase14MoveToLocationE7FVector"></span><span id="AGKCharacterBase::MoveToLocation__FVector"></span><span class="target" id="classAGKCharacterBase_1adfee2e4a30830490767ab85d7c4d31cf"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MoveToLocation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">loc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase14MoveToLocationE7FVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16AGKCharacterBase12AbilityCountEv">
+<span id="_CPPv3NK16AGKCharacterBase12AbilityCountEv"></span><span id="_CPPv2NK16AGKCharacterBase12AbilityCountEv"></span><span id="AGKCharacterBase::AbilityCountC"></span><span class="target" id="classAGKCharacterBase_1a5bce1f0dc3c0490858750abbbc499a3c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AGKCharacterBase12AbilityCountEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase15GetAttributeSetEv">
+<span id="_CPPv3N16AGKCharacterBase15GetAttributeSetEv"></span><span id="_CPPv2N16AGKCharacterBase15GetAttributeSetEv"></span><span id="AGKCharacterBase::GetAttributeSet"></span><span class="target" id="classAGKCharacterBase_1a27dac45cfdff08cfa1bdf18a1f4a6586"></span><a class="reference internal" href="classUGKAttributeSet.html#_CPPv415UGKAttributeSet" title="UGKAttributeSet"><span class="n"><span class="pre">UGKAttributeSet</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetAttributeSet</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase15GetAttributeSetEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase18GetAbilityInstanceE14FGKAbilitySlot">
+<span id="_CPPv3N16AGKCharacterBase18GetAbilityInstanceE14FGKAbilitySlot"></span><span id="_CPPv2N16AGKCharacterBase18GetAbilityInstanceE14FGKAbilitySlot"></span><span id="AGKCharacterBase::GetAbilityInstance__FGKAbilitySlot"></span><span class="target" id="classAGKCharacterBase_1a6a9b340000f6752ce16abbde22510ade"></span><a class="reference internal" href="classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><span class="n"><span class="pre">UGKGameplayAbility</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetAbilityInstance</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase18GetAbilityInstanceE14FGKAbilitySlot" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16GetAbilityHandleE14FGKAbilitySlot">
+<span id="_CPPv3N16AGKCharacterBase16GetAbilityHandleE14FGKAbilitySlot"></span><span id="_CPPv2N16AGKCharacterBase16GetAbilityHandleE14FGKAbilitySlot"></span><span id="AGKCharacterBase::GetAbilityHandle__FGKAbilitySlot"></span><span class="target" id="classAGKCharacterBase_1a7771e5e002a8ef88579a4693f8ef89ee"></span><span class="n"><span class="pre">FGameplayAbilitySpecHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetAbilityHandle</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16GetAbilityHandleE14FGKAbilitySlot" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16K2_GetUnitStaticER13FGKUnitStaticRb">
+<span id="_CPPv3N16AGKCharacterBase16K2_GetUnitStaticER13FGKUnitStaticRb"></span><span id="_CPPv2N16AGKCharacterBase16K2_GetUnitStaticER13FGKUnitStaticRb"></span><span id="AGKCharacterBase::K2_GetUnitStatic__FGKUnitStaticR.bR"></span><span class="target" id="classAGKCharacterBase_1a6aae965b86928cdcb22167cb19768fa7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">K2_GetUnitStatic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKUnitStatic.html#_CPPv413FGKUnitStatic" title="FGKUnitStatic"><span class="n"><span class="pre">FGKUnitStatic</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">UnitStatic</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Valid</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16K2_GetUnitStaticER13FGKUnitStaticRb" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase13GetUnitStaticEv">
+<span id="_CPPv3N16AGKCharacterBase13GetUnitStaticEv"></span><span id="_CPPv2N16AGKCharacterBase13GetUnitStaticEv"></span><span id="AGKCharacterBase::GetUnitStatic"></span><span class="target" id="classAGKCharacterBase_1ad4db88647373769021c0046af095f673"></span><a class="reference internal" href="structFGKUnitStatic.html#_CPPv413FGKUnitStatic" title="FGKUnitStatic"><span class="n"><span class="pre">FGKUnitStatic</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetUnitStatic</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase13GetUnitStaticEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase25OnDataTableChanged_NativeEv">
+<span id="_CPPv3N16AGKCharacterBase25OnDataTableChanged_NativeEv"></span><span id="_CPPv2N16AGKCharacterBase25OnDataTableChanged_NativeEv"></span><span id="AGKCharacterBase::OnDataTableChanged_Native"></span><span class="target" id="classAGKCharacterBase_1ac63334d5ec31418311750e01c7552872"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnDataTableChanged_Native</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase25OnDataTableChanged_NativeEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase17LoadFromDataTableER13FGKUnitStatic">
+<span id="_CPPv3N16AGKCharacterBase17LoadFromDataTableER13FGKUnitStatic"></span><span id="_CPPv2N16AGKCharacterBase17LoadFromDataTableER13FGKUnitStatic"></span><span id="AGKCharacterBase::LoadFromDataTable__FGKUnitStaticR"></span><span class="target" id="classAGKCharacterBase_1a4144e9c95be4f18c46274a47d3818efc"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LoadFromDataTable</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKUnitStatic.html#_CPPv413FGKUnitStatic" title="FGKUnitStatic"><span class="n"><span class="pre">FGKUnitStatic</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">UnitDef</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase17LoadFromDataTableER13FGKUnitStatic" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Called everytime the Static data is loaded (init &amp; reimport) Needs to be called after ASC get initialized with its Actor info </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase18PostInitPropertiesEv">
+<span id="_CPPv3N16AGKCharacterBase18PostInitPropertiesEv"></span><span id="_CPPv2N16AGKCharacterBase18PostInitPropertiesEv"></span><span id="AGKCharacterBase::PostInitProperties"></span><span class="target" id="classAGKCharacterBase_1aa919e3bd15cdecea4aaa5703b024ff71"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PostInitProperties</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase18PostInitPropertiesEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase10OnRep_TeamEv">
+<span id="_CPPv3N16AGKCharacterBase10OnRep_TeamEv"></span><span id="_CPPv2N16AGKCharacterBase10OnRep_TeamEv"></span><span id="AGKCharacterBase::OnRep_Team"></span><span class="target" id="classAGKCharacterBase_1a752840b76d6d4a8b3537d81d461d32e5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_Team</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase10OnRep_TeamEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16SetGenericTeamIdERK14FGenericTeamId">
+<span id="_CPPv3N16AGKCharacterBase16SetGenericTeamIdERK14FGenericTeamId"></span><span id="_CPPv2N16AGKCharacterBase16SetGenericTeamIdERK14FGenericTeamId"></span><span id="AGKCharacterBase::SetGenericTeamId__FGenericTeamIdCR"></span><span class="target" id="classAGKCharacterBase_1a04d635ef9569a90edd40cfe08832471f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetGenericTeamId</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGenericTeamId</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">TeamID</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16SetGenericTeamIdERK14FGenericTeamId" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16AGKCharacterBase16GetGenericTeamIdEv">
+<span id="_CPPv3NK16AGKCharacterBase16GetGenericTeamIdEv"></span><span id="_CPPv2NK16AGKCharacterBase16GetGenericTeamIdEv"></span><span id="AGKCharacterBase::GetGenericTeamIdC"></span><span class="target" id="classAGKCharacterBase_1a23e65d547bea1e333092dabcaa59d602"></span><span class="n"><span class="pre">FGenericTeamId</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetGenericTeamId</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16AGKCharacterBase16GetGenericTeamIdEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Retrieve team identifier in form of FGenericTeamId </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase15OnCharacterDiedE">
+<span id="_CPPv3N16AGKCharacterBase15OnCharacterDiedE"></span><span id="_CPPv2N16AGKCharacterBase15OnCharacterDiedE"></span><span id="AGKCharacterBase::OnCharacterDied__FGKCharacterDiedDelegate"></span><span class="target" id="classAGKCharacterBase_1a94c69125eb7e63d6fe842e2ad510ca1f"></span><span class="n"><span class="pre">FGKCharacterDiedDelegate</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnCharacterDied</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase15OnCharacterDiedE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase13OnGiveAbilityE">
+<span id="_CPPv3N16AGKCharacterBase13OnGiveAbilityE"></span><span id="_CPPv2N16AGKCharacterBase13OnGiveAbilityE"></span><span id="AGKCharacterBase::OnGiveAbility__FGiveAbilityEventSignature"></span><span class="target" id="classAGKCharacterBase_1ae90c3f5621756a45ca230e0961eac0f7"></span><span class="n"><span class="pre">FGiveAbilityEventSignature</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnGiveAbility</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase13OnGiveAbilityE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase13UnitDataTableE">
+<span id="_CPPv3N16AGKCharacterBase13UnitDataTableE"></span><span id="_CPPv2N16AGKCharacterBase13UnitDataTableE"></span><span id="AGKCharacterBase::UnitDataTable__UDataTableP"></span><span class="target" id="classAGKCharacterBase_1ac8ac30509bad1564a530fd1c9b584804"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UDataTable</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">UnitDataTable</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase13UnitDataTableE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase11UnitRowNameE">
+<span id="_CPPv3N16AGKCharacterBase11UnitRowNameE"></span><span id="_CPPv2N16AGKCharacterBase11UnitRowNameE"></span><span id="AGKCharacterBase::UnitRowName__FName"></span><span class="target" id="classAGKCharacterBase_1a66083ea8fddee0df7ef621f5a90b0177"></span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnitRowName</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase11UnitRowNameE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase10UnitStaticE">
+<span id="_CPPv3N16AGKCharacterBase10UnitStaticE"></span><span id="_CPPv2N16AGKCharacterBase10UnitStaticE"></span><span id="AGKCharacterBase::UnitStatic__FGKUnitStaticP"></span><span class="target" id="classAGKCharacterBase_1a8d1dc7ca224da7d131b8edb92c804304"></span><a class="reference internal" href="structFGKUnitStatic.html#_CPPv413FGKUnitStatic" title="FGKUnitStatic"><span class="n"><span class="pre">FGKUnitStatic</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">UnitStatic</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase10UnitStaticE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cached lookup. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase4TeamE">
+<span id="_CPPv3N16AGKCharacterBase4TeamE"></span><span id="_CPPv2N16AGKCharacterBase4TeamE"></span><span id="AGKCharacterBase::Team__FGenericTeamId"></span><span class="target" id="classAGKCharacterBase_1a65cd23392f08a0066c9ee827540c06e2"></span><span class="n"><span class="pre">FGenericTeamId</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Team</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase4TeamE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>This is set by the Player Controller on possession. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase14OnTeamAssignedE">
+<span id="_CPPv3N16AGKCharacterBase14OnTeamAssignedE"></span><span id="_CPPv2N16AGKCharacterBase14OnTeamAssignedE"></span><span id="AGKCharacterBase::OnTeamAssigned__FGKTeamAssignedDelegate"></span><span class="target" id="classAGKCharacterBase_1a4a0453ba72631d0985b4202ee6885fcf"></span><span class="n"><span class="pre">FGKTeamAssignedDelegate</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnTeamAssigned</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase14OnTeamAssignedE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Called when a new team is assigned to the Pawn Called both on the server and client </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase19bPreviousVisibilityE">
+<span id="_CPPv3N16AGKCharacterBase19bPreviousVisibilityE"></span><span id="_CPPv2N16AGKCharacterBase19bPreviousVisibilityE"></span><span id="AGKCharacterBase::bPreviousVisibility__b"></span><span class="target" id="classAGKCharacterBase_1a2196277c864d76abfbd57a47247cf2e9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bPreviousVisibility</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase19bPreviousVisibilityE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase16AddPassiveEffectEP15UGameplayEffect">
+<span id="_CPPv3N16AGKCharacterBase16AddPassiveEffectEP15UGameplayEffect"></span><span id="_CPPv2N16AGKCharacterBase16AddPassiveEffectEP15UGameplayEffect"></span><span id="AGKCharacterBase::AddPassiveEffect__UGameplayEffectP"></span><span class="target" id="classAGKCharacterBase_1a5798e7b745537e752422e58243402f7a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AddPassiveEffect</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UGameplayEffect</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Effect</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase16AddPassiveEffectEP15UGameplayEffect" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase14CharacterLevelE">
+<span id="_CPPv3N16AGKCharacterBase14CharacterLevelE"></span><span id="_CPPv2N16AGKCharacterBase14CharacterLevelE"></span><span id="AGKCharacterBase::CharacterLevel__int32"></span><span class="target" id="classAGKCharacterBase_1af808dd18b9cde0b822e2417d78c98425"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharacterLevel</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase14CharacterLevelE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The level of this character, should not be modified directly once it has already spawned </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase22AbilitySystemComponentE">
+<span id="_CPPv3N16AGKCharacterBase22AbilitySystemComponentE"></span><span id="_CPPv2N16AGKCharacterBase22AbilitySystemComponentE"></span><span id="AGKCharacterBase::AbilitySystemComponent__UGKAbilitySystemComponentP"></span><span class="target" id="classAGKCharacterBase_1ae99d1d22bbbeb6c88d4ff91f814e3284"></span><a class="reference internal" href="classUGKAbilitySystemComponent.html#_CPPv425UGKAbilitySystemComponent" title="UGKAbilitySystemComponent"><span class="n"><span class="pre">UGKAbilitySystemComponent</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">AbilitySystemComponent</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase22AbilitySystemComponentE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The component used to handle ability system interactions </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase12AttributeSetE">
+<span id="_CPPv3N16AGKCharacterBase12AttributeSetE"></span><span id="_CPPv2N16AGKCharacterBase12AttributeSetE"></span><span id="AGKCharacterBase::AttributeSet__UGKAttributeSetP"></span><span class="target" id="classAGKCharacterBase_1aff167028254934c964c44d6c8e213ba2"></span><a class="reference internal" href="classUGKAttributeSet.html#_CPPv415UGKAttributeSet" title="UGKAttributeSet"><span class="n"><span class="pre">UGKAttributeSet</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">AttributeSet</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase12AttributeSetE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>List of attributes modified by the ability system </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase12AbilitySpecsE">
+<span id="_CPPv3N16AGKCharacterBase12AbilitySpecsE"></span><span id="_CPPv2N16AGKCharacterBase12AbilitySpecsE"></span><span id="AGKCharacterBase::AbilitySpecs__TMap:FGKAbilitySlot.FGameplayAbilitySpec:"></span><span class="target" id="classAGKCharacterBase_1ac2d8c21b438225d759ac45d5753efc9c"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilitySpecs</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase12AbilitySpecsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase11InputsBoundE">
+<span id="_CPPv3N16AGKCharacterBase11InputsBoundE"></span><span id="_CPPv2N16AGKCharacterBase11InputsBoundE"></span><span id="AGKCharacterBase::InputsBound__b"></span><span class="target" id="classAGKCharacterBase_1a841bb8d69d63a1799d973b50d8971303"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InputsBound</span></span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase11InputsBoundE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKAttributeSet</span></dt>
+</dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKAbilitySystemComponent</span></dt>
+</dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classAGKAOEActorNiagara.html" class="btn btn-neutral float-left" title="Class AGKAOEActorNiagara" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classAGKFogOfWarTeam.html" class="btn btn-neutral float-right" title="Class AGKFogOfWarTeam" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

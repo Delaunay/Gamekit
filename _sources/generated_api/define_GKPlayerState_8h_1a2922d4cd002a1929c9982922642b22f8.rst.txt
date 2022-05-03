@@ -1,0 +1,14 @@
+.. _exhale_define_GKPlayerState_8h_1a2922d4cd002a1929c9982922642b22f8:
+
+Define GK_PLAYERSTATE_SANITY
+============================
+
+- Defined in :ref:`file_Source_Gamekit_States_GKPlayerState.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GK_PLAYERSTATE_SANITY
+   :project: GameKit

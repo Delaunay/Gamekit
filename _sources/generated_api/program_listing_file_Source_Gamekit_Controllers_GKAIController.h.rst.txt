@@ -1,0 +1,47 @@
+
+.. _program_listing_file_Source_Gamekit_Controllers_GKAIController.h:
+
+Program Listing for File GKAIController.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Controllers_GKAIController.h>` (``Source/Gamekit/Controllers/GKAIController.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "AIController.h"
+   #include "GenericTeamAgentInterface.h"
+   
+   // Generated
+   #include "GKAIController.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKAIController: public AAIController
+   {
+       GENERATED_BODY()
+       
+   
+   public:
+       // IGenericTeamAgentInterface
+       // --------------------------
+       public:
+       FGenericTeamId TeamId;
+   
+       // Called when the controller team changed
+       // Called on the server and client
+       virtual void OnTeamChange();
+   
+       public:
+       UFUNCTION(BlueprintCallable, Category = "Team")
+       void SetGenericTeamId(const FGenericTeamId &TID) override;
+   
+       UFUNCTION(BlueprintCallable, Category = "Team")
+       FGenericTeamId GetGenericTeamId() const override { return TeamId; }
+   };

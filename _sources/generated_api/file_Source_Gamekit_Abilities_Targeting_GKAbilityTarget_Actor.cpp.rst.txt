@@ -1,0 +1,49 @@
+
+.. _file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.cpp:
+
+File GKAbilityTarget_Actor.cpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Targeting>` (``Source/Gamekit/Abilities/Targeting``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.cpp``)
+-----------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbility.h``
+
+- ``AbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``GameFramework/PlayerController.h``
+
+- ``Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h`` (:ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h`)
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``GameplayAbilitySpec.h``
+
+- ``Net/UnrealNetwork.h``
+
+
+
+
+

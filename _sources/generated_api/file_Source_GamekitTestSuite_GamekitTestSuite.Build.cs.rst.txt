@@ -1,0 +1,49 @@
+
+.. _file_Source_GamekitTestSuite_GamekitTestSuite.Build.cs:
+
+File GamekitTestSuite.Build.cs
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitTestSuite>` (``Source/GamekitTestSuite``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/GamekitTestSuite/GamekitTestSuite.Build.cs``)
+------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_GamekitTestSuite_GamekitTestSuite.Build.cs.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_System__IO`
+
+- :ref:`namespace_UnrealBuildTool`
+
+- :ref:`namespace_UnrealBuildTool__Rules`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite`
+

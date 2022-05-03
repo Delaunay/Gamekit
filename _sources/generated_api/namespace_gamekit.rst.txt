@@ -1,0 +1,26 @@
+
+.. _namespace_gamekit:
+
+Namespace gamekit
+=================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__cli`
+
+- :ref:`namespace_gamekit__commands`
+
+- :ref:`namespace_gamekit__conf`
+
+- :ref:`namespace_gamekit__fbm`

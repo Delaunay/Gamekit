@@ -1,0 +1,17 @@
+.. _exhale_class_classUCollisionProfileHack:
+
+Class UCollisionProfileHack
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarLibrary.cpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UCollisionProfileHack
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

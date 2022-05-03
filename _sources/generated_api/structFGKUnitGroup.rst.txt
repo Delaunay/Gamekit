@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKUnitGroup:
+
+Struct FGKUnitGroup
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKSelection.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKUnitGroup
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

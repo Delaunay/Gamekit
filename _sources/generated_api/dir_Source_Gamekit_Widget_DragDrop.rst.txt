@@ -1,0 +1,25 @@
+.. _dir_Source_Gamekit_Widget_DragDrop:
+
+
+Directory DragDrop
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget>` (``Source/Gamekit/Widget``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Widget/DragDrop``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDraggable.cpp`
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDraggable.h`
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.cpp`
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.h`
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.cpp`
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.h`
+
+

@@ -1,0 +1,29 @@
+
+.. _program_listing_file_Source_Python_gamekit_commands_install.py:
+
+Program Listing for File install.py
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Python_gamekit_commands_install.py>` (``Source/Python/gamekit/commands/install.py``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: py
+
+   from gamekit.conf import Command
+   
+   
+   class Install(Command):
+       name: str = "install"
+   
+       @staticmethod
+       def arguments(subparsers):
+           install = subparsers.add_parser(Install.name, help='Install Gamekit in a unreal project')
+           install.add_argument("name", type=str, help='Plugin name')
+   
+       @staticmethod
+       def execute(args):
+           pass
+   
+   
+   COMMAND = Install

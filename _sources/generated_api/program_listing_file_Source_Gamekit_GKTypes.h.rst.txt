@@ -1,0 +1,17 @@
+
+.. _program_listing_file_Source_Gamekit_GKTypes.h:
+
+Program Listing for File GKTypes.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKTypes.h>` (``Source/Gamekit/GKTypes.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   # pragma once
+   
+   
+   
+   using float64 = double;

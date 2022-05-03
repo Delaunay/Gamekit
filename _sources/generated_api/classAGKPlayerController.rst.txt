@@ -1,0 +1,27 @@
+.. _exhale_class_classAGKPlayerController:
+
+Class AGKPlayerController
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public APlayerController``
+- ``public IGenericTeamAgentInterface``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKPlayerController
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

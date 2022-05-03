@@ -1,0 +1,54 @@
+
+.. _file_Source_Gamekit_Experimental_GKTurnGameState.h:
+
+File GKTurnGameState.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Experimental>` (``Source/Gamekit/Experimental``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Experimental/GKTurnGameState.h``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Experimental_GKTurnGameState.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKTurnGameState.generated.h``
+
+- ``GameFramework/GameState.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Experimental_GKTurnGameState.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKTurnGameState`
+

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testing &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Developer/Testing/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h1>
+<ul>
+<li><p>Ground Truth Data in the Functional Testing Editor plugin.</p></li>
+<li><p>Unit testing of C++ code</p></li>
+<li><p>Test Frameworks inside UE
+* <a class="reference external" href="https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Source/Editor/UnrealEd/Public/Tests/AutomationEditorCommon.h">AutomationEditorCommon</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">UnrealEd</span></code> Module</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Source/Developer/AITestSuite">AI Test Suite</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/Experimental/EnhancedInput/Source/InputEditor/Private/Tests/InputTestFramework.h">InputTestFramework</a></p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/Tests">https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/Tests</a></p>
+</li>
+</ul>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Google test is included</dt><dd><ul>
+<li><p>UnrealEngine/Engine/Source/ThirdParty/GoogleTest/GoogleTest.Build.cs</p></li>
+<li><p>but nobody is using it ?</p></li>
+<li><dl class="simple">
+<dt>add GoogleTest</dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">PublicDefinitions.Add(&quot;WITH_GOOGLE_MOCK=1&quot;);</span></code></dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">PublicDefinitions.Add(&quot;WITH_GOOGLE_TEST=1&quot;);</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Fakeit is also included</dt><dd><ul>
+<li><p>UnrealEngine/Engine/Source/ThirdParty/FakeIt/FakeIt.Build.cs</p></li>
+<li><p>but nobody is using it ?</p></li>
+<li><p><a class="reference external" href="https://github.com/eranpeer/FakeIt">https://github.com/eranpeer/FakeIt</a></p></li>
+<li><dl class="simple">
+<dt>Add FakeIt</dt><dd><ul>
+<li><p>PublicDefinitions.Add(“WITH_FAKEIT=1”);</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Catch2</dt><dd><ul>
+<li><p>UnrealEngine/Engine/Source/ThirdParty/Catch2</p></li>
+<li><p>but nobody is using it ?</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <a class="reference external" href="https://github.com/EpicGames/UnrealEngine/commit/0d479b96bab63455be3f00d2680949191828d02a">commit</a>
+suggest the libraries are used internally, but their tests are not
+included inside the engine’s code.</p>
+</div>
+</section>
+<section id="automation-tests">
+<h2>Automation Tests<a class="headerlink" href="#automation-tests" title="Permalink to this headline"></a></h2>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Gamekit Tests</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitTestSuite/GKTestUtilities.h&quot;</span><span class="cp"></span>
+
+<span class="n">GAMEKIT_TEST</span><span class="p">(</span><span class="s">&quot;TestSubnames1.TestSubnames2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">RandomClass</span><span class="p">,</span><span class="w"> </span><span class="n">RandomMethod</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">TestEqual</span><span class="p">(</span><span class="s">&quot;Check that stuff match&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">RandomMethod</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="mi">123</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="get-started">
+<h3>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To get started I would suggest checking out <cite>InputTestFramework</cite> which seems to most publicly tested
+module out there.
+In addition it will teach you to mock user inputs to test your game bindings.</p>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="nf">AnEmptyWorld</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">FAutomationEditorCommonUtils</span><span class="o">::</span><span class="n">CreateNewMap</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UControllablePlayer</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">AControllablePlayer</span><span class="p">(</span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">EKeys</span><span class="o">::</span><span class="n">Initialize</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">UControllablePlayer</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UControllablePlayer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">World</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">APlayerController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetCurrentLevel</span><span class="p">());</span><span class="w"></span>
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="o">-&gt;</span><span class="n">InputComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UEnhancedInputComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="o">-&gt;</span><span class="n">PlayerInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UEnhancedPlayerInput</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">PlayerInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UEnhancedPlayerInput</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="o">-&gt;</span><span class="n">PlayerInput</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">InputComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UEnhancedInputComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="o">-&gt;</span><span class="n">InputComponent</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Player</span><span class="o">-&gt;</span><span class="n">InitInputSystem</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">Subsystem</span><span class="p">.</span><span class="n">Reset</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FMockedEnhancedInputSubsystem</span><span class="p">(</span><span class="o">*</span><span class="n">PlayerData</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">check</span><span class="p">(</span><span class="n">PlayerData</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerData</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="mocking">
+<h3>Mocking<a class="headerlink" href="#mocking" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="python-automation-test">
+<h2>Python Automation Test<a class="headerlink" href="#python-automation-test" title="Permalink to this headline"></a></h2>
+<p>UE expects your python automation test to be saved inside <code class="docutils literal notranslate"><span class="pre">Project/Content/Python</span></code>.
+Files should be named <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code>. The tests will showup under the Editor section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plugins Content folder are not checked; but you can make a symbolic link to the plugin folder.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">C</span><span class="p">:</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Archimedes</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">gamekit</span><span class="o">/</span><span class="n">Content</span><span class="o">&gt;</span><span class="n">mklink</span><span class="w"> </span><span class="o">/</span><span class="n">D</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="s">&quot;../Plugins/Gamekit/Content/Python&quot;</span><span class="w"></span>
+<span class="n">symbolic</span><span class="w"> </span><span class="n">link</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="o">&lt;&lt;===&gt;&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">Plugins</span><span class="o">/</span><span class="n">Gamekit</span><span class="o">/</span><span class="n">Content</span><span class="o">/</span><span class="n">Python</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See C:/opt/UnrealEngine/Engine/Plugins/Experimental/PythonScriptPlugin/Content/Python/debugpy_unreal.py</p>
+</div>
+<ul>
+<li><dl class="simple">
+<dt>Examples (none of them showup in the UAT though)</dt><dd><ul class="simple">
+<li><p>C:/opt/UnrealEngine/Engine/Plugins/Enterprise/VariantManager/Extras/PythonAPI/test_variant_manager.py</p></li>
+<li><p>C:/opt/UnrealEngine/Engine/Plugins/Experimental/PythonScriptPlugin/Content/Python/test_wrapper_types.py</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>References for Unreal &amp; python</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/ScriptingAndAutomation/Python/">https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/ScriptingAndAutomation/Python/</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/">https://docs.unrealengine.com/5.0/en-US/PythonAPI/</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/module/unreal.html">https://docs.unrealengine.com/5.0/en-US/PythonAPI/module/unreal.html</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/EditorLoadingAndSavingUtils.html#unreal.EditorLoadingAndSavingUtils.new_map_from_template">https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/EditorLoadingAndSavingUtils.html#unreal.EditorLoadingAndSavingUtils.new_map_from_template</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/EditorLoadingAndSavingUtils.html#unreal.EditorLoadingAndSavingUtils.new_map_from_template">https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/EditorLoadingAndSavingUtils.html#unreal.EditorLoadingAndSavingUtils.new_map_from_template</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationScreenshotOptions.html#unreal.AutomationScreenshotOptions.ignore_colors">https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationScreenshotOptions.html#unreal.AutomationScreenshotOptions.ignore_colors</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationUtilsBlueprintLibrary.html#unreal.AutomationUtilsBlueprintLibrary">https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationUtilsBlueprintLibrary.html#unreal.AutomationUtilsBlueprintLibrary</a></p></li>
+<li><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationLibrary.html#unreal.AutomationLibrary">https://docs.unrealengine.com/5.0/en-US/PythonAPI/class/AutomationLibrary.html#unreal.AutomationLibrary</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<section id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>Both printing and logging shows as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unreal</span>
+
+<span class="kn">import</span> <span class="nn">automation_test.unittest_utilities</span> <span class="k">as</span> <span class="nn">util</span>
+
+<span class="n">run</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">TestRunner</span><span class="p">()</span>
+
+<span class="nd">@run</span><span class="o">.</span><span class="n">add_test</span>
+<span class="k">def</span> <span class="nf">test_something</span><span class="p">():</span>
+   <span class="n">unreal</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;logging&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;printing&quot;</span><span class="p">)</span>
+   <span class="n">util</span><span class="o">.</span><span class="n">expect_false</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+
+
+<span class="nd">@run</span><span class="o">.</span><span class="n">add_test</span>
+<span class="nd">@util</span><span class="o">.</span><span class="n">test_on_linux</span>
+<span class="k">def</span> <span class="nf">test_something_linux</span><span class="p">():</span>
+   <span class="k">pass</span>
+
+
+<span class="n">run</span><span class="o">.</span><span class="n">run_all</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">LogPython</span><span class="p">:</span><span class="w"> </span><span class="n">Skipping</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">test_something_linux</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">supported</span><span class="p">.</span><span class="w"></span>
+<span class="nl">LogPython</span><span class="p">:</span><span class="w"> </span><span class="n">Testing</span><span class="w"> </span><span class="n">test_something</span><span class="w"></span>
+<span class="nl">LogPython</span><span class="p">:</span><span class="w"> </span><span class="n">logging</span><span class="w"></span>
+<span class="nl">LogPython</span><span class="p">:</span><span class="w"> </span><span class="n">printing</span><span class="w"></span>
+</pre></div>
+</div>
+<p>on failure the stack trace is printed</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>LogPython: Error: test_something - Exception: TestFailedException(&#39;Expected call to &lt;lambda&gt; to return False. (Actual: True)&#39;)
+LogPython: Error: Traceback (most recent call last):
+LogPython: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 125, in run_one_test
+LogPython: Error:     function_under_test()
+LogPython: Error:   File &quot;C:/Users/Archimedes/work/gamekit/Content/Python/test_something.py&quot;, line 13, in test_something
+LogPython: Error:     util.expect_false(lambda: True)
+LogPython: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 374, in expect_false
+LogPython: Error:     return Expectation(expression, args).to_return(False)
+LogPython: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 223, in to_return
+LogPython: Error:     return self.to_return_internal(lambda result: result == expected_result, lambda result: &#39;%s. (Actual: %s)&#39; % (expected_result, result))
+LogPython: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 194, in to_return_internal
+LogPython: Error:     raise TestFailedException(message)
+LogPython: Error: automation_test.unittest_utilities.TestFailedException: Expected call to &lt;lambda&gt; to return False. (Actual: True)
+LogAutomationController: Error: Test Completed. Result={Failed} Name={test_something} Path={Editor.Python.test_something}
+LogAutomationController: BeginEvents: Editor.Python.test_something
+LogAutomationController: Error: test_something - Exception: TestFailedException(&#39;Expected call to &lt;lambda&gt; to return False. (Actual: True)&#39;) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error: Traceback (most recent call last): [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 125, in run_one_test [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:     function_under_test() [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:   File &quot;C:/Users/Archimedes/work/gamekit/Content/Python/test_something.py&quot;, line 13, in test_something [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:     util.expect_false(lambda: True) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 374, in expect_false [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:     return Expectation(expression, args).to_return(False) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 223, in to_return [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:     return self.to_return_internal(lambda result: result == expected_result, lambda result: &#39;%s. (Actual: %s)&#39; % (expected_result, result)) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:   File &quot;C:/opt/UnrealEngine/Engine/Plugins/Tests/PythonAutomationTest/Content/Python/automation_test/unittest_utilities.py&quot;, line 194, in to_return_internal [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error:     raise TestFailedException(message) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+LogAutomationController: Error: automation_test.unittest_utilities.TestFailedException: Expected call to &lt;lambda&gt; to return False. (Actual: True) [C:/opt/UnrealEngine/Engine/Source/Runtime/Core/Private/Logging/LogMacros.cpp(97)]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="functional-testing-actor">
+<h2>Functional Testing Actor<a class="headerlink" href="#functional-testing-actor" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">AFunctionalTest</span></code> actor in your level and call it fromt the level blueprint</p></li>
+</ul>
+</section>
+<section id="screen-comparison">
+<h2>Screen Comparison<a class="headerlink" href="#screen-comparison" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Screenshot</span> <span class="pre">Test</span> <span class="pre">Actor</span></code></p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">Take</span> <span class="pre">Automation</span> <span class="pre">Screenshot</span> <span class="pre">at</span> <span class="pre">Camera</span></code> inside blueprints</p></li>
+<li><p>Need to save ground truth to source control</p></li>
+</ul>
+</section>
+<section id="coverage">
+<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline"></a></h2>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>dll</p></li>
+<li><p>add -coverage flags</p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/Automation/">Automation System Overview</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/Automation/AutomationSpec/">Automation Spec</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

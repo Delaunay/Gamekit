@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKGameplayEffectContainer:
+
+Struct FGKGameplayEffectContainer
+=================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityTypes.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKGameplayEffectContainer
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

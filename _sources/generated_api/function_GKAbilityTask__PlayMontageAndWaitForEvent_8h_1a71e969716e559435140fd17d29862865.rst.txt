@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityTask__PlayMontageAndWaitForEvent_8h_1a71e969716e559435140fd17d29862865:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKPlayMontageAndWaitForEventDelegate, FGameplayTag, EventTag, FGameplayEventData, EventData)
+===================================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKPlayMontageAndWaitForEventDelegate, FGameplayTag, EventTag, FGameplayEventData, EventData)
+   :project: GameKit

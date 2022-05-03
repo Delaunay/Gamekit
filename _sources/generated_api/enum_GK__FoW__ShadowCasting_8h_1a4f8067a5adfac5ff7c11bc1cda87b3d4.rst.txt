@@ -1,0 +1,14 @@
+.. _exhale_enum_GK__FoW__ShadowCasting_8h_1a4f8067a5adfac5ff7c11bc1cda87b3d4:
+
+Enum EGK_VisbilityLayers
+========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_VisbilityLayers
+   :project: GameKit

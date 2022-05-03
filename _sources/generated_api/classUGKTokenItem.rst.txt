@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKTokenItem:
+
+Class UGKTokenItem
+==================
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKTokenItem.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKItem`` (:ref:`exhale_class_classUGKItem`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKTokenItem
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,62 @@
+
+.. _program_listing_file_Source_Gamekit_Grid_GKHexGridUtilities.h:
+
+Program Listing for File GKHexGridUtilities.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Grid_GKHexGridUtilities.h>` (``Source/Gamekit/Grid/GKHexGridUtilities.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License
+   //
+   // Copyright (c) 2022, Pierre Delaunay
+   // All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   
+   // Generated
+   #include "GKHexGridUtilities.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKHexGridUtilities: public UBlueprintFunctionLibrary
+   {
+       GENERATED_BODY()
+   
+       public:
+       UFUNCTION(BlueprintCallable, Category = "Hex|Axial")
+       static FIntPoint AxialRound(FVector2D p);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Cube")
+       static FIntVector CubeRound(FVector cube);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Cube;Hex|Axial")
+       static FIntPoint CubeToAxial(FIntVector cube);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Axial;Hex|Cube")
+       static FVector AxialToCube(FVector2D hex);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Axial;Hex|Pointy")
+       static FIntVector WorldToGrid(FVector2D size, FVector world);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Axial;Hex|Pointy")
+       static FVector GridToWorld(FVector2D size, FIntVector map);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Pointy")
+       static FVector SnapToGrid(FVector2D size, FVector world);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex")
+       static FVector2D GetHexSize(FVector size);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex")
+       static FVector2D GetHexSizeFromMesh(class UStaticMeshComponent *mesh);
+   
+       UFUNCTION(BlueprintCallable, Category = "Hex|Axial")
+       static float Distance(FIntPoint a, FIntPoint b);
+   };

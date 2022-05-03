@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.cpp:
+
+Program Listing for File GKWidgetDragVisual.cpp
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.cpp>` (``Source/Gamekit/Widget/DragDrop/GKWidgetDragVisual.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "Gamekit/Widget/DragDrop/GKWidgetDragVisual.h"
+   
+   // Unreal Engine
+   #include "Blueprint/DragDropOperation.h"
+   #include "Components/PanelWidget.h"
+   
+   void UGKWidgetDragVisual::OnDragCancelled_Native(UDragDropOperation *Operation)
+   {
+   
+       if (RestoreParentOnFailure && DraggedWidget != nullptr && PreviousParent != nullptr)
+       {
+           DraggedWidget->RemoveFromParent();
+           PreviousParent->AddChild(DraggedWidget);
+           // PreviousLoc.Reset(DraggedWidget);
+       }
+   }

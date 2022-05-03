@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1a9d2974a371633a57335ee18d0129fbde:
+
+Function gamekit::fbm::dot
+==========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::dot(a, b)
+   :project: GameKit

@@ -1,0 +1,28 @@
+
+.. _namespace_EGKSaveGameVersion:
+
+Namespace EGKSaveGameVersion
+============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+Detailed Description
+--------------------
+
+List of versions, native code will handle fixups for any old versions 
+
+
+
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespaceEGKSaveGameVersion_1a1d08fa10138bd365319d1d74b1bc4b79`

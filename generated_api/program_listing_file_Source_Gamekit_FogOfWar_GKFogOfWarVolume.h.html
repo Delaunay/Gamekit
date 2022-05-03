@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKFogOfWarVolume.h &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKFogOfWarVolume.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkfogofwarvolume-h">
+<span id="program-listing-file-source-gamekit-fogofwar-gkfogofwarvolume-h"></span><h1>Program Listing for File GKFogOfWarVolume.h<a class="headerlink" href="#program-listing-for-file-gkfogofwarvolume-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h.html#file-source-gamekit-fogofwar-gkfogofwarvolume-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/FogOfWar/GKFogOfWarVolume.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarTeam.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Grid/GKGrid.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/Volume.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Runtime/Core/Public/HAL/ThreadingBase.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Generated</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKFogOfWarVolume.generated.h&quot;</span><span class="cp"></span>
+
+<span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span><span class="p">(</span><span class="n">FGKNewFactionDelegate</span><span class="p">,</span><span class="w"> </span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+
+<span class="cp">#define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1</span>
+
+<span class="c1">// Use to keep track of all the materials</span>
+<span class="c1">// this is mainly because we need to update materials</span>
+<span class="c1">// after the initial replication which can lag a bit</span>
+<span class="n">USTRUCT</span><span class="p">()</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">FGKDynamicFogMaterial</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FName</span><span class="w">                           </span><span class="n">Name</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGenericTeamId</span><span class="w">                  </span><span class="n">TeamId</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInstanceDynamic</span><span class="w"> </span><span class="o">*</span><span class="n">Material</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">)</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">AGKFogOfWarVolume</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AVolume</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">AGKFogOfWarVolume</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Lifecycle</span>
+<span class="w">    </span><span class="c1">// ---------</span>
+
+<span class="w">    </span><span class="c1">// Basic Initialization</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">PreInitializeComponents</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// void PostInitializeComponents() override;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">BeginPlay</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">EndPlay</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">EEndPlayReason</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">EndPlayReason</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FLifetimeProperty</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OutLifetimeProps</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Properties</span>
+<span class="w">    </span><span class="c1">// ----------</span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UTexture</span><span class="w"> </span><span class="o">*</span><span class="n">GetFactionTexture</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UTexture</span><span class="w"> </span><span class="o">*</span><span class="n">GetOriginalFactionTexture</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UTexture</span><span class="w"> </span><span class="o">*</span><span class="n">GetFactionExplorationTexture</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetFogOfWarMaterialParameters</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInstanceDynamic</span><span class="w"> </span><span class="o">*</span><span class="n">Material</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">UpdateFogOfWarMaterialParameters</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">UMaterialInstanceDynamic</span><span class="w"> </span><span class="o">*</span><span class="n">Material</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInterface</span><span class="w"> </span><span class="o">*</span><span class="n">GetFogOfWarPostprocessMaterial</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">GetBlocking</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Blocking</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Properties</span>
+<span class="w">    </span><span class="c1">// ----------</span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|TickLimit&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">LimitFramePerSeconds</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaAccumulator</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Async&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">FramePerSeconds</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Async&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAsyncDraw</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarStrategy</span><span class="o">&gt;</span><span class="w"> </span><span class="n">VisionDrawingStrategy</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|RayCast&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">ECollisionChannel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FogOfWarCollisionChannel</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|RayCast&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInterface</span><span class="w"> </span><span class="o">*</span><span class="n">UnobstructedVisionMaterial</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|RayCast&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInterface</span><span class="w"> </span><span class="o">*</span><span class="n">TrianglesMaterial</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|RayCast&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Margin</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKGrid</span><span class="w"> </span><span class="n">Grid</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Discrete&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">ALandscape</span><span class="w"> </span><span class="o">*</span><span class="n">Landscape</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKTransformerStrategy</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UpscalerClass</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUpscaling</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInterface</span><span class="w"> </span><span class="o">*</span><span class="n">UpscaleMaterial</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FIntVector</span><span class="w"> </span><span class="n">FixedSize</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Multiplier</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Upscaling&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFixedSize</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Exploration&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKTransformerStrategy</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ExplorationClass</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Exploration&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bExploration</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Exploration&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUseUpscaledVision</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">UseFoWDecalRendering</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">PreviewFaction</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UDecalComponent</span><span class="w"> </span><span class="o">*</span><span class="n">PreviewDecalComponent</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UCanvasRenderTarget2D</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">DebugDumpVision</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UCanvasRenderTarget2D</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">DebugDumpVisionUpscaled</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar|Editor&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UCanvasRenderTarget2D</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">DebugDumpExploration</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialParameterCollection</span><span class="w"> </span><span class="o">*</span><span class="n">FogMaterialParameters</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInterface</span><span class="w"> </span><span class="o">*</span><span class="n">BasePostProcessMaterial</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// test</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">AActor</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">ActorsToIgnore</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFogOfWarEnabled</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">EDrawDebugTrace</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="nf">DebugTrace</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDebug</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">EDrawDebugTrace</span><span class="o">::</span><span class="n">ForOneFrame</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EDrawDebugTrace</span><span class="o">::</span><span class="n">None</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">DrawFactionFog</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetBrushSizes</span><span class="p">(</span><span class="n">FVector2D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TextureSize</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MapSize</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">UpdateVolumeSizes</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetMatrialParams</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetMaterialParam_MapSize</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetMaterialParam_TextureSize</span><span class="p">(</span><span class="n">FVector2D</span><span class="w"> </span><span class="n">Size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetMaterialParam_FoWEnabled</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Enabled</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetMaterialParam_Exploration</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Enabled</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialParameterCollection</span><span class="w"> </span><span class="o">*</span><span class="n">GetMaterialParameterCollection</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DumpToDebugRenderTarget</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="nf">GetMapSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">MapSize</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetTextureSize</span><span class="p">(</span><span class="n">FVector2D</span><span class="w"> </span><span class="n">Size</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TextureSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Size</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetMaterialParam_TextureSize</span><span class="p">(</span><span class="n">Size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Helpers</span>
+<span class="w">    </span><span class="c1">// -----------------------------</span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWar</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">GetTextureCoordinate</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">loc</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector2D</span><span class="p">((</span><span class="n">loc</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">loc</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FIntVector</span><span class="w"> </span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Pos</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">TextureSize</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FIntVector</span><span class="w"> </span><span class="n">FromTextureToGrid</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Pos</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">InitDecalRendering</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FCriticalSection</span><span class="w"> </span><span class="n">Mutex</span><span class="p">;</span><span class="w">           </span><span class="c1">// Mutex to sync adding/removing components with the fog compute</span>
+<span class="w">    </span><span class="n">FTimerHandle</span><span class="w">     </span><span class="n">FogComputeTimer</span><span class="p">;</span><span class="w"> </span><span class="c1">// Compute the fog every few frames (or so)</span>
+
+<span class="w">    </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">;</span><span class="w"> </span><span class="c1">// == MapSize / Grid</span>
+
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInstanceDynamic</span><span class="w"> </span><span class="o">*</span><span class="n">DecalMaterialInstance</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Editor Stuff</span>
+<span class="w">    </span><span class="c1">// -------------</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">PostEditChangeProperty</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">FPropertyChangedEvent</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// TODO: Remove this</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarStrategy</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKShadowCasting</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKRayCasting_Line</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKRayCasting_Triangles</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">RegisterActorComponent</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">UnregisterActorComponent</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">GetFactionFogs</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Faction</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">InitializeBuffers</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">InitializeStrategy</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">InitializeUpscaler</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">InitializeExploration</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarStrategy</span><span class="w"> </span><span class="o">*</span><span class="n">Strategy</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKTransformerStrategy</span><span class="w"> </span><span class="o">*</span><span class="n">Upscaler</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKTransformerStrategy</span><span class="w"> </span><span class="o">*</span><span class="n">Exploration</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">ActorComponents</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UMaterialInstanceDynamic</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">PostProcessMaterials</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Replicated</span><span class="p">,</span><span class="w"> </span><span class="n">Transient</span><span class="p">,</span><span class="w"> </span><span class="n">ReplicatedUsing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OnRep_TeamFogs</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">TeamFogs</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Replicated</span><span class="p">,</span><span class="w"> </span><span class="n">Transient</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">Blocking</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">NameToFogs</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKDynamicFogMaterial</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Materials</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bReady</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Insert TeamFogs into NameToFogs on replication</span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnRep_TeamFogs</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">TeamName</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Team</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NameToFogs</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">TeamName</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Team</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">Team</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">TeamId</span><span class="p">,</span><span class="w"> </span><span class="n">Target</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">SeerTeam</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">GetTeamIdentifier</span><span class="p">(</span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SeerTeam</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Strategy</span><span class="p">,</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">SeerTeam</span><span class="p">,</span><span class="w"> </span><span class="n">Target</span><span class="p">),</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">SeerTeam</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Loc</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Strategy</span><span class="p">,</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">SeerTeam</span><span class="p">,</span><span class="w"> </span><span class="n">Loc</span><span class="p">),</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

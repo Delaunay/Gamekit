@@ -1,0 +1,17 @@
+.. _exhale_class_classIGKCachedAbilityTargetActorInterface:
+
+Class IGKCachedAbilityTargetActorInterface
+==========================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IGKCachedAbilityTargetActorInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

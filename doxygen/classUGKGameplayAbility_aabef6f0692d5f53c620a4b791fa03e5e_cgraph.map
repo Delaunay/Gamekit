@@ -1,0 +1,9 @@
+<map id="UGKGameplayAbility::ApplyEffectContainer" name="UGKGameplayAbility::ApplyEffectContainer">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,172,80"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a17c82af5c9e6625c3e3a055ec83ae6d8" title=" " alt="" coords="220,5,419,47"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#a425c6289fa43d0a0bd34440ae3959e8b" title=" " alt="" coords="221,71,417,112"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#ad148bbb1d5a1085910f7e92a939c7e6c" title=" " alt="" coords="467,63,696,119"/>
+<area shape="rect" id="node5" href="$structFGKGameplayEffectContainerSpec.html#aa545c4912759918a75568320d69f657d" title=" " alt="" coords="779,5,995,47"/>
+<area shape="rect" id="node6" href="$classUGKAbilitySystemComponent.html#a31af9bf679014266cd63ecce2256f7a9" title="Version of function in AbilitySystemGlobals that returns correct type." alt="" coords="744,71,1031,112"/>
+<area shape="rect" id="node7" href="$classUGKTargetType.html#a4366bf4b4ac708a4e862a759c3c3ba60" title=" " alt="" coords="788,137,987,163"/>
+</map>

@@ -1,0 +1,14 @@
+.. _exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1af9e79deb631efa7b2b72a9de214d6404:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged, FActiveGameplayEffectHandle, GameplayHandle, int32, StackCount)
+======================================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged, FActiveGameplayEffectHandle, GameplayHandle, int32, StackCount)
+   :project: GameKit

@@ -1,0 +1,83 @@
+
+.. _file_Source_Gamekit_Items_GKItemTypes.h:
+
+File GKItemTypes.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Items>` (``Source/Gamekit/Items``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Items/GKItemTypes.h``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Items_GKItemTypes.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKItemTypes.generated.h``
+
+- ``Gamekit/Abilities/GKAbilityInputs.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInputs.h`)
+
+- ``UObject/PrimaryAssetId.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
+
+- :ref:`file_Source_Gamekit_GKGameInstance.h`
+
+- :ref:`file_Source_Gamekit_GKSaveGame.h`
+
+- :ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKAbilitySlot`
+
+- :ref:`exhale_struct_structFGKItemData`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKItemTypes_8h_1aa57297f7d2aca754cc8ff8e0e54bbc17`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a48b8b70d84a875bd50835a558545816d`
+
+- :ref:`exhale_function_GKItemTypes_8h_1ac11ca505951dc00ddce58bbe2820a52e`
+
+- :ref:`exhale_function_GKItemTypes_8h_1aeaa00e87e067b796b0ca8c92a2740535`
+
+- :ref:`exhale_function_GKItemTypes_8h_1aad48a28464dad608433e539531822b55`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a4b03dafbaf82e7ba373dc76e7c25c3f2`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a67e36e38974f304506844b3a2528b7aa`
+

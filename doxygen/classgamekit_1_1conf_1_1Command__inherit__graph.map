@@ -1,0 +1,9 @@
+<map id="gamekit.conf.Command" name="gamekit.conf.Command">
+<area shape="rect" id="node1" title=" " alt="" coords="5,152,184,179"/>
+<area shape="rect" id="node2" href="$classgamekit_1_1commands_1_1cook_1_1CookGame.html" title=" " alt="" coords="232,5,495,32"/>
+<area shape="rect" id="node3" href="$classgamekit_1_1commands_1_1disable_1_1Disable.html" title=" " alt="" coords="260,57,467,98"/>
+<area shape="rect" id="node4" href="$classgamekit_1_1commands_1_1init_1_1Init.html" title=" " alt="" coords="262,123,465,149"/>
+<area shape="rect" id="node5" href="$classgamekit_1_1commands_1_1install_1_1Install.html" title=" " alt="" coords="263,174,463,215"/>
+<area shape="rect" id="node6" href="$classgamekit_1_1commands_1_1tests_1_1RunTests.html" title=" " alt="" coords="255,239,472,281"/>
+<area shape="rect" id="node7" href="$classgamekit_1_1commands_1_1vscode_1_1VSCode.html" title=" " alt="" coords="260,305,467,346"/>
+</map>

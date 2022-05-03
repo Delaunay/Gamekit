@@ -1,0 +1,14 @@
+.. _exhale_define_GKLog_8h_1a8f2b71540826e6057237668683c1caf4:
+
+Define GK_WARNING
+=================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GK_WARNING
+   :project: GameKit

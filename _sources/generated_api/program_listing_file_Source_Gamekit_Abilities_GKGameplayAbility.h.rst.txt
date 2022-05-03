@@ -1,0 +1,303 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKGameplayAbility.h:
+
+Program Listing for File GKGameplayAbility.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKGameplayAbility.h>` (``Source/Gamekit/Abilities/GKGameplayAbility.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityStatic.h"
+   #include "Gamekit/Abilities/GKAbilityTypes.h"
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Abilities/GameplayAbility.h"
+   
+   // Generated
+   #include "GKGameplayAbility.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate);
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKTargetingStartDelegate);
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTargetingResultDelegate, bool, TargetCancelled);
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level);
+   
+   /* Dynamic Gameplay effect that is initialized from a DataTable
+    */
+   UCLASS(Blueprintable)
+   class GAMEKIT_API UGKGameplayEffectDyn: public UGameplayEffect
+   {
+       public:
+       GENERATED_UCLASS_BODY()
+   
+       public:
+       // Overide the Networking functions
+       bool IsNameStableForNetworking() const override { return true; }
+   
+       bool IsSupportedForNetworking() const override { return true; }
+   };
+   
+   UCLASS()
+   class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
+   {
+       GENERATED_BODY()
+   
+       public:
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       void ActivateAbility_Native();
+   
+       void ActivateAbility_Hidden();
+   
+       void ActivateAbility_Passive();
+   
+       void ActivateAbility_NoTarget();
+   
+       void ActivateAbility_ActorTarget();
+   
+       void ActivateAbility_PointTarget();
+   
+       void ActivateAbility_Toggle();
+   
+       public:
+       // Constructor and overrides
+       UGKGameplayAbility();
+   
+       // DataTable
+       // ---------
+   
+       UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+       class UDataTable *AbilityDataTable;
+   
+       UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+       FName AbilityRowName;
+   
+       UFUNCTION(BlueprintCallable,
+                 Category    = "Ability|Data",
+                 DisplayName = "GetAbilityStatic",
+                 meta        = (ScriptName = "GetAbilityStatic"))
+       void K2_GetAbilityStatic(FGKAbilityStatic &AbilityStatic, bool &Valid);
+   
+       FGKAbilityStatic *GetAbilityStatic();
+   
+       UFUNCTION()
+       void OnDataTableChanged_Native();
+   
+       virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef);
+   
+       void PostInitProperties() override;
+   
+       FGKAbilityStatic *AbilityStatic;
+   
+       // Animations
+       // ----------
+       public:
+       UFUNCTION(BlueprintCallable)
+       class UAnimMontage *GetAnimation();
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+       FGKAnimationArray AnimMontages;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+       FName StartSection = NAME_None;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+       float Rate = 1.f;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+       bool DyanmicCastPoint = true;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+       bool Immediate;
+   
+       UPROPERTY()
+       class UGKAbilityTask_PlayMontageAndWaitForEvent *AnimTask;
+   
+       protected:
+       class AGKAbilityTarget_Actor *SpawnAbilityTarget_Actor();
+   
+       UFUNCTION()
+       void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);
+   
+       UFUNCTION()
+       void OnAbilityAnimationAbort(FGameplayTag EventTag, FGameplayEventData EventData);
+   
+       UFUNCTION()
+       void OnAbilityAnimationEvent(FGameplayTag EventTag, FGameplayEventData EventData);
+   
+       public:
+       // Move to location during targeting
+       UPROPERTY()
+       class UGKAbilityTask_MoveToDestination *MoveToTargetTask;
+       // class UAbilityTask_MoveToLocation* MoveToTargetTask;
+   
+       UFUNCTION()
+       void OnAbilityMoveToTargetCompleted(const FGameplayAbilityTargetDataHandle &Data);
+   
+       UFUNCTION()
+       void OnAbilityMoveToTargetCancelled(const FGameplayAbilityTargetDataHandle &Data);
+   
+       // Targeting
+       UPROPERTY()
+       class UGKAbilityTask_WaitForTargetData *TargetTask;
+   
+       UFUNCTION()
+       void OnAbilityTargetingCancelled(const FGameplayAbilityTargetDataHandle &Data);
+   
+       UFUNCTION()
+       void OnAbilityTargetAcquired(const FGameplayAbilityTargetDataHandle &Data);
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKTargetingResultDelegate TargetingResultDelegate;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKTargetingStartDelegate TargetingStartDelegate;
+   
+       // -----------------------------------------------------------------
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       bool GetTargetLocation(FGameplayAbilityTargetDataHandle TargetData,
+                              FVector &                        Position,
+                              AActor *&                        Target,
+                              int32                            Index = 0);
+   
+       // Projectile
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       void SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData);
+   
+       public:
+       // TODO: remove this
+       UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = GameplayEffects)
+       TMap<FGameplayTag, FGKGameplayEffectContainer> EffectContainerMap;
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
+       virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpecFromContainer(
+               const FGKGameplayEffectContainer &Container,
+               const FGameplayEventData &        EventData,
+               int32                             OverrideGameplayLevel = -1);
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
+       virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGameplayTag              ContainerTag,
+                                                                      const FGameplayEventData &EventData,
+                                                                      int32 OverrideGameplayLevel = -1);
+   
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainerSpec(
+               const FGKGameplayEffectContainerSpec &ContainerSpec);
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
+       virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainer(FGameplayTag              ContainerTag,
+                                                                        const FGameplayEventData &EventData,
+                                                                        int32 OverrideGameplayLevel = -1);
+   
+       friend class AGKCharacterBase;
+   
+       // UGameplayAbility Overrides
+       //---------------------------
+   
+       virtual UGameplayEffect *GetCooldownGameplayEffect() const override;
+   
+       UPROPERTY()
+       UGameplayEffect *CooldownEffectInstance;
+   
+       virtual UGameplayEffect *GetCostGameplayEffect() const override;
+   
+       UPROPERTY()
+       UGameplayEffect *CostEffectInstance;
+   
+       // Make sure Ability with a level <= 0 are disabled
+       bool CanActivateAbility(const FGameplayAbilitySpecHandle Handle,
+                               const FGameplayAbilityActorInfo *ActorInfo,
+                               const FGameplayTagContainer *    SourceTags     = nullptr,
+                               const FGameplayTagContainer *    TargetTags     = nullptr,
+                               OUT FGameplayTagContainer *OptionalRelevantTags = nullptr) const override;
+   
+       void CancelAbility(const FGameplayAbilitySpecHandle     Handle,
+                          const FGameplayAbilityActorInfo *    ActorInfo,
+                          const FGameplayAbilityActivationInfo ActivationInfo,
+                          bool                                 bReplicateCancelAbility);
+   
+       void ApplyCooldown(const FGameplayAbilitySpecHandle     Handle,
+                          const FGameplayAbilityActorInfo *    ActorInfo,
+                          const FGameplayAbilityActivationInfo ActivationInfo) const override;
+   
+       void ApplyCost(const FGameplayAbilitySpecHandle     Handle,
+                      const FGameplayAbilityActorInfo *    ActorInfo,
+                      const FGameplayAbilityActivationInfo ActivationInfo) const override;
+   
+       void ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle     Handle,
+                                              const FGameplayAbilityActorInfo *    ActorInfo,
+                                              const FGameplayAbilityActivationInfo ActivationInfo,
+                                              const UGameplayEffect *              GameplayEffect,
+                                              float                                GameplayEffectLevel,
+                                              int32                                Stacks = 1) const;
+   
+       FScalableFloat GenerateCurveDataFromArray(FName prefix, TArray<float> &Values, bool ValuesAreFinal, bool Cost);
+   
+       // Dynamic Init
+       // ------------
+       UGameplayEffect *NewCooldownEffectFromConfig(TArray<float> &Durations);
+   
+       UGameplayEffect *NewCostEffectFromConfig(FGKAbilityCost &Conf);
+   
+       // Extension
+       // ---------
+       // We have:
+       //  - CheckCooldown             ->  GetAbilityCooldownTags()
+       //  - CheckCost                 ->  GetAbilityCostAttribute()
+       //  - CheckTagRequirements      ->  GetActivationBlockedTag() & GetActivationRequiredTag()
+       //
+       // if all 3 returns true then the ability can be cast
+   
+       UFUNCTION(BlueprintCallable, Category = ActivationTags)
+       FGameplayTagContainer GetActivationBlockedTag();
+   
+       UFUNCTION(BlueprintCallable, Category = ActivationTags)
+       FGameplayTagContainer GetActivationRequiredTag();
+   
+       UFUNCTION(BlueprintCallable, Category = Cooldown)
+       const FGameplayTagContainer &GetAbilityCooldownTags() const;
+   
+       UFUNCTION(BlueprintCallable, Category = Cost)
+       TArray<FGameplayAttribute> GetAbilityCostAttribute() const;
+   
+       virtual bool CheckTagRequirements(const UAbilitySystemComponent &AbilitySystemComponent,
+                                         OUT FGameplayTagContainer *OptionalRelevantTags = nullptr) const
+       {
+           return DoesAbilitySatisfyTagRequirements(AbilitySystemComponent, nullptr, nullptr, OptionalRelevantTags);
+       }
+   
+       UFUNCTION(BlueprintCallable,
+                 Category    = ActivationTags,
+                 DisplayName = "CheckTagRequirements",
+                 meta        = (ScriptName = "CheckTagRequirements"))
+       virtual bool K2_CheckTagRequirements(FGameplayTagContainer &RelevantTags);
+   
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       void LevelUpAbility();
+   
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       void ActivateManual_PointTarget(FVector Point);
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKAbilityLevelUpDelegate OnAbilityLevelUp;
+   
+       virtual void InputPressed(const FGameplayAbilitySpecHandle     Handle,
+                                 const FGameplayAbilityActorInfo *    ActorInfo,
+                                 const FGameplayAbilityActivationInfo ActivationInfo) override;
+   
+       // Current Task taht is playing
+       UAbilityTask *CurrentTask;
+   };
+   
+   UGameplayEffect *NewPassiveRegenEffect(UObject *          Parent,
+                                          FGameplayAttribute Attribute,
+                                          float              Value,
+                                          float              Period = 1.f,
+                                          FName              name   = NAME_None);

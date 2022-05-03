@@ -1,0 +1,67 @@
+
+.. _file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.h:
+
+File GKAsyncTaskCooldownChanged.h
+=================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Blueprint>` (``Source/Gamekit/Abilities/Blueprint``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h``)
+--------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``CoreMinimal.h``
+
+- ``GKAsyncTaskCooldownChanged.generated.h``
+
+- ``GameplayTagContainer.h``
+
+- ``Kismet/BlueprintAsyncActionBase.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.cpp`
+
+- :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKAsyncTaskCooldownChanged`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKAsyncTaskCooldownChanged_8h_1aca6a50e973410d3a7387c66fdccb1de2`
+

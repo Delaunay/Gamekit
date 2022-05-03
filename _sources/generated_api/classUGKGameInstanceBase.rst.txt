@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKGameInstanceBase:
+
+Class UGKGameInstanceBase
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_GKGameInstance.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGameInstance``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKGameInstanceBase
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

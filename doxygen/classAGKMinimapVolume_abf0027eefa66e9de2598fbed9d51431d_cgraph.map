@@ -1,0 +1,5 @@
+<map id="AGKMinimapVolume::DrawMinimap" name="AGKMinimapVolume::DrawMinimap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,13,260,39"/>
+<area shape="rect" id="node2" href="$classAGKMinimapVolume.html#a4254e63c7c5e7de1116f6fe4d3ffe566" title="Draw a single component on the given canvas." alt="" coords="308,5,540,47"/>
+<area shape="rect" id="node3" href="$classAGKMinimapVolume.html#a565f4dbe73f251ac2d49189aa016178b" title="Returns the screen (Pixel) coordinate given a world coordinates." alt="" coords="588,5,819,47"/>
+</map>

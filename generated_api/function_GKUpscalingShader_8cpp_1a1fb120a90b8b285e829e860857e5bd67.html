@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function IMPLEMENT_GLOBAL_SHADER &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function InitNavigationControl" href="function_GKMovementUtility_8cpp_1ac18c8a4d8ce25588cb8da0bfd9c8d9a9.html" />
+    <link rel="prev" title="Function GetY" href="function_GKMazeGeneration_8cpp_1a300bf5c7b80ad1b200ccd9b6eb251f63.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="function_GK__FoW__RayCasting__V1_8h_1a6ba970bf1ed5c89f70bbf01a361dbd6f.html">Function BroadCastEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarVolume_8cpp_1a68986c5361b8467a75ada1f76e782bd0.html">Function CopyTexture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKDamageExecution_8cpp_1ac5379244385f9728f87beaff8fc7b022.html">Function DamageStatics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8h_1ab4e847ee9b096ce1e987ffce5d00758a.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8h_1ab1e0c9832cd6b4037d9b4d490f2cddc1.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKTargetingStartDelegate)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1aa57297f7d2aca754cc8ff8e0e54bbc17.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInventoryLoaded)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAsyncTask__GameplayEffectChanged_8h_1a691cf3ba986c6191894b3a4867f4faa2.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityTask__MoveToDestination_8h_1a6d14d165404ce5e5b3ed99d3fba66331.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKMoveToDestinationDelegate, const FGameplayAbilityTargetDataHandle&amp;, TargetData)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAsyncTask__GameplayEffectChanged_8h_1aed28e28ae495247ba53c6cb51186f82c.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8h_1a861feaa684ae52fe639425e10b65e092.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTargetingResultDelegate, bool, TargetCancelled)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8h_1a3b8206e72ac9e2536ff9c24ccad8c306.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityTask__WaitTargetData_8h_1aa9c892eb98f7e6b3abf2a44d6d68eed4.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKWaitTargetDataDelegate, const FGameplayAbilityTargetDataHandle&amp;, Data)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKCharacter_8h_1a139c665a8516dd3bcaa888a264384494.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKCharacter_8h_1afca8e24caf229739a4014645d78d84cb.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKCharacter_8h_1a76ddc8cf3fc7ae8dc485f70f195d0e8b.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTeamAssignedDelegate, FGenericTeamId, Team)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGASCharacter_8h_1a1d6e10e72cb584eb062baa3d740517df.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDiedDelegate, AGKGASCharacter *, Character)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarComponent_8h_1afe8199e4807cfd7e45e0397b3f2e1297.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor *, Actor)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarComponent_8h_1ab55200f5fc9bd70d7378ffb0a22a66ab.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarVolume_8h_1a5f1a838387dd74fac00fa4080ed6dd86.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1a48b8b70d84a875bd50835a558545816d.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSaveGameLoaded, UGKSaveGame *, SaveGame)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAsyncTaskAttributeChanged_8h_1ab5b01f0f5a84dbfeb65b0c0292263d12.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttributeChanged, FGameplayAttribute, Attribute, float, NewValue, float, OldValue)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAsyncTaskCooldownChanged_8h_1aca6a50e973410d3a7387c66fdccb1de2.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCooldownChanged, FGameplayTag, CooldownTag, float, TimeRemaining, float, Duration)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityTask__PlayMontageAndWaitForEvent_8h_1a71e969716e559435140fd17d29862865.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKPlayMontageAndWaitForEventDelegate, FGameplayTag, EventTag, FGameplayEventData, EventData)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAsyncTask__GameplayEffectChanged_8h_1af9e79deb631efa7b2b72a9de214d6404.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged, FActiveGameplayEffectHandle, GameplayHandle, int32, StackCount)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilitySystemComponent_8h_1ab9d787c0483eee23d5e8acccdd37944c.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKAbilityFailedDelegate, const UGameplayAbility *, Ability, const FGameplayTagContainer&amp;, FailureReason)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityTarget__PlayerControllerTrace_8h_1ad0f1e72869a8cacacab2b03851336d9d.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult&amp;, TraceHit, bool, IsValid)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1aeaa00e87e067b796b0ca8c92a2740535.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChanged, bool, bAdded, UGKItem *, Item)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1ac11ca505951dc00ddce58bbe2820a52e.html">Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSlottedItemChanged, FGKAbilitySlot, ItemSlot, UGKItem *, Item)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilities_8h_1a3920d3dfc969403644b5d36066e3a5d2.html">Function DECLARE_LOG_CATEGORY_EXTERN(LogGKGA, Log, All)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWar_8h_1af5ea18842f1c3c62dadc71b96bd268af.html">Function DECLARE_LOG_CATEGORY_EXTERN(LogGKFoW, Log, All)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_Gamekit_8h_1a9bc6986e895d64acbd8b52c53eaa22d6.html">Function DECLARE_LOG_CATEGORY_EXTERN(LogGamekit, Log, All)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1aad48a28464dad608433e539531822b55.html">Function DECLARE_MULTICAST_DELEGATE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1a4b03dafbaf82e7ba373dc76e7c25c3f2.html">Function DECLARE_MULTICAST_DELEGATE_OneParam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e.html">Function DECLARE_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChangedNative, bool, UGKItem *)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKItemTypes_8h_1a67e36e38974f304506844b3a2528b7aa.html">Function DECLARE_MULTICAST_DELEGATE_TwoParams(FOnSlottedItemChangedNative, FGKAbilitySlot, UGKItem *)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_Gamekit_8cpp_1ad24f50f96a04983a8666bfd657c93ecd.html">Function DEFINE_LOG_CATEGORY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKHexGridUtilities_8cpp_1aa9c384ac09b86a7c4936345caf7fabe8.html">Function Distance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1cli_1a1c64e7b4d7dd9fdd2479685d242c59fc.html">Function gamekit::cli::main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1cli_1a38b89eed1118e683bbba37be45920579.html">Function gamekit::cli::parse_args</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1commands_1a629d126a161014f902439b5ed1823c4b.html">Function gamekit::commands::fetch_factories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1conf_1a28d3a85dcf697a317fe7c3029c2d8353.html">Function gamekit::conf::load_conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1conf_1a5b3eb5440bd0cd90821f41fa82ff5a19.html">Function gamekit::conf::save_conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1a9d2974a371633a57335ee18d0129fbde.html">Function gamekit::fbm::dot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1a76f14ec46581357cd3f6ab8b5966dfa1.html">Function gamekit::fbm::fract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1a4a3e0d541b62529b10ca62896c028801.html">Function gamekit::fbm::mix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1aec52451c1d940568e2f3172531912c3f.html">Function gamekit::fbm::mult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1a0638adcb65e198c1d9086c6119bf8b64.html">Function gamekit::fbm::noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1ae2e3b45e2fdf524572bd61f73b0e8a7b.html">Function gamekit::fbm::random</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespacegamekit_1_1fbm_1a09ff4d0ecc44a4e8590df7cd671be27a.html">Function gamekit::fbm::sub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilitiesTest_8cpp_1ae5fe3851bf4866485038e47751c6d4d4.html">Function GAMEKIT_TEST(Abilities., UGKGameplayability, GetRelativePosition)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKUtilityLibraryTest_8cpp_1a8ca62182ed073fed22e9bfe6e2091d39.html">Function GAMEKIT_TEST(Blueprint., UGKUtilityLibrary, GetRelativePosition)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarTest_8cpp_1ac0429ab7da8d9876eda056fa13eaad1a.html">Function GAMEKIT_TEST(FogOfWar., AGKFogOfWarVolume, GetRelativePosition)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d.html">Function GetImpactPoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKSharedTexture_8cpp_1a2829158c26bbb94c8750013583943d29.html">Function GetTextureFormat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKUpscalingShader_8cpp_1a696a5b630ad60871824c6069cc73c79f.html">Function GetTextureRHI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKMazeGeneration_8cpp_1af2d7c7ae85ca2af85c0ec6edcceaf21a.html">Function GetX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKMazeGeneration_8cpp_1a300bf5c7b80ad1b200ccd9b6eb251f63.html">Function GetY</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Function IMPLEMENT_GLOBAL_SHADER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKMovementUtility_8cpp_1ac18c8a4d8ce25588cb8da0bfd9c8d9a9.html">Function InitNavigationControl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKBitFlag_8h_1a1c8e2225ea2bc770a860e98b5d3fcbff.html">Template Function IsSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1ac9db3055ee20fd85719ecb48b4ea614f.html">Template Function Log_Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1a006adf26c5b5ec9d37aa5a71bd9acc06.html">Template Function Log_Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1a820f1f84f420f777d958840f729cd274.html">Template Function Log_Fatal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1ace26261f8c9861ee83ac3bc3c5449e61.html">Template Function Log_Log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1a3ce89b0f714bde895e8fed0dab911c27.html">Template Function Log_Verbose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1afdf60ed328c39565acf47a46e66d7436.html">Template Function Log_VeryVerbose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKLog_8h_1ad1a2a183de0fbea0662e9c3b9a43f315.html">Template Function Log_Warning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_Upscaling_8usf_1af341bf09922b13b8dbb7bb8c50372167.html">Function MainComputeShader(uint3 GroupId :SV_GroupID, uint3 ThreadId :SV_DispatchThreadID, uint3 GroupThreadId:SV_GroupThreadID, uint GroupdIndex :SV_GroupIndex)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_Upscaling__Buffer_8usf_1af341bf09922b13b8dbb7bb8c50372167.html">Function MainComputeShader(uint3 GroupId :SV_GroupID, uint3 ThreadId :SV_DispatchThreadID, uint3 GroupThreadId:SV_GroupThreadID, uint GroupdIndex :SV_GroupIndex)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8cpp_1adce0a323e5bfb7eb46959e928ea2536e.html">Function NewPassiveRegenEffect(UObject *, FGameplayAttribute, float, float, FName)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8h_1a5396a8662d5cc84c9f632669377f5a10.html">Function NewPassiveRegenEffect(UObject *, FGameplayAttribute, float, float, FName)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKBitFlag_8h_1aa917b61e29bb996ce90a7ae191eea7a9.html">Template Function RemoveFlag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8cpp_1afa4f55520ec924d32695f86e7caf18af.html">Function ResolveAnimationPlayRate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKBitFlag_8h_1aff4bfc0dd4c5098f5bdcc40edd66e64c.html">Template Function SetFlag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GK__FoW__ShadowCasting_8cpp_1a15022ce009a42d8f40322315bfe702ee.html">Function ShowHeightMapInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKTopDownPawn_8cpp_1a2443b3fea997327015833c913b528ca0.html">Function sign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GK__FoW__RayCasting__V3_8cpp_1ab67f0c9fe6e58ebef785f8936907cd3f.html">Function TrackCoverage(TArray&lt;FVector2D&gt;&amp;, float64, float64, bool&amp;, FVector2D&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GK__FoW__RayCasting__V3_8cpp_1a34a71c6ae828aad8939e38aae0dddf64.html">Function TrackCoverage(TArray&lt;FVector2D&gt;&amp;, float, float, bool&amp;, FVector2D&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKMazeGeneration_8cpp_1a5470dd02a5d3a32a84b3efc211596a0e.html">Function WilsonWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Function IMPLEMENT_GLOBAL_SHADER</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/function_GKUpscalingShader_8cpp_1a1fb120a90b8b285e829e860857e5bd67.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="function-implement-global-shader">
+<span id="exhale-function-gkupscalingshader-8cpp-1a1fb120a90b8b285e829e860857e5bd67"></span><h1>Function IMPLEMENT_GLOBAL_SHADER<a class="headerlink" href="#function-implement-global-shader" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_Shaders_GKUpscalingShader.cpp.html#file-source-gamekit-shaders-gkupscalingshader-cpp"><span class="std std-ref">File GKUpscalingShader.cpp</span></a></p></li>
+</ul>
+<section id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Unable to resolve function “IMPLEMENT_GLOBAL_SHADER” with arguments “(FUpscalingShader, “/Gamekit/Upscaling.usf”, “MainComputeShader”, SF_Compute)”.
+Could not parse arguments. Parsing eror is
+Invalid C++ declaration: Expected identifier in nested name. [error at 19]
+  (FUpscalingShader, “/Gamekit/Upscaling.usf”, “MainComputeShader”, SF_Compute)
+  ——————-^</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="function_GKMazeGeneration_8cpp_1a300bf5c7b80ad1b200ccd9b6eb251f63.html" class="btn btn-neutral float-left" title="Function GetY" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="function_GKMovementUtility_8cpp_1ac18c8a4d8ce25588cb8da0bfd9c8d9a9.html" class="btn btn-neutral float-right" title="Function InitNavigationControl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

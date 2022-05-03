@@ -1,0 +1,15 @@
+
+.. _program_listing_file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp:
+
+Program Listing for File GKRichTextBlockDecorator.cpp
+=====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp>` (``Source/Gamekit/Widget/RichTextDecorator/GKRichTextBlockDecorator.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "Gamekit/Widget/RichTextDecorator/GKRichTextBlockDecorator.h"

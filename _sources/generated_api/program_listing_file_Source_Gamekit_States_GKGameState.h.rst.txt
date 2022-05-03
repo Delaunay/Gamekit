@@ -1,0 +1,33 @@
+
+.. _program_listing_file_Source_Gamekit_States_GKGameState.h:
+
+Program Listing for File GKGameState.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_States_GKGameState.h>` (``Source/Gamekit/States/GKGameState.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "GameFramework/GameStateBase.h"
+   
+   // Generated
+   #include "GKGameState.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKGameStateBase: public AGameStateBase
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKGameStateBase() {}
+   };

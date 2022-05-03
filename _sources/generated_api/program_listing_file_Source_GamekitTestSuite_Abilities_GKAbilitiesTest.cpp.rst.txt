@@ -1,0 +1,24 @@
+
+.. _program_listing_file_Source_GamekitTestSuite_Abilities_GKAbilitiesTest.cpp:
+
+Program Listing for File GKAbilitiesTest.cpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitTestSuite_Abilities_GKAbilitiesTest.cpp>` (``Source/GamekitTestSuite/Abilities/GKAbilitiesTest.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Gamekit
+   #include "Gamekit/Abilities/GKGameplayability.h"
+   
+   // Gamekit Tests
+   #include "GamekitTestSuite/GKTestUtilities.h"
+   
+   
+   GAMEKIT_TEST(Abilities.Something, UGKGameplayability, GetRelativePosition)
+   {
+   
+       return true;
+   }

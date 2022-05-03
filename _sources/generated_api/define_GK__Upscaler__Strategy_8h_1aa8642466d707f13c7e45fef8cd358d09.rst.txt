@@ -1,0 +1,14 @@
+.. _exhale_define_GK__Upscaler__Strategy_8h_1aa8642466d707f13c7e45fef8cd358d09:
+
+Define UpscaledTextureType
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: UpscaledTextureType
+   :project: GameKit

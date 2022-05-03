@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKAnimationArray:
+
+Struct FGKAnimationArray
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKAnimationArray
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

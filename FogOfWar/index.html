@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fog Of War &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Drawing Strategies" href="Strategies.html" />
+    <link rel="prev" title="Teams" href="../DataDriven/Teams.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fog Of War</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiplayer">Multiplayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-usage">Memory Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Fog Of War</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/FogOfWar/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fog-of-war">
+<h1>Fog Of War<a class="headerlink" href="#fog-of-war" title="Permalink to this headline"></a></h1>
+<p>Fog of war have an important impact on the overall game in a multiplayer setting.
+Indeed, the fog of war brings a new dimension to the gameplay, that new dimensions needs
+to be protected from cheater that might reveal hidden part of the map.
+In order to do so, replication needs to be tweak for all actors participating in the fog of war.</p>
+<p>Relevant classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../generated_api/classAGKFogOfWarVolume.html#_CPPv417AGKFogOfWarVolume" title="AGKFogOfWarVolume"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code></a>: Top level Actors that manages all the textures and components</p></li>
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKFogOfWarComponent</span></code>: Simple actor component that is added to each actors participating in the fog of war (drawing &amp; blocking)</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKFogOfWarStrategy.html#_CPPv419UGKFogOfWarStrategy" title="UGKFogOfWarStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKFogOfWarStrategy</span></code></a>: Implements a drawing the line of sight algorithm</p></li>
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKUpscalerStrategy</span></code>: Implements a upscaling algorithm for the fog of war texture.
+It can be used to implement post processing/filters on the texture itself before it gets display on the scene</p></li>
+</ul>
+<img alt="../_images/FogOFWar_System.png" src="../_images/FogOFWar_System.png" />
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Multi Team (uses <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">IGenericTeamAgentInterface</span></code>)</p></li>
+<li><p>Multi Actors</p></li>
+<li><p>Many customization &amp; performance parameters to try</p></li>
+<li><p>Simple PostProcessingMaterial setup on the controlled pawn’s camera</p></li>
+<li><p>Upscaler</p></li>
+<li><p>Post process materials examples</p></li>
+<li><p>Customizable components</p></li>
+<li><p>Support spectator fog (multi fog view)</p></li>
+<li><p>Replication friendly</p></li>
+</ul>
+<img alt="../_images/FogOFWarOverview.PNG" src="../_images/FogOFWarOverview.PNG" />
+</section>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code> over the area that will be covered by the fog</p>
+<ol class="arabic simple">
+<li><p>[Optional] Set the post process material</p></li>
+<li><p>[Optional] Set the fog of war material parameters</p></li>
+<li><p>[Optional] Disable/Enable exploration</p></li>
+<li><p>[Optional] Select Vision drawing strategy</p></li>
+<li><p>[Optional] Disable/Enable Upscaling strategy</p>
+<ol class="arabic simple">
+<li><p>Set the upscaling material</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">UGKFogOfWarComponent</span></code> to every actors that will participate in the fog of war (including blocking)</p>
+<ol class="arabic simple">
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">UGKFogOfWarComponent::SetCameraPostprocessMaterial</span></code> to add the post process material to our camera
+to render the fog</p></li>
+<li><p>Update materials to make sure out of sight units are not rendered.</p></li>
+<li><p>Configure the actor’ sight settings</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="multiplayer">
+<h2>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AActor::IsReplicationPausedForConnection</span></code> needs to be updated to only enable
+replication for actors that are visible to the player controller’s team.
+<a class="reference internal" href="../generated_api/classAGKCharacterBase.html#_CPPv416AGKCharacterBase" title="AGKCharacterBase"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKCharacterBase</span></code></a> provide a default implementation.</p></li>
+<li><p>The set of visible units is produced by the server and replicated to the clients.
+Clients can only access the visible set of their faction.</p></li>
+<li><p>Spectators receive all the visible sets</p></li>
+</ul>
+<img alt="../_images/FogReplication.png" src="../_images/FogReplication.png" />
+</section>
+<section id="memory-usage">
+<h2>Memory Usage<a class="headerlink" href="#memory-usage" title="Permalink to this headline"></a></h2>
+<p>The map is split in tiles, there are 2 permanent layers</p>
+<ul class="simple">
+<li><p>Terrain</p></li>
+<li><p>Blocking</p></li>
+</ul>
+<p>By Default 3 teams are defined (Neutral, GoodGuys, BadGuys).</p>
+<ul class="simple">
+<li><p>Memory Usage
+* CPU: (MapSize / TileSize) * (#Team + 2)
+* GPU: (MapSize / TileSize) * #Team * UpscalingMutiplier</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">NoTeam</span></code> is its own separate concept, they will not be registered
+to the fog of war (but they can be registered as obstacle).</p>
+</div>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Map Size 400’000 x 400’000 (400x400 meters)</p></li>
+<li><p>Grid Size: 16 x 16 x 32</p></li>
+<li><p>RAM usage per team = (400000/16) ^ 2 / 1024 / 1024 ~= 596 Mio</p></li>
+<li><p>Map Size 400’000 x 400’000 (400x400 meters)</p></li>
+<li><p>Grid Size: 32 x 32 x 32</p></li>
+<li><p>RAM usage per team = (400000/32) ^ 2 / 1024 / 1024 ~= 149 Mio</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Image is gray scale, using colors would multiple the memory usage by 3 or 4 with an alpha channel.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../DataDriven/Teams.html" class="btn btn-neutral float-left" title="Teams" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Strategies.html" class="btn btn-neutral float-right" title="Drawing Strategies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

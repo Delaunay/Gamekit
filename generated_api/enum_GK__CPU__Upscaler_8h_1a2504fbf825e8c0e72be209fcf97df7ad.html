@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enum EGK_UpscalingMethod &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Enum EGK_VisbilityLayers" href="enum_GK__FoW__ShadowCasting_8h_1a4f8067a5adfac5ff7c11bc1cda87b3d4.html" />
+    <link rel="prev" title="Enum EGK_TileVisbility" href="enum_GK__FoW__ShadowCasting_8h_1ac393a54e61e1775c11589374968f63ca.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab.html">Enum EGK_AbilityAnimation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html">Enum EGK_AbilityBehavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAbilityStatic_8h_1a75720bf524d3e8434548df55673d9c36.html">Enum EGK_AbilityKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKGrid_8h_1a16cb7446f080bb85bb137366b19d626a.html">Enum EGK_GridKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda.html">Enum EGK_ItemSlot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAbilityInputs_8h_1a5926be264f6313e59bb65648750bdd6a.html">Enum EGK_MOBA_AbilityInputID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKProjectileStatic_8h_1afd9e90c3cf6c1436d328ee750d950eb4.html">Enum EGK_ProjectileBehavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKAbilityStatic_8h_1ad839d943689aa9b8ddff72a7ffdac49d.html">Enum EGK_TargetingMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GK__FoW__ShadowCasting_8h_1ac393a54e61e1775c11589374968f63ca.html">Enum EGK_TileVisbility</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Enum EGK_UpscalingMethod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GK__FoW__ShadowCasting_8h_1a4f8067a5adfac5ff7c11bc1cda87b3d4.html">Enum EGK_VisbilityLayers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GK__FoW__ShadowCasting_8h_1aa99d2a70aeaf4d2b3fe7b7fb277ac1ad.html">Enum EGK_VisibilityLayer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_GKUtilityLibrary_8h_1a133d81012099cb3e1e8d5f81a839ee29.html">Enum EGKRelativePosition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_namespaceEGKSaveGameVersion_1a1d08fa10138bd365319d1d74b1bc4b79.html">Enum type</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Enum EGK_UpscalingMethod</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/enum_GK__CPU__Upscaler_8h_1a2504fbf825e8c0e72be209fcf97df7ad.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enum-egk-upscalingmethod">
+<span id="exhale-enum-gk-cpu-upscaler-8h-1a2504fbf825e8c0e72be209fcf97df7ad"></span><h1>Enum EGK_UpscalingMethod<a class="headerlink" href="#enum-egk-upscalingmethod" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h.html#file-source-gamekit-fogofwar-upscaler-gk-cpu-upscaler-h"><span class="std std-ref">File GK_CPU_Upscaler.h</span></a></p></li>
+</ul>
+<section id="enum-documentation">
+<h2>Enum Documentation<a class="headerlink" href="#enum-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv419EGK_UpscalingMethod">
+<span id="_CPPv319EGK_UpscalingMethod"></span><span id="_CPPv219EGK_UpscalingMethod"></span><span class="target" id="GK__CPU__Upscaler_8h_1a2504fbf825e8c0e72be209fcf97df7ad"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EGK_UpscalingMethod</span></span></span><a class="headerlink" href="#_CPPv419EGK_UpscalingMethod" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="enum_GK__FoW__ShadowCasting_8h_1ac393a54e61e1775c11589374968f63ca.html" class="btn btn-neutral float-left" title="Enum EGK_TileVisbility" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="enum_GK__FoW__ShadowCasting_8h_1a4f8067a5adfac5ff7c11bc1cda87b3d4.html" class="btn btn-neutral float-right" title="Enum EGK_VisbilityLayers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

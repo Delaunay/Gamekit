@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKCoordinateLibrary:
+
+Class UGKCoordinateLibrary
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintFunctionLibrary``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKCoordinateLibrary
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

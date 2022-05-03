@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKProjectileStatic:
+
+Struct FGKProjectileStatic
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Projectiles_GKProjectileStatic.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FTableRowBase``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKProjectileStatic
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

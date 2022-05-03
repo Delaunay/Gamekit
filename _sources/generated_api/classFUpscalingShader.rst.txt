@@ -1,0 +1,26 @@
+.. _exhale_class_classFUpscalingShader:
+
+Class FUpscalingShader
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FGlobalShader``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FUpscalingShader
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,70 @@
+
+.. _file_Shaders_Upscaling.usf:
+
+File Upscaling.usf
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Shaders>` (``Shaders``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Shaders/Upscaling.usf``)
+--------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Shaders_Upscaling.usf.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``/Engine/Public/Platform.ush``
+
+- ``/Gamekit/Upscaling_Patterns.ush``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_Upscaling_8usf_1af341bf09922b13b8dbb7bb8c50372167`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_Upscaling_8usf_1a731cb5d97bc0e49e396f2b4daa9f69ae`
+
+- :ref:`exhale_define_Upscaling_8usf_1acf567fd79abc0801bba69cbd5ff82315`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Upscaling_8usf_1a4d0c73bff8ca0ce1aa622c7741a4e743`
+
+- :ref:`exhale_variable_Upscaling_8usf_1a0dc1d8f6db5e1d06e844b76f81292f3b`
+
+- :ref:`exhale_variable_Upscaling_8usf_1a96bcf8081ea2442ddf9f9a04949caf22`
+
+- :ref:`exhale_variable_Upscaling_8usf_1a2ce5f8f3bd96f15052fa15e57ce1bcdc`
+
+- :ref:`exhale_variable_Upscaling_8usf_1a9c171bce78d5e82750a112d00b13368f`
+

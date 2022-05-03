@@ -1,0 +1,17 @@
+.. _exhale_class_classIGKInventoryInterface:
+
+Class IGKInventoryInterface
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IGKInventoryInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

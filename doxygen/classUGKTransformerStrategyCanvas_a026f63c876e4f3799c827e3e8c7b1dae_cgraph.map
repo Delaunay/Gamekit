@@ -1,0 +1,7 @@
+<map id="UGKTransformerStrategyCanvas::GetFactionTexture" name="UGKTransformerStrategyCanvas::GetFactionTexture">
+<area shape="rect" id="node1" title="Retrieve the Texture used to draw the fog of war for a given faction." alt="" coords="5,39,236,80"/>
+<area shape="rect" id="node2" href="$classUGKTransformerStrategyCanvas.html#a08ce7595d47d8fd7173ece01282dd1d6" title=" " alt="" coords="284,39,515,80"/>
+<area shape="rect" id="node3" href="$classUGKTransformerStrategyCanvas.html#a770f46ad4ffceb621006f3d072e973f5" title=" " alt="" coords="563,39,793,80"/>
+<area shape="rect" id="node4" href="$classUGKTransformerStrategyCanvas.html#acf24735f84a48ee76e411391b5e214aa" title=" " alt="" coords="841,5,1072,47"/>
+<area shape="rect" id="node5" href="$classUGKTransformerStrategy.html#a7a70eba8c96c3a7e7cf978621c25f6d1" title=" " alt="" coords="865,71,1048,112"/>
+</map>

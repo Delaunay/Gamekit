@@ -1,0 +1,34 @@
+
+.. _program_listing_file_Source_Gamekit_Experimental_GKTurnGameState.h:
+
+Program Listing for File GKTurnGameState.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Experimental_GKTurnGameState.h>` (``Source/Gamekit/Experimental/GKTurnGameState.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/GameState.h"
+   
+   // Generated
+   #include "GKTurnGameState.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API AGKTurnGameState: public AGameStateBase
+   {
+       GENERATED_BODY()
+   
+       AGKTurnGameState();
+   
+       public:
+       // This is used to keep track of Pathing and share it to the shader
+       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = UnitMap, meta = (AllowPrivateAccess = "true"))
+       class UGKSharedTexture *CollisionMap;
+   };

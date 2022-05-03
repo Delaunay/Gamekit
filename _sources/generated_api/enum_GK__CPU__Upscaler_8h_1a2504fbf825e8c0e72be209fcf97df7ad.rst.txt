@@ -1,0 +1,14 @@
+.. _exhale_enum_GK__CPU__Upscaler_8h_1a2504fbf825e8c0e72be209fcf97df7ad:
+
+Enum EGK_UpscalingMethod
+========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_UpscalingMethod
+   :project: GameKit

@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1cli_1a38b89eed1118e683bbba37be45920579:
+
+Function gamekit::cli::parse_args
+=================================
+
+- Defined in :ref:`file_Source_Python_gamekit_cli.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::cli::parse_args()
+   :project: GameKit

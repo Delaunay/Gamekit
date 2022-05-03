@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1conf_1a9a0f3e16cfbeceb1d4da0ec080d94f59:
+
+Variable gamekit::conf::CONFIGNAME
+==================================
+
+- Defined in :ref:`file_Source_Python_gamekit_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::conf::CONFIGNAME
+   :project: GameKit

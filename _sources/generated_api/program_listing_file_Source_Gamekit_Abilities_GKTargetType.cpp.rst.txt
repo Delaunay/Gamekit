@@ -1,0 +1,53 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKTargetType.cpp:
+
+Program Listing for File GKTargetType.cpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKTargetType.cpp>` (``Source/Gamekit/Abilities/GKTargetType.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKTargetType.h"
+   #include "Gamekit/Abilities/GKGameplayAbility.h"
+   #include "Gamekit/Characters/GKCharacter.h"
+   
+   void UGKTargetType::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                                 AActor *            TargetingActor,
+                                                 FGameplayEventData  EventData,
+                                                 TArray<FHitResult> &OutHitResults,
+                                                 TArray<AActor *> &  OutActors) const
+   {
+       return;
+   }
+   
+   void UGKTargetType_UseOwner::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                                          AActor *            TargetingActor,
+                                                          FGameplayEventData  EventData,
+                                                          TArray<FHitResult> &OutHitResults,
+                                                          TArray<AActor *> &  OutActors) const
+   {
+       OutActors.Add(TargetingCharacter);
+   }
+   
+   void UGKTargetType_UseEventData::GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                                              AActor *            TargetingActor,
+                                                              FGameplayEventData  EventData,
+                                                              TArray<FHitResult> &OutHitResults,
+                                                              TArray<AActor *> &  OutActors) const
+   {
+       const FHitResult *FoundHitResult = EventData.ContextHandle.GetHitResult();
+       if (FoundHitResult)
+       {
+           OutHitResults.Add(*FoundHitResult);
+       }
+       else if (EventData.Target)
+       {
+           OutActors.Add(const_cast<AActor *>(EventData.Target));
+       }
+   }

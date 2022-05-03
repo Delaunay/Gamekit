@@ -1,0 +1,47 @@
+
+.. _file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.cpp:
+
+File GKAbilityTask_PlayMontageAndWaitForEvent.cpp
+=================================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_AbilityTasks>` (``Source/Gamekit/Abilities/AbilityTasks``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.cpp``)
+---------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``AbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
+- ``Animation/AnimInstance.h``
+
+- ``GameFramework/Character.h``
+
+- ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h`)
+
+- ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+
+
+
+

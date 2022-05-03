@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAsyncTask__GameplayEffectChanged:
+
+Class UGKAsyncTask_GameplayEffectChanged
+========================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintAsyncActionBase``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAsyncTask_GameplayEffectChanged
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compilation &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Shaders" href="Shaders/index.html" />
+    <link rel="prev" title="Documentation Generation" href="Docs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compilation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#git">Git</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compile-libaries-with-ue4-clang">Compile libaries with UE4 clang</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Compilation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Developer/Compilation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compilation">
+<h1>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You will need upward of 130 Go of space to compile UE4 with debug symbols</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">48</span>   M     ./Build
+<span class="m">228</span>   M     ./Documentation
+ <span class="m">22</span>   G     ./Source                &lt;<span class="o">=</span> Because Source/ThirdParty include 21G of binaries
+  <span class="m">4</span>.1 G     ./Extras
+<span class="m">692</span>   K     ./Config
+ <span class="m">38</span>   M     ./Programs
+ <span class="m">21</span>   G     ./Binaries              &lt;<span class="o">=</span> Compiled Binaries will vary
+  <span class="m">7</span>.1 M     ./Shaders
+  <span class="m">1</span>.7 G     ./Content
+<span class="m">483</span>   M     ./DerivedDataCache
+ <span class="m">31</span>   G     ./Plugins               &lt;<span class="o">=</span> Include the compiled binaries of each plugin
+ <span class="m">41</span>   G     ./Intermediate          &lt;<span class="o">=</span> Intermediate/Build <span class="k">for</span> incremental builds
+  <span class="m">5</span>.4 M     ./Saved
+<span class="m">120</span>   G     .
+</pre></div>
+</div>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>Install build tool</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>windows SDK (which one?)</p></li>
+<li><p>.NET dev+runtime</p></li>
+<li><p>C++ x64 Native</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From <a class="reference external" href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022">2022 build tools</a>
+the compiler and the build tools can be installed without visual studio.</p>
+</div>
+<section id="git">
+<h3>Git<a class="headerlink" href="#git" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows file permissions are wrong when using WSL</span>
+git config --global core.filemode <span class="nb">false</span>
+
+<span class="c1"># Do not use windows newline</span>
+git config --global core.autocrlf <span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h2>
+<section id="compile-libaries-with-ue4-clang">
+<h3>Compile libaries with UE4 clang<a class="headerlink" href="#compile-libaries-with-ue4-clang" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">EngineDir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$SCRIPT_DIR</span><span class="s2">/../../../&quot;</span>
+<span class="nv">InstallClangDir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EngineDir</span><span class="s2">/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/&quot;</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nv">LibCxx</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EngineDir</span><span class="s2">/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++.a&quot;</span>
+<span class="nv">LibCxxAbi</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EngineDir</span><span class="s2">/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu/libc++abi.a&quot;</span>
+<span class="nv">LibCxxInclude</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EngineDir</span><span class="s2">/Source/ThirdParty/Linux/LibCxx/include/c++/v1&quot;</span>
+
+cmake <span class="nv">$ModuleDir</span>/Source/ <span class="nv">$Options</span> <span class="se">\</span>
+   -DCMAKE_SYSROOT<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="se">\</span>
+   -DCMAKE_BUILD_TYPE<span class="o">=</span>Release <span class="se">\</span>
+   -DCMAKE_C_COMPILER<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span>/bin/clang <span class="se">\</span>
+   -DCMAKE_CXX_COMPILER<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span>/bin/clang++ <span class="se">\</span>
+   -DCMAKE_AR<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span>/bin/llvm-ar <span class="se">\</span>
+   -DCMAKE_NM<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span>/bin/llvm-nm <span class="se">\</span>
+   -DCMAKE_RANLIB<span class="o">=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span>/bin/x86_64-unknown-linux-gnu-ranlib <span class="se">\</span>
+   -DCMAKE_EXE_LINKER_FLAGS<span class="o">=</span><span class="s2">&quot;-nostdinc++ -nostdlib++ -L</span><span class="nv">$LibCxx</span><span class="s2"> --sysroot=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="s2"> -fuse-ld=lld&quot;</span> <span class="se">\</span>
+   -DCMAKE_C_FLAGS<span class="o">=</span><span class="s2">&quot;--sysroot=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="s2">&quot;</span> <span class="se">\</span>
+   -DCMAKE_CXX_FLAGS<span class="o">=</span><span class="s2">&quot;-nostdlib++ --sysroot=</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="s2"> -isystem </span><span class="nv">$LibCxxInclude</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Docs.html" class="btn btn-neutral float-left" title="Documentation Generation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Shaders/index.html" class="btn btn-neutral float-right" title="Shaders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

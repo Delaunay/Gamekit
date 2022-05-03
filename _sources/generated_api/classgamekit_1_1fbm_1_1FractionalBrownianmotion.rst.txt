@@ -1,0 +1,17 @@
+.. _exhale_class_classgamekit_1_1fbm_1_1FractionalBrownianmotion:
+
+Class FractionalBrownianmotion
+==============================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: gamekit::fbm::FractionalBrownianmotion
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1a4a3e0d541b62529b10ca62896c028801:
+
+Function gamekit::fbm::mix
+==========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::mix(x, y, a)
+   :project: GameKit

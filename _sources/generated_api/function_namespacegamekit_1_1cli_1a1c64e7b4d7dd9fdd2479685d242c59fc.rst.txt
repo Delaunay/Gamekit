@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1cli_1a1c64e7b4d7dd9fdd2479685d242c59fc:
+
+Function gamekit::cli::main
+===========================
+
+- Defined in :ref:`file_Source_Python_gamekit_cli.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::cli::main()
+   :project: GameKit

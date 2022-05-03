@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKPawnEnchancedInput:
+
+Class AGKPawnEnchancedInput
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKPawnEnchancedInput.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public APawn``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKPawnEnchancedInput
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

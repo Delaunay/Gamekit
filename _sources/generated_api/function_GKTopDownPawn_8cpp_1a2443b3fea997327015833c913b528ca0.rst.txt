@@ -1,0 +1,14 @@
+.. _exhale_function_GKTopDownPawn_8cpp_1a2443b3fea997327015833c913b528ca0:
+
+Function sign
+=============
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKTopDownPawn.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: sign(FVector)
+   :project: GameKit

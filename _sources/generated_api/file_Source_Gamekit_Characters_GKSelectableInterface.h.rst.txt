@@ -1,0 +1,54 @@
+
+.. _file_Source_Gamekit_Characters_GKSelectableInterface.h:
+
+File GKSelectableInterface.h
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Characters>` (``Source/Gamekit/Characters``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Characters/GKSelectableInterface.h``)
+------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Characters_GKSelectableInterface.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKSelectableInterface.generated.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.cpp`
+
+- :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classIGKSelectableInterface`
+

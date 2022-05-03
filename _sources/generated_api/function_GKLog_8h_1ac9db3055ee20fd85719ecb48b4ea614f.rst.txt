@@ -1,0 +1,14 @@
+.. _exhale_function_GKLog_8h_1ac9db3055ee20fd85719ecb48b4ea614f:
+
+Template Function Log_Display
+=============================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Log_Display(const char *, int, const Category&, const Format&, const Args&...)
+   :project: GameKit

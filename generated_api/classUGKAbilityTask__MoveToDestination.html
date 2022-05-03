@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class UGKAbilityTask_MoveToDestination &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class UGKAbilityTask_PlayMontageAndWaitForEvent" href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html" />
+    <link rel="prev" title="Class UGKAbilitySystemGlobals" href="classUGKAbilitySystemGlobals.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityCost.html">Struct FGKAbilityCost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityEffect.html">Struct FGKAbilityEffect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilitySlot.html">Struct FGKAbilitySlot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityStatic.html">Struct FGKAbilityStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationArray.html">Struct FGKAnimationArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationSet.html">Struct FGKAnimationSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKDynamicFogMaterial.html">Struct FGKDynamicFogMaterial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKInputAbilityPair.html">Struct FGKInputAbilityPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKItemData.html">Struct FGKItemData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKLinePoints.html">Struct FGKLinePoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKNetworkMetrics.html">Struct FGKNetworkMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKPoints.html">Struct FGKPoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKProjectileStatic.html">Struct FGKProjectileStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestData.html">Struct FGKQuestData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestObjectives.html">Struct FGKQuestObjectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQueuedAbility.html">Struct FGKQueuedAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKRichRow.html">Struct FGKRichRow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSimpleObjective.html">Struct FGKSimpleObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSlope.html">Struct FGKSlope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKTeamInfo.html">Struct FGKTeamInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitGroup.html">Struct FGKUnitGroup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitStatic.html">Struct FGKUnitStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKWidgetLocationData.html">Struct FGKWidgetLocationData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFStatQuery.html">Struct FStatQuery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFUpscalingParameter.html">Struct FUpscalingParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGKDamageStatics.html">Struct GKDamageStatics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structTMatrix3D.html">Template Struct TMatrix3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityEffectActor.html">Class AGKAbilityEffectActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__Actor.html">Class AGKAbilityTarget_Actor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__PlayerControllerTrace.html">Class AGKAbilityTarget_PlayerControllerTrace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAIController.html">Class AGKAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActor.html">Class AGKAOEActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActorNiagara.html">Class AGKAOEActorNiagara</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKCharacterBase.html">Class AGKCharacterBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarTeam.html">Class AGKFogOfWarTeam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarVolume.html">Class AGKFogOfWarVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameModeBaseBase.html">Class AGKGameModeBaseBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameResource.html">Class AGKGameResource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameStateBase.html">Class AGKGameStateBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGASCharacter.html">Class AGKGASCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKHexGrid.html">Class AGKHexGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKMinimapVolume.html">Class AGKMinimapVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPawnEnchancedInput.html">Class AGKPawnEnchancedInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerController.html">Class AGKPlayerController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerState.html">Class AGKPlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPrivatePlayerState.html">Class AGKPrivatePlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKProjectile.html">Class AGKProjectile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTacticianController.html">Class AGKTacticianController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTeamPlayerStart.html">Class AGKTeamPlayerStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTopDownPawn.html">Class AGKTopDownPawn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTurnGameState.html">Class AGKTurnGameState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitAIController.html">Class AGKUnitAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitCharacter.html">Class AGKUnitCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKWorldSettings.html">Class AGKWorldSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitModule.html">Class FGamekitModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitTestSuiteModule.html">Class FGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGKRichStruct.html">Class FGKRichStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingDispatcher.html">Class FUpscalingDispatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingShader.html">Class FUpscalingShader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamekit.html">Class Gamekit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1cook_1_1CookGame.html">Class CookGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1disable_1_1Disable.html">Class Disable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1init_1_1Init.html">Class Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1install_1_1Install.html">Class Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1tests_1_1RunTests.html">Class RunTests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1vscode_1_1VSCode.html">Class VSCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1conf_1_1Command.html">Class Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1FractionalBrownianmotion.html">Class FractionalBrownianmotion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1Vec2.html">Class Vec2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGamekitTestSuiteModule.html">Class IGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKCachedAbilityTargetActorInterface.html">Class IGKCachedAbilityTargetActorInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKInventoryInterface.html">Class IGKInventoryInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKPawnEnhancedInputInterface.html">Class IGKPawnEnhancedInputInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKSelectableInterface.html">Class IGKSelectableInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUCollisionProfileHack.html">Class UCollisionProfileHack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityBlueprintLibrary.html">Class UGKAbilityBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemComponent.html">Class UGKAbilitySystemComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemGlobals.html">Class UGKAbilitySystemGlobals</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class UGKAbilityTask_MoveToDestination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html">Class UGKAbilityTask_PlayMontageAndWaitForEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__WaitForTargetData.html">Class UGKAbilityTask_WaitForTargetData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityWidget.html">Class UGKAbilityWidget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAssetManager.html">Class UGKAssetManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTask__GameplayEffectChanged.html">Class UGKAsyncTask_GameplayEffectChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskAttributeChanged.html">Class UGKAsyncTaskAttributeChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskCooldownChanged.html">Class UGKAsyncTaskCooldownChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAttributeSet.html">Class UGKAttributeSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCanvasUpscaler.html">Class UGKCanvasUpscaler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCastPointAnimNotify.html">Class UGKCastPointAnimNotify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCoordinateLibrary.html">Class UGKCoordinateLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCPUUpscalerStrategy.html">Class UGKCPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKDamageExecution.html">Class UGKDamageExecution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKEngineSubsystem.html">Class UGKEngineSubsystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKExplorationTransform.html">Class UGKExplorationTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarLibrary.html">Class UGKFogOfWarLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarStrategy.html">Class UGKFogOfWarStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameInstanceBase.html">Class UGKGameInstanceBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayAbility.html">Class UGKGameplayAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayEffectDyn.html">Class UGKGameplayEffectDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGPUUpscalerStrategy.html">Class UGKGPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridPathFollowingComponent.html">Class UGKHexGridPathFollowingComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKPotionItem.html">Class UGKPotionItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestBlueprintLibrary.html">Class UGKQuestBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestDataRef.html">Class UGKQuestDataRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestObjectiveRef.html">Class UGKQuestObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestSimpleObjectiveRef.html">Class UGKQuestSimpleObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Less.html">Class UGKRayCasting_Less</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Line.html">Class UGKRayCasting_Line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Triangle.html">Class UGKRayCasting_Triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseEventData.html">Class UGKTargetType_UseEventData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseOwner.html">Class UGKTargetType_UseOwner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTeamAgentLibrary.html">Class UGKTeamAgentLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTokenItem.html">Class UGKTokenItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategy.html">Class UGKTransformerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyCanvas.html">Class UGKTransformerStrategyCanvas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyTexture2D.html">Class UGKTransformerStrategyTexture2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKUtilityLibrary.html">Class UGKUtilityLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWeaponItem.html">Class UGKWeaponItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDraggable.html">Class UGKWidgetDraggable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDragVisual.html">Class UGKWidgetDragVisual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDropZone.html">Class UGKWidgetDropZone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite.html">Class GamekitTestSuite</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Class UGKAbilityTask_MoveToDestination</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/classUGKAbilityTask__MoveToDestination.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-ugkabilitytask-movetodestination">
+<span id="exhale-class-classugkabilitytask-movetodestination"></span><h1>Class UGKAbilityTask_MoveToDestination<a class="headerlink" href="#class-ugkabilitytask-movetodestination" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h.html#file-source-gamekit-abilities-abilitytasks-gkabilitytask-movetodestination-h"><span class="std std-ref">File GKAbilityTask_MoveToDestination.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UAbilityTask</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv432UGKAbilityTask_MoveToDestination">
+<span id="_CPPv332UGKAbilityTask_MoveToDestination"></span><span id="_CPPv232UGKAbilityTask_MoveToDestination"></span><span id="UGKAbilityTask_MoveToDestination"></span><span class="target" id="classUGKAbilityTask__MoveToDestination"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UGKAbilityTask_MoveToDestination</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">UAbilityTask</span></span><a class="headerlink" href="#_CPPv432UGKAbilityTask_MoveToDestination" title="Permalink to this definition"></a><br /></dt>
+<dd><p>This is different from the Gameplay Ability MoveToLocation built-in <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="n">without</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">timer</span><span class="w"></span>
+</pre></div>
+</div>
+<ol class="loweralpha simple">
+<li><p>This will turn the player to the movement direction before moving</p></li>
+<li><p>This can be cancelled by the user, or by opponents</p></li>
+</ol>
+</p>
+<p>AddControllerYawInput &amp;&amp; AddMovementInput are used to turn the character mimicking what a player would have to do to turn it. Hopefully making it respect the constraitn imposed by the MovementComponent.</p>
+<p>Turn rate is an important game mechanic that give time for the opponents to react. It also give an advantage to the character that is ready (i.e facing).</p>
+<p><em>Parameters </em></p>
+<p>Destination: FVector Target location to reach</p>
+<p>DistanceTolerance: Float How close to the location should we be to stop (avoid too small values)</p>
+<p>AngleTolerance: Float (In Degrees, Default: 15) Angle Jitter we are willing to accept (avoid too small values) 15 which will give a 30 degrees of leeway where the character can move right away. This will make the movement more natural by making the transition between the turn and movement less obvious</p>
+<p>TurnRate: Float (In Degrees) Turn speed</p>
+<p>Speed: Float Move speed</p>
+<p>MoveToTarget: bool If true will start moving towards the target after rotating to face it. if false will only rotate to face the target</p>
+<p>Debug: bool if true will debug draw, destination and direction vector </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination32UGKAbilityTask_MoveToDestinationERK18FObjectInitializer">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination32UGKAbilityTask_MoveToDestinationERK18FObjectInitializer"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination32UGKAbilityTask_MoveToDestinationERK18FObjectInitializer"></span><span id="UGKAbilityTask_MoveToDestination::UGKAbilityTask_MoveToDestination__FObjectInitializerCR"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1ad2b4361206da8f15cbf6ad58fb80b31d"></span><span class="sig-name descname"><span class="n"><span class="pre">UGKAbilityTask_MoveToDestination</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FObjectInitializer</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ObjectInitializer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination32UGKAbilityTask_MoveToDestinationERK18FObjectInitializer" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination17InitSimulatedTaskER23UGameplayTasksComponent">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination17InitSimulatedTaskER23UGameplayTasksComponent"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination17InitSimulatedTaskER23UGameplayTasksComponent"></span><span id="UGKAbilityTask_MoveToDestination::InitSimulatedTask__UGameplayTasksComponentR"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a37205d1f0c4911349703b499683cb319"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitSimulatedTask</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UGameplayTasksComponent</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">InGameplayTasksComponent</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination17InitSimulatedTaskER23UGameplayTasksComponent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination18InitFromTargetDataEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination18InitFromTargetDataEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination18InitFromTargetDataEv"></span><span id="UGKAbilityTask_MoveToDestination::InitFromTargetData"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1ab1c5aca916c3ffcecf1032c3f55b45a2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitFromTargetData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination18InitFromTargetDataEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination8TickTaskEf">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination8TickTaskEf"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination8TickTaskEf"></span><span id="UGKAbilityTask_MoveToDestination::TickTask__float"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a9186e397db69d80cfc8b7d47274d6b7a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TickTask</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">DeltaTime</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination8TickTaskEf" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination9OnDestroyEb">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination9OnDestroyEb"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination9OnDestroyEb"></span><span id="UGKAbilityTask_MoveToDestination::OnDestroy__b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a5515e39c18b680adb13ac572b8c293b9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnDestroy</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AbilityIsEnding</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination9OnDestroyEb" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination8ActivateEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination8ActivateEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination8ActivateEv"></span><span id="UGKAbilityTask_MoveToDestination::Activate"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a4a6d61f40b2050b4744b92dc3be632ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Activate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination8ActivateEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination14ExternalCancelEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination14ExternalCancelEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination14ExternalCancelEv"></span><span id="UGKAbilityTask_MoveToDestination::ExternalCancel"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1aaa59959647457cab0ed47ca5e053cca4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExternalCancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination14ExternalCancelEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination4InitEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination4InitEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination4InitEv"></span><span id="UGKAbilityTask_MoveToDestination::Init"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1abab1f190f1ab81e1e73a4e6c5b2afd0c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination4InitEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination9DebugDrawEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination9DebugDrawEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination9DebugDrawEv"></span><span id="UGKAbilityTask_MoveToDestination::DebugDraw"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a9f5fee36d52fe3be088ea0a9c862b69c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugDraw</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination9DebugDrawEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK32UGKAbilityTask_MoveToDestination26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE">
+<span id="_CPPv3NK32UGKAbilityTask_MoveToDestination26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="_CPPv2NK32UGKAbilityTask_MoveToDestination26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="UGKAbilityTask_MoveToDestination::GetLifetimeReplicatedProps__TArray:FLifetimeProperty:RC"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1ab95708fa3ef9d98bac963b48cc8f580d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetLifetimeReplicatedProps</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FLifetimeProperty</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OutLifetimeProps</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK32UGKAbilityTask_MoveToDestination26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination12GetTargetASCEv">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination12GetTargetASCEv"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination12GetTargetASCEv"></span><span id="UGKAbilityTask_MoveToDestination::GetTargetASC"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1aa82d214a49fbe2314726ac6d9256a754"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classUGKAbilitySystemComponent.html#_CPPv425UGKAbilitySystemComponent" title="UGKAbilitySystemComponent"><span class="n"><span class="pre">UGKAbilitySystemComponent</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetTargetASC</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination12GetTargetASCEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination11OnCompletedE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination11OnCompletedE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination11OnCompletedE"></span><span id="UGKAbilityTask_MoveToDestination::OnCompleted__FGKMoveToDestinationDelegate"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a073bc68ff92621aafd8d78dbd875a99d"></span><span class="n"><span class="pre">FGKMoveToDestinationDelegate</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnCompleted</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination11OnCompletedE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reached Destination </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination11OnCancelledE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination11OnCancelledE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination11OnCancelledE"></span><span id="UGKAbilityTask_MoveToDestination::OnCancelled__FGKMoveToDestinationDelegate"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a6bfe61ce33b096e9d82b9df12da33ecd"></span><span class="n"><span class="pre">FGKMoveToDestinationDelegate</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnCancelled</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination11OnCancelledE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The movement action was cancelled by the user </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination10OnTurnDoneE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination10OnTurnDoneE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination10OnTurnDoneE"></span><span id="UGKAbilityTask_MoveToDestination::OnTurnDone__FGKMoveToDestinationDelegate"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a83e2e3149e787c438f7d596842f2369e"></span><span class="n"><span class="pre">FGKMoveToDestinationDelegate</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnTurnDone</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination10OnTurnDoneE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination10TargetKindE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination10TargetKindE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination10TargetKindE"></span><span id="UGKAbilityTask_MoveToDestination::TargetKind__EGK_AbilityBehavior"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a5aa87a5592c916f2e30e61469c62b1b6"></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetKind</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination10TargetKindE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination8TurnRateE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination8TurnRateE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination8TurnRateE"></span><span id="UGKAbilityTask_MoveToDestination::TurnRate__float"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1ad9649cbfb7f8416b82a58f18391bb54a"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TurnRate</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination8TurnRateE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination8MaxSpeedE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination8MaxSpeedE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination8MaxSpeedE"></span><span id="UGKAbilityTask_MoveToDestination::MaxSpeed__float"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a1ac8fda234e8498fce335cc667e38e07"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaxSpeed</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination8MaxSpeedE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination11DestinationE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination11DestinationE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination11DestinationE"></span><span id="UGKAbilityTask_MoveToDestination::Destination__FVector"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a47030a27f6c169a7a4a6ef4d000b20bc"></span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Destination</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination11DestinationE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination6bDebugE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination6bDebugE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination6bDebugE"></span><span id="UGKAbilityTask_MoveToDestination::bDebug__b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1af516deca84eaf63be903f36f4b3c74fa"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bDebug</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination6bDebugE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination17DistanceToleranceE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination17DistanceToleranceE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination17DistanceToleranceE"></span><span id="UGKAbilityTask_MoveToDestination::DistanceTolerance__float"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a77402e9219086bede1d3089ecd77bb4b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DistanceTolerance</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination17DistanceToleranceE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination14AngleToleranceE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination14AngleToleranceE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination14AngleToleranceE"></span><span id="UGKAbilityTask_MoveToDestination::AngleTolerance__float"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1ac6e00e74fa83fc5889e9b02e278a2948"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AngleTolerance</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination14AngleToleranceE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination9bTurnOnlyE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination9bTurnOnlyE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination9bTurnOnlyE"></span><span id="UGKAbilityTask_MoveToDestination::bTurnOnly__b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a5d7957db52d40b554c6e1b7161cf67e9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bTurnOnly</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination9bTurnOnlyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination10TargetDataE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination10TargetDataE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination10TargetDataE"></span><span id="UGKAbilityTask_MoveToDestination::TargetData__FGameplayAbilityTargetDataHandle"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a2d61f701ae8f7c37823d25ca9b3d9de6"></span><span class="n"><span class="pre">FGameplayAbilityTargetDataHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetData</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination10TargetDataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination11TargetActorE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination11TargetActorE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination11TargetActorE"></span><span id="UGKAbilityTask_MoveToDestination::TargetActor__TWeakObjectPtr:AActor:"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a14e4c7643c0ececadf2fe108d5e2d1f7"></span><span class="n"><span class="pre">TWeakObjectPtr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">AActor</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetActor</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination11TargetActorE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination11bIsFinishedE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination11bIsFinishedE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination11bIsFinishedE"></span><span id="UGKAbilityTask_MoveToDestination::bIsFinished__b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a6c2fc02091037907e68fd3cfbd3759fd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bIsFinished</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination11bIsFinishedE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination17bRotationFinishedE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination17bRotationFinishedE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination17bRotationFinishedE"></span><span id="UGKAbilityTask_MoveToDestination::bRotationFinished__b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1aeca03d1077d38da79cc7f3712a22b7f3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bRotationFinished</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination17bRotationFinishedE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination9CharacterE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination9CharacterE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination9CharacterE"></span><span id="UGKAbilityTask_MoveToDestination::Character__APawnP"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a7b19aefa2d202e2cf1162f5939581212"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">APawn</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Character</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination9CharacterE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination17MovementComponentE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination17MovementComponentE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination17MovementComponentE"></span><span id="UGKAbilityTask_MoveToDestination::MovementComponent__UPawnMovementComponentP"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1adcd88998938ebeb13d98a1d6edff5eb1"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UPawnMovementComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">MovementComponent</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination17MovementComponentE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination13RootComponentE">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination13RootComponentE"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination13RootComponentE"></span><span id="UGKAbilityTask_MoveToDestination::RootComponent__USceneComponentP"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1afba70e288ee4d09c735a013ed467c40c"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">USceneComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">RootComponent</span></span></span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination13RootComponentE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination17MoveToDestinationEP16UGameplayAbility5FName7FVectorffffb19EGK_AbilityBehaviorb">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination17MoveToDestinationEP16UGameplayAbility5FName7FVectorffffb19EGK_AbilityBehaviorb"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination17MoveToDestinationEP16UGameplayAbility5FName7FVectorffffb19EGK_AbilityBehaviorb"></span><span id="UGKAbilityTask_MoveToDestination::MoveToDestination__UGameplayAbilityP.FName.FVector.float.float.float.float.b.EGK_AbilityBehavior.b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1a51ade90278b9351cf7a1aace530e97ec"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv432UGKAbilityTask_MoveToDestination" title="UGKAbilityTask_MoveToDestination"><span class="n"><span class="pre">UGKAbilityTask_MoveToDestination</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">MoveToDestination</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UGameplayAbility</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">OwningAbility</span></span>, <span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">TaskInstanceName</span></span>, <span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Destination</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">DistanceTolerance</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">10.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AngleTolerance</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">15.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">TurnRate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">45.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Speed</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">600.f</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">MoveToTarget</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">TargetKind</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv4N19EGK_AbilityBehavior11PointTargetE" title="EGK_AbilityBehavior::PointTarget"><span class="n"><span class="pre">PointTarget</span></span></a>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Debug</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination17MoveToDestinationEP16UGameplayAbility5FName7FVectorffffb19EGK_AbilityBehaviorb" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N32UGKAbilityTask_MoveToDestination12MoveToTargetEP16UGameplayAbility5FNameRK32FGameplayAbilityTargetDataHandleffffbb19EGK_AbilityBehaviorb">
+<span id="_CPPv3N32UGKAbilityTask_MoveToDestination12MoveToTargetEP16UGameplayAbility5FNameRK32FGameplayAbilityTargetDataHandleffffbb19EGK_AbilityBehaviorb"></span><span id="_CPPv2N32UGKAbilityTask_MoveToDestination12MoveToTargetEP16UGameplayAbility5FNameRK32FGameplayAbilityTargetDataHandleffffbb19EGK_AbilityBehaviorb"></span><span id="UGKAbilityTask_MoveToDestination::MoveToTarget__UGameplayAbilityP.FName.FGameplayAbilityTargetDataHandleCR.float.float.float.float.b.b.EGK_AbilityBehavior.b"></span><span class="target" id="classUGKAbilityTask__MoveToDestination_1aea6ee9d79960ec5a328b96a6b9124e8a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv432UGKAbilityTask_MoveToDestination" title="UGKAbilityTask_MoveToDestination"><span class="n"><span class="pre">UGKAbilityTask_MoveToDestination</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">MoveToTarget</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UGameplayAbility</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">OwningAbility</span></span>, <span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">TaskInstanceName</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAbilityTargetDataHandle</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">TargetData</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">DistanceTolerance</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">10.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AngleTolerance</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">15.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">TurnRate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">45.f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Speed</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">600.f</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">MoveToTarget</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bUseMovementComponent</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">TargetKind</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv4N19EGK_AbilityBehavior11PointTargetE" title="EGK_AbilityBehavior::PointTarget"><span class="n"><span class="pre">PointTarget</span></span></a>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Debug</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N32UGKAbilityTask_MoveToDestination12MoveToTargetEP16UGameplayAbility5FNameRK32FGameplayAbilityTargetDataHandleffffbb19EGK_AbilityBehaviorb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TargetData : Target information, used to derive the final destination DistanceTolerance: When can we consider the target reached AngleTolerance : When do we consider ourself facing the target TurnRate : Rotation speed Speed : Walk Speed MoveToTarget : Move towards the target after the rotation bUseMovementComp : Use the movement component to set Rotation Speed &amp; walk speed TargetKind : PointTarget or ActorTarget </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classUGKAbilitySystemGlobals.html" class="btn btn-neutral float-left" title="Class UGKAbilitySystemGlobals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html" class="btn btn-neutral float-right" title="Class UGKAbilityTask_PlayMontageAndWaitForEvent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

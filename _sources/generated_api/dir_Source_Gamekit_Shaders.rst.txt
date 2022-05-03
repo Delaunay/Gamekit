@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Shaders:
+
+
+Directory Shaders
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Shaders``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+- :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.h`
+
+

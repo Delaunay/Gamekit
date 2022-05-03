@@ -1,0 +1,69 @@
+
+.. _file_Source_Python_gamekit_conf.py:
+
+File conf.py
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit>` (``Source/Python/gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Python/gamekit/conf.py``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Python_gamekit_conf.py.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__conf`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1conf_1_1Command`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacegamekit_1_1conf_1a28d3a85dcf697a317fe7c3029c2d8353`
+
+- :ref:`exhale_function_namespacegamekit_1_1conf_1a5b3eb5440bd0cd90821f41fa82ff5a19`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1conf_1a8e1510a7fe68f5cfde7e1b16edf6ea0c`
+
+- :ref:`exhale_variable_namespacegamekit_1_1conf_1a55b137fe5bafc7ee2b6995341ac703e2`
+
+- :ref:`exhale_variable_namespacegamekit_1_1conf_1a9a0f3e16cfbeceb1d4da0ec080d94f59`
+
+- :ref:`exhale_variable_namespacegamekit_1_1conf_1aebbe458f9903ee4d32bcace013357fe6`
+
+- :ref:`exhale_variable_namespacegamekit_1_1conf_1a623d03fdc2afb771070d552d8889cb03`
+

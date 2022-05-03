@@ -1,0 +1,67 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskAttributeChanged.h:
+
+Program Listing for File GKAsyncTaskAttributeChanged.h
+======================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskAttributeChanged.h>` (``Source/Gamekit/Abilities/Blueprint/GKAsyncTaskAttributeChanged.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   //  MIT License Copyright(c) 2020 Dan Kestranek
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "AbilitySystemComponent.h"
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintAsyncActionBase.h"
+   
+   // Generated
+   #include "GKAsyncTaskAttributeChanged.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttributeChanged,
+                                                  FGameplayAttribute,
+                                                  Attribute,
+                                                  float,
+                                                  NewValue,
+                                                  float,
+                                                  OldValue);
+   
+   UCLASS(BlueprintType, meta = (ExposedAsyncProxy = AsyncTask))
+   class GAMEKIT_API UGKAsyncTaskAttributeChanged: public UBlueprintAsyncActionBase
+   {
+       GENERATED_BODY()
+   
+       public:
+       UPROPERTY(BlueprintAssignable)
+       FOnAttributeChanged OnAttributeChanged;
+   
+       // Listens for an attribute changing.
+       UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
+       static UGKAsyncTaskAttributeChanged *ListenForAttributeChange(UAbilitySystemComponent *AbilitySystemComponent,
+                                                                     FGameplayAttribute       Attribute);
+   
+       // Listens for an attribute changing.
+       // Version that takes in an array of Attributes. Check the Attribute output for which Attribute changed.
+       UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
+       static UGKAsyncTaskAttributeChanged *ListenForAttributesChange(UAbilitySystemComponent *  AbilitySystemComponent,
+                                                                      TArray<FGameplayAttribute> Attributes);
+   
+       // You must call this function manually when you want the AsyncTask to end.
+       // For UMG Widgets, you would call it in the Widget's Destruct event.
+       UFUNCTION(BlueprintCallable)
+       void EndTask();
+   
+       protected:
+       UPROPERTY()
+       UAbilitySystemComponent *ASC;
+   
+       FGameplayAttribute AttributeToListenFor;
+   
+       TArray<FGameplayAttribute> AttributesToListenFor;
+   
+       void AttributeChanged(const FOnAttributeChangeData &Data);
+   };

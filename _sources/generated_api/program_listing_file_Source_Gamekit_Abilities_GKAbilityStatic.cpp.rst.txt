@@ -1,0 +1,40 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilityStatic.cpp:
+
+Program Listing for File GKAbilityStatic.cpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilityStatic.cpp>` (``Source/Gamekit/Abilities/GKAbilityStatic.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityStatic.h"
+   #include "Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h"
+   
+   // Unreal Engine
+   #include "GenericTeamAgentInterface.h"
+   
+   FGKAbilityStatic::FGKAbilityStatic():
+       MaxLevel(1), Price(0), MaxStack(1), AbilityTargetActorClass(AGKAbilityTarget_PlayerControllerTrace::StaticClass())
+   {
+   
+       AbilityKind        = EGK_AbilityKind::None;
+       Icon               = nullptr;
+       CastMaxRange       = 1800;
+       CastMinRange       = 0;
+       MaxStack           = 1;
+       Price              = 0;
+       Duration           = 1;
+       AbilityBehavior    = EGK_AbilityBehavior::NoTarget;
+       TargetActorFaction = SetFlag(0, ETeamAttitude::Hostile);
+       CastTime           = 1;
+       ChannelTime        = 0;
+       AbilityAnimation   = EGK_AbilityAnimation::Attack;
+       AreaOfEffect       = 16.f;
+       Slot               = EGK_ItemSlot::None;
+   }

@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAbilityTask__PlayMontageAndWaitForEvent:
+
+Class UGKAbilityTask_PlayMontageAndWaitForEvent
+===============================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UAbilityTask``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAbilityTask_PlayMontageAndWaitForEvent
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

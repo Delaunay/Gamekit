@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKAbilityStatic:
+
+Struct FGKAbilityStatic
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FTableRowBase``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKAbilityStatic
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

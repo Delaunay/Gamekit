@@ -1,0 +1,62 @@
+
+.. _file_Source_Gamekit_Grid_GKHexGridUtilities.h:
+
+File GKHexGridUtilities.h
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Grid>` (``Source/Gamekit/Grid``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Grid/GKHexGridUtilities.h``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Grid_GKHexGridUtilities.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKHexGridUtilities.generated.h``
+
+- ``Kismet/BlueprintFunctionLibrary.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Characters_GKTopDownPawn.cpp`
+
+- :ref:`file_Source_Gamekit_Controllers_GKTacticianController.cpp`
+
+- :ref:`file_Source_Gamekit_Grid_GKGrid.h`
+
+- :ref:`file_Source_Gamekit_Grid_GKHexGrid.cpp`
+
+- :ref:`file_Source_Gamekit_Grid_GKHexGridUtilities.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKHexGridUtilities`
+

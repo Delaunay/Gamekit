@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1commands_1_1cook_1ad12e422afe81a40b83798dd89b1b282a:
+
+Variable gamekit::commands::cook::COMMAND
+=========================================
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_cook.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::commands::cook::COMMAND
+   :project: GameKit

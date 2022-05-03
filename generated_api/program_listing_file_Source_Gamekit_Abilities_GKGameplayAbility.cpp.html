@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKGameplayAbility.cpp &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKGameplayAbility.cpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_Abilities_GKGameplayAbility.cpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkgameplayability-cpp">
+<span id="program-listing-file-source-gamekit-abilities-gkgameplayability-cpp"></span><h1>Program Listing for File GKGameplayAbility.cpp<a class="headerlink" href="#program-listing-for-file-gkgameplayability-cpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_Abilities_GKGameplayAbility.cpp.html#file-source-gamekit-abilities-gkgameplayability-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/Abilities/GKGameplayAbility.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKGameplayAbility.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKCastPointAnimNotify.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKTargetType.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Targeting/GKAbilityTask_WaitTargetData.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Characters/GKCharacter.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Controllers/GKPlayerController.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Projectiles/GKProjectile.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Abilities/Tasks/AbilityTask_MoveToLocation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Abilities/Tasks/AbilityTask_WaitTargetData.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetSerialization.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/ProjectileMovementComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameplayCue_Types.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/GameplayStatics.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetMathLibrary.h&quot;</span><span class="cp"></span>
+
+<span class="n">UGKGameplayEffectDyn</span><span class="o">::</span><span class="n">UGKGameplayEffectDyn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FObjectInitializer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">UGKGameplayAbility</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">InstancingPolicy</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayAbilityInstancingPolicy</span><span class="o">::</span><span class="n">InstancedPerActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">NetExecutionPolicy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayAbilityNetExecutionPolicy</span><span class="o">::</span><span class="n">LocalPredicted</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;State.Dead&quot;</span><span class="p">)));</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;Debuff.Stun&quot;</span><span class="p">)));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Immediate</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CooldownEffectInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">CostEffectInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">PostInitProperties</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">PostInitProperties</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityDataTable</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilityRowName</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Loading From DataTable&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnDataTableChanged_Native</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnDataTableChanged_Native</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reset Cache</span>
+<span class="w">    </span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">Valid</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityStaticOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityStaticOut</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityDef</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Init Ability from table %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityDef</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CooldownEffectInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewCooldownEffectFromConfig</span><span class="p">(</span><span class="n">AbilityDef</span><span class="p">.</span><span class="n">Cooldown</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CostEffectInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">NewCostEffectFromConfig</span><span class="p">(</span><span class="n">AbilityDef</span><span class="p">.</span><span class="n">Cost</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityStatic</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AbilityStatic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityDataTable</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">AbilityRowName</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// we do not have a cached value</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityStatic</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityDataTable</span><span class="o">-&gt;</span><span class="n">FindRow</span><span class="o">&lt;</span><span class="n">FGKAbilityStatic</span><span class="o">&gt;</span><span class="p">(</span><span class="n">AbilityRowName</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Ability&quot;</span><span class="p">),</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="o">*</span><span class="n">AbilityStatic</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Listen to data table change</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityDataTable</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">IsBoundToObject</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">AbilityDataTable</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">AddUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnDataTableChanged_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AbilityStatic</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">K2_GetAbilityStatic</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityStaticOut</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Valid</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilityStaticOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Valid</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpecFromContainer</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGKGameplayEffectContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Container</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w">         </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">int32</span><span class="w">                             </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// First figure out our actor info</span>
+<span class="w">    </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">ReturnSpec</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="w">                        </span><span class="o">*</span><span class="n">OwningActor</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">GetOwningActorFromActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">AGKCharacterBase</span><span class="w">              </span><span class="o">*</span><span class="n">OwningCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">OwningActor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">OwningASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">::</span><span class="n">GetAbilitySystemComponentFromActor</span><span class="p">(</span><span class="n">OwningActor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OwningASC</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// If we have a target type, run the targeting logic. This is optional, targets can be added later</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Container</span><span class="p">.</span><span class="n">TargetType</span><span class="p">.</span><span class="n">Get</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FHitResult</span><span class="o">&gt;</span><span class="w">   </span><span class="n">HitResults</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">AActor</span><span class="w"> </span><span class="o">*&gt;</span><span class="w">     </span><span class="n">TargetActors</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">UGKTargetType</span><span class="w"> </span><span class="o">*</span><span class="n">TargetTypeCDO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Container</span><span class="p">.</span><span class="n">TargetType</span><span class="p">.</span><span class="n">GetDefaultObject</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">AActor</span><span class="w">              </span><span class="o">*</span><span class="n">AvatarActor</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">GetAvatarActorFromActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">TargetTypeCDO</span><span class="o">-&gt;</span><span class="n">GetTargets</span><span class="p">(</span><span class="n">OwningCharacter</span><span class="p">,</span><span class="w"> </span><span class="n">AvatarActor</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">HitResults</span><span class="p">,</span><span class="w"> </span><span class="n">TargetActors</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ReturnSpec</span><span class="p">.</span><span class="n">AddTargets</span><span class="p">(</span><span class="n">HitResults</span><span class="p">,</span><span class="w"> </span><span class="n">TargetActors</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// If we don&#39;t have an override level, use the default on the ability itself</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INDEX_NONE</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">                    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">GetAbilityLevel</span><span class="p">();</span><span class="w"> </span><span class="c1">// OwningASC-&gt;GetDefaultAbilityLevel();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Build GameplayEffectSpecs for each applied effect</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EffectClass</span><span class="o">:</span><span class="w"> </span><span class="n">Container</span><span class="p">.</span><span class="n">TargetGameplayEffectClasses</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ReturnSpec</span><span class="p">.</span><span class="n">TargetGameplayEffectSpecs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="n">MakeOutgoingGameplayEffectSpec</span><span class="p">(</span><span class="n">EffectClass</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ReturnSpec</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w">              </span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="n">int32</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKGameplayEffectContainer</span><span class="w"> </span><span class="o">*</span><span class="n">FoundContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EffectContainerMap</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">ContainerTag</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FoundContainer</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MakeEffectContainerSpecFromContainer</span><span class="p">(</span><span class="o">*</span><span class="n">FoundContainer</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FActiveGameplayEffectHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyEffectContainerSpec</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ContainerSpec</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FActiveGameplayEffectHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AllEffects</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Iterate list of effect specs and apply them to their target data</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectSpecHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SpecHandle</span><span class="o">:</span><span class="w"> </span><span class="n">ContainerSpec</span><span class="p">.</span><span class="n">TargetGameplayEffectSpecs</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AllEffects</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">K2_ApplyGameplayEffectSpecToTarget</span><span class="p">(</span><span class="n">SpecHandle</span><span class="p">,</span><span class="w"> </span><span class="n">ContainerSpec</span><span class="p">.</span><span class="n">TargetData</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AllEffects</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FActiveGameplayEffectHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyEffectContainer</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w">              </span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                             </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                             </span><span class="n">int32</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ApplyEffectContainerSpec</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// This allow animation to be standard, and Gameplay designed can tweak the CastPoint independently</span>
+<span class="c1">// from the actual animation</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">ResolveAnimationPlayRate</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UAnimMontage</span><span class="w"> </span><span class="o">*</span><span class="n">Montage</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Montage</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// 4.27</span>
+<span class="w">    </span><span class="c1">// TArray&lt;FAnimNotifyEventReference&gt; OutActiveNotifies;</span>
+<span class="w">    </span><span class="c1">// Montage-&gt;GetAnimNotifies(0, Montage-&gt;GetPlayLength(), false, OutActiveNotifies);</span>
+
+<span class="w">    </span><span class="n">FAnimNotifyContext</span><span class="w"> </span><span class="n">NotifyContext</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Montage</span><span class="o">-&gt;</span><span class="n">GetAnimNotifies</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="n">Montage</span><span class="o">-&gt;</span><span class="n">GetPlayLength</span><span class="p">(),</span><span class="w"> </span><span class="n">NotifyContext</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">NotifyRef</span><span class="o">:</span><span class="w"> </span><span class="n">NotifyContext</span><span class="p">.</span><span class="n">ActiveNotifies</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FAnimNotifyEvent</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">NotifyEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NotifyRef</span><span class="p">.</span><span class="n">GetNotify</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w">                    </span><span class="n">Notify</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKCastPointAnimNotify</span><span class="o">&gt;</span><span class="p">(</span><span class="n">NotifyEvent</span><span class="o">-&gt;</span><span class="n">Notify</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Find the ability Cast point on this animation</span>
+<span class="w">        </span><span class="c1">// Create a CastPointAnimNotify class and check here</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Notify</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// if the Notify event is at 2 sec but the cast point is 1 sec</span>
+<span class="w">            </span><span class="c1">// play the animation 2x so the Notify is indeed sent after 1 sec</span>
+<span class="w">            </span><span class="n">Rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NotifyEvent</span><span class="o">-&gt;</span><span class="n">GetTriggerTime</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Data</span><span class="p">.</span><span class="n">CastTime</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// Realisticly though we can only cast one ability with animation</span>
+<span class="w">            </span><span class="c1">// So maybe we can reuse the same tag for everything</span>
+<span class="w">            </span><span class="c1">// TODO: Here we could set the Event Tag to match the ability</span>
+<span class="w">            </span><span class="c1">// Notify-&gt;CastPointEventTag = ;</span>
+
+<span class="w">            </span><span class="c1">// We should probably only have one cast point</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Rate</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetingCancelled</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetingResultDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ------------------</span>
+
+<span class="w">    </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateManual_PointTarget</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">StartLocation</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayAbilityTargetingLocationInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetDataHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StartLocation</span><span class="p">.</span><span class="n">MakeTargetDataHandleFromHitResult</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">Result</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="n">TargetDataHandle</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FVector</span><span class="w"> </span><span class="n">GetImpactPoint</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Index</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Valid</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Data</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Data</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">Index</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetData</span><span class="w"> </span><span class="o">*</span><span class="n">FirstTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">Index</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">HasHitResult</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">GetHitResult</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Actors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">GetActors</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Actors</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ActorRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actors</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ActorRef</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ActorRef</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetingResultDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ------------------</span>
+
+<span class="w">    </span><span class="c1">//*</span>
+<span class="w">    </span><span class="c1">// Both rotates to face target and move towarsd it</span>
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">MoveToTarget</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="n">NAME_None</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="n">Data</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">CastMaxRange</span><span class="p">,</span><span class="w"> </span><span class="c1">// Dist Tol</span>
+<span class="w">                                                                      </span><span class="mf">15.f</span><span class="p">,</span><span class="w">                             </span><span class="c1">// Angle Tol</span>
+<span class="w">                                                                      </span><span class="mf">150.f</span><span class="p">,</span><span class="w">                            </span><span class="c1">// Turn Rate</span>
+<span class="w">                                                                      </span><span class="mf">600.f</span><span class="p">,</span><span class="w">                            </span><span class="c1">// Speed</span>
+<span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Move to target</span>
+<span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Use Movement Component</span>
+<span class="w">                                                                      </span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// MoveToTargetStartDelegate.Broadcast();</span>
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityMoveToTargetCancelled</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityMoveToTargetCompleted</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityMoveToTargetCancelled</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetingResultDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveToTargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ------------------</span>
+
+<span class="w">    </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityMoveToTargetCompleted</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MoveToTargetTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveToTargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Immediate</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationEvent</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Warning if an Animation is already playing</span>
+<span class="w">    </span><span class="c1">// user need to cancel backswing to be able to cast before</span>
+<span class="w">    </span><span class="c1">// animation ends</span>
+<span class="w">    </span><span class="c1">// TODO: when implementing Action Queue handle that</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="n">AnimTask</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// return;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Montage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAnimation</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Compute the Animation rate</span>
+<span class="w">    </span><span class="c1">// so the CastPoint is triggered at the right time</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DyanmicCastPoint</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityData</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResolveAnimationPlayRate</span><span class="p">(</span><span class="o">*</span><span class="n">AbilityData</span><span class="p">,</span><span class="w"> </span><span class="n">Montage</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ## We are ready to play the animation</span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_PlayMontageAndWaitForEvent</span><span class="o">::</span><span class="n">PlayMontageAndWaitForEvent</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">NAME_None</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">Montage</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Listen to our ability event, empty matches everything</span>
+<span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Attach target data to the Animation task so it can be forwarded</span>
+<span class="w">            </span><span class="c1">// to the activation</span>
+<span class="w">            </span><span class="n">Data</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">Rate</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">StartSection</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="mf">1.f</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Channel: Spell is cast after the animation ends BUT</span>
+<span class="w">    </span><span class="c1">// resources are committed when the animation starts</span>
+<span class="w">    </span><span class="c1">// During the channel the player cannot move.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Normal: Spell is cast after animation reach the cast point</span>
+<span class="w">    </span><span class="c1">// and the resource are committed then</span>
+
+<span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">OnBlendOut</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationBlendOut</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">OnInterrupted</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationAbort</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationAbort</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">EventReceived</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationEvent</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Run</span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationBlendOut</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">EventData</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">K2_EndAbility</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationAbort</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">EventData</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">AnimTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">K2_CheckTagRequirements</span><span class="p">(</span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">RelevantTags</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CurrentActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CheckTagRequirements</span><span class="p">(</span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">RelevantTags</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">CanActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                            </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w"> </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                            </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w">     </span><span class="o">*</span><span class="n">SourceTags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                            </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w">     </span><span class="o">*</span><span class="n">TargetTags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                            </span><span class="n">FGameplayTagContainer</span><span class="w">           </span><span class="o">*</span><span class="n">OptionalRelevantTags</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilitySystemComponentFromActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ASC</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">*</span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">FindAbilitySpecFromHandle</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Spec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Level</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="o">&amp;</span><span class="n">NotYetLearnedTag</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">                </span><span class="p">((</span><span class="n">UGKAbilitySystemGlobals</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">()).</span><span class="n">ActivateFailNotYetLearnedTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OptionalRelevantTags</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">NotYetLearnedTag</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">OptionalRelevantTags</span><span class="o">-&gt;</span><span class="n">AddTag</span><span class="p">(</span><span class="n">NotYetLearnedTag</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">CanActivateAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">SourceTags</span><span class="p">,</span><span class="w"> </span><span class="n">TargetTags</span><span class="p">,</span><span class="w"> </span><span class="n">OptionalRelevantTags</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">CancelAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w">     </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w">     </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="kt">bool</span><span class="w">                                 </span><span class="n">bReplicateCancelAbility</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">CancelAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="n">bReplicateCancelAbility</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AnimTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AnimTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyCooldown</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w">     </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w">     </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// No generated Effect</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CooldownEffectInstance</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// This uses the GameEffect CDO, when the Ability is not instantiated</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">ApplyCooldown</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ApplyGameplayEffectToOwnerDynamic</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="n">CooldownEffectInstance</span><span class="p">,</span><span class="w"> </span><span class="n">GetAbilityLevel</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyCost</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w">     </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                   </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w">     </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                   </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// No generated Effect</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CostEffectInstance</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// This uses the GameEffect CDO, when the Ability is not instantiated</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">ApplyCost</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ApplyGameplayEffectToOwnerDynamic</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="n">CostEffectInstance</span><span class="p">,</span><span class="w"> </span><span class="n">GetAbilityLevel</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyGameplayEffectToOwnerDynamic</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w">     </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w">     </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="w">               </span><span class="o">*</span><span class="n">GameplayEffect</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="kt">float</span><span class="w">                                </span><span class="n">GameplayEffectLevel</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="n">int32</span><span class="w">                                </span><span class="n">Stacks</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">GameplayEffect</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">HasAuthorityOrPredictionKey</span><span class="p">(</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ActivationInfo</span><span class="p">)))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FScopedGameplayCueSendContext</span><span class="w"> </span><span class="n">GameplayCueSendContext</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// NOTE: UE is doing this on their side, FGameplayEffectSpecHandle is a shared pointer</span>
+<span class="w">    </span><span class="c1">// Let just use the struct as is and see</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">//      FGameplayEffectSpecHandle SpecHandle = new FGameplayEffectSpec</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayEffectSpec</span><span class="p">(</span><span class="n">GameplayEffect</span><span class="p">,</span><span class="w"> </span><span class="n">MakeEffectContext</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">),</span><span class="w"> </span><span class="n">GameplayEffectLevel</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySpec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">FindAbilitySpecFromHandle</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Spec</span><span class="p">.</span><span class="n">SetByCallerTagMagnitudes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="o">-&gt;</span><span class="n">SetByCallerTagMagnitudes</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Spec</span><span class="p">.</span><span class="n">StackCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stacks</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ApplyAbilityTagsToGameplayEffectSpec</span><span class="p">(</span><span class="n">Spec</span><span class="p">,</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle);</span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">ApplyGameplayEffectSpecToSelf</span><span class="p">(</span><span class="n">Spec</span><span class="p">,</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetPredictionKeyForNewAction</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationEvent</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">EventData</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Only the authority commits the ability</span>
+<span class="w">    </span><span class="c1">// in the BP side I had a double commit issue</span>
+<span class="w">    </span><span class="c1">// but it did not happen in C++ :thinking:</span>
+<span class="w">    </span><span class="c1">// might be that 2nd replicated CommitAbility was received by the server after the 1st EndAbility was called on the</span>
+<span class="w">    </span><span class="c1">// server making the 2nd Commit valid while in C++ the time window for this to happen is much shorter making the bug</span>
+<span class="w">    </span><span class="c1">// less likely to happen</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Note: cooldowns will prevent the bug from happening</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">K2_HasAuthority</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// needs to wait for CommitAbility being replicated on client and then spawn the projectile everywhere</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    if (EventData.TargetData) {</span>
+
+<span class="cm">    }</span>
+<span class="cm">    //*/</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">K2_CommitAbility</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">K2_EndAbility</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_Hidden</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_Passive</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_NoTarget</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Cancel previous actions</span>
+<span class="w">    </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_ActorTarget</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// The TargetActor has the logic to handle ActorTarget &amp; PointTarget</span>
+<span class="w">    </span><span class="n">ActivateAbility_PointTarget</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">SpawnAbilityTarget_Actor</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetCurrentActorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ASC</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">Data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityTargetActorClass</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">GetAbilityTarget_Actor</span><span class="p">(</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AGKAbilityTarget_Actor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityTargetActorClass</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetActor</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">InitializeFromAbilityData</span><span class="p">(</span><span class="o">*</span><span class="n">GetAbilityStatic</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TargetActor</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_PointTarget</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnAbilityTarget_Actor</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsValid</span><span class="p">(</span><span class="n">TargetActor</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_WaitForTargetData</span><span class="o">::</span><span class="n">WaitForTargetDataUsingActor</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="k">this</span><span class="p">,</span><span class="w">                                          </span><span class="c1">// UGameplayAbility * OwningAbility,</span>
+<span class="w">            </span><span class="n">NAME_None</span><span class="p">,</span><span class="w">                                     </span><span class="c1">// FName TaskInstanceName</span>
+<span class="w">            </span><span class="n">EGameplayTargetingConfirmation</span><span class="o">::</span><span class="n">UserConfirmed</span><span class="p">,</span><span class="w"> </span><span class="c1">// ConfirmationType</span>
+<span class="w">            </span><span class="n">TargetActor</span><span class="w">                                    </span><span class="c1">// TargetActor</span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TargetingStartDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">Cancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetingCancelled</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">ValidData</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetAcquired</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_Toggle</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsActive</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Does not play animation on toggle off</span>
+<span class="w">        </span><span class="n">K2_EndAbility</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Plays animation on toggle on</span>
+<span class="w">        </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::ActivateAbility_Native</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">AbilityData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityData</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityData</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">ActorTarget</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_ActorTarget</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Hidden</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Hidden</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">NoTarget</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_NoTarget</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Passive</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Passive</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">PointTarget</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_PointTarget</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Toggle</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">UGKGameplayAbility::GetAbilityCooldownTags</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">Super</span><span class="o">::</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayAttribute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">GetAbilityCostAttribute</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayAttribute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w">                       </span><span class="n">CostEffect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCostGameplayEffect</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CostEffect</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Modifiers</span><span class="o">:</span><span class="w"> </span><span class="n">CostEffect</span><span class="o">-&gt;</span><span class="n">Modifiers</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Out</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Modifiers</span><span class="p">.</span><span class="n">Attribute</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">LevelUpAbility</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsInstantiated</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">CurrentActorInfo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CurrentActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ASC</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">LevelUpAbility</span><span class="p">(</span><span class="n">CurrentSpecHandle</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">GetCooldownGameplayEffect</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownEffectInstance</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Verbose</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Returns generated cooldown effect&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">CooldownEffectInstance</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">GetCooldownGameplayEffect</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">GetCostGameplayEffect</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CostEffectInstance</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Verbose</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Returns generated cost effect&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">CostEffectInstance</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">GetCostGameplayEffect</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">NewCooldownEffectFromConfig</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Durations</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Durations</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Cooldown value is not set!&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">RowName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;Cooldown.&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AbilityStatic</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownEffect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UGKGameplayEffectDyn</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="cm">/*, TEXT(&quot;GameplayEffect.Cooldown&quot;) */</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CooldownEffect</span><span class="o">-&gt;</span><span class="n">DurationPolicy</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayEffectDurationType</span><span class="o">::</span><span class="n">HasDuration</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ScalableDuration</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateCurveDataFromArray</span><span class="p">(</span><span class="n">RowName</span><span class="p">,</span><span class="w"> </span><span class="n">Durations</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CooldownEffect</span><span class="o">-&gt;</span><span class="n">DurationMagnitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScalableDuration</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CooldownEffect</span><span class="o">-&gt;</span><span class="n">InheritableOwnedTagsContainer</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">RowName</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CooldownEffect</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKGameplayAbility::NewCostEffectFromConfig</span><span class="p">(</span><span class="n">FGKAbilityCost</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Conf</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Conf</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Cost value is not set!&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">RowName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;Cost.&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AbilityStatic</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">CostEffect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UGKGameplayEffectDyn</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="cm">/*, TEXT(&quot;GameplayEffect.Cost&quot;)*/</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CostEffect</span><span class="o">-&gt;</span><span class="n">DurationPolicy</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayEffectDurationType</span><span class="o">::</span><span class="n">Instant</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">CostEffect</span><span class="o">-&gt;</span><span class="n">Modifiers</span><span class="p">.</span><span class="n">SetNum</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayModifierInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AttributeCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CostEffect</span><span class="o">-&gt;</span><span class="n">Modifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ScalableCost</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateCurveDataFromArray</span><span class="p">(</span><span class="n">RowName</span><span class="p">,</span><span class="w"> </span><span class="n">Conf</span><span class="p">.</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AttributeCost</span><span class="p">.</span><span class="n">ModifierMagnitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScalableCost</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AttributeCost</span><span class="p">.</span><span class="n">ModifierOp</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayModOp</span><span class="o">::</span><span class="n">Additive</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AttributeCost</span><span class="p">.</span><span class="n">Attribute</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">Conf</span><span class="p">.</span><span class="n">Attribute</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CostEffect</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">NewPassiveRegenEffect</span><span class="p">(</span><span class="n">UObject</span><span class="w">           </span><span class="o">*</span><span class="n">Parent</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="n">FGameplayAttribute</span><span class="w"> </span><span class="n">Attribute</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="kt">float</span><span class="w">              </span><span class="n">Value</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="kt">float</span><span class="w">              </span><span class="n">Period</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                       </span><span class="n">FName</span><span class="w">              </span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Note that Giving it a name HERE makes the ability not work</span>
+<span class="w">    </span><span class="c1">// Health Regen woudl work but mana would not</span>
+<span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">Regen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UGKGameplayEffectDyn</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="cm">/*, TEXT(&quot;GameplayEffect.Regen&quot;)*/</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Regen</span><span class="o">-&gt;</span><span class="n">DurationPolicy</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayEffectDurationType</span><span class="o">::</span><span class="n">Infinite</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Regen</span><span class="o">-&gt;</span><span class="n">Period</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Period</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Regen</span><span class="o">-&gt;</span><span class="n">Modifiers</span><span class="p">.</span><span class="n">SetNum</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayModifierInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">RegenModifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Regen</span><span class="o">-&gt;</span><span class="n">Modifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">RegenModifier</span><span class="p">.</span><span class="n">ModifierMagnitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FScalableFloat</span><span class="p">(</span><span class="n">Value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Period</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">RegenModifier</span><span class="p">.</span><span class="n">ModifierOp</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">EGameplayModOp</span><span class="o">::</span><span class="n">Additive</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">RegenModifier</span><span class="p">.</span><span class="n">Attribute</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">Attribute</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TagName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;Regen.&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Attribute</span><span class="p">.</span><span class="n">GetName</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">Regen</span><span class="o">-&gt;</span><span class="n">InheritableOwnedTagsContainer</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">TagName</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Regen</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">FScalableFloat</span><span class="w"> </span><span class="nf">UGKGameplayAbility::GenerateCurveDataFromArray</span><span class="p">(</span><span class="n">FName</span><span class="w">          </span><span class="n">RowName</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                              </span><span class="n">TArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Values</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                              </span><span class="kt">bool</span><span class="w">           </span><span class="n">ValuesAreFinal</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                              </span><span class="kt">bool</span><span class="w">           </span><span class="n">Cost</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UCurveTable</span><span class="w"> </span><span class="o">*</span><span class="n">Table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">GetGlobalCurveTable</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Table</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">Warning</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;UAbilitySystemGlobals::GlobalCurveTableName is not set cannot generate curve data %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">               </span><span class="o">*</span><span class="n">RowName</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FScalableFloat</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Values</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">Warning</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;GenerateCurveDataFromDataTable cannot generate a curve with no values %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">               </span><span class="o">*</span><span class="n">RowName</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FScalableFloat</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Values</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">BaseValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Cost</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">BaseValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">abs</span><span class="p">(</span><span class="n">BaseValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FScalableFloat</span><span class="p">(</span><span class="n">BaseValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FSimpleCurve</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">AddSimpleCurve</span><span class="p">(</span><span class="n">RowName</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">ValuesAreFinal</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Values</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ValuesAreFinal</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Curve</span><span class="p">.</span><span class="n">AddKey</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">BaseValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Cost</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">BaseValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">abs</span><span class="p">(</span><span class="n">BaseValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FScalableFloat</span><span class="w"> </span><span class="n">ScalableFloat</span><span class="p">(</span><span class="n">BaseValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ScalableFloat</span><span class="p">.</span><span class="n">Curve</span><span class="p">.</span><span class="n">RowName</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">RowName</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ScalableFloat</span><span class="p">.</span><span class="n">Curve</span><span class="p">.</span><span class="n">CurveTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Table</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ScalableFloat</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="nf">UGKGameplayAbility::GetActivationBlockedTag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ActivationBlockedTags</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="nf">UGKGameplayAbility::GetActivationRequiredTag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ActivationRequiredTags</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">UGKGameplayAbility::GetTargetLocation</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="n">TargetData</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                           </span><span class="n">FVector</span><span class="w">                         </span><span class="o">&amp;</span><span class="n">Position</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                           </span><span class="n">AActor</span><span class="w">                         </span><span class="o">*&amp;</span><span class="n">Target</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                           </span><span class="n">int32</span><span class="w">                            </span><span class="n">Index</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetData</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;UGKGameplayAbility::SpawnProjectile: No TargetData&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;UGKGameplayAbility::SpawnProjectile: Has %d TargetData&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Num</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">Index</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">HasHitResult</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">HitActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">Index</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">GetHitResult</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">HitObjectHandle</span><span class="p">.</span><span class="n">FetchActor</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Target</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">HitActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Position</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">Index</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">GetHitResult</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Actors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">Index</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">GetActors</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Actors</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;UGKGameplayAbility::SpawnProjectile: No Actor Data&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Target</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">Actors</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::SpawnProjectile</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">EventData</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">Data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">ProjectileActorClass</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TargetData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EventData</span><span class="p">.</span><span class="n">TargetData</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ActorInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCurrentActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Actor</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AvatarActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Pawn</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APawn</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AActor</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Direction</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">GetTargetLocation</span><span class="p">(</span><span class="n">EventData</span><span class="p">.</span><span class="n">TargetData</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="p">,</span><span class="w"> </span><span class="n">Target</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w">    </span><span class="n">Loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FTransform</span><span class="w"> </span><span class="n">Transform</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Transform</span><span class="p">.</span><span class="n">SetLocation</span><span class="p">(</span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorForwardVector</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">64.0f</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ---</span>
+
+<span class="w">    </span><span class="c1">// From: GameplayAbilities\Public\Abilities\Tasks\AbilityTask_SpawnActor.h</span>
+<span class="w">    </span><span class="c1">// &gt; Long term we can also use this task as a sync point.</span>
+<span class="w">    </span><span class="c1">// &gt; If the executing client could wait execution until the server createsand replicate sthe</span>
+<span class="w">    </span><span class="c1">// &gt; actor down to him.We could potentially also use this to do predictive actor spawning / reconciliation.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Pending UE does it we might have to do it here</span>
+<span class="w">    </span><span class="n">FActorSpawnParameters</span><span class="w"> </span><span class="n">SpawnInfo</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">SpawnCollisionHandlingOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ESpawnActorCollisionHandlingMethod</span><span class="o">::</span><span class="n">AlwaysSpawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">Owner</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">Instigator</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">bDeferConstruction</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ProjectileInstance</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">            </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">SpawnActor</span><span class="o">&lt;</span><span class="n">AGKProjectile</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">ProjectileActorClass</span><span class="p">,</span><span class="w"> </span><span class="n">Transform</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnInfo</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Direction</span><span class="p">.</span><span class="n">Z</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="n">Loc</span><span class="p">.</span><span class="n">Z</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">ProjectileData</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">ProjectileData</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Target</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Direction</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Direction</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Loc</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// The attachment is probably Character/class/Skeleton defined</span>
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="w">    </span><span class="n">UGameplayStatics</span><span class="o">::</span><span class="n">FinishSpawningActor</span><span class="p">(</span><span class="n">ProjectileInstance</span><span class="p">,</span><span class="w"> </span><span class="n">Transform</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// we need a multi-cast here to tell people we are ready to make the Projectile move</span>
+<span class="w">    </span><span class="c1">// this would assume that the network works with a queue so given we modified the properties</span>
+<span class="w">    </span><span class="c1">// earlier they will be updated first</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// ProjectileInstance-&gt;Ready()</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UAnimMontage</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKGameplayAbility::GetAnimation</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AnimMontages</span><span class="p">.</span><span class="n">Animations</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AnimMontages</span><span class="p">.</span><span class="n">Sample</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ActorInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCurrentActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Actor</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AvatarActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Pawn</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Pawn</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">Warning</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;UGKGameplayAbility::GetAnimation could not fetch pawn animation for cast ability&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">UnitConf</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetUnitStatic</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">AbilityConf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UnitConf</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilityConf</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AnimMontages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UnitConf</span><span class="o">-&gt;</span><span class="n">AnimationSet</span><span class="p">.</span><span class="n">GetAnimations</span><span class="p">(</span><span class="n">AbilityConf</span><span class="o">-&gt;</span><span class="n">AbilityAnimation</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AnimMontages</span><span class="p">.</span><span class="n">Sample</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::InputPressed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w">     </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="w">     </span><span class="o">*</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// TODO: Move this to a movement Ability</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// We could also use it to add multiple points</span>
+<span class="w">    </span><span class="c1">// but not as flexible as an Ability queue</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">MovementTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CurrentTask</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MovementTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w">       </span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APlayerController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">PlayerController</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// TODO:: Fix this trace</span>
+<span class="w">        </span><span class="n">ETraceTypeQuery</span><span class="w"> </span><span class="n">Channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UEngineTypes</span><span class="o">::</span><span class="n">ConvertToTraceType</span><span class="p">(</span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetHitResultUnderCursorByChannel</span><span class="p">(</span><span class="n">Channel</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">Result</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">MovementTask</span><span class="o">-&gt;</span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// This is a bit laggy</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Have to check the replicate on this one</span>
+<span class="w">    </span><span class="c1">// For movement we only need the movement between the server &amp; client to match</span>
+<span class="w">    </span><span class="c1">// Maybe we can reduce the amount of data shared</span>
+<span class="w">    </span><span class="c1">// Maybe we can update underlying task with its new point</span>
+<span class="w">    </span><span class="c1">// Would prevent us to see the stop</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Might be better to move the movement out of GA</span>
+<span class="w">    </span><span class="c1">// and use regular Task instead</span>
+<span class="w">    </span><span class="c1">// But we do not have access to the current task running ?</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Dont cancel abilities that cannot be recast after cancel</span>
+<span class="w">    </span><span class="c1">// This means you can cancel abilities by recasting it</span>
+<span class="w">    </span><span class="c1">// before the cost &amp; Cooldown gets expanded</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CanActivateAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Cancel the current ability</span>
+<span class="w">        </span><span class="n">CancelAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Activate a new ability</span>
+<span class="w">        </span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">TryActivateAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.. _exhale_class_classgamekit_1_1commands_1_1disable_1_1Disable:
+
+Class Disable
+=============
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_disable.py`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public gamekit.conf.Command`` (:ref:`exhale_class_classgamekit_1_1conf_1_1Command`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: gamekit::commands::disable::Disable
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

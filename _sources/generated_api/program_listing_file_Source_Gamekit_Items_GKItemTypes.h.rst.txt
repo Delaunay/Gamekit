@@ -1,0 +1,109 @@
+
+.. _program_listing_file_Source_Gamekit_Items_GKItemTypes.h:
+
+Program Listing for File GKItemTypes.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Items_GKItemTypes.h>` (``Source/Gamekit/Items/GKItemTypes.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // ----------------------------------------------------------------------------------------------------------------
+   // This header is for enums and structs used by classes and blueprints accross the game
+   // Collecting these in a single header helps avoid problems with recursive header includes
+   // It's also a good place to put things like data table row structs
+   // ----------------------------------------------------------------------------------------------------------------
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityInputs.h"
+   
+   // Unreal Engine
+   #include "UObject/PrimaryAssetId.h"
+   
+   // Generated
+   #include "GKItemTypes.generated.h"
+   
+   class UGKItem;
+   class UGKSaveGame;
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKAbilitySlot
+   {
+       GENERATED_BODY()
+   
+       
+       FGKAbilitySlot(): SlotNumber(-1) {}
+   
+       FGKAbilitySlot(int32 InSlotNumber): SlotNumber(InSlotNumber) {}
+   
+       FGKAbilitySlot(EGK_MOBA_AbilityInputID AbilityInput): SlotNumber(int32(AbilityInput)) {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
+       int32 SlotNumber;
+   
+       bool operator==(const FGKAbilitySlot &Other) const { return SlotNumber == Other.SlotNumber; }
+       bool operator!=(const FGKAbilitySlot &Other) const { return !(*this == Other); }
+   
+       friend inline uint32 GetTypeHash(const FGKAbilitySlot &Key) { return GetTypeHash(Key.SlotNumber); }
+   
+       bool IsValid() const { return SlotNumber >= 0; }
+   };
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKItemData
+   {
+       GENERATED_BODY()
+   
+       
+       FGKItemData(): ItemCount(1), ItemLevel(1) {}
+   
+       FGKItemData(int32 InItemCount, int32 InItemLevel): ItemCount(InItemCount), ItemLevel(InItemLevel) {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
+       int32 ItemCount;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
+       int32 ItemLevel;
+   
+       bool operator==(const FGKItemData &Other) const
+       {
+           return ItemCount == Other.ItemCount && ItemLevel == Other.ItemLevel;
+       }
+       bool operator!=(const FGKItemData &Other) const { return !(*this == Other); }
+   
+       bool IsValid() const { return ItemCount > 0; }
+   
+       void UpdateItemData(const FGKItemData &Other, int32 MaxCount, int32 MaxLevel)
+       {
+           if (MaxCount <= 0)
+           {
+               MaxCount = MAX_int32;
+           }
+   
+           if (MaxLevel <= 0)
+           {
+               MaxLevel = MAX_int32;
+           }
+   
+           ItemCount = FMath::Clamp(ItemCount + Other.ItemCount, 1, MaxCount);
+           ItemLevel = FMath::Clamp(Other.ItemLevel, 1, MaxLevel);
+       }
+   };
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChanged, bool, bAdded, UGKItem *, Item);
+   DECLARE_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChangedNative, bool, UGKItem *);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSlottedItemChanged, FGKAbilitySlot, ItemSlot, UGKItem *, Item);
+   DECLARE_MULTICAST_DELEGATE_TwoParams(FOnSlottedItemChangedNative, FGKAbilitySlot, UGKItem *);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInventoryLoaded);
+   DECLARE_MULTICAST_DELEGATE(FOnInventoryLoadedNative);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSaveGameLoaded, UGKSaveGame *, SaveGame);
+   DECLARE_MULTICAST_DELEGATE_OneParam(FOnSaveGameLoadedNative, UGKSaveGame *);

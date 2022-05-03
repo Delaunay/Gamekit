@@ -1,0 +1,14 @@
+.. _exhale_variable_Gamekit_8cpp_1a6497e105c128a37f4ff801511de0e298:
+
+Variable Gamekit
+================
+
+- Defined in :ref:`file_Source_Gamekit_Gamekit.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gamekit
+   :project: GameKit

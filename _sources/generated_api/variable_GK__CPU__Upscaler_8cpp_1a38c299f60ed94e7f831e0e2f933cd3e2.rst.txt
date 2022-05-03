@@ -1,0 +1,14 @@
+.. _exhale_variable_GK__CPU__Upscaler_8cpp_1a38c299f60ed94e7f831e0e2f933cd3e2:
+
+Variable PatternMap
+===================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: PatternMap
+   :project: GameKit

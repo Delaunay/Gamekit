@@ -1,0 +1,26 @@
+.. _exhale_class_classFGamekitTestSuiteModule:
+
+Class FGamekitTestSuiteModule
+=============================
+
+- Defined in :ref:`file_Source_GamekitTestSuite_GamekitTestSuiteModule.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public IGamekitTestSuiteModule`` (:ref:`exhale_class_classIGamekitTestSuiteModule`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FGamekitTestSuiteModule
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

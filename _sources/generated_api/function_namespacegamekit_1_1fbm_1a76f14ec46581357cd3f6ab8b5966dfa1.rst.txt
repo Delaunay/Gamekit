@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1a76f14ec46581357cd3f6ab8b5966dfa1:
+
+Function gamekit::fbm::fract
+============================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::fract(float)
+   :project: GameKit

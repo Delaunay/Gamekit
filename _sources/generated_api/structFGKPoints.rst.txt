@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKPoints:
+
+Struct FGKPoints
+================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKPoints
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

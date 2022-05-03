@@ -1,0 +1,14 @@
+.. _exhale_function_GKBitFlag_8h_1aa917b61e29bb996ce90a7ae191eea7a9:
+
+Template Function RemoveFlag
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: RemoveFlag(uint32, Enum)
+   :project: GameKit

@@ -1,0 +1,4 @@
+<map id="UGKFogOfWarStrategy::DrawFactionFog" name="UGKFogOfWarStrategy::DrawFactionFog">
+<area shape="rect" id="node1" title="Draw the fog of war for each factions." alt="" coords="5,5,175,47"/>
+<area shape="rect" id="node2" href="$classUGKFogOfWarStrategy.html#a68811451bbb3ad3dde97d9b8d87e4b39" title="Draw the line of sight using the right method." alt="" coords="223,5,392,47"/>
+</map>

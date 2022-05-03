@@ -1,0 +1,41 @@
+
+.. _file_Source_Gamekit_Abilities_GKTargetType.cpp:
+
+File GKTargetType.cpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKTargetType.cpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKTargetType.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+
+- ``Gamekit/Abilities/GKTargetType.h`` (:ref:`file_Source_Gamekit_Abilities_GKTargetType.h`)
+
+- ``Gamekit/Characters/GKCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKCharacter.h`)
+
+
+
+
+

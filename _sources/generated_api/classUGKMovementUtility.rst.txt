@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKMovementUtility:
+
+Class UGKMovementUtility
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Grid_GKMovementUtility.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintFunctionLibrary``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKMovementUtility
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

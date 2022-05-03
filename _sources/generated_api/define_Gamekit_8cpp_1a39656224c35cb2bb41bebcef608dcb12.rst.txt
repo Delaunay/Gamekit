@@ -1,0 +1,14 @@
+.. _exhale_define_Gamekit_8cpp_1a39656224c35cb2bb41bebcef608dcb12:
+
+Define GAMEKIT_SHADERS
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Gamekit.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GAMEKIT_SHADERS
+   :project: GameKit

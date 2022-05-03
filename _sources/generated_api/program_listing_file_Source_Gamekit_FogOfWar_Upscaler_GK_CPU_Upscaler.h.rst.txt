@@ -1,0 +1,56 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h:
+
+Program Listing for File GK_CPU_Upscaler.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h>` (``Source/Gamekit/FogOfWar/Upscaler/GK_CPU_Upscaler.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Container/Matrix.h"
+   #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GK_CPU_Upscaler.generated.h"
+   
+   // https://en.wikipedia.org/wiki/Pixel-art_scaling_algorithms
+   enum class EGK_UpscalingMethod
+   {
+   };
+   
+   using Texel2x2 = uint8;
+   
+   /*
+    *  .. note::
+    *
+    *     this is too slow, we need a GPU kernel to make the upscaling
+    *     more efficient, use for debug only
+    *
+    */
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKCPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
+   {
+       GENERATED_BODY()
+   
+       public:
+       void Initialize() override;
+   
+       Texel2x2 GetTexel(TMatrix3D<uint8> const &Mat, FIntVector v);
+   
+       void Transform(class AGKFogOfWarTeam *FactionFog);
+   
+       private:
+       TMatrix3D<uint8> UpscaledBuffer;
+   };

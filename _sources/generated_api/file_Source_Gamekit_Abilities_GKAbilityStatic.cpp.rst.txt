@@ -1,0 +1,41 @@
+
+.. _file_Source_Gamekit_Abilities_GKAbilityStatic.cpp:
+
+File GKAbilityStatic.cpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKAbilityStatic.cpp``)
+-------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKAbilityStatic.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
+- ``Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h`` (:ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`)
+
+- ``GenericTeamAgentInterface.h``
+
+
+
+
+

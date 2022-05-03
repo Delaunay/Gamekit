@@ -1,0 +1,60 @@
+
+.. _file_Source_Gamekit_GKAssetManager.h:
+
+File GKAssetManager.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKAssetManager.h``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKAssetManager.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/AssetManager.h``
+
+- ``GKAssetManager.generated.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+- :ref:`file_Source_Gamekit_GKAssetManager.cpp`
+
+- :ref:`file_Source_Gamekit_Items_GKItem.h`
+
+- :ref:`file_Source_Gamekit_GKGameInstance.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKAssetManager`
+

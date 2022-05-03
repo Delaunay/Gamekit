@@ -1,0 +1,30 @@
+
+.. _program_listing_file_Source_Gamekit_Subsystems_GKEngineSubsystem.h:
+
+Program Listing for File GKEngineSubsystem.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Subsystems_GKEngineSubsystem.h>` (``Source/Gamekit/Subsystems/GKEngineSubsystem.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Subsystems/EngineSubsystem.h"
+   
+   // Generated
+   #include "GKEngineSubsystem.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKEngineSubsystem: public UEngineSubsystem
+   {
+       GENERATED_BODY()
+   
+       public:
+       virtual void Initialize(FSubsystemCollectionBase &Collection) override;
+   };

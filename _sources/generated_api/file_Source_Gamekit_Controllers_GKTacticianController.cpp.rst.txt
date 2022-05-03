@@ -1,0 +1,53 @@
+
+.. _file_Source_Gamekit_Controllers_GKTacticianController.cpp:
+
+File GKTacticianController.cpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Controllers>` (``Source/Gamekit/Controllers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Controllers/GKTacticianController.cpp``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Controllers_GKTacticianController.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Blueprint/AIBlueprintHelperLibrary.h``
+
+- ``Engine/World.h``
+
+- ``GameFramework/SpringArmComponent.h``
+
+- ``Gamekit/Characters/GKTopDownPawn.h`` (:ref:`file_Source_Gamekit_Characters_GKTopDownPawn.h`)
+
+- ``Gamekit/Characters/GKUnitCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKUnitCharacter.h`)
+
+- ``Gamekit/Controllers/GKTacticianController.h`` (:ref:`file_Source_Gamekit_Controllers_GKTacticianController.h`)
+
+- ``Gamekit/Grid/GKHexGridUtilities.h`` (:ref:`file_Source_Gamekit_Grid_GKHexGridUtilities.h`)
+
+- ``HeadMountedDisplayFunctionLibrary.h``
+
+- ``Runtime/Engine/Classes/Components/DecalComponent.h``
+
+
+
+
+

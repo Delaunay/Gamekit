@@ -1,0 +1,14 @@
+.. _exhale_function_GKDamageExecution_8cpp_1ac5379244385f9728f87beaff8fc7b022:
+
+Function DamageStatics
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKDamageExecution.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DamageStatics()
+   :project: GameKit

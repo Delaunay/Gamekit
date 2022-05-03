@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAbilityTask__WaitForTargetData:
+
+Class UGKAbilityTask_WaitForTargetData
+======================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UAbilityTask``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAbilityTask_WaitForTargetData
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

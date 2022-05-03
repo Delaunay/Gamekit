@@ -1,0 +1,7 @@
+<map id="AGKAbilityEffectActor" name="AGKAbilityEffectActor">
+<area shape="rect" id="node1" title=" " alt="" coords="72,80,235,107"/>
+<area shape="rect" id="node3" href="$classAGKAOEActor.html" title=" " alt="" coords="31,155,142,181"/>
+<area shape="rect" id="node5" href="$classAGKProjectile.html" title=" " alt="" coords="166,155,277,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="121,5,186,32"/>
+<area shape="rect" id="node4" href="$classAGKAOEActorNiagara.html" title=" " alt="" coords="5,229,168,256"/>
+</map>

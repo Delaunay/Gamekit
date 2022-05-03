@@ -1,0 +1,14 @@
+.. _exhale_define_GKUtilityLibraryTest_8cpp_1ae8ec9ebf4128f19371db39984d29d6fe:
+
+Define CASES
+============
+
+- Defined in :ref:`file_Source_GamekitTestSuite_Blueprint_GKUtilityLibraryTest.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CASES
+   :project: GameKit

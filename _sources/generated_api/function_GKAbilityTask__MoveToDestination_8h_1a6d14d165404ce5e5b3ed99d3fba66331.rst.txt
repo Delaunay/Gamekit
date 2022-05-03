@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityTask__MoveToDestination_8h_1a6d14d165404ce5e5b3ed99d3fba66331:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKMoveToDestinationDelegate, const FGameplayAbilityTargetDataHandle&, TargetData)
+=======================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKMoveToDestinationDelegate, const FGameplayAbilityTargetDataHandle&, TargetData)
+   :project: GameKit

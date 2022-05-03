@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1fbm_1a98ca59f3df9c91f48964de148875a896:
+
+Variable gamekit::fbm::T
+========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::fbm::T
+   :project: GameKit

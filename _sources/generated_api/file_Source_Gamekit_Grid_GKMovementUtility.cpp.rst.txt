@@ -1,0 +1,63 @@
+
+.. _file_Source_Gamekit_Grid_GKMovementUtility.cpp:
+
+File GKMovementUtility.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Grid>` (``Source/Gamekit/Grid``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Grid/GKMovementUtility.cpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Grid_GKMovementUtility.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AIController.h`` (:ref:`file_Source_Gamekit_Controllers_GKAIController.h`)
+
+- ``GameFramework/CharacterMovementComponent.h``
+
+- ``Gamekit/Grid/GKMovementUtility.h`` (:ref:`file_Source_Gamekit_Grid_GKMovementUtility.h`)
+
+- ``Kismet/KismetMathLibrary.h``
+
+- ``NavigationData.h``
+
+- ``NavigationPath.h``
+
+- ``NavigationSystem.h``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKMovementUtility_8cpp_1ac18c8a4d8ce25588cb8da0bfd9c8d9a9`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKMovementUtility_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7`
+

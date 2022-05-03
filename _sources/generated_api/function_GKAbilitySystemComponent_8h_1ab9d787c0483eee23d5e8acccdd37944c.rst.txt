@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilitySystemComponent_8h_1ab9d787c0483eee23d5e8acccdd37944c:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKAbilityFailedDelegate, const UGameplayAbility \*, Ability, const FGameplayTagContainer&, FailureReason)
+================================================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKAbilityFailedDelegate, const UGameplayAbility *, Ability, const FGameplayTagContainer&, FailureReason)
+   :project: GameKit

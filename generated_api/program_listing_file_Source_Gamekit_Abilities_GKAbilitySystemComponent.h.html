@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKAbilitySystemComponent.h &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKAbilitySystemComponent.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkabilitysystemcomponent-h">
+<span id="program-listing-file-source-gamekit-abilities-gkabilitysystemcomponent-h"></span><h1>Program Listing for File GKAbilitySystemComponent.h<a class="headerlink" href="#program-listing-for-file-gkabilitysystemcomponent-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h.html#file-source-gamekit-abilities-gkabilitysystemcomponent-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/Abilities/GKAbilitySystemComponent.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityTypes.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemComponent.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Generated</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAbilitySystemComponent.generated.h&quot;</span><span class="cp"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UGKGameplayAbility</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</span><span class="p">(</span><span class="n">FGKAbilityFailedDelegate</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="k">const</span><span class="w"> </span><span class="n">UGameplayAbility</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="n">Ability</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="n">FailureReason</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/* Queued Ability</span>
+<span class="cm"> *</span>
+<span class="cm"> * For an Ability to be queuable, all the data it requires</span>
+<span class="cm"> * needs to be available when the Ability is first queued AND</span>
+<span class="cm"> * at the time of execution</span>
+<span class="cm"> *</span>
+<span class="cm"> * So moving to a point on the map is fine.</span>
+<span class="cm"> * Casting a spell on an ennemy will only be possible if</span>
+<span class="cm"> * the enemy is in range &amp; visible at the time.</span>
+<span class="cm"> *</span>
+<span class="cm"> * The queued ability saves all the data it requires</span>
+<span class="cm"> * and will skip some activation steps (like requesting targets)</span>
+<span class="cm"> *</span>
+<span class="cm"> * Instead the data will be validated before execution</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">USTRUCT</span><span class="p">()</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKQueuedAbility</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Ability To be executed with all the appropriate information</span>
+<span class="w">    </span><span class="c1">// FGameplayAbilitySpecHandle Handle;</span>
+
+<span class="w">    </span><span class="c1">// FGameplayAbilityActorInfo ActorInfo;</span>
+
+<span class="w">    </span><span class="c1">// FGameplayAbilityActivationInfo ActivationInfo;</span>
+
+<span class="w">    </span><span class="c1">// Data available to the ability at Execution</span>
+<span class="w">    </span><span class="c1">// TODO: Make/Use a TargetData Handle</span>
+<span class="w">    </span><span class="n">AActor</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">UCLASS</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">,</span><span class="w"> </span><span class="n">Blueprintable</span><span class="p">)</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UAbilitySystemComponent</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Constructors and overrides</span>
+<span class="w">    </span><span class="n">UGKAbilitySystemComponent</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilitySystemComponentFromActor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AActor</span><span class="w"> </span><span class="o">*</span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                         </span><span class="kt">bool</span><span class="w">          </span><span class="n">LookForComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnGiveAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsInitialized</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Queue Interface</span>
+<span class="w">    </span><span class="c1">// ---------------</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ExecuteQueuedAbility</span><span class="p">(</span><span class="n">FGKQueuedAbility</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Check if there are any Abilities in queue &amp; execute them</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ExecuteAbilityQueue</span><span class="p">(){};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ClearAbilityQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddToQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKQueuedAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityQueue</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKAbilityFailedDelegate</span><span class="w"> </span><span class="n">OnAbilityFailed</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnAbilityFailed_Native</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UGameplayAbility</span><span class="w"> </span><span class="o">*</span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">FailureReason</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">CancelAllPendingAbilities</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">LevelUpAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span><span class="w"> </span><span class="n">Reliable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ServerLevelUpAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Client</span><span class="p">,</span><span class="w"> </span><span class="n">Reliable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ClientLevelUpAbility_Result</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Level</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">TryActivateAbility_Point</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span><span class="w"> </span><span class="n">Reliable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ServerTryActivateAbility_Point</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// protected:</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">Initialized</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AGKGASCharacter</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKGameplayAbility</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AGKAbilityTarget_Actor</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">AbilityTarget_ActorCache</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AGKAbilityTarget_Actor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetAbilityTarget_ActorClass</span><span class="p">(</span><span class="n">EGK_TargetingMode</span><span class="w"> </span><span class="n">Mode</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="n">GetAbilityTarget_Actor</span><span class="p">(</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AGKAbilityTarget_Actor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityTarget_ActorClass</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilityTarget_Actor</span><span class="p">(</span><span class="n">EGK_TargetingMode</span><span class="w"> </span><span class="n">Mode</span><span class="p">);</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

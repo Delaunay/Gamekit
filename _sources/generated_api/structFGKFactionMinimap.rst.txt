@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKFactionMinimap:
+
+Struct FGKFactionMinimap
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKFactionMinimap
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

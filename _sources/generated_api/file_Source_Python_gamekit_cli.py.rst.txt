@@ -1,0 +1,47 @@
+
+.. _file_Source_Python_gamekit_cli.py:
+
+File cli.py
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit>` (``Source/Python/gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Python/gamekit/cli.py``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Python_gamekit_cli.py.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__cli`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacegamekit_1_1cli_1a1c64e7b4d7dd9fdd2479685d242c59fc`
+
+- :ref:`exhale_function_namespacegamekit_1_1cli_1a38b89eed1118e683bbba37be45920579`
+

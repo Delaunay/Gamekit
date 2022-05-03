@@ -1,0 +1,65 @@
+
+.. _file_Source_Gamekit_Projectiles_GKProjectileStatic.h:
+
+File GKProjectileStatic.h
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Projectiles>` (``Source/Gamekit/Projectiles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Projectiles/GKProjectileStatic.h``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Projectiles_GKProjectileStatic.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/DataTable.h``
+
+- ``GKProjectileStatic.generated.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Styling/SlateBrush.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectileStatic.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKProjectileStatic`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GKProjectileStatic_8h_1afd9e90c3cf6c1436d328ee750d950eb4`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_GKFogOfWarComponent_8h_1ab55200f5fc9bd70d7378ffb0a22a66ab:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor \*, Actor)
+==============================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarComponent.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor)
+   :project: GameKit

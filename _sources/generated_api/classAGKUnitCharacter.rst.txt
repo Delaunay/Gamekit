@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKUnitCharacter:
+
+Class AGKUnitCharacter
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKUnitCharacter.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public ACharacter``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKUnitCharacter
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

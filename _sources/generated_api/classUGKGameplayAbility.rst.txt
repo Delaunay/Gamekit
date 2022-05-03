@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKGameplayAbility:
+
+Class UGKGameplayAbility
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGameplayAbility``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKGameplayAbility
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

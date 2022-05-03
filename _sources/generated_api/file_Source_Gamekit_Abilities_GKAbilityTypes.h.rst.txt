@@ -1,0 +1,70 @@
+
+.. _file_Source_Gamekit_Abilities_GKAbilityTypes.h:
+
+File GKAbilityTypes.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKAbilityTypes.h``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKAbilityTypes.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbilityTargetTypes.h``
+
+- ``GKAbilityTypes.generated.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``GameplayEffectTypes.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityTypes.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKTargetType.h`
+
+- :ref:`file_Source_Gamekit_Characters_GKGASCharacter.cpp`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKGameplayEffectContainer`
+
+- :ref:`exhale_struct_structFGKGameplayEffectContainerSpec`
+

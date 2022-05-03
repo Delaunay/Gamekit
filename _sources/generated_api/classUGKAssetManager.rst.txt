@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAssetManager:
+
+Class UGKAssetManager
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_GKAssetManager.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UAssetManager``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAssetManager
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

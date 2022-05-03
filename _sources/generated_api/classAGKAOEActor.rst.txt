@@ -1,0 +1,32 @@
+.. _exhale_class_classAGKAOEActor:
+
+Class AGKAOEActor
+=================
+
+- Defined in :ref:`file_Source_Gamekit_Projectiles_GKAOEActor.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGKAbilityEffectActor`` (:ref:`exhale_class_classAGKAbilityEffectActor`)
+
+
+Derived Type
+************
+
+- ``public AGKAOEActorNiagara`` (:ref:`exhale_class_classAGKAOEActorNiagara`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKAOEActor
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

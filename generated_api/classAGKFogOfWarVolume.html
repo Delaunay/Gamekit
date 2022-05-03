@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class AGKFogOfWarVolume &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class AGKGameModeBaseBase" href="classAGKGameModeBaseBase.html" />
+    <link rel="prev" title="Class AGKFogOfWarTeam" href="classAGKFogOfWarTeam.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityCost.html">Struct FGKAbilityCost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityEffect.html">Struct FGKAbilityEffect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilitySlot.html">Struct FGKAbilitySlot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityStatic.html">Struct FGKAbilityStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationArray.html">Struct FGKAnimationArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationSet.html">Struct FGKAnimationSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKDynamicFogMaterial.html">Struct FGKDynamicFogMaterial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKInputAbilityPair.html">Struct FGKInputAbilityPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKItemData.html">Struct FGKItemData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKLinePoints.html">Struct FGKLinePoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKNetworkMetrics.html">Struct FGKNetworkMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKPoints.html">Struct FGKPoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKProjectileStatic.html">Struct FGKProjectileStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestData.html">Struct FGKQuestData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestObjectives.html">Struct FGKQuestObjectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQueuedAbility.html">Struct FGKQueuedAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKRichRow.html">Struct FGKRichRow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSimpleObjective.html">Struct FGKSimpleObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSlope.html">Struct FGKSlope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKTeamInfo.html">Struct FGKTeamInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitGroup.html">Struct FGKUnitGroup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitStatic.html">Struct FGKUnitStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKWidgetLocationData.html">Struct FGKWidgetLocationData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFStatQuery.html">Struct FStatQuery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFUpscalingParameter.html">Struct FUpscalingParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGKDamageStatics.html">Struct GKDamageStatics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structTMatrix3D.html">Template Struct TMatrix3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityEffectActor.html">Class AGKAbilityEffectActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__Actor.html">Class AGKAbilityTarget_Actor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__PlayerControllerTrace.html">Class AGKAbilityTarget_PlayerControllerTrace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAIController.html">Class AGKAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActor.html">Class AGKAOEActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActorNiagara.html">Class AGKAOEActorNiagara</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKCharacterBase.html">Class AGKCharacterBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarTeam.html">Class AGKFogOfWarTeam</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class AGKFogOfWarVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameModeBaseBase.html">Class AGKGameModeBaseBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameResource.html">Class AGKGameResource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameStateBase.html">Class AGKGameStateBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGASCharacter.html">Class AGKGASCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKHexGrid.html">Class AGKHexGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKMinimapVolume.html">Class AGKMinimapVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPawnEnchancedInput.html">Class AGKPawnEnchancedInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerController.html">Class AGKPlayerController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerState.html">Class AGKPlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPrivatePlayerState.html">Class AGKPrivatePlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKProjectile.html">Class AGKProjectile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTacticianController.html">Class AGKTacticianController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTeamPlayerStart.html">Class AGKTeamPlayerStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTopDownPawn.html">Class AGKTopDownPawn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTurnGameState.html">Class AGKTurnGameState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitAIController.html">Class AGKUnitAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitCharacter.html">Class AGKUnitCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKWorldSettings.html">Class AGKWorldSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitModule.html">Class FGamekitModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitTestSuiteModule.html">Class FGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGKRichStruct.html">Class FGKRichStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingDispatcher.html">Class FUpscalingDispatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingShader.html">Class FUpscalingShader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamekit.html">Class Gamekit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1cook_1_1CookGame.html">Class CookGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1disable_1_1Disable.html">Class Disable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1init_1_1Init.html">Class Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1install_1_1Install.html">Class Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1tests_1_1RunTests.html">Class RunTests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1vscode_1_1VSCode.html">Class VSCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1conf_1_1Command.html">Class Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1FractionalBrownianmotion.html">Class FractionalBrownianmotion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1Vec2.html">Class Vec2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGamekitTestSuiteModule.html">Class IGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKCachedAbilityTargetActorInterface.html">Class IGKCachedAbilityTargetActorInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKInventoryInterface.html">Class IGKInventoryInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKPawnEnhancedInputInterface.html">Class IGKPawnEnhancedInputInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKSelectableInterface.html">Class IGKSelectableInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUCollisionProfileHack.html">Class UCollisionProfileHack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityBlueprintLibrary.html">Class UGKAbilityBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemComponent.html">Class UGKAbilitySystemComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemGlobals.html">Class UGKAbilitySystemGlobals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__MoveToDestination.html">Class UGKAbilityTask_MoveToDestination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html">Class UGKAbilityTask_PlayMontageAndWaitForEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__WaitForTargetData.html">Class UGKAbilityTask_WaitForTargetData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityWidget.html">Class UGKAbilityWidget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAssetManager.html">Class UGKAssetManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTask__GameplayEffectChanged.html">Class UGKAsyncTask_GameplayEffectChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskAttributeChanged.html">Class UGKAsyncTaskAttributeChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskCooldownChanged.html">Class UGKAsyncTaskCooldownChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAttributeSet.html">Class UGKAttributeSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCanvasUpscaler.html">Class UGKCanvasUpscaler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCastPointAnimNotify.html">Class UGKCastPointAnimNotify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCoordinateLibrary.html">Class UGKCoordinateLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCPUUpscalerStrategy.html">Class UGKCPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKDamageExecution.html">Class UGKDamageExecution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKEngineSubsystem.html">Class UGKEngineSubsystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKExplorationTransform.html">Class UGKExplorationTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarLibrary.html">Class UGKFogOfWarLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarStrategy.html">Class UGKFogOfWarStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameInstanceBase.html">Class UGKGameInstanceBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayAbility.html">Class UGKGameplayAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayEffectDyn.html">Class UGKGameplayEffectDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGPUUpscalerStrategy.html">Class UGKGPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridPathFollowingComponent.html">Class UGKHexGridPathFollowingComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKPotionItem.html">Class UGKPotionItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestBlueprintLibrary.html">Class UGKQuestBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestDataRef.html">Class UGKQuestDataRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestObjectiveRef.html">Class UGKQuestObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestSimpleObjectiveRef.html">Class UGKQuestSimpleObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Less.html">Class UGKRayCasting_Less</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Line.html">Class UGKRayCasting_Line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Triangle.html">Class UGKRayCasting_Triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseEventData.html">Class UGKTargetType_UseEventData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseOwner.html">Class UGKTargetType_UseOwner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTeamAgentLibrary.html">Class UGKTeamAgentLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTokenItem.html">Class UGKTokenItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategy.html">Class UGKTransformerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyCanvas.html">Class UGKTransformerStrategyCanvas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyTexture2D.html">Class UGKTransformerStrategyTexture2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKUtilityLibrary.html">Class UGKUtilityLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWeaponItem.html">Class UGKWeaponItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDraggable.html">Class UGKWidgetDraggable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDragVisual.html">Class UGKWidgetDragVisual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDropZone.html">Class UGKWidgetDropZone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite.html">Class GamekitTestSuite</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Class AGKFogOfWarVolume</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/classAGKFogOfWarVolume.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-agkfogofwarvolume">
+<span id="exhale-class-classagkfogofwarvolume"></span><h1>Class AGKFogOfWarVolume<a class="headerlink" href="#class-agkfogofwarvolume" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h.html#file-source-gamekit-fogofwar-gkfogofwarvolume-h"><span class="std std-ref">File GKFogOfWarVolume.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">AVolume</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv417AGKFogOfWarVolume">
+<span id="_CPPv317AGKFogOfWarVolume"></span><span id="_CPPv217AGKFogOfWarVolume"></span><span id="AGKFogOfWarVolume"></span><span class="target" id="classAGKFogOfWarVolume"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AGKFogOfWarVolume</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AVolume</span></span><a class="headerlink" href="#_CPPv417AGKFogOfWarVolume" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classAGKFogOfWarVolume"><span class="std std-ref">AGKFogOfWarVolume</span></a> manages fog of war for multiple factions. All units inside the same faction share visions.</p>
+<p><p>to 1</p>
+</p>
+<p>TODO: create a radar version that follows the actor. The actor will have a fog that follows him. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The fog of war will darken your screen, it is advised to disable UE default auto exposure using a Post Process
+Volume and enabling <code class="docutils literal notranslate"><span class="pre">Exposure</span> <span class="pre">&gt;</span> <span class="pre">Metering</span> <span class="pre">Mode</span> <span class="pre">&gt;</span> <span class="pre">Auto</span> <span class="pre">Exposure</span> <span class="pre">Basic</span></code> as well as setting min and max brightness</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17AGKFogOfWarVolumeEv">
+<span id="_CPPv3N17AGKFogOfWarVolume17AGKFogOfWarVolumeEv"></span><span id="_CPPv2N17AGKFogOfWarVolume17AGKFogOfWarVolumeEv"></span><span id="AGKFogOfWarVolume::AGKFogOfWarVolume"></span><span class="target" id="classAGKFogOfWarVolume_1a3969e77f0663237a02aecf342521bfac"></span><span class="sig-name descname"><span class="n"><span class="pre">AGKFogOfWarVolume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17AGKFogOfWarVolumeEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume23PreInitializeComponentsEv">
+<span id="_CPPv3N17AGKFogOfWarVolume23PreInitializeComponentsEv"></span><span id="_CPPv2N17AGKFogOfWarVolume23PreInitializeComponentsEv"></span><span id="AGKFogOfWarVolume::PreInitializeComponents"></span><span class="target" id="classAGKFogOfWarVolume_1a2d92e48cc345f686f1fc329b8e1a9d04"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PreInitializeComponents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume23PreInitializeComponentsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume9BeginPlayEv">
+<span id="_CPPv3N17AGKFogOfWarVolume9BeginPlayEv"></span><span id="_CPPv2N17AGKFogOfWarVolume9BeginPlayEv"></span><span id="AGKFogOfWarVolume::BeginPlay"></span><span class="target" id="classAGKFogOfWarVolume_1a38643fb057d004329c3c2c7b2ea8196c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BeginPlay</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume9BeginPlayEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume4TickEf">
+<span id="_CPPv3N17AGKFogOfWarVolume4TickEf"></span><span id="_CPPv2N17AGKFogOfWarVolume4TickEf"></span><span id="AGKFogOfWarVolume::Tick__float"></span><span class="target" id="classAGKFogOfWarVolume_1a5a02b599a6ae728a04ccce32e68dbfef"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tick</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">DeltaTime</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume4TickEf" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume7EndPlayEKN14EEndPlayReason4TypeE">
+<span id="_CPPv3N17AGKFogOfWarVolume7EndPlayEKN14EEndPlayReason4TypeE"></span><span id="_CPPv2N17AGKFogOfWarVolume7EndPlayEKN14EEndPlayReason4TypeE"></span><span id="AGKFogOfWarVolume::EndPlay__EEndPlayReason::TypeC"></span><span class="target" id="classAGKFogOfWarVolume_1a9e784c283f705b7454e47c46805b61be"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EndPlay</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">EEndPlayReason</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EndPlayReason</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume7EndPlayEKN14EEndPlayReason4TypeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE">
+<span id="_CPPv3NK17AGKFogOfWarVolume26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="_CPPv2NK17AGKFogOfWarVolume26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE"></span><span id="AGKFogOfWarVolume::GetLifetimeReplicatedProps__TArray:FLifetimeProperty:RC"></span><span class="target" id="classAGKFogOfWarVolume_1a2ef54c91ed438221a961f1f31e351f31"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetLifetimeReplicatedProps</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FLifetimeProperty</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OutLifetimeProps</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume26GetLifetimeReplicatedPropsER6TArrayI17FLifetimePropertyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17GetFactionTextureE5FName">
+<span id="_CPPv3N17AGKFogOfWarVolume17GetFactionTextureE5FName"></span><span id="_CPPv2N17AGKFogOfWarVolume17GetFactionTextureE5FName"></span><span id="AGKFogOfWarVolume::GetFactionTexture__FName"></span><span class="target" id="classAGKFogOfWarVolume_1a31ed4c52dc9d9384b00e8b0d9390fdc7"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UTexture</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetFactionTexture</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17GetFactionTextureE5FName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the vision texture. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume25GetOriginalFactionTextureE5FName">
+<span id="_CPPv3N17AGKFogOfWarVolume25GetOriginalFactionTextureE5FName"></span><span id="_CPPv2N17AGKFogOfWarVolume25GetOriginalFactionTextureE5FName"></span><span id="AGKFogOfWarVolume::GetOriginalFactionTexture__FName"></span><span class="target" id="classAGKFogOfWarVolume_1af53f4a9d922418cf4b07e5de018f16d5"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UTexture</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetOriginalFactionTexture</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume25GetOriginalFactionTextureE5FName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the vision texture before upscaling. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume28GetFactionExplorationTextureE5FName">
+<span id="_CPPv3N17AGKFogOfWarVolume28GetFactionExplorationTextureE5FName"></span><span id="_CPPv2N17AGKFogOfWarVolume28GetFactionExplorationTextureE5FName"></span><span id="AGKFogOfWarVolume::GetFactionExplorationTexture__FName"></span><span class="target" id="classAGKFogOfWarVolume_1ab0f0b527eb5c242e79e2cc42965c6f3c"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UTexture</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetFactionExplorationTexture</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume28GetFactionExplorationTextureE5FName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the exploration render target associated with the faction name. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume29SetFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic">
+<span id="_CPPv3N17AGKFogOfWarVolume29SetFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic"></span><span id="_CPPv2N17AGKFogOfWarVolume29SetFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic"></span><span id="AGKFogOfWarVolume::SetFogOfWarMaterialParameters__FName.UMaterialInstanceDynamicP"></span><span class="target" id="classAGKFogOfWarVolume_1a49ed2df4f100a390825c4bfadaa48b54"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetFogOfWarMaterialParameters</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInstanceDynamic</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Material</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume29SetFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the texture parameters FoWView &amp; FoWExploration. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume32UpdateFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic">
+<span id="_CPPv3N17AGKFogOfWarVolume32UpdateFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic"></span><span id="_CPPv2N17AGKFogOfWarVolume32UpdateFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic"></span><span id="AGKFogOfWarVolume::UpdateFogOfWarMaterialParameters__FName.UMaterialInstanceDynamicP"></span><span class="target" id="classAGKFogOfWarVolume_1a5ea391da7796aa868f7fc7d932237eb1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UpdateFogOfWarMaterialParameters</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span>, <span class="n"><span class="pre">UMaterialInstanceDynamic</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Material</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume32UpdateFogOfWarMaterialParametersE5FNameP24UMaterialInstanceDynamic" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume30GetFogOfWarPostprocessMaterialE5FName">
+<span id="_CPPv3N17AGKFogOfWarVolume30GetFogOfWarPostprocessMaterialE5FName"></span><span id="_CPPv2N17AGKFogOfWarVolume30GetFogOfWarPostprocessMaterialE5FName"></span><span id="AGKFogOfWarVolume::GetFogOfWarPostprocessMaterial__FName"></span><span class="target" id="classAGKFogOfWarVolume_1ad6662c5cdef544457d492ed20343191a"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInterface</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetFogOfWarPostprocessMaterial</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume30GetFogOfWarPostprocessMaterialE5FName" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the post process material the actor should use for its camera. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume11GetBlockingEv">
+<span id="_CPPv3NK17AGKFogOfWarVolume11GetBlockingEv"></span><span id="_CPPv2NK17AGKFogOfWarVolume11GetBlockingEv"></span><span id="AGKFogOfWarVolume::GetBlockingC"></span><span class="target" id="classAGKFogOfWarVolume_1ae41bde9fe0b969571a907701c2282cd4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UGKFogOfWarComponent</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetBlocking</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume11GetBlockingEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10DebugTraceEv">
+<span id="_CPPv3N17AGKFogOfWarVolume10DebugTraceEv"></span><span id="_CPPv2N17AGKFogOfWarVolume10DebugTraceEv"></span><span id="AGKFogOfWarVolume::DebugTrace"></span><span class="target" id="classAGKFogOfWarVolume_1a17edecf722a45e05593f37d0c2e77367"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">EDrawDebugTrace</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugTrace</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10DebugTraceEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume10GetMapSizeEv">
+<span id="_CPPv3NK17AGKFogOfWarVolume10GetMapSizeEv"></span><span id="_CPPv2NK17AGKFogOfWarVolume10GetMapSizeEv"></span><span id="AGKFogOfWarVolume::GetMapSizeC"></span><span class="target" id="classAGKFogOfWarVolume_1ad3d693bd57c635deca1343e3f4384d29"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetMapSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume10GetMapSizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume14SetTextureSizeE9FVector2D">
+<span id="_CPPv3N17AGKFogOfWarVolume14SetTextureSizeE9FVector2D"></span><span id="_CPPv2N17AGKFogOfWarVolume14SetTextureSizeE9FVector2D"></span><span id="AGKFogOfWarVolume::SetTextureSize__FVector2D"></span><span class="target" id="classAGKFogOfWarVolume_1a4814f66974226b71e76ee602d558182c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetTextureSize</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector2D</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume14SetTextureSizeE9FVector2D" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume20GetTextureCoordinateE7FVector">
+<span id="_CPPv3N17AGKFogOfWarVolume20GetTextureCoordinateE7FVector"></span><span id="_CPPv2N17AGKFogOfWarVolume20GetTextureCoordinateE7FVector"></span><span id="AGKFogOfWarVolume::GetTextureCoordinate__FVector"></span><span class="target" id="classAGKFogOfWarVolume_1ada8917048bb19d9642fb2b48181e36c5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">FVector2D</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetTextureCoordinate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">loc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume20GetTextureCoordinateE7FVector" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the texture coordinate given world coordinates. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume13ToGridTextureE10FIntVector">
+<span id="_CPPv3N17AGKFogOfWarVolume13ToGridTextureE10FIntVector"></span><span id="_CPPv2N17AGKFogOfWarVolume13ToGridTextureE10FIntVector"></span><span id="AGKFogOfWarVolume::ToGridTexture__FIntVector"></span><span class="target" id="classAGKFogOfWarVolume_1abc61a88505e96f58df60ce23c0fdd17d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">FIntVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ToGridTexture</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FIntVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume13ToGridTextureE10FIntVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17FromTextureToGridE10FIntVector">
+<span id="_CPPv3N17AGKFogOfWarVolume17FromTextureToGridE10FIntVector"></span><span id="_CPPv2N17AGKFogOfWarVolume17FromTextureToGridE10FIntVector"></span><span id="AGKFogOfWarVolume::FromTextureToGrid__FIntVector"></span><span class="target" id="classAGKFogOfWarVolume_1ada5d4f17d3ee801372b74962f403ee4c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">FIntVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FromTextureToGrid</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FIntVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17FromTextureToGridE10FIntVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume22PostEditChangePropertyER21FPropertyChangedEvent">
+<span id="_CPPv3N17AGKFogOfWarVolume22PostEditChangePropertyER21FPropertyChangedEvent"></span><span id="_CPPv2N17AGKFogOfWarVolume22PostEditChangePropertyER21FPropertyChangedEvent"></span><span id="AGKFogOfWarVolume::PostEditChangeProperty__FPropertyChangedEventR"></span><span class="target" id="classAGKFogOfWarVolume_1a0f58bbe9bdfb13e89eb711dd29b39f2f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PostEditChangeProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="n"><span class="pre">FPropertyChangedEvent</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">e</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume22PostEditChangePropertyER21FPropertyChangedEvent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume9IsVisibleE5FNamePK6AActor">
+<span id="_CPPv3NK17AGKFogOfWarVolume9IsVisibleE5FNamePK6AActor"></span><span id="_CPPv2NK17AGKFogOfWarVolume9IsVisibleE5FNamePK6AActor"></span><span id="AGKFogOfWarVolume::IsVisible__FName.AActorCPC"></span><span class="target" id="classAGKFogOfWarVolume_1a1f5d213170f78cd3a43c05ad25fd52c3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsVisible</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">TeamName</span></span>, <span class="n"><span class="pre">AActor</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Target</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume9IsVisibleE5FNamePK6AActor" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamIdPK6AActor">
+<span id="_CPPv3NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamIdPK6AActor"></span><span id="_CPPv2NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamIdPK6AActor"></span><span id="AGKFogOfWarVolume::IsVisible__FGenericTeamId.AActorCPC"></span><span class="target" id="classAGKFogOfWarVolume_1a636569f52258ac122f1e567d2fe98644"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsVisible</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGenericTeamId</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">SeerTeam</span></span>, <span class="n"><span class="pre">AActor</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Target</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamIdPK6AActor" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamId7FVector">
+<span id="_CPPv3NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamId7FVector"></span><span id="_CPPv2NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamId7FVector"></span><span id="AGKFogOfWarVolume::IsVisible__FGenericTeamId.FVectorC"></span><span class="target" id="classAGKFogOfWarVolume_1a7c8796fd51df685654139962b853b068"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsVisible</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGenericTeamId</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">SeerTeam</span></span>, <span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Loc</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17AGKFogOfWarVolume9IsVisibleE14FGenericTeamId7FVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume20LimitFramePerSecondsE">
+<span id="_CPPv3N17AGKFogOfWarVolume20LimitFramePerSecondsE"></span><span id="_CPPv2N17AGKFogOfWarVolume20LimitFramePerSecondsE"></span><span id="AGKFogOfWarVolume::LimitFramePerSeconds__float"></span><span class="target" id="classAGKFogOfWarVolume_1a8aad127c625e44351aea58d521c2bf5e"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LimitFramePerSeconds</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume20LimitFramePerSecondsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume16DeltaAccumulatorE">
+<span id="_CPPv3N17AGKFogOfWarVolume16DeltaAccumulatorE"></span><span id="_CPPv2N17AGKFogOfWarVolume16DeltaAccumulatorE"></span><span id="AGKFogOfWarVolume::DeltaAccumulator__float"></span><span class="target" id="classAGKFogOfWarVolume_1a088ee836ea52b53470779d81aecca6ff"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DeltaAccumulator</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume16DeltaAccumulatorE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume15FramePerSecondsE">
+<span id="_CPPv3N17AGKFogOfWarVolume15FramePerSecondsE"></span><span id="_CPPv2N17AGKFogOfWarVolume15FramePerSecondsE"></span><span id="AGKFogOfWarVolume::FramePerSeconds__float"></span><span class="target" id="classAGKFogOfWarVolume_1a21e91103c63a2cffd4ee97e0e0fd349b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FramePerSeconds</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume15FramePerSecondsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Represents how often the fog is updated when AsyncDraw is true. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10bAsyncDrawE">
+<span id="_CPPv3N17AGKFogOfWarVolume10bAsyncDrawE"></span><span id="_CPPv2N17AGKFogOfWarVolume10bAsyncDrawE"></span><span id="AGKFogOfWarVolume::bAsyncDraw__b"></span><span class="target" id="classAGKFogOfWarVolume_1aa74327013bbdee750c4a8ab0325b6001"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bAsyncDraw</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10bAsyncDrawE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enable Async drawing. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume21VisionDrawingStrategyE">
+<span id="_CPPv3N17AGKFogOfWarVolume21VisionDrawingStrategyE"></span><span id="_CPPv2N17AGKFogOfWarVolume21VisionDrawingStrategyE"></span><span id="AGKFogOfWarVolume::VisionDrawingStrategy__TSubclassOf:UGKFogOfWarStrategy:"></span><span class="target" id="classAGKFogOfWarVolume_1ab35cb7eb23f295a4ba2307341244bbfa"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classUGKFogOfWarStrategy.html#_CPPv419UGKFogOfWarStrategy" title="UGKFogOfWarStrategy"><span class="n"><span class="pre">UGKFogOfWarStrategy</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VisionDrawingStrategy</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume21VisionDrawingStrategyE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>class used to draw the vision </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume24FogOfWarCollisionChannelE">
+<span id="_CPPv3N17AGKFogOfWarVolume24FogOfWarCollisionChannelE"></span><span id="_CPPv2N17AGKFogOfWarVolume24FogOfWarCollisionChannelE"></span><span id="AGKFogOfWarVolume::FogOfWarCollisionChannel__TEnumAsByte:ECollisionChannel:"></span><span class="target" id="classAGKFogOfWarVolume_1aa71c9297b904c2e61f3b178455cf6a8b"></span><span class="n"><span class="pre">TEnumAsByte</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ECollisionChannel</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FogOfWarCollisionChannel</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume24FogOfWarCollisionChannelE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Collision Channel used to draw the line of sight. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume26UnobstructedVisionMaterialE">
+<span id="_CPPv3N17AGKFogOfWarVolume26UnobstructedVisionMaterialE"></span><span id="_CPPv2N17AGKFogOfWarVolume26UnobstructedVisionMaterialE"></span><span id="AGKFogOfWarVolume::UnobstructedVisionMaterial__UMaterialInterfaceP"></span><span class="target" id="classAGKFogOfWarVolume_1a40e1c0d0d410e427ea6205aa36458c65"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInterface</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">UnobstructedVisionMaterial</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume26UnobstructedVisionMaterialE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Material used to draw unobstructed vision. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17TrianglesMaterialE">
+<span id="_CPPv3N17AGKFogOfWarVolume17TrianglesMaterialE"></span><span id="_CPPv2N17AGKFogOfWarVolume17TrianglesMaterialE"></span><span id="AGKFogOfWarVolume::TrianglesMaterial__UMaterialInterfaceP"></span><span class="target" id="classAGKFogOfWarVolume_1a735dc7cfe77a2f33b656b435a527e0b7"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInterface</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">TrianglesMaterial</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17TrianglesMaterialE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Material used to draw unobstructed vision with Triangles. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume6MarginE">
+<span id="_CPPv3N17AGKFogOfWarVolume6MarginE"></span><span id="_CPPv2N17AGKFogOfWarVolume6MarginE"></span><span id="AGKFogOfWarVolume::Margin__float"></span><span class="target" id="classAGKFogOfWarVolume_1ac0564d3dfa890348045c480ee397c810"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Margin</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume6MarginE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Margin for Actor Rays. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume4GridE">
+<span id="_CPPv3N17AGKFogOfWarVolume4GridE"></span><span id="_CPPv2N17AGKFogOfWarVolume4GridE"></span><span id="AGKFogOfWarVolume::Grid__FGKGrid"></span><span class="target" id="classAGKFogOfWarVolume_1a1efb2895cc290a11f63cbf448892193e"></span><a class="reference internal" href="structFGKGrid.html#_CPPv47FGKGrid" title="FGKGrid"><span class="n"><span class="pre">FGKGrid</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Grid</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume4GridE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Specify the grid size, used to derivate the texture size we need to draw the fog; a grid size of 10x10 and a map size of 20000 will result in a texture size of 2000x2000 (20000/10) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume9LandscapeE">
+<span id="_CPPv3N17AGKFogOfWarVolume9LandscapeE"></span><span id="_CPPv2N17AGKFogOfWarVolume9LandscapeE"></span><span id="AGKFogOfWarVolume::Landscape__ALandscapeP"></span><span class="target" id="classAGKFogOfWarVolume_1a0ad503cacad8de83c01ee2bbfcb29a38"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">ALandscape</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Landscape</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume9LandscapeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Landscape we use to extract landscape height. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume13UpscalerClassE">
+<span id="_CPPv3N17AGKFogOfWarVolume13UpscalerClassE"></span><span id="_CPPv2N17AGKFogOfWarVolume13UpscalerClassE"></span><span id="AGKFogOfWarVolume::UpscalerClass__TSubclassOf:UGKTransformerStrategy:"></span><span class="target" id="classAGKFogOfWarVolume_1aef7982ff1162f81be8f3055857cb8974"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><span class="n"><span class="pre">UGKTransformerStrategy</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UpscalerClass</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume13UpscalerClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Class used to perform the upscaling. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10bUpscalingE">
+<span id="_CPPv3N17AGKFogOfWarVolume10bUpscalingE"></span><span id="_CPPv2N17AGKFogOfWarVolume10bUpscalingE"></span><span id="AGKFogOfWarVolume::bUpscaling__b"></span><span class="target" id="classAGKFogOfWarVolume_1ab5db3281ed3dbb4feb4338a14f76928e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bUpscaling</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10bUpscalingE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume15UpscaleMaterialE">
+<span id="_CPPv3N17AGKFogOfWarVolume15UpscaleMaterialE"></span><span id="_CPPv2N17AGKFogOfWarVolume15UpscaleMaterialE"></span><span id="AGKFogOfWarVolume::UpscaleMaterial__UMaterialInterfaceP"></span><span class="target" id="classAGKFogOfWarVolume_1adc433921c75b62a6a319d94de51b165b"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInterface</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">UpscaleMaterial</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume15UpscaleMaterialE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume9FixedSizeE">
+<span id="_CPPv3N17AGKFogOfWarVolume9FixedSizeE"></span><span id="_CPPv2N17AGKFogOfWarVolume9FixedSizeE"></span><span id="AGKFogOfWarVolume::FixedSize__FIntVector"></span><span class="target" id="classAGKFogOfWarVolume_1a3b3c1fa9f6aec1a0c56d61ae03e40b5a"></span><span class="n"><span class="pre">FIntVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FixedSize</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume9FixedSizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>It is the recommended way to set the upscale size. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10MultiplierE">
+<span id="_CPPv3N17AGKFogOfWarVolume10MultiplierE"></span><span id="_CPPv2N17AGKFogOfWarVolume10MultiplierE"></span><span id="AGKFogOfWarVolume::Multiplier__i"></span><span class="target" id="classAGKFogOfWarVolume_1ae58139914a5d49ec9fde826c1538a4dd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Multiplier</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10MultiplierE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Upscale multipler, be careful not go beyond GPU limits. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10bFixedSizeE">
+<span id="_CPPv3N17AGKFogOfWarVolume10bFixedSizeE"></span><span id="_CPPv2N17AGKFogOfWarVolume10bFixedSizeE"></span><span id="AGKFogOfWarVolume::bFixedSize__b"></span><span class="target" id="classAGKFogOfWarVolume_1a1be7f54b8e0b3f1f7a3a6453406cdbb4"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bFixedSize</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10bFixedSizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use fixed size for the upscaling. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume16ExplorationClassE">
+<span id="_CPPv3N17AGKFogOfWarVolume16ExplorationClassE"></span><span id="_CPPv2N17AGKFogOfWarVolume16ExplorationClassE"></span><span id="AGKFogOfWarVolume::ExplorationClass__TSubclassOf:UGKTransformerStrategy:"></span><span class="target" id="classAGKFogOfWarVolume_1aae0353405f2f2289493003809036f43c"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><span class="n"><span class="pre">UGKTransformerStrategy</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExplorationClass</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume16ExplorationClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>class used to generate the exploration </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume12bExplorationE">
+<span id="_CPPv3N17AGKFogOfWarVolume12bExplorationE"></span><span id="_CPPv2N17AGKFogOfWarVolume12bExplorationE"></span><span id="AGKFogOfWarVolume::bExploration__b"></span><span class="target" id="classAGKFogOfWarVolume_1a932b63724f63f8a7f38a3d529ce17b8f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bExploration</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume12bExplorationE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true exploration texture will be created. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume18bUseUpscaledVisionE">
+<span id="_CPPv3N17AGKFogOfWarVolume18bUseUpscaledVisionE"></span><span id="_CPPv2N17AGKFogOfWarVolume18bUseUpscaledVisionE"></span><span id="AGKFogOfWarVolume::bUseUpscaledVision__b"></span><span class="target" id="classAGKFogOfWarVolume_1af0b01b5757b2ed31b5b9a8aba8c041c0"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bUseUpscaledVision</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume18bUseUpscaledVisionE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true exploration will use the upscaled vision texture. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume6bDebugE">
+<span id="_CPPv3N17AGKFogOfWarVolume6bDebugE"></span><span id="_CPPv2N17AGKFogOfWarVolume6bDebugE"></span><span id="AGKFogOfWarVolume::bDebug__b"></span><span class="target" id="classAGKFogOfWarVolume_1af3d0dbc4d0fa5bc57ab0eb297c54c101"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bDebug</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume6bDebugE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume20UseFoWDecalRenderingE">
+<span id="_CPPv3N17AGKFogOfWarVolume20UseFoWDecalRenderingE"></span><span id="_CPPv2N17AGKFogOfWarVolume20UseFoWDecalRenderingE"></span><span id="AGKFogOfWarVolume::UseFoWDecalRendering__b"></span><span class="target" id="classAGKFogOfWarVolume_1a5fe58561c122cd6ac533c650325c5a2d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UseFoWDecalRendering</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume20UseFoWDecalRenderingE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use Decal FoWDecal rendering. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume14PreviewFactionE">
+<span id="_CPPv3N17AGKFogOfWarVolume14PreviewFactionE"></span><span id="_CPPv2N17AGKFogOfWarVolume14PreviewFactionE"></span><span id="AGKFogOfWarVolume::PreviewFaction__FName"></span><span class="target" id="classAGKFogOfWarVolume_1a03ee48c853fcefa5c8903838a3edb75d"></span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PreviewFaction</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume14PreviewFactionE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Faction that is displayed by the client. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume21PreviewDecalComponentE">
+<span id="_CPPv3N17AGKFogOfWarVolume21PreviewDecalComponentE"></span><span id="_CPPv2N17AGKFogOfWarVolume21PreviewDecalComponentE"></span><span id="AGKFogOfWarVolume::PreviewDecalComponent__UDecalComponentP"></span><span class="target" id="classAGKFogOfWarVolume_1abf5899a0d40976b4f0f4e932ea166651"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UDecalComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PreviewDecalComponent</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume21PreviewDecalComponentE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume15DebugDumpVisionE">
+<span id="_CPPv3N17AGKFogOfWarVolume15DebugDumpVisionE"></span><span id="_CPPv2N17AGKFogOfWarVolume15DebugDumpVisionE"></span><span id="AGKFogOfWarVolume::DebugDumpVision__TMap:FName.UCanvasRenderTarget2DP:"></span><span class="target" id="classAGKFogOfWarVolume_1a78b9185de193fba29b0da899e053656e"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UCanvasRenderTarget2D</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugDumpVision</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume15DebugDumpVisionE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume23DebugDumpVisionUpscaledE">
+<span id="_CPPv3N17AGKFogOfWarVolume23DebugDumpVisionUpscaledE"></span><span id="_CPPv2N17AGKFogOfWarVolume23DebugDumpVisionUpscaledE"></span><span id="AGKFogOfWarVolume::DebugDumpVisionUpscaled__TMap:FName.UCanvasRenderTarget2DP:"></span><span class="target" id="classAGKFogOfWarVolume_1a6cd8c4b36995007a40134842902b3d7a"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UCanvasRenderTarget2D</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugDumpVisionUpscaled</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume23DebugDumpVisionUpscaledE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume20DebugDumpExplorationE">
+<span id="_CPPv3N17AGKFogOfWarVolume20DebugDumpExplorationE"></span><span id="_CPPv2N17AGKFogOfWarVolume20DebugDumpExplorationE"></span><span id="AGKFogOfWarVolume::DebugDumpExploration__TMap:FName.UCanvasRenderTarget2DP:"></span><span class="target" id="classAGKFogOfWarVolume_1a18a47ccf501ebc038f1003f9d375a3d2"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UCanvasRenderTarget2D</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DebugDumpExploration</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume20DebugDumpExplorationE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume21FogMaterialParametersE">
+<span id="_CPPv3N17AGKFogOfWarVolume21FogMaterialParametersE"></span><span id="_CPPv2N17AGKFogOfWarVolume21FogMaterialParametersE"></span><span id="AGKFogOfWarVolume::FogMaterialParameters__UMaterialParameterCollectionP"></span><span class="target" id="classAGKFogOfWarVolume_1a2423e47c280e0d5ba35efc9589f4efcc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialParameterCollection</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">FogMaterialParameters</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume21FogMaterialParametersE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Parameter collection used to talk to shader/materials The volume sets the following parameters WithExploration FoWEnabled MapSize TextureSize </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume23BasePostProcessMaterialE">
+<span id="_CPPv3N17AGKFogOfWarVolume23BasePostProcessMaterialE"></span><span id="_CPPv2N17AGKFogOfWarVolume23BasePostProcessMaterialE"></span><span id="AGKFogOfWarVolume::BasePostProcessMaterial__UMaterialInterfaceP"></span><span class="target" id="classAGKFogOfWarVolume_1a2ae8867b0e2c59302ebb6b86cc3e8f71"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInterface</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">BasePostProcessMaterial</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume23BasePostProcessMaterialE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Base Material used to draw the fog of war in a post process step, it uses the texture parameters FoWView &amp; FoWExploration </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume14ActorsToIgnoreE">
+<span id="_CPPv3N17AGKFogOfWarVolume14ActorsToIgnoreE"></span><span id="_CPPv2N17AGKFogOfWarVolume14ActorsToIgnoreE"></span><span id="AGKFogOfWarVolume::ActorsToIgnore__TArray:AActorP:"></span><span class="target" id="classAGKFogOfWarVolume_1aceaf3beddae27840cb785b7bedad7f1f"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">AActor</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ActorsToIgnore</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume14ActorsToIgnoreE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume16bFogOfWarEnabledE">
+<span id="_CPPv3N17AGKFogOfWarVolume16bFogOfWarEnabledE"></span><span id="_CPPv2N17AGKFogOfWarVolume16bFogOfWarEnabledE"></span><span id="AGKFogOfWarVolume::bFogOfWarEnabled__b"></span><span class="target" id="classAGKFogOfWarVolume_1adec8e8bcb14c62d5878d4b2c2a16efe8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bFogOfWarEnabled</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume16bFogOfWarEnabledE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Allow you to disable all the functionality related to Fog of war without removing it This only pause the timer so the fog of war is not updated anymore It will also set a dynamic material parameter so material can disable the post processing </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume7MapSizeE">
+<span id="_CPPv3N17AGKFogOfWarVolume7MapSizeE"></span><span id="_CPPv2N17AGKFogOfWarVolume7MapSizeE"></span><span id="AGKFogOfWarVolume::MapSize__FVector"></span><span class="target" id="classAGKFogOfWarVolume_1a1649408030c99016cca6554609cf8bf5"></span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MapSize</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume7MapSizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Size of the Volume box. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume14DrawFactionFogEv">
+<span id="_CPPv3N17AGKFogOfWarVolume14DrawFactionFogEv"></span><span id="_CPPv2N17AGKFogOfWarVolume14DrawFactionFogEv"></span><span id="AGKFogOfWarVolume::DrawFactionFog"></span><span class="target" id="classAGKFogOfWarVolume_1a7bbb5aaca3f4501e9e5847fc6a6646f6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DrawFactionFog</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume14DrawFactionFogEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Draw the fog of war for each factions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume13GetBrushSizesER9FVector2DR7FVector">
+<span id="_CPPv3N17AGKFogOfWarVolume13GetBrushSizesER9FVector2DR7FVector"></span><span id="_CPPv2N17AGKFogOfWarVolume13GetBrushSizesER9FVector2DR7FVector"></span><span id="AGKFogOfWarVolume::GetBrushSizes__FVector2DR.FVectorR"></span><span class="target" id="classAGKFogOfWarVolume_1a4d720bc82c2854aba2b85c4aa0a86476"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetBrushSizes</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector2D</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">TextureSize</span></span>, <span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">MapSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume13GetBrushSizesER9FVector2DR7FVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17UpdateVolumeSizesEv">
+<span id="_CPPv3N17AGKFogOfWarVolume17UpdateVolumeSizesEv"></span><span id="_CPPv2N17AGKFogOfWarVolume17UpdateVolumeSizesEv"></span><span id="AGKFogOfWarVolume::UpdateVolumeSizes"></span><span class="target" id="classAGKFogOfWarVolume_1a765df0e6248291670013c8e7c7bd97b7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UpdateVolumeSizes</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17UpdateVolumeSizesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Updates the Texture Size, given the size covered by the Fog of War volume. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume16SetMatrialParamsEv">
+<span id="_CPPv3N17AGKFogOfWarVolume16SetMatrialParamsEv"></span><span id="_CPPv2N17AGKFogOfWarVolume16SetMatrialParamsEv"></span><span id="AGKFogOfWarVolume::SetMatrialParams"></span><span class="target" id="classAGKFogOfWarVolume_1a3fda238b27678471f03e24df39fdd5f6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMatrialParams</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume16SetMatrialParamsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume24SetMaterialParam_MapSizeE7FVector">
+<span id="_CPPv3N17AGKFogOfWarVolume24SetMaterialParam_MapSizeE7FVector"></span><span id="_CPPv2N17AGKFogOfWarVolume24SetMaterialParam_MapSizeE7FVector"></span><span id="AGKFogOfWarVolume::SetMaterialParam_MapSize__FVector"></span><span class="target" id="classAGKFogOfWarVolume_1ae7f8a6f5662a3af1f74af4025b7e1200"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMaterialParam_MapSize</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume24SetMaterialParam_MapSizeE7FVector" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume28SetMaterialParam_TextureSizeE9FVector2D">
+<span id="_CPPv3N17AGKFogOfWarVolume28SetMaterialParam_TextureSizeE9FVector2D"></span><span id="_CPPv2N17AGKFogOfWarVolume28SetMaterialParam_TextureSizeE9FVector2D"></span><span id="AGKFogOfWarVolume::SetMaterialParam_TextureSize__FVector2D"></span><span class="target" id="classAGKFogOfWarVolume_1a07d50dd7848b4ebc627e819c9c676a73"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMaterialParam_TextureSize</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FVector2D</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume28SetMaterialParam_TextureSizeE9FVector2D" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume27SetMaterialParam_FoWEnabledEi">
+<span id="_CPPv3N17AGKFogOfWarVolume27SetMaterialParam_FoWEnabledEi"></span><span id="_CPPv2N17AGKFogOfWarVolume27SetMaterialParam_FoWEnabledEi"></span><span id="AGKFogOfWarVolume::SetMaterialParam_FoWEnabled__i"></span><span class="target" id="classAGKFogOfWarVolume_1ab6d9150e432af1bc5ccd6f1a7666c25d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMaterialParam_FoWEnabled</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Enabled</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume27SetMaterialParam_FoWEnabledEi" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume28SetMaterialParam_ExplorationEi">
+<span id="_CPPv3N17AGKFogOfWarVolume28SetMaterialParam_ExplorationEi"></span><span id="_CPPv2N17AGKFogOfWarVolume28SetMaterialParam_ExplorationEi"></span><span id="AGKFogOfWarVolume::SetMaterialParam_Exploration__i"></span><span class="target" id="classAGKFogOfWarVolume_1a3d0af93c75cc4f0d81b22139521aa5cd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMaterialParam_Exploration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Enabled</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume28SetMaterialParam_ExplorationEi" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume30GetMaterialParameterCollectionEv">
+<span id="_CPPv3N17AGKFogOfWarVolume30GetMaterialParameterCollectionEv"></span><span id="_CPPv2N17AGKFogOfWarVolume30GetMaterialParameterCollectionEv"></span><span id="AGKFogOfWarVolume::GetMaterialParameterCollection"></span><span class="target" id="classAGKFogOfWarVolume_1ad20a4329d83110707ad71cb93f0c1f28"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialParameterCollection</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetMaterialParameterCollection</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume30GetMaterialParameterCollectionEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the material parameter collection used to configure the Fog of War. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume23DumpToDebugRenderTargetEv">
+<span id="_CPPv3N17AGKFogOfWarVolume23DumpToDebugRenderTargetEv"></span><span id="_CPPv2N17AGKFogOfWarVolume23DumpToDebugRenderTargetEv"></span><span id="AGKFogOfWarVolume::DumpToDebugRenderTarget"></span><span class="target" id="classAGKFogOfWarVolume_1ab27fdbd19658f617eb82523da2d75676"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DumpToDebugRenderTarget</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume23DumpToDebugRenderTargetEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume17InitializeBuffersEv">
+<span id="_CPPv3N17AGKFogOfWarVolume17InitializeBuffersEv"></span><span id="_CPPv2N17AGKFogOfWarVolume17InitializeBuffersEv"></span><span id="AGKFogOfWarVolume::InitializeBuffers"></span><span class="target" id="classAGKFogOfWarVolume_1a821f2aee16e7ae0f561ba892a198c1e8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitializeBuffers</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume17InitializeBuffersEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>After that functions all the data necessary for drawing and replicating the fog of war is setup </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume18InitializeStrategyEv">
+<span id="_CPPv3N17AGKFogOfWarVolume18InitializeStrategyEv"></span><span id="_CPPv2N17AGKFogOfWarVolume18InitializeStrategyEv"></span><span id="AGKFogOfWarVolume::InitializeStrategy"></span><span class="target" id="classAGKFogOfWarVolume_1a4ced28bfcd90a28c2fb0456836338371"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitializeStrategy</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume18InitializeStrategyEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume18InitializeUpscalerEv">
+<span id="_CPPv3N17AGKFogOfWarVolume18InitializeUpscalerEv"></span><span id="_CPPv2N17AGKFogOfWarVolume18InitializeUpscalerEv"></span><span id="AGKFogOfWarVolume::InitializeUpscaler"></span><span class="target" id="classAGKFogOfWarVolume_1a41a3626364e9da624741c68e47f26a21"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitializeUpscaler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume18InitializeUpscalerEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume21InitializeExplorationEv">
+<span id="_CPPv3N17AGKFogOfWarVolume21InitializeExplorationEv"></span><span id="_CPPv2N17AGKFogOfWarVolume21InitializeExplorationEv"></span><span id="AGKFogOfWarVolume::InitializeExploration"></span><span class="target" id="classAGKFogOfWarVolume_1ae71b6dc46e75181e959cac92fbe4ac4f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitializeExploration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume21InitializeExplorationEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume14OnRep_TeamFogsEv">
+<span id="_CPPv3N17AGKFogOfWarVolume14OnRep_TeamFogsEv"></span><span id="_CPPv2N17AGKFogOfWarVolume14OnRep_TeamFogsEv"></span><span id="AGKFogOfWarVolume::OnRep_TeamFogs"></span><span class="target" id="classAGKFogOfWarVolume_1afd63cf844b52b8d45ab9bf3a22ad3899"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_TeamFogs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume14OnRep_TeamFogsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume8StrategyE">
+<span id="_CPPv3N17AGKFogOfWarVolume8StrategyE"></span><span id="_CPPv2N17AGKFogOfWarVolume8StrategyE"></span><span id="AGKFogOfWarVolume::Strategy__UGKFogOfWarStrategyP"></span><span class="target" id="classAGKFogOfWarVolume_1aafe8b3bc207fc490068a8ea410b8a78c"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classUGKFogOfWarStrategy.html#_CPPv419UGKFogOfWarStrategy" title="UGKFogOfWarStrategy"><span class="n"><span class="pre">UGKFogOfWarStrategy</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Strategy</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume8StrategyE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Actor Component that does the actual vision computation. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume8UpscalerE">
+<span id="_CPPv3N17AGKFogOfWarVolume8UpscalerE"></span><span id="_CPPv2N17AGKFogOfWarVolume8UpscalerE"></span><span id="AGKFogOfWarVolume::Upscaler__UGKTransformerStrategyP"></span><span class="target" id="classAGKFogOfWarVolume_1a8233a946728d43cb726476412845d6c6"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><span class="n"><span class="pre">UGKTransformerStrategy</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Upscaler</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume8UpscalerE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume11ExplorationE">
+<span id="_CPPv3N17AGKFogOfWarVolume11ExplorationE"></span><span id="_CPPv2N17AGKFogOfWarVolume11ExplorationE"></span><span id="AGKFogOfWarVolume::Exploration__UGKTransformerStrategyP"></span><span class="target" id="classAGKFogOfWarVolume_1a5eca08663c42853d24ad15040146e2cb"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><span class="n"><span class="pre">UGKTransformerStrategy</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Exploration</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume11ExplorationE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume15ActorComponentsE">
+<span id="_CPPv3N17AGKFogOfWarVolume15ActorComponentsE"></span><span id="_CPPv2N17AGKFogOfWarVolume15ActorComponentsE"></span><span id="AGKFogOfWarVolume::ActorComponents__TArray:UGKFogOfWarComponentP:"></span><span class="target" id="classAGKFogOfWarVolume_1a1fbec0fb083a32e6ccdea3155bbffcb9"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UGKFogOfWarComponent</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ActorComponents</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume15ActorComponentsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume20PostProcessMaterialsE">
+<span id="_CPPv3N17AGKFogOfWarVolume20PostProcessMaterialsE"></span><span id="_CPPv2N17AGKFogOfWarVolume20PostProcessMaterialsE"></span><span id="AGKFogOfWarVolume::PostProcessMaterials__TMap:FName.UMaterialInstanceDynamicP:"></span><span class="target" id="classAGKFogOfWarVolume_1ab4ddf953cc08fc7d8e6e435b8522fc02"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UMaterialInstanceDynamic</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PostProcessMaterials</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume20PostProcessMaterialsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Post Processing materials. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume8TeamFogsE">
+<span id="_CPPv3N17AGKFogOfWarVolume8TeamFogsE"></span><span id="_CPPv2N17AGKFogOfWarVolume8TeamFogsE"></span><span id="AGKFogOfWarVolume::TeamFogs__TArray:AGKFogOfWarTeamP:"></span><span class="target" id="classAGKFogOfWarVolume_1a5afb8acd3fa31fb0b9ee1ad9a007854a"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classAGKFogOfWarTeam.html#_CPPv415AGKFogOfWarTeam" title="AGKFogOfWarTeam"><span class="n"><span class="pre">AGKFogOfWarTeam</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TeamFogs</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume8TeamFogsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TODO: change this to initial replication only. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume8BlockingE">
+<span id="_CPPv3N17AGKFogOfWarVolume8BlockingE"></span><span id="_CPPv2N17AGKFogOfWarVolume8BlockingE"></span><span id="AGKFogOfWarVolume::Blocking__TArray:UGKFogOfWarComponentP:"></span><span class="target" id="classAGKFogOfWarVolume_1aeea9f0f009da6f1e0222eab58a7d7491"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UGKFogOfWarComponent</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Blocking</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume8BlockingE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TODO: make this dynamic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume10NameToFogsE">
+<span id="_CPPv3N17AGKFogOfWarVolume10NameToFogsE"></span><span id="_CPPv2N17AGKFogOfWarVolume10NameToFogsE"></span><span id="AGKFogOfWarVolume::NameToFogs__TMap:FName.AGKFogOfWarTeamP:"></span><span class="target" id="classAGKFogOfWarVolume_1aa41183abe55401090d8d2e768450b8d9"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><a class="reference internal" href="classAGKFogOfWarTeam.html#_CPPv415AGKFogOfWarTeam" title="AGKFogOfWarTeam"><span class="n"><span class="pre">AGKFogOfWarTeam</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NameToFogs</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume10NameToFogsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Dealing with Faction name instead of their teamid is easier for debugging </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume9MaterialsE">
+<span id="_CPPv3N17AGKFogOfWarVolume9MaterialsE"></span><span id="_CPPv2N17AGKFogOfWarVolume9MaterialsE"></span><span id="AGKFogOfWarVolume::Materials__TArray:FGKDynamicFogMaterial:"></span><span class="target" id="classAGKFogOfWarVolume_1a6c241ee6a2f1e64d42660c711e2c1e74"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structFGKDynamicFogMaterial.html#_CPPv421FGKDynamicFogMaterial" title="FGKDynamicFogMaterial"><span class="n"><span class="pre">FGKDynamicFogMaterial</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Materials</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume9MaterialsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17AGKFogOfWarVolume6bReadyE">
+<span id="_CPPv3N17AGKFogOfWarVolume6bReadyE"></span><span id="_CPPv2N17AGKFogOfWarVolume6bReadyE"></span><span id="AGKFogOfWarVolume::bReady__b"></span><span class="target" id="classAGKFogOfWarVolume_1ae9941fb7c7a2e2f4baf28a7ca0eac107"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bReady</span></span></span><a class="headerlink" href="#_CPPv4N17AGKFogOfWarVolume6bReadyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKFogOfWarStrategy</span></dt>
+</dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKShadowCasting</span></dt>
+</dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKRayCasting_Line</span></dt>
+</dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">UGKRayCasting_Triangles</span></dt>
+</dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classAGKFogOfWarTeam.html" class="btn btn-neutral float-left" title="Class AGKFogOfWarTeam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classAGKGameModeBaseBase.html" class="btn btn-neutral float-right" title="Class AGKGameModeBaseBase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

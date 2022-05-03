@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1commands_1_1init_1a375c9bc600ae63436b3ef3602b4f1b12:
+
+Variable gamekit::commands::init::COMMAND
+=========================================
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_init.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::commands::init::COMMAND
+   :project: GameKit

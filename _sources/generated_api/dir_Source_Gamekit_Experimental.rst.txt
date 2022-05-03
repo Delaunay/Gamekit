@@ -1,0 +1,23 @@
+.. _dir_Source_Gamekit_Experimental:
+
+
+Directory Experimental
+======================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Experimental``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Experimental_GKGameResource.cpp`
+- :ref:`file_Source_Gamekit_Experimental_GKGameResource.h`
+- :ref:`file_Source_Gamekit_Experimental_GKTurnGameState.cpp`
+- :ref:`file_Source_Gamekit_Experimental_GKTurnGameState.h`
+
+

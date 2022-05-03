@@ -1,0 +1,60 @@
+
+.. _file_Source_Gamekit_GKGameInstance.h:
+
+File GKGameInstance.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKGameInstance.h``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKGameInstance.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/GameInstance.h``
+
+- ``GKGameInstance.generated.h``
+
+- ``Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Items/GKItemTypes.h`` (:ref:`file_Source_Gamekit_Items_GKItemTypes.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Controllers_GKPlayerController.cpp`
+
+- :ref:`file_Source_Gamekit_GKGameInstance.cpp`
+
+- :ref:`file_Source_Gamekit_GKSaveGame.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKGameInstanceBase`
+

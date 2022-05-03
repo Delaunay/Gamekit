@@ -1,0 +1,339 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h:
+
+Program Listing for File GKFogOfWarVolume.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h>` (``Source/Gamekit/FogOfWar/GKFogOfWarVolume.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/FogOfWar/GKFogOfWarTeam.h"
+   #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+   #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+   #include "Gamekit/Gamekit.h"
+   #include "Gamekit/Grid/GKGrid.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Volume.h"
+   #include "Kismet/KismetSystemLibrary.h"
+   #include "Runtime/Core/Public/HAL/ThreadingBase.h"
+   
+   // Generated
+   #include "GKFogOfWarVolume.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name);
+   
+   #define DEFAULT_FoW_COLLISION ECC_GameTraceChannel1
+   
+   // Use to keep track of all the materials
+   // this is mainly because we need to update materials
+   // after the initial replication which can lag a bit
+   USTRUCT()
+   struct FGKDynamicFogMaterial
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       FName                           Name;
+       FGenericTeamId                  TeamId;
+       class UMaterialInstanceDynamic *Material;
+   };
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API AGKFogOfWarVolume: public AVolume
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKFogOfWarVolume();
+   
+       // Lifecycle
+       // ---------
+   
+       // Basic Initialization
+       void PreInitializeComponents() override;
+   
+       // void PostInitializeComponents() override;
+   
+       void BeginPlay();
+   
+       void Tick(float DeltaTime);
+   
+       void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+   
+       // Properties
+       // ----------
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UTexture *GetFactionTexture(FName name);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UTexture *GetOriginalFactionTexture(FName name);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UTexture *GetFactionExplorationTexture(FName name);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       void SetFogOfWarMaterialParameters(FName name, class UMaterialInstanceDynamic *Material);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       void UpdateFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UMaterialInterface *GetFogOfWarPostprocessMaterial(FName name);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       TArray<class UGKFogOfWarComponent *> const &GetBlocking() const { return Blocking; }
+   
+       // Properties
+       // ----------
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|TickLimit")
+       float LimitFramePerSeconds;
+       float DeltaAccumulator;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
+       float FramePerSeconds;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Async")
+       bool bAsyncDraw;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+       TSubclassOf<class UGKFogOfWarStrategy> VisionDrawingStrategy;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
+       TEnumAsByte<ECollisionChannel> FogOfWarCollisionChannel;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
+       class UMaterialInterface *UnobstructedVisionMaterial;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
+       class UMaterialInterface *TrianglesMaterial;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|RayCast")
+       float Margin;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+       FGKGrid Grid;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Discrete")
+       class ALandscape *Landscape;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       TSubclassOf<UGKTransformerStrategy> UpscalerClass;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       bool bUpscaling;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       class UMaterialInterface *UpscaleMaterial;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       FIntVector FixedSize;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       int Multiplier;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Upscaling")
+       bool bFixedSize;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+       TSubclassOf<UGKTransformerStrategy> ExplorationClass;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+       bool bExploration;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Exploration")
+       bool bUseUpscaledVision;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       bool bDebug;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       bool UseFoWDecalRendering;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       FName PreviewFaction;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       class UDecalComponent *PreviewDecalComponent;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       TMap<FName, class UCanvasRenderTarget2D *> DebugDumpVision;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       TMap<FName, class UCanvasRenderTarget2D *> DebugDumpVisionUpscaled;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar|Editor")
+       TMap<FName, class UCanvasRenderTarget2D *> DebugDumpExploration;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+       class UMaterialParameterCollection *FogMaterialParameters;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FogOfWar")
+       class UMaterialInterface *BasePostProcessMaterial;
+   
+       // test
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       TArray<AActor *> ActorsToIgnore;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       bool bFogOfWarEnabled;
+   
+       EDrawDebugTrace::Type DebugTrace()
+       {
+           if (bDebug)
+               return EDrawDebugTrace::ForOneFrame;
+           return EDrawDebugTrace::None;
+       }
+   
+       protected:
+       void DrawFactionFog();
+   
+       void GetBrushSizes(FVector2D &TextureSize, FVector &MapSize);
+   
+       void UpdateVolumeSizes();
+   
+       void SetMatrialParams();
+       void SetMaterialParam_MapSize(FVector Size);
+       void SetMaterialParam_TextureSize(FVector2D Size);
+       void SetMaterialParam_FoWEnabled(int Enabled);
+       void SetMaterialParam_Exploration(int Enabled);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UMaterialParameterCollection *GetMaterialParameterCollection();
+   
+       void DumpToDebugRenderTarget();
+   
+       public:
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = FogOfWar)
+       FVector MapSize;
+   
+       FVector GetMapSize() const { return MapSize; }
+   
+       void SetTextureSize(FVector2D Size)
+       {
+           TextureSize = Size;
+           SetMaterialParam_TextureSize(Size);
+       }
+   
+       public:
+       // Helpers
+       // -----------------------------
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       inline FVector2D GetTextureCoordinate(FVector loc)
+       {
+           return FVector2D((loc.X / MapSize.X + 0.5) * TextureSize.X, (0.5 - loc.Y / MapSize.Y) * TextureSize.Y);
+       }
+   
+       FIntVector ToGridTexture(FIntVector Pos)
+       {
+           return FIntVector(TextureSize.Y / 2 - Pos.Y, Pos.X + TextureSize.X / 2, Pos.Z);
+       }
+   
+       FIntVector FromTextureToGrid(FIntVector Pos)
+       {
+           return FIntVector(Pos.X - TextureSize.X / 2, TextureSize.Y / 2 - Pos.Y, Pos.Z);
+       }
+   
+       private:
+       void InitDecalRendering();
+   
+       FCriticalSection Mutex;           // Mutex to sync adding/removing components with the fog compute
+       FTimerHandle     FogComputeTimer; // Compute the fog every few frames (or so)
+   
+       FVector2D TextureSize; // == MapSize / Grid
+   
+       class UMaterialInstanceDynamic *DecalMaterialInstance;
+   
+       public:
+       // Editor Stuff
+       // -------------
+       void PostEditChangeProperty(struct FPropertyChangedEvent &e);
+   
+       public:
+       // TODO: Remove this
+       friend class UGKFogOfWarStrategy;
+       friend class UGKShadowCasting;
+       friend class UGKRayCasting_Line;
+       friend class UGKRayCasting_Triangles;
+   
+       private:
+       void RegisterActorComponent(class UGKFogOfWarComponent *c);
+   
+       void UnregisterActorComponent(class UGKFogOfWarComponent *c);
+   
+       friend class UGKFogOfWarComponent;
+   
+       class AGKFogOfWarTeam *GetFactionFogs(FName Faction);
+   
+       protected:
+       void InitializeBuffers();
+       void InitializeStrategy();
+       void InitializeUpscaler();
+       void InitializeExploration();
+   
+       UPROPERTY(Transient)
+       class UGKFogOfWarStrategy *Strategy;
+   
+       UPROPERTY(Transient)
+       class UGKTransformerStrategy *Upscaler;
+   
+       UPROPERTY(Transient)
+       class UGKTransformerStrategy *Exploration;
+   
+       UPROPERTY(Transient)
+       TArray<class UGKFogOfWarComponent *> ActorComponents;
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UMaterialInstanceDynamic *> PostProcessMaterials;
+   
+       UPROPERTY(Replicated, Transient, ReplicatedUsing = OnRep_TeamFogs)
+       TArray<class AGKFogOfWarTeam *> TeamFogs;
+   
+       UPROPERTY(Replicated, Transient)
+       TArray<class UGKFogOfWarComponent *> Blocking;
+   
+       TMap<FName, class AGKFogOfWarTeam *> NameToFogs;
+   
+       TArray<FGKDynamicFogMaterial> Materials;
+   
+       bool bReady;
+   
+       // Insert TeamFogs into NameToFogs on replication
+       UFUNCTION()
+       void OnRep_TeamFogs();
+   
+       public:
+       bool IsVisible(FName TeamName, AActor const *Target) const
+       {
+           auto Team = NameToFogs.Find(TeamName);
+           if (Team)
+               return IsVisible(Team[0]->TeamId, Target);
+           return false;
+       }
+   
+       bool IsVisible(FGenericTeamId SeerTeam, AActor const *Target) const
+       {
+           if (FGenericTeamId::GetTeamIdentifier(Target) == SeerTeam)
+               return true;
+   
+           return GKGETATTR(Strategy, IsVisible(SeerTeam, Target), false);
+       }
+   
+       bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const
+       {
+           return GKGETATTR(Strategy, IsVisible(SeerTeam, Loc), false);
+       }
+   };

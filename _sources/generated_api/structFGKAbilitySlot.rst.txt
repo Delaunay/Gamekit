@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKAbilitySlot:
+
+Struct FGKAbilitySlot
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKItemTypes.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKAbilitySlot
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

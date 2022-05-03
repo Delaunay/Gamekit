@@ -1,0 +1,108 @@
+
+.. _program_listing_file_Source_Gamekit_Utilities_GKSelection.h:
+
+Program Listing for File GKSelection.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Utilities_GKSelection.h>` (``Source/Gamekit/Utilities/GKSelection.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "Containers/Array.h"
+   #include "CoreMinimal.h"
+   #include "Engine/EngineTypes.h"
+   #include "GameFramework/Actor.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   #include "Math/Box.h"
+   #include "Math/Vector.h"
+   
+   // Generated
+   #include "GKSelection.generated.h"
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKUnitGroup
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       TArray<AActor *> Units;
+   };
+   
+   /* Select a group of actors that is inside a box.
+    * The box bound is given by the cursor.
+    *
+    */
+   UCLASS(Blueprintable, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+   class GAMEKIT_API UGKBoxSelectionComponent: public UActorComponent
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKBoxSelectionComponent();
+   
+       UFUNCTION(BlueprintCallable, Category = "Selection")
+       void StartBoxSelection(class APlayerController *Controller, ETraceTypeQuery TraceChannel);
+   
+       UFUNCTION(BlueprintCallable, Category = "Selection")
+       void StartOrUpdateBoxSelection(class APlayerController *Controller, ETraceTypeQuery TraceChannel);
+   
+       UFUNCTION(BlueprintCallable, Category = "Selection")
+       void UpdateBoxSelection(class APlayerController *Controller);
+   
+       UFUNCTION(BlueprintCallable, Category = "Selection", meta = (WorldContext = "World"))
+       void FetchBoxSelection(const UObject *World, TArray<AActor *> &Out);
+   
+       UFUNCTION(BlueprintCallable, Category = "Selection", meta = (WorldContext = "World"))
+       void EndBoxSelection(const UObject *World);
+   
+       UFUNCTION(BlueprintCallable, Category = "Debug|Selection", meta = (WorldContext = "World"))
+       void DrawBoxSelection(const UObject *World);
+   
+       UFUNCTION(BlueprintPure, Category = "Selection")
+       FVector GetCenter();
+   
+       UFUNCTION(BlueprintPure, Category = "Selection")
+       FVector GetExtent();
+   
+       UFUNCTION(BlueprintPure, Category = "Selection")
+       FVector GetSize();
+   
+       UPROPERTY(BlueprintReadOnly)
+       FHitResult HitResult;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FVector Start;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FVector End;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FBox Box;
+   
+       UPROPERTY(BlueprintReadOnly)
+       bool Selecting;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       FVector ExtentMargin;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       TEnumAsByte<ETraceTypeQuery> TraceChannel;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       UClass *ActorClassFilter;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       TArray<AActor *> ActorsToIgnore;
+   };

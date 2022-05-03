@@ -1,0 +1,6 @@
+<map id="UGKUtilityLibrary::DrawPolygon" name="UGKUtilityLibrary::DrawPolygon">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node2" href="$classUGKCoordinateLibrary.html#a3cfb6acffc7ccc1a7846840e82b738bb" title="Returns coordinate (0, PixelSize)" alt="" coords="196,5,363,47"/>
+<area shape="rect" id="node3" href="$classUGKCoordinateLibrary.html#a16684a79f434cd6c8de552262735243c" title="Returns coordinate (0, 1)" alt="" coords="411,5,577,47"/>
+<area shape="rect" id="node4" href="$classUGKCoordinateLibrary.html#a6f317e1e43d4427dac1c5061fe0a3ee9" title=" " alt="" coords="625,5,807,47"/>
+</map>

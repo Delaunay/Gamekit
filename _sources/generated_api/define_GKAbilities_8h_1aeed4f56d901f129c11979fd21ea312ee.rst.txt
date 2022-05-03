@@ -1,0 +1,14 @@
+.. _exhale_define_GKAbilities_8h_1aeed4f56d901f129c11979fd21ea312ee:
+
+Define GKGA_WARNING
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilities.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKGA_WARNING
+   :project: GameKit

@@ -1,0 +1,116 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h:
+
+Program Listing for File GKAbilityTask_PlayMontageAndWaitForEvent.h
+===================================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h>` (``Source/Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Abilities/Tasks/AbilityTask.h"
+   
+   // Generated
+   #include "GKAbilityTask_PlayMontageAndWaitForEvent.generated.h"
+   
+   class UGKAbilitySystemComponent;
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKPlayMontageAndWaitForEventDelegate,
+                                                FGameplayTag,
+                                                EventTag,
+                                                FGameplayEventData,
+                                                EventData);
+   
+   UCLASS()
+   class GAMEKIT_API UGKAbilityTask_PlayMontageAndWaitForEvent: public UAbilityTask
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor and overrides
+       UGKAbilityTask_PlayMontageAndWaitForEvent(const FObjectInitializer &ObjectInitializer);
+   
+       virtual void Activate() override;
+   
+       virtual void ExternalCancel() override;
+   
+       virtual FString GetDebugString() const override;
+   
+       virtual void OnDestroy(bool AbilityEnded) override;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKPlayMontageAndWaitForEventDelegate OnCompleted;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKPlayMontageAndWaitForEventDelegate OnBlendOut;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKPlayMontageAndWaitForEventDelegate OnInterrupted;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKPlayMontageAndWaitForEventDelegate OnCancelled;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKPlayMontageAndWaitForEventDelegate EventReceived;
+   
+       UFUNCTION(BlueprintCallable,
+                 Category = "Ability|Tasks",
+                 meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "TRUE"))
+       static UGKAbilityTask_PlayMontageAndWaitForEvent *PlayMontageAndWaitForEvent(
+               UGameplayAbility *                      OwningAbility,
+               FName                                   TaskInstanceName,
+               UAnimMontage *                          MontageToPlay,
+               FGameplayTagContainer                   EventTags,
+               const FGameplayAbilityTargetDataHandle &Data,
+               float                                   Rate                           = 1.f,
+               FName                                   StartSection                   = NAME_None,
+               bool                                    bStopWhenAbilityEnds           = true,
+               float                                   AnimRootMotionTranslationScale = 1.f);
+   
+       private:
+       UPROPERTY()
+       UAnimMontage *MontageToPlay;
+   
+       UPROPERTY()
+       FGameplayTagContainer EventTags;
+   
+       UPROPERTY()
+       float Rate;
+   
+       UPROPERTY()
+       FName StartSection;
+   
+       UPROPERTY()
+       float AnimRootMotionTranslationScale;
+   
+       UPROPERTY()
+       bool bStopWhenAbilityEnds;
+   
+       UFUNCTION(BlueprintCallable)
+       bool StopPlayingMontage();
+   
+       UPROPERTY()
+       FGameplayAbilityTargetDataHandle TargetData;
+   
+       UGKAbilitySystemComponent *GetTargetASC();
+   
+       void OnMontageBlendingOut(UAnimMontage *Montage, bool bInterrupted);
+       void OnAbilityCancelled();
+       void OnMontageEnded(UAnimMontage *Montage, bool bInterrupted);
+       void OnGameplayEvent(FGameplayTag EventTag, const FGameplayEventData *Payload);
+   
+       FOnMontageBlendingOutStarted BlendingOutDelegate;
+       FOnMontageEnded              MontageEndedDelegate;
+       FDelegateHandle              CancelledHandle;
+       FDelegateHandle              EventHandle;
+   };

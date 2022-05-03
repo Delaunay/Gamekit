@@ -1,0 +1,77 @@
+
+.. _file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h:
+
+File GK_Upscaler_Strategy.h
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_FogOfWar_Upscaler>` (``Source/Gamekit/FogOfWar/Upscaler``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h``)
+------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Components/ActorComponent.h``
+
+- ``CoreMinimal.h``
+
+- ``GK_Upscaler_Strategy.generated.h``
+
+- ``Gamekit/Container/Matrix.h`` (:ref:`file_Source_Gamekit_Container_Matrix.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.cpp`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKCanvasUpscaler.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKExplorationTransform.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKTransformerStrategy`
+
+- :ref:`exhale_class_classUGKTransformerStrategyCanvas`
+
+- :ref:`exhale_class_classUGKTransformerStrategyTexture2D`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GK__Upscaler__Strategy_8h_1aa8642466d707f13c7e45fef8cd358d09`
+

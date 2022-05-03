@@ -1,0 +1,7 @@
+<map id="AGKFogOfWarVolume::OnRep_TeamFogs" name="AGKFogOfWarVolume::OnRep_TeamFogs">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,176,76"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#a31ed4c52dc9d9384b00e8b0d9390fdc7" title="Returns the vision texture." alt="" coords="553,5,724,47"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#a5ea391da7796aa868f7fc7d932237eb1" title=" " alt="" coords="224,64,484,105"/>
+<area shape="rect" id="node3" href="$classAGKFogOfWarVolume.html#a38ad7ce758ec3246deb372809594ef69" title=" " alt="" coords="793,39,964,80"/>
+<area shape="rect" id="node5" href="$classAGKFogOfWarVolume.html#ab0f0b527eb5c242e79e2cc42965c6f3c" title="Returns the exploration render target associated with the faction name." alt="" coords="532,71,745,112"/>
+</map>

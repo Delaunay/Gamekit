@@ -1,0 +1,52 @@
+
+.. _file_Source_Python_gamekit_commands_vscode.py:
+
+File vscode.py
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit_commands>` (``Source/Python/gamekit/commands``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Python/gamekit/commands/vscode.py``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Python_gamekit_commands_vscode.py.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__commands__vscode`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1commands_1_1vscode_1_1VSCode`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1commands_1_1vscode_1adce7da6d75902336011c3210dd933ea9`
+

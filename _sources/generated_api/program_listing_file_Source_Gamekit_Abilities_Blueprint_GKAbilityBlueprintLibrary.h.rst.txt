@@ -1,0 +1,78 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h:
+
+Program Listing for File GKAbilityBlueprintLibrary.h
+====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h>` (``Source/Gamekit/Abilities/Blueprint/GKAbilityBlueprintLibrary.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityTypes.h"
+   #include "Gamekit/Animation/GKAnimationSet.h"
+   #include "Gamekit/Gamekit.h"
+   #include "Gamekit/Items/GKItemTypes.h"
+   
+   // Unreal Engine
+   #include "Abilities/GameplayAbility.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   
+   // Generated
+   #include "GKAbilityBlueprintLibrary.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
+   {
+       GENERATED_UCLASS_BODY()
+   
+       public:
+       // Debug FGameplayAbilitySpec
+       // --------------------------
+       UFUNCTION(BlueprintPure, Category = "Debug")
+       static int GetInputIDFromAbilitySpec(const FGameplayAbilitySpec &Spec);
+   
+       UFUNCTION(BlueprintPure, Category = "Debug")
+       static FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(const FGameplayAbilitySpec &Spec);
+   
+       UFUNCTION(BlueprintPure, Category = "Debug")
+       static class UGameplayAbility *GetGameplayAbilityFromAbilitySpec(const FGameplayAbilitySpec &Spec);
+   
+       UFUNCTION(BlueprintPure, Category = "Debug")
+       static UGameplayEffect *GetGameplayEffectFromHandle(const FActiveGameplayEffectHandle &Handle);
+   
+       // TODO: This does a full copy
+       UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
+       FGKGameplayEffectContainerSpec AddTargetsToEffectContainerSpec(const FGKGameplayEffectContainerSpec &ContainerSpec,
+                                                                      const TArray<FHitResult> &            HitResults,
+                                                                      const TArray<AActor *> &              TargetActors);
+   
+       UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
+       TArray<FActiveGameplayEffectHandle> ApplyExternalEffectContainerSpec(
+               const FGKGameplayEffectContainerSpec &ContainerSpec);
+   
+       UFUNCTION(BlueprintCallable, Category = "Ability|Animation")
+       class UAnimMontage *GetAnimation(const FGKAnimationSet &AnimationSet, EGK_AbilityAnimation AnimKind)
+       {
+           return AnimationSet.GetAnimations(AnimKind).Sample();
+       }
+   
+       // FGameplayAbilityTargetData Getter
+       // UFUNCTION(BlueprintCallable, Category = "Ability|TargetData")
+       // static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetData const &value,
+       //                                          bool &HasHitResult);
+   
+       UFUNCTION(BlueprintCallable, Category = "Ability|TargetData")
+       static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &Handle,
+                                                int32                                   Index,
+                                                bool &                                  HasHitResult);
+   
+       UFUNCTION(BlueprintPure, Category = "AbilitySlot")
+       static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput);
+   };

@@ -1,0 +1,14 @@
+.. _exhale_function_GK__FoW__RayCasting__V3_8cpp_1ab67f0c9fe6e58ebef785f8936907cd3f:
+
+Function TrackCoverage(TArray<FVector2D>&, float64, float64, bool&, FVector2D&)
+===============================================================================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V3.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: TrackCoverage(TArray<FVector2D>&, float64, float64, bool&, FVector2D&)
+   :project: GameKit

@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKInputAbilityPair:
+
+Struct FGKInputAbilityPair
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKInputAbilityPair
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

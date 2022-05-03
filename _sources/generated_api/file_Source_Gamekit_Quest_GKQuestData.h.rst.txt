@@ -1,0 +1,66 @@
+
+.. _file_Source_Gamekit_Quest_GKQuestData.h:
+
+File GKQuestData.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Quest>` (``Source/Gamekit/Quest``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Quest/GKQuestData.h``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Quest_GKQuestData.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/DataTable.h``
+
+- ``GKQuestData.generated.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``GameplayTagContainer.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Quest_GKQuestData.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKQuestData`
+
+- :ref:`exhale_struct_structFGKQuestObjectives`
+
+- :ref:`exhale_struct_structFGKSimpleObjective`
+
+- :ref:`exhale_class_classUGKQuestDataRef`
+
+- :ref:`exhale_class_classUGKQuestObjectiveRef`
+
+- :ref:`exhale_class_classUGKQuestSimpleObjectiveRef`
+

@@ -1,0 +1,79 @@
+
+.. _program_listing_file_Source_Gamekit_Controllers_GKPlayerController.h:
+
+Program Listing for File GKPlayerController.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Controllers_GKPlayerController.h>` (``Source/Gamekit/Controllers/GKPlayerController.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "GameFramework/PlayerController.h"
+   #include "GameFramework/PlayerInput.h"
+   #include "GenericTeamAgentInterface.h"
+   
+   
+   // Generated
+   #include "GKPlayerController.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API AGKPlayerController: public APlayerController, 
+                                          public IGenericTeamAgentInterface
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor and overrides
+       AGKPlayerController();
+   
+       virtual void BeginPlay() override;
+   
+       UFUNCTION(BlueprintCallable, Category = InputKeys)
+       const TArray<FInputActionKeyMapping> &GetKeysForAction(const FName ActionName);
+   
+       void GetNetworkMetrics();
+   
+       protected:
+       void HandleSaveGameLoaded(class UGKSaveGame *NewSaveGame);
+   
+       public:
+       // Sets up Client info for GAS
+       void AcknowledgePossession(APawn *P) override;
+   
+       // Set Generic Team ID on possession
+       void ServerAcknowledgePossession_Implementation(APawn *P) override;
+   
+       // Replication
+       // -----------
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
+        
+       // IGenericTeamAgentInterface
+       // --------------------------
+       public:
+       UPROPERTY(BlueprintReadOnly, Replicated, ReplicatedUsing=OnRep_TeamChange)
+       FGenericTeamId TeamId;
+       
+       UFUNCTION()
+       void OnRep_TeamChange();
+   
+       // Called when the controller team changed
+       // Called on the server and client
+       virtual void OnTeamChange();
+       
+   public:
+       UFUNCTION(BlueprintCallable, Category = "Team")
+       void SetGenericTeamId(const FGenericTeamId& TID) override;
+       
+       FGenericTeamId GetGenericTeamId() const override { return TeamId; }
+   };

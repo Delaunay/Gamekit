@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiplayer &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Massively Multiplayer" href="MMO.html" />
+    <link rel="prev" title="Machine Learning" href="../MachineLearning/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multiplayer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#common-actor-configurations">Common Actor Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-servers">About Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-snippet">Code Snippet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#server-only-code-blocks">Server Only code blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-only-code-blocks">Client only code blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actor-network-configuration">Actor Network configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conditionnal-execution-of-some-code">Conditionnal execution of some code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-conditions">Network Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replication">Replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-replication">Advanced Replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Multiplayer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Online/Multiplayer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiplayer">
+<h1>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>How classes are used inside a multiplayer game</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Location</p></th>
+<th class="head"><p>Replicated</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GameMode (Match State API)</p></td>
+<td><p>Server</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>GameModeBase (No Match)</p></td>
+<td><p>Server</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>GameSession</p></td>
+<td><p>Server</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>GameNetwork Manager</p></td>
+<td><p>Server</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>GameStateBase</p></td>
+<td><p>Server</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-odd"><td><p>GameState</p></td>
+<td><p>Server</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-even"><td><p>PlayerState</p></td>
+<td><p>Server</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-odd"><td><p>PrivatePlayerState (Gamekit)</p></td>
+<td><p>Server</p></td>
+<td><p>Teammates</p></td>
+</tr>
+<tr class="row-even"><td><p>TeamVision (Fog Of War)</p></td>
+<td><p>Server</p></td>
+<td><p>Teammates</p></td>
+</tr>
+</tbody>
+</table>
+<p>GameInstance</p>
+<ul class="simple">
+<li><p>ACharacter are setup for replications</p></li>
+</ul>
+<section id="common-actor-configurations">
+<h2>Common Actor Configurations<a class="headerlink" href="#common-actor-configurations" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Local Play: No server, one player</p></li>
+<li><p>Hosting Client: Host is both a server &amp; and a client</p></li>
+<li><p>Dedicated Server: no player on the instance, all are connected remotely to the server</p></li>
+<li><p>Remote Client: player connected to a server (Hosting Client or dedicated server)</p></li>
+<li><p>Predicted Client: Remote player simulated on another client</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Actor</p></th>
+<th class="head"><p>Net Mode</p></th>
+<th class="head"><p>Local Role</p></th>
+<th class="head"><p>Remote Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Hosting Client</p></td>
+<td><p>Listen</p></td>
+<td><p>Authority</p></td>
+<td><p>Simulated</p></td>
+</tr>
+<tr class="row-odd"><td><p>Remote Clients on Server</p></td>
+<td><p>Dedicated</p></td>
+<td><p>Authority</p></td>
+<td><p>Simulated</p></td>
+</tr>
+<tr class="row-even"><td><p>Remote Clients (predicted)</p></td>
+<td><p>Client</p></td>
+<td><p>Simulated</p></td>
+<td><p>Authority</p></td>
+</tr>
+<tr class="row-odd"><td><p>Local Client (no prediction)</p></td>
+<td><p>Client</p></td>
+<td><p>Autonomous</p></td>
+<td><p>Authority</p></td>
+</tr>
+<tr class="row-even"><td><p>Static Actor</p></td>
+<td><p>Client</p></td>
+<td><p>None</p></td>
+<td><p>Authority</p></td>
+</tr>
+<tr class="row-odd"><td><p>Local Play</p></td>
+<td><p>Standalone</p></td>
+<td><p>Authority</p></td>
+<td><p>Simulated</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="about-servers">
+<h2>About Servers<a class="headerlink" href="#about-servers" title="Permalink to this headline"></a></h2>
+<p>The games are truely only running on the server. Clients forwards their inputs to the server
+and render the state of the game. The state of the game between the clients and the server is
+kept in sync through replication.</p>
+<p>To limit bandwidth usage some actions will get simulated on clients, for example when moving
+a character from A to B, there is no need to replicate the position of the character on each frame.
+Instead, we can interpolate its location given its current location, destination and speed.</p>
+<p>Bad network condition will hinder the synchronisaton which can cause jittering.
+Character will move beyond their target, or the actions of other players will not be reflected.</p>
+</section>
+<section id="code-snippet">
+<h2>Code Snippet<a class="headerlink" href="#code-snippet" title="Permalink to this headline"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">HasAuthority</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="w"></span>
+<span class="n">ShouldShowUI</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="w"></span>
+<span class="n">AcceptRemoteConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_DedicatedServer</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_ListenServer</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="server-only-code-blocks">
+<h3>Server Only code blocks<a class="headerlink" href="#server-only-code-blocks" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if WITH_SERVER_CODE</span>
+
+<span class="c1">// code to load up your mananger and stuff here</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</section>
+<section id="client-only-code-blocks">
+<h3>Client only code blocks<a class="headerlink" href="#client-only-code-blocks" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if !UE_SERVER</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</section>
+<section id="actor-network-configuration">
+<h3>Actor Network configuration<a class="headerlink" href="#actor-network-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AActor</span><span class="o">::</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w">    </span><span class="c1">// Standalone | Dedicated  | Listen | Client</span>
+<span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w">  </span><span class="c1">// Simulated  | Autonomous | Authority</span>
+<span class="n">AActor</span><span class="o">::</span><span class="n">GetRemoteRole</span><span class="p">()</span><span class="w"> </span><span class="c1">// Simulated  | Autonomous | Authority</span>
+</pre></div>
+</div>
+</section>
+<section id="conditionnal-execution-of-some-code">
+<h3>Conditionnal execution of some code<a class="headerlink" href="#conditionnal-execution-of-some-code" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// HasAuthority in blueprints:</span>
+<span class="n">HasAuthority</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ROLE_Authority</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// CanExecute Cosmetic Events</span>
+<span class="c1">//    Used when working with HUD/Widget</span>
+<span class="o">!</span><span class="n">UKismetSystemLibrary</span><span class="o">::</span><span class="n">IsDedicatedServer</span><span class="p">(</span><span class="n">World</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="network-conditions">
+<h3>Network Conditions<a class="headerlink" href="#network-conditions" title="Permalink to this headline"></a></h3>
+<p>Netowrk conditions metrics are stored inside the <code class="docutils literal notranslate"><span class="pre">UNetDriver</span></code> stored inside the world.
+In addition you can hook yourself to the <code class="docutils literal notranslate"><span class="pre">FOnNetworkProcessingCausingSlowFrame</span></code> delegate inside <code class="docutils literal notranslate"><span class="pre">IpNetDriver</span></code>
+to display warning to users when network is being slow.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UFindSessionsCallbackProxy::GetPingInMs</span></code></p></li>
+<li><p>The ping is store in <code class="docutils literal notranslate"><span class="pre">PlayerController-&gt;PlayerState-&gt;ExactPing</span></code></p></li>
+<li><p>Checkout <a class="reference internal" href="../generated_api/classUGKUtilityLibrary.html#_CPPv4N17UGKUtilityLibrary17GetNetworkMetricsEPK7UObject" title="UGKUtilityLibrary::GetNetworkMetrics"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">UGKUtilityLibrary::GetNetworkMetrics()</span></code></a> and <a class="reference internal" href="../generated_api/structFGKNetworkMetrics.html#_CPPv417FGKNetworkMetrics" title="FGKNetworkMetrics"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKNetworkMetrics</span></code></a></p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Metric Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>double</p></td>
+<td><p>LastTickDispatchRealtime;</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>bIsPeer;</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>ProfileStats;</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>bSkipLocalStats;</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>SendCycles;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InBytesPerSecond;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutBytesPerSecond;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InBytes;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>InTotalBytes;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>OutBytes;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutTotalBytes;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>NetGUIDOutBytes;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>NetGUIDInBytes;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InPackets;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>InTotalPackets;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>OutPackets;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutTotalPackets;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InBunches;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutBunches;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InTotalBunches;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutTotalBunches;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InPacketsLost;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>InTotalPacketsLost;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>OutPacketsLost;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutTotalPacketsLost;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>InOutOfOrderPackets;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutOutOfOrderPackets;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>VoicePacketsSent;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>VoiceBytesSent;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>VoicePacketsRecv;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>VoiceBytesRecv;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>VoiceInPercent;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>VoiceOutPercent;</p></td>
+</tr>
+<tr class="row-odd"><td><p>double</p></td>
+<td><p>StatUpdateTime;</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>StatPeriod;</p></td>
+</tr>
+<tr class="row-odd"><td><p>uint32</p></td>
+<td><p>TotalRPCsCalled;</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32</p></td>
+<td><p>OutTotalAcks;</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>bCollectNetStats;</p></td>
+</tr>
+<tr class="row-even"><td><p>double</p></td>
+<td><p>LastCleanupTime;</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>bIsStandbyCheckingEnabled;</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>bHasStandbyCheatTriggered;</p></td>
+</tr>
+<tr class="row-odd"><td><p>float</p></td>
+<td><p>StandbyRxCheatTime;</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>StandbyTxCheatTime;</p></td>
+</tr>
+<tr class="row-odd"><td><p>int32</p></td>
+<td><p>BadPingThreshold;</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>PercentMissingForRxStandby;</p></td>
+</tr>
+<tr class="row-odd"><td><p>float</p></td>
+<td><p>PercentMissingForTxStandby;</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>PercentForBadPing;</p></td>
+</tr>
+<tr class="row-odd"><td><p>float</p></td>
+<td><p>JoinInProgressStandbyWaitTime;</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>NetTag;</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>DebugRelevantActors;</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="replication">
+<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Net/Core/PushModel/PushModel.h&quot;</span><span class="cp"></span>
+
+<span class="w">     </span><span class="n">FDoRepLifetimeParams</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">SharedParams</span><span class="p">.</span><span class="n">bIsPushBased</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">Score</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">bIsSpectator</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">bOnlySpectator</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">bFromPreviousLevel</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">StartTime</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">DOREPLIFETIME_WITH_PARAMS_FAST</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerNamePrivate</span><span class="p">,</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">MARK_PROPERTY_DIRTY_FROM_NAME</span><span class="p">(</span><span class="n">APlayerState</span><span class="p">,</span><span class="w"> </span><span class="n">Score</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-replication">
+<h3>Advanced Replication<a class="headerlink" href="#advanced-replication" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// this seems to work well, channel does not close</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">AGKCharacterBase::IsReplicationPausedForConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FNetViewer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ConnectionOwnerNetViewer</span><span class="p">)</span><span class="w"></span>
+
+<span class="c1">// use this to stop simulation on remote clients</span>
+<span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnReplicationPausedChanged</span><span class="w"></span>
+
+<span class="c1">// What is the purpose of this</span>
+<span class="c1">// NetDormancy seems hard to get right</span>
+<span class="n">NetDormancy</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">DORM_DormantPartial</span><span class="p">;</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetNetDormancy</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ViewPos</span><span class="p">,</span><span class="w">    </span><span class="c1">// ConnectionViewers[viewerIdx].ViewLocation</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">FVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ViewDir</span><span class="p">,</span><span class="w">    </span><span class="c1">// ConnectionViewers[viewerIdx].ViewDir</span>
+<span class="w">                                      </span><span class="k">class</span><span class="w"> </span><span class="nc">AActor</span><span class="o">*</span><span class="w">  </span><span class="n">Viewer</span><span class="p">,</span><span class="w">     </span><span class="c1">// ConnectionViewers[viewerIdx].InViewer</span>
+<span class="w">                                      </span><span class="n">AActor</span><span class="o">*</span><span class="w">        </span><span class="n">ViewTarget</span><span class="p">,</span><span class="w"> </span><span class="c1">// ConnectionViewers[viewerIdx].ViewTarget</span>
+<span class="w">                                      </span><span class="n">UActorChannel</span><span class="o">*</span><span class="w"> </span><span class="n">InChannel</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="kt">float</span><span class="w">          </span><span class="n">Time</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="kt">bool</span><span class="w">           </span><span class="n">bLowBandwidth</span><span class="p">)</span><span class="w"></span>
+
+<span class="c1">// When tweaking this method, the replication does not stop right away</span>
+<span class="c1">// the channel closes after a few seconds</span>
+<span class="c1">// LogNetDormancy: Verbose: UChannel::Close: Sending CloseBunch. Reason: Relevancy</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">IsNetRelevantFor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AActor</span><span class="w">  </span><span class="o">*</span><span class="n">RealViewer</span><span class="p">,</span><span class="w">  </span><span class="c1">// InViewer</span>
+<span class="w">                                        </span><span class="k">const</span><span class="w"> </span><span class="n">AActor</span><span class="w">  </span><span class="o">*</span><span class="n">ViewTarget</span><span class="p">,</span><span class="w">  </span><span class="c1">// ViewTarget</span>
+<span class="w">                                        </span><span class="k">const</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ViewLocation</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">You</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">play</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">FNetworkObjectList</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="n">finicky</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">FNetworkObjectList</span><span class="o">::</span><span class="n">MarkActive</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">AActor</span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">UNetConnection</span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">Connection</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">UNetDriver</span><span class="o">*</span><span class="w"> </span><span class="n">NetDriver</span><span class="p">)</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">FNetworkObjectList</span><span class="o">::</span><span class="n">MarkDormant</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">AActor</span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">UNetConnection</span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">Connection</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">NumConnections</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">UNetDriver</span><span class="o">*</span><span class="w"> </span><span class="n">NetDriver</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/FNetworkObjectList/">https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/FNetworkObjectList/</a></p>
+</dd>
+</dl>
+</section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h3>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># DefaultEngine.ini</span><span class="w"></span>
+<span class="k">[PacketSimulationSettings]</span><span class="w"></span>
+<span class="na">PktLag</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">PktLagVariance</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">PktLoss</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">PktOrder</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">PktDup</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h3>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://www.unrealengine.com/en-US/blog/finding-network-based-exploits?sessionInvalidated=true">Simulate Network Conditions</a></p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../MachineLearning/index.html" class="btn btn-neutral float-left" title="Machine Learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MMO.html" class="btn btn-neutral float-right" title="Massively Multiplayer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

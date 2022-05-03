@@ -1,0 +1,36 @@
+
+.. _program_listing_file_Source_Gamekit_Utilities_GKBitFlag.h:
+
+Program Listing for File GKBitFlag.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Utilities_GKBitFlag.h>` (``Source/Gamekit/Utilities/GKBitFlag.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "HAL/Platform.h"
+   
+   template <typename Enum>
+   bool IsSet(uint32 Value, Enum Flag)
+   {
+       return (Value & (1 << static_cast<uint32>(Flag))) > 0;
+   }
+   
+   template <typename Enum>
+   uint32 SetFlag(uint32 Value, Enum Flag)
+   {
+       return (Value | (1 << static_cast<uint32>(Flag)));
+   }
+   
+   template <typename Enum>
+   uint32 RemoveFlag(uint32 Value, Enum Flag)
+   {
+       return (Value & ~(1 << static_cast<uint32>(Flag)));
+   }

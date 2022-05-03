@@ -1,0 +1,14 @@
+.. _exhale_define_GK__CPU__Upscaler_8cpp_1a37c4c48ff47f0838f64b5a1fb3c803b2:
+
+Define HALF
+===========
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: HALF
+   :project: GameKit

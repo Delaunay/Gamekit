@@ -1,0 +1,55 @@
+
+.. _file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.cpp:
+
+File GKAbilityTarget_PlayerControllerTrace.cpp
+==============================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Targeting>` (``Source/Gamekit/Abilities/Targeting``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.cpp``)
+---------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbility.h``
+
+- ``AbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``Components/DecalComponent.h``
+
+- ``DrawDebugHelpers.h``
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
+- ``Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h`` (:ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`)
+
+- ``Gamekit/Characters/GKSelectableInterface.h`` (:ref:`file_Source_Gamekit_Characters_GKSelectableInterface.h`)
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``GenericTeamAgentInterface.h``
+
+- ``Kismet/KismetSystemLibrary.h``
+
+
+
+
+

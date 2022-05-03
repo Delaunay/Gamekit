@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_GamekitTestSuite_FogOfWar_GKFogOfWarTest.cpp:
+
+Program Listing for File GKFogOfWarTest.cpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitTestSuite_FogOfWar_GKFogOfWarTest.cpp>` (``Source/GamekitTestSuite/FogOfWar/GKFogOfWarTest.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Gamekit
+   #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
+   
+   // Gamekit Tests
+   #include "GamekitTestSuite/GKTestUtilities.h"
+   
+   // Unreal Engine Tests
+   #include "Tests/AutomationEditorCommon.h"
+   
+   
+   GAMEKIT_TEST(FogOfWar.Something, AGKFogOfWarVolume, GetRelativePosition)
+   {
+       UWorld* World = FAutomationEditorCommonUtils::CreateNewMap();
+   
+       return true;
+   }

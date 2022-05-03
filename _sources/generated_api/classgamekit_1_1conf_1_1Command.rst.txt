@@ -1,0 +1,31 @@
+.. _exhale_class_classgamekit_1_1conf_1_1Command:
+
+Class Command
+=============
+
+- Defined in :ref:`file_Source_Python_gamekit_conf.py`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public gamekit.commands.cook.CookGame`` (:ref:`exhale_class_classgamekit_1_1commands_1_1cook_1_1CookGame`)
+- ``public gamekit.commands.disable.Disable`` (:ref:`exhale_class_classgamekit_1_1commands_1_1disable_1_1Disable`)
+- ``public gamekit.commands.init.Init`` (:ref:`exhale_class_classgamekit_1_1commands_1_1init_1_1Init`)
+- ``public gamekit.commands.install.Install`` (:ref:`exhale_class_classgamekit_1_1commands_1_1install_1_1Install`)
+- ``public gamekit.commands.tests.RunTests`` (:ref:`exhale_class_classgamekit_1_1commands_1_1tests_1_1RunTests`)
+- ``public gamekit.commands.vscode.VSCode`` (:ref:`exhale_class_classgamekit_1_1commands_1_1vscode_1_1VSCode`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: gamekit::conf::Command
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,37 @@
+
+.. _file_Source_Gamekit_GKTeamPlayerStart.cpp:
+
+File GKTeamPlayerStart.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKTeamPlayerStart.cpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKTeamPlayerStart.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKTeamPlayerStart.h`` (:ref:`file_Source_Gamekit_GKTeamPlayerStart.h`)
+
+
+
+
+

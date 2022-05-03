@@ -1,0 +1,66 @@
+
+.. _program_listing_file_Source_Gamekit_GKGameMode.h:
+
+Program Listing for File GKGameMode.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKGameMode.h>` (``Source/Gamekit/GKGameMode.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "GameFramework/GameModeBase.h"
+   
+   // Generated
+   #include "GKGameMode.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKGameModeBaseBase();
+   
+       FString InitNewPlayer(
+           APlayerController * NewPlayerController,
+           const FUniqueNetIdRepl & UniqueId,
+           const FString & Options,
+           const FString & Portal) override;
+   
+       APawn* SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot) override;
+   
+       // void GenericPlayerInitialization(AController* Controller) override; 
+   
+       virtual void ResetLevel() override;
+   
+       virtual bool HasMatchEnded() const override;
+   
+       UFUNCTION(BlueprintCallable, Category = Game)
+       virtual void GameOver();
+   
+       protected:
+       UFUNCTION(BlueprintImplementableEvent,
+                 Category = Game,
+                 meta     = (DisplayName = "DoRestart", ScriptName = "DoRestart"))
+       void K2_DoRestart();
+   
+       UFUNCTION(BlueprintImplementableEvent,
+                 Category = Game,
+                 meta     = (DisplayName = "OnGameOver", ScriptName = "OnGameOver"))
+       void K2_OnGameOver();
+   
+       UPROPERTY(BlueprintReadOnly, Category = Game)
+       uint32 bGameOver : 1;
+   
+       void SetGenericTeamIdFromPlayerStart(AController *NewPlayer, AActor *StartSpot);
+   };

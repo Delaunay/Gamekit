@@ -1,0 +1,41 @@
+
+.. _file_Source_Gamekit_Utilities_GKSelection.cpp:
+
+File GKSelection.cpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Utilities>` (``Source/Gamekit/Utilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Utilities/GKSelection.cpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Utilities_GKSelection.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GameFramework/PlayerController.h``
+
+- ``Gamekit/Utilities/GKSelection.h`` (:ref:`file_Source_Gamekit_Utilities_GKSelection.h`)
+
+- ``Kismet/KismetSystemLibrary.h``
+
+
+
+
+

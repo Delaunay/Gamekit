@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1conf_1a5b3eb5440bd0cd90821f41fa82ff5a19:
+
+Function gamekit::conf::save_conf
+=================================
+
+- Defined in :ref:`file_Source_Python_gamekit_conf.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::conf::save_conf(conf)
+   :project: GameKit

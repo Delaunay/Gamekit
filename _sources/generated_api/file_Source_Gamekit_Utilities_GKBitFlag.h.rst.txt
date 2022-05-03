@@ -1,0 +1,58 @@
+
+.. _file_Source_Gamekit_Utilities_GKBitFlag.h:
+
+File GKBitFlag.h
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Utilities>` (``Source/Gamekit/Utilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Utilities/GKBitFlag.h``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Utilities_GKBitFlag.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/Platform.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarComponent.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_Strategy.cpp`
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKBitFlag_8h_1a1c8e2225ea2bc770a860e98b5d3fcbff`
+
+- :ref:`exhale_function_GKBitFlag_8h_1aa917b61e29bb996ce90a7ae191eea7a9`
+
+- :ref:`exhale_function_GKBitFlag_8h_1aff4bfc0dd4c5098f5bdcc40edd66e64c`
+

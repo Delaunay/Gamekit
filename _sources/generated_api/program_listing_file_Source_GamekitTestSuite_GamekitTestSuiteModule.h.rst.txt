@@ -1,0 +1,30 @@
+
+.. _program_listing_file_Source_GamekitTestSuite_GamekitTestSuiteModule.h:
+
+Program Listing for File GamekitTestSuiteModule.h
+=================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitTestSuite_GamekitTestSuiteModule.h>` (``Source/GamekitTestSuite/GamekitTestSuiteModule.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "Modules/ModuleManager.h"
+   
+   class IGamekitTestSuiteModule: public IModuleInterface
+   {
+   
+       public:
+       static inline IGamekitTestSuiteModule &Get()
+       {
+           return FModuleManager::LoadModuleChecked<IGamekitTestSuiteModule>("GamekitTestSuiteModule");
+       }
+   
+       static inline bool IsAvailable() { return FModuleManager::Get().IsModuleLoaded("GamekitTestSuiteModule"); }
+   };

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File Upscaling_Buffer.usf &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File Upscaling_Buffer.usf</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Shaders_Upscaling_Buffer.usf.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-upscaling-buffer-usf">
+<span id="program-listing-file-shaders-upscaling-buffer-usf"></span><h1>Program Listing for File Upscaling_Buffer.usf<a class="headerlink" href="#program-listing-for-file-upscaling-buffer-usf" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Shaders_Upscaling_Buffer.usf.html#file-shaders-upscaling-buffer-usf"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Shaders/Upscaling_Buffer.usf</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;/Engine/Public/Platform.ush&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;/Gamekit/Upscaling_Patterns.ush&quot;</span><span class="cp"></span>
+
+<span class="n">RWByteAddressBuffer</span><span class="w"> </span><span class="n">OutputTexture</span><span class="p">;</span><span class="w"></span>
+<span class="n">RWByteAddressBuffer</span><span class="w"> </span><span class="n">InputTexture</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">uint2</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">;</span><span class="w"></span>
+<span class="n">uint</span><span class="w">  </span><span class="n">TimeStamp</span><span class="p">;</span><span class="w"></span>
+
+<span class="cp">#define TEXEL_2x2(a, b, c, d) uint(uint(a) &lt;&lt; 3 | (uint(b) &lt;&lt; 2) | (uint(c) &lt;&lt; 1) | (uint(d)))</span>
+
+<span class="cp">#define GET(xy, Size) ((xy.x) + (xy.y * Size.x))</span>
+
+<span class="cp">#define IS_VISIBLE(X) (int(uint(X &amp; uint(1 &lt;&lt; 7) &gt; 0)))</span>
+
+<span class="c1">// #define IS_VISIBLE(X) (uint(X &gt; 0))</span>
+
+<span class="c1">// clang-format off</span>
+<span class="p">[</span><span class="n">numthreads</span><span class="p">(</span><span class="n">THREADGROUPSIZE_X</span><span class="p">,</span><span class="w"> </span><span class="n">THREADGROUPSIZE_Y</span><span class="p">,</span><span class="w"> </span><span class="n">THREADGROUPSIZE_Z</span><span class="p">)]</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">MainComputeShader</span><span class="p">(</span><span class="n">uint3</span><span class="w"> </span><span class="n">GroupId</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupID</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">uint3</span><span class="w"> </span><span class="n">ThreadId</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="n">SV_DispatchThreadID</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">uint3</span><span class="w"> </span><span class="n">GroupThreadId</span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupThreadID</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">uint</span><span class="w">  </span><span class="n">GroupdIndex</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupIndex</span><span class="p">)</span><span class="w"></span>
+<span class="c1">// clang-format on</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// OutputTexture[ThreadId.xy] = InputTexture[ThreadId.xy];</span>
+
+<span class="w">    </span><span class="n">uint2</span><span class="w"> </span><span class="n">Pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ThreadId</span><span class="p">.</span><span class="n">xy</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Offset_00</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GET</span><span class="p">(</span><span class="n">Pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uint2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Offset_10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GET</span><span class="p">(</span><span class="n">Pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uint2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Offset_01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GET</span><span class="p">(</span><span class="n">Pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uint2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Offset_11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GET</span><span class="p">(</span><span class="n">Pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uint2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">P_00</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IS_VISIBLE</span><span class="p">(</span><span class="n">InputTexture</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="n">Offset_00</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">P_10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IS_VISIBLE</span><span class="p">(</span><span class="n">InputTexture</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="n">Offset_10</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">P_01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IS_VISIBLE</span><span class="p">(</span><span class="n">InputTexture</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="n">Offset_01</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">P_11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IS_VISIBLE</span><span class="p">(</span><span class="n">InputTexture</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="n">Offset_11</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">uint</span><span class="w">  </span><span class="n">Pattern</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">TEXEL_2x2</span><span class="p">(</span><span class="n">P_00</span><span class="p">,</span><span class="w"> </span><span class="n">P_10</span><span class="p">,</span><span class="w"> </span><span class="n">P_01</span><span class="p">,</span><span class="w"> </span><span class="n">P_11</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint2</span><span class="w"> </span><span class="n">UpscaleSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dimensions</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Pattern</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">PatId</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Pos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">uint</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">GET</span><span class="p">(</span><span class="n">uint2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">UpscaleSize</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">OutputTexture</span><span class="p">.</span><span class="n">Store</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span><span class="w"> </span><span class="n">PatternMap</span><span class="p">[</span><span class="n">PatId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

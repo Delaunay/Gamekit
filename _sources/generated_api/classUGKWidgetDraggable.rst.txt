@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKWidgetDraggable:
+
+Class UGKWidgetDraggable
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDraggable.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UUserWidget``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKWidgetDraggable
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

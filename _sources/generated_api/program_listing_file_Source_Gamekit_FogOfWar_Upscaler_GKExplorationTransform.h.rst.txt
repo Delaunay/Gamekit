@@ -1,0 +1,44 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Upscaler_GKExplorationTransform.h:
+
+Program Listing for File GKExplorationTransform.h
+=================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Upscaler_GKExplorationTransform.h>` (``Source/Gamekit/FogOfWar/Upscaler/GKExplorationTransform.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKExplorationTransform.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKExplorationTransform: public UGKTransformerStrategyCanvas
+   {
+       GENERATED_BODY()
+   
+       public:
+       void Initialize();
+   
+       void Transform(class AGKFogOfWarTeam *FactionFog) override;
+   
+       /*
+       class UMaterialInstanceDynamic *GetFactionMaterialInstance(FName Name);
+   
+       class UMaterialInterface *ExplorationMaterial;
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UMaterialInstanceDynamic *> MaterialInstances;
+       */
+   };

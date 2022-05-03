@@ -1,0 +1,14 @@
+.. _exhale_variable_Upscaling_8usf_1a2ce5f8f3bd96f15052fa15e57ce1bcdc:
+
+Variable OutputTexture
+======================
+
+- Defined in :ref:`file_Shaders_Upscaling.usf`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: OutputTexture
+   :project: GameKit

@@ -1,0 +1,69 @@
+
+.. _file_Source_Gamekit_Grid_GKGrid.h:
+
+File GKGrid.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Grid>` (``Source/Gamekit/Grid``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Grid/GKGrid.h``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Grid_GKGrid.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKGrid.generated.h``
+
+- ``Gamekit/Grid/GKHexGridUtilities.h`` (:ref:`file_Source_Gamekit_Grid_GKHexGridUtilities.h`)
+
+- ``Math/IntVector.h``
+
+- ``Math/Vector.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+- :ref:`file_Source_Gamekit_Grid_GKGrid.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKGrid`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GKGrid_8h_1a16cb7446f080bb85bb137366b19d626a`
+

@@ -1,0 +1,74 @@
+
+.. _file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h:
+
+File GKRichTextBlockDecorator.h
+===============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget_RichTextDecorator>` (``Source/Gamekit/Widget/RichTextDecorator``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Widget/RichTextDecorator/GKRichTextBlockDecorator.h``)
+-----------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Components/RichTextBlockDecorator.h``
+
+- ``CoreMinimal.h``
+
+- ``Engine/DataTable.h``
+
+- ``Fonts/SlateFontInfo.h``
+
+- ``Framework/Text/ISlateRun.h``
+
+- ``Framework/Text/ITextDecorator.h``
+
+- ``Framework/Text/TextLayout.h``
+
+- ``GKRichTextBlockDecorator.generated.h``
+
+- ``Styling/SlateTypes.h``
+
+- ``UObject/Object.h``
+
+- ``UObject/ObjectMacros.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKRichRow`
+
+- :ref:`exhale_class_classFGKRichStruct`
+
+- :ref:`exhale_class_classUGKRichTextBlockDecorator`
+

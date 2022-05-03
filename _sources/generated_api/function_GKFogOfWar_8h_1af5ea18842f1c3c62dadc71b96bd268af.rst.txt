@@ -1,0 +1,14 @@
+.. _exhale_function_GKFogOfWar_8h_1af5ea18842f1c3c62dadc71b96bd268af:
+
+Function DECLARE_LOG_CATEGORY_EXTERN(LogGKFoW, Log, All)
+========================================================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWar.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_LOG_CATEGORY_EXTERN(LogGKFoW, Log, All)
+   :project: GameKit

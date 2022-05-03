@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKAOEActor.cpp:
+
+Program Listing for File GKAOEActor.cpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKAOEActor.cpp>` (``Source/Gamekit/Projectiles/GKAOEActor.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "Gamekit/Projectiles/GKAOEActor.h"
+   
+   // Sets default values
+   AGKAOEActor::AGKAOEActor()
+   {
+       // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+       PrimaryActorTick.bCanEverTick = true;
+   }
+   
+   // Called when the game starts or when spawned
+   void AGKAOEActor::BeginPlay() { Super::BeginPlay(); }
+   
+   // Called every frame
+   void AGKAOEActor::Tick(float DeltaTime) { Super::Tick(DeltaTime); }

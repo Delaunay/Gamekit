@@ -1,0 +1,57 @@
+
+.. _program_listing_file_Source_Gamekit_States_GKPrivatePlayerState.h:
+
+Program Listing for File GKPrivatePlayerState.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_States_GKPrivatePlayerState.h>` (``Source/Gamekit/States/GKPrivatePlayerState.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Info.h"
+   #include "GenericTeamAgentInterface.h"
+   #include "GameFramework/PlayerState.h"
+   
+   // Generated
+   #include "GKPrivatePlayerState.generated.h"
+   
+   
+   
+   #define GK_PRIVATEPLAYERSTATE_SANITY 1
+   
+   UCLASS()
+   class GAMEKIT_API AGKPrivatePlayerState : public AInfo
+   {
+       GENERATED_BODY()
+   
+   public:
+   
+       AGKPrivatePlayerState();
+   
+       bool IsNetRelevantFor(const AActor * RealViewer,  
+                             const AActor * ViewTarget, 
+                             const FVector & SrcLocation) const;
+   
+       FGenericTeamId GetGenericTeamId() const;
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
+   
+   //*
+       void Tick(float Delat) override;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, ReplicatedUsing=OnRep_Version)
+       int Version;
+   
+       UFUNCTION()
+       void OnRep_Version();
+   //*/
+   };

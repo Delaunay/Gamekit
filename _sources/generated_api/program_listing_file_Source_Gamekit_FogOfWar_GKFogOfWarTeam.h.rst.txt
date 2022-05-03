@@ -1,0 +1,65 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_GKFogOfWarTeam.h:
+
+Program Listing for File GKFogOfWarTeam.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_GKFogOfWarTeam.h>` (``Source/Gamekit/FogOfWar/GKFogOfWarTeam.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Info.h"
+   #include "GenericTeamAgentInterface.h"
+   
+   // Generated
+   #include "GKFogOfWarTeam.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKFogOfWarTeam: public AInfo
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKFogOfWarTeam();
+   
+       bool IsNetRelevantFor(const AActor  *RealViewer,
+                             const AActor  *ViewTarget,
+                             const FVector &SrcLocation) const override;
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+   
+       void *Buffer;
+   
+       class UTexture *Exploration;
+   
+       class UTexture *Vision;
+   
+       class UTexture *PreviousFrameVision;
+   
+       class UTexture *UpScaledVision;
+   
+       bool bDiscrete;
+   
+       UPROPERTY(Replicated)
+       FName Name;
+   
+       UPROPERTY(Replicated)
+       FGenericTeamId TeamId;
+   
+       TSet<class UGKFogOfWarComponent *> Visible;
+   
+       UPROPERTY(Replicated)
+       TArray<class UGKFogOfWarComponent *> Allies;
+   
+       TArray<class UGKFogOfWarComponent *> const &GetBlocking();
+   
+       TArray<class UGKFogOfWarComponent *> Blocking;
+   };

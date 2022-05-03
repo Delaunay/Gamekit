@@ -1,0 +1,64 @@
+
+.. _file_Source_Gamekit_Characters_GKUnitStatic.h:
+
+File GKUnitStatic.h
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Characters>` (``Source/Gamekit/Characters``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Characters/GKUnitStatic.h``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Characters_GKUnitStatic.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/DataTable.h``
+
+- ``GKUnitStatic.generated.h``
+
+- ``Gamekit/Abilities/GKAbilityInputs.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInputs.h`)
+
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+
+- ``Gamekit/Animation/GKAnimationSet.h`` (:ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
+
+- :ref:`file_Source_Gamekit_Characters_GKUnitStatic.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKInputAbilityPair`
+
+- :ref:`exhale_struct_structFGKUnitStatic`
+

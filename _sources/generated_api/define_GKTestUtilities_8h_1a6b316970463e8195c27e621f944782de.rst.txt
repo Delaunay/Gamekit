@@ -1,0 +1,14 @@
+.. _exhale_define_GKTestUtilities_8h_1a6b316970463e8195c27e621f944782de:
+
+Define GAMEKIT_TEST
+===================
+
+- Defined in :ref:`file_Source_GamekitTestSuite_GKTestUtilities.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GAMEKIT_TEST
+   :project: GameKit

@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKUnitAIController:
+
+Class AGKUnitAIController
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Controllers_GKUnitController.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AAIController``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKUnitAIController
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

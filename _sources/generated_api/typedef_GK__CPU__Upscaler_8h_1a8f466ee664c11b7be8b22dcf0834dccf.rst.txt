@@ -1,0 +1,14 @@
+.. _exhale_typedef_GK__CPU__Upscaler_8h_1a8f466ee664c11b7be8b22dcf0834dccf:
+
+Typedef Texel2x2
+================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Texel2x2
+   :project: GameKit

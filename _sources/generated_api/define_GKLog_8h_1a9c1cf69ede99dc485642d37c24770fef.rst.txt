@@ -1,0 +1,14 @@
+.. _exhale_define_GKLog_8h_1a9c1cf69ede99dc485642d37c24770fef:
+
+Define GENERATE_LOG_FUN
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GENERATE_LOG_FUN
+   :project: GameKit

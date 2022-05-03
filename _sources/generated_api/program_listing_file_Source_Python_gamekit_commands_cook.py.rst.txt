@@ -1,0 +1,103 @@
+
+.. _program_listing_file_Source_Python_gamekit_commands_cook.py:
+
+Program Listing for File cook.py
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Python_gamekit_commands_cook.py>` (``Source/Python/gamekit/commands/cook.py``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: py
+
+   import os
+   import subprocess
+   
+   from gamekit.conf import Command, load_conf
+   
+   
+   class CookGame(Command):
+       """Builds and cook your main game"""
+   
+       name: str = "cook"
+   
+       @staticmethod
+       def arguments(subparsers):
+           uat = subparsers.add_parser(CookGame.name, help='Run Unreal Automation Test (UAT)')
+           uat.add_argument("name", type=str, help='Project name')
+   
+       @staticmethod
+       def uat():
+           engine = load_conf().get('engine_path')
+           # TODO: check for linux
+           return os.path.join(
+               engine,
+               'Build',
+               'BatchFiles',
+               'RunUAT.bat'
+           )
+   
+       @staticmethod
+       def execute(args):
+           name = args.name
+   
+           projects_folder = load_conf().get('project_path')
+           project_folder = os.path.join(projects_folder, name)
+           uproject = os.path.join(project_folder, f'{name}.uproject')
+   
+           args = [
+               CookGame.uat(),
+               # Base
+               # ====
+               # "-Help",
+               # "-Verbose",
+               # "-VeryVerbose",
+               # "-List",
+               # "-Compile",
+               # "-NoCompile",
+   
+               # Commands
+               # ========
+               "BuildCookRun",
+               # "BuildPlugin",
+               # "BuildServer",
+               # "BuildGame",
+               # "Localise",
+               # "RunUnreal",
+               # "RunLowLevelTests",
+               # "TestGauntlet",
+               # "RunEditorTests",
+   
+               f"-project={uproject}",
+               f"-archivedirectory={projects_folder}/Cooked",
+   
+               # Options
+               # =======
+               "-unattended",
+               "-utf8output",
+               "-platform=Linux",
+               "-clientconfig=Shipping",
+               "-serverconfig=Shipping",
+               "-noP4",
+               "-nodebuginfo",
+               "-allmaps",
+               "-cook",
+               "-build",
+               "-stage",
+               "-prereqs",
+               "-pak",
+               "-archive",
+           ]
+   
+           p = subprocess.run(args,
+               stdin=subprocess.PIPE,
+               stderr=subprocess.PIPE,
+               shell=True,
+               check=True
+           )
+   
+           print(f"Subprocess terminated with (rc: {p.returncode})")
+           return
+   
+   
+   COMMAND = CookGame

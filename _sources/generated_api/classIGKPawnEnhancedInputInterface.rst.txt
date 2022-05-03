@@ -1,0 +1,17 @@
+.. _exhale_class_classIGKPawnEnhancedInputInterface:
+
+Class IGKPawnEnhancedInputInterface
+===================================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKEnhancedInputInterface.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IGKPawnEnhancedInputInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

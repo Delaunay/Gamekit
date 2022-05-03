@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1aec52451c1d940568e2f3172531912c3f:
+
+Function gamekit::fbm::mult
+===========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::mult(a, obj)
+   :project: GameKit

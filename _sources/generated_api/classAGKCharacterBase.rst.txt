@@ -1,0 +1,29 @@
+.. _exhale_class_classAGKCharacterBase:
+
+Class AGKCharacterBase
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public ACharacter``
+- ``public IAbilitySystemInterface``
+- ``public IGenericTeamAgentInterface``
+- ``public IGKSelectableInterface`` (:ref:`exhale_class_classIGKSelectableInterface`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKCharacterBase
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

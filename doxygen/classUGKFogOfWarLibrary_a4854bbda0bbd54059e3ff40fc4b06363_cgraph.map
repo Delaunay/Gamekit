@@ -1,0 +1,9 @@
+<map id="UGKFogOfWarLibrary::SetCameraPostprocessMaterial" name="UGKFogOfWarLibrary::SetCameraPostprocessMaterial">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,240,80"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#ad6662c5cdef544457d492ed20343191a" title="Returns the post process material the actor should use for its camera." alt="" coords="288,39,528,80"/>
+<area shape="rect" id="node3" href="$classAGKFogOfWarVolume.html#a49ed2df4f100a390825c4bfadaa48b54" title="Sets the texture parameters FoWView &amp; FoWExploration." alt="" coords="576,39,811,80"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#a5ea391da7796aa868f7fc7d932237eb1" title=" " alt="" coords="859,39,1119,80"/>
+<area shape="rect" id="node5" href="$classAGKFogOfWarVolume.html#ab0f0b527eb5c242e79e2cc42965c6f3c" title="Returns the exploration render target associated with the faction name." alt="" coords="1167,5,1380,47"/>
+<area shape="rect" id="node7" href="$classAGKFogOfWarVolume.html#a31ed4c52dc9d9384b00e8b0d9390fdc7" title="Returns the vision texture." alt="" coords="1188,71,1359,112"/>
+<area shape="rect" id="node6" href="$classAGKFogOfWarVolume.html#a38ad7ce758ec3246deb372809594ef69" title=" " alt="" coords="1428,39,1599,80"/>
+</map>

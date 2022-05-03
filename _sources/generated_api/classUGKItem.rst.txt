@@ -1,0 +1,35 @@
+.. _exhale_class_classUGKItem:
+
+Class UGKItem
+=============
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKItem.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UPrimaryDataAsset``
+
+
+Derived Types
+*************
+
+- ``public UGKPotionItem`` (:ref:`exhale_class_classUGKPotionItem`)
+- ``public UGKSkillItem`` (:ref:`exhale_class_classUGKSkillItem`)
+- ``public UGKTokenItem`` (:ref:`exhale_class_classUGKTokenItem`)
+- ``public UGKWeaponItem`` (:ref:`exhale_class_classUGKWeaponItem`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKItem
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

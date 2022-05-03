@@ -1,0 +1,42 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKAOEActor.h:
+
+Program Listing for File GKAOEActor.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKAOEActor.h>` (``Source/Gamekit/Projectiles/GKAOEActor.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Projectiles/GKAbilityEffectActor.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKAOEActor.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKAOEActor: public AGKAbilityEffectActor
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this actor's properties
+       AGKAOEActor();
+   
+       protected:
+       // Called when the game starts or when spawned
+       virtual void BeginPlay() override;
+   
+       public:
+       // Called every frame
+       virtual void Tick(float DeltaTime) override;
+   };

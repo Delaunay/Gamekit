@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKNetworkMetrics:
+
+Struct FGKNetworkMetrics
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKNetworkMetrics
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

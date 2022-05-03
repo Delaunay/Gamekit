@@ -1,0 +1,54 @@
+
+.. _file_Source_Gamekit_Abilities_GKAbilityInputs.h:
+
+File GKAbilityInputs.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKAbilityInputs.h``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKAbilityInputs.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
+
+- :ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`
+
+- :ref:`file_Source_Gamekit_Items_GKItemTypes.h`
+
+
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GKAbilityInputs_8h_1a5926be264f6313e59bb65648750bdd6a`
+

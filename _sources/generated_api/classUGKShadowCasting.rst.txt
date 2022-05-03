@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKShadowCasting:
+
+Class UGKShadowCasting
+======================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKFogOfWarStrategy`` (:ref:`exhale_class_classUGKFogOfWarStrategy`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKShadowCasting
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

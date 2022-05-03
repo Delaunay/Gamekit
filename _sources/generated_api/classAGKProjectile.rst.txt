@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKProjectile:
+
+Class AGKProjectile
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGKAbilityEffectActor`` (:ref:`exhale_class_classAGKAbilityEffectActor`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKProjectile
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

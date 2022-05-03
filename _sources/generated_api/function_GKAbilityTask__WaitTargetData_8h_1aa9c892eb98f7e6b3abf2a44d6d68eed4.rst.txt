@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityTask__WaitTargetData_8h_1aa9c892eb98f7e6b3abf2a44d6d68eed4:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKWaitTargetDataDelegate, const FGameplayAbilityTargetDataHandle&, Data)
+==============================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKWaitTargetDataDelegate, const FGameplayAbilityTargetDataHandle&, Data)
+   :project: GameKit

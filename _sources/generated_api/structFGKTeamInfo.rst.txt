@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKTeamInfo:
+
+Struct FGKTeamInfo
+==================
+
+- Defined in :ref:`file_Source_Gamekit_GKWorldSettings.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FTableRowBase``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKTeamInfo
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

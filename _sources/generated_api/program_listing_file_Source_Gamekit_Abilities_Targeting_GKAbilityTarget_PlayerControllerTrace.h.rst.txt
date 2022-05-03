@@ -1,0 +1,110 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h:
+
+Program Listing for File GKAbilityTarget_PlayerControllerTrace.h
+================================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h>` (``Source/Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityStatic.h"
+   #include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Engine/EngineTypes.h"
+   #include "UObject/ObjectMacros.h"
+   
+   // Generated
+   #include "GKAbilityTarget_PlayerControllerTrace.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult &, TraceHit, bool, IsValid);
+   
+   UCLASS(Blueprintable, notplaceable)
+   class GAMEKIT_API AGKAbilityTarget_PlayerControllerTrace: public AGKAbilityTarget_Actor
+   {
+       GENERATED_UCLASS_BODY()
+   
+       public:
+       virtual void StartTargeting(UGKGameplayAbility *Ability) override;
+   
+       virtual void InitializeFromAbilityData(FGKAbilityStatic const &AbilityData);
+   
+       virtual void StopTargeting() override;
+   
+       virtual void Tick(float DeltaSeconds) override;
+   
+       virtual bool IsTargetValid() const;
+   
+       virtual bool IsConfirmTargetingAllowed() override;
+   
+       virtual void CancelTargeting() override;
+   
+       virtual void ConfirmTargetingAndContinue() override;
+   
+       virtual void ConfirmTargeting() override;
+   
+       virtual void BindToConfirmCancelInputs();
+   
+       void FilterActors();
+   
+       void Deselect();
+   
+       void Select();
+   
+       void DebugDraw();
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       EGK_AbilityBehavior TargetMode;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       float MaxRange;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       float MinRange;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       float AreaOfEffect;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       TSubclassOf<AActor> ClassFilter;
+   
+       UPROPERTY(BlueprintReadWrite,
+                 EditAnywhere,
+                 Category = Trace,
+                 meta     = (ExposeOnSpawn = true, Bitmask, BitmaskEnum = "EGK_FriendOrFoe"))
+       int32 TargetActorFaction;
+   
+       UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
+       TArray<AActor *> ActorsToIgnore;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FHitResult LatestHitResult;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FHitResult LatestValidHitResult;
+   
+       UPROPERTY(BlueprintReadOnly)
+       FVector TraceEndPoint;
+   
+       UPROPERTY(BlueprintReadOnly)
+       bool bIsTargetValid;
+   
+       UPROPERTY(BlueprintAssignable)
+       FTargetValidityChanged TargetValidityChanged;
+   
+       UPROPERTY(BlueprintReadOnly)
+       TArray<AActor *> ActorsUnderCursor;
+   
+       bool IsInputBound;
+   };

@@ -1,0 +1,80 @@
+
+.. _program_listing_file_Source_Gamekit_GKGameInstance.h:
+
+Program Listing for File GKGameInstance.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKGameInstance.h>` (``Source/Gamekit/GKGameInstance.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "Gamekit.h"
+   #include "Items/GKItemTypes.h"
+   
+   #include "Engine/GameInstance.h"
+   #include "GKGameInstance.generated.h"
+   
+   class UGKSaveGame;
+   
+   UCLASS()
+   class GAMEKIT_API UGKGameInstanceBase: public UGameInstance
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor
+       UGKGameInstanceBase();
+   
+       UPROPERTY(BlueprintReadWrite, Category = Save)
+       FString SaveSlot;
+   
+       UPROPERTY(BlueprintReadWrite, Category = Save)
+       int32 SaveUserIndex;
+   
+       UPROPERTY(BlueprintAssignable, Category = Inventory)
+       FOnSaveGameLoaded OnSaveGameLoaded;
+   
+       FOnSaveGameLoadedNative OnSaveGameLoadedNative;
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       UGKSaveGame *GetCurrentSaveGame();
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       void SetSavingEnabled(bool bEnabled);
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       bool LoadOrCreateSaveGame();
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       bool HandleSaveGameLoaded(USaveGame *SaveGameObject);
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       void GetSaveSlotInfo(FString &SlotName, int32 &UserIndex) const;
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       bool WriteSaveGame();
+   
+       UFUNCTION(BlueprintCallable, Category = Save)
+       void ResetSaveGame();
+   
+       protected:
+       UPROPERTY()
+       UGKSaveGame *CurrentSaveGame;
+   
+       UPROPERTY()
+       bool bSavingEnabled;
+   
+       UPROPERTY()
+       bool bCurrentlySaving;
+   
+       UPROPERTY()
+       bool bPendingSaveRequested;
+   
+       virtual void HandleAsyncSave(const FString &SlotName, const int32 UserIndex, bool bSuccess);
+   };

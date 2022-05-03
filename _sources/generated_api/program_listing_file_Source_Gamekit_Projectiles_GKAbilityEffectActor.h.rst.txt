@@ -1,0 +1,51 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h:
+
+Program Listing for File GKAbilityEffectActor.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h>` (``Source/Gamekit/Projectiles/GKAbilityEffectActor.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityTypes.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Actor.h"
+   
+   // Generated
+   #include "GKAbilityEffectActor.generated.h"
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API AGKAbilityEffectActor: public AActor
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this actor's properties
+       AGKAbilityEffectActor();
+   
+       public:
+       // Add a target to apply the effect to
+       UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
+       void AddTargetToEffectContainerSpec(AActor *TargetActor);
+   
+       // Add a target to apply the effect to
+       UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
+       void AddHitResultToEffectContainerSpec(const FHitResult &HitResult);
+   
+       // Apply Gameplay Effect to all registered targets
+       UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
+       void ApplyToTargets();
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ability|Effect", Meta = (ExposeOnSpawn = true));
+       FGKGameplayEffectContainerSpec GameplayEffects;
+   };

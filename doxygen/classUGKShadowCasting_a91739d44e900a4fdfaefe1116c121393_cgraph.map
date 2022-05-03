@@ -1,0 +1,12 @@
+<map id="UGKShadowCasting::UpdateBlocking" name="UGKShadowCasting::UpdateBlocking">
+<area shape="rect" id="node1" title=" " alt="" coords="5,93,212,135"/>
+<area shape="rect" id="node2" href="$classUGKFogOfWarStrategy.html#a364be4ff41cb50a94964482abee7c42e" title=" " alt="" coords="261,5,430,47"/>
+<area shape="rect" id="node3" href="$structFGKGrid.html#a73b17f0e5b02b358b1cf5a9a6da75f28" title=" " alt="" coords="267,71,424,98"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#abc61a88505e96f58df60ce23c0fdd17d" title=" " alt="" coords="260,123,431,164"/>
+<area shape="rect" id="node5" href="$structFGKGrid.html#a05843c5fa3a9234fbde373ce9edbbef5" title=" " alt="" coords="264,189,427,215"/>
+<area shape="rect" id="node6" href="$classUGKHexGridUtilities.html#a311e820f520e4b1cd312fe60e23ccd78" title="Convert world map position to hex grid position." alt="" coords="479,181,633,223"/>
+<area shape="rect" id="node7" href="$classUGKHexGridUtilities.html#ae269e32a1d0290daca5d9673d20205ff" title="Round axial hex coordinate to nearest hex." alt="" coords="681,181,836,223"/>
+<area shape="rect" id="node8" href="$classUGKHexGridUtilities.html#ab6540d700ce981787fb092fc39a2127e" title="Convert axial hex coordinate to cube hex coordinate." alt="" coords="884,116,1039,157"/>
+<area shape="rect" id="node9" href="$classUGKHexGridUtilities.html#af24a7546d9d8c8eb1f9e69f878e8bbee" title="Round cube hex coordinate to nearest hex." alt="" coords="884,181,1039,223"/>
+<area shape="rect" id="node10" href="$classUGKHexGridUtilities.html#a61d6c31bd1a578eb222930c4fdfa4d60" title="Convert cube hex coordinate to axial hex coordinate." alt="" coords="884,247,1039,288"/>
+</map>

@@ -1,0 +1,73 @@
+
+.. _file_Source_Gamekit_Utilities_GKSelection.h:
+
+File GKSelection.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Utilities>` (``Source/Gamekit/Utilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Utilities/GKSelection.h``)
+-------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Utilities_GKSelection.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Components/ActorComponent.h``
+
+- ``Containers/Array.h``
+
+- ``CoreMinimal.h``
+
+- ``Engine/EngineTypes.h``
+
+- ``GKSelection.generated.h``
+
+- ``GameFramework/Actor.h``
+
+- ``Kismet/BlueprintFunctionLibrary.h``
+
+- ``Math/Box.h``
+
+- ``Math/Vector.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Utilities_GKSelection.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKUnitGroup`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_GKSelection_8h_1a2cb6ac985e5133868af0f75cb0f1edbb`
+

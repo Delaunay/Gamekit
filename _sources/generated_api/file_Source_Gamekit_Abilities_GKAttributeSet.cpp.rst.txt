@@ -1,0 +1,49 @@
+
+.. _file_Source_Gamekit_Abilities_GKAttributeSet.cpp:
+
+File GKAttributeSet.cpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKAttributeSet.cpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKAttributeSet.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``Gamekit/Abilities/GKAttributeSet.h`` (:ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`)
+
+- ``Gamekit/Characters/GKCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKCharacter.h`)
+
+- ``Gamekit/Controllers/GKPlayerController.h`` (:ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`)
+
+- ``GameplayEffect.h``
+
+- ``GameplayEffectExtension.h``
+
+- ``Net/UnrealNetwork.h``
+
+
+
+
+

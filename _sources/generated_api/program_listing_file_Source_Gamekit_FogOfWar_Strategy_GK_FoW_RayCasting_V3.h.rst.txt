@@ -1,0 +1,58 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V3.h:
+
+Program Listing for File GK_FoW_RayCasting_V3.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V3.h>` (``Source/Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V3.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h"
+   
+   // Unreal Engine
+   #include "GK_FoW_RayCasting_V3.generated.h"
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKRayCasting_Less: public UGKRayCasting_Triangle
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKRayCasting_Less();
+   
+       protected:
+       void DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c) override;
+   
+       void CastLinesFromAngles(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, TArray<float> &Angles);
+   
+       void FillMissingAngles(UGKFogOfWarComponent *c, TArray<float> &Angles);
+   
+       void Generate3Triangles(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, FVector4 const &Angles);
+   
+       FGKLinePoints CastLineFromAngle(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c, float Angle);
+   
+       void GenerateTriangle(UGKFogOfWarComponent *c, FVector Start, FVector End1, FVector End2);
+   
+       TArray<FVector2D> Coverage;
+   
+       private:
+       TArray<AActor *>                      ActorsToIgnore;
+       UClass                               *ActorClassFilter;
+       TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+       AActor                               *ComponentOwner;
+       FVector                               OwnerLocation;
+       FVector                               OwnerForward;
+       FHitResult                            OutHit;
+       ETraceTypeQuery                       TraceType;
+       TSet<AActor *>                        AlreadySighted;
+       bool                                  bHasPrevious;
+       float                                 PreviousAngle;
+   };

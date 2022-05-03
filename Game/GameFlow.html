@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameFlow &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Minimaps" href="Minimaps.html" />
+    <link rel="prev" title="Drawing Strategies" href="../FogOfWar/Strategies.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GameFlow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#breakdown">Breakdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flow-charts">Flow Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GameFlow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Game/GameFlow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gameflow">
+<h1>GameFlow<a class="headerlink" href="#gameflow" title="Permalink to this headline"></a></h1>
+<section id="breakdown">
+<h2>Breakdown<a class="headerlink" href="#breakdown" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>EngineLoop</p>
+<ol class="arabic">
+<li><p>Load Engine Plugins/Modules (Pre Init)</p>
+<ol class="arabic simple">
+<li><p>EarliestPossible</p></li>
+<li><p>PostConfigInit</p></li>
+<li><p>PostSplashScreen</p></li>
+<li><p>PreEarlyLoadingScreen</p></li>
+<li><p>PreEarlyLoadingScreen</p></li>
+<li><p>PreDefault</p></li>
+<li><p>Default</p></li>
+<li><p>PostDeault</p>
+<ol class="arabic simple">
+<li><p>Actors CDO are created &amp; setup for replications</p></li>
+<li><p>StartupModule</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Init Engine</p></li>
+<li><p>Load Engine Plugins/Modules (Post Engine Init)</p></li>
+<li><p>Engine Start</p>
+<ol class="arabic simple">
+<li><p>UGameInstance, UGameViewport, ULocalPlayer, WorldContext</p>
+<ol class="arabic simple">
+<li><p>GameInstance Start</p></li>
+<li><p>Browse/Load Map</p>
+<ol class="arabic simple">
+<li><p>PreloadMap Broadcast</p></li>
+<li><p>Destroy Previous World</p></li>
+<li><p>PreloadContent</p></li>
+<li><p>Create a new World</p>
+<ol class="arabic simple">
+<li><p>Init World</p></li>
+<li><p>Create Game Mode (Spawn Gameplay Actors)</p></li>
+<li><p>Load Map</p></li>
+<li><p>InitializeActorsForPlay</p>
+<ol class="arabic simple">
+<li><p>Register Components to World</p></li>
+</ol>
+</li>
+<li><p>GamaMode::InitGame</p></li>
+<li><p>PreInitializeComponents</p>
+<ol class="arabic simple">
+<li><p>Create GameState</p></li>
+<li><p>Create a GameNetwork Manager</p></li>
+<li><p>Init Game State</p></li>
+<li><p>InitializeComponent</p>
+<ol class="arabic simple">
+<li><p>Activate Components</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Post InitializeComponent (Actors is fully initialized)</p></li>
+<li><p>GameMode::PreLogin (Remote)</p></li>
+<li><p>GameMode::Login()</p>
+<ol class="arabic simple">
+<li><p>Spawn Player Controller</p>
+<ol class="arabic simple">
+<li><p>Initialize</p></li>
+<li><p>Spawn Player State</p></li>
+</ol>
+</li>
+<li><p>Associate UPlayer with its PlayerController</p></li>
+</ol>
+</li>
+<li><p>GameMode::PostLogin</p>
+<ol class="arabic simple">
+<li><p>GameMode::RestartPlayer</p>
+<ol class="arabic simple">
+<li><p>Find PlayerStart</p></li>
+<li><p>Spawn Pawn for PlayerController (SetPawn)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>World-&gt;BeginPlay</p>
+<ol class="arabic simple">
+<li><p>GameMode::StartPlay</p>
+<ol class="arabic simple">
+<li><p>GameState::HandleBeginPlay</p>
+<ol class="arabic simple">
+<li><p>WorldSetting::NotifyBeginPlay</p>
+<ol class="arabic simple">
+<li><p>Actors-&gt;BeginPlay</p>
+<ol class="arabic simple">
+<li><p>Components-&gt;BeginPlay</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p># GameInstance::OnStart</p>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="flow-charts">
+<h2>Flow Charts<a class="headerlink" href="#flow-charts" title="Permalink to this headline"></a></h2>
+<img alt="../_images/GameFlowChart.png" src="../_images/GameFlowChart.png" />
+<img alt="../_images/ActorLifeCycle.jpg" src="../_images/ActorLifeCycle.jpg" />
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://www.youtube.com/watch?v=IaU2Hue-ApI">Engine Loop</a></p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/Framework/GameFlow/">Game flow</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">3</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/ActorLifecycle/">Actor lifecycle</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../FogOfWar/Strategies.html" class="btn btn-neutral float-left" title="Drawing Strategies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Minimaps.html" class="btn btn-neutral float-right" title="Minimaps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

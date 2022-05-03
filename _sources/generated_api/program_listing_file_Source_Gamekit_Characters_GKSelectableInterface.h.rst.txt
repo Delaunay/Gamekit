@@ -1,0 +1,39 @@
+
+.. _program_listing_file_Source_Gamekit_Characters_GKSelectableInterface.h:
+
+Program Listing for File GKSelectableInterface.h
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Characters_GKSelectableInterface.h>` (``Source/Gamekit/Characters/GKSelectableInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKSelectableInterface.generated.h"
+   
+   UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
+   class UGKSelectableInterface: public UInterface
+   {
+       GENERATED_BODY()
+   };
+   
+   class GAMEKIT_API IGKSelectableInterface
+   {
+       public:
+       GENERATED_BODY()
+   
+       UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+       virtual void Select() = 0;
+   
+       UFUNCTION(BlueprintCallable, Category = "UnitSelection")
+       virtual void Deselect() = 0;
+   };

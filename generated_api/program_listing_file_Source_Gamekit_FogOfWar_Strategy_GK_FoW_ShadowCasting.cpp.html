@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GK_FoW_ShadowCasting.cpp &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GK_FoW_ShadowCasting.cpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.cpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gk-fow-shadowcasting-cpp">
+<span id="program-listing-file-source-gamekit-fogofwar-strategy-gk-fow-shadowcasting-cpp"></span><h1>Program Listing for File GK_FoW_ShadowCasting.cpp<a class="headerlink" href="#program-listing-for-file-gk-fow-shadowcasting-cpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.cpp.html#file-source-gamekit-fogofwar-strategy-gk-fow-shadowcasting-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKUtilityLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWar.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarVolume.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;DrawDebugHelpers.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/CanvasRenderTarget2D.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/TextureRenderTarget2DArray.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Landscape.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LandscapeComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Rendering/Texture2DResource.h&quot;</span><span class="cp"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::Stop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UTexture</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKShadowCasting::GetFactionTexture</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCreateRenderTarget</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GetFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bPreviousIsPrevious</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GetFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UTexture</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKShadowCasting::GetPreviousFrameFactionTexture</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCreateRenderTarget</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bPreviousIsPrevious</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GetFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKShadowCasting::CreateTexture2D</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UTexture2D</span><span class="o">::</span><span class="n">CreateTransient</span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Width</span><span class="p">(),</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Height</span><span class="p">(),</span><span class="w"> </span><span class="n">EPixelFormat</span><span class="o">::</span><span class="n">PF_G8</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">CompressionSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextureCompressionSettings</span><span class="o">::</span><span class="n">TC_Grayscale</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">SRGB</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">Filter</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">TextureFilter</span><span class="o">::</span><span class="n">TF_Trilinear</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">AddressX</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">TextureAddress</span><span class="o">::</span><span class="n">TA_Clamp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">AddressY</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">TextureAddress</span><span class="o">::</span><span class="n">TA_Clamp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">MipGenSettings</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">TextureMipGenSettings</span><span class="o">::</span><span class="n">TMGS_NoMipmaps</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Streaming Texture cause issues when updating it from the buffer</span>
+<span class="w">    </span><span class="c1">// Texture-&gt;VirtualTextureStreaming = 1;</span>
+<span class="w">    </span><span class="c1">// Texture-&gt;NeverStream = 0;</span>
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">UpdateResource</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// UGKUtilityLibrary::ClearTexture(Texture, FLinearColor::Black);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Texture</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKShadowCasting::GetFactionTexture2D</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCreateRenderTarget</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">**</span><span class="n">Result</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FogFactions</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w">  </span><span class="o">*</span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bCreateRenderTarget</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">IsBeingDestroyed</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Creating a Texture for faction %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateTexture2D</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">FogFactions</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Texture</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Texture</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">UGKShadowCasting::IsVisible</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">SeerTeam</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Loc</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SeerTeam</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">NoTeam</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ActorPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">WorldToGrid</span><span class="p">(</span><span class="n">Loc</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BufferPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">FIntVector</span><span class="p">(</span><span class="n">ActorPosition</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">ActorPosition</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">BufferPos</span><span class="p">.</span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SeerTeam</span><span class="p">.</span><span class="n">GetId</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Valid</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Buffer</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">Visible</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKShadowCasting::GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCreateRenderTarget</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">**</span><span class="n">Result</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">PreviousFogFactions</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w">  </span><span class="o">*</span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bCreateRenderTarget</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">IsBeingDestroyed</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Creating a Texture for faction %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateTexture2D</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">PreviousFogFactions</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Texture</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Texture</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">ShowHeightMapInfo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">ULandscapeComponent</span><span class="w"> </span><span class="o">*</span><span class="n">Comp</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;%d. ULandscapeComponent&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="n">HeightMap</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">GetHeightmap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector4</span><span class="w">    </span><span class="n">HeightmapScaleBias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">HeightmapScaleBias</span><span class="p">;</span><span class="w"> </span><span class="c1">// why is this Vec4</span>
+<span class="w">    </span><span class="n">FBox</span><span class="w">        </span><span class="n">BoundBox</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">CachedLocalBox</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - GetSectionBase %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">GetSectionBase</span><span class="p">().</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// I have seen cases where W is used</span>
+<span class="w">    </span><span class="c1">//  X=0.016 Y=0.016 Z=0.000 W=0.000</span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - HeightmapScaleBias %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">HeightmapScaleBias</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=63.000 Y=63.000 Z=224.117)</span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - FBox               %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">BoundBox</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">               </span><span class="n">Mip</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FTexture2DMipMap</span><span class="w"> </span><span class="o">*</span><span class="n">CurMip</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">HeightMap</span><span class="o">-&gt;</span><span class="n">GetPlatformData</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Mips</span><span class="p">[</span><span class="n">Mip</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="n">FByteBulkData</span><span class="w">    </span><span class="o">*</span><span class="n">ImageData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">CurMip</span><span class="o">-&gt;</span><span class="n">BulkData</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">MipWidth</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">CurMip</span><span class="o">-&gt;</span><span class="n">SizeX</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">MipHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CurMip</span><span class="o">-&gt;</span><span class="n">SizeY</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - Size             %d x %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MipWidth</span><span class="p">,</span><span class="w"> </span><span class="n">MipHeight</span><span class="p">);</span><span class="w">         </span><span class="c1">// 64 x 64</span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - IsBulkDataLoaded %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ImageData</span><span class="o">-&gt;</span><span class="n">IsBulkDataLoaded</span><span class="p">());</span><span class="w">    </span><span class="c1">// 1</span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - GetBulkDataSize  %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ImageData</span><span class="o">-&gt;</span><span class="n">GetBulkDataSize</span><span class="p">());</span><span class="w">     </span><span class="c1">// 16384 =&gt; 128 x 128</span>
+<span class="w">    </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot; - GetPixelFormat   %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">HeightMap</span><span class="o">-&gt;</span><span class="n">GetPixelFormat</span><span class="p">()));</span><span class="w"> </span><span class="c1">// 2     =&gt; PF_B8G8R8A8</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// So this could work but I am a bit lazy to try and fetch the data rightaway</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::ExtractLandscapeHeightMap</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Landscape</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Grid</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">Grid</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TileSize</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">GetTileSize</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">MapSize</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TileCountFloat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">TileSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TileCount</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">Z</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MapSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TileSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">xStep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">TileCount</span><span class="p">.</span><span class="n">X</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">yStep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">TileCount</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Start</span><span class="p">.</span><span class="n">X</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">TileSize</span><span class="p">.</span><span class="n">X</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Start</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">TileSize</span><span class="p">.</span><span class="n">Y</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">Height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Landscape</span><span class="o">-&gt;</span><span class="n">GetHeightAtLocation</span><span class="p">(</span><span class="n">WorldPos</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">GridPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">WorldToGrid</span><span class="p">(</span><span class="n">WorldPos</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">BufferPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">FIntVector</span><span class="p">(</span><span class="n">GridPos</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">GridPos</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">BufferPos</span><span class="p">.</span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Terrain</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Height</span><span class="p">.</span><span class="n">IsSet</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Valid</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Buffer</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Height</span><span class="p">.</span><span class="n">GetValue</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">TileSize</span><span class="p">.</span><span class="n">Z</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::UpdateBlocking</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Actor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">-&gt;</span><span class="n">GetOwner</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Origin</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">BoxExtent</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorBounds</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">Origin</span><span class="p">,</span><span class="w"> </span><span class="n">BoxExtent</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Origin</span><span class="p">.</span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FTransform</span><span class="w"> </span><span class="n">Transform</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Transform</span><span class="p">.</span><span class="n">SetLocation</span><span class="p">(</span><span class="n">Origin</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Transform</span><span class="p">.</span><span class="n">SetRotation</span><span class="p">(</span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorRotation</span><span class="p">().</span><span class="n">Quaternion</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TopLeft</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span><span class="p">.</span><span class="n">TransformVector</span><span class="p">(</span><span class="n">Origin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BoxExtent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.90</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TopRight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span><span class="p">.</span><span class="n">TransformVector</span><span class="p">(</span><span class="n">Origin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BoxExtent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.90</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BotLeft</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span><span class="p">.</span><span class="n">TransformVector</span><span class="p">(</span><span class="n">Origin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BoxExtent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.90</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BotRight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span><span class="p">.</span><span class="n">TransformVector</span><span class="p">(</span><span class="n">Origin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BoxExtent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.90</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Corners</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">TopLeft</span><span class="p">,</span><span class="w"> </span><span class="n">TopRight</span><span class="p">,</span><span class="w"> </span><span class="n">BotLeft</span><span class="p">,</span><span class="w"> </span><span class="n">BotRight</span><span class="p">};</span><span class="w"></span>
+
+<span class="c1">// Draw Corners</span>
+<span class="cp">#if ENABLE_DRAW_DEBUG</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">bDebug</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Corner</span><span class="o">:</span><span class="w"> </span><span class="n">Corners</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">DebugDrawPoint</span><span class="p">(</span><span class="n">Corner</span><span class="p">,</span><span class="w"> </span><span class="n">FLinearColor</span><span class="o">::</span><span class="n">White</span><span class="p">,</span><span class="w"> </span><span class="mf">25.f</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">CornerGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">SnapToGrid</span><span class="p">(</span><span class="n">Corner</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">DebugDrawPoint</span><span class="p">(</span><span class="n">CornerGrid</span><span class="p">,</span><span class="w"> </span><span class="n">FLinearColor</span><span class="o">::</span><span class="n">Red</span><span class="p">,</span><span class="w"> </span><span class="mf">30.f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="cp">#endif</span>
+
+<span class="w">    </span><span class="c1">//*</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TopLeftCornerGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">WorldToGrid</span><span class="p">(</span><span class="n">TopRight</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TopLeftTexure</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">TopLeftCornerGrid</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BotRightCornerGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">WorldToGrid</span><span class="p">(</span><span class="n">BotLeft</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BotRightTexture</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">BotRightCornerGrid</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Width</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">BotRightTexture</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">TopLeftTexure</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TopLeftTexure</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">BotRightTexture</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">uint8</span><span class="w"> </span><span class="n">ZHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ZHeight = Origin.Z / TileSize.Z;</span>
+<span class="w">    </span><span class="n">uint8</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">Wall</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">ZHeight</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Height</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Width</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">Pos</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">TopLeftTexure</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Blocking</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">Buffer</span><span class="p">(</span><span class="n">Pos</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Value</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::UpdateTextures</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">TeamFog</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="cp">#if !UE_SERVER</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_DedicatedServer</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UpdatePreviousFrameTexturesTex</span><span class="p">(</span><span class="n">TeamFog</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="n">Texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetFactionTexture2D</span><span class="p">(</span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">bPreviousIsPrevious</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">bPreviousIsPrevious</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UpdateRegion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FUpdateTextureRegion2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Width</span><span class="p">(),</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Height</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">NewBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">uint8</span><span class="p">[</span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayerSize</span><span class="p">()];</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">SrcData</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">TeamId</span><span class="p">.</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FMemory</span><span class="o">::</span><span class="n">Memcpy</span><span class="p">(</span><span class="n">NewBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">SrcData</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayerSizeBytes</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Texture</span><span class="o">-&gt;</span><span class="n">UpdateTextureRegions</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="o">&amp;</span><span class="n">UpdateRegion</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="n">UpdateRegion</span><span class="p">.</span><span class="n">Width</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="k">sizeof</span><span class="p">(</span><span class="n">uint8</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                  </span><span class="n">NewBuffer</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">Buf</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FUpdateTextureRegion2D</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">Buf</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="cp">#endif</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::UpdatePreviousFrameTexturesTex</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">TeamFog</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="n">Texture</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">GetFactionTexture2D</span><span class="p">(</span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="n">PrevTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    ENQUEUE_RENDER_COMMAND(CopyTexture)</span>
+<span class="cm">    (</span>
+<span class="cm">            [Texture, PrevTexture](FRHICommandListImmediate &amp;RHICmdList)</span>
+<span class="cm">            {</span>
+<span class="cm">                //FResolveParams Params;</span>
+<span class="cm">                //RHICmdList.CopyToResolveTarget(</span>
+<span class="cm">                //    Texture-&gt;GetResource()-&gt;GetTexture2DRHI(),</span>
+<span class="cm">                //    PrevTexture-&gt;GetResource()-&gt;GetTexture2DRHI(),</span>
+<span class="cm">                //    Params</span>
+<span class="cm">                //);</span>
+
+<span class="cm">                FRHICopyTextureInfo CopyParams;</span>
+<span class="cm">                RHICmdList.CopyTexture(Texture-&gt;GetResource()-&gt;GetTexture2DRHI(),</span>
+<span class="cm">                                       PrevTexture-&gt;GetResource()-&gt;GetTexture2DRHI(),</span>
+<span class="cm">                                       CopyParams);</span>
+<span class="cm">            });</span>
+<span class="cm">    */</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::UpdatePreviousFrameTextures</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">TeamFog</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="cp">#if !UE_SERVER</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NM_DedicatedServer</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Copy Previous Frame Before reseting</span>
+<span class="w">        </span><span class="n">UTexture2D</span><span class="w"> </span><span class="o">*</span><span class="n">PrevTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture2D</span><span class="p">(</span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">UpdateRegion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FUpdateTextureRegion2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Width</span><span class="p">(),</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Height</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">NewBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">uint8</span><span class="p">[</span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayerSize</span><span class="p">()];</span><span class="w"></span>
+<span class="w">        </span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">SrcData</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TeamFog</span><span class="o">-&gt;</span><span class="n">TeamId</span><span class="p">.</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FMemory</span><span class="o">::</span><span class="n">Memcpy</span><span class="p">(</span><span class="n">NewBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">SrcData</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">.</span><span class="n">GetLayerSizeBytes</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PrevTexture</span><span class="o">-&gt;</span><span class="n">UpdateTextureRegions</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                          </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                          </span><span class="o">&amp;</span><span class="n">UpdateRegion</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                          </span><span class="n">UpdateRegion</span><span class="p">.</span><span class="n">Width</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                          </span><span class="k">sizeof</span><span class="p">(</span><span class="n">uint8</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                          </span><span class="n">NewBuffer</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                          </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">uint8</span><span class="w"> </span><span class="o">*</span><span class="n">Buf</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FUpdateTextureRegion2D</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">Buf</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="cp">#endif</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::DrawFactionFog</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">FactionFog</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reset</span>
+<span class="w">    </span><span class="n">Buffer</span><span class="p">.</span><span class="n">ResetLayer</span><span class="p">(</span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">TeamId</span><span class="p">.</span><span class="n">GetId</span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">None</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">Buffer</span><span class="p">.</span><span class="n">ResetLayer</span><span class="p">(</span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Blocking</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">None</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CurrentFaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FactionFog</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">Vision</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">GetFactionTexture</span><span class="p">(</span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">PreviousFrameVision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetPreviousFrameFactionTexture</span><span class="p">(</span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">Buffer</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">bDiscrete</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// FactionFog-&gt;GetBlocking(</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Component</span><span class="o">:</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">GetBlocking</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Component</span><span class="o">-&gt;</span><span class="n">BlocksVision</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">UpdateBlocking</span><span class="p">(</span><span class="n">Component</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Component</span><span class="o">:</span><span class="w"> </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">Allies</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">CurrentComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Component</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Component</span><span class="o">-&gt;</span><span class="n">GivesVision</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">DrawLineOfSight</span><span class="p">(</span><span class="n">FactionFog</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">DebugDrawComponent</span><span class="p">(</span><span class="n">Component</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Update Textures for rendering</span>
+<span class="w">    </span><span class="n">UpdateTextures</span><span class="p">(</span><span class="n">FactionFog</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::Initialize</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Initialize</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Grid</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">Grid</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">MapSize</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TileCountFloat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">GetTileSize</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TileCount</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">TileCountFloat</span><span class="p">.</span><span class="n">Z</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Settings</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Settings</span><span class="p">,</span><span class="w"> </span><span class="n">GetTeams</span><span class="p">().</span><span class="n">Num</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TextureSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TileCount</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Buffer</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">TileCount</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">TileCount</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TeamCount</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">SetTextureSize</span><span class="p">(</span><span class="n">FVector2D</span><span class="p">(</span><span class="n">TileCount</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">TileCount</span><span class="p">.</span><span class="n">Y</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Map Size is %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">MapSize</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;TileCount Count is %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">TileCount</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;TileSize is %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Grid</span><span class="p">.</span><span class="n">GetTileSize</span><span class="p">().</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Landscape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">Landscape</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExtractLandscapeHeightMap</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::DrawLineOfSight</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarTeam</span><span class="w"> </span><span class="o">*</span><span class="n">FactionFog</span><span class="p">,</span><span class="w"> </span><span class="n">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">-&gt;</span><span class="n">GetOwner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">GridCoord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">WorldToGrid</span><span class="p">(</span><span class="n">WorldPos</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Radius</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">Radius</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">GetTileSize</span><span class="p">().</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    {</span>
+<span class="cm">        auto BasePos = FogOfWarVolume-&gt;ToGridTexture(GridCoord);</span>
+<span class="cm">        auto Terrain = BasePos;</span>
+
+<span class="cm">        Terrain.Z = uint8(EGK_VisbilityLayers::Terrain);</span>
+<span class="cm">        auto TerrainHeight = Buffer(Terrain);</span>
+<span class="cm">        GKFOG_WARNING(TEXT(&quot;%s Terrain Height %d&quot;), *GridCoord.ToString(), TerrainHeight);</span>
+<span class="cm">    }*/</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Compute</span><span class="p">(</span><span class="n">GridCoord</span><span class="p">,</span><span class="w"> </span><span class="n">Radius</span><span class="p">,</span><span class="w"> </span><span class="n">FactionFog</span><span class="o">-&gt;</span><span class="n">TeamId</span><span class="p">.</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">UGKShadowCasting::IsBlockingLight</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Position</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BasePos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">Position</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Check for terrain height</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Terrain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasePos</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Terrain</span><span class="p">.</span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Terrain</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Valid</span><span class="p">(</span><span class="n">Terrain</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">TerrainHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Buffer</span><span class="p">(</span><span class="n">Terrain</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TerrainHeight</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">BasePos</span><span class="p">.</span><span class="n">Z</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Imposible to be outside of terrain %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BasePos</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Check blocking layer for actors that blocks light</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Blocking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasePos</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Blocking</span><span class="p">.</span><span class="n">Z</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Blocking</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Valid</span><span class="p">(</span><span class="n">Blocking</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// TODO: Broadcast Sighting events?</span>
+<span class="w">        </span><span class="c1">// Check if wall flag is set</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="n">Buffer</span><span class="p">(</span><span class="n">Blocking</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">Wall</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">UGKShadowCasting::GetDistance</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Origin</span><span class="p">,</span><span class="w"> </span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Diff</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Origin</span><span class="p">.</span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Diff</span><span class="p">.</span><span class="n">Z</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">Origin</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Diff</span><span class="p">).</span><span class="n">Size</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::SetVisible</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">uint8</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">BufferPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogOfWarVolume</span><span class="o">-&gt;</span><span class="n">ToGridTexture</span><span class="p">(</span><span class="n">Location</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">BufferPos</span><span class="p">.</span><span class="n">Z</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">uint8</span><span class="p">(</span><span class="n">EGK_VisbilityLayers</span><span class="o">::</span><span class="n">Size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TeamId</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Buffer</span><span class="p">.</span><span class="n">Valid</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Set visible flag</span>
+<span class="w">        </span><span class="n">Buffer</span><span class="p">(</span><span class="n">BufferPos</span><span class="p">)</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)(</span><span class="n">EGK_TileVisbility</span><span class="o">::</span><span class="n">Visible</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="cm">/* This cannot work because we would need to insert N units into the `PositionToComponent`</span>
+<span class="cm">         * which would be very slow as N could be quite big</span>
+<span class="cm">        TexturePos.Z = 0;</span>
+
+<span class="cm">        UGKFogOfWarComponent **SightedResult = PositionToComponent.Find(TexturePos);</span>
+<span class="cm">        if (SightedResult != nullptr)</span>
+<span class="cm">        {</span>
+<span class="cm">            UGKFogOfWarComponent *Sighted = SightedResult[0];</span>
+<span class="cm">            AddVisibleComponent(CurrentFaction, CurrentComponent, Sighted);</span>
+<span class="cm">        }</span>
+<span class="cm">        */</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Cannot set %s as visisble %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Location</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"> </span><span class="o">*</span><span class="n">BufferPos</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::Compute</span><span class="p">(</span><span class="n">FIntVector</span><span class="w"> </span><span class="n">Origin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rangeLimit</span><span class="p">,</span><span class="w"> </span><span class="n">uint8</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">SetVisible</span><span class="p">(</span><span class="n">Origin</span><span class="p">,</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="w"> </span><span class="n">octant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">octant</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">octant</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Compute</span><span class="p">(</span><span class="n">octant</span><span class="p">,</span><span class="w"> </span><span class="n">Origin</span><span class="p">,</span><span class="w"> </span><span class="n">rangeLimit</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">FGKSlope</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">FGKSlope</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKShadowCasting::Compute</span><span class="p">(</span><span class="n">uint8</span><span class="w">      </span><span class="n">octant</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="n">FIntVector</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="kt">int</span><span class="w">        </span><span class="n">rangeLimit</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="kt">int</span><span class="w">        </span><span class="n">x</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="n">FGKSlope</span><span class="w">   </span><span class="n">top</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="n">FGKSlope</span><span class="w">   </span><span class="n">bottom</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="n">uint8</span><span class="w">      </span><span class="n">TeamId</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// rangeLimit &lt; 0 || x &lt;= rangeLimit</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">(</span><span class="n">uint8</span><span class="p">)</span><span class="n">rangeLimit</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// compute the Y coordinates where the top vector leaves the column (on the right) and where the bottom vector</span>
+<span class="w">        </span><span class="c1">// enters the column (on the left). this equals (x+0.5)*top+0.5 and (x-0.5)*bottom+0.5 respectively, which can</span>
+<span class="w">        </span><span class="c1">// be computed like (x+0.5)*top+0.5 = (2(x+0.5)*top+1)/2 = ((2x+1)*top+1)/2 to avoid floating point math</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">topY</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">top</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">                                   </span><span class="o">:</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">top</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">top</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">top</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// the rounding is a bit tricky, though</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bottomY</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">bottom</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bottom</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bottom</span><span class="p">.</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">bottom</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0:false,</span>
+<span class="w">                            </span><span class="c1">// 1:true, -1:not applicable</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">topY</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">bottomY</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">--</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">origin</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">origin</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// clang-format off</span>
+<span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">octant</span><span class="p">)</span><span class="w"> </span><span class="c1">// translate local coordinates to map coordinates</span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// clang-format off</span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">tPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">,</span><span class="w"> </span><span class="n">origin</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">inRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rangeLimit</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">GetDistance</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span><span class="w"> </span><span class="n">tPos</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">rangeLimit</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inRange</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="n">SetVisible</span><span class="p">(</span><span class="n">tPos</span><span class="p">,</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// NOTE: use the next line instead if you want the algorithm to be symmetrical</span>
+<span class="w">            </span><span class="c1">// if(inRange &amp;&amp; (y != topY || top.Y*x &gt;= top.X*y) &amp;&amp; (y != bottomY || bottom.Y*x &lt;= bottom.X*y)) SetVisible(tx, ty);</span>
+
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">isOpaque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">inRange</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">IsBlockingLight</span><span class="p">(</span><span class="n">tPos</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rangeLimit</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">isOpaque</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// if we found a transition from clear to opaque, this sector is done in this column, so</span>
+<span class="w">                    </span><span class="c1">// adjust the bottom vector upwards and continue processing it in the next column.</span>
+<span class="w">                    </span><span class="c1">// (x*2-1, y*2+1) is a vector to the top-left of the opaque tile</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">FGKSlope</span><span class="w"> </span><span class="n">newBottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKSlope</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="mi">2-1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">inRange</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bottomY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="c1">// don&#39;t recurse unless we have to</span>
+<span class="w">                            </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newBottom</span><span class="p">;</span><span class="w"></span>
+<span class="w">                            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">Compute</span><span class="p">(</span><span class="n">octant</span><span class="p">,</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span><span class="w"> </span><span class="n">rangeLimit</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="n">newBottom</span><span class="p">,</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="c1">// adjust top vector downwards and continue if we found a transition from opaque to clear</span>
+<span class="w">                </span><span class="p">{</span><span class="w">    </span><span class="c1">// (x*2+1, y*2+1) is the top-right corner of the clear tile (i.e. the bottom-right of the opaque tile)</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKSlope</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">wasOpaque</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// if the column ended in a clear tile, continue processing the current sector</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

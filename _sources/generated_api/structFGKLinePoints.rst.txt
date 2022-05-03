@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKLinePoints:
+
+Struct FGKLinePoints
+====================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V1.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKLinePoints
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

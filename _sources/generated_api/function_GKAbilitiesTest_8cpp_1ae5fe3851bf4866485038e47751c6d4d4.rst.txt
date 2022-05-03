@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilitiesTest_8cpp_1ae5fe3851bf4866485038e47751c6d4d4:
+
+Function GAMEKIT_TEST(Abilities., UGKGameplayability, GetRelativePosition)
+==========================================================================
+
+- Defined in :ref:`file_Source_GamekitTestSuite_Abilities_GKAbilitiesTest.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GAMEKIT_TEST(Abilities., UGKGameplayability, GetRelativePosition)
+   :project: GameKit

@@ -1,0 +1,8 @@
+<map id="AGKFogOfWarVolume::PostEditChangeProperty" name="AGKFogOfWarVolume::PostEditChangeProperty">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,184,112"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#a765df0e6248291670013c8e7c7bd97b7" title="Updates the Texture Size, given the size covered by the Fog of War volume." alt="" coords="232,71,403,112"/>
+<area shape="rect" id="node3" href="$classAGKFogOfWarVolume.html#a4d720bc82c2854aba2b85c4aa0a86476" title=" " alt="" coords="475,5,646,47"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#ae7f8a6f5662a3af1f74af4025b7e1200" title=" " alt="" coords="461,71,661,112"/>
+<area shape="rect" id="node6" href="$classAGKFogOfWarVolume.html#a07d50dd7848b4ebc627e819c9c676a73" title=" " alt="" coords="451,136,671,177"/>
+<area shape="rect" id="node5" href="$classAGKFogOfWarVolume.html#ad20a4329d83110707ad71cb93f0c1f28" title="Returns the material parameter collection used to configure the Fog of War." alt="" coords="719,104,949,145"/>
+</map>

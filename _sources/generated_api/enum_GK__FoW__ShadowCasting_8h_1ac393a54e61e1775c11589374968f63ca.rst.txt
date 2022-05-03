@@ -1,0 +1,14 @@
+.. _exhale_enum_GK__FoW__ShadowCasting_8h_1ac393a54e61e1775c11589374968f63ca:
+
+Enum EGK_TileVisbility
+======================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_TileVisbility
+   :project: GameKit

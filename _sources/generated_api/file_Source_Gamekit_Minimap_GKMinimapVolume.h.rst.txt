@@ -1,0 +1,62 @@
+
+.. _file_Source_Gamekit_Minimap_GKMinimapVolume.h:
+
+File GKMinimapVolume.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Minimap>` (``Source/Gamekit/Minimap``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Minimap/GKMinimapVolume.h``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Minimap_GKMinimapVolume.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKMinimapVolume.generated.h``
+
+- ``GameFramework/Volume.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Runtime/Core/Public/HAL/ThreadingBase.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapComponent.cpp`
+
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKFactionMinimap`
+
+- :ref:`exhale_class_classAGKMinimapVolume`
+

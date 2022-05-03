@@ -1,0 +1,29 @@
+.. _dir_Source_Gamekit_FogOfWar_Upscaler:
+
+
+Directory Upscaler
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_FogOfWar>` (``Source/Gamekit/FogOfWar``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/FogOfWar/Upscaler``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.cpp`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.cpp`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.h`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.cpp`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKCanvasUpscaler.cpp`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKCanvasUpscaler.h`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKExplorationTransform.cpp`
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKExplorationTransform.h`
+
+

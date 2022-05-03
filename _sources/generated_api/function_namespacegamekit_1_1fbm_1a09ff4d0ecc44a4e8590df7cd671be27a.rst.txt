@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1a09ff4d0ecc44a4e8590df7cd671be27a:
+
+Function gamekit::fbm::sub
+==========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::sub(a, b)
+   :project: GameKit

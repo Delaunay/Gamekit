@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKFogOfWarLibrary.h &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKFogOfWarLibrary.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_FogOfWar_GKFogOfWarLibrary.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkfogofwarlibrary-h">
+<span id="program-listing-file-source-gamekit-fogofwar-gkfogofwarlibrary-h"></span><h1>Program Listing for File GKFogOfWarLibrary.h<a class="headerlink" href="#program-listing-for-file-gkfogofwarlibrary-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_FogOfWar_GKFogOfWarLibrary.h.html#file-source-gamekit-fogofwar-gkfogofwarlibrary-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/FogOfWar/GKFogOfWarLibrary.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/BlueprintFunctionLibrary.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Generated</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKFogOfWarLibrary.generated.h&quot;</span><span class="cp"></span>
+
+<span class="n">UCLASS</span><span class="p">()</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UGKFogOfWarLibrary</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UBlueprintFunctionLibrary</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Collision&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">ConvertToObjectType</span><span class="p">(</span><span class="n">ECollisionChannel</span><span class="w">                      </span><span class="n">CollisionChannel</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">EObjectTypeQuery</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectTypes</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">SetCameraPostprocessMaterial</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">AGKFogOfWarVolume</span><span class="w"> </span><span class="o">*</span><span class="n">Volume</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="n">FName</span><span class="w">                    </span><span class="n">Faction</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                             </span><span class="k">class</span><span class="w"> </span><span class="nc">UCameraComponent</span><span class="w">  </span><span class="o">*</span><span class="n">CameraComponent</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;FogOfWar&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">WorldContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;WorldCtx&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// UV is [0, 1]</span>
+<span class="w">    </span><span class="c1">// Try to fetch the closest pixel by rounding the final coordinate</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FLinearColor</span><span class="w"> </span><span class="nf">SampleRenderTarget</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UTextureRenderTarget2D</span><span class="w"> </span><span class="o">*</span><span class="n">InRenderTarget</span><span class="p">,</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">UV</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Pixel is [0, TextureSize]</span>
+<span class="w">    </span><span class="c1">// interpolation is not done, only one pixel is fetched</span>
+<span class="w">    </span><span class="c1">// the pixel is not even the closest in term of distance as the pixel coord gets truncated</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FLinearColor</span><span class="w"> </span><span class="nf">SamplePixelRenderTarget</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UTextureRenderTarget2D</span><span class="w"> </span><span class="o">*</span><span class="n">InRenderTarget</span><span class="p">,</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">Pixel</span><span class="p">);</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

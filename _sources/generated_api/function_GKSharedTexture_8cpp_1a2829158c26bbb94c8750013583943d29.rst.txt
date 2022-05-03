@@ -1,0 +1,14 @@
+.. _exhale_function_GKSharedTexture_8cpp_1a2829158c26bbb94c8750013583943d29:
+
+Function GetTextureFormat
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_GKSharedTexture.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetTextureFormat(UCanvasRenderTarget2D *)
+   :project: GameKit

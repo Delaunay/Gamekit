@@ -1,0 +1,69 @@
+
+.. _file_Source_Gamekit_Animation_GKAnimationSet.h:
+
+File GKAnimationSet.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Animation>` (``Source/Gamekit/Animation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Animation/GKAnimationSet.h``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Animation_GKAnimationSet.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/DataTable.h``
+
+- ``GKAnimationSet.generated.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Kismet/KismetMathLibrary.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+- :ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKAnimationArray`
+
+- :ref:`exhale_struct_structFGKAnimationSet`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab`
+

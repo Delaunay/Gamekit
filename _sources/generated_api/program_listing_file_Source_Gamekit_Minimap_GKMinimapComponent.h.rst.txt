@@ -1,0 +1,50 @@
+
+.. _program_listing_file_Source_Gamekit_Minimap_GKMinimapComponent.h:
+
+Program Listing for File GKMinimapComponent.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Minimap_GKMinimapComponent.h>` (``Source/Gamekit/Minimap/GKMinimapComponent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKMinimapComponent.generated.h"
+   
+   UCLASS(Blueprintable, ClassGroup = (Minimap), meta = (BlueprintSpawnableComponent))
+   class GAMEKIT_API UGKMinimapComponent: public UActorComponent
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this component's properties
+       UGKMinimapComponent();
+   
+       public:
+       // Called when the game starts
+       virtual void BeginPlay() override;
+   
+       // Unregister the component
+       virtual void BeginDestroy() override;
+   
+       class AGKMinimapVolume *GetMinimapVolume();
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       class UMaterialInterface *Material;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       float Size;
+   
+       private:
+       class AGKMinimapVolume *MinimapVolume;
+   };

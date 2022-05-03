@@ -1,0 +1,5 @@
+<map id="AGKHexGrid::AddTile" name="AGKHexGrid::AddTile">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,165,61"/>
+<area shape="rect" id="node2" href="$classAGKHexGrid.html#ab2c5b18f88805f72c3fe17ab6b19b3f0" title=" " alt="" coords="213,5,399,32"/>
+<area shape="rect" id="node3" href="$classUGKHexGridUtilities.html#a709169c44034909c104c22cc375b2558" title="Convert hex grid position to world map position." alt="" coords="229,57,383,98"/>
+</map>

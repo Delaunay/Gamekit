@@ -1,0 +1,75 @@
+
+.. _file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h:
+
+File GK_FoW_ShadowCasting.h
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_FogOfWar_Strategy>` (``Source/Gamekit/FogOfWar/Strategy``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h``)
+------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GK_FoW_ShadowCasting.generated.h``
+
+- ``Gamekit/Container/Matrix.h`` (:ref:`file_Source_Gamekit_Container_Matrix.h`)
+
+- ``Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h`` (:ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_Strategy.h`)
+
+- ``Gamekit/Grid/GKGrid.h`` (:ref:`file_Source_Gamekit_Grid_GKGrid.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.cpp`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.cpp`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKPoints`
+
+- :ref:`exhale_struct_structFGKSlope`
+
+- :ref:`exhale_class_classUGKShadowCasting`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GK__FoW__ShadowCasting_8h_1ac393a54e61e1775c11589374968f63ca`
+
+- :ref:`exhale_enum_GK__FoW__ShadowCasting_8h_1a4f8067a5adfac5ff7c11bc1cda87b3d4`
+
+- :ref:`exhale_enum_GK__FoW__ShadowCasting_8h_1aa99d2a70aeaf4d2b3fe7b7fb277ac1ad`
+

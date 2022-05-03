@@ -1,0 +1,28 @@
+.. _dir_Source_Python_gamekit:
+
+
+Directory gamekit
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python>` (``Source/Python``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Python/gamekit``
+
+Subdirectories
+--------------
+
+- :ref:`dir_Source_Python_gamekit_commands`
+
+
+Files
+-----
+
+- :ref:`file_Source_Python_gamekit___init__.py`
+- :ref:`file_Source_Python_gamekit_cli.py`
+- :ref:`file_Source_Python_gamekit_conf.py`
+- :ref:`file_Source_Python_gamekit_fbm.py`
+
+

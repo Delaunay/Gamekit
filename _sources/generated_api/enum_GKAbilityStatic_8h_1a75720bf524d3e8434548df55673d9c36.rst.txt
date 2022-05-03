@@ -1,0 +1,14 @@
+.. _exhale_enum_GKAbilityStatic_8h_1a75720bf524d3e8434548df55673d9c36:
+
+Enum EGK_AbilityKind
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_AbilityKind
+   :project: GameKit

@@ -1,0 +1,29 @@
+
+.. _program_listing_file_Source_Gamekit_Grid_GKHexGridPathFollowingComponent.cpp:
+
+Program Listing for File GKHexGridPathFollowingComponent.cpp
+============================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Grid_GKHexGridPathFollowingComponent.cpp>` (``Source/Gamekit/Grid/GKHexGridPathFollowingComponent.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "Gamekit/Grid/GKHexGridPathFollowingComponent.h"
+   
+   UGKHexGridPathFollowingComponent::UGKHexGridPathFollowingComponent()
+   {
+       MyDefaultAcceptanceRadius = 1.f;
+       AcceptanceRadius          = 1.f;
+       CurrentAcceptanceRadius   = 1.f;
+   }
+   
+   bool UGKHexGridPathFollowingComponent::HasReachedDestination(const FVector &CurrentLocation) const
+   {
+       FVector GoalLocation = *Path->GetPathPointLocation(Path->GetPathPoints().Num() - 1);
+       auto    d            = (GoalLocation - CurrentLocation).SizeSquared2D();
+       return d < AcceptanceRadius * AcceptanceRadius;
+   }

@@ -1,0 +1,44 @@
+
+.. _file_Source_Gamekit_Container_Matrix.cpp:
+
+File Matrix.cpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Container>` (``Source/Gamekit/Container``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Container/Matrix.cpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Container_Matrix.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Container/Matrix.h`` (:ref:`file_Source_Gamekit_Container_Matrix.h`)
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Matrix_8cpp_1a3c6c38dd3078702eb203f2e860f2bc00`
+

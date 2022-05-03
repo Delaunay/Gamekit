@@ -1,0 +1,14 @@
+.. _exhale_define_GKUtilityLibraryTest_8cpp_1ac0e2a4fd86b93ab9b5ae5ef9a1f9c551:
+
+Define CHECK_CASE
+=================
+
+- Defined in :ref:`file_Source_GamekitTestSuite_Blueprint_GKUtilityLibraryTest.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CHECK_CASE
+   :project: GameKit

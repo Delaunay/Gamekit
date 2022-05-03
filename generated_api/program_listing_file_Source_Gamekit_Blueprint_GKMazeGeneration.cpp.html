@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKMazeGeneration.cpp &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKMazeGeneration.cpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_Blueprint_GKMazeGeneration.cpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkmazegeneration-cpp">
+<span id="program-listing-file-source-gamekit-blueprint-gkmazegeneration-cpp"></span><h1>Program Listing for File GKMazeGeneration.cpp<a class="headerlink" href="#program-listing-for-file-gkmazegeneration-cpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_Blueprint_GKMazeGeneration.cpp.html#file-source-gamekit-blueprint-gkmazegeneration-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/Blueprint/GKMazeGeneration.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKMazeGeneration.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Container/Matrix.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetMathLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Math/IntVector.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Math/RandomStream.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">GetY</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xffffffffUL</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">GetX</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKMazeGeneration::RandomWall</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">GridX</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">GridY</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FIntVector</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Walls</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">           </span><span class="n">HalfX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">           </span><span class="n">HalfY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRandomStream</span><span class="w"> </span><span class="n">Stream</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">HalfX</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HalfX</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">HalfY</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HalfY</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridX</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridY</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomFloatFromStream</span><span class="p">(</span><span class="n">Stream</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Density</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Walls</span><span class="p">.</span><span class="n">Emplace</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cp">#define VISITED 1</span>
+<span class="cp">#define WALL    0</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKMazeGeneration::RandomizedDepthFirstSearch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">GridX</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">GridY</span><span class="p">,</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FIntVector</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Walls</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FIntVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Stack</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Stack</span><span class="p">.</span><span class="n">Reserve</span><span class="p">(</span><span class="n">GridX</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridY</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMatrix3D</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Grid</span><span class="p">(</span><span class="n">GridX</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRandomStream</span><span class="w">  </span><span class="n">Stream</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Choose the initial cell,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Cell</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Grid</span><span class="p">(</span><span class="n">Cell</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"> </span><span class="c1">// mark it as visited</span>
+<span class="w">    </span><span class="n">Stack</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">Cell</span><span class="p">);</span><span class="w">     </span><span class="c1">// push it to the stack</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Stack</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stack</span><span class="p">.</span><span class="n">Pop</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Pop a cell from the stack and make it a current cell</span>
+
+<span class="w">        </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cell</span><span class="p">.</span><span class="n">X</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cell</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FIntVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="o">:</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">GetNeighbours</span><span class="p">(</span><span class="n">Cell</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Grid</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">VISITED</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">Neighbours</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Neighbours</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Keep current cell so we can backtrack to it</span>
+<span class="w">        </span><span class="n">Stack</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">Cell</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Select a neighboor to continue our exploration</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Grid</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Grid</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Stack</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="c1">// Push it to the stack</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">HalfX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">HalfY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">GridX</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">GridY</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Grid</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">WALL</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">HalfX</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridX</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">HalfY</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridY</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">Walls</span><span class="p">.</span><span class="n">Emplace</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// The stopping condition is probably not that great</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">WilsonWalk</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">GridX</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">GridY</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stop</span><span class="p">,</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FIntVector</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Out</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMatrix3D</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Grid</span><span class="p">(</span><span class="n">GridX</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRandomStream</span><span class="w">  </span><span class="n">Stream</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">            </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w">  </span><span class="n">X</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w">  </span><span class="n">Y</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Cell</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Grid</span><span class="p">(</span><span class="n">Cell</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"> </span><span class="c1">// mark it as visited</span>
+<span class="w">        </span><span class="n">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">X</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">Y</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Starting</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Grid</span><span class="p">(</span><span class="n">Starting</span><span class="p">)</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"> </span><span class="c1">// mark it as visited</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Cell</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Starting</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">pending_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TMatrix3D</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pending</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Neighbours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">.</span><span class="n">GetNeighbours</span><span class="p">(</span><span class="n">Cell</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Cell</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Neighbours</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">pending_count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// we found a a visited square</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Grid</span><span class="p">(</span><span class="n">Cell</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">VISITED</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// persist the change</span>
+<span class="w">            </span><span class="n">Grid</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Pending</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pending_count</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// Start a new walk</span>
+<span class="w">            </span><span class="n">X</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Y</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Starting</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Grid</span><span class="p">(</span><span class="n">Starting</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"> </span><span class="c1">// mark it as visited</span>
+<span class="w">            </span><span class="n">Cell</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">Starting</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// We made a loop with our own path, restart</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Pending</span><span class="p">(</span><span class="n">Cell</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">VISITED</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Reset our starting point</span>
+<span class="w">            </span><span class="n">Grid</span><span class="p">(</span><span class="n">Starting</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WALL</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">Pending</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">Grid</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">pending_count</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// Start a new walk</span>
+<span class="w">            </span><span class="n">X</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Y</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RandomIntegerInRangeFromStream</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GridY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Starting</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">FIntVector</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Grid</span><span class="p">(</span><span class="n">Starting</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VISITED</span><span class="p">;</span><span class="w"> </span><span class="c1">// mark it as visited</span>
+<span class="w">            </span><span class="n">Cell</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">Starting</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="kt">float</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kt">float</span><span class="p">(</span><span class="n">GridX</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GridY</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Stop</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

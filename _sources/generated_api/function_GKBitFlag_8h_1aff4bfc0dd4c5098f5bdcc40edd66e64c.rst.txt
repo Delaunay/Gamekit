@@ -1,0 +1,14 @@
+.. _exhale_function_GKBitFlag_8h_1aff4bfc0dd4c5098f5bdcc40edd66e64c:
+
+Template Function SetFlag
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: SetFlag(uint32, Enum)
+   :project: GameKit

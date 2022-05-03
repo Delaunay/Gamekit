@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKQuestSimpleObjectiveRef:
+
+Class UGKQuestSimpleObjectiveRef
+================================
+
+- Defined in :ref:`file_Source_Gamekit_Quest_GKQuestData.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UObject``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKQuestSimpleObjectiveRef
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

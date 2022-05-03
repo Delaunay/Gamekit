@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8h_1a3b8206e72ac9e2536ff9c24ccad8c306:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level)
+===========================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level)
+   :project: GameKit

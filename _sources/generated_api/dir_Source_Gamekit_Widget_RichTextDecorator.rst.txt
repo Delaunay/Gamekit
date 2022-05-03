@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Widget_RichTextDecorator:
+
+
+Directory RichTextDecorator
+===========================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget>` (``Source/Gamekit/Widget``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Widget/RichTextDecorator``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp`
+- :ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h`
+
+

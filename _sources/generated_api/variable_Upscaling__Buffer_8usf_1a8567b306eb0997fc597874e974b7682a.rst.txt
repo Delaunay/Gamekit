@@ -1,0 +1,14 @@
+.. _exhale_variable_Upscaling__Buffer_8usf_1a8567b306eb0997fc597874e974b7682a:
+
+Variable InputTexture
+=====================
+
+- Defined in :ref:`file_Shaders_Upscaling_Buffer.usf`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: InputTexture
+   :project: GameKit

@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKUtilityLibrary:
+
+Class UGKUtilityLibrary
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintFunctionLibrary``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKUtilityLibrary
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

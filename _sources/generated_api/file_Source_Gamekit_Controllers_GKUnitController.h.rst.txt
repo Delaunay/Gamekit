@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Controllers_GKUnitController.h:
+
+File GKUnitController.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Controllers>` (``Source/Gamekit/Controllers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Controllers/GKUnitController.h``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Controllers_GKUnitController.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AIController.h`` (:ref:`file_Source_Gamekit_Controllers_GKAIController.h`)
+
+- ``CoreMinimal.h``
+
+- ``GKUnitController.generated.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Characters_GKUnitCharacter.cpp`
+
+- :ref:`file_Source_Gamekit_Controllers_GKUnitController.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKUnitAIController`
+

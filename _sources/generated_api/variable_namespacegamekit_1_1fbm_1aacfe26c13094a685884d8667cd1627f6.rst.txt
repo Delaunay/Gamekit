@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1fbm_1aacfe26c13094a685884d8667cd1627f6:
+
+Variable gamekit::fbm::cmap
+===========================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::fbm::cmap
+   :project: GameKit

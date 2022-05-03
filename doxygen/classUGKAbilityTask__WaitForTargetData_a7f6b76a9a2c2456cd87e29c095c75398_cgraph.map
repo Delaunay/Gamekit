@@ -1,0 +1,5 @@
+<map id="UGKAbilityTask_WaitForTargetData::FinalizeTargetActor" name="UGKAbilityTask_WaitForTargetData::FinalizeTargetActor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,224,80"/>
+<area shape="rect" id="node2" href="$classAGKAbilityTarget__Actor.html#ab3857b7fdc53536dee6c9cc569e5ff27" title="Enable use input." alt="" coords="272,5,445,47"/>
+<area shape="rect" id="node3" href="$classAGKAbilityTarget__Actor.html#a8bfe52f39825d16bbb35bc6879516c22" title="Enable the targeting actor." alt="" coords="272,71,445,112"/>
+</map>

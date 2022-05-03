@@ -1,0 +1,45 @@
+
+.. _file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.cpp:
+
+File GKWidgetDropZone.cpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget_DragDrop>` (``Source/Gamekit/Widget/DragDrop``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Widget/DragDrop/GKWidgetDropZone.cpp``)
+--------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Blueprint/DragDropOperation.h``
+
+- ``Blueprint/SlateBlueprintLibrary.h``
+
+- ``Components/PanelWidget.h``
+
+- ``Gamekit/Widget/DragDrop/GKWidgetDropZone.h`` (:ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.h`)
+
+- ``Kismet/KismetInputLibrary.h``
+
+
+
+
+

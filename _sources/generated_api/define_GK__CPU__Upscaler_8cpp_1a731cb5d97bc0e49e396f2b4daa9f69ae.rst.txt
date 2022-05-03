@@ -1,0 +1,14 @@
+.. _exhale_define_GK__CPU__Upscaler_8cpp_1a731cb5d97bc0e49e396f2b4daa9f69ae:
+
+Define IS_VISIBLE
+=================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: IS_VISIBLE
+   :project: GameKit

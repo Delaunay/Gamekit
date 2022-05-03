@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Animation:
+
+
+Directory Animation
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Animation``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Animation_GKAnimationSet.cpp`
+- :ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`
+
+

@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilities_8h_1a3920d3dfc969403644b5d36066e3a5d2:
+
+Function DECLARE_LOG_CATEGORY_EXTERN(LogGKGA, Log, All)
+=======================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilities.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_LOG_CATEGORY_EXTERN(LogGKGA, Log, All)
+   :project: GameKit

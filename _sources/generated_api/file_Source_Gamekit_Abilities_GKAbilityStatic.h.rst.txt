@@ -1,0 +1,101 @@
+
+.. _file_Source_Gamekit_Abilities_GKAbilityStatic.h:
+
+File GKAbilityStatic.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKAbilityStatic.h``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKAbilityStatic.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbilityTargetActor.h``
+
+- ``Engine/DataTable.h``
+
+- ``GKAbilityStatic.generated.h``
+
+- ``Gamekit/Animation/GKAnimationSet.h`` (:ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`)
+
+- ``Gamekit/GKAssetManager.h`` (:ref:`file_Source_Gamekit_GKAssetManager.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Gamekit/Projectiles/GKProjectile.h`` (:ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`)
+
+- ``Gamekit/Utilities/GKBitFlag.h`` (:ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`)
+
+- ``GameplayAbilitySpec.h``
+
+- ``Styling/SlateBrush.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`
+
+- :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
+
+- :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKAbilityCost`
+
+- :ref:`exhale_struct_structFGKAbilityEffect`
+
+- :ref:`exhale_struct_structFGKAbilityStatic`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494`
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1a75720bf524d3e8434548df55673d9c36`
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda`
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1ad839d943689aa9b8ddff72a7ffdac49d`
+

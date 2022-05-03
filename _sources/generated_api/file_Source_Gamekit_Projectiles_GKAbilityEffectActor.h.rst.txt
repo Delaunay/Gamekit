@@ -1,0 +1,60 @@
+
+.. _file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h:
+
+File GKAbilityEffectActor.h
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Projectiles>` (``Source/Gamekit/Projectiles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Projectiles/GKAbilityEffectActor.h``)
+------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKAbilityEffectActor.generated.h``
+
+- ``GameFramework/Actor.h``
+
+- ``Gamekit/Abilities/GKAbilityTypes.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityTypes.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.cpp`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActor.h`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKAbilityEffectActor`
+

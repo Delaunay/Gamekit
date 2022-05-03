@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKTeamPlayerStart:
+
+Class AGKTeamPlayerStart
+========================
+
+- Defined in :ref:`file_Source_Gamekit_GKTeamPlayerStart.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public APlayerStart``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKTeamPlayerStart
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

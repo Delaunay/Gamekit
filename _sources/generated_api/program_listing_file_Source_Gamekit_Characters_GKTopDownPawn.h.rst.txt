@@ -1,0 +1,90 @@
+
+.. _program_listing_file_Source_Gamekit_Characters_GKTopDownPawn.h:
+
+Program Listing for File GKTopDownPawn.h
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Characters_GKTopDownPawn.h>` (``Source/Gamekit/Characters/GKTopDownPawn.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License
+   //
+   // Copyright (c) 2022, Pierre Delaunay
+   // All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "GameFramework/Pawn.h"
+   
+   // Generated
+   #include "GKTopDownPawn.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API AGKTopDownPawn: public APawn
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this pawn's properties
+       AGKTopDownPawn();
+   
+       protected:
+       // Called when the game starts or when spawned
+       virtual void BeginPlay() override;
+   
+       public:
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       class UStaticMeshComponent *RootScene;
+   
+       // Called every frame
+       virtual void Tick(float DeltaTime) override;
+   
+       // Called to bind functionality to input
+       virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       class USpringArmComponent *CameraBoom;
+   
+       UFUNCTION(BlueprintGetter)
+       FORCEINLINE class USpringArmComponent *GetCameraBoom() const { return CameraBoom; }
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       class UCameraComponent *CameraComponent;
+   
+       UFUNCTION(BlueprintGetter)
+       FORCEINLINE class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
+   
+       UPROPERTY()
+       class APlayerController *PlayerController;
+   
+       UFUNCTION(BlueprintCallable)
+       FVector GetCameraPanDirection();
+   
+       UFUNCTION(BlueprintCallable)
+       void ZoomCamera(float delta);
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float Margin;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float MinCamSpeed;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float MaxCamSpeed;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float ZoomSpeed;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float ZoomMin;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+       float ZoomMax;
+   };

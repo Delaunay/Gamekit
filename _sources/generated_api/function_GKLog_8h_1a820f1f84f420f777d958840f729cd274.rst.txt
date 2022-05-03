@@ -1,0 +1,14 @@
+.. _exhale_function_GKLog_8h_1a820f1f84f420f777d958840f729cd274:
+
+Template Function Log_Fatal
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Log_Fatal(const char *, int, const Category&, const Format&, const Args&...)
+   :project: GameKit

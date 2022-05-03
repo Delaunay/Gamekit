@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKTopDownPawn:
+
+Class AGKTopDownPawn
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKTopDownPawn.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public APawn``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKTopDownPawn
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityTarget__PlayerControllerTrace_8h_1ad0f1e72869a8cacacab2b03851336d9d:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult&, TraceHit, bool, IsValid)
+=========================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetValidityChanged, const FHitResult&, TraceHit, bool, IsValid)
+   :project: GameKit

@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1conf_1a28d3a85dcf697a317fe7c3029c2d8353:
+
+Function gamekit::conf::load_conf
+=================================
+
+- Defined in :ref:`file_Source_Python_gamekit_conf.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::conf::load_conf()
+   :project: GameKit

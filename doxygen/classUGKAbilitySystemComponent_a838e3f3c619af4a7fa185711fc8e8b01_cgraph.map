@@ -1,0 +1,4 @@
+<map id="UGKAbilitySystemComponent::OnGiveAbility" name="UGKAbilitySystemComponent::OnGiveAbility">
+<area shape="rect" id="node1" title="Used to receive the Granted ability through network." alt="" coords="5,5,223,47"/>
+<area shape="rect" id="node2" href="$classAGKCharacterBase.html#a1ceb6a88e4320958f67bd77af5018039" title="Client side register the granted ability." alt="" coords="271,5,471,47"/>
+</map>

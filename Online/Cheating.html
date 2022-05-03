@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheating &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation Generation" href="../Developer/Docs.html" />
+    <link rel="prev" title="Competitive" href="Competitive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Competitive.html">Competitive</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cheating</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#protection-methods">Protection Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#server-side-authority">Server side authority</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limiting-information">Limiting Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anti-cheats">Anti Cheats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overwatchs">Overwatchs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anomaly-detection">Anomaly detection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#attack-vectors">Attack Vectors</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Cheating</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Online/Cheating.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cheating">
+<h1>Cheating<a class="headerlink" href="#cheating" title="Permalink to this headline"></a></h1>
+<p>You can limit cheating by forcing server be the authority on all data.
+Clients interaction can be seen as making RPC calls to the server for everything where the parameters are derived inside the client itself.
+As such, no data from the client is used &amp; altering the memory of the client will have reduced impact if any.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To reduce latency and bandwidth requirement clients will often simulate remote actions or movement.
+In that case cheating will make the simulation inaccurate but it will fixed itself once the parameters of
+the simulation get updated by replication.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because UE clients try to reduce bandwidth &amp; latency some currently invisible actors could get
+replicated to the client, so a cheater could know the location of adversaries (World-hacking).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For network game, encrypting the traffic will not prevent people from reverse engineering.
+The encryption key can be fetched in memory and used to decrypt the traffic.
+It is still recommended to encrypt the traffic as it will prevent outsider from listenning in.</p>
+</div>
+<section id="protection-methods">
+<h2>Protection Methods<a class="headerlink" href="#protection-methods" title="Permalink to this headline"></a></h2>
+<section id="server-side-authority">
+<h3>Server side authority<a class="headerlink" href="#server-side-authority" title="Permalink to this headline"></a></h3>
+<p>When a client perform an action, the parameters of the action are derived from the server game state,
+the client parameters are never consumed. In the case of a cheating client, the server will be unable
+to derive the parameters and the cheat will fail.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cannot be worked around, cheater cannot impact the server game state beyond their own player inputs.</p>
+</div>
+</section>
+<section id="limiting-information">
+<h3>Limiting Information<a class="headerlink" href="#limiting-information" title="Permalink to this headline"></a></h3>
+<p>Server side authority is not enough to prevent all the hacks.
+Game clients can have information replicated to them yet invisible to the client under normal circumstances.
+Cheating clients could fetch those hidden information (enemy position, for example) and display them to the
+player giving them an edge. See <a class="reference internal" href="../generated_api/classAGKPrivatePlayerState.html#_CPPv421AGKPrivatePlayerState" title="AGKPrivatePlayerState"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKPrivatePlayerState</span></code></a> for a replicating state to a subset of clients (allies).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cannot be worked around, cheater cannot get access to data that is not there.</p>
+</div>
+</section>
+<section id="anti-cheats">
+<h3>Anti Cheats<a class="headerlink" href="#anti-cheats" title="Permalink to this headline"></a></h3>
+<p>The main goal of anticheats is to detect players reading/writing values inside the game’s RAM.
+Additional goals could be detecting scripting/input automation (i.e player-bot)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Periodically worked around, needs to be updated with the latest exploits</p>
+</div>
+</section>
+<section id="overwatchs">
+<h3>Overwatchs<a class="headerlink" href="#overwatchs" title="Permalink to this headline"></a></h3>
+<p>Allow players to review suspicious games.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some cheats can be subtle.</p>
+</div>
+</section>
+<section id="anomaly-detection">
+<h3>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline"></a></h3>
+<p>Clients will send input &amp; movement information periodically, those can be checked for anomaly (low variance, variance of variance, etc…)</p>
+<p>In addition, clients will have a set of invariant values that cannot change on the client itself,
+for the server to verify them the clients would have to send them periodically.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both system could be worked around by cheater.</p>
+<ul class="simple">
+<li><p>Movement variance could be added to a bot (enough to not trigger the detection)</p></li>
+<li><p>A function hook could be installed to send back the expected values, instead of
+the current modified values.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="attack-vectors">
+<h2>Attack Vectors<a class="headerlink" href="#attack-vectors" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>DLL injection, use DLL loading rules to make the game load yours instead of the official DLL</p></li>
+<li><p>Function Hooking; override original functions at runtime to execute arbitrary code</p></li>
+<li><p>RAM inspection</p></li>
+<li><p>CheatEngine</p></li>
+<li><p>Packet Editing</p></li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hooking">Function Hooking</a></p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://github.com/mq1n/NoMercy">Open Source Anti Cheat</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">3</span></dt>
+<dd><p><a class="reference external" href="https://github.com/cheat-engine/cheat-engine">CheatEngine</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Competitive.html" class="btn btn-neutral float-left" title="Competitive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Developer/Docs.html" class="btn btn-neutral float-right" title="Documentation Generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

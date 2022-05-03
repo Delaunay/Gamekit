@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKCastPointAnimNotify:
+
+Class UGKCastPointAnimNotify
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKCastPointAnimNotify.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UAnimNotify``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKCastPointAnimNotify
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

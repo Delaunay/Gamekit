@@ -1,0 +1,4 @@
+<map id="UGKGameplayAbility::ApplyCost" name="UGKGameplayAbility::ApplyCost">
+<area shape="rect" id="node1" title="Apply Cost without using GameEffect CDO." alt="" coords="5,13,165,54"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ad4e41425ebbcfaa77b664d04de3c48f6" title="Apply GameEffect without using GameEffect CDO." alt="" coords="213,5,440,61"/>
+</map>

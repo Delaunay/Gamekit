@@ -1,0 +1,14 @@
+.. _exhale_define_Upscaling__Buffer_8usf_1acf567fd79abc0801bba69cbd5ff82315:
+
+Define TEXEL_2x2
+================
+
+- Defined in :ref:`file_Shaders_Upscaling_Buffer.usf`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TEXEL_2x2
+   :project: GameKit

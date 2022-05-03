@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKCPUUpscalerStrategy:
+
+Class UGKCPUUpscalerStrategy
+============================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKTransformerStrategyTexture2D`` (:ref:`exhale_class_classUGKTransformerStrategyTexture2D`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKCPUUpscalerStrategy
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

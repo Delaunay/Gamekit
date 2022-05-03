@@ -1,0 +1,5 @@
+<map id="UGKWidgetDraggable::NativeOnMouseButtonDown" name="UGKWidgetDraggable::NativeOnMouseButtonDown">
+<area shape="rect" id="node1" title="Compute the drag offset and call NativeOnDragDetected." alt="" coords="5,5,220,47"/>
+<area shape="rect" id="node2" href="$classUGKWidgetDraggable.html#a81ad8eb0c0d185052668894525b43f99" title=" " alt="" coords="268,5,431,47"/>
+<area shape="rect" id="node3" href="$classUGKWidgetDraggable.html#a591e659db0f9ddf899fa335e09263b39" title="Return true to enable Dragging the widget." alt="" coords="479,5,641,47"/>
+</map>

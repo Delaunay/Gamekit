@@ -1,0 +1,56 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKProjectileStatic.h:
+
+Program Listing for File GKProjectileStatic.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKProjectileStatic.h>` (``Source/Gamekit/Projectiles/GKProjectileStatic.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Engine/DataTable.h"
+   #include "Styling/SlateBrush.h"
+   
+   // Generated
+   #include "GKProjectileStatic.generated.h"
+   
+   UENUM(BlueprintType)
+   enum class EGK_ProjectileBehavior : uint8
+   {
+       UnitTarget  UMETA(DisplayName = "UnitTarget"),  // Target seeking Projectile
+       Directional UMETA(DisplayName = "Directional"), // Projectile goes in straight line
+   };
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKProjectileStatic: public FTableRowBase
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       public:
+       FGKProjectileStatic();
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       float BaseSpeed;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       float InitialSpeed;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       float HomingAcceleration;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       EGK_ProjectileBehavior Behavior;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       float Range;
+   };

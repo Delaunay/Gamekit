@@ -1,0 +1,27 @@
+.. _dir_Source_Gamekit_Widget:
+
+
+Directory Widget
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Widget``
+
+Subdirectories
+--------------
+
+- :ref:`dir_Source_Gamekit_Widget_DragDrop`
+- :ref:`dir_Source_Gamekit_Widget_RichTextDecorator`
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.cpp`
+- :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.h`
+
+

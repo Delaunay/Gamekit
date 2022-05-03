@@ -1,0 +1,17 @@
+
+.. _program_listing_file_Source_Gamekit_GKTeamPlayerStart.cpp:
+
+Program Listing for File GKTeamPlayerStart.cpp
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKTeamPlayerStart.cpp>` (``Source/Gamekit/GKTeamPlayerStart.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+   
+   
+   #include "GKTeamPlayerStart.h"
+   

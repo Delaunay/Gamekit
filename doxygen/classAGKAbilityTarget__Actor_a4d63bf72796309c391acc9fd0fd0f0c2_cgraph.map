@@ -1,0 +1,4 @@
+<map id="AGKAbilityTarget_Actor::InitializeFromAbilityData" name="AGKAbilityTarget_Actor::InitializeFromAbilityData">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,197,47"/>
+<area shape="rect" id="node2" href="$classAGKAbilityTarget__Actor.html#a1262d6d74fd7c399da8f933210790982" title="Call this to initialize the AbilityTarget actor with the Ability spec we are targeting for." alt="" coords="245,5,461,47"/>
+</map>

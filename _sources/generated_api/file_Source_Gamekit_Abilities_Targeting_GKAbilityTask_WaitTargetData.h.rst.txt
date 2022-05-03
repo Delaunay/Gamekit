@@ -1,0 +1,71 @@
+
+.. _file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h:
+
+File GKAbilityTask_WaitTargetData.h
+===================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Targeting>` (``Source/Gamekit/Abilities/Targeting``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Targeting/GKAbilityTask_WaitTargetData.h``)
+----------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbilityTargetActor.h``
+
+- ``Abilities/Tasks/AbilityTask.h``
+
+- ``CoreMinimal.h``
+
+- ``GKAbilityTask_WaitTargetData.generated.h``
+
+- ``GameplayTagContainer.h``
+
+- ``Templates/SubclassOf.h``
+
+- ``UObject/ObjectMacros.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKAbilityTask__WaitForTargetData`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKAbilityTask__WaitTargetData_8h_1aa9c892eb98f7e6b3abf2a44d6d68eed4`
+

@@ -1,0 +1,91 @@
+
+.. _file_Source_Gamekit_Characters_GKCharacter.h:
+
+File GKCharacter.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Characters>` (``Source/Gamekit/Characters``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Characters/GKCharacter.h``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Characters_GKCharacter.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AbilitySystemInterface.h``
+
+- ``GKCharacter.generated.h``
+
+- ``GameFramework/Character.h``
+
+- ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``Gamekit/Abilities/GKAttributeSet.h`` (:ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`)
+
+- ``Gamekit/Characters/GKSelectableInterface.h`` (:ref:`file_Source_Gamekit_Characters_GKSelectableInterface.h`)
+
+- ``Gamekit/Characters/GKUnitStatic.h`` (:ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Gamekit/Items/GKInventoryInterface.h`` (:ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`)
+
+- ``GenericTeamAgentInterface.h``
+
+- ``UObject/ScriptInterface.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAttributeSet.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_GKTargetType.cpp`
+
+- :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
+
+- :ref:`file_Source_Gamekit_Controllers_GKPlayerController.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKCharacterBase`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKCharacter_8h_1a139c665a8516dd3bcaa888a264384494`
+
+- :ref:`exhale_function_GKCharacter_8h_1a76ddc8cf3fc7ae8dc485f70f195d0e8b`
+
+- :ref:`exhale_function_GKCharacter_8h_1afca8e24caf229739a4014645d78d84cb`
+

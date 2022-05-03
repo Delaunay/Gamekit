@@ -1,0 +1,14 @@
+.. _exhale_function_GKItemTypes_8h_1a4b03dafbaf82e7ba373dc76e7c25c3f2:
+
+Function DECLARE_MULTICAST_DELEGATE_OneParam
+============================================
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKItemTypes.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_MULTICAST_DELEGATE_OneParam(FOnSaveGameLoadedNative, UGKSaveGame *)
+   :project: GameKit

@@ -1,0 +1,14 @@
+.. _exhale_enum_namespaceEGKSaveGameVersion_1a1d08fa10138bd365319d1d74b1bc4b79:
+
+Enum type
+=========
+
+- Defined in :ref:`file_Source_Gamekit_GKSaveGame.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGKSaveGameVersion::type
+   :project: GameKit

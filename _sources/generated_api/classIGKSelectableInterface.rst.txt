@@ -1,0 +1,26 @@
+.. _exhale_class_classIGKSelectableInterface:
+
+Class IGKSelectableInterface
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKSelectableInterface.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public AGKCharacterBase`` (:ref:`exhale_class_classAGKCharacterBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IGKSelectableInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_define_GKPrivatePlayerState_8h_1a7802d309072ba97dc0ad707fb0857572:
+
+Define GK_PRIVATEPLAYERSTATE_SANITY
+===================================
+
+- Defined in :ref:`file_Source_Gamekit_States_GKPrivatePlayerState.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GK_PRIVATEPLAYERSTATE_SANITY
+   :project: GameKit

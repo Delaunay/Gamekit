@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struct FGKAbilityStatic &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct FGKAnimationArray" href="structFGKAnimationArray.html" />
+    <link rel="prev" title="Struct FGKAbilitySlot" href="structFGKAbilitySlot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityCost.html">Struct FGKAbilityCost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilityEffect.html">Struct FGKAbilityEffect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAbilitySlot.html">Struct FGKAbilitySlot</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct FGKAbilityStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationArray.html">Struct FGKAnimationArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKAnimationSet.html">Struct FGKAnimationSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKDynamicFogMaterial.html">Struct FGKDynamicFogMaterial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKInputAbilityPair.html">Struct FGKInputAbilityPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKItemData.html">Struct FGKItemData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKLinePoints.html">Struct FGKLinePoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKNetworkMetrics.html">Struct FGKNetworkMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKPoints.html">Struct FGKPoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKProjectileStatic.html">Struct FGKProjectileStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestData.html">Struct FGKQuestData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQuestObjectives.html">Struct FGKQuestObjectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKQueuedAbility.html">Struct FGKQueuedAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKRichRow.html">Struct FGKRichRow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSimpleObjective.html">Struct FGKSimpleObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKSlope.html">Struct FGKSlope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKTeamInfo.html">Struct FGKTeamInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitGroup.html">Struct FGKUnitGroup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKUnitStatic.html">Struct FGKUnitStatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKWidgetLocationData.html">Struct FGKWidgetLocationData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFStatQuery.html">Struct FStatQuery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFUpscalingParameter.html">Struct FUpscalingParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGKDamageStatics.html">Struct GKDamageStatics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structTMatrix3D.html">Template Struct TMatrix3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityEffectActor.html">Class AGKAbilityEffectActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__Actor.html">Class AGKAbilityTarget_Actor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAbilityTarget__PlayerControllerTrace.html">Class AGKAbilityTarget_PlayerControllerTrace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAIController.html">Class AGKAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActor.html">Class AGKAOEActor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKAOEActorNiagara.html">Class AGKAOEActorNiagara</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKCharacterBase.html">Class AGKCharacterBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarTeam.html">Class AGKFogOfWarTeam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKFogOfWarVolume.html">Class AGKFogOfWarVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameModeBaseBase.html">Class AGKGameModeBaseBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameResource.html">Class AGKGameResource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGameStateBase.html">Class AGKGameStateBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKGASCharacter.html">Class AGKGASCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKHexGrid.html">Class AGKHexGrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKMinimapVolume.html">Class AGKMinimapVolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPawnEnchancedInput.html">Class AGKPawnEnchancedInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerController.html">Class AGKPlayerController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPlayerState.html">Class AGKPlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKPrivatePlayerState.html">Class AGKPrivatePlayerState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKProjectile.html">Class AGKProjectile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTacticianController.html">Class AGKTacticianController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTeamPlayerStart.html">Class AGKTeamPlayerStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTopDownPawn.html">Class AGKTopDownPawn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKTurnGameState.html">Class AGKTurnGameState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitAIController.html">Class AGKUnitAIController</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKUnitCharacter.html">Class AGKUnitCharacter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAGKWorldSettings.html">Class AGKWorldSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitModule.html">Class FGamekitModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGamekitTestSuiteModule.html">Class FGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFGKRichStruct.html">Class FGKRichStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingDispatcher.html">Class FUpscalingDispatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classFUpscalingShader.html">Class FUpscalingShader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamekit.html">Class Gamekit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1cook_1_1CookGame.html">Class CookGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1disable_1_1Disable.html">Class Disable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1init_1_1Init.html">Class Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1install_1_1Install.html">Class Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1tests_1_1RunTests.html">Class RunTests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1vscode_1_1VSCode.html">Class VSCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1conf_1_1Command.html">Class Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1FractionalBrownianmotion.html">Class FractionalBrownianmotion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1fbm_1_1Vec2.html">Class Vec2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGamekitTestSuiteModule.html">Class IGamekitTestSuiteModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKCachedAbilityTargetActorInterface.html">Class IGKCachedAbilityTargetActorInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKInventoryInterface.html">Class IGKInventoryInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKPawnEnhancedInputInterface.html">Class IGKPawnEnhancedInputInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classIGKSelectableInterface.html">Class IGKSelectableInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUCollisionProfileHack.html">Class UCollisionProfileHack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityBlueprintLibrary.html">Class UGKAbilityBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemComponent.html">Class UGKAbilitySystemComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilitySystemGlobals.html">Class UGKAbilitySystemGlobals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__MoveToDestination.html">Class UGKAbilityTask_MoveToDestination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__PlayMontageAndWaitForEvent.html">Class UGKAbilityTask_PlayMontageAndWaitForEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityTask__WaitForTargetData.html">Class UGKAbilityTask_WaitForTargetData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAbilityWidget.html">Class UGKAbilityWidget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAssetManager.html">Class UGKAssetManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTask__GameplayEffectChanged.html">Class UGKAsyncTask_GameplayEffectChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskAttributeChanged.html">Class UGKAsyncTaskAttributeChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskCooldownChanged.html">Class UGKAsyncTaskCooldownChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAttributeSet.html">Class UGKAttributeSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCanvasUpscaler.html">Class UGKCanvasUpscaler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCastPointAnimNotify.html">Class UGKCastPointAnimNotify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCoordinateLibrary.html">Class UGKCoordinateLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCPUUpscalerStrategy.html">Class UGKCPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKDamageExecution.html">Class UGKDamageExecution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKEngineSubsystem.html">Class UGKEngineSubsystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKExplorationTransform.html">Class UGKExplorationTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarLibrary.html">Class UGKFogOfWarLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKFogOfWarStrategy.html">Class UGKFogOfWarStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameInstanceBase.html">Class UGKGameInstanceBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayAbility.html">Class UGKGameplayAbility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGameplayEffectDyn.html">Class UGKGameplayEffectDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKGPUUpscalerStrategy.html">Class UGKGPUUpscalerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridPathFollowingComponent.html">Class UGKHexGridPathFollowingComponent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKPotionItem.html">Class UGKPotionItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestBlueprintLibrary.html">Class UGKQuestBlueprintLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestDataRef.html">Class UGKQuestDataRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestObjectiveRef.html">Class UGKQuestObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKQuestSimpleObjectiveRef.html">Class UGKQuestSimpleObjectiveRef</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Less.html">Class UGKRayCasting_Less</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Line.html">Class UGKRayCasting_Line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRayCasting__Triangle.html">Class UGKRayCasting_Triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseEventData.html">Class UGKTargetType_UseEventData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTargetType__UseOwner.html">Class UGKTargetType_UseOwner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTeamAgentLibrary.html">Class UGKTeamAgentLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTokenItem.html">Class UGKTokenItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategy.html">Class UGKTransformerStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyCanvas.html">Class UGKTransformerStrategyCanvas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKTransformerStrategyTexture2D.html">Class UGKTransformerStrategyTexture2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKUtilityLibrary.html">Class UGKUtilityLibrary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWeaponItem.html">Class UGKWeaponItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDraggable.html">Class UGKWidgetDraggable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDragVisual.html">Class UGKWidgetDragVisual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKWidgetDropZone.html">Class UGKWidgetDropZone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite.html">Class GamekitTestSuite</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Struct FGKAbilityStatic</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/structFGKAbilityStatic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="struct-fgkabilitystatic">
+<span id="exhale-struct-structfgkabilitystatic"></span><h1>Struct FGKAbilityStatic<a class="headerlink" href="#struct-fgkabilitystatic" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_Abilities_GKAbilityStatic.h.html#file-source-gamekit-abilities-gkabilitystatic-h"><span class="std std-ref">File GKAbilityStatic.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">FTableRowBase</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416FGKAbilityStatic">
+<span id="_CPPv316FGKAbilityStatic"></span><span id="_CPPv216FGKAbilityStatic"></span><span id="FGKAbilityStatic"></span><span class="target" id="structFGKAbilityStatic"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FGKAbilityStatic</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">FTableRowBase</span></span><a class="headerlink" href="#_CPPv416FGKAbilityStatic" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Holds all data that is shared across all instances of a single ability The data is saved in a datatable to enable gameplay designer and traductions services to modify/update without opening the engine. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic16FGKAbilityStaticEv">
+<span id="_CPPv3N16FGKAbilityStatic16FGKAbilityStaticEv"></span><span id="_CPPv2N16FGKAbilityStatic16FGKAbilityStaticEv"></span><span id="FGKAbilityStatic::FGKAbilityStatic"></span><span class="target" id="structFGKAbilityStatic_1a72c703ddd46736a780df8dce1551bd04"></span><span class="sig-name descname"><span class="n"><span class="pre">FGKAbilityStatic</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic16FGKAbilityStaticEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic4NameE">
+<span id="_CPPv3N16FGKAbilityStatic4NameE"></span><span id="_CPPv2N16FGKAbilityStatic4NameE"></span><span id="FGKAbilityStatic::Name__FName"></span><span class="target" id="structFGKAbilityStatic_1a7e0e2ffafdfc6ea846da6d443ff1ceed"></span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Name</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic4NameE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Primary key not visible. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic11AbilityKindE">
+<span id="_CPPv3N16FGKAbilityStatic11AbilityKindE"></span><span id="_CPPv2N16FGKAbilityStatic11AbilityKindE"></span><span id="FGKAbilityStatic::AbilityKind__EGK_AbilityKind"></span><span class="target" id="structFGKAbilityStatic_1a6156dcdf370f96a40b4022100a8063fe"></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a75720bf524d3e8434548df55673d9c36.html#_CPPv415EGK_AbilityKind" title="EGK_AbilityKind"><span class="n"><span class="pre">EGK_AbilityKind</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityKind</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic11AbilityKindE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An Ability can be both a Skill or an Item An Item is a skill you can buy while a skill is an ability that is innate to the character/class </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic9LocalNameE">
+<span id="_CPPv3N16FGKAbilityStatic9LocalNameE"></span><span id="_CPPv2N16FGKAbilityStatic9LocalNameE"></span><span id="FGKAbilityStatic::LocalName__FText"></span><span class="target" id="structFGKAbilityStatic_1a24f20aec6748e1db7120040b3166e0be"></span><span class="n"><span class="pre">FText</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LocalName</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic9LocalNameE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Localized name for display. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic16LocalDescriptionE">
+<span id="_CPPv3N16FGKAbilityStatic16LocalDescriptionE"></span><span id="_CPPv2N16FGKAbilityStatic16LocalDescriptionE"></span><span id="FGKAbilityStatic::LocalDescription__FText"></span><span class="target" id="structFGKAbilityStatic_1aed1e77c519177cd7c28ddd757de1bbd4"></span><span class="n"><span class="pre">FText</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LocalDescription</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic16LocalDescriptionE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Localized description for display. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic4IconE">
+<span id="_CPPv3N16FGKAbilityStatic4IconE"></span><span id="_CPPv2N16FGKAbilityStatic4IconE"></span><span id="FGKAbilityStatic::Icon__UTexture2DP"></span><span class="target" id="structFGKAbilityStatic_1a934379cc86ae61064a1fbaf73a834c97"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="n"><span class="pre">UTexture2D</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">Icon</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic4IconE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Icon to display. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic8MaxLevelE">
+<span id="_CPPv3N16FGKAbilityStatic8MaxLevelE"></span><span id="_CPPv2N16FGKAbilityStatic8MaxLevelE"></span><span id="FGKAbilityStatic::MaxLevel__int32"></span><span class="target" id="structFGKAbilityStatic_1a04684eebb1c64a08353b9c821534ae89"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaxLevel</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic8MaxLevelE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maximum level this skill/item can be. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic8DurationE">
+<span id="_CPPv3N16FGKAbilityStatic8DurationE"></span><span id="_CPPv2N16FGKAbilityStatic8DurationE"></span><span id="FGKAbilityStatic::Duration__float"></span><span class="target" id="structFGKAbilityStatic_1a412d0f54e1b630d2420c3571ad3f9b8a"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic8DurationE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Duration the ability linger after being cast used for damage overtime abilities or active buffs Should be a TArray | Ability Level can change this </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic14AbilityEffectsE">
+<span id="_CPPv3N16FGKAbilityStatic14AbilityEffectsE"></span><span id="_CPPv2N16FGKAbilityStatic14AbilityEffectsE"></span><span id="FGKAbilityStatic::AbilityEffects__TMap:FName.FGKAbilityEffect:"></span><span class="target" id="structFGKAbilityStatic_1ae944f4b85c0bcf716111cf4a7b9a9aec"></span><span class="n"><span class="pre">TMap</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FName</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structFGKAbilityEffect.html#_CPPv416FGKAbilityEffect" title="FGKAbilityEffect"><span class="n"><span class="pre">FGKAbilityEffect</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityEffects</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic14AbilityEffectsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Customize the ability effect This is ability specific so be aware of the keys! </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic4CostE">
+<span id="_CPPv3N16FGKAbilityStatic4CostE"></span><span id="_CPPv2N16FGKAbilityStatic4CostE"></span><span id="FGKAbilityStatic::Cost__FGKAbilityCost"></span><span class="target" id="structFGKAbilityStatic_1a66fdeddda7067b70a04cb593dcea4e1b"></span><a class="reference internal" href="structFGKAbilityCost.html#_CPPv414FGKAbilityCost" title="FGKAbilityCost"><span class="n"><span class="pre">FGKAbilityCost</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Cost</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic4CostE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Specify the cost of this ability (mana, energy, etc…) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic8CooldownE">
+<span id="_CPPv3N16FGKAbilityStatic8CooldownE"></span><span id="_CPPv2N16FGKAbilityStatic8CooldownE"></span><span id="FGKAbilityStatic::Cooldown__TArray:float:"></span><span class="target" id="structFGKAbilityStatic_1a20cf1bd39979208d76a1f8bad12bf80b"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Cooldown</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic8CooldownE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cooldown curve. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic5PriceE">
+<span id="_CPPv3N16FGKAbilityStatic5PriceE"></span><span id="_CPPv2N16FGKAbilityStatic5PriceE"></span><span id="FGKAbilityStatic::Price__int32"></span><span class="target" id="structFGKAbilityStatic_1ac4b04ebac7f6134c33d38c3150463c57"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Price</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic5PriceE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Price in game. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic4SlotE">
+<span id="_CPPv3N16FGKAbilityStatic4SlotE"></span><span id="_CPPv2N16FGKAbilityStatic4SlotE"></span><span id="FGKAbilityStatic::Slot__EGK_ItemSlot"></span><span class="target" id="structFGKAbilityStatic_1a3a8febaf137ed75056a35e00ae0b5949"></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda.html#_CPPv412EGK_ItemSlot" title="EGK_ItemSlot"><span class="n"><span class="pre">EGK_ItemSlot</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Slot</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic4SlotE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Slot ID, this is used to define equipment slots. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic8MaxStackE">
+<span id="_CPPv3N16FGKAbilityStatic8MaxStackE"></span><span id="_CPPv2N16FGKAbilityStatic8MaxStackE"></span><span id="FGKAbilityStatic::MaxStack__int32"></span><span class="target" id="structFGKAbilityStatic_1a9bf3d7ffabb8c61c3a792fc1383c8f60"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaxStack</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic8MaxStackE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If AbilityKind == Item, specifies the max count of the given item in a single stack Should be a TArray | Ability Level can change this </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic12bIgnoreRangeE">
+<span id="_CPPv3N16FGKAbilityStatic12bIgnoreRangeE"></span><span id="_CPPv2N16FGKAbilityStatic12bIgnoreRangeE"></span><span id="FGKAbilityStatic::bIgnoreRange__b"></span><span class="target" id="structFGKAbilityStatic_1a2f61ac565d2675deb8e34ab889dd78af"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bIgnoreRange</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic12bIgnoreRangeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>If true, the target can be selected while out of range the players will start moving toward the enemy to reach the minimal rang, if false the target will not be able to be selected and the user will have to get closer to the target to cast the spell </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic12CastMaxRangeE">
+<span id="_CPPv3N16FGKAbilityStatic12CastMaxRangeE"></span><span id="_CPPv2N16FGKAbilityStatic12CastMaxRangeE"></span><span id="FGKAbilityStatic::CastMaxRange__float"></span><span class="target" id="structFGKAbilityStatic_1ad92f0e9ef688e0e4fb5c9e979da903cf"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CastMaxRange</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic12CastMaxRangeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic12CastMinRangeE">
+<span id="_CPPv3N16FGKAbilityStatic12CastMinRangeE"></span><span id="_CPPv2N16FGKAbilityStatic12CastMinRangeE"></span><span id="FGKAbilityStatic::CastMinRange__float"></span><span class="target" id="structFGKAbilityStatic_1af26fa2e7d1cfb7214f1cf796c67542cf"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CastMinRange</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic12CastMinRangeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic15AbilityBehaviorE">
+<span id="_CPPv3N16FGKAbilityStatic15AbilityBehaviorE"></span><span id="_CPPv2N16FGKAbilityStatic15AbilityBehaviorE"></span><span id="FGKAbilityStatic::AbilityBehavior__EGK_AbilityBehavior"></span><span class="target" id="structFGKAbilityStatic_1a4d076cd577191945e866c8e7662f160a"></span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494.html#_CPPv419EGK_AbilityBehavior" title="EGK_AbilityBehavior"><span class="n"><span class="pre">EGK_AbilityBehavior</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityBehavior</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic15AbilityBehaviorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Specifies how the ability is activated (Point Target, Actor Target, Vector Target) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic18TargetActorFactionE">
+<span id="_CPPv3N16FGKAbilityStatic18TargetActorFactionE"></span><span id="_CPPv2N16FGKAbilityStatic18TargetActorFactionE"></span><span id="FGKAbilityStatic::TargetActorFaction__int32"></span><span class="target" id="structFGKAbilityStatic_1aad7519dc1fa530e91266a4319fb798ba"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetActorFaction</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic18TargetActorFactionE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Required targets attitue to the spell caster. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic17TargetFilterClassE">
+<span id="_CPPv3N16FGKAbilityStatic17TargetFilterClassE"></span><span id="_CPPv2N16FGKAbilityStatic17TargetFilterClassE"></span><span id="FGKAbilityStatic::TargetFilterClass__TSubclassOf:AActor:"></span><span class="target" id="structFGKAbilityStatic_1a888452211f631551f2d627f25921c288"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">AActor</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetFilterClass</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic17TargetFilterClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Class of actors that is an acceptable target for this ability. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic23AbilityTargetActorClassE">
+<span id="_CPPv3N16FGKAbilityStatic23AbilityTargetActorClassE"></span><span id="_CPPv2N16FGKAbilityStatic23AbilityTargetActorClassE"></span><span id="FGKAbilityStatic::AbilityTargetActorClass__TSubclassOf:AGameplayAbilityTargetActor:"></span><span class="target" id="structFGKAbilityStatic_1aae5d09beffb358aa78b668662c07ad48"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">AGameplayAbilityTargetActor</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityTargetActorClass</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic23AbilityTargetActorClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The AbilityTarget Actor this ability will use to select a target The actor spawn is cached inside the Ability System Component </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic17TargetObjectTypesE">
+<span id="_CPPv3N16FGKAbilityStatic17TargetObjectTypesE"></span><span id="_CPPv2N16FGKAbilityStatic17TargetObjectTypesE"></span><span id="FGKAbilityStatic::TargetObjectTypes__TArray:TEnumAsByte:EObjectTypeQuery::"></span><span class="target" id="structFGKAbilityStatic_1a5e299084c5a98c1305b824f695d11fac"></span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">TEnumAsByte</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">EObjectTypeQuery</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TargetObjectTypes</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic17TargetObjectTypesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Used to know when a valid target is detected. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic8CastTimeE">
+<span id="_CPPv3N16FGKAbilityStatic8CastTimeE"></span><span id="_CPPv2N16FGKAbilityStatic8CastTimeE"></span><span id="FGKAbilityStatic::CastTime__float"></span><span class="target" id="structFGKAbilityStatic_1aac87a5c91d9e08e6e3b4c32c061fe073"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CastTime</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic8CastTimeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Time this ability needs before it is cast Player can be interrupted during that time Should be a TArray | Ability Level can change this </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic11ChannelTimeE">
+<span id="_CPPv3N16FGKAbilityStatic11ChannelTimeE"></span><span id="_CPPv2N16FGKAbilityStatic11ChannelTimeE"></span><span id="FGKAbilityStatic::ChannelTime__float"></span><span class="target" id="structFGKAbilityStatic_1a5c03d66505857bbcb0e5fa768c7f61fc"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChannelTime</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic11ChannelTimeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Only usefull when AbilityBehavior is set to channel Should be a TArray | Ability Level can change this </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic16AbilityAnimationE">
+<span id="_CPPv3N16FGKAbilityStatic16AbilityAnimationE"></span><span id="_CPPv2N16FGKAbilityStatic16AbilityAnimationE"></span><span id="FGKAbilityStatic::AbilityAnimation__EGK_AbilityAnimation"></span><span class="target" id="structFGKAbilityStatic_1a2df44106ea7f2025793def52af480965"></span><a class="reference internal" href="enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab.html#_CPPv420EGK_AbilityAnimation" title="EGK_AbilityAnimation"><span class="n"><span class="pre">EGK_AbilityAnimation</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AbilityAnimation</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic16AbilityAnimationE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>When using animation set we get refer to a specific animation kind this ability should be playing this is used in the case where the ability can be cast by different character/skeleton with their own specific set of animation we do not want to tie the ability to the character. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic20ProjectileActorClassE">
+<span id="_CPPv3N16FGKAbilityStatic20ProjectileActorClassE"></span><span id="_CPPv2N16FGKAbilityStatic20ProjectileActorClassE"></span><span id="FGKAbilityStatic::ProjectileActorClass__TSubclassOf:AGKProjectile:"></span><span class="target" id="structFGKAbilityStatic_1a91cdb6c81a16f90b87741a93d904389b"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classAGKProjectile.html#_CPPv413AGKProjectile" title="AGKProjectile"><span class="n"><span class="pre">AGKProjectile</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ProjectileActorClass</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic20ProjectileActorClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Projectile to spawn. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic14ProjectileDataE">
+<span id="_CPPv3N16FGKAbilityStatic14ProjectileDataE"></span><span id="_CPPv2N16FGKAbilityStatic14ProjectileDataE"></span><span id="FGKAbilityStatic::ProjectileData__FGKProjectileStatic"></span><span class="target" id="structFGKAbilityStatic_1a0a55f1aeaac42986ad11412954a46feb"></span><a class="reference internal" href="structFGKProjectileStatic.html#_CPPv419FGKProjectileStatic" title="FGKProjectileStatic"><span class="n"><span class="pre">FGKProjectileStatic</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ProjectileData</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic14ProjectileDataE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Projectile customization data. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic16ImpactActorClassE">
+<span id="_CPPv3N16FGKAbilityStatic16ImpactActorClassE"></span><span id="_CPPv2N16FGKAbilityStatic16ImpactActorClassE"></span><span id="FGKAbilityStatic::ImpactActorClass__TSubclassOf:AActor:"></span><span class="target" id="structFGKAbilityStatic_1aad8fbc3f53c143c8e0d8705cbcf728b8"></span><span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">AActor</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ImpactActorClass</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic16ImpactActorClassE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Actor that is spawn on impact. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16FGKAbilityStatic12AreaOfEffectE">
+<span id="_CPPv3N16FGKAbilityStatic12AreaOfEffectE"></span><span id="_CPPv2N16FGKAbilityStatic12AreaOfEffectE"></span><span id="FGKAbilityStatic::AreaOfEffect__float"></span><span class="target" id="structFGKAbilityStatic_1a2ae8c3518831775866d745c3d3f7519e"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AreaOfEffect</span></span></span><a class="headerlink" href="#_CPPv4N16FGKAbilityStatic12AreaOfEffectE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Area of effect used by the ImpactActor Should be a TArray | Ability Level can change this </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structFGKAbilitySlot.html" class="btn btn-neutral float-left" title="Struct FGKAbilitySlot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structFGKAnimationArray.html" class="btn btn-neutral float-right" title="Struct FGKAnimationArray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

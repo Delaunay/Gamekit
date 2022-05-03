@@ -1,0 +1,14 @@
+<map id="UGKRayCasting_Triangle::DrawObstructedLineOfSight" name="UGKRayCasting_Triangle::DrawObstructedLineOfSight">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,216,145"/>
+<area shape="rect" id="node2" href="$classUGKFogOfWarStrategy.html#a373ca3119167bc4b6a2142d5208ac948" title=" " alt="" coords="271,5,440,47"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#a17edecf722a45e05593f37d0c2e77367" title=" " alt="" coords="270,71,441,112"/>
+<area shape="rect" id="node5" href="$classUGKRayCasting__Triangle.html#abc4482e9a3f25a367db3853b7ffe1dc1" title=" " alt="" coords="264,136,447,177"/>
+<area shape="rect" id="node9" href="$classUGKRayCasting__Triangle.html#a52b7876283eef4256388af8568c647bd" title=" " alt="" coords="264,201,447,243"/>
+<area shape="rect" id="node3" href="$classUGKFogOfWarStrategy.html#a548b05f1ea4f933308a03bc9a7238f19" title=" " alt="" coords="500,5,675,47"/>
+<area shape="rect" id="node6" href="$classUGKRayCasting__Line.html#a4d598153cd8e305347794241bd51d473" title=" " alt="" coords="495,136,680,177"/>
+<area shape="rect" id="node7" href="$classUGKRayCasting__Line.html#ae186df9765fe1b18be2e2bcbbdc22f71" title=" " alt="" coords="739,136,898,177"/>
+<area shape="rect" id="node8" href="$classAGKFogOfWarVolume.html#a4d720bc82c2854aba2b85c4aa0a86476" title=" " alt="" coords="957,136,1128,177"/>
+<area shape="rect" id="node10" href="$classAGKFogOfWarVolume.html#ada8917048bb19d9642fb2b48181e36c5" title="Returns the texture coordinate given world coordinates." alt="" coords="502,201,673,243"/>
+<area shape="rect" id="node11" href="$classUGKCoordinateLibrary.html#a16684a79f434cd6c8de552262735243c" title="Returns coordinate (0, 1)" alt="" coords="504,267,671,308"/>
+<area shape="rect" id="node12" href="$classUGKCoordinateLibrary.html#a6f317e1e43d4427dac1c5061fe0a3ee9" title=" " alt="" coords="728,267,909,308"/>
+</map>

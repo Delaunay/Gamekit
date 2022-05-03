@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaders &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Doxygen" href="../Doxygen.html" />
+    <link rel="prev" title="Compilation" href="../Compilation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Compilation.html">Compilation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Shaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#write-hlsl-functions-for-your-materials">Write HLSL functions for your materials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gaussian-blur">Gaussian Blur</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-shaders">Custom Shaders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-input-target">Initialize Input Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrive-output">Retrive Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#use-custom-shaders-as-materials">Use Custom Shaders as materials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#shader-parameters">Shader Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-errors">Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Shaders</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Developer/Shaders/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shaders">
+<h1>Shaders<a class="headerlink" href="#shaders" title="Permalink to this headline"></a></h1>
+<p>Unreal Shading language is HLSL.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.ush</span></code>: Unreal Shader Headers</p>
+<ul>
+<li><p>included by other USH or USF files</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.usf</span></code>: Unreal Shader Format</p>
+<ul>
+<li><p>should be private data only</p></li>
+<li><p>should contain shader entry points i.e custom shaders.</p></li>
+</ul>
+</li>
+</ul>
+<section id="write-hlsl-functions-for-your-materials">
+<h2>Write HLSL functions for your materials<a class="headerlink" href="#write-hlsl-functions-for-your-materials" title="Permalink to this headline"></a></h2>
+<p>To write shader code directly, you can add a custom shader path in your project module.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Maps ``/Gamekit`` to ``/path/to/project/Gamekit/Shaders``</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitModule::StartupModule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// GamekitShaders</span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">ShaderDirectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FPaths</span><span class="o">::</span><span class="n">Combine</span><span class="p">(</span><span class="n">FPaths</span><span class="o">::</span><span class="n">ProjectPluginsDir</span><span class="p">(),</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;&lt;ProjectFolderName&gt;&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;&lt;ShaderFolder&gt;&gt;&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Make sure the mapping does not exist before adding it</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AllShaderSourceDirectoryMappings</span><span class="p">().</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;/&lt;ShaderFolderShortcut&gt;&quot;</span><span class="p">)){</span><span class="w"></span>
+<span class="w">        </span><span class="n">AddShaderSourceDirectoryMapping</span><span class="p">(</span><span class="s">&quot;/&lt;ShaderFolderShortcut&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ShaderDirectory</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitModule::ShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ResetAllShaderSourceDirectoryMappings</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To include a Gamekit shader file simply add <code class="docutils literal notranslate"><span class="pre">/&lt;ShaderFolderShortcut&gt;/&lt;ShaderFile:</span> <span class="pre">fire&gt;.ush</span></code></p>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<section id="gaussian-blur">
+<h4>Gaussian Blur<a class="headerlink" href="#gaussian-blur" title="Permalink to this headline"></a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SamplerState</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">//! Simple 3x3 Gaussian Kernel</span>
+<span class="n">float3</span><span class="w"> </span><span class="nf">GaussianBlur</span><span class="p">(</span><span class="n">Texture2D</span><span class="w"> </span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">float2</span><span class="w"> </span><span class="n">UV</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">newSample</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.f</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">         </span><span class="n">Texture2DSample</span><span class="p">(</span><span class="n">Tex</span><span class="p">,</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">,</span><span class="w"> </span><span class="n">UV</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Distance</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.f</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">newSample</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16.f</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="custom-shaders">
+<h2>Custom Shaders<a class="headerlink" href="#custom-shaders" title="Permalink to this headline"></a></h2>
+<p>To follow this part you will need to do the steps described in the previous section.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Global Shader compile error will make the editor crash during load up</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Module using global shaders needs to be configured to load during the <code class="docutils literal notranslate"><span class="pre">PostConfigInit</span></code> phase.
+If not the loading will crash with a criptic error message about the OS not being able to load
+your library.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Modules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gamekit&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Runtime&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;LoadingPhase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PostConfigInit&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;WhitelistPlatforms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;Win64&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">],</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">FUpscalingShader</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FGlobalShader</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">DECLARE_GLOBAL_SHADER</span><span class="p">(</span><span class="n">FUpscalingShader</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">SHADER_USE_PARAMETER_STRUCT</span><span class="p">(</span><span class="n">FUpscalingShader</span><span class="p">,</span><span class="w"> </span><span class="n">FGlobalShader</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">     </span><span class="n">BEGIN_SHADER_PARAMETER_STRUCT</span><span class="p">(</span><span class="n">FParameters</span><span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">SHADER_PARAMETER_TEXTURE</span><span class="p">(</span><span class="n">Texture2D</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">InputTexture</span><span class="p">)</span><span class="w">  </span><span class="c1">// Read Only Texture</span>
+<span class="w">         </span><span class="n">SHADER_PARAMETER_UAV</span><span class="p">(</span><span class="n">RWTexture2D</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">OutputTexture</span><span class="p">)</span><span class="w">   </span><span class="c1">// Read Write Texture</span>
+<span class="w">         </span><span class="n">SHADER_PARAMETER</span><span class="p">(</span><span class="n">FIntPoint</span><span class="p">,</span><span class="w"> </span><span class="n">Dimensions</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">SHADER_PARAMETER</span><span class="p">(</span><span class="n">UINT</span><span class="p">,</span><span class="w"> </span><span class="n">TimeStamp</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">SHADER_PARAMETER</span><span class="p">(</span><span class="n">UINT</span><span class="p">,</span><span class="w"> </span><span class="n">Multiplier</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="n">END_SHADER_PARAMETER_STRUCT</span><span class="p">()</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">     </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">ShouldCompilePermutation</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGlobalShaderPermutationParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Parameters</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">IsFeatureLevelSupported</span><span class="p">(</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Platform</span><span class="p">,</span><span class="w"> </span><span class="n">ERHIFeatureLevel</span><span class="o">::</span><span class="n">SM5</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">     </span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">ModifyCompilationEnvironment</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGlobalShaderPermutationParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Parameters</span><span class="p">,</span><span class="w"> </span><span class="n">FShaderCompilerEnvironment</span><span class="o">&amp;</span><span class="w"> </span><span class="n">OutEnvironment</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">FGlobalShader</span><span class="o">::</span><span class="n">ModifyCompilationEnvironment</span><span class="p">(</span><span class="n">Parameters</span><span class="p">,</span><span class="w"> </span><span class="n">OutEnvironment</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">         </span><span class="c1">// Preprocessor defines</span>
+<span class="w">         </span><span class="n">OutEnvironment</span><span class="p">.</span><span class="n">SetDefine</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;THREADGROUPSIZE_X&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">NUM_THREADS_PER_GROUP_DIMENSION</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">OutEnvironment</span><span class="p">.</span><span class="n">SetDefine</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;THREADGROUPSIZE_Y&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">NUM_THREADS_PER_GROUP_DIMENSION</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="n">OutEnvironment</span><span class="p">.</span><span class="n">SetDefine</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;THREADGROUPSIZE_Z&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">};</span><span class="w"></span>
+
+<span class="n">IMPLEMENT_GLOBAL_SHADER</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">FUpscalingShader</span><span class="p">,</span><span class="w">            </span><span class="c1">// Shader Type</span>
+<span class="w">    </span><span class="s">&quot;/Gamekit/Upscaling.usf&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1">// Shader File</span>
+<span class="w">    </span><span class="s">&quot;MainComputeShader&quot;</span><span class="p">,</span><span class="w">         </span><span class="c1">// Shader Entry point</span>
+<span class="w">    </span><span class="n">SF_Compute</span><span class="w">                   </span><span class="c1">// Shader Kind (Vertex, Hull, Domain, Pixel, Geometry, Compute, RayGen, RayMiss, RayHitGroup, RayCallable)</span>
+<span class="w"> </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ReserveRenderTargets</span><span class="p">(</span><span class="n">RHICmdList</span><span class="p">);</span><span class="w"></span>
+<span class="n">CopyInputTextureToInputTarget</span><span class="p">(</span><span class="n">RHICmdList</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">FUpscalingShader</span><span class="o">::</span><span class="n">FParameters</span><span class="w"> </span><span class="n">PassParameters</span><span class="p">;</span><span class="w"></span>
+<span class="n">PassParameters</span><span class="p">.</span><span class="n">OutputTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ComputeShaderOutput</span><span class="o">-&gt;</span><span class="n">GetRenderTargetItem</span><span class="p">().</span><span class="n">UAV</span><span class="p">;</span><span class="w"></span>
+<span class="n">PassParameters</span><span class="p">.</span><span class="n">InputTexture</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">ComputeShaderInput</span><span class="o">-&gt;</span><span class="n">GetRenderTargetItem</span><span class="p">().</span><span class="n">ShaderResourceTexture</span><span class="p">;</span><span class="w"></span>
+<span class="n">PassParameters</span><span class="p">.</span><span class="n">Dimensions</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">CachedParams</span><span class="p">.</span><span class="n">OriginalSize</span><span class="p">;</span><span class="w"></span>
+<span class="n">PassParameters</span><span class="p">.</span><span class="n">TimeStamp</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">CachedParams</span><span class="p">.</span><span class="n">TimeStamp</span><span class="p">;</span><span class="w"></span>
+<span class="n">PassParameters</span><span class="p">.</span><span class="n">Multiplier</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">CachedParams</span><span class="p">.</span><span class="n">Multiplier</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">TShaderMapRef</span><span class="o">&lt;</span><span class="n">FUpscalingShader</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ComputeShader</span><span class="p">(</span><span class="n">GetGlobalShaderMap</span><span class="p">(</span><span class="n">GMaxRHIFeatureLevel</span><span class="p">));</span><span class="w"></span>
+
+<span class="n">FComputeShaderUtils</span><span class="o">::</span><span class="n">Dispatch</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RHICmdList</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ComputeShader</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">PassParameters</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FIntVector</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">FMath</span><span class="o">::</span><span class="n">DivideAndRoundUp</span><span class="p">(</span><span class="n">CachedParams</span><span class="p">.</span><span class="n">OriginalSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_THREADS_PER_GROUP_DIMENSION</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">FMath</span><span class="o">::</span><span class="n">DivideAndRoundUp</span><span class="p">(</span><span class="n">CachedParams</span><span class="p">.</span><span class="n">OriginalSize</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_THREADS_PER_GROUP_DIMENSION</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="n">CopyOutputTargetToOutputTexture</span><span class="p">(</span><span class="n">RHICmdList</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>See <code class="docutils literal notranslate"><span class="pre">UnrealEngine\Engine\Source\Runtime\RHI\Public\RHIDefinitions.h</span></code> for the <code class="docutils literal notranslate"><span class="pre">ETextureCreateFlags</span></code> enum.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FRHICommandListImmediate</span><span class="o">&amp;</span><span class="w"> </span><span class="n">RHICmdList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FRHICommandListExecutor</span><span class="o">::</span><span class="n">GetImmediateCommandList</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Create 2D texture description for reading</span>
+<span class="n">FPooledRenderTargetDesc</span><span class="w"> </span><span class="n">InputTargetDesc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FPooledRenderTargetDesc</span><span class="o">::</span><span class="n">Create2DDesc</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">FIntPoint</span><span class="p">(</span><span class="n">TileSize</span><span class="p">,</span><span class="w"> </span><span class="n">TileSize</span><span class="p">),</span><span class="w"> </span><span class="c1">// FIntPoint           InExtent</span>
+<span class="w">    </span><span class="n">PF_G16</span><span class="p">,</span><span class="w">                        </span><span class="c1">// EPixelFormat        InFormat</span>
+<span class="w">    </span><span class="n">FClearValueBinding</span><span class="o">::</span><span class="n">None</span><span class="p">,</span><span class="w">      </span><span class="c1">// FCLearValueBinding  InClearValue</span>
+<span class="w">    </span><span class="n">TexCreate_None</span><span class="p">,</span><span class="w">                </span><span class="c1">// ETextureCreateFlags InFlags</span>
+<span class="w">    </span><span class="n">TexCreate_ShaderResource</span><span class="p">,</span><span class="w">      </span><span class="c1">// ETextureCreateFlags InTargetableFlags</span>
+<span class="w">    </span><span class="nb">false</span><span class="w">                          </span><span class="c1">// bool                bInForceSeparateTargetAndShaderResource</span>
+<span class="w">                                   </span><span class="c1">// uint16              InNumMips             = 1</span>
+<span class="w">                                   </span><span class="c1">// bool                InAutowritable        = true</span>
+<span class="w">                                   </span><span class="c1">// bool                InCreateRTWriteMask   = false</span>
+<span class="w">                                   </span><span class="c1">// bool                InCreateFmask         = false</span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Get the Texture</span>
+<span class="n">TRefCountPtr</span><span class="o">&lt;</span><span class="n">IPooledRenderTarget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">InputTarget</span><span class="p">;</span><span class="w"></span>
+<span class="n">GRenderTargetPool</span><span class="p">.</span><span class="n">FindFreeElement</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RHICmdList</span><span class="p">,</span><span class="w">           </span><span class="c1">// FRHICommandList&amp;                   RHICmdList</span>
+<span class="w">    </span><span class="n">InputTargetDesc</span><span class="p">,</span><span class="w">      </span><span class="c1">// const FPooledRenderTargetDesc&amp;     InputDesc</span>
+<span class="w">    </span><span class="n">InputTarget</span><span class="p">,</span><span class="w">          </span><span class="c1">// TRefCountPtr&lt;IPooledRenderTarget&gt;&amp; Out</span>
+<span class="w">    </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;InputTarget&quot;</span><span class="p">)</span><span class="w">   </span><span class="c1">// const TCHAR*                       InDebugName</span>
+<span class="w">                          </span><span class="c1">// ERenderTargetTransience            TransienceHint          = ERenderTargetTransience::Transient</span>
+<span class="w">                          </span><span class="c1">// bool                               bDeferTextureAllocation = false</span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="initialize-input-target">
+<h3>Initialize Input Target<a class="headerlink" href="#initialize-input-target" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copy your input texture to the target texture</span>
+<span class="n">RHICmdList</span><span class="p">.</span><span class="n">CopyTexture</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetTextureRHI</span><span class="p">(</span><span class="n">CachedParams</span><span class="p">.</span><span class="n">OriginalTexture</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">ComputeShaderInput</span><span class="o">-&gt;</span><span class="n">GetRenderTargetItem</span><span class="p">().</span><span class="n">ShaderResourceTexture</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRHICopyTextureInfo</span><span class="p">()</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create 2D texture description for writing</span>
+<span class="n">FPooledRenderTargetDesc</span><span class="w"> </span><span class="n">OutputTargetDesc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FPooledRenderTargetDesc</span><span class="o">::</span><span class="n">Create2DDesc</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">FIntPoint</span><span class="p">(</span><span class="n">NumTilesX</span><span class="p">,</span><span class="w"> </span><span class="n">NumTilesY</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">PF_R8G8B8A8</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FClearValueBinding</span><span class="o">::</span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">TexCreate_None</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">TexCreate_UAV</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="n">TRefCountPtr</span><span class="o">&lt;</span><span class="n">IPooledRenderTarget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">OutputTarget</span><span class="p">;</span><span class="w"></span>
+<span class="n">GRenderTargetPool</span><span class="p">.</span><span class="n">FindFreeElement</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RHICmdList</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">OutputTargetDesc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">OutputTarget</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;OutputTarget&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="retrive-output">
+<h3>Retrive Output<a class="headerlink" href="#retrive-output" title="Permalink to this headline"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copy the output target to the output texture</span>
+<span class="n">RHICmdList</span><span class="p">.</span><span class="n">CopyTexture</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ComputeShaderOutput</span><span class="o">-&gt;</span><span class="n">GetRenderTargetItem</span><span class="p">().</span><span class="n">ShaderResourceTexture</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">GetTextureRHI</span><span class="p">(</span><span class="n">CachedParams</span><span class="p">.</span><span class="n">UpscaledTexture</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRHICopyTextureInfo</span><span class="p">()</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="use-custom-shaders-as-materials">
+<h4>Use Custom Shaders as materials<a class="headerlink" href="#use-custom-shaders-as-materials" title="Permalink to this headline"></a></h4>
+</section>
+</section>
+</section>
+<section id="shader-parameters">
+<h2>Shader Parameters<a class="headerlink" href="#shader-parameters" title="Permalink to this headline"></a></h2>
+<p>Common abbreviation:</p>
+<ul class="simple">
+<li><p>RDG: render graph</p></li>
+<li><p>UAV: unordered access view</p></li>
+<li><p>SRV: Shader Resource View</p></li>
+</ul>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p>SHADER_PARAMETER_ARRAY(float, MyScalarArray, [8])</p></li>
+<li><p>SHADER_PARAMETER_TEXTURE(Texture2D, MyTexture)</p></li>
+<li><p>SHADER_PARAMETER_SRV(Texture2D, MySRV)</p></li>
+<li><p>SHADER_PARAMETER_UAV(Texture2D, MyUAV)</p></li>
+<li><p>SHADER_PARAMETER_SAMPLER(SamplerState, MySampler)</p></li>
+<li><p>SHADER_PARAMETER_RDG_TEXTURE(Texture2D, MyTexture)</p></li>
+<li><p>SHADER_PARAMETER_RDG_TEXTURE_SRV(Texture2D, MySRV)</p></li>
+<li><p>SHADER_PARAMETER_RDG_TEXTURE_UAV(RWTexture2D, MyUAV)</p></li>
+<li><p>SHADER_PARAMETER_RDG_BUFFER(Buffer&lt;float4&gt;, MyBuffer)</p></li>
+<li><p>SHADER_PARAMETER_RDG_BUFFER_SRV(Buffer&lt;float4&gt;, MySRV)</p></li>
+<li><p>SHADER_PARAMETER_RDG_BUFFER_UAV(RWBuffer&lt;float4&gt;, MyUAV)</p></li>
+<li><p>SHADER_PARAMETER_RDG_UNIFORM_BUFFER(FMyStruct, MemberName)</p></li>
+<li><p>SHADER_PARAMETER_RDG_BUFFER_UPLOAD</p></li>
+</ul>
+<ul class="simple">
+<li><p>RDG_BUFFER_ACCESS(MyBuffer)</p></li>
+<li><p>RDG_BUFFER_ACCESS_DYNAMIC</p></li>
+<li><p>RDG_TEXTURE_ACCESS</p></li>
+<li><p>RDG_TEXTURE_ACCESS_DYNAMIC</p></li>
+</ul>
+</section>
+<section id="common-errors">
+<h2>Common Errors<a class="headerlink" href="#common-errors" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:344<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Windows GetLastError: The operation completed successfully. <span class="o">(</span><span class="m">0</span><span class="o">)</span>
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: <span class="o">===</span> Critical error: <span class="o">===</span>
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error:
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: Fatal error: <span class="o">[</span>File:C:/opt/UnrealEngine/Engine/Source/Runtime/RenderCore/Private/RenderingThread.cpp<span class="o">]</span> <span class="o">[</span>Line: <span class="m">902</span><span class="o">]</span>
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: Rendering thread exception:
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: Assertion failed: !GRDGInExecutePassScope <span class="o">[</span>File:C:/opt/UnrealEngine/Engine/Source/Runtime/RenderCore/Private/RenderGraphValidation.cpp<span class="o">]</span> <span class="o">[</span>Line: <span class="m">512</span><span class="o">]</span>
+<span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: Render graph is being executed recursively. This usually means a separate FRDGBuilder instance was created inside of an executing pass.
+</pre></div>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Rendering/ShaderInPlugin/Overview/">Custom Shaders</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/29973619/how-to-make-vs-code-treat-a-file-extensions-as-a-certain-language/51228725#51228725">Add shader extensions to VSCode</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">3</span></dt>
+<dd><p><a class="reference external" href="https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/RenderCore/Public/ShaderParameterMacros.h">ShaderParameterMacros</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">4</span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-data-types">HLSL Data types</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">5</span></dt>
+<dd><p><a class="reference external" href="https://medium.com/realities-io/using-compute-shaders-in-unreal-engine-4-f64bac65a907">Compute Shaders</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Compilation.html" class="btn btn-neutral float-left" title="Compilation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Doxygen.html" class="btn btn-neutral float-right" title="Doxygen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

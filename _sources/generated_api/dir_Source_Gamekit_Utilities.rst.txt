@@ -1,0 +1,22 @@
+.. _dir_Source_Gamekit_Utilities:
+
+
+Directory Utilities
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Utilities``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`
+- :ref:`file_Source_Gamekit_Utilities_GKSelection.cpp`
+- :ref:`file_Source_Gamekit_Utilities_GKSelection.h`
+
+

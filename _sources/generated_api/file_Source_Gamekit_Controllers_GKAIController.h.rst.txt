@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Controllers_GKAIController.h:
+
+File GKAIController.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Controllers>` (``Source/Gamekit/Controllers``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Controllers/GKAIController.h``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Controllers_GKAIController.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AIController.h`` (:ref:`file_Source_Gamekit_Controllers_GKAIController.h`)
+
+- ``CoreMinimal.h``
+
+- ``GKAIController.generated.h``
+
+- ``GenericTeamAgentInterface.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Controllers_GKAIController.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKAIController`
+

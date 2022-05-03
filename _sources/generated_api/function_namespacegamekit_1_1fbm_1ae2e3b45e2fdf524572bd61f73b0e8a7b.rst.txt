@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1fbm_1ae2e3b45e2fdf524572bd61f73b0e8a7b:
+
+Function gamekit::fbm::random
+=============================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::fbm::random(Vec2)
+   :project: GameKit

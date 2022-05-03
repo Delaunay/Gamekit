@@ -1,0 +1,67 @@
+
+.. _file_Source_Gamekit_States_GKPrivatePlayerState.h:
+
+File GKPrivatePlayerState.h
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_States>` (``Source/Gamekit/States``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/States/GKPrivatePlayerState.h``)
+-------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_States_GKPrivatePlayerState.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKPrivatePlayerState.generated.h``
+
+- ``GameFramework/Info.h``
+
+- ``GameFramework/PlayerState.h``
+
+- ``GenericTeamAgentInterface.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_States_GKPlayerState.cpp`
+
+- :ref:`file_Source_Gamekit_States_GKPrivatePlayerState.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKPrivatePlayerState`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKPrivatePlayerState_8h_1a7802d309072ba97dc0ad707fb0857572`
+

@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAbilityWidget:
+
+Class UGKAbilityWidget
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UUserWidget``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAbilityWidget
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

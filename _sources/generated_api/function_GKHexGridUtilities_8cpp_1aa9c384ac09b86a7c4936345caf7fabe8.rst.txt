@@ -1,0 +1,14 @@
+.. _exhale_function_GKHexGridUtilities_8cpp_1aa9c384ac09b86a7c4936345caf7fabe8:
+
+Function Distance
+=================
+
+- Defined in :ref:`file_Source_Gamekit_Grid_GKHexGridUtilities.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Distance(FIntVector, FIntVector)
+   :project: GameKit

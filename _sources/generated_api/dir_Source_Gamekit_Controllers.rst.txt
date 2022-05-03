@@ -1,0 +1,27 @@
+.. _dir_Source_Gamekit_Controllers:
+
+
+Directory Controllers
+=====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Controllers``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Controllers_GKAIController.cpp`
+- :ref:`file_Source_Gamekit_Controllers_GKAIController.h`
+- :ref:`file_Source_Gamekit_Controllers_GKPlayerController.cpp`
+- :ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`
+- :ref:`file_Source_Gamekit_Controllers_GKTacticianController.cpp`
+- :ref:`file_Source_Gamekit_Controllers_GKTacticianController.h`
+- :ref:`file_Source_Gamekit_Controllers_GKUnitController.cpp`
+- :ref:`file_Source_Gamekit_Controllers_GKUnitController.h`
+
+

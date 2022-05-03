@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abilities &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Units" href="Units.html" />
+    <link rel="prev" title="Installation" href="../Welcome/Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Abilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ability-datatable-initialization">Ability DataTable Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ability-activation-flow">Ability Activation Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ability-replication-flow">Ability Replication Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#animations">Animations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-interface">User Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spell-button-states">Spell Button States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-ability-state">UI &amp; Ability State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Abilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/DataDriven/Abilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abilities">
+<h1>Abilities<a class="headerlink" href="#abilities" title="Permalink to this headline"></a></h1>
+<p>Relevant classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../generated_api/classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKGameplayAbility</span></code></a>: basic Gameplay Ability for skills and items, implements a few top down casting options</p></li>
+<li><p><a class="reference internal" href="../generated_api/structFGKAbilityStatic.html#_CPPv416FGKAbilityStatic" title="FGKAbilityStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAbilityStatic</span></code></a>: configurable settings for abilities</p></li>
+<li><p><a class="reference internal" href="../generated_api/classAGKAbilityTarget__Actor.html#_CPPv422AGKAbilityTarget_Actor" title="AGKAbilityTarget_Actor"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKAbilityTarget_Actor</span></code></a>: used to select a target for a given ability</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKAbilitySystemComponent.html#_CPPv425UGKAbilitySystemComponent" title="UGKAbilitySystemComponent"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAbilitySystemComponent</span></code></a></p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKCastPointAnimNotify.html#_CPPv422UGKCastPointAnimNotify" title="UGKCastPointAnimNotify"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKCastPointAnimNotify</span></code></a>: used to notify the ability when the animation reached a given point</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKAttributeSet.html#_CPPv415UGKAttributeSet" title="UGKAttributeSet"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAttributeSet</span></code></a>: defines a set of attributes for characters (Health, Mana, Stamina, etc…)</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKAbilityWidget.html#_CPPv416UGKAbilityWidget" title="UGKAbilityWidget"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAbilityWidget</span></code></a>: defines a basic interface for widget representing an ability state</p></li>
+</ul>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Data-Driven</strong>: Ability can generate their own GameplayEffect at runtime</p></li>
+<li><p><strong>Generic</strong>: Ability does not assume a specific Character/Skeleton</p></li>
+<li><p><strong>Multiplayer ready</strong></p></li>
+<li><p><strong>Basic UI</strong>: easier debugging</p></li>
+</ul>
+</section>
+<section id="define-abilities">
+<h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this headline"></a></h2>
+<p>Abilities are define inside a json file.
+The list of customizable properties can be found here <a class="reference internal" href="../generated_api/structFGKAbilityStatic.html#_CPPv416FGKAbilityStatic" title="FGKAbilityStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAbilityStatic</span></code></a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fireball&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AbilityKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Skill&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;LocalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSLOCTEXT(\&quot;[0A85C43C484A243EF7B6B7B642AD2ACB]\&quot;, \&quot;EC9BA0DD417F0C07C07E3DBB00F88785\&quot;, \&quot;Fire Ball\&quot;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;LocalDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSLOCTEXT(\&quot;[0A85C43C484A243EF7B6B7B642AD2ACB]\&quot;, \&quot;9CB2744E447BF19F751B929142E6F484\&quot;, \&quot;Launch a roaring ball of fire in a straight line\&quot;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Texture2D&#39;/Gamekit/Textures/IconsSkills/fireball-red-1.fireball-red-1&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;MaxLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AbilityEffects&quot;</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Cost&quot;</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;Attribute&quot;</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;AttributeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mana&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;Attribute&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Script/Gamekit.GKAttributeSet:Mana&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;AttributeOwner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Class&#39;/Script/Gamekit.GKAttributeSet&#39;&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Cooldown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;Price&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;MaxStack&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AreaOfEffect&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;CastMaxRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;CastMinRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AbilityBehavior&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PointTarget&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AbilityTargetActorClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BlueprintGeneratedClass&#39;/Game/Abilities/TargetActors/ControllerTrace.ControllerTrace_C&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;TargetObjectTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;CastTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.20000000298023224</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;ChannelTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AbilityAnimation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Attack&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;ProjectileActorClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BlueprintGeneratedClass&#39;/Game/Abilities/Projectiles/BP_GA_Projectile.BP_GA_Projectile_C&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;ProjectileSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;ProjectileBehavior&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Directional&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;ProjectileRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1600</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;AOEActorClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<section id="ability-datatable-initialization">
+<h3>Ability DataTable Initialization<a class="headerlink" href="#ability-datatable-initialization" title="Permalink to this headline"></a></h3>
+<img alt="../_images/AbilityDataDriven.png" src="../_images/AbilityDataDriven.png" />
+</section>
+<section id="ability-activation-flow">
+<h3>Ability Activation Flow<a class="headerlink" href="#ability-activation-flow" title="Permalink to this headline"></a></h3>
+<img alt="../_images/AbilityActivationFlow.png" src="../_images/AbilityActivationFlow.png" />
+</section>
+<section id="ability-replication-flow">
+<h3>Ability Replication Flow<a class="headerlink" href="#ability-replication-flow" title="Permalink to this headline"></a></h3>
+<img alt="../_images/AbilityReplicationFlow.png" src="../_images/AbilityReplicationFlow.png" />
+</section>
+<section id="animations">
+<h3>Animations<a class="headerlink" href="#animations" title="Permalink to this headline"></a></h3>
+<p>To make abilities generic, the animations montage themselves are not specified.
+Instead an animation kind is set (Channelling, Attack, Cast, etc..) which is a single enumerator
+<a class="reference internal" href="../generated_api/enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab.html#_CPPv420EGK_AbilityAnimation" title="EGK_AbilityAnimation"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">EGK_AbilityAnimation</span></code></a> representing the kind of annimation an ability can use.</p>
+<p>The animation montage are specified by the Character itself through its <a class="reference internal" href="../generated_api/structFGKAnimationSet.html#_CPPv415FGKAnimationSet" title="FGKAnimationSet"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAnimationSet</span></code></a> (inside <a class="reference internal" href="../generated_api/structFGKUnitStatic.html#_CPPv413FGKUnitStatic" title="FGKUnitStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKUnitStatic</span></code></a>)
+which our ability can sample from.</p>
+<p>When an ability is activated the <a class="reference internal" href="../generated_api/structFGKAnimationSet.html#_CPPv415FGKAnimationSet" title="FGKAnimationSet"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAnimationSet</span></code></a> is fectched from the character to the ability
+and the right animation is then played. This enable us to use the same ability for different
+characters which can have different animation as well.</p>
+<img alt="../_images/AbilityAnimations.png" src="../_images/AbilityAnimations.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setup your Gameplay Ability globals inside DefaultGame.ini to get failure tags.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[/Script/GameplayAbilities.AbilitySystemGlobals]</span><span class="w"></span>
+<span class="na">ActivateFailIsDeadName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
+<span class="na">ActivateFailCooldownName</span><span class="o">=</span><span class="s">Cooldown</span><span class="w"></span>
+<span class="na">ActivateFailCostName</span><span class="o">=</span><span class="s">Failure.Cost</span><span class="w"></span>
+<span class="na">ActivateFailTagsBlockedName</span><span class="o">=</span><span class="s">Failure.Blocked</span><span class="w"></span>
+<span class="na">ActivateFailTagsMissingName</span><span class="o">=</span><span class="s">Failure.Missing</span><span class="w"></span>
+<span class="na">ActivateFailNetworkingTag</span><span class="o">=</span><span class="s">Failure.Network</span><span class="w"></span>
+</pre></div>
+</div>
+<p>in DefaultGameplayTags.ini</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[/Script/GameplayTags.GameplayTagsSettings]</span><span class="w"></span>
+<span class="na">ImportTagsFromConfig</span><span class="o">=</span><span class="s">True</span><span class="w"></span>
+<span class="na">WarnOnInvalidTags</span><span class="o">=</span><span class="s">True</span><span class="w"></span>
+<span class="na">FastReplication</span><span class="o">=</span><span class="s">False</span><span class="w"></span>
+<span class="na">InvalidTagCharacters</span><span class="o">=</span><span class="s">&quot;\&quot;\&#39;,&quot;</span><span class="w"></span>
+<span class="na">NumBitsForContainerSize</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
+<span class="na">NetIndexFirstBitSegment</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;AbilityName&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;AbilityName.Attack&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Animation.Play&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown.Attack&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown.Skill1&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Debuff.Stun&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Dispel.Death&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Blocked&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Cost&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Missing&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Network&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;State.Dead&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="user-interface">
+<h2>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline"></a></h2>
+<section id="spell-button-states">
+<h3>Spell Button States<a class="headerlink" href="#spell-button-states" title="Permalink to this headline"></a></h3>
+<p>See <a class="reference internal" href="../generated_api/classUGKAbilityWidget.html#_CPPv416UGKAbilityWidget" title="UGKAbilityWidget"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAbilityWidget</span></code></a> for a basic set of implementable event</p>
+<p>Here is a list of states you might want to consider when implementing
+a spell button.</p>
+<ol class="arabic simple">
+<li><p>Ability is available and can be casted (UMG State Normal)</p></li>
+<li><p>Ability is picking a target</p></li>
+<li><p>Ability is being cast (Animation)</p></li>
+<li><p>Ability is on cooldown</p></li>
+<li><p>Backswing animation</p></li>
+<li><p>Ability requirements/cost are not met</p></li>
+<li><p>Ability cannot be cast because of debuf</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="../_images/btn_cooldown.PNG" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_normal.PNG"><img alt="../_images/btn_normal.PNG" src="../_images/btn_normal.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_targetting.PNG"><img alt="../_images/btn_targetting.PNG" src="../_images/btn_targetting.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_oom.PNG"><img alt="../_images/btn_oom.PNG" src="../_images/btn_oom.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
+</section>
+<section id="ui-ability-state">
+<h3>UI &amp; Ability State<a class="headerlink" href="#ui-ability-state" title="Permalink to this headline"></a></h3>
+<p>The easiest way to bind the ability to a UI element is to use async task that will wait on events</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../generated_api/classUGKAsyncTaskCooldownChanged.html#_CPPv427UGKAsyncTaskCooldownChanged" title="UGKAsyncTaskCooldownChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTaskCooldownChanged</span></code></a>: can be used to keep track of the cooldowns.</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKAsyncTaskAttributeChanged.html#_CPPv428UGKAsyncTaskAttributeChanged" title="UGKAsyncTaskAttributeChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTaskAttributeChanged</span></code></a>: can be used to listen to energy level and detect when an ability lacks its resources to be cast.</p></li>
+<li><p><a class="reference internal" href="../generated_api/classUGKAsyncTask__GameplayEffectChanged.html#_CPPv434UGKAsyncTask_GameplayEffectChanged" title="UGKAsyncTask_GameplayEffectChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTask_GameplayEffectChanged</span></code></a>: can be used to listen to debuff that will disable spell casting.</p></li>
+</ul>
+<section id="resources">
+<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this headline"></a></h4>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>Gameplay Ability System <a class="reference external" href="https://github.com/tranek/GASDocumentation">GAS</a>.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Welcome/Installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Units.html" class="btn btn-neutral float-right" title="Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

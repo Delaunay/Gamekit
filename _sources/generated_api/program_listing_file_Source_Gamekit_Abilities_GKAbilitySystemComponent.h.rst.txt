@@ -1,0 +1,140 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h:
+
+Program Listing for File GKAbilitySystemComponent.h
+===================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h>` (``Source/Gamekit/Abilities/GKAbilitySystemComponent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityTypes.h"
+   #include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "AbilitySystemComponent.h"
+   
+   // Generated
+   #include "GKAbilitySystemComponent.generated.h"
+   
+   class UGKGameplayAbility;
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKAbilityFailedDelegate,
+                                                const UGameplayAbility *,
+                                                Ability,
+                                                const FGameplayTagContainer &,
+                                                FailureReason);
+   
+   /* Queued Ability
+    *
+    * For an Ability to be queuable, all the data it requires
+    * needs to be available when the Ability is first queued AND
+    * at the time of execution
+    *
+    * So moving to a point on the map is fine.
+    * Casting a spell on an ennemy will only be possible if
+    * the enemy is in range & visible at the time.
+    *
+    * The queued ability saves all the data it requires
+    * and will skip some activation steps (like requesting targets)
+    *
+    * Instead the data will be validated before execution
+    */
+   USTRUCT()
+   struct GAMEKIT_API FGKQueuedAbility
+   {
+       GENERATED_BODY();
+   
+       public:
+       // Ability To be executed with all the appropriate information
+       // FGameplayAbilitySpecHandle Handle;
+   
+       // FGameplayAbilityActorInfo ActorInfo;
+   
+       // FGameplayAbilityActivationInfo ActivationInfo;
+   
+       // Data available to the ability at Execution
+       // TODO: Make/Use a TargetData Handle
+       AActor *Target;
+   
+       FVector Location;
+   };
+   
+   UCLASS(BlueprintType, Blueprintable)
+   class GAMEKIT_API UGKAbilitySystemComponent: public UAbilitySystemComponent
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructors and overrides
+       UGKAbilitySystemComponent();
+   
+       static UGKAbilitySystemComponent *GetAbilitySystemComponentFromActor(const AActor *Actor,
+                                                                            bool          LookForComponent = false);
+   
+       void OnGiveAbility(FGameplayAbilitySpec &AbilitySpec) override;
+   
+       UFUNCTION(BlueprintCallable)
+       bool IsInitialized() const;
+   
+       // Queue Interface
+       // ---------------
+       void ExecuteQueuedAbility(FGKQueuedAbility const &) {}
+   
+       // Check if there are any Abilities in queue & execute them
+       void ExecuteAbilityQueue(){};
+   
+       void ClearAbilityQueue() {}
+   
+       void AddToQueue() {}
+   
+       TArray<FGKQueuedAbility> AbilityQueue;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKAbilityFailedDelegate OnAbilityFailed;
+   
+       void OnAbilityFailed_Native(const UGameplayAbility *Ability, const FGameplayTagContainer &FailureReason);
+   
+       UFUNCTION(BlueprintCallable, Category = Abilities)
+       void CancelAllPendingAbilities();
+   
+       UFUNCTION(BlueprintCallable, Category = Abilities)
+       void LevelUpAbility(FGameplayAbilitySpecHandle Handle);
+   
+       UFUNCTION(Server, Reliable)
+       void ServerLevelUpAbility(FGameplayAbilitySpecHandle Handle);
+   
+       UFUNCTION(Client, Reliable)
+       void ClientLevelUpAbility_Result(FGameplayAbilitySpecHandle Handle, int Level);
+   
+       UFUNCTION(BlueprintCallable, Category = Abilities)
+       void TryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
+   
+       UFUNCTION(Server, Reliable)
+       void ServerTryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
+   
+       // protected:
+       bool Initialized;
+   
+       friend class AGKGASCharacter;
+       friend class UGKGameplayAbility;
+   
+       protected:
+       UPROPERTY()
+       TMap<TSubclassOf<AGKAbilityTarget_Actor>, AGKAbilityTarget_Actor *> AbilityTarget_ActorCache;
+   
+       static TSubclassOf<AGKAbilityTarget_Actor> GetAbilityTarget_ActorClass(EGK_TargetingMode Mode);
+   
+       public:
+       AGKAbilityTarget_Actor *GetAbilityTarget_Actor(TSubclassOf<AGKAbilityTarget_Actor> AbilityTarget_ActorClass);
+   
+       AGKAbilityTarget_Actor *GetAbilityTarget_Actor(EGK_TargetingMode Mode);
+   };

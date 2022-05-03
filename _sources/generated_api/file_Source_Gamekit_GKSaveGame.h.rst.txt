@@ -1,0 +1,76 @@
+
+.. _file_Source_Gamekit_GKSaveGame.h:
+
+File GKSaveGame.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKSaveGame.h``)
+--------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKSaveGame.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKSaveGame.generated.h``
+
+- ``GameFramework/SaveGame.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Gamekit/Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
+
+- ``Gamekit/Items/GKItemTypes.h`` (:ref:`file_Source_Gamekit_Items_GKItemTypes.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Controllers_GKPlayerController.cpp`
+
+- :ref:`file_Source_Gamekit_GKGameInstance.cpp`
+
+- :ref:`file_Source_Gamekit_GKSaveGame.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_EGKSaveGameVersion`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKSaveGame`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespaceEGKSaveGameVersion_1a1d08fa10138bd365319d1d74b1bc4b79`
+

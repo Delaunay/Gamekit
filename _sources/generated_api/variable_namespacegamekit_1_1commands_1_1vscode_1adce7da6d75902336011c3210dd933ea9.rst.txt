@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1commands_1_1vscode_1adce7da6d75902336011c3210dd933ea9:
+
+Variable gamekit::commands::vscode::COMMAND
+===========================================
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_vscode.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::commands::vscode::COMMAND
+   :project: GameKit

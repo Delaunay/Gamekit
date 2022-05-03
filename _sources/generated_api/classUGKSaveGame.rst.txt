@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKSaveGame:
+
+Class UGKSaveGame
+=================
+
+- Defined in :ref:`file_Source_Gamekit_GKSaveGame.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public USaveGame``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKSaveGame
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

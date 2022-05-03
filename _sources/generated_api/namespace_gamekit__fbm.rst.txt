@@ -1,0 +1,66 @@
+
+.. _namespace_gamekit__fbm:
+
+Namespace gamekit::fbm
+======================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1fbm_1_1FractionalBrownianmotion`
+
+- :ref:`exhale_class_classgamekit_1_1fbm_1_1Vec2`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1a9d2974a371633a57335ee18d0129fbde`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1a76f14ec46581357cd3f6ab8b5966dfa1`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1a4a3e0d541b62529b10ca62896c028801`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1aec52451c1d940568e2f3172531912c3f`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1a0638adcb65e198c1d9086c6119bf8b64`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1ae2e3b45e2fdf524572bd61f73b0e8a7b`
+
+- :ref:`exhale_function_namespacegamekit_1_1fbm_1a09ff4d0ecc44a4e8590df7cd671be27a`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1aacfe26c13094a685884d8667cd1627f6`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a2f92803ae86fc105342288c595f8cd3c`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a102006c379b4019290b5df723e7269a5`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1ad08fddceb5b39d7a32214bf5eab12fb9`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a9263c188279f89cc6a429739c8ef5497`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a335445d3c1e3f57e07581ed8d4b0b0ff`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1aff25f1092822ceb3ae148b2607e7a25a`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a9fca6e00cd0629f73ccb6566a3ba337e`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a0c23cb5c32e31e1810eb7da462c7ac92`
+
+- :ref:`exhale_variable_namespacegamekit_1_1fbm_1a98ca59f3df9c91f48964de148875a896`

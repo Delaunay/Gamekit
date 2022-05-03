@@ -1,0 +1,101 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h:
+
+Program Listing for File GK_Upscaler_Strategy.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h>` (``Source/Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Container/Matrix.h"
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GK_Upscaler_Strategy.generated.h"
+   
+   #define UpscaledTextureType UTexture2D
+   // #define UpscaledTextureType UCanvasRenderTarget2D
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKTransformerStrategy: public UActorComponent
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKTransformerStrategy();
+   
+       virtual void Initialize();
+   
+       virtual void Stop() {}
+   
+       virtual void Transform(class AGKFogOfWarTeam *FactionFog) {}
+   
+       virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) { return nullptr; }
+   
+       FORCEINLINE FIntVector UpscaledTextureSize() const
+       {
+           if (bFixedSize)
+               return FixedSize;
+           return TextureSize * Multiplier;
+       }
+   
+       void OnNewFaction(FName Name) { GetFactionTexture(Name, true); }
+   
+       protected:
+       bool                     bUseUpscaledVision;
+       FIntVector               FixedSize;
+       bool                     bFixedSize;
+       FIntVector               TextureSize;
+       uint8                    Multiplier;
+       bool                     bInitialized;
+       class AGKFogOfWarVolume *FogOfWarVolume;
+       FUpdateTextureRegion2D   UpdateRegion;
+   };
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKTransformerStrategyTexture2D: public UGKTransformerStrategy
+   {
+       GENERATED_BODY()
+   
+       public:
+       virtual void Initialize();
+       virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
+   
+       protected:
+       class UTexture2D *GetFactionTransformTarget(FName name, bool bCreateRenderTarget = true);
+   
+       class UTexture2D *CreateTransformTarget();
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UTexture2D *> TransformedTarget;
+   };
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKTransformerStrategyCanvas: public UGKTransformerStrategy
+   {
+       GENERATED_BODY()
+   
+       public:
+       virtual void Initialize();
+   
+       virtual class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true);
+   
+       protected:
+       class UCanvasRenderTarget2D *GetFactionTransformTarget(FName name, bool bCreateRenderTarget = true);
+   
+       class UCanvasRenderTarget2D *CreateTransformTarget();
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UCanvasRenderTarget2D *> TransformedTarget;
+   };

@@ -1,0 +1,39 @@
+
+.. _file_Source_Gamekit_GKSaveGame.cpp:
+
+File GKSaveGame.cpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKSaveGame.cpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKSaveGame.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKGameInstance.h`` (:ref:`file_Source_Gamekit_GKGameInstance.h`)
+
+- ``GKSaveGame.h`` (:ref:`file_Source_Gamekit_GKSaveGame.h`)
+
+
+
+
+

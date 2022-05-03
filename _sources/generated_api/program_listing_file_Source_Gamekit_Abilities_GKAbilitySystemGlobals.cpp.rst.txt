@@ -1,0 +1,38 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.cpp:
+
+Program Listing for File GKAbilitySystemGlobals.cpp
+===================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.cpp>` (``Source/Gamekit/Abilities/GKAbilitySystemGlobals.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
+   
+   UGKAbilitySystemGlobals::UGKAbilitySystemGlobals(const FObjectInitializer &ObjectInitializer): Super(ObjectInitializer)
+   {
+   }
+   
+   void UGKAbilitySystemGlobals::InitGlobalTags()
+   {
+       UAbilitySystemGlobals::InitGlobalTags();
+   
+       if (ActivateFailNotYetLearnedName != NAME_None)
+       {
+           ActivateFailNotYetLearnedTag = FGameplayTag::RequestGameplayTag(ActivateFailNotYetLearnedName);
+       }
+   
+       if (DeathName != NAME_None)
+       {
+           DeathTag = FGameplayTag::RequestGameplayTag(DeathName);
+       }
+   
+       if (DeathDispelName != NAME_None)
+       {
+           DeathDispelTag = FGameplayTag::RequestGameplayTag(DeathDispelName);
+       }
+   }

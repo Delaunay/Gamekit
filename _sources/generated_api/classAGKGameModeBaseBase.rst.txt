@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKGameModeBaseBase:
+
+Class AGKGameModeBaseBase
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_GKGameMode.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGameModeBase``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKGameModeBaseBase
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

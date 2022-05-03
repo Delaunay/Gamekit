@@ -1,0 +1,17 @@
+.. _exhale_class_classFUpscalingDispatcher:
+
+Class FUpscalingDispatcher
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FUpscalingDispatcher
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

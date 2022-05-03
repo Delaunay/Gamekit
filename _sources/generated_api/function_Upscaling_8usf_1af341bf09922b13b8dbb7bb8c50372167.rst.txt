@@ -1,0 +1,14 @@
+.. _exhale_function_Upscaling_8usf_1af341bf09922b13b8dbb7bb8c50372167:
+
+Function MainComputeShader(uint3 GroupId :SV_GroupID, uint3 ThreadId :SV_DispatchThreadID, uint3 GroupThreadId:SV_GroupThreadID, uint GroupdIndex :SV_GroupIndex)
+=================================================================================================================================================================
+
+- Defined in :ref:`file_Shaders_Upscaling.usf`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MainComputeShader(uint3 GroupId :SV_GroupID, uint3 ThreadId :SV_DispatchThreadID, uint3 GroupThreadId:SV_GroupThreadID, uint GroupdIndex :SV_GroupIndex)
+   :project: GameKit

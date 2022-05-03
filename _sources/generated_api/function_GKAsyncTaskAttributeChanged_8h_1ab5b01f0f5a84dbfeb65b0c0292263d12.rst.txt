@@ -1,0 +1,14 @@
+.. _exhale_function_GKAsyncTaskAttributeChanged_8h_1ab5b01f0f5a84dbfeb65b0c0292263d12:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttributeChanged, FGameplayAttribute, Attribute, float, NewValue, float, OldValue)
+=============================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskAttributeChanged.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttributeChanged, FGameplayAttribute, Attribute, float, NewValue, float, OldValue)
+   :project: GameKit

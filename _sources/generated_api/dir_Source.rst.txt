@@ -1,0 +1,18 @@
+.. _dir_Source:
+
+
+Directory Source
+================
+
+
+*Directory path:* ``Source``
+
+Subdirectories
+--------------
+
+- :ref:`dir_Source_Gamekit`
+- :ref:`dir_Source_GamekitTestSuite`
+- :ref:`dir_Source_Python`
+
+
+

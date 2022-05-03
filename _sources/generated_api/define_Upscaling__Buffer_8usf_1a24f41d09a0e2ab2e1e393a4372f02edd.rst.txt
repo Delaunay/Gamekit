@@ -1,0 +1,14 @@
+.. _exhale_define_Upscaling__Buffer_8usf_1a24f41d09a0e2ab2e1e393a4372f02edd:
+
+Define GET
+==========
+
+- Defined in :ref:`file_Shaders_Upscaling_Buffer.usf`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GET
+   :project: GameKit

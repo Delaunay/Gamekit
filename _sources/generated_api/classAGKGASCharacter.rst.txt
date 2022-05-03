@@ -1,0 +1,27 @@
+.. _exhale_class_classAGKGASCharacter:
+
+Class AGKGASCharacter
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKGASCharacter.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public ACharacter``
+- ``public IAbilitySystemInterface``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKGASCharacter
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

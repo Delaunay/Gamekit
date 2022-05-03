@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKWorldSettings:
+
+Class AGKWorldSettings
+======================
+
+- Defined in :ref:`file_Source_Gamekit_GKWorldSettings.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AWorldSettings``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKWorldSettings
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

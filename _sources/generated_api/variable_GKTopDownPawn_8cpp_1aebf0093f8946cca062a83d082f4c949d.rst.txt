@@ -1,0 +1,14 @@
+.. _exhale_variable_GKTopDownPawn_8cpp_1aebf0093f8946cca062a83d082f4c949d:
+
+Variable ones
+=============
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKTopDownPawn.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ones
+   :project: GameKit

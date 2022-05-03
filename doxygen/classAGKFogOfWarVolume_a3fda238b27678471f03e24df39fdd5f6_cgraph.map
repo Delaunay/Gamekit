@@ -1,0 +1,8 @@
+<map id="AGKFogOfWarVolume::SetMatrialParams" name="AGKFogOfWarVolume::SetMatrialParams">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,176,145"/>
+<area shape="rect" id="node2" href="$classAGKFogOfWarVolume.html#a3d0af93c75cc4f0d81b22139521aa5cd" title=" " alt="" coords="227,5,446,47"/>
+<area shape="rect" id="node4" href="$classAGKFogOfWarVolume.html#ab6d9150e432af1bc5ccd6f1a7666c25d" title=" " alt="" coords="224,71,449,112"/>
+<area shape="rect" id="node5" href="$classAGKFogOfWarVolume.html#ae7f8a6f5662a3af1f74af4025b7e1200" title=" " alt="" coords="237,136,437,177"/>
+<area shape="rect" id="node6" href="$classAGKFogOfWarVolume.html#a07d50dd7848b4ebc627e819c9c676a73" title=" " alt="" coords="227,201,447,243"/>
+<area shape="rect" id="node3" href="$classAGKFogOfWarVolume.html#ad20a4329d83110707ad71cb93f0c1f28" title="Returns the material parameter collection used to configure the Fog of War." alt="" coords="497,104,728,145"/>
+</map>

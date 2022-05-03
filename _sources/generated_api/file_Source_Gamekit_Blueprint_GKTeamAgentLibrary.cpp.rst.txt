@@ -1,0 +1,39 @@
+
+.. _file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp:
+
+File GKTeamAgentLibrary.cpp
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Blueprint>` (``Source/Gamekit/Blueprint``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Blueprint/GKTeamAgentLibrary.cpp``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Blueprint/GKTeamAgentLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.h`)
+
+- ``Gamekit/GKWorldSettings.h`` (:ref:`file_Source_Gamekit_GKWorldSettings.h`)
+
+
+
+
+

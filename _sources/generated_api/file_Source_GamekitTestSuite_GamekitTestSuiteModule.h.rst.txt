@@ -1,0 +1,52 @@
+
+.. _file_Source_GamekitTestSuite_GamekitTestSuiteModule.h:
+
+File GamekitTestSuiteModule.h
+=============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitTestSuite>` (``Source/GamekitTestSuite``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/GamekitTestSuite/GamekitTestSuiteModule.h``)
+-----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_GamekitTestSuite_GamekitTestSuiteModule.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``Modules/ModuleManager.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_GamekitTestSuite_GamekitTestSuiteModule.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classIGamekitTestSuiteModule`
+

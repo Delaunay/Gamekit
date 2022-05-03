@@ -1,0 +1,71 @@
+
+.. _file_Source_Gamekit_Container_Matrix.h:
+
+File Matrix.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Container>` (``Source/Gamekit/Container``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Container/Matrix.h``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Container_Matrix.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Containers/Array.h``
+
+- ``HAL/UnrealMemory.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Blueprint_GKMazeGeneration.cpp`
+
+- :ref:`file_Source_Gamekit_Container_Matrix.cpp`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_Strategy.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_CPU_Upscaler.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_Upscaler_Strategy.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structTMatrix3D`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Matrix_8h_1a3c6c38dd3078702eb203f2e860f2bc00`
+

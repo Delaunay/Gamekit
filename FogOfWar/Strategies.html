@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Strategies &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GameFlow" href="../Game/GameFlow.html" />
+    <link rel="prev" title="Fog Of War" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Fog Of War</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Drawing Strategies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#implementations">Implementations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raycast-v1">RayCast V1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raycast-v2">RayCast V2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raycast-v3">RayCast V3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-tiles-v1">Discrete Tiles V1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison">Comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms-exploration-upscaling">Transforms (Exploration &amp; Upscaling)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#idea">Idea</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Drawing Strategies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/FogOfWar/Strategies.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drawing-strategies">
+<h1>Drawing Strategies<a class="headerlink" href="#drawing-strategies" title="Permalink to this headline"></a></h1>
+<p><a class="reference internal" href="../generated_api/classAGKFogOfWarVolume.html#_CPPv417AGKFogOfWarVolume" title="AGKFogOfWarVolume"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code></a> implements different strategies that implements the fog of war drawing.
+The default implementation is <a class="reference internal" href="../generated_api/classUGKShadowCasting.html#_CPPv416UGKShadowCasting" title="UGKShadowCasting"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKShadowCasting</span></code></a>, other strategies are provided for their
+educational value but should not be used in production.</p>
+<section id="implementations">
+<h2>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline"></a></h2>
+<p>All fog implementations inherit from <a class="reference internal" href="../generated_api/classUGKFogOfWarStrategy.html#_CPPv419UGKFogOfWarStrategy" title="UGKFogOfWarStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKFogOfWarStrategy</span></code></a>.
+Drawing the fog is half of the problem, has you will need to be able to query
+the fog to know if a unit from Team X is visible by Team Y for replication purposes.
+If the feature is not implemented, clients will receive replication updates for hidden units
+and cheater could use the data to gain an unfair advantage.</p>
+<section id="raycast-v1">
+<h3>RayCast V1<a class="headerlink" href="#raycast-v1" title="Permalink to this headline"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>RayCast is using a custom collision channel, it is expected to be using <code class="docutils literal notranslate"><span class="pre">ECC_GameTraceChannel1</span></code> by default,
+the exact collision channel is customizable using the Collision trace property in <code class="docutils literal notranslate"><span class="pre">FogOfWarVolume</span></code></p>
+<p>The Collision channel <code class="docutils literal notranslate"><span class="pre">FoWObstacle</span></code> is used to control if the actor is blocking vision or not,
+by default all actors block visions.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[/Script/Engine.CollisionProfile]</span><span class="w"></span>
+<span class="na">+DefaultChannelResponses</span><span class="o">=</span><span class="s">(Channel=ECC_GameTraceChannel1,DefaultResponse=ECR_Block,bTraceType=True,bStaticObject=False,Name=&quot;FoWObstacle&quot;)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Draws <code class="docutils literal notranslate"><span class="pre">n</span></code> rays, draw lines of a given width on the Fog of War texture.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 13%" />
+<col style="width: 31%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Tickness</p></td>
+<td><p>Rays</p></td>
+<td><p>Render</p></td>
+<td><p>Fog Texture</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>36</p></td>
+<td><p><img alt="V1_36_View" src="../_images/FogOfWar_RayCast_V1_36Rays.PNG" /></p></td>
+<td><p><img alt="V1_36_Render" src="../_images/FogOfWar_RayCast_V1_36Rays_RenderTexture.PNG" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>360</p></td>
+<td><p><img alt="V1_360_View" src="../_images/FogOfWar_RayCast_V1_360Rays_Thickness1.PNG" /></p></td>
+<td><p><img alt="V1_360_Render" src="../_images/FogOfWar_RayCast_V1_360Rays_Tickness1_RenderTexture.PNG" /></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>720</p></td>
+<td><p><img alt="V1_720_View" src="../_images/FogOfWar_RayCast_V1_720Rays.PNG" /></p></td>
+<td><p><img alt="V1_720_Render" src="../_images/FogOfWar_RayCast_V1_720Rays_RenderTexture.PNG" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="raycast-v2">
+<h3>RayCast V2<a class="headerlink" href="#raycast-v2" title="Permalink to this headline"></a></h3>
+<p>Draws <code class="docutils literal notranslate"><span class="pre">n</span></code> rays, draw triangles with a material.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 41%" />
+<col style="width: 43%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Rays</p></td>
+<td><p>Render</p></td>
+<td><p>Fog Texture</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p><img alt="V2_12_View" src="../_images/FogOfWar_RayCast_V2_12Rays.PNG" /></p></td>
+<td><p><img alt="V2_12_Render" src="../_images/FogOfWar_RayCast_V2_12Rays_RenderTexture.PNG" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>36</p></td>
+<td><p><img alt="V2_36_View" src="../_images/FogOfWar_RayCast_V2_36Rays.PNG" /></p></td>
+<td><p><img alt="V2_36_Render" src="../_images/FogOfWar_RayCast_V2_36Rays_RenderTexture.PNG" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="raycast-v3">
+<h3>RayCast V3<a class="headerlink" href="#raycast-v3" title="Permalink to this headline"></a></h3>
+<p>For each actors in vision range trace 4 rays; 2 Left/right rays, one that misses and one that hits</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 41%" />
+<col style="width: 43%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Rays</p></td>
+<td><p>Render</p></td>
+<td><p>Fog Texture</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p><img alt="V3_12_View" src="../_images/FogOfWar_RayCast_V3_12Rays.PNG" /></p></td>
+<td><p><img alt="V3_12_Render" src="../_images/FogOfWar_RayCast_V3_12Rays_RenderTexture.PNG" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="discrete-tiles-v1">
+<h3>Discrete Tiles V1<a class="headerlink" href="#discrete-tiles-v1" title="Permalink to this headline"></a></h3>
+<p>Split the world in square tiles &amp; draw the line of sight.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 43%" />
+<col style="width: 43%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Upscaled</p></td>
+<td><p>Render</p></td>
+<td><p>Fog Texture</p></td>
+</tr>
+<tr class="row-even"><td><p>Yes</p></td>
+<td><p><img alt="V1_Discrete_Render_Upscaled" src="../_images/FogOfWar_ShadowCasting_V1_Upscaled.PNG" /></p></td>
+<td><p><img alt="V1_Discrete_Render" src="../_images/FogOfWar_ShadowCasting_V1_RenderTexture.PNG" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 32%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Strategy</p></td>
+<td><p>Pros</p></td>
+<td><p>Cons</p></td>
+</tr>
+<tr class="row-even"><td><p>RayCast V1</p></td>
+<td></td>
+<td><ul class="simple">
+<li><p>x 2 Slow</p></li>
+<li><p>No Mutiplayer</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>RayCast V2</p></td>
+<td><ul class="simple">
+<li><p>Less Rays than V1</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>2x Jittery</p></li>
+<li><p>Slow</p></li>
+<li><p>No Mutiplayer</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>RayCast V3</p></td>
+<td><ul class="simple">
+<li><p>Less Rays than V1</p></li>
+<li><p>Better defined
+Shadows that V2</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>2x Jittery</p></li>
+<li><p>Slow</p></li>
+<li><p>No Mutiplayer</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Discrete V1</p>
+<p>Shadow
+Casting</p>
+</td>
+<td><ul class="simple">
+<li><p>Fast</p></li>
+<li><p>CPU Texture</p></li>
+<li><p>Easy to Query</p></li>
+<li><p>Multiplayer</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>1x Jittery</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="transforms-exploration-upscaling">
+<h2>Transforms (Exploration &amp; Upscaling)<a class="headerlink" href="#transforms-exploration-upscaling" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="../generated_api/classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKTransformerStrategy</span></code></a> can be used to implement post processing steps on the fog textures, to
+tweak its final look.</p>
+<p>Exploration &amp; Upscaling are both implemented using <a class="reference internal" href="../generated_api/classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKTransformerStrategy</span></code></a>.</p>
+</section>
+<section id="idea">
+<h2>Idea<a class="headerlink" href="#idea" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Change the drawing backend per actors
+* Make client use a prettier/slower implementation
+* Server use faster implementation</p></li>
+</ul>
+<p>I thought I could improve my fog of war by using a point light for the tracing and draw the point light on a render target but it does not seem possible in UE4.
+There are 3 light channels but they cant be rendered separately or I have not found a way to do so</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Decal Rendering</p>
+<p>A decal Component on the <a class="reference internal" href="../generated_api/classAGKFogOfWarVolume.html#_CPPv417AGKFogOfWarVolume" title="AGKFogOfWarVolume"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code></a> can be used to render the fog of war on screen instead of using a post processing step.
+This method is not advised because it might adversly impact other part of the game that are using decals (cursor, etc..)</p>
+<p>Additionally in the case of a game with factions it is easier to tweak the <code class="docutils literal notranslate"><span class="pre">CameraComponent|PostProcessingMaterial</span></code> to use the faction fog of war than to
+modify the globally unique <a class="reference internal" href="../generated_api/classAGKFogOfWarVolume.html#_CPPv417AGKFogOfWarVolume" title="AGKFogOfWarVolume"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>UnrealEngine implements <code class="docutils literal notranslate"><span class="pre">UAISense_Sight</span></code> (<a class="reference external" href="https://docs.unrealengine.com/4.26/en-US/API/Runtime/AIModule/Perception/UAISense_Sight/">doc</a>) which requires sightable targets to implement <code class="docutils literal notranslate"><span class="pre">IAISightTargetInterface</span></code>.
+The implementation is different an tries to limit the number of trace done.
+As a result the full line of sight is not drawn. It might be a path worth investigating if you find <code class="docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code>
+to be too expensive.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Fog Of War" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Game/GameFlow.html" class="btn btn-neutral float-right" title="GameFlow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

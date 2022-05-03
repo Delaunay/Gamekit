@@ -1,0 +1,26 @@
+.. _exhale_class_classFGKRichStruct:
+
+Class FGKRichStruct
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FRichTextDecorator``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FGKRichStruct
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

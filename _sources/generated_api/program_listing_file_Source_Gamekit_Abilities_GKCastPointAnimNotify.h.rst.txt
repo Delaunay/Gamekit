@@ -1,0 +1,36 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKCastPointAnimNotify.h:
+
+Program Listing for File GKCastPointAnimNotify.h
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKCastPointAnimNotify.h>` (``Source/Gamekit/Abilities/GKCastPointAnimNotify.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "Animation/AnimNotifies/AnimNotify.h"
+   #include "CoreMinimal.h"
+   #include "GameplayTagContainer.h"
+   
+   // Generated
+   #include "GKCastPointAnimNotify.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKCastPointAnimNotify: public UAnimNotify
+   {
+       GENERATED_BODY()
+   
+       public:
+       void Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference& EventReference) override;
+   
+       // Gameplay tag broadcasted to the owner of the ability
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+       FGameplayTag CastPointEventTag;
+   };

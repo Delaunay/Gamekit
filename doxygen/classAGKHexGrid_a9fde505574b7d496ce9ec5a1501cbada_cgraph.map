@@ -1,0 +1,7 @@
+<map id="AGKHexGrid::LoadRectangleMap" name="AGKHexGrid::LoadRectangleMap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,64,240,91"/>
+<area shape="rect" id="node2" href="$classAGKHexGrid.html#ad61572e0c5429ba902ddbf73a442ef07" title=" " alt="" coords="288,35,448,61"/>
+<area shape="rect" id="node5" href="$classUGKHexGridUtilities.html#ab6540d700ce981787fb092fc39a2127e" title="Convert axial hex coordinate to cube hex coordinate." alt="" coords="291,86,445,127"/>
+<area shape="rect" id="node3" href="$classAGKHexGrid.html#ab2c5b18f88805f72c3fe17ab6b19b3f0" title=" " alt="" coords="496,5,681,32"/>
+<area shape="rect" id="node4" href="$classUGKHexGridUtilities.html#a709169c44034909c104c22cc375b2558" title="Convert hex grid position to world map position." alt="" coords="511,57,666,98"/>
+</map>

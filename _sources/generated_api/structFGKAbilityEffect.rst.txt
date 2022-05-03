@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKAbilityEffect:
+
+Struct FGKAbilityEffect
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKAbilityEffect
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

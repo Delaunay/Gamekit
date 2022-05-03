@@ -1,0 +1,26 @@
+.. _dir_Source_Gamekit_Abilities_Targeting:
+
+
+Directory Targeting
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Abilities/Targeting``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h`
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h`
+
+

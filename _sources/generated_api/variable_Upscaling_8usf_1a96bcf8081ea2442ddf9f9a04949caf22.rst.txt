@@ -1,0 +1,14 @@
+.. _exhale_variable_Upscaling_8usf_1a96bcf8081ea2442ddf9f9a04949caf22:
+
+Variable Multiplier
+===================
+
+- Defined in :ref:`file_Shaders_Upscaling.usf`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Multiplier
+   :project: GameKit

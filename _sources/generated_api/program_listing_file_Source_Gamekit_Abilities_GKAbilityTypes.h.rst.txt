@@ -1,0 +1,65 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilityTypes.h:
+
+Program Listing for File GKAbilityTypes.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilityTypes.h>` (``Source/Gamekit/Abilities/GKAbilityTypes.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Abilities/GameplayAbilityTargetTypes.h"
+   #include "GameplayEffectTypes.h"
+   
+   // Generated
+   #include "GKAbilityTypes.generated.h"
+   
+   class UGKAbilitySystemComponent;
+   class UGameplayEffect;
+   class UGKTargetType;
+   
+   USTRUCT(BlueprintType)
+   struct FGKGameplayEffectContainer
+   {
+       GENERATED_BODY()
+   
+       public:
+       FGKGameplayEffectContainer() {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer)
+       TSubclassOf<UGKTargetType> TargetType;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer)
+       TArray<TSubclassOf<UGameplayEffect>> TargetGameplayEffectClasses;
+   };
+   
+   USTRUCT(BlueprintType)
+   struct FGKGameplayEffectContainerSpec
+   {
+       GENERATED_BODY()
+   
+       public:
+       FGKGameplayEffectContainerSpec() {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer)
+       FGameplayAbilityTargetDataHandle TargetData;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer)
+       TArray<FGameplayEffectSpecHandle> TargetGameplayEffectSpecs;
+   
+       bool HasValidEffects() const;
+   
+       bool HasValidTargets() const;
+   
+       void AddTargets(const TArray<FHitResult> &HitResults, const TArray<AActor *> &TargetActors);
+   };

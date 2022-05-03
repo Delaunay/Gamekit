@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_States_GKGameState.h:
+
+File GKGameState.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_States>` (``Source/Gamekit/States``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/States/GKGameState.h``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_States_GKGameState.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKGameState.generated.h``
+
+- ``GameFramework/GameStateBase.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_GKGameMode.cpp`
+
+- :ref:`file_Source_Gamekit_States_GKGameState.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKGameStateBase`
+

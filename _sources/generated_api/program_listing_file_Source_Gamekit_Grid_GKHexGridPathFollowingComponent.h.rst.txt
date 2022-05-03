@@ -1,0 +1,35 @@
+
+.. _program_listing_file_Source_Gamekit_Grid_GKHexGridPathFollowingComponent.h:
+
+Program Listing for File GKHexGridPathFollowingComponent.h
+==========================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Grid_GKHexGridPathFollowingComponent.h>` (``Source/Gamekit/Grid/GKHexGridPathFollowingComponent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License
+   //
+   // Copyright (c) 2022, Pierre Delaunay
+   // All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Navigation/PathFollowingComponent.h"
+   
+   // Generated
+   #include "GKHexGridPathFollowingComponent.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API UGKHexGridPathFollowingComponent: public UPathFollowingComponent
+   {
+       GENERATED_BODY()
+   
+       UGKHexGridPathFollowingComponent();
+   
+       bool HasReachedDestination(const FVector &CurrentLocation) const override;
+   };

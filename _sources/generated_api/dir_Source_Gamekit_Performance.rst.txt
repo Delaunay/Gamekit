@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Performance:
+
+
+Directory Performance
+=====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Performance``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Performance_GKPerformanceStats.cpp`
+- :ref:`file_Source_Gamekit_Performance_GKPerformanceStats.h`
+
+

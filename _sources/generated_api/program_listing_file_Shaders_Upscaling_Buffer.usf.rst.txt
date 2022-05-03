@@ -1,0 +1,80 @@
+
+.. _program_listing_file_Shaders_Upscaling_Buffer.usf:
+
+Program Listing for File Upscaling_Buffer.usf
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Shaders_Upscaling_Buffer.usf>` (``Shaders/Upscaling_Buffer.usf``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "/Engine/Public/Platform.ush"
+   
+   #include "/Gamekit/Upscaling_Patterns.ush"
+   
+   RWByteAddressBuffer OutputTexture;
+   RWByteAddressBuffer InputTexture;
+   
+   uint2 Dimensions;
+   uint  TimeStamp;
+   
+   #define TEXEL_2x2(a, b, c, d) uint(uint(a) << 3 | (uint(b) << 2) | (uint(c) << 1) | (uint(d)))
+   
+   #define GET(xy, Size) ((xy.x) + (xy.y * Size.x))
+   
+   #define IS_VISIBLE(X) (int(uint(X & uint(1 << 7) > 0)))
+   
+   // #define IS_VISIBLE(X) (uint(X > 0))
+   
+   // clang-format off
+   [numthreads(THREADGROUPSIZE_X, THREADGROUPSIZE_Y, THREADGROUPSIZE_Z)]
+   void MainComputeShader(uint3 GroupId      : SV_GroupID,
+                          uint3 ThreadId     : SV_DispatchThreadID,
+                          uint3 GroupThreadId: SV_GroupThreadID,
+                          uint  GroupdIndex  : SV_GroupIndex)
+   // clang-format on
+   {
+       // OutputTexture[ThreadId.xy] = InputTexture[ThreadId.xy];
+   
+       uint2 Pos = ThreadId.xy;
+   
+       if (Pos.x + 1 >= Dimensions.x)
+       {
+           return;
+       }
+   
+       if (Pos.y + 1 >= Dimensions.y)
+       {
+           return;
+       }
+   
+       int Offset_00 = (int)GET(Pos + uint2(0, 0), Dimensions);
+       int Offset_10 = (int)GET(Pos + uint2(1, 0), Dimensions);
+       int Offset_01 = (int)GET(Pos + uint2(0, 1), Dimensions);
+       int Offset_11 = (int)GET(Pos + uint2(1, 1), Dimensions);
+   
+       uint P_00 = IS_VISIBLE(InputTexture.Load(Offset_00));
+       uint P_10 = IS_VISIBLE(InputTexture.Load(Offset_10));
+       uint P_01 = IS_VISIBLE(InputTexture.Load(Offset_01));
+       uint P_11 = IS_VISIBLE(InputTexture.Load(Offset_11));
+   
+       uint  Pattern     = TEXEL_2x2(P_00, P_10, P_01, P_11);
+       uint2 UpscaleSize = Dimensions * 4;
+       Pattern           = 16 * 15;
+       uint PatId        = Pattern * 16;
+   
+       for (int i = 0; i < 4; ++i)
+       {
+           for (int j = 0; j < 4; ++j)
+           {
+               int x = 4 * Pos.x + j;
+               int y = 4 * Pos.y + i;
+   
+               uint xy = (uint)GET(uint2(x, y), UpscaleSize);
+   
+               OutputTexture.Store(xy, PatternMap[PatId + i * 4 + j]);
+           }
+       }
+   }

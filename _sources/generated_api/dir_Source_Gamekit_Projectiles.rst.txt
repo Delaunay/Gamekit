@@ -1,0 +1,29 @@
+.. _dir_Source_Gamekit_Projectiles:
+
+
+Directory Projectiles
+=====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Projectiles``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.cpp`
+- :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h`
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActor.cpp`
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActor.h`
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActorNiagara.cpp`
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActorNiagara.h`
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.cpp`
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectileStatic.cpp`
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectileStatic.h`
+
+

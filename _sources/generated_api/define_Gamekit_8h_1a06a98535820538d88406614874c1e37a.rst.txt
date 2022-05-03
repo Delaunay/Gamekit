@@ -1,0 +1,14 @@
+.. _exhale_define_Gamekit_8h_1a06a98535820538d88406614874c1e37a:
+
+Define GKGETATTR
+================
+
+- Defined in :ref:`file_Source_Gamekit_Gamekit.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKGETATTR
+   :project: GameKit

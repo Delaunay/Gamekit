@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKCanvasUpscaler:
+
+Class UGKCanvasUpscaler
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GKCanvasUpscaler.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKTransformerStrategyCanvas`` (:ref:`exhale_class_classUGKTransformerStrategyCanvas`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKCanvasUpscaler
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

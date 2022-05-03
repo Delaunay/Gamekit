@@ -1,0 +1,146 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h:
+
+Program Listing for File GK_FoW_ShadowCasting.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_ShadowCasting.h>` (``Source/Gamekit/FogOfWar/Strategy/GK_FoW_ShadowCasting.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Container/Matrix.h"
+   #include "Gamekit/FogOfWar/Strategy/GK_FoW_Strategy.h"
+   #include "Gamekit/Grid/GKGrid.h"
+   
+   // Generated
+   #include "GK_FoW_ShadowCasting.generated.h"
+   
+   // represents the slope Y/X as a rational number
+   struct FGKSlope
+   {
+       FGKSlope(int y, int x)
+       {
+           Y = y;
+           X = x;
+       }
+   
+       int Y, X;
+   };
+   
+   enum class EGK_VisibilityLayer : uint8
+   {
+       Block,
+   
+       LowGround,
+       MediumGround,
+       HighGround,
+   
+       MaxLayer,
+   };
+   
+   enum class EGK_TileVisbility : uint8
+   {
+       None    = 0x00, // Nothing
+       Height1 = uint8(1 << 0),
+       Height2 = uint8(1 << 1),
+       Height3 = uint8(1 << 2),
+       Height4 = uint8(1 << 3),
+       Height5 = uint8(1 << 4),
+       Height6 = uint8(1 << 5),
+       Wall    = uint8(1 << 6), // Blocks Light
+       Visible = uint8(-1),     // Visible
+   };
+   
+   enum class EGK_VisbilityLayers : uint8
+   {
+       // Permanent Layers
+       Terrain, 
+       Blocking,
+       // Team layers after that point
+       Size,
+   };
+   
+   struct FGKPoints
+   {
+       TArray<FIntVector> Points;
+   };
+   
+   UCLASS(BlueprintType)
+   class UGKShadowCasting: public UGKFogOfWarStrategy
+   {
+       GENERATED_BODY()
+   
+       public:
+       bool SupportVisbilityQuery() const override { return true; }
+   
+       bool IsVisible(FGenericTeamId SeerTeam, FVector Loc) const override;
+   
+       void Initialize() override;
+   
+       void DrawFactionFog(class AGKFogOfWarTeam *FactionFog) override;
+   
+       void Stop() override;
+   
+       void DrawLineOfSight(class AGKFogOfWarTeam *FactionFog, class UGKFogOfWarComponent *c) override;
+   
+       void UpdateBlocking(class UGKFogOfWarComponent *c);
+   
+       void UpdateTextures(class AGKFogOfWarTeam *TeamFog);
+   
+       void ExtractLandscapeHeightMap();
+   
+       class UTexture *GetFactionTexture(FName name, bool CreateRenderTarget = true) override;
+   
+       class UTexture2D *GetFactionTexture2D(FName name, bool CreateRenderTarget = true);
+   
+       class UTexture2D *GetPreviousFrameFactionTexture2D(FName name, bool bCreateRenderTarget = true);
+   
+       class UTexture2D *CreateTexture2D();
+   
+       class UTexture *GetPreviousFrameFactionTexture(FName name, bool CreateRenderTarget = true);
+   
+       void UpdatePreviousFrameTexturesTex(class AGKFogOfWarTeam *TeamFog);
+   
+       void UpdatePreviousFrameTextures(class AGKFogOfWarTeam *TeamFog);
+   
+       private:
+       void Compute(FIntVector origin, int rangeLimit, uint8 TeamId);
+   
+       void Compute(uint8 octant, FIntVector origin, int rangeLimit, int x, FGKSlope top, FGKSlope bottom, uint8 TeamId);
+   
+       bool IsBlockingLight(FIntVector Location);
+   
+       int GetDistance(FIntVector Origin, FIntVector Diff);
+   
+       void SetVisible(FIntVector Location, uint8 TeamId);
+   
+       FIntVector       TextureSize;
+       FGKGrid          Grid;
+       TMatrix3D<uint8> Buffer;
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UTexture2D *> FogFactions;
+   
+       UPROPERTY(Transient)
+       TMap<FName, class UTexture2D *> PreviousFogFactions;
+   
+       UPROPERTY()
+       TArray<uint8> CachedData;
+   
+       class ALandscape *Landscape;
+   
+       FUpdateTextureRegion2D UpdateRegion;
+   
+       //
+       class AGKFogOfWarTeam      *CurrentFaction;
+       class UGKFogOfWarComponent *CurrentComponent;
+   
+       bool bPreviousIsPrevious;
+   };

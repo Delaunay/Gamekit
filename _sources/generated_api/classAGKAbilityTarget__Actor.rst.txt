@@ -1,0 +1,32 @@
+.. _exhale_class_classAGKAbilityTarget__Actor:
+
+Class AGKAbilityTarget_Actor
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGameplayAbilityTargetActor``
+
+
+Derived Type
+************
+
+- ``public AGKAbilityTarget_PlayerControllerTrace`` (:ref:`exhale_class_classAGKAbilityTarget__PlayerControllerTrace`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKAbilityTarget_Actor
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

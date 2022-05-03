@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKWidgetLocationData:
+
+Struct FGKWidgetLocationData
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKWidgetLocationData
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

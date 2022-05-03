@@ -1,0 +1,9 @@
+<map id="AGKHexGrid::LoadCircleMap" name="AGKHexGrid::LoadCircleMap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,123,212,149"/>
+<area shape="rect" id="node2" href="$classAGKHexGrid.html#ad61572e0c5429ba902ddbf73a442ef07" title=" " alt="" coords="260,64,420,91"/>
+<area shape="rect" id="node5" href="$classUGKHexGridUtilities.html#ab6540d700ce981787fb092fc39a2127e" title="Convert axial hex coordinate to cube hex coordinate." alt="" coords="483,122,638,163"/>
+<area shape="rect" id="node6" href="$classUGKHexGridUtilities.html#aa824b50fc3e6463081d6834abdf42d56" title=" " alt="" coords="263,174,417,215"/>
+<area shape="rect" id="node3" href="$classAGKHexGrid.html#ab2c5b18f88805f72c3fe17ab6b19b3f0" title=" " alt="" coords="468,5,653,32"/>
+<area shape="rect" id="node4" href="$classUGKHexGridUtilities.html#a709169c44034909c104c22cc375b2558" title="Convert hex grid position to world map position." alt="" coords="483,57,638,98"/>
+<area shape="rect" id="node7" href="$GKHexGridUtilities_8cpp.html#aa9c384ac09b86a7c4936345caf7fabe8" title=" " alt="" coords="521,188,600,215"/>
+</map>

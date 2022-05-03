@@ -1,0 +1,23 @@
+.. _dir_Source_Gamekit_Minimap:
+
+
+Directory Minimap
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Minimap``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapComponent.cpp`
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapComponent.h`
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.cpp`
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.h`
+
+

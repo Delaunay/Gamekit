@@ -1,0 +1,11 @@
+<map id="AGKAbilityTarget_PlayerControllerTrace::Tick" name="AGKAbilityTarget_PlayerControllerTrace::Tick">
+<area shape="rect" id="node1" title=" " alt="" coords="5,152,249,193"/>
+<area shape="rect" id="node2" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a5f111c2914a8434cede771ea53555d71" title="Stop targeting." alt="" coords="297,5,541,47"/>
+<area shape="rect" id="node3" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a4e37f4907eeedbf44084c9d71212d722" title=" " alt="" coords="589,48,833,89"/>
+<area shape="rect" id="node4" href="$classAGKAbilityTarget__PlayerControllerTrace.html#aeb9c42f4d7e6a3ba393461a10f1b5131" title=" " alt="" coords="297,123,541,164"/>
+<area shape="rect" id="node5" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a0e97fdf8439536021cacab80ace18e1c" title="Is the current target valid ?" alt="" coords="589,139,833,180"/>
+<area shape="rect" id="node7" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a89143e8b57c368df9bfed93c28e6368b" title=" " alt="" coords="297,240,541,281"/>
+<area shape="rect" id="node9" href="$classAGKAbilityTarget__PlayerControllerTrace.html#aea2e0153e250c6b1b252a7f73d8c9faf" title=" " alt="" coords="297,305,541,347"/>
+<area shape="rect" id="node6" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a9ff71c8abc5385006fb01a20d196169e" title=" " alt="" coords="881,139,1125,180"/>
+<area shape="rect" id="node8" href="$GKBitFlag_8h.html#aff4bfc0dd4c5098f5bdcc40edd66e64c" title=" " alt="" coords="676,247,747,274"/>
+</map>

@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKPlayerState:
+
+Class AGKPlayerState
+====================
+
+- Defined in :ref:`file_Source_Gamekit_States_GKPlayerState.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public APlayerState``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKPlayerState
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

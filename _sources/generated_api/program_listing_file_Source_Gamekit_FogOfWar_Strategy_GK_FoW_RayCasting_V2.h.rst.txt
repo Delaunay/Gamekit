@@ -1,0 +1,40 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V2.h:
+
+Program Listing for File GK_FoW_RayCasting_V2.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V2.h>` (``Source/Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V2.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/FogOfWar/Strategy/GK_FoW_RayCasting_V1.h"
+   
+   // Generated
+   #include "GK_FoW_RayCasting_V2.generated.h"
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKRayCasting_Triangle: public UGKRayCasting_Line
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKRayCasting_Triangle();
+   
+       protected:
+       void GenerateTriangles(UGKFogOfWarComponent *c);
+   
+       void DrawTriangles(UGKFogOfWarComponent *c);
+   
+       void DrawObstructedLineOfSight(class AGKFogOfWarTeam *FactionFog, UGKFogOfWarComponent *c) override;
+   
+       UPROPERTY(Transient)
+       TArray<FCanvasUVTri> Triangles;
+   };

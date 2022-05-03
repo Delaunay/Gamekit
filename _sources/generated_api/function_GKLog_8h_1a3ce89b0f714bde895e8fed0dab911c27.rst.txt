@@ -1,0 +1,14 @@
+.. _exhale_function_GKLog_8h_1a3ce89b0f714bde895e8fed0dab911c27:
+
+Template Function Log_Verbose
+=============================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Log_Verbose(const char *, int, const Category&, const Format&, const Args&...)
+   :project: GameKit

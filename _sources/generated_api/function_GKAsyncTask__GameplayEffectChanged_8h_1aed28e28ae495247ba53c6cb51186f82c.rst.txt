@@ -1,0 +1,14 @@
+.. _exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1aed28e28ae495247ba53c6cb51186f82c:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle)
+=============================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle)
+   :project: GameKit

@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKFogOfWarVolume:
+
+Class AGKFogOfWarVolume
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AVolume``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKFogOfWarVolume
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

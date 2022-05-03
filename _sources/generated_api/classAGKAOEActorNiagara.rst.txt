@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKAOEActorNiagara:
+
+Class AGKAOEActorNiagara
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Projectiles_GKAOEActorNiagara.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGKAOEActor`` (:ref:`exhale_class_classAGKAOEActor`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKAOEActorNiagara
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

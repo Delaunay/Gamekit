@@ -1,0 +1,52 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h:
+
+Program Listing for File GKAbilitySystemGlobals.h
+=================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h>` (``Source/Gamekit/Abilities/GKAbilitySystemGlobals.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "AbilitySystemGlobals.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKAbilitySystemGlobals.generated.h"
+   
+   UCLASS(config = Game)
+   class GAMEKIT_API UGKAbilitySystemGlobals: public UAbilitySystemGlobals
+   {
+       GENERATED_UCLASS_BODY()
+       public:
+       UPROPERTY()
+       FGameplayTag ActivateFailNotYetLearnedTag;
+   
+       UPROPERTY(config)
+       FName ActivateFailNotYetLearnedName;
+   
+       UPROPERTY()
+       FGameplayTag DeathTag;
+   
+       UPROPERTY(config)
+       FName DeathName;
+   
+       UPROPERTY()
+       FGameplayTag DeathDispelTag;
+   
+       UPROPERTY(config)
+       FName DeathDispelName;
+   
+       virtual void InitGlobalTags() override;
+   
+       //
+       // THINK: We could a secondary global curve here for our curve generation system
+       //
+   };

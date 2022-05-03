@@ -1,0 +1,6 @@
+<map id="AGKFogOfWarVolume::DrawFactionFog" name="AGKFogOfWarVolume::DrawFactionFog">
+<area shape="rect" id="node1" title="Draw the fog of war for each factions." alt="" coords="5,39,176,80"/>
+<area shape="rect" id="node2" href="$classUGKFogOfWarStrategy.html#af341b468cc75a06f066f4592aeb235d7" title="Draw the fog of war for each factions." alt="" coords="231,5,400,47"/>
+<area shape="rect" id="node4" href="$classUGKTransformerStrategy.html#a373ad8157eaddeffa356b64b9d50017b" title=" " alt="" coords="224,71,407,112"/>
+<area shape="rect" id="node3" href="$classUGKFogOfWarStrategy.html#a68811451bbb3ad3dde97d9b8d87e4b39" title="Draw the line of sight using the right method." alt="" coords="455,5,624,47"/>
+</map>

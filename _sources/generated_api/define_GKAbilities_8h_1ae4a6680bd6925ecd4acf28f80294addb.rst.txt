@@ -1,0 +1,14 @@
+.. _exhale_define_GKAbilities_8h_1ae4a6680bd6925ecd4acf28f80294addb:
+
+Define GKGA_LOG
+===============
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilities.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKGA_LOG
+   :project: GameKit

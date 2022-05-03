@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File GKCharacter.cpp &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File GKCharacter.cpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/program_listing_file_Source_Gamekit_Characters_GKCharacter.cpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-gkcharacter-cpp">
+<span id="program-listing-file-source-gamekit-characters-gkcharacter-cpp"></span><h1>Program Listing for File GKCharacter.cpp<a class="headerlink" href="#program-listing-for-file-gkcharacter-cpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_Source_Gamekit_Characters_GKCharacter.cpp.html#file-source-gamekit-characters-gkcharacter-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/Characters/GKCharacter.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Characters/GKCharacter.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInputs.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityStatic.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKGameplayAbility.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Items/GKItem.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarLibrary.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Components/CapsuleComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/CharacterMovementComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Net/UnrealNetwork.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetworkObjectList.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/ActorChannel.h&quot;</span><span class="cp"></span>
+
+
+<span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">AGKCharacterBase</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Create ability system component, and set it to be explicitly replicated</span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UGKAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;AbilitySystemComponent&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">SetIsReplicated</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Create the attribute set, this replicates by default</span>
+<span class="w">    </span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UGKAttributeSet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;AttributeSet&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CharacterLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">InputsBound</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">NetDormancy</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">DORM_DormantPartial</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">bPreviousVisibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnReplicationPausedChanged</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">bIsReplicationPaused</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Stop the current interpolation to continue, since we are not going to receive</span>
+<span class="w">    </span><span class="c1">// position updates</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Tempering with this would only cause the client to see ghost actors</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bIsReplicationPaused</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UCharacterMovementComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetMovementComponent</span><span class="p">())</span><span class="o">-&gt;</span><span class="n">DisableMovement</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorHiddenInGame</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorEnableCollision</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorTickEnabled</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorHiddenInGame</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorEnableCollision</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetActorTickEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">IsReplicationPausedForConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FNetViewer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ConnectionOwnerNetViewer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ConnectionOwnerNetViewer</span><span class="p">.</span><span class="n">ViewTarget</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">this</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">//*</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">FogComp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKFogOfWarComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetComponentByClass</span><span class="p">(</span><span class="n">UGKFogOfWarComponent</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FogComp</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">ViewTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConnectionOwnerNetViewer</span><span class="p">.</span><span class="n">ViewTarget</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">bVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FogComp</span><span class="o">-&gt;</span><span class="n">IsVisible</span><span class="p">(</span><span class="n">ViewTarget</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">bVisible</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//*/</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnDataTableChanged_Native</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reset Cache</span>
+<span class="w">    </span><span class="n">UnitStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetUnitStatic</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">PostInitProperties</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">PostInitProperties</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">AddPassiveEffect</span><span class="p">(</span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">Effect</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Effect</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayEffectContextHandle</span><span class="w"> </span><span class="n">EffectContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">MakeEffectContext</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">EffectContext</span><span class="p">.</span><span class="n">AddSourceObject</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w">                        </span><span class="n">ManaSpec</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayEffectSpec</span><span class="p">(</span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">EffectContext</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">ActiveHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">ApplyGameplayEffectSpecToSelf</span><span class="p">(</span><span class="n">ManaSpec</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// NOTE: in examples:</span>
+<span class="w">    </span><span class="c1">// FGameplayEffectSpecHandle ManaSpecSpecHandle = new FGameplayEffectSpec(Effect, EffectContext, 1);</span>
+
+<span class="w">    </span><span class="c1">// ManaSpecSpecHandle is a shared pointer not sure if this is really necessary</span>
+<span class="w">    </span><span class="c1">// could be referenced somewhere at somepoint but until proven necessary do not make a shared pointer</span>
+
+<span class="w">    </span><span class="c1">// ApplyGameplayEffectSpecToTarget just calls ApplyGameplayEffectSpecToSelf</span>
+<span class="w">    </span><span class="c1">// FActiveGameplayEffectHandle ActiveGEHandle =</span>
+<span class="w">    </span><span class="c1">// AbilitySystemComponent-&gt;ApplyGameplayEffectSpecToTarget(*ManaSpecSpecHandle.Data.Get(), AbilitySystemComponent);</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UnitDef</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ROLE_Authority</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Not Authority&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">IsInitialized</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AttributeSet</span><span class="o">-&gt;</span><span class="n">SetMaxHealth</span><span class="p">(</span><span class="n">UnitDef</span><span class="p">.</span><span class="n">Health</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AttributeSet</span><span class="o">-&gt;</span><span class="n">SetMaxMana</span><span class="p">(</span><span class="n">UnitDef</span><span class="p">.</span><span class="n">Mana</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ManaRegen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewPassiveRegenEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">GetManaAttribute</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">UnitDef</span><span class="p">.</span><span class="n">ManaRegen</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="mf">0.1</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//, TEXT(&quot;GameplayEffect.ManaRegen&quot;)</span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AddPassiveEffect</span><span class="p">(</span><span class="n">ManaRegen</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">HealthRegen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewPassiveRegenEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">GetHealthAttribute</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">UnitDef</span><span class="p">.</span><span class="n">HealthRegen</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="mf">0.1</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//, TEXT(&quot;GameplayEffect.HealthRegen&quot;)</span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AddPassiveEffect</span><span class="p">(</span><span class="n">HealthRegen</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Grant Initial Abilities</span>
+<span class="w">    </span><span class="c1">// Need to disable level 0 abilities now</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityClass</span><span class="o">:</span><span class="w"> </span><span class="n">UnitDef</span><span class="p">.</span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="nf">Spec</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">AbilityClass</span><span class="p">,</span><span class="w"> </span><span class="c1">// TSubclassOf&lt;UGameplayAbility&gt; |</span>
+<span class="w">                </span><span class="mi">0</span><span class="p">,</span><span class="w">            </span><span class="c1">// int32 InLevel                  |</span>
+<span class="w">                </span><span class="n">INDEX_NONE</span><span class="p">,</span><span class="w">   </span><span class="c1">// int32 InInputID                | TODO: This is user configured</span>
+<span class="w">                </span><span class="k">nullptr</span><span class="w">       </span><span class="c1">// UObject * InSourceObject       |</span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GiveAbility</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ---</span>
+
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">Initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">K2_GetUnitStatic</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UnitStaticOut</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Valid</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetUnitStatic</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UnitStaticOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Valid</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">*</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetUnitStatic</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// We have already a cached lookup</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UnitStatic</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UnitStatic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">UnitDataTable</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">UnitRowName</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Unit not configured to use DataTable&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UnitStatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UnitDataTable</span><span class="o">-&gt;</span><span class="n">FindRow</span><span class="o">&lt;</span><span class="n">FGKUnitStatic</span><span class="o">&gt;</span><span class="p">(</span><span class="n">UnitRowName</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">),</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UnitStatic</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="o">*</span><span class="n">UnitStatic</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Did not find  Unit static&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Listen to data table change</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">UnitDataTable</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">IsBoundToObject</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UnitDataTable</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">AddUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnDataTableChanged_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UnitStatic</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetAbilitySystemComponent</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnHealthChanged_Native</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FOnAttributeChangeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Health gets clamp to 0 so we know that it will be exactly equal to 0</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Data</span><span class="p">.</span><span class="n">NewValue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.f</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Die</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">ClearGameplayAbilities</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ROLE_Authority</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">Initialized</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayAbilitySpecHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Abilities</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilitySystemComponent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Spec</span><span class="o">:</span><span class="w"> </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">GetActivatableAbilities</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">Spec</span><span class="p">.</span><span class="n">SourceObject</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">this</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Abilities</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Spec</span><span class="p">.</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Ability</span><span class="o">:</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">ClearAbility</span><span class="p">(</span><span class="n">Ability</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">Initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">Die</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Remove all abilities</span>
+<span class="w">    </span><span class="n">ClearGameplayAbilities</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Disable Collision</span>
+<span class="w">    </span><span class="n">GetCapsuleComponent</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">SetCollisionEnabled</span><span class="p">(</span><span class="n">ECollisionEnabled</span><span class="o">::</span><span class="n">NoCollision</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetCharacterMovement</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GravityScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetCharacterMovement</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Velocity</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Clean up the ASC</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DeathDispelTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">UGKAbilitySystemGlobals</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">()).</span><span class="n">DeathDispelTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DeathTag</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">UGKAbilitySystemGlobals</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">()).</span><span class="n">DeathTag</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">CancelAllAbilities</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">EffectTagsToRemove</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">EffectTagsToRemove</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">DeathDispelTag</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">int32</span><span class="w"> </span><span class="n">NumEffectsRemoved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RemoveActiveEffectsWithTags</span><span class="p">(</span><span class="n">EffectTagsToRemove</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">AddLooseGameplayTag</span><span class="p">(</span><span class="n">DeathTag</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Deselect</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Play the death montage</span>
+<span class="w">    </span><span class="c1">// NB: we could play it in the animation bp as well</span>
+<span class="w">    </span><span class="c1">//*</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UnitStatic</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Montage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UnitStatic</span><span class="o">-&gt;</span><span class="n">AnimationSet</span><span class="p">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">EGK_AbilityAnimation</span><span class="o">::</span><span class="n">Death</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Montage</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PlayAnimMontage</span><span class="p">(</span><span class="n">Montage</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//*/</span>
+
+<span class="w">    </span><span class="c1">// let blueprints do something about it</span>
+<span class="w">    </span><span class="n">OnCharacterDied</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">IsDead</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetAttributeSet</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Health</span><span class="p">.</span><span class="n">GetCurrentValue</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Initialize our abilities</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">InitAbilityActorInfo</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UnitDataTable</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">UnitRowName</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Loading Unit Config From DataTable&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">OnDataTableChanged_Native</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetGameplayAttributeValueChangeDelegate</span><span class="p">(</span><span class="n">GetAttributeSet</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetHealthAttribute</span><span class="p">())</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnHealthChanged_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">PossessedBy</span><span class="p">(</span><span class="n">AController</span><span class="w"> </span><span class="o">*</span><span class="n">NewController</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">PossessedBy</span><span class="p">(</span><span class="n">NewController</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RefreshAbilityActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ASC MixedMode replication requires that the ASC Owner&#39;s Owner be the Controller.</span>
+<span class="w">    </span><span class="n">SetOwner</span><span class="p">(</span><span class="n">NewController</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">UnPossessed</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnRep_Controller</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">OnRep_Controller</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Our controller changed, must update ActorInfo on AbilitySystemComponent</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RefreshAbilityActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FLifetimeProperty</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OutLifetimeProps</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">OutLifetimeProps</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">AGKCharacterBase</span><span class="p">,</span><span class="w"> </span><span class="n">CharacterLevel</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// this property never changes once it is set by the game mode</span>
+<span class="w">    </span><span class="c1">// COND_InitialOnly</span>
+<span class="w">    </span><span class="c1">// but it could be modified on the user side by cheats</span>
+<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">AGKCharacterBase</span><span class="p">,</span><span class="w"> </span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">int32</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetCharacterLevel</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">CharacterLevel</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">SetCharacterLevel</span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">NewLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CharacterLevel</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NewLevel</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">NewLevel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Our level changed so we need to refresh abilities</span>
+<span class="w">        </span><span class="n">CharacterLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewLevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GrantAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityClass</span><span class="p">)</span><span class="w"> </span><span class="cm">/* InputID -1 */</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Only called with authority</span>
+<span class="w">    </span><span class="c1">// This has input binding that should be customizable</span>
+<span class="w">    </span><span class="c1">// 0 is None, The enum for AbilityInput starts at one</span>
+<span class="w">    </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGameplayAbilitySpec</span><span class="p">(</span><span class="n">AbilityClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">int32</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Slot</span><span class="p">.</span><span class="n">SlotNumber</span><span class="p">),</span><span class="w"> </span><span class="c1">// EGK_MOBA_AbilityInputID::Skill1 + offset</span>
+<span class="w">                                 </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GiveAbility</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">EquipItem</span><span class="p">(</span><span class="n">EGK_ItemSlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityClass</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Only called with authority</span>
+<span class="w">    </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="p">(</span><span class="n">AbilityClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// No Input for this</span>
+<span class="w">                                                     </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Items get activated as soon as they are equipped</span>
+<span class="w">    </span><span class="c1">// NOTE: for items that have actives: the active ability is granted on equip</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GiveAbilityAndActivateOnce</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UGKGameplayAbility</span><span class="w"> </span><span class="o">*</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetAbilityInstance</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Spec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Ability</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">GetPrimaryInstance</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ability</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Ability</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// AbilitySystemComponent-&gt;execClientActivateAbilityFailed</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ability</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetAbilityHandle</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Spec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Ability</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Handle</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">Select</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">OnSelect</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">Deselect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">OnDeselect</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnGiveAbility_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// AbilityName is the unique tag per ability</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKAbilitySlot</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="n">Log</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Adding Ability %s with Input %d: %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">           </span><span class="o">*</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetFName</span><span class="p">().</span><span class="n">ToString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">           </span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="o">*</span><span class="n">UEnum</span><span class="o">::</span><span class="n">GetValueAsString</span><span class="p">(</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">)));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnGiveAbility</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">ActivateAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Spec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Ability</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">TryActivateAbility</span><span class="p">(</span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">AbilityCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">UGKAttributeSet</span><span class="w"> </span><span class="o">*</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetAttributeSet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">AttributeSet</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">UInputComponent</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">PlayerInputComponent</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">InputsBound</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">GAIB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayAbilityInputBinds</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;ConfirmTarget&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;CancelTarget&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;EGK_MOBA_AbilityInputID&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Confirm),</span>
+<span class="w">                </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Cancel)</span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">BindAbilityActivationToInputComponent</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">GAIB</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Abilities got bound&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">InputsBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">MoveToLocation</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Loc</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="p">(</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="o">::</span><span class="n">Move</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Spec</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Ability</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">TryActivateAbility_Point</span><span class="p">(</span><span class="n">Spec</span><span class="o">-&gt;</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">Loc</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">SetGenericTeamId</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TeamID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Only authority can change the TeamID</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Team</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TeamID</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnTeamAssigned</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetGenericTeamId</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Team</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

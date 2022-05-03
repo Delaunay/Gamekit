@@ -1,0 +1,29 @@
+
+.. _program_listing_file_Source_Gamekit_GKTeamPlayerStart.h:
+
+Program Listing for File GKTeamPlayerStart.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKTeamPlayerStart.h>` (``Source/Gamekit/GKTeamPlayerStart.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2019, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "GameFramework/PlayerStart.h"
+   #include "GKTeamPlayerStart.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKTeamPlayerStart : public APlayerStart
+   {
+       GENERATED_BODY()
+       
+   public:
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Object")
+       FName TeamName;
+   };

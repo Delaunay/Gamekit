@@ -1,0 +1,42 @@
+
+.. _program_listing_file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.h:
+
+Program Listing for File GKTeamAgentLibrary.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.h>` (``Source/Gamekit/Blueprint/GKTeamAgentLibrary.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   #include "GenericTeamAgentInterface.h"
+   
+   // Generated
+   #include "GKTeamAgentLibrary.generated.h"
+   
+   
+   UCLASS()
+   class GAMEKIT_API UGKTeamAgentLibrary : public UBlueprintFunctionLibrary
+   {
+       GENERATED_BODY()
+       
+       static struct FGKTeamInfo const* GetTeamInfo(class UWorld* World, FGenericTeamId TeamId);
+   
+       UFUNCTION(BlueprintPure, Category = "Team", meta = (WorldContext = "World"))
+       static FName GetTeamName(class UObject* World, FGenericTeamId TeamId);
+   
+       UFUNCTION(BlueprintPure, Category = "Team", meta = (WorldContext = "World"))
+       static FText GetTeamDisplayName(class UObject* World, FGenericTeamId TeamId);
+   };

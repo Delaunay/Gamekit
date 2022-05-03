@@ -1,0 +1,17 @@
+.. _exhale_struct_structGKDamageStatics:
+
+Struct GKDamageStatics
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKDamageExecution.cpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: GKDamageStatics
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

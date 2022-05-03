@@ -1,0 +1,54 @@
+
+.. _file_Source_Gamekit_GKGameMode.h:
+
+File GKGameMode.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKGameMode.h``)
+--------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKGameMode.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GKGameMode.generated.h``
+
+- ``GameFramework/GameModeBase.h``
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_GKGameMode.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKGameModeBaseBase`
+

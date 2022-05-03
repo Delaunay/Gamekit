@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8h_1ab4e847ee9b096ce1e987ffce5d00758a:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate)
+=======================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate)
+   :project: GameKit

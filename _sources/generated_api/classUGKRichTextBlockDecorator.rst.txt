@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKRichTextBlockDecorator:
+
+Class UGKRichTextBlockDecorator
+===============================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public URichTextBlockDecorator``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKRichTextBlockDecorator
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

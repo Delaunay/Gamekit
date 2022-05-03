@@ -1,0 +1,107 @@
+
+.. _program_listing_file_Source_Gamekit_Quest_GKQuestData.h:
+
+Program Listing for File GKQuestData.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Quest_GKQuestData.h>` (``Source/Gamekit/Quest/GKQuestData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Engine/DataTable.h"
+   #include "GameplayTagContainer.h"
+   
+   // Generated
+   #include "GKQuestData.generated.h"
+   
+   // List of objective that can be done in any order
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKSimpleObjective
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FGameplayTagContainer ObjectiveTags;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FText ShortDescription;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       float Count;
+   };
+   
+   // List of objective that can be done in any order
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKQuestObjectives
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       TArray<FGKSimpleObjective> Objectives;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FText ShortDescription;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       bool Sequential;
+   };
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKQuestData: public FTableRowBase
+   {
+       GENERATED_USTRUCT_BODY()
+   
+       public:
+       FGKQuestData() {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FName Name;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FText QuestName;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest)
+       FText QuestDescription;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Objective)
+       TArray<FGKQuestObjectives> Objectives;
+   };
+   
+   UCLASS(BlueprintType)
+   class UGKQuestDataRef: public UObject
+   {
+       GENERATED_BODY()
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest, Meta = (ExposeOnSpawn = true))
+       FGKQuestData Data;
+   };
+   
+   UCLASS(BlueprintType)
+   class UGKQuestObjectiveRef: public UObject
+   {
+       GENERATED_BODY()
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest, Meta = (ExposeOnSpawn = true))
+       FGKQuestObjectives Data;
+   };
+   
+   UCLASS(BlueprintType)
+   class UGKQuestSimpleObjectiveRef: public UObject
+   {
+       GENERATED_BODY()
+       public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest, Meta = (ExposeOnSpawn = true))
+       FGKSimpleObjective Data;
+   };

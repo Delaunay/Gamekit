@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKRayCasting__Less:
+
+Class UGKRayCasting_Less
+========================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V3.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKRayCasting_Triangle`` (:ref:`exhale_class_classUGKRayCasting__Triangle`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKRayCasting_Less
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,24 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKProjectileStatic.cpp:
+
+Program Listing for File GKProjectileStatic.cpp
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKProjectileStatic.cpp>` (``Source/Gamekit/Projectiles/GKProjectileStatic.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "Gamekit/Projectiles/GKProjectileStatic.h"
+   
+   FGKProjectileStatic::FGKProjectileStatic()
+   {
+       BaseSpeed          = 1800;
+       InitialSpeed       = 1800;
+       HomingAcceleration = 16000;
+   
+       // Sane defaults so people experimenting will get something that works
+       Range    = 3200;
+       Behavior = EGK_ProjectileBehavior::Directional;
+   }

@@ -1,0 +1,14 @@
+.. _exhale_define_GKAttributeSet_8h_1a557ad7abc436418aee5d00d667d37f02:
+
+Define ATTRIBUTE_ACCESSORS
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ATTRIBUTE_ACCESSORS
+   :project: GameKit

@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKTurnGameState:
+
+Class AGKTurnGameState
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Experimental_GKTurnGameState.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public AGameStateBase``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKTurnGameState
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

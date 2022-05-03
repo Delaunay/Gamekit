@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKEngineSubsystem:
+
+Class UGKEngineSubsystem
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Subsystems_GKEngineSubsystem.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UEngineSubsystem``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKEngineSubsystem
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

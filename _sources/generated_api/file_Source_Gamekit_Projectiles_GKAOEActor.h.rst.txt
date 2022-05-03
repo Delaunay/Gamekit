@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Projectiles_GKAOEActor.h:
+
+File GKAOEActor.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Projectiles>` (``Source/Gamekit/Projectiles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Projectiles/GKAOEActor.h``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Projectiles_GKAOEActor.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKAOEActor.generated.h``
+
+- ``Gamekit/Projectiles/GKAbilityEffectActor.h`` (:ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActor.cpp`
+
+- :ref:`file_Source_Gamekit_Projectiles_GKAOEActorNiagara.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKAOEActor`
+

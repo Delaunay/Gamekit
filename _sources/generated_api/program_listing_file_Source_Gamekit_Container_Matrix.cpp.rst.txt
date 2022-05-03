@@ -1,0 +1,22 @@
+
+.. _program_listing_file_Source_Gamekit_Container_Matrix.cpp:
+
+Program Listing for File Matrix.cpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Container_Matrix.cpp>` (``Source/Gamekit/Container/Matrix.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "Gamekit/Container/Matrix.h"
+   
+   FIntVector NOFFSET[6] = {
+           FIntVector(-2, 0, 0),
+           FIntVector(+2, 0, 0),
+           FIntVector(0, -2, 0),
+           FIntVector(0, +2, 0),
+           FIntVector(0, 0, -2),
+           FIntVector(0, 0, +2),
+   };

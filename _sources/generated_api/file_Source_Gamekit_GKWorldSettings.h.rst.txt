@@ -1,0 +1,64 @@
+
+.. _file_Source_Gamekit_GKWorldSettings.h:
+
+File GKWorldSettings.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKWorldSettings.h``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKWorldSettings.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``Engine/DataTable.h``
+
+- ``GKWorldSettings.generated.h``
+
+- ``GameFramework/WorldSettings.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp`
+
+- :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.cpp`
+
+- :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
+
+- :ref:`file_Source_Gamekit_GKWorldSettings.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKTeamInfo`
+
+- :ref:`exhale_class_classAGKWorldSettings`
+

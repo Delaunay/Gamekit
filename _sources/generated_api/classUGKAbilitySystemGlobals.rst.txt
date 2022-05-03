@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAbilitySystemGlobals:
+
+Class UGKAbilitySystemGlobals
+=============================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UAbilitySystemGlobals``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAbilitySystemGlobals
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

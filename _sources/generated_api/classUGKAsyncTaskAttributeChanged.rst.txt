@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKAsyncTaskAttributeChanged:
+
+Class UGKAsyncTaskAttributeChanged
+==================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskAttributeChanged.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintAsyncActionBase``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKAsyncTaskAttributeChanged
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

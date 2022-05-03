@@ -1,0 +1,73 @@
+
+.. _program_listing_file_Source_GamekitTestSuite_GamekitTestSuite.Build.cs:
+
+Program Listing for File GamekitTestSuite.Build.cs
+==================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitTestSuite_GamekitTestSuite.Build.cs>` (``Source/GamekitTestSuite/GamekitTestSuite.Build.cs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: csharp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   using System.IO;
+   using UnrealBuildTool;
+   
+   namespace UnrealBuildTool.Rules
+   {
+       public class GamekitTestSuite : ModuleRules
+       {
+           public GamekitTestSuite(ReadOnlyTargetRules Target) : base(Target)
+           {
+               PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+   
+               PublicIncludePaths.AddRange(new string[] {
+                  
+               });
+   
+               PublicDependencyModuleNames.AddRange(new string[] {
+                   "Core",
+                   "RenderCore",
+                   "RHI",
+   
+                   // Gameplay Abilities
+                   "GameplayAbilities",
+                   "GameplayTags",
+                   "GameplayTasks",
+   
+                   "Renderer",
+                   "Projects",
+                   // Used for ads
+                   "HTTP",
+                   "Json",
+                   "JsonUtilities",
+                   // Defaults
+                   "CoreUObject",
+                   "Engine",
+                   "MoviePlayer",
+                   "InputCore",
+                   "HeadMountedDisplay",
+                   "NavigationSystem",
+                   "AIModule",
+                   "UMG",
+                   "Slate",
+                   "SlateCore",
+                   // Particles
+                   "Niagara",
+                   //
+                   "EnhancedInput",
+                   "Landscape",
+   
+                   // Our plugin we want to test
+                   "Gamekit",
+               });
+   
+               if (Target.bBuildEditor == true)
+               {
+                   PrivateDependencyModuleNames.Add("UnrealEd");
+               }
+           }
+       }
+   }

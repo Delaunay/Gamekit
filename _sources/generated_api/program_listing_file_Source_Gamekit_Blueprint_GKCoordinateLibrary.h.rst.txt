@@ -1,0 +1,41 @@
+
+.. _program_listing_file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h:
+
+Program Listing for File GKCoordinateLibrary.h
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h>` (``Source/Gamekit/Blueprint/GKCoordinateLibrary.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   
+   // Generated
+   #include "GKCoordinateLibrary.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKCoordinateLibrary: public UBlueprintFunctionLibrary
+   {
+       GENERATED_BODY()
+   
+       public:
+       UFUNCTION(BlueprintPure, Category = "Coordinate")
+       static FVector2D ToTextureCoordinate(FVector WorldLocation, FVector2D MapSize);
+   
+       UFUNCTION(BlueprintPure, Category = "Coordinate")
+       static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize);
+   
+       UFUNCTION(BlueprintPure, Category = "Coordinate")
+       static FVector2D ToTextureCoordinate2D(FVector2D WorldLocation, FVector2D MapSize);
+   
+       UFUNCTION(BlueprintPure, Category = "Coordinate")
+       static FVector2D ToScreenCoordinate2D(FVector2D WorldLocation, FVector2D MapSize, FVector2D TextureSize);
+   };

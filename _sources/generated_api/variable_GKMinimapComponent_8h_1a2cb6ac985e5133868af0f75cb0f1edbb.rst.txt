@@ -1,0 +1,14 @@
+.. _exhale_variable_GKMinimapComponent_8h_1a2cb6ac985e5133868af0f75cb0f1edbb:
+
+Variable meta
+=============
+
+- Defined in :ref:`file_Source_Gamekit_Minimap_GKMinimapComponent.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: meta
+   :project: GameKit

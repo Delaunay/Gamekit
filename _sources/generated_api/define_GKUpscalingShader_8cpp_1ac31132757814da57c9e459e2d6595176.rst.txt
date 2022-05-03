@@ -1,0 +1,14 @@
+.. _exhale_define_GKUpscalingShader_8cpp_1ac31132757814da57c9e459e2d6595176:
+
+Define NUM_THREADS_PER_GROUP_DIMENSION
+======================================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NUM_THREADS_PER_GROUP_DIMENSION
+   :project: GameKit

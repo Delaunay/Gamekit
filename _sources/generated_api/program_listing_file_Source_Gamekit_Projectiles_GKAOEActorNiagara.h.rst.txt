@@ -1,0 +1,38 @@
+
+.. _program_listing_file_Source_Gamekit_Projectiles_GKAOEActorNiagara.h:
+
+Program Listing for File GKAOEActorNiagara.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Projectiles_GKAOEActorNiagara.h>` (``Source/Gamekit/Projectiles/GKAOEActorNiagara.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Projectiles/GKAOEActor.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKAOEActorNiagara.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKAOEActorNiagara: public AGKAOEActor
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKAOEActorNiagara();
+   
+       virtual void BeginPlay() override;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly);
+       class UNiagaraComponent *NiagaraEffect;
+   };

@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d:
+
+Function GetImpactPoint
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetImpactPoint(const FGameplayAbilityTargetDataHandle&, int, bool&)
+   :project: GameKit

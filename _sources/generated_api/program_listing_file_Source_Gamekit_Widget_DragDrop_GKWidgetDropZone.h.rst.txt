@@ -1,0 +1,36 @@
+
+.. _program_listing_file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.h:
+
+Program Listing for File GKWidgetDropZone.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Widget_DragDrop_GKWidgetDropZone.h>` (``Source/Gamekit/Widget/DragDrop/GKWidgetDropZone.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   // Unreal Engine
+   #include "Blueprint/UserWidget.h"
+   
+   // Generated
+   #include "GKWidgetDropZone.generated.h"
+   
+   UCLASS(BlueprintType, Blueprintable, meta = (DisableNativeTick))
+   class GAMEKIT_API UGKWidgetDropZone: public UUserWidget
+   {
+       GENERATED_BODY()
+   
+       public:
+       bool NativeOnDrop(const FGeometry &     InGeometry,
+                         const FDragDropEvent &InDragDropEvent,
+                         UDragDropOperation *  InOperation) override;
+   
+       // Implement to handle drop
+       // bool OnDrop(FGeometry MyGeometry, FPointerEvent PointerEvent, UDragDropOperation* Operation);
+   
+       // Implement to handle pending drop
+       // bool OnDragOver(FGeometry MyGeometry, FPointerEvent PointerEvent, UDragDropOperation *Operation);
+   };

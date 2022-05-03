@@ -1,0 +1,45 @@
+
+.. _program_listing_file_Source_Gamekit_Items_GKInventoryInterface.h:
+
+Program Listing for File GKInventoryInterface.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Items_GKInventoryInterface.h>` (``Source/Gamekit/Items/GKInventoryInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   #include "Gamekit/Items/GKItem.h"
+   #include "Gamekit/Items/GKItemTypes.h"
+   
+   // Generated
+   #include "GKInventoryInterface.generated.h"
+   
+   UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
+   class UGKInventoryInterface: public UInterface
+   {
+       GENERATED_BODY()
+   };
+   
+   class GAMEKIT_API IGKInventoryInterface
+   {
+       GENERATED_BODY()
+   
+       public:
+       virtual const TMap<UGKItem *, FGKItemData> &GetInventoryDataMap() const = 0;
+   
+       virtual const TMap<FGKAbilitySlot, UGKItem *> &GetSlottedItemMap() const = 0;
+   
+       virtual FOnInventoryItemChangedNative &GetInventoryItemChangedDelegate() = 0;
+   
+       virtual FOnSlottedItemChangedNative &GetSlottedItemChangedDelegate() = 0;
+   
+       virtual FOnInventoryLoadedNative &GetInventoryLoadedDelegate() = 0;
+   };

@@ -1,0 +1,10 @@
+<map id="UGKTransformerStrategy" name="UGKTransformerStrategy">
+<area shape="rect" id="node1" title=" " alt="" coords="195,81,377,108"/>
+<area shape="rect" id="node3" href="$classUGKTransformerStrategyCanvas.html" title=" " alt="" coords="435,56,665,83"/>
+<area shape="rect" id="node6" href="$classUGKTransformerStrategyTexture2D.html" title=" " alt="" coords="425,107,675,133"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,81,147,108"/>
+<area shape="rect" id="node4" href="$classUGKCanvasUpscaler.html" title=" " alt="" coords="741,5,895,32"/>
+<area shape="rect" id="node5" href="$classUGKExplorationTransform.html" title=" " alt="" coords="723,56,913,83"/>
+<area shape="rect" id="node7" href="$classUGKCPUUpscalerStrategy.html" title=" " alt="" coords="723,107,913,133"/>
+<area shape="rect" id="node8" href="$classUGKGPUUpscalerStrategy.html" title=" " alt="" coords="723,157,913,184"/>
+</map>

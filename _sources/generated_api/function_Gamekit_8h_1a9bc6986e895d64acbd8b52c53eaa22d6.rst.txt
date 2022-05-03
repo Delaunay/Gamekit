@@ -1,0 +1,14 @@
+.. _exhale_function_Gamekit_8h_1a9bc6986e895d64acbd8b52c53eaa22d6:
+
+Function DECLARE_LOG_CATEGORY_EXTERN(LogGamekit, Log, All)
+==========================================================
+
+- Defined in :ref:`file_Source_Gamekit_Gamekit.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_LOG_CATEGORY_EXTERN(LogGamekit, Log, All)
+   :project: GameKit

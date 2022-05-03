@@ -1,0 +1,30 @@
+
+.. _program_listing_file_Source_Gamekit_Items_GKPotionItem.h:
+
+Program Listing for File GKPotionItem.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Items_GKPotionItem.h>` (``Source/Gamekit/Items/GKPotionItem.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Items/GKItem.h"
+   
+   // Generated
+   #include "GKPotionItem.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API UGKPotionItem: public UGKItem
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKPotionItem() {}
+   };

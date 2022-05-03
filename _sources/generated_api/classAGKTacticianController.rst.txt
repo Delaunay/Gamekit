@@ -1,0 +1,26 @@
+.. _exhale_class_classAGKTacticianController:
+
+Class AGKTacticianController
+============================
+
+- Defined in :ref:`file_Source_Gamekit_Controllers_GKTacticianController.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public APlayerController``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AGKTacticianController
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

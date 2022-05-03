@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKQuestObjectives:
+
+Struct FGKQuestObjectives
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Quest_GKQuestData.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKQuestObjectives
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

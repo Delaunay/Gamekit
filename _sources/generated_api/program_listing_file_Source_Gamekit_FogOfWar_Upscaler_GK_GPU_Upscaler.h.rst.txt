@@ -1,0 +1,46 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.h:
+
+Program Listing for File GK_GPU_Upscaler.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.h>` (``Source/Gamekit/FogOfWar/Upscaler/GK_GPU_Upscaler.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Container/Matrix.h"
+   #include "Gamekit/FogOfWar/Upscaler/GK_Upscaler_Strategy.h"
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GK_GPU_Upscaler.generated.h"
+   
+   /*
+    *
+    *  TODO: batch multi factions upscaling
+    */
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKGPUUpscalerStrategy: public UGKTransformerStrategyTexture2D
+   {
+       GENERATED_BODY()
+   
+       public:
+       void Initialize() override;
+   
+       void Stop() override;
+   
+       void Transform(class AGKFogOfWarTeam *FactionFog);
+   
+       private:
+       class FUpscalingDispatcher *UpscalingDispatcher;
+   };

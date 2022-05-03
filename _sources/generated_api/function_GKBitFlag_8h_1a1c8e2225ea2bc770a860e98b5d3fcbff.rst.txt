@@ -1,0 +1,14 @@
+.. _exhale_function_GKBitFlag_8h_1a1c8e2225ea2bc770a860e98b5d3fcbff:
+
+Template Function IsSet
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: IsSet(uint32, Enum)
+   :project: GameKit

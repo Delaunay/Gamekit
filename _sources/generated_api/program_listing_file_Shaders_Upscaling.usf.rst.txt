@@ -1,0 +1,71 @@
+
+.. _program_listing_file_Shaders_Upscaling.usf:
+
+Program Listing for File Upscaling.usf
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Shaders_Upscaling.usf>` (``Shaders/Upscaling.usf``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "/Engine/Public/Platform.ush"
+   
+   #include "/Gamekit/Upscaling_Patterns.ush"
+   
+   RWTexture2D<float> OutputTexture;
+   Texture2D<float>   InputTexture;
+   
+   uint2 Dimensions;
+   uint  TimeStamp;
+   uint  Multiplier;
+   
+   #define TEXEL_2x2(a, b, c, d) uint(uint(a) << 3 | (uint(b) << 2) | (uint(c) << 1) | (uint(d)))
+   
+   #define IS_VISIBLE(X) (X > float(uint(1 << 6)) / float(1 << 7))
+   
+   // clang-format off
+   [numthreads(THREADGROUPSIZE_X, THREADGROUPSIZE_Y, THREADGROUPSIZE_Z)]
+   void MainComputeShader(uint3 GroupId      : SV_GroupID,
+                          uint3 ThreadId     : SV_DispatchThreadID,
+                          uint3 GroupThreadId: SV_GroupThreadID,
+                          uint  GroupdIndex  : SV_GroupIndex)
+   // clang-format on
+   {
+       uint2 Pos = ThreadId.xy;
+   
+       uint P_00 = IS_VISIBLE(InputTexture[Pos + uint2(0, 0)]);
+       uint P_10 = 0;
+       uint P_01 = 0;
+       uint P_11 = 0;
+   
+       if (Pos.x + 1 < Dimensions.x)
+       {
+           P_10 = IS_VISIBLE(InputTexture[Pos + uint2(1, 0)]);
+       }
+       if (Pos.y + 1 < Dimensions.y)
+       {
+           P_01 = IS_VISIBLE(InputTexture[Pos + uint2(0, 1)]);
+       }
+       if (Pos.x + 1 < Dimensions.x && Pos.y + 1 < Dimensions.y)
+       {
+           P_11 = IS_VISIBLE(InputTexture[Pos + uint2(1, 1)]);
+       }
+   
+       uint Pattern = TEXEL_2x2(P_00, P_10, P_01, P_11);
+       uint PatId   = Pattern * 16;
+   
+       for (int i = 0; i < 4; ++i)
+       {
+           for (int j = 0; j < 4; ++j)
+           {
+               int x = Multiplier * Pos.x + j;
+               int y = Multiplier * Pos.y + i;
+               int z = PatId + i * 4 + j;
+   
+               OutputTexture[uint2(x, y)] = float(PatternMap[z]) / float(0xFF);
+               // OutputTexture[uint2(x, y)] = InputTexture[Pos];
+           }
+       }
+   }

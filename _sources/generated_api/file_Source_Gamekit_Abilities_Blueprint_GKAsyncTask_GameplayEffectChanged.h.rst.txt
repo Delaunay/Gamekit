@@ -1,0 +1,67 @@
+
+.. _file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h:
+
+File GKAsyncTask_GameplayEffectChanged.h
+========================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Blueprint>` (``Source/Gamekit/Abilities/Blueprint``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h``)
+---------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``CoreMinimal.h``
+
+- ``GKAsyncTask_GameplayEffectChanged.generated.h``
+
+- ``Kismet/BlueprintAsyncActionBase.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKAsyncTask__GameplayEffectChanged`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1a691cf3ba986c6191894b3a4867f4faa2`
+
+- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1aed28e28ae495247ba53c6cb51186f82c`
+
+- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1af9e79deb631efa7b2b72a9de214d6404`
+

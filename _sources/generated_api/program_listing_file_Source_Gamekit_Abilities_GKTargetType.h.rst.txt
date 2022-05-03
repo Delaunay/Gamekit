@@ -1,0 +1,78 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKTargetType.h:
+
+Program Listing for File GKTargetType.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKTargetType.h>` (``Source/Gamekit/Abilities/GKTargetType.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityTypes.h"
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "Abilities/GameplayAbilityTypes.h"
+   
+   // Generated
+   #include "GKTargetType.generated.h"
+   
+   class AGKCharacterBase;
+   class AActor;
+   struct FGameplayEventData;
+   
+   UCLASS(Blueprintable, meta = (ShowWorldContextPin))
+   class GAMEKIT_API UGKTargetType: public UObject
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor and overrides
+       UGKTargetType() {}
+   
+       UFUNCTION(BlueprintNativeEvent)
+       void GetTargets(AGKCharacterBase *  TargetingCharacter,
+                       AActor *            TargetingActor,
+                       FGameplayEventData  EventData,
+                       TArray<FHitResult> &OutHitResults,
+                       TArray<AActor *> &  OutActors) const;
+   };
+   
+   UCLASS(NotBlueprintable)
+   class GAMEKIT_API UGKTargetType_UseOwner: public UGKTargetType
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor and overrides
+       UGKTargetType_UseOwner() {}
+   
+       virtual void GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                              AActor *            TargetingActor,
+                                              FGameplayEventData  EventData,
+                                              TArray<FHitResult> &OutHitResults,
+                                              TArray<AActor *> &  OutActors) const override;
+   };
+   
+   UCLASS(NotBlueprintable)
+   class GAMEKIT_API UGKTargetType_UseEventData: public UGKTargetType
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Constructor and overrides
+       UGKTargetType_UseEventData() {}
+   
+       virtual void GetTargets_Implementation(AGKCharacterBase *  TargetingCharacter,
+                                              AActor *            TargetingActor,
+                                              FGameplayEventData  EventData,
+                                              TArray<FHitResult> &OutHitResults,
+                                              TArray<AActor *> &  OutActors) const override;
+   };

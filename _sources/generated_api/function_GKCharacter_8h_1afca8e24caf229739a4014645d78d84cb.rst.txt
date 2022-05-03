@@ -1,0 +1,14 @@
+.. _exhale_function_GKCharacter_8h_1afca8e24caf229739a4014645d78d84cb:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase \*, Character)
+==============================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character)
+   :project: GameKit

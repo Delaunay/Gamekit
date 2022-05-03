@@ -1,0 +1,142 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h:
+
+Program Listing for File GKAbilityTask_MoveToDestination.h
+==========================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h>` (``Source/Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityStatic.h"
+   
+   // Unreal Engine
+   #include "Abilities/Tasks/AbilityTask.h"
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKAbilityTask_MoveToDestination.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKMoveToDestinationDelegate,
+                                               const FGameplayAbilityTargetDataHandle &,
+                                               TargetData);
+   
+   UCLASS()
+   class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKAbilityTask_MoveToDestination(const FObjectInitializer &ObjectInitializer);
+   
+       UFUNCTION(BlueprintCallable,
+                 Category = "Ability|Tasks",
+                 meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "TRUE"))
+       static UGKAbilityTask_MoveToDestination *MoveToDestination(
+               UGameplayAbility *  OwningAbility,
+               FName               TaskInstanceName,
+               FVector             Destination,
+               float               DistanceTolerance = 10.f,
+               float               AngleTolerance    = 15.f,
+               float               TurnRate          = 45.f,
+               float               Speed             = 600.f,
+               bool                MoveToTarget      = true,
+               EGK_AbilityBehavior TargetKind        = EGK_AbilityBehavior::PointTarget,
+               bool                Debug             = false);
+   
+       UFUNCTION(BlueprintCallable,
+                 Category = "Ability|Tasks",
+                 meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "TRUE"))
+       static UGKAbilityTask_MoveToDestination *MoveToTarget(
+               UGameplayAbility *                      OwningAbility,
+               FName                                   TaskInstanceName,
+               const FGameplayAbilityTargetDataHandle &TargetData,
+               float                                   DistanceTolerance     = 10.f,
+               float                                   AngleTolerance        = 15.f,
+               float                                   TurnRate              = 45.f,
+               float                                   Speed                 = 600.f,
+               bool                                    MoveToTarget          = true,
+               bool                                    bUseMovementComponent = true,
+               EGK_AbilityBehavior                     TargetKind            = EGK_AbilityBehavior::PointTarget,
+               bool                                    Debug                 = false);
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKMoveToDestinationDelegate OnCompleted;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKMoveToDestinationDelegate OnCancelled;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKMoveToDestinationDelegate OnTurnDone;
+   
+       virtual void InitSimulatedTask(UGameplayTasksComponent &InGameplayTasksComponent) override;
+   
+       void InitFromTargetData();
+   
+       virtual void TickTask(float DeltaTime) override;
+   
+       virtual void OnDestroy(bool AbilityIsEnding) override;
+   
+       virtual void Activate() override;
+   
+       virtual void ExternalCancel() override;
+   
+       // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
+   
+       void Init();
+   
+       void DebugDraw();
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+   
+       UPROPERTY()
+       EGK_AbilityBehavior TargetKind;
+   
+       // Arguments
+       UPROPERTY()
+       float TurnRate;
+   
+       UPROPERTY()
+       float MaxSpeed;
+   
+       UPROPERTY(replicated)
+       FVector Destination;
+   
+       UPROPERTY()
+       bool bDebug;
+   
+       UPROPERTY()
+       float DistanceTolerance;
+   
+       UPROPERTY()
+       float AngleTolerance;
+   
+       UPROPERTY()
+       bool bTurnOnly;
+   
+       UPROPERTY()
+       FGameplayAbilityTargetDataHandle TargetData;
+   
+       // States
+       UPROPERTY()
+       TWeakObjectPtr<AActor> TargetActor;
+   
+       UPROPERTY()
+       bool bIsFinished;
+   
+       UPROPERTY()
+       bool bRotationFinished;
+   
+       // Cached Variables
+       class APawn *                    Character;
+       class UPawnMovementComponent *   MovementComponent;
+       class USceneComponent *          RootComponent;
+       class UGKAbilitySystemComponent *GetTargetASC();
+   };

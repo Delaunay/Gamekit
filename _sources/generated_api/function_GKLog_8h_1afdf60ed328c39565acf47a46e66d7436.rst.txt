@@ -1,0 +1,14 @@
+.. _exhale_function_GKLog_8h_1afdf60ed328c39565acf47a46e66d7436:
+
+Template Function Log_VeryVerbose
+=================================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Log_VeryVerbose(const char *, int, const Category&, const Format&, const Args&...)
+   :project: GameKit

@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1fbm_1a9263c188279f89cc6a429739c8ef5497:
+
+Variable gamekit::fbm::interpolation
+====================================
+
+- Defined in :ref:`file_Source_Python_gamekit_fbm.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::fbm::interpolation
+   :project: GameKit

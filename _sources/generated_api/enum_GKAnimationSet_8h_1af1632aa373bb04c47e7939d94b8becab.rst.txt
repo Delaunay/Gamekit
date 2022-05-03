@@ -1,0 +1,14 @@
+.. _exhale_enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab:
+
+Enum EGK_AbilityAnimation
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_AbilityAnimation
+   :project: GameKit

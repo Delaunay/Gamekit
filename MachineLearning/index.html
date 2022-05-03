@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multiplayer" href="../Online/Multiplayer.html" />
+    <link rel="prev" title="Procedural Level Generation" href="../Level/procedural.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                be12f1c
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Machine Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-prerequisite-training">Install prerequisite (Training)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-actionrpg-example">Run ActionRPG example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-of-a-gym-enviroment">Making of a gym enviroment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-setup">Basic Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-action-space">Define the action space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-observation-space">Define the observation space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-a-custom-reward">Define a custom reward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training">Training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#wishlist">Wishlist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generated_api/GamekitAPI.html">Gamekit API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Machine Learning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/MachineLearning/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline"></a></h1>
+<p>Gamekit as a Reinforcement learning environment</p>
+<ul class="simple">
+<li><p>Smarter AI</p></li>
+<li><p>Competitive Scene boostraping</p></li>
+<li><p>Mixed Play</p></li>
+<li><p>AI &lt;-&gt; Human interaction trough chat wheel</p></li>
+<li><p>Automated Quality Assurance</p></li>
+</ul>
+<section id="install-prerequisite-training">
+<h2>Install prerequisite (Training)<a class="headerlink" href="#install-prerequisite-training" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using a NVIDIA GPU (Pascal+, 10 series or newer) for this tutorial is recommended.</p>
+<p>As of 10/2021, the only supported consumer AMD-GPU supported are RadeonVII and Vega 64.
+RDNA1-2 are not yet supported.</p>
+<p>See <a class="reference external" href="https://rocmdocs.amd.com/en/latest/">ROCm website</a> for additional details.</p>
+</div>
+<ul class="simple">
+<li><p>Install python using <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">conda</a></p></li>
+<li><p>Install <a class="reference external" href="https://pytorch.org/get-started/locally/">pytorch</a></p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">unreal.mladapter</span></code> (python)</p></li>
+<li><p>Enable UE MLApdater (C++/UE plugin)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e . UnrealEngine/Engine/Plugins/AI/MLAdapter/Source/python/
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">unreal.mladapter</span></code> requires <code class="docutils literal notranslate"><span class="pre">msgpack-rpc-python</span></code> which is badly out of date.
+The required tornado version is particularly old <code class="docutils literal notranslate"><span class="pre">tornado</span> <span class="pre">&gt;=</span> <span class="pre">3,&lt;5</span></code>
+This might break your environment. You should build a virtualenv just for UE.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To open anaconda with the right python environment you should use the shortcut that were created by anaconda</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Powershell</span>
+%windir%<span class="se">\S</span>ystem32<span class="se">\W</span>indowsPowerShell<span class="se">\v</span><span class="m">1</span>.0<span class="se">\p</span>owershell.exe -ExecutionPolicy ByPass -NoExit -Command <span class="s2">&quot;&amp; &#39;F:\anaconda\shell\condabin\conda-hook.ps1&#39; ; conda activate &#39;F:\anaconda&#39; &quot;</span>
+
+<span class="c1"># Cmd</span>
+%windir%<span class="se">\S</span>ystem32<span class="se">\c</span>md.exe <span class="s2">&quot;/K&quot;</span> F:<span class="se">\a</span>naconda<span class="se">\S</span>cripts<span class="se">\a</span>ctivate.bat F:<span class="se">\a</span>naconda
+</pre></div>
+</div>
+</div>
+</section>
+<section id="run-actionrpg-example">
+<h2>Run ActionRPG example<a class="headerlink" href="#run-actionrpg-example" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Donwload the <a class="reference external" href="https://www.unrealengine.com/marketplace/en-US/product/action-rpg">ActionRPG example</a> from the marketplace</p></li>
+<li><p>Move the project file to <code class="docutils literal notranslate"><span class="pre">E:\UnrealEngine\ActionRPG</span></code></p></li>
+<li><p>Generate the project files</p></li>
+<li><p>Compile project</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add UE-DevBinaries=E:/Engine/Binaries/Win64 to the path</span>
+python E:<span class="se">\U</span>nrealEngine<span class="se">\E</span>ngine<span class="se">\P</span>lugins<span class="se">\A</span>I<span class="se">\M</span>LAdapter<span class="se">\S</span>ource<span class="se">\p</span>ython<span class="se">\e</span>xamples<span class="se">\a</span>s_gym_env.py --env UE-ActionRPG-v0
+
+<span class="c1"># check path is correct</span>
+dir E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe
+
+<span class="c1"># if UE-DevBinaries is not in the path you can set it manually like bellow</span>
+python E:<span class="se">\U</span>nrealEngine<span class="se">\E</span>ngine<span class="se">\P</span>lugins<span class="se">\A</span>I<span class="se">\M</span>LAdapter<span class="se">\S</span>ource<span class="se">\p</span>ython<span class="se">\e</span>xamples<span class="se">\a</span>s_gym_env.py --env UE-ActionRPG-v0 --exec E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe
+
+<span class="c1"># if you encounter issues running the python script alone, you can try to launch the game inside the editor first</span>
+<span class="c1"># and connect to it using `connect_to_running.py`</span>
+python E:<span class="se">\U</span>nrealEngine<span class="se">\E</span>ngine<span class="se">\P</span>lugins<span class="se">\A</span>I<span class="se">\M</span>LAdapter<span class="se">\S</span>ource<span class="se">\p</span>ython<span class="se">\e</span>xamples<span class="se">\c</span>onnect_to_running.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find the logs of the game inside <code class="docutils literal notranslate"><span class="pre">E:\UnrealEngine\ActionRPG\Saved\Logs\</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the ActionRPG example crashes try to run manually a first time inside the editor.
+Some assets needs to be loaded before the project can be played.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">2021.11.22-21.38.44</span><span class="o">:</span><span class="mi">944</span><span class="p">][</span><span class="w">  </span><span class="mi">0</span><span class="p">]</span><span class="n">LogWindows</span><span class="o">:</span><span class="w"> </span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">Assertion</span><span class="w"> </span><span class="n">failed</span><span class="o">:</span><span class="w"> </span><span class="o">!</span><span class="n">FUObjectThreadContext</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">IsRoutingPostLoad</span><span class="w"> </span><span class="p">[</span><span class="n">File</span><span class="o">:</span><span class="n">E</span><span class="o">:/</span><span class="n">UnrealEngine</span><span class="o">/</span><span class="n">Engine</span><span class="o">/</span><span class="n">Source</span><span class="o">/</span><span class="n">Runtime</span><span class="o">/</span><span class="n">CoreUObject</span><span class="o">/</span><span class="n">Private</span><span class="o">/</span><span class="n">UObject</span><span class="o">/</span><span class="n">ScriptCore</span><span class="p">.</span><span class="n">cpp</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">Line</span><span class="o">:</span><span class="w"> </span><span class="mi">1851</span><span class="p">]</span><span class="w"></span>
+<span class="p">[</span><span class="mf">2021.11.22-21.38.44</span><span class="o">:</span><span class="mi">944</span><span class="p">][</span><span class="w">  </span><span class="mi">0</span><span class="p">]</span><span class="n">LogWindows</span><span class="o">:</span><span class="w"> </span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">Cannot</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="n">UnrealScript</span><span class="w"> </span><span class="p">(</span><span class="n">BP_GameInstance_C</span><span class="w"> </span><span class="o">/</span><span class="n">Engine</span><span class="o">/</span><span class="n">Transient</span><span class="p">.</span><span class="n">GameEngine_0</span><span class="o">:</span><span class="n">BP_GameInstance_C_0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Function</span><span class="w"> </span><span class="o">/</span><span class="n">Game</span><span class="o">/</span><span class="n">Blueprints</span><span class="o">/</span><span class="n">BP_GameInstance</span><span class="p">.</span><span class="n">BP_GameInstance_C</span><span class="o">:</span><span class="n">Completed_FB1CB99B4EDC0A52723303B59941AADE</span><span class="p">)</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="n">PostLoading</span><span class="w"> </span><span class="n">objects</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>when running the ActionRPG example, the initialization of MLAdapter can fail.
+To make it run you can start the game inside the editor and execute the command <code class="docutils literal notranslate"><span class="pre">4ml.server.restart</span> <span class="pre">15151</span></code>.
+To attach to the running instance from python you will need to use a different python script <code class="docutils literal notranslate"><span class="pre">connect_to_running.py</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To debug the editor launch; simply copy paste the command printed by the python script and launch it using the command line</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ENGINE_BINARIES</span><span class="o">=</span>E:<span class="se">\U</span>nrealEngine<span class="se">\E</span>ngine<span class="se">\B</span>inaries<span class="se">\W</span>in64
+<span class="nv">PROJECT_BINARIES</span><span class="o">=</span>E:<span class="se">\A</span>ctionRPG<span class="se">\B</span>inaries<span class="se">\W</span>in64          <span class="c1"># &lt;= WRONG</span>
+<span class="nv">PROJECT_BINARIES</span><span class="o">=</span>E:<span class="se">\U</span>nrealEngine<span class="se">\A</span>ctionRPG            <span class="c1"># &lt;= GOOD</span>
+
+<span class="c1"># Command line generated by MLAapter</span>
+E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe ActionRPG ActionRPG_P -windowed -usefixedtimestep -game -unattended -nosound -resx<span class="o">=</span><span class="m">320</span> -resy<span class="o">=</span><span class="m">240</span> -fps<span class="o">=</span><span class="m">20</span> -4mlport<span class="o">=</span><span class="m">15151</span>
+
+<span class="c1"># To open a project from an arbitrary location</span>
+E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe E:<span class="se">\G</span>amekit2<span class="se">\C</span>hessy.uproject
+
+<span class="c1"># To open a specific map</span>
+<span class="c1"># /Game/Levels/HideAndSeek/HideAndSeek.umap is located at E:\Gamekit2\Content\Levels\HideAndSeek\HideAndSeek.umap</span>
+E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe E:<span class="se">\G</span>amekit2<span class="se">\C</span>hessy.uproject /Game/Levels/HideAndSeek/HideAndSeek.umap
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>see more command line options <a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/CommandLineArguments/">here</a></p>
+</div>
+</div>
+</section>
+<section id="making-of-a-gym-enviroment">
+<h2>Making of a gym enviroment<a class="headerlink" href="#making-of-a-gym-enviroment" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The example is available for download as a <a class="reference external" href="https://github.com/Delaunay/cartpole">standalone project</a></p>
+</div>
+<section id="basic-setup">
+<h3>Basic Setup<a class="headerlink" href="#basic-setup" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p>Add Input mapping <code class="docutils literal notranslate"><span class="pre">CartMove</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A or Left scale -1</p></li>
+<li><p>D or Right scale 1</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Create the entities below</p></li>
+<li><p>Level: CartPole</p></li>
+<li><p>PlayerController: CartPole_Controller (empty)</p></li>
+<li><p>PlayerState: Cart_State (needs to inherit from <code class="docutils literal notranslate"><span class="pre">UERLPlayerState</span></code> so the score can be updated using blueprints)</p></li>
+<li><p>Pawn Actor: Cart_Pawn</p></li>
+</ul>
+<iframe width="100%" height="350px" src="https://blueprintue.com/render/i7gdsnhm/" scrolling="no" allowfullscreen></iframe><ul class="simple">
+<li><p>Pawn Actor: Pole_Pawn (needs to inherit from UERLPawn so it can be sighted by the AI perception system)</p></li>
+</ul>
+<iframe width="100%" height="350px" src="https://blueprintue.com/render/4qwvkpbi/" scrolling="no" allowfullscreen></iframe><ul class="simple">
+<li><p>Mode: CartPole_Mode</p></li>
+</ul>
+<iframe width="100%" height="350px" src="https://blueprintue.com/render/1g8l1wr9/" scrolling="no" allowfullscreen></iframe><ul class="simple">
+<li><p>In world setting set the mode to <code class="docutils literal notranslate"><span class="pre">CartPole_Mode</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should be able to play the “game” now</p>
+</div>
+</section>
+<section id="define-the-action-space">
+<h3>Define the action space<a class="headerlink" href="#define-the-action-space" title="Permalink to this headline"></a></h3>
+<p>The action space is defined by adding <code class="docutils literal notranslate"><span class="pre">U4MLActuator</span></code> to the agent configuration.</p>
+<ul>
+<li><p>Available actuators:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>InputKey: used the input mapping defined by the project</p></li>
+<li><p>Camera: used to control the camera  (<code class="docutils literal notranslate"><span class="pre">AddPitchInput</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">AddYawInput</span></code>)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CartPole</span><span class="p">(</span><span class="n">UnrealEnv</span><span class="p">):</span>
+
+    <span class="o">...</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">default_agent_config</span><span class="p">():</span>
+       <span class="c1"># Create a new agent config</span>
+       <span class="n">agent_config</span> <span class="o">=</span> <span class="n">AgentConfig</span><span class="p">()</span>
+
+       <span class="c1"># Set the spawn class that is being controlled</span>
+       <span class="n">agent_config</span><span class="o">.</span><span class="n">avatarClassName</span> <span class="o">=</span> <span class="s2">&quot;CartPole_Pawn_C&quot;</span>
+
+       <span class="c1"># Define the action space by adding actuators</span>
+       <span class="n">agent_config</span><span class="o">.</span><span class="n">add_actuator</span><span class="p">(</span><span class="s2">&quot;InputKey&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For our CartPole example this will result in a an action space of <cite>Discrete(2)</cite>
+since only 1 Axis input that varies between -1 and 1.</p>
+</section>
+<section id="define-the-observation-space">
+<h3>Define the observation space<a class="headerlink" href="#define-the-observation-space" title="Permalink to this headline"></a></h3>
+<p>The observation space is defined by adding <code class="docutils literal notranslate"><span class="pre">U4MLSensor</span></code> to the agent configuration.</p>
+<ul>
+<li><p>Available sensors:</p>
+<blockquote>
+<div><ul>
+<li><p>AIPerception: hook itself to the AI Perception system of UE (Note this is a Game-AI (Behavior Trees) not ML-AI)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>see <a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/AIPerception/">AI Perception</a>
+which include Hearing, Sight, Team (proximity of ally), Touch. Currently only Sight is supported,
+it is created by the MLAdatper system and added to the player controller.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Attribute: listen to attribute change if you are using
+<a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/API/Plugins/GameplayAbilities/UAttributeSet/">UAttributeSet</a> for your character.</p></li>
+<li><p>Camera: Make a camera capture of the scene</p></li>
+<li><p>Input: Capture the inputs</p></li>
+<li><p>Movement: Capture the characters movement &amp; acceleration</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Space: <code class="docutils literal notranslate"><span class="pre">Box([-1.</span> <span class="pre">-1.</span> <span class="pre">-1.</span> <span class="pre">-1.</span> <span class="pre">-1.</span> <span class="pre">-1.],</span> <span class="pre">[1.</span> <span class="pre">1.</span> <span class="pre">1.</span> <span class="pre">1.</span> <span class="pre">1.</span> <span class="pre">1.],</span> <span class="pre">(6,),</span> <span class="pre">float32)</span></code></p></li>
+<li><p>3 floats for the positions and another 3 floats for the acceleration</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CartPole</span><span class="p">(</span><span class="n">UnrealEnv</span><span class="p">):</span>
+
+    <span class="o">...</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">default_agent_config</span><span class="p">():</span>
+       <span class="c1"># Create a new agent config</span>
+       <span class="n">agent_config</span> <span class="o">=</span> <span class="n">AgentConfig</span><span class="p">()</span>
+
+       <span class="c1"># Set the spawn class that is being controlled</span>
+       <span class="n">agent_config</span><span class="o">.</span><span class="n">avatarClassName</span> <span class="o">=</span> <span class="s2">&quot;Cart_Pawn_C&quot;</span>
+
+       <span class="c1"># Actuators</span>
+       <span class="o">...</span>
+
+       <span class="c1"># Define the observation space by adding sensors</span>
+
+       <span class="c1"># Add our pawn movement (i.e cart movement)</span>
+       <span class="n">agent_config</span><span class="o">.</span><span class="n">add_sensor</span><span class="p">(</span>
+           <span class="s2">&quot;Movement&quot;</span><span class="p">,</span>
+           <span class="p">{</span>
+               <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="s2">&quot;absolute&quot;</span>
+           <span class="p">}</span>
+       <span class="p">)</span>
+
+       <span class="c1"># Add sight so we can see the pole</span>
+
+       <span class="n">agent_config</span><span class="o">.</span><span class="n">add_sensor</span><span class="p">(</span>
+             <span class="s2">&quot;AIPerception&quot;</span><span class="p">,</span>
+             <span class="p">{</span>
+                <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>                   <span class="c1"># Number of actors it can see</span>
+                <span class="s1">&#39;sort&#39;</span><span class="p">:</span> <span class="s1">&#39;distance&#39;</span><span class="p">,</span>             <span class="c1"># how the actors are sorted `distance`` or `in_front`</span>
+                <span class="s1">&#39;peripheral_angle&#39;</span><span class="p">:</span> <span class="mi">360</span><span class="p">,</span>        <span class="c1"># sight cone</span>
+                <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;vector&#39;</span><span class="p">,</span>               <span class="c1"># vector (HeadingVector) or rotator</span>
+                                                <span class="c1"># max_age</span>
+             <span class="p">}</span>
+       <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Observation space</span>
+<span class="n">Tuple</span><span class="p">(</span>
+   <span class="c1"># AIPerception</span>
+   <span class="n">Box</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">(</span><span class="mi">5</span><span class="p">,),</span> <span class="n">float32</span><span class="p">),</span>
+
+   <span class="c1"># Movement</span>
+   <span class="n">Box</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">(</span><span class="mi">6</span><span class="p">,),</span> <span class="n">float32</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Observation</span>
+<span class="p">(</span>
+   <span class="n">array</span><span class="p">([</span> <span class="mf">9.8459434e-41</span><span class="p">,</span>  <span class="mf">3.9260104e+02</span><span class="p">,</span>  <span class="mf">9.6790361e-01</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.3592940e-01</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.6601958e-02</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span>
+   <span class="n">array</span><span class="p">([</span>    <span class="mf">240.</span>      <span class="p">,</span>      <span class="mf">90.84363</span> <span class="p">,</span>      <span class="mf">242.00069</span> <span class="p">,</span>      <span class="mf">0.</span>      <span class="p">,</span>    <span class="o">-</span><span class="mf">77.921715</span><span class="p">,</span>     <span class="mf">0.</span>      <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The sight sensor has an affiliation property that can filter out between friendlies/hostiles and neutrals.
+If the <code class="docutils literal notranslate"><span class="pre">AIPerception</span></code> observation is not set that would be the main reason why.</p>
+<p>The affiliation is set using <code class="docutils literal notranslate"><span class="pre">ETeamAttitude</span></code> from the <code class="docutils literal notranslate"><span class="pre">FGenericTeamId</span></code>
+The team id is returned using <code class="docutils literal notranslate"><span class="pre">FGenericTeamId</span> <span class="pre">FGenericTeamId::GetTeamIdentifier(const</span> <span class="pre">AActor*</span> <span class="pre">TeamMember)</span></code>
+The <code class="docutils literal notranslate"><span class="pre">AActor</span></code> must implement the <code class="docutils literal notranslate"><span class="pre">IGenericTeamAgentInterface</span></code> interface (if not <code class="docutils literal notranslate"><span class="pre">FGenericTeamId::NoTeam</span></code> is used).</p>
+</div>
+</section>
+<section id="define-a-custom-reward">
+<h3>Define a custom reward<a class="headerlink" href="#define-a-custom-reward" title="Permalink to this headline"></a></h3>
+<p>A simple approach that does not require to modify the game code is to configure
+the observation space so the reward can be computed for each given observsation,
+as such the custom reward can be computed in the python script itself.
+This approach can be cumbersome to implement as the observation space is not annotated.</p>
+<p>To provide a custom reward in UnrealEngine, you need to set a <code class="docutils literal notranslate"><span class="pre">APlayerState</span></code> inside the controller (Created by default).
+<code class="docutils literal notranslate"><span class="pre">APlayerState::GetScore</span></code> will be used as the reward. <code class="docutils literal notranslate"><span class="pre">APlayerState::SetScore</span></code> is not exposed in blueprints so you will have
+to create a custom C++ <code class="docutils literal notranslate"><span class="pre">APlayerState</span></code>.</p>
+<p>In our example we use the X rotation angle (Roll) as the reward.</p>
+</section>
+<section id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="wishlist">
+<h2>Wishlist<a class="headerlink" href="#wishlist" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>open-sourced MLApadater python package</p></li>
+<li><p>be able to pick a ‘.uproject’ (you can make it happen already by using <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> as a path) instead of relying on an implicit path (‘UnrealEngine/&lt;PROJECT_NAME&gt;’)</p></li>
+<li><p>make it easier to select a map per project (one project could have multiple environment, specially when they are fairly small)</p></li>
+<li><p>Parallel Environment support</p></li>
+<li><p>Support all AI Perception senses</p></li>
+<li><p>Make AI Sight config <code class="docutils literal notranslate"><span class="pre">DetectionByAffiliation</span></code> available (avoid making user specialize a Pawn just for RL)</p></li>
+<li><p>Annotate the observation &amp; action space</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The observation space order is unclear. Python dictionnary are ordered the observation space returned is ordered differently
+the order look deterministic but it would be nice it it was made explicit.
+sensors are stored in a <code class="docutils literal notranslate"><span class="pre">TMap</span></code> so the order in which the space is generated is not clear.
+Additionally they are probably json-searialized so the order could be switched again there.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because the space is generated in the C++ (with the funky ordering) and then sent to python
+maybe the ordering is set by the space generation and as such no bug could occur.
+But I still think having control over the ordering will be powerful.
+Specially the space generation must be deterministic so the network that is
+trained is fully reusable.</p>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/API/Plugins/MLAdapter/">MLAdapter</a></p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p><a class="reference external" href="https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/AI/MLAdapter">Readme</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">3</span></dt>
+<dd><p><a class="reference external" href="https://github.com/microsoft/AirSim">AirSim</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Level/procedural.html" class="btn btn-neutral float-left" title="Procedural Level Generation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Online/Multiplayer.html" class="btn btn-neutral float-right" title="Multiplayer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

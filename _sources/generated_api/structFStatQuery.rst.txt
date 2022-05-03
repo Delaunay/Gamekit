@@ -1,0 +1,17 @@
+.. _exhale_struct_structFStatQuery:
+
+Struct FStatQuery
+=================
+
+- Defined in :ref:`file_Source_Gamekit_Performance_GKPerformanceStats.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FStatQuery
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

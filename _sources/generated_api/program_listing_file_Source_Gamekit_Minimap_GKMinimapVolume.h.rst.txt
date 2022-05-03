@@ -1,0 +1,117 @@
+
+.. _program_listing_file_Source_Gamekit_Minimap_GKMinimapVolume.h:
+
+Program Listing for File GKMinimapVolume.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Minimap_GKMinimapVolume.h>` (``Source/Gamekit/Minimap/GKMinimapVolume.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Volume.h"
+   #include "Runtime/Core/Public/HAL/ThreadingBase.h"
+   
+   // Generated
+   #include "GKMinimapVolume.generated.h"
+   
+   struct FGKFactionMinimap
+   {
+       FGKFactionMinimap()
+       {
+           MinimapCapture = nullptr;
+           MinimapCanvas  = nullptr;
+           Allies.Reserve(128);
+       }
+   
+       FName                                Name;
+       class UTexture *                     MinimapCapture;
+       class UTexture *                     MinimapCanvas;
+       bool                                 bDiscrete;
+       TArray<class UGKFogOfWarComponent *> Allies;
+   };
+   
+   UCLASS()
+   class GAMEKIT_API AGKMinimapVolume: public AVolume
+   {
+       GENERATED_BODY()
+   
+       public:
+       AGKMinimapVolume();
+   
+       void BeginPlay() override;
+   
+       void Tick(float Delta) override;
+   
+       // This generate a separate texture from the Fog Of War Volume
+       // You can combine them using a material
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minimap|Async")
+       float FramePerSeconds;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       class UCanvasRenderTarget2D *MinimapCanvas;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       class UCanvasRenderTarget2D *MinimapCaptureTexture;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       bool bMinimapEnabled;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
+       FVector CameraPosition;
+   
+       public:
+       void RegisterActorComponent(class UGKMinimapComponent *c);
+   
+       void UnregisterActorComponent(class UGKMinimapComponent *c);
+   
+       void DrawMinimap();
+   
+       void DrawActorCompoment(class UGKMinimapComponent *Compoment, class UCanvas *Canvas);
+   
+       void UpdateSizes();
+   
+       UFUNCTION(BlueprintPure, Category = Coordinate)
+       inline FVector2D GetTextureCoordinate(FVector loc) const
+       {
+           return FVector2D((loc.X / MapSize.X + 0.5), (0.5 - loc.Y / MapSize.Y));
+       }
+   
+       UFUNCTION(BlueprintPure, Category = Coordinate)
+       inline FVector2D GetScreenCoordinate(FVector loc) const { return GetTextureCoordinate(loc) * GetTextureSize(); }
+   
+       UFUNCTION(BlueprintPure, Category = Coordinate)
+       inline FVector2D GetMapSize() const { return MapSize; }
+   
+       UFUNCTION(BlueprintPure, Category = Coordinate)
+       FVector2D GetTextureSize() const;
+   
+       UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+       TArray<AActor *> ShowOnlyActors;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap")
+       class USceneCaptureComponent2D *MinimapCapture;
+   
+       // Fetch all the actors of a given class and add them to our allow list
+       // Defaults to ALandscape
+       UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+       TSubclassOf<AActor> AllowClass;
+   
+       private:
+       TMap<FName, FGKFactionMinimap> FactionMinimap;
+   
+       FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute
+       FVector2D                           MapSize;
+       TArray<class UGKMinimapComponent *> ActorComponents;
+   };

@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8h_1a5396a8662d5cc84c9f632669377f5a10:
+
+Function NewPassiveRegenEffect(UObject \*, FGameplayAttribute, float, float, FName)
+===================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: NewPassiveRegenEffect(UObject *, FGameplayAttribute, float, float, FName)
+   :project: GameKit

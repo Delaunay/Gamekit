@@ -1,0 +1,53 @@
+
+.. _file_Source_Gamekit_GKGameMode.cpp:
+
+File GKGameMode.cpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKGameMode.cpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKGameMode.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/PlayerStartPIE.h``
+
+- ``EngineUtils.h``
+
+- ``GKGameMode.h`` (:ref:`file_Source_Gamekit_GKGameMode.h`)
+
+- ``GameFramework/PlayerStart.h``
+
+- ``Gamekit/Blueprint/GKUtilityLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`)
+
+- ``Gamekit/Controllers/GKPlayerController.h`` (:ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`)
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``Gamekit/GKTeamPlayerStart.h`` (:ref:`file_Source_Gamekit_GKTeamPlayerStart.h`)
+
+- ``Gamekit/States/GKGameState.h`` (:ref:`file_Source_Gamekit_States_GKGameState.h`)
+
+
+
+
+

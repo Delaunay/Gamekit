@@ -1,0 +1,86 @@
+
+.. _file_Source_Gamekit_Abilities_GKGameplayAbility.cpp:
+
+File GKGameplayAbility.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/GKGameplayAbility.cpp``)
+---------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_GKGameplayAbility.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/Tasks/AbilityTask_MoveToLocation.h``
+
+- ``Abilities/Tasks/AbilityTask_WaitTargetData.h``
+
+- ``Engine/NetSerialization.h``
+
+- ``GameFramework/ProjectileMovementComponent.h``
+
+- ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`)
+
+- ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_PlayMontageAndWaitForEvent.h`)
+
+- ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
+- ``Gamekit/Abilities/GKCastPointAnimNotify.h`` (:ref:`file_Source_Gamekit_Abilities_GKCastPointAnimNotify.h`)
+
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+
+- ``Gamekit/Abilities/GKTargetType.h`` (:ref:`file_Source_Gamekit_Abilities_GKTargetType.h`)
+
+- ``Gamekit/Abilities/Targeting/GKAbilityTarget_PlayerControllerTrace.h`` (:ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`)
+
+- ``Gamekit/Abilities/Targeting/GKAbilityTask_WaitTargetData.h`` (:ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.h`)
+
+- ``Gamekit/Characters/GKCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKCharacter.h`)
+
+- ``Gamekit/Controllers/GKPlayerController.h`` (:ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Gamekit/Projectiles/GKProjectile.h`` (:ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`)
+
+- ``GameplayCue_Types.h``
+
+- ``Kismet/GameplayStatics.h``
+
+- ``Kismet/KismetMathLibrary.h``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d`
+
+- :ref:`exhale_function_GKGameplayAbility_8cpp_1adce0a323e5bfb7eb46959e928ea2536e`
+
+- :ref:`exhale_function_GKGameplayAbility_8cpp_1afa4f55520ec924d32695f86e7caf18af`
+

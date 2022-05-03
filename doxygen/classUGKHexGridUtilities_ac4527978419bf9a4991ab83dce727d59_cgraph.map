@@ -1,0 +1,4 @@
+<map id="UGKHexGridUtilities::GetHexSizeFromMesh" name="UGKHexGridUtilities::GetHexSizeFromMesh">
+<area shape="rect" id="node1" title="Return Radius/Height from a StaticMeshComponent, useful to simplify blueprints." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node2" href="$classUGKHexGridUtilities.html#a816ef2bd4b83366afd785c3cc286180a" title="Return Radius/Height from a bounding box size." alt="" coords="228,5,383,47"/>
+</map>

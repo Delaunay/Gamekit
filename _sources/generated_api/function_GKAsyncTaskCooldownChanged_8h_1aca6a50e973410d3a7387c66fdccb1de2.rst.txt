@@ -1,0 +1,14 @@
+.. _exhale_function_GKAsyncTaskCooldownChanged_8h_1aca6a50e973410d3a7387c66fdccb1de2:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCooldownChanged, FGameplayTag, CooldownTag, float, TimeRemaining, float, Duration)
+=============================================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCooldownChanged, FGameplayTag, CooldownTag, float, TimeRemaining, float, Duration)
+   :project: GameKit

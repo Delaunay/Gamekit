@@ -1,0 +1,27 @@
+
+.. _program_listing_file_Source_Gamekit_GKSaveGame.cpp:
+
+Program Listing for File GKSaveGame.cpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKSaveGame.cpp>` (``Source/Gamekit/GKSaveGame.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "GKSaveGame.h"
+   #include "GKGameInstance.h"
+   
+   void UGKSaveGame::Serialize(FArchive &Ar)
+   {
+       Super::Serialize(Ar);
+   
+       if (Ar.IsLoading() && SavedDataVersion != EGKSaveGameVersion::LatestVersion)
+       {
+           // Handle migration from old save to new save here
+           SavedDataVersion = EGKSaveGameVersion::LatestVersion;
+       }
+   }

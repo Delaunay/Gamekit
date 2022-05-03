@@ -1,0 +1,8 @@
+<map id="UGKShadowCasting::GetFactionTexture" name="UGKShadowCasting::GetFactionTexture">
+<area shape="rect" id="node1" title="Retrieve the Texture used to draw the fog of war for a given faction." alt="" coords="5,39,233,80"/>
+<area shape="rect" id="node2" href="$classUGKShadowCasting.html#ae20d95cf655d9e79d38af032c833a407" title=" " alt="" coords="287,5,515,47"/>
+<area shape="rect" id="node6" href="$classUGKShadowCasting.html#ad17d5dd8646444f14bd7e3f3019b3e83" title=" " alt="" coords="281,71,520,112"/>
+<area shape="rect" id="node3" href="$classUGKShadowCasting.html#a05deff8aee2d3424d1ac0abf6576594b" title=" " alt="" coords="568,39,771,80"/>
+<area shape="rect" id="node4" href="$structTMatrix3D.html#a817c4b55612d583c30e097df6ca2f96a" title=" " alt="" coords="819,21,960,47"/>
+<area shape="rect" id="node5" href="$structTMatrix3D.html#aa27eb31b2908a61734939673178bd169" title=" " alt="" coords="821,71,957,98"/>
+</map>

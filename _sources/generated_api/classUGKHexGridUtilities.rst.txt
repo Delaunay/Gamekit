@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKHexGridUtilities:
+
+Class UGKHexGridUtilities
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Grid_GKHexGridUtilities.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintFunctionLibrary``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKHexGridUtilities
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

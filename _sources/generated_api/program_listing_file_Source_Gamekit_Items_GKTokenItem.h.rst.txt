@@ -1,0 +1,34 @@
+
+.. _program_listing_file_Source_Gamekit_Items_GKTokenItem.h:
+
+Program Listing for File GKTokenItem.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Items_GKTokenItem.h>` (``Source/Gamekit/Items/GKTokenItem.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Items/GKItem.h"
+   
+   // Generated
+   #include "GKTokenItem.generated.h"
+   
+   UCLASS(Blueprintable)
+   class GAMEKIT_API UGKTokenItem: public UGKItem
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKTokenItem()
+       {
+   
+           MaxCount = 0; // Infinite
+       }
+   };

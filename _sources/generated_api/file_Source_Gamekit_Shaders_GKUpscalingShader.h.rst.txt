@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Shaders_GKUpscalingShader.h:
+
+File GKUpscalingShader.h
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Shaders>` (``Source/Gamekit/Shaders``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Shaders/GKUpscalingShader.h``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Shaders_GKUpscalingShader.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+- ``Runtime/Engine/Classes/Engine/TextureRenderTarget2D.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_FogOfWar_Upscaler_GK_GPU_Upscaler.cpp`
+
+- :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFUpscalingParameter`
+
+- :ref:`exhale_class_classFUpscalingDispatcher`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_GKFogOfWarVolume_8h_1a5f1a838387dd74fac00fa4080ed6dd86:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name)
+========================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKNewFactionDelegate, FName, Name)
+   :project: GameKit

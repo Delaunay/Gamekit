@@ -1,0 +1,17 @@
+.. _exhale_struct_structTMatrix3D:
+
+Template Struct TMatrix3D
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Container_Matrix.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: TMatrix3D
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

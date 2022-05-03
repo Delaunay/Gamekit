@@ -1,0 +1,80 @@
+
+.. _program_listing_file_Source_Gamekit_Characters_GKPawnEnchancedInput.h:
+
+Program Listing for File GKPawnEnchancedInput.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Characters_GKPawnEnchancedInput.h>` (``Source/Gamekit/Characters/GKPawnEnchancedInput.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "GKEnhancedInputInterface.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameFramework/Pawn.h"
+   
+   // Generated
+   #include "GKPawnEnchancedInput.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKPawnEnchancedInput: public APawn //, public IGKPawnEnhancedInputInterface
+   {
+       public:
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this pawn's properties
+       AGKPawnEnchancedInput();
+   
+       protected:
+       // Called when the game starts or when spawned
+       virtual void BeginPlay() override;
+   
+       public:
+       // Called every frame
+       virtual void Tick(float DeltaTime) override;
+   
+       // Called to bind functionality to input
+       virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+   
+       // Enhanced Input Interface
+       // ------------------------
+   
+       UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
+       TMap<class UInputAction *, FName> const &GetActionNameOverrides();
+   
+       UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
+       class UInputMappingContext *GetDefaultInputMapping();
+   
+       UPROPERTY(EditAnywhere)
+       class UInputMappingContext *DefaultInputMapping;
+   
+       UPROPERTY(EditAnywhere)
+       TMap<class UInputAction *, FName> InputNames;
+   
+       //*
+       // Setup the Enhanced Input system, add the default mapping context if set
+       UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
+       void InitializeEnhancedInput(class AController *MyController, class UInputComponent *PlayerInputComponent);
+   
+       // Add an input context to existing InputSubsystem
+       UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
+       void AddMappingContext(class UInputMappingContext *Input, int32 Priority);
+   
+       // Remove an input context from the InputSubsystem
+       UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Input")
+       void RemoveMappingContext(class UInputMappingContext *Input);
+   
+       // Cached pointer, populated after `SetupPlayerInputComponent`
+       class UEnhancedInputLocalPlayerSubsystem *InputSubsystem;
+       class UEnhancedInputComponent *           PlayerEnhancedInputComponent;
+       // */
+   };

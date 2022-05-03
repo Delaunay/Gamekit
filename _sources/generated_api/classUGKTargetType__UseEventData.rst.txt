@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKTargetType__UseEventData:
+
+Class UGKTargetType_UseEventData
+================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKTargetType.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKTargetType`` (:ref:`exhale_class_classUGKTargetType`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKTargetType_UseEventData
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

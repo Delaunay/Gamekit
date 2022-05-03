@@ -1,0 +1,7 @@
+<map id="AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting" name="AGKAbilityTarget_PlayerControllerTrace::ConfirmTargeting">
+<area shape="rect" id="node1" title="Select the current target as our final target." alt="" coords="5,41,249,83"/>
+<area shape="rect" id="node2" href="$classAGKAbilityTarget__PlayerControllerTrace.html#ac5cbd33f9a47b6718206172b937e93de" title=" " alt="" coords="297,12,556,53"/>
+<area shape="rect" id="node4" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a0e97fdf8439536021cacab80ace18e1c" title="Is the current target valid ?" alt="" coords="604,71,848,112"/>
+<area shape="rect" id="node3" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a4e37f4907eeedbf44084c9d71212d722" title=" " alt="" coords="604,5,848,47"/>
+<area shape="rect" id="node5" href="$classAGKAbilityTarget__PlayerControllerTrace.html#a9ff71c8abc5385006fb01a20d196169e" title=" " alt="" coords="896,71,1140,112"/>
+</map>

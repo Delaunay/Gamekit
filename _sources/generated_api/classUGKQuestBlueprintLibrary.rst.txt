@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKQuestBlueprintLibrary:
+
+Class UGKQuestBlueprintLibrary
+==============================
+
+- Defined in :ref:`file_Source_Gamekit_Quest_GKQuestBlueprintLibrary.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UBlueprintFunctionLibrary``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKQuestBlueprintLibrary
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

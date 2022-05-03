@@ -1,0 +1,37 @@
+
+.. _file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp:
+
+File GKRichTextBlockDecorator.cpp
+=================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget_RichTextDecorator>` (``Source/Gamekit/Widget/RichTextDecorator``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Widget/RichTextDecorator/GKRichTextBlockDecorator.cpp``)
+-------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Widget/RichTextDecorator/GKRichTextBlockDecorator.h`` (:ref:`file_Source_Gamekit_Widget_RichTextDecorator_GKRichTextBlockDecorator.h`)
+
+
+
+
+

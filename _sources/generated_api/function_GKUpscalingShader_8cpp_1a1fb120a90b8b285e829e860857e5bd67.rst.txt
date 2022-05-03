@@ -1,0 +1,14 @@
+.. _exhale_function_GKUpscalingShader_8cpp_1a1fb120a90b8b285e829e860857e5bd67:
+
+Function IMPLEMENT_GLOBAL_SHADER
+================================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: IMPLEMENT_GLOBAL_SHADER(FUpscalingShader, "/Gamekit/Upscaling.usf", "MainComputeShader", SF_Compute)
+   :project: GameKit

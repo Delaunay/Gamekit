@@ -1,0 +1,14 @@
+.. _exhale_typedef_GKTypes_8h_1ac193b8deb9b505c472df55c4c8b6b486:
+
+Typedef float64
+===============
+
+- Defined in :ref:`file_Source_Gamekit_GKTypes.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: float64
+   :project: GameKit

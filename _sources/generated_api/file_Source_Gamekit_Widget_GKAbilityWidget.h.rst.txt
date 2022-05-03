@@ -1,0 +1,60 @@
+
+.. _file_Source_Gamekit_Widget_GKAbilityWidget.h:
+
+File GKAbilityWidget.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget>` (``Source/Gamekit/Widget``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Widget/GKAbilityWidget.h``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Widget_GKAbilityWidget.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Blueprint/UserWidget.h``
+
+- ``CoreMinimal.h``
+
+- ``GKAbilityWidget.generated.h``
+
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+
+- ``Gamekit/Items/GKInventoryInterface.h`` (:ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`)
+
+- ``GameplayAbilitySpec.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKAbilityWidget`
+

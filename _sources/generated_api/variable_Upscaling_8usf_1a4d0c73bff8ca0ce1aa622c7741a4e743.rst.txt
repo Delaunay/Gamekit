@@ -1,0 +1,14 @@
+.. _exhale_variable_Upscaling_8usf_1a4d0c73bff8ca0ce1aa622c7741a4e743:
+
+Variable Dimensions
+===================
+
+- Defined in :ref:`file_Shaders_Upscaling.usf`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Dimensions
+   :project: GameKit

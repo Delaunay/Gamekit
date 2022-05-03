@@ -1,0 +1,14 @@
+.. _exhale_function_GKLog_8h_1ad1a2a183de0fbea0662e9c3b9a43f315:
+
+Template Function Log_Warning
+=============================
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Log_Warning(const char *, int, const Category&, const Format&, const Args&...)
+   :project: GameKit

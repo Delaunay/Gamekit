@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.h:
+
+File GKWidgetDragVisual.h
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Widget_DragDrop>` (``Source/Gamekit/Widget/DragDrop``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Widget/DragDrop/GKWidgetDragVisual.h``)
+--------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Blueprint/UserWidget.h``
+
+- ``GKWidgetDragVisual.generated.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDraggable.h`
+
+- :ref:`file_Source_Gamekit_Widget_DragDrop_GKWidgetDragVisual.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKWidgetLocationData`
+
+- :ref:`exhale_class_classUGKWidgetDragVisual`
+

@@ -1,0 +1,38 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h:
+
+Program Listing for File GKCachedAbilityTargetActorInterface.h
+==============================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h>` (``Source/Gamekit/Abilities/Targeting/GKCachedAbilityTargetActorInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h"
+   #include "Gamekit/Gamekit.h"
+   
+   // Generated
+   #include "GKCachedAbilityTargetActorInterface.generated.h"
+   
+   UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
+   class UGKCachedAbilityTargetActorInterface: public UInterface
+   {
+       GENERATED_BODY()
+   };
+   
+   class GAMEKIT_API IGKCachedAbilityTargetActorInterface
+   {
+       GENERATED_BODY()
+   
+       public:
+       virtual TSubclassOf<AGKAbilityTarget_Actor> GetAbilityTarget_ActorClass() = 0;
+   
+       virtual AGKAbilityTarget_Actor *GetAbilityTarget_Actor() = 0;
+   };

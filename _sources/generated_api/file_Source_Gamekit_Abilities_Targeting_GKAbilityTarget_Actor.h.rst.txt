@@ -1,0 +1,62 @@
+
+.. _file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h:
+
+File GKAbilityTarget_Actor.h
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Targeting>` (``Source/Gamekit/Abilities/Targeting``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Targeting/GKAbilityTarget_Actor.h``)
+---------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/GameplayAbilityTargetActor.h``
+
+- ``GKAbilityTarget_Actor.generated.h``
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_Actor.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTarget_PlayerControllerTrace.h`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKAbilityTask_WaitTargetData.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAGKAbilityTarget__Actor`
+

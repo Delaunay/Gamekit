@@ -1,0 +1,14 @@
+.. _exhale_function_GKUpscalingShader_8cpp_1a696a5b630ad60871824c6069cc73c79f:
+
+Function GetTextureRHI
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetTextureRHI(UTexture *)
+   :project: GameKit

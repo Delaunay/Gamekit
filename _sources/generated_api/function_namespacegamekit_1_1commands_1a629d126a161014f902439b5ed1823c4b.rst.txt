@@ -1,0 +1,14 @@
+.. _exhale_function_namespacegamekit_1_1commands_1a629d126a161014f902439b5ed1823c4b:
+
+Function gamekit::commands::fetch_factories
+===========================================
+
+- Defined in :ref:`file_Source_Python_gamekit_commands___init__.py`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: gamekit::commands::fetch_factories(base_module, base_file_name, function_name)
+   :project: GameKit

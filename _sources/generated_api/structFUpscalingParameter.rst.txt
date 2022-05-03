@@ -1,0 +1,17 @@
+.. _exhale_struct_structFUpscalingParameter:
+
+Struct FUpscalingParameter
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Shaders_GKUpscalingShader.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FUpscalingParameter
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

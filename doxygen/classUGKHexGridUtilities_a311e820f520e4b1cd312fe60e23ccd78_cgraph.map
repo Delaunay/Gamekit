@@ -1,0 +1,7 @@
+<map id="UGKHexGridUtilities::WorldToGrid" name="UGKHexGridUtilities::WorldToGrid">
+<area shape="rect" id="node1" title="Convert world map position to hex grid position." alt="" coords="5,71,160,112"/>
+<area shape="rect" id="node2" href="$classUGKHexGridUtilities.html#ae269e32a1d0290daca5d9673d20205ff" title="Round axial hex coordinate to nearest hex." alt="" coords="208,71,363,112"/>
+<area shape="rect" id="node3" href="$classUGKHexGridUtilities.html#ab6540d700ce981787fb092fc39a2127e" title="Convert axial hex coordinate to cube hex coordinate." alt="" coords="411,5,565,47"/>
+<area shape="rect" id="node4" href="$classUGKHexGridUtilities.html#af24a7546d9d8c8eb1f9e69f878e8bbee" title="Round cube hex coordinate to nearest hex." alt="" coords="411,71,565,112"/>
+<area shape="rect" id="node5" href="$classUGKHexGridUtilities.html#a61d6c31bd1a578eb222930c4fdfa4d60" title="Convert cube hex coordinate to axial hex coordinate." alt="" coords="411,136,565,177"/>
+</map>

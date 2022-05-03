@@ -1,0 +1,14 @@
+.. _exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e:
+
+Function DECLARE_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChangedNative, bool, UGKItem \*)
+==============================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Items_GKItemTypes.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_MULTICAST_DELEGATE_TwoParams(FOnInventoryItemChangedNative, bool, UGKItem *)
+   :project: GameKit

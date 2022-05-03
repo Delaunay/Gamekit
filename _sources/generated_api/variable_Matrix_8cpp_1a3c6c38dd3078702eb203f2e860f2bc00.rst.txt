@@ -1,0 +1,14 @@
+.. _exhale_variable_Matrix_8cpp_1a3c6c38dd3078702eb203f2e860f2bc00:
+
+Variable NOFFSET
+================
+
+- Defined in :ref:`file_Source_Gamekit_Container_Matrix.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: NOFFSET
+   :project: GameKit

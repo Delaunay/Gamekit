@@ -1,0 +1,137 @@
+
+.. _program_listing_file_Source_Gamekit_FogOfWar_GKFogOfWarComponent.h:
+
+Program Listing for File GKFogOfWarComponent.h
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_FogOfWar_GKFogOfWarComponent.h>` (``Source/Gamekit/FogOfWar/GKFogOfWarComponent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   // Gamekit
+   #include "Gamekit/Utilities/GKBitFlag.h"
+   
+   
+   // Unreal Engine
+   #include "Components/ActorComponent.h"
+   #include "CoreMinimal.h"
+   #include "GenericTeamAgentInterface.h"
+   
+   // Generated
+   #include "GKFogOfWarComponent.generated.h"
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightingEventSignature, AActor *, Actor);
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSightedEventSignature, AActor *, Actor);
+   
+   
+   UCLASS(Blueprintable, ClassGroup = (FogOfWar), meta = (BlueprintSpawnableComponent))
+   class GAMEKIT_API UGKFogOfWarComponent: public UActorComponent
+   {
+       GENERATED_BODY()
+   
+       public:
+       // Sets default values for this component's properties
+       UGKFogOfWarComponent();
+   
+       protected:
+   
+       // Called when the game starts
+       virtual void BeginPlay() override;
+   
+       // Unregister the component
+       virtual void BeginDestroy() override;
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       bool RegisterComponent();
+   
+       public:
+       // Replication
+       // -----------
+   
+       void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+   
+       bool bWasRegistered;
+   
+       UFUNCTION(BlueprintCallable, Category = "FogOfWar|Debug")
+       class UTexture *GetVisionTexture();
+   
+       UFUNCTION(BlueprintCallable, Category = "FogOfWar|Debug")
+       class UTexture *GetExplorationTexture();
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class AGKFogOfWarVolume *GetFogOfWarVolume();
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       FName GetFaction();
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       class UMaterialInterface *GetFogOfWarPostprocessMaterial();
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       void SetCameraPostprocessMaterial(class UCameraComponent *CameraComponent);
+   
+       UFUNCTION(BlueprintCallable, Category = FogOfWar)
+       void SetFogOfWarMaterialParameters(class UMaterialInstanceDynamic *Material);
+   
+       // Properties
+       // ----------
+       
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       float LineTickness;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       int TraceCount;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       float Radius;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       float InnerRadius;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       bool UnobstructedVision;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       bool GivesVision;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       bool BlocksVision;
+   
+       UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = FogOfWar)
+       float FieldOfView;
+   
+       public:
+       UPROPERTY(BlueprintAssignable, Category = FogOfWar)
+       FSightingEventSignature OnSighting;
+   
+       UPROPERTY(BlueprintAssignable, Category = FogOfWar)
+       FSightedEventSignature OnSighted;
+   
+       FGenericTeamId GetGenericTeamId() const;
+   
+       bool IsVisible(AActor const* Target) const;
+   
+       bool IsVisible(FVector Loc) const;
+   
+       private:
+       // Keep track of materials this unit belongs to, so they can be 
+       // updated in case of a faction change
+       // in case of cheating the fog will simply stop working as it will draw the wrong fog
+       // but the fog drawing is driven by server data which will be outdated
+       // TArray<class UMaterialInstanceDynamic *> Materials;
+   
+       class AGKFogOfWarVolume *FogOfWarVolume;
+   
+       void SetCollisionFoWResponse(class UPrimitiveComponent *Primitive, ECollisionChannel Channel);
+   
+       FName DeduceFaction() const;
+   
+       FName Faction;
+   
+       friend class AGKFogOfWarVolume;
+   };

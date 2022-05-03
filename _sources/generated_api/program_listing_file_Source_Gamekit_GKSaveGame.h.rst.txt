@@ -1,0 +1,70 @@
+
+.. _program_listing_file_Source_Gamekit_GKSaveGame.h:
+
+Program Listing for File GKSaveGame.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_GKSaveGame.h>` (``Source/Gamekit/GKSaveGame.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   #include "Gamekit/Items/GKItem.h"
+   #include "Gamekit/Items/GKItemTypes.h"
+   
+   // Unreal Engine
+   #include "GameFramework/SaveGame.h"
+   
+   // Generated
+   #include "GKSaveGame.generated.h"
+   
+   namespace EGKSaveGameVersion
+   {
+   enum type
+   {
+       // Initial version
+       Initial,
+   
+       // -----<new versions must be added before this line>-------------------------------------------------
+       VersionPlusOne,
+       LatestVersion = VersionPlusOne - 1
+   };
+   } // namespace EGKSaveGameVersion
+   
+   UCLASS(BlueprintType)
+   class GAMEKIT_API UGKSaveGame: public USaveGame
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKSaveGame()
+       {
+           // Set to current version, this will get overwritten during serialization when loading
+           SavedDataVersion = EGKSaveGameVersion::LatestVersion;
+       }
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
+       TMap<FPrimaryAssetId, FGKItemData> InventoryData;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
+       TMap<FGKAbilitySlot, FPrimaryAssetId> SlottedItems;
+   
+       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
+       FString UserId;
+   
+       protected:
+       UPROPERTY()
+       TArray<FPrimaryAssetId> InventoryItems_DEPRECATED;
+   
+       UPROPERTY()
+       int32 SavedDataVersion;
+   
+       virtual void Serialize(FArchive &Ar) override;
+   };

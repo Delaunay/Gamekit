@@ -1,0 +1,14 @@
+.. _exhale_function_GKMovementUtility_8cpp_1ac18c8a4d8ce25588cb8da0bfd9c8d9a9:
+
+Function InitNavigationControl
+==============================
+
+- Defined in :ref:`file_Source_Gamekit_Grid_GKMovementUtility.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: InitNavigationControl(AController&, float)
+   :project: GameKit
