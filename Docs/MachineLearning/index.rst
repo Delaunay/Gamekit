@@ -10,6 +10,11 @@ Gamekit as a Reinforcement learning environment
 * Automated Quality Assurance
 
 
+.. warning::
+
+   This documentation was moved to `GKML <https://delaunay.github.io/GKMachineLearning/>`_
+
+
 Install prerequisite (Training)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
