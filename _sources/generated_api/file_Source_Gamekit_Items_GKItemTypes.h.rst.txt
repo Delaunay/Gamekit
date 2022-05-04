@@ -69,9 +69,9 @@ Functions
 
 - :ref:`exhale_function_GKItemTypes_8h_1a48b8b70d84a875bd50835a558545816d`
 
-- :ref:`exhale_function_GKItemTypes_8h_1ac11ca505951dc00ddce58bbe2820a52e`
-
 - :ref:`exhale_function_GKItemTypes_8h_1aeaa00e87e067b796b0ca8c92a2740535`
+
+- :ref:`exhale_function_GKItemTypes_8h_1ac11ca505951dc00ddce58bbe2820a52e`
 
 - :ref:`exhale_function_GKItemTypes_8h_1aad48a28464dad608433e539531822b55`
 
