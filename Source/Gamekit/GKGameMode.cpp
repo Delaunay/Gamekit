@@ -13,6 +13,7 @@
 #include "GameFramework/PlayerStart.h"
 #include "Engine/PlayerStartPIE.h"
 #include "EngineUtils.h"
+#include "Dom/JsonValue.h"
 
 
 AGKGameModeBaseBase::AGKGameModeBaseBase()

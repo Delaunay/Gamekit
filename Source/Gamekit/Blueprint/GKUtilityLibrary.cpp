@@ -19,6 +19,8 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Math/RotationMatrix.h"
 #include "Math/Rotator.h"
+#include "Engine/NetDriver.h"
+#include "Engine/NetConnection.h"
 
 
 AWorldSettings const *UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext)

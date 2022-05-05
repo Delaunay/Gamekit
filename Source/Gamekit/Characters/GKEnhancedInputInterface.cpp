@@ -7,6 +7,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
 #include "InputTriggers.h"
+#include "Engine/LocalPlayer.h"
+
 
 void IGKPawnEnhancedInputInterface::InitializeEnhancedInput(class AController *    MyController,
                                                             class UInputComponent *PlayerInputComponent)
