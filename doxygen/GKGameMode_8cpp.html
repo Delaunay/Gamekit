@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">7672144</span>
+   &#160;<span id="projectnumber">c1221d1</span>
    </div>
   </td>
  </tr>
@@ -86,61 +86,62 @@ $(function() {
 <code>#include &quot;GameFramework/PlayerStart.h&quot;</code><br />
 <code>#include &quot;Engine/PlayerStartPIE.h&quot;</code><br />
 <code>#include &quot;EngineUtils.h&quot;</code><br />
+<code>#include &quot;Dom/JsonValue.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for GKGameMode.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="GKGameMode_8cpp__incl.png" border="0" usemap="#Source_2Gamekit_2GKGameMode_8cpp" alt=""/></div>
 <map name="Source_2Gamekit_2GKGameMode_8cpp" id="Source_2Gamekit_2GKGameMode_8cpp">
-<area shape="rect" title=" " alt="" coords="2990,5,3241,32"/>
-<area shape="rect" href="GKGameMode_8h.html" title=" " alt="" coords="377,87,505,114"/>
-<area shape="rect" href="GKPlayerController_8h.html" title=" " alt="" coords="1047,80,1208,121"/>
-<area shape="rect" href="GKGameState_8h.html" title=" " alt="" coords="1668,87,1899,114"/>
-<area shape="rect" href="GKLog_8h.html" title=" " alt="" coords="2425,87,2561,114"/>
-<area shape="rect" href="GKUtilityLibrary_8h.html" title=" " alt="" coords="3014,80,3217,121"/>
-<area shape="rect" href="GKTeamPlayerStart_8h.html" title=" " alt="" coords="3394,87,3613,114"/>
-<area shape="rect" title=" " alt="" coords="3883,177,4105,203"/>
-<area shape="rect" title=" " alt="" coords="3688,87,3863,114"/>
-<area shape="rect" title=" " alt="" coords="3887,87,3995,114"/>
-<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="909,527,1060,553"/>
-<area shape="rect" title=" " alt="" coords="228,177,485,203"/>
-<area shape="rect" title=" " alt="" coords="5,177,204,203"/>
-<area shape="rect" title=" " alt="" coords="2562,601,2679,628"/>
-<area shape="rect" title=" " alt="" coords="886,601,1083,628"/>
-<area shape="rect" title=" " alt="" coords="612,177,867,203"/>
-<area shape="rect" title=" " alt="" coords="891,177,1115,203"/>
-<area shape="rect" title=" " alt="" coords="1661,177,1876,203"/>
-<area shape="rect" title=" " alt="" coords="1139,177,1366,203"/>
-<area shape="rect" title=" " alt="" coords="1900,177,2155,203"/>
-<area shape="rect" title=" " alt="" coords="1441,177,1637,203"/>
-<area shape="rect" title=" " alt="" coords="2179,177,2337,203"/>
-<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="2362,169,2562,211"/>
-<area shape="rect" href="GKWorldSettings_8h.html" title=" " alt="" coords="3051,355,3254,382"/>
-<area shape="rect" title=" " alt="" coords="3087,169,3274,211"/>
-<area shape="rect" title=" " alt="" coords="3298,177,3503,203"/>
-<area shape="rect" href="GKAnimationSet_8h.html" title=" " alt="" coords="2353,348,2592,389"/>
-<area shape="rect" title=" " alt="" coords="2289,445,2435,471"/>
-<area shape="rect" href="GKAssetManager_8h.html" title=" " alt="" coords="1239,266,1445,293"/>
-<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="1988,259,2139,300"/>
-<area shape="rect" title=" " alt="" coords="1023,445,1176,471"/>
-<area shape="rect" href="GKBitFlag_8h.html" title=" " alt="" coords="2904,266,3119,293"/>
-<area shape="rect" title=" " alt="" coords="2265,259,2453,300"/>
-<area shape="rect" title=" " alt="" coords="2477,266,2652,293"/>
-<area shape="rect" title=" " alt="" coords="2677,266,2879,293"/>
-<area shape="rect" title=" " alt="" coords="2745,445,2952,471"/>
-<area shape="rect" title=" " alt="" coords="2510,445,2721,471"/>
-<area shape="rect" title=" " alt="" coords="1137,355,1312,382"/>
-<area shape="rect" title=" " alt="" coords="1336,355,1551,382"/>
-<area shape="rect" href="GKAbilityEffectActor_8h.html" title=" " alt="" coords="1785,348,1955,389"/>
-<area shape="rect" href="GKProjectileStatic_8h.html" title=" " alt="" coords="1575,348,1730,389"/>
-<area shape="rect" title=" " alt="" coords="1979,355,2163,382"/>
-<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="1963,437,2163,479"/>
-<area shape="rect" title=" " alt="" coords="1497,445,1680,471"/>
-<area shape="rect" title=" " alt="" coords="1705,445,1939,471"/>
-<area shape="rect" title=" " alt="" coords="1251,445,1473,471"/>
-<area shape="rect" title=" " alt="" coords="2907,355,3027,382"/>
-<area shape="rect" title=" " alt="" coords="3027,445,3267,471"/>
-<area shape="rect" title=" " alt="" coords="3292,445,3504,471"/>
-<area shape="rect" title=" " alt="" coords="3629,177,3858,203"/>
+<area shape="rect" title=" " alt="" coords="3132,5,3382,32"/>
+<area shape="rect" href="GKGameMode_8h.html" title=" " alt="" coords="206,87,334,114"/>
+<area shape="rect" href="GKPlayerController_8h.html" title=" " alt="" coords="1035,80,1196,121"/>
+<area shape="rect" href="GKGameState_8h.html" title=" " alt="" coords="1947,87,2178,114"/>
+<area shape="rect" href="GKLog_8h.html" title=" " alt="" coords="2640,87,2776,114"/>
+<area shape="rect" href="GKUtilityLibrary_8h.html" title=" " alt="" coords="3038,80,3241,121"/>
+<area shape="rect" href="GKTeamPlayerStart_8h.html" title=" " alt="" coords="3265,87,3484,114"/>
+<area shape="rect" title=" " alt="" coords="3916,177,4139,203"/>
+<area shape="rect" title=" " alt="" coords="3559,87,3734,114"/>
+<area shape="rect" title=" " alt="" coords="3758,87,3866,114"/>
+<area shape="rect" title=" " alt="" coords="3890,87,4022,114"/>
+<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="1112,527,1263,553"/>
+<area shape="rect" title=" " alt="" coords="267,177,524,203"/>
+<area shape="rect" title=" " alt="" coords="44,177,243,203"/>
+<area shape="rect" title=" " alt="" coords="2620,601,2737,628"/>
+<area shape="rect" title=" " alt="" coords="1089,601,1286,628"/>
+<area shape="rect" title=" " alt="" coords="600,177,855,203"/>
+<area shape="rect" title=" " alt="" coords="880,177,1104,203"/>
+<area shape="rect" title=" " alt="" coords="1379,177,1594,203"/>
+<area shape="rect" title=" " alt="" coords="1128,177,1354,203"/>
+<area shape="rect" title=" " alt="" coords="1618,177,1872,203"/>
+<area shape="rect" title=" " alt="" coords="1896,177,2092,203"/>
+<area shape="rect" title=" " alt="" coords="2168,177,2327,203"/>
+<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="2352,169,2552,211"/>
+<area shape="rect" href="GKWorldSettings_8h.html" title=" " alt="" coords="3154,355,3357,382"/>
+<area shape="rect" title=" " alt="" coords="3112,169,3298,211"/>
+<area shape="rect" title=" " alt="" coords="3322,177,3528,203"/>
+<area shape="rect" href="GKAnimationSet_8h.html" title=" " alt="" coords="2542,348,2780,389"/>
+<area shape="rect" title=" " alt="" coords="2346,445,2493,471"/>
+<area shape="rect" href="GKAssetManager_8h.html" title=" " alt="" coords="1320,266,1525,293"/>
+<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="1906,259,2056,300"/>
+<area shape="rect" title=" " alt="" coords="1326,445,1479,471"/>
+<area shape="rect" href="GKBitFlag_8h.html" title=" " alt="" coords="2132,266,2347,293"/>
+<area shape="rect" title=" " alt="" coords="2423,259,2611,300"/>
+<area shape="rect" title=" " alt="" coords="2635,266,2810,293"/>
+<area shape="rect" title=" " alt="" coords="2834,266,3037,293"/>
+<area shape="rect" title=" " alt="" coords="2568,445,2775,471"/>
+<area shape="rect" title=" " alt="" coords="2800,445,3010,471"/>
+<area shape="rect" title=" " alt="" coords="1226,355,1400,382"/>
+<area shape="rect" title=" " alt="" coords="1424,355,1639,382"/>
+<area shape="rect" href="GKAbilityEffectActor_8h.html" title=" " alt="" coords="1894,348,2063,389"/>
+<area shape="rect" href="GKProjectileStatic_8h.html" title=" " alt="" coords="1714,348,1869,389"/>
+<area shape="rect" title=" " alt="" coords="2088,355,2272,382"/>
+<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="2021,437,2221,479"/>
+<area shape="rect" title=" " alt="" coords="1814,445,1996,471"/>
+<area shape="rect" title=" " alt="" coords="1554,445,1789,471"/>
+<area shape="rect" title=" " alt="" coords="2397,355,2517,382"/>
+<area shape="rect" title=" " alt="" coords="3136,445,3376,471"/>
+<area shape="rect" title=" " alt="" coords="3400,445,3612,471"/>
+<area shape="rect" title=" " alt="" coords="3662,177,3892,203"/>
 </map>
 </div>
 </div></div><!-- contents -->

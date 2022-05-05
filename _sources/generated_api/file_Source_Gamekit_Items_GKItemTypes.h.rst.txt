@@ -77,7 +77,7 @@ Functions
 
 - :ref:`exhale_function_GKItemTypes_8h_1a4b03dafbaf82e7ba373dc76e7c25c3f2`
 
-- :ref:`exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e`
-
 - :ref:`exhale_function_GKItemTypes_8h_1a67e36e38974f304506844b3a2528b7aa`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e`
 

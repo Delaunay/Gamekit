@@ -37,6 +37,10 @@ Includes
 
 - ``Engine/CanvasRenderTarget2D.h``
 
+- ``Engine/NetConnection.h``
+
+- ``Engine/NetDriver.h``
+
 - ``GameFramework/PlayerState.h``
 
 - ``Gamekit/Blueprint/GKCoordinateLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h`)

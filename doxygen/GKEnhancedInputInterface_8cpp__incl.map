@@ -1,10 +1,11 @@
 <map id="Source/Gamekit/Characters/GKEnhancedInputInterface.cpp" name="Source/Gamekit/Characters/GKEnhancedInputInterface.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="525,5,752,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="633,5,860,47"/>
 <area shape="rect" id="node2" href="$GKEnhancedInputInterface_8h.html" title=" " alt="" coords="69,95,280,136"/>
 <area shape="rect" id="node5" title=" " alt="" coords="304,102,509,129"/>
 <area shape="rect" id="node6" title=" " alt="" coords="534,102,743,129"/>
 <area shape="rect" id="node7" title=" " alt="" coords="767,102,942,129"/>
 <area shape="rect" id="node8" title=" " alt="" coords="966,102,1085,129"/>
+<area shape="rect" id="node9" title=" " alt="" coords="1109,102,1265,129"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,184,123,211"/>
 <area shape="rect" id="node4" title=" " alt="" coords="147,184,424,211"/>
 </map>

@@ -101,6 +101,11 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_Gamekit_Lua.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_Gamekit_Minimap.rst
 
 .. toctree::
@@ -1246,6 +1251,36 @@ Files
    :maxdepth: 5
 
    file_Source_Python_gamekit_commands_install.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaActions.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaActions.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaScript.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaScript.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaScriptFactory.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_LuaScriptFactory.h.rst
 
 .. toctree::
    :maxdepth: 5

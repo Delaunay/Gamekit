@@ -24,6 +24,7 @@ Subdirectories
 - :ref:`dir_Source_Gamekit_FogOfWar`
 - :ref:`dir_Source_Gamekit_Grid`
 - :ref:`dir_Source_Gamekit_Items`
+- :ref:`dir_Source_Gamekit_Lua`
 - :ref:`dir_Source_Gamekit_Minimap`
 - :ref:`dir_Source_Gamekit_Online`
 - :ref:`dir_Source_Gamekit_Performance`

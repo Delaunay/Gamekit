@@ -1,0 +1,32 @@
+
+.. _program_listing_file_Source_Gamekit_Lua_LuaScript.h:
+
+Program Listing for File LuaScript.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Lua_LuaScript.h>` (``Source/Gamekit/Lua/LuaScript.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "UObject/NoExportTypes.h"
+   #include "LuaScript.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API ULuaScript : public UObject
+   {
+       GENERATED_BODY()
+   
+   public:
+       UPROPERTY(EditAnywhere, BlueprintReadOnly)
+       FString LuaScriptPath;
+   
+       // Cached bytecote
+       TArray<uint8> ByteCote;
+   };

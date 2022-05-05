@@ -1,0 +1,14 @@
+.. _exhale_function_LuaActions_8cpp_1a109ea855bb4e78f18c4ab230fb856a44:
+
+Function FAssetTypeActions_LuaScriptLLGetCategories
+===================================================
+
+- Defined in :ref:`file_Source_Gamekit_Lua_LuaActions.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: FAssetTypeActions_LuaScriptLLGetCategories()
+   :project: GameKit
