@@ -17,7 +17,9 @@ Files
 
 - :ref:`file_Source_Python_gamekit_commands___init__.py`
 - :ref:`file_Source_Python_gamekit_commands_cook.py`
+- :ref:`file_Source_Python_gamekit_commands_dedicated.py`
 - :ref:`file_Source_Python_gamekit_commands_disable.py`
+- :ref:`file_Source_Python_gamekit_commands_docs.py`
 - :ref:`file_Source_Python_gamekit_commands_init.py`
 - :ref:`file_Source_Python_gamekit_commands_install.py`
 - :ref:`file_Source_Python_gamekit_commands_tests.py`

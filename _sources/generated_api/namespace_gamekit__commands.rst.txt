@@ -19,7 +19,11 @@ Namespaces
 
 - :ref:`namespace_gamekit__commands__cook`
 
+- :ref:`namespace_gamekit__commands__dedicated`
+
 - :ref:`namespace_gamekit__commands__disable`
+
+- :ref:`namespace_gamekit__commands__docs`
 
 - :ref:`namespace_gamekit__commands__init`
 

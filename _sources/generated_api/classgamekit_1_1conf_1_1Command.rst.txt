@@ -13,7 +13,9 @@ Derived Types
 *************
 
 - ``public gamekit.commands.cook.CookGame`` (:ref:`exhale_class_classgamekit_1_1commands_1_1cook_1_1CookGame`)
+- ``public gamekit.commands.dedicated.Dedicated`` (:ref:`exhale_class_classgamekit_1_1commands_1_1dedicated_1_1Dedicated`)
 - ``public gamekit.commands.disable.Disable`` (:ref:`exhale_class_classgamekit_1_1commands_1_1disable_1_1Disable`)
+- ``public gamekit.commands.docs.Docs`` (:ref:`exhale_class_classgamekit_1_1commands_1_1docs_1_1Docs`)
 - ``public gamekit.commands.init.Init`` (:ref:`exhale_class_classgamekit_1_1commands_1_1init_1_1Init`)
 - ``public gamekit.commands.install.Install`` (:ref:`exhale_class_classgamekit_1_1commands_1_1install_1_1Install`)
 - ``public gamekit.commands.tests.RunTests`` (:ref:`exhale_class_classgamekit_1_1commands_1_1tests_1_1RunTests`)

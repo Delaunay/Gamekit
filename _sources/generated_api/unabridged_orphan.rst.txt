@@ -193,6 +193,11 @@ Directories
 
    dir_Source_Python_gamekit_commands.rst
 
+.. toctree::
+   :maxdepth: 5
+
+   dir_Source_Python_gamekit_templates.rst
+
 Files
 *****
 
@@ -225,7 +230,17 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Python_gamekit_commands_dedicated.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Python_gamekit_commands_disable.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Python_gamekit_commands_docs.py.rst
 
 .. toctree::
    :maxdepth: 5
@@ -1256,6 +1271,11 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Container_Matrix.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Python_gamekit_templates_TemplateServer.Target.cs.rst
 
 .. toctree::
    :maxdepth: 5

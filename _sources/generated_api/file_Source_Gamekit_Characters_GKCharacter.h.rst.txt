@@ -87,5 +87,3 @@ Functions
 
 - :ref:`exhale_function_GKCharacter_8h_1a139c665a8516dd3bcaa888a264384494`
 
-- :ref:`exhale_function_GKCharacter_8h_1a76ddc8cf3fc7ae8dc485f70f195d0e8b`
-

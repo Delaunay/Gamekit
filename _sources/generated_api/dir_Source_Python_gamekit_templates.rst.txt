@@ -1,0 +1,20 @@
+.. _dir_Source_Python_gamekit_templates:
+
+
+Directory templates
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit>` (``Source/Python/gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Python/gamekit/templates``
+
+
+Files
+-----
+
+- :ref:`file_Source_Python_gamekit_templates_TemplateServer.Target.cs`
+
+

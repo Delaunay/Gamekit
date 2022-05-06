@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d8eb16f7
+                6fb183e0
 
               </div>
 <div role="search">
@@ -110,6 +110,25 @@
   <section id="tips-tricks">
 <h1>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Permalink to this headline"></a></h1>
 <p>Useful examples <a class="reference external" href="https://www.ue4community.wiki/logging-lgpidy6i">https://www.ue4community.wiki/logging-lgpidy6i</a></p>
+<ul class="simple">
+<li><p>Prefer Implementable Event of Delegate Assignment
+Users can receive the event right away in the case of implementable event
+Blueprint Assignable have to be assigned first during begin play
+which might happen after the event is fired!</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;OnTeamAssigned&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">ReceiveTeamAssigned</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">NewTeam</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">NAME_AGKCharacterBase_ReceiveTeamAssigned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;ReceiveTeamAssigned&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">AGKCharacterBase::ReceiveTeamAssigned</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">NewTeam</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GKCharacterBase_eventReceiveTeamAssigned_Parms</span><span class="w"> </span><span class="n">Parms</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Parms</span><span class="p">.</span><span class="n">NewTeam</span><span class="o">=</span><span class="n">NewTeam</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProcessEvent</span><span class="p">(</span><span class="n">FindFunctionChecked</span><span class="p">(</span><span class="n">NAME_AGKCharacterBase_ReceiveTeamAssigned</span><span class="p">),</span><span class="o">&amp;</span><span class="n">Parms</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 <section id="logging-values">
 <h2>Logging values<a class="headerlink" href="#logging-values" title="Permalink to this headline"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>

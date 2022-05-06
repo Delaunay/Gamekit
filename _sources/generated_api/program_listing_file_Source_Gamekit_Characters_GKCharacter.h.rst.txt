@@ -36,7 +36,6 @@ Program Listing for File GKCharacter.h
    
    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec);
    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character);
-   DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTeamAssignedDelegate, FGenericTeamId, Team); 
    
    UCLASS(Blueprintable)
    class GAMEKIT_API AGKCharacterBase: public ACharacter,
@@ -197,7 +196,7 @@ Program Listing for File GKCharacter.h
    
        UFUNCTION()
        void OnRep_Team() { 
-           OnTeamAssigned.Broadcast(Team);
+           ReceiveTeamAssigned(Team);
        }
    
        void SetGenericTeamId(const FGenericTeamId &TeamID) override;
@@ -205,8 +204,8 @@ Program Listing for File GKCharacter.h
        UFUNCTION(BlueprintPure, Category = "Team")
        FGenericTeamId GetGenericTeamId() const override;
    
-       UPROPERTY(BlueprintAssignable, Category = "Team")
-       FGKTeamAssignedDelegate OnTeamAssigned;
+       UFUNCTION(BlueprintImplementableEvent, Category = "Team", meta = (DisplayName = "OnTeamAssigned"))
+       void ReceiveTeamAssigned(FGenericTeamId NewTeam);
    
        bool bPreviousVisibility;
    };

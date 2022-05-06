@@ -1,0 +1,36 @@
+
+.. _program_listing_file_Source_Python_gamekit_commands_docs.py:
+
+Program Listing for File docs.py
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Python_gamekit_commands_docs.py>` (``Source/Python/gamekit/commands/docs.py``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: py
+
+   import os
+   import pkg_resources
+   
+   from gamekit.conf import load_conf, save_conf, CONFIG, CONFIGNAME, Command
+   
+   
+   class Docs(Command):
+       """Add a docs folder to your project"""
+   
+       # TODO: create a cookiecutter for Unreal projects documentation
+   
+       name: str = "docs"
+   
+       @staticmethod
+       def arguments(subparsers):
+           init = subparsers.add_parser(Docs.name, help='Add documentation to your project')
+           init.add_argument('project', default=None, type=str, help='name of your project')
+   
+       @staticmethod
+       def execute(args):
+           pass
+   
+   
+   COMMAND = Docs

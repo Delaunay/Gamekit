@@ -1,0 +1,52 @@
+
+.. _file_Source_Python_gamekit_commands_dedicated.py:
+
+File dedicated.py
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit_commands>` (``Source/Python/gamekit/commands``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Python/gamekit/commands/dedicated.py``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Python_gamekit_commands_dedicated.py.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__commands__dedicated`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1commands_1_1dedicated_1_1Dedicated`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1commands_1_1dedicated_1aa6a2ac04b9fe03a6ec05092855d3ef43`
+

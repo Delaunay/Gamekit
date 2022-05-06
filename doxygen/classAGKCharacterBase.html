@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">d8eb16f7</span>
+   &#160;<span id="projectnumber">6fb183e0</span>
    </div>
   </td>
  </tr>
@@ -196,6 +196,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a04d635ef9569a90edd40cfe08832471f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23e65d547bea1e333092dabcaa59d602"><td class="memItemLeft" align="right" valign="top">FGenericTeamId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a23e65d547bea1e333092dabcaa59d602">GetGenericTeamId</a> () const override</td></tr>
 <tr class="separator:a23e65d547bea1e333092dabcaa59d602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7df93c324d5cbdbbe2ebd9ee4baad4da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a7df93c324d5cbdbbe2ebd9ee4baad4da">ReceiveTeamAssigned</a> (FGenericTeamId NewTeam)</td></tr>
+<tr class="separator:a7df93c324d5cbdbbe2ebd9ee4baad4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -210,8 +212,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a8d1dc7ca224da7d131b8edb92c804304"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFGKUnitStatic.html">FGKUnitStatic</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">UnitStatic</a></td></tr>
 <tr class="memdesc:a8d1dc7ca224da7d131b8edb92c804304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cached lookup.  <a href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">More...</a><br /></td></tr>
 <tr class="separator:a8d1dc7ca224da7d131b8edb92c804304"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a0453ba72631d0985b4202ee6885fcf"><td class="memItemLeft" align="right" valign="top">FGKTeamAssignedDelegate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a4a0453ba72631d0985b4202ee6885fcf">OnTeamAssigned</a></td></tr>
-<tr class="separator:a4a0453ba72631d0985b4202ee6885fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2196277c864d76abfbd57a47247cf2e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a2196277c864d76abfbd57a47247cf2e9">bPreviousVisibility</a></td></tr>
 <tr class="separator:a2196277c864d76abfbd57a47247cf2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -360,17 +360,16 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classAGKCharacterBase_a4712d2b4ba9328621d64fabad0961a0b_cgraph.png" border="0" usemap="#classAGKCharacterBase_a4712d2b4ba9328621d64fabad0961a0b_cgraph" alt=""/></div>
 <map name="classAGKCharacterBase_a4712d2b4ba9328621d64fabad0961a0b_cgraph" id="classAGKCharacterBase_a4712d2b4ba9328621d64fabad0961a0b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,166,223,193"/>
-<area shape="rect" href="classAGKCharacterBase.html#a27dac45cfdff08cfa1bdf18a1f4a6586" title=" " alt="" coords="271,74,524,101"/>
-<area shape="rect" href="classAGKCharacterBase.html#ac63334d5ec31418311750e01c7552872" title=" " alt="" coords="297,125,498,167"/>
-<area shape="rect" href="classAGKCharacterBase.html#a36849166872cf4a99a6807af698b323e" title=" " alt="" coords="291,191,504,232"/>
-<area shape="rect" href="classAGKCharacterBase.html#a752840b76d6d4a8b3537d81d461d32e5" title=" " alt="" coords="279,257,516,283"/>
-<area shape="rect" href="classAGKCharacterBase.html#ad4db88647373769021c0046af095f673" title=" " alt="" coords="572,125,775,167"/>
+<area shape="rect" title=" " alt="" coords="5,138,223,165"/>
+<area shape="rect" href="classAGKCharacterBase.html#a27dac45cfdff08cfa1bdf18a1f4a6586" title=" " alt="" coords="271,79,524,106"/>
+<area shape="rect" href="classAGKCharacterBase.html#ac63334d5ec31418311750e01c7552872" title=" " alt="" coords="297,131,498,172"/>
+<area shape="rect" href="classAGKCharacterBase.html#a36849166872cf4a99a6807af698b323e" title=" " alt="" coords="291,211,504,252"/>
+<area shape="rect" href="classAGKCharacterBase.html#ad4db88647373769021c0046af095f673" title=" " alt="" coords="572,131,775,172"/>
 <area shape="rect" href="classAGKCharacterBase.html#a4144e9c95be4f18c46274a47d3818efc" title=" " alt="" coords="841,97,1057,139"/>
 <area shape="rect" href="classAGKCharacterBase.html#a5798e7b745537e752422e58243402f7a" title=" " alt="" coords="1124,5,1351,47"/>
 <area shape="rect" href="classUGKAbilitySystemComponent.html#a64a351bb80228fe3f13395f6818ddd8a" title=" " alt="" coords="1129,71,1346,112"/>
 <area shape="rect" href="GKGameplayAbility_8cpp.html#adce0a323e5bfb7eb46959e928ea2536e" title=" " alt="" coords="1148,137,1327,163"/>
-<area shape="rect" href="classAGKCharacterBase.html#aaa634fafbee198ea90673ae787861f45" title=" " alt="" coords="586,225,761,251"/>
+<area shape="rect" href="classAGKCharacterBase.html#aaa634fafbee198ea90673ae787861f45" title=" " alt="" coords="586,247,761,274"/>
 <area shape="rect" href="classAGKCharacterBase.html#a8e36043d5d7518ab8384e9f15c68c5a6" title=" " alt="" coords="823,188,1076,229"/>
 <area shape="rect" href="classAGKCharacterBase.html#abe3b0f2ec151e8c8740bd48bb720e296" title=" " alt="" coords="845,254,1054,281"/>
 <area shape="rect" href="structFGKAnimationSet.html#a89bd1a53572df14ff734a051b07f3c8b" title=" " alt="" coords="852,305,1047,331"/>
@@ -1120,6 +1119,24 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a7df93c324d5cbdbbe2ebd9ee4baad4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df93c324d5cbdbbe2ebd9ee4baad4da">&#9670;&nbsp;</a></span>ReceiveTeamAssigned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::ReceiveTeamAssigned </td>
+          <td>(</td>
+          <td class="paramtype">FGenericTeamId&#160;</td>
+          <td class="paramname"><em>NewTeam</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a84e87007ed6430b70453c855ec3925d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84e87007ed6430b70453c855ec3925d1">&#9670;&nbsp;</a></span>Select()</h2>
 
@@ -1206,6 +1223,15 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAGKCharacterBase_a04d635ef9569a90edd40cfe08832471f_cgraph.png" border="0" usemap="#classAGKCharacterBase_a04d635ef9569a90edd40cfe08832471f_cgraph" alt=""/></div>
+<map name="classAGKCharacterBase_a04d635ef9569a90edd40cfe08832471f_cgraph" id="classAGKCharacterBase_a04d635ef9569a90edd40cfe08832471f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,228,47"/>
+<area shape="rect" href="classAGKCharacterBase.html#a7df93c324d5cbdbbe2ebd9ee4baad4da" title=" " alt="" coords="276,5,480,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1484,21 +1510,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4a0453ba72631d0985b4202ee6885fcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a0453ba72631d0985b4202ee6885fcf">&#9670;&nbsp;</a></span>OnTeamAssigned</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FGKTeamAssignedDelegate AGKCharacterBase::OnTeamAssigned</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Called when a new team is assigned to the Pawn Called both on the server and client </p>
 
 </div>
 </div>

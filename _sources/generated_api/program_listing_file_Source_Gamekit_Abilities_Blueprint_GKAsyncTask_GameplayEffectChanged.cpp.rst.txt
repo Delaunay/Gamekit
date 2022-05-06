@@ -52,11 +52,16 @@ Program Listing for File GKAsyncTask_GameplayEffectChanged.cpp
        }
        //----------------------------------------------------*/
    
+       // This gets triggered multiple times with the same effect
        AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(
                ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native);
    
        AbilitySystemComponent->OnAnyGameplayEffectRemovedDelegate().AddUObject(
                ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native);
+   
+   
+   
+       // AbilitySystemComponent->OnGameplayEffectAppliedDelegateToSelf
    
        return ListenForGameplayEffectStackChange;
    }
@@ -81,8 +86,10 @@ Program Listing for File GKAsyncTask_GameplayEffectChanged.cpp
        // AbilitySystemComponent->OnGameplayEffectDurationChange
        // AbilitySystemComponent->OnGameplayEffectTimeChangeDelegate
    
-       AbilitySystemComponent->OnGameplayEffectStackChangeDelegate(ActiveHandle)
-               ->AddUObject(this, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native);
+       AbilitySystemComponent->OnGameplayEffectStackChangeDelegate(ActiveHandle)->AddUObject(
+           this, 
+           &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native
+       );
    
        UWorld *World       = AbilitySystemComponent->GetOwner()->GetWorld();
        float   CurrentTime = World->GetTimeSeconds();
@@ -95,7 +102,11 @@ Program Listing for File GKAsyncTask_GameplayEffectChanged.cpp
        FGameplayTagContainer  Tags      = *AbilitySystemComponent->GetGameplayEffectTargetTagsFromHandle(ActiveHandle);
    
        OnGameplayEffectAdded.Broadcast(
-               ActiveHandle, const_cast<UGameplayEffect *>(EffectDef), Tags, Duration - (CurrentTime - Start));
+           ActiveHandle, 
+           const_cast<UGameplayEffect *>(EffectDef), 
+           Tags, 
+           Duration - (CurrentTime - Start)
+       );
    }
    
    void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &EffectRemoved)

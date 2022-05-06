@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_2756',['Y',['../structFGKSlope.html#a7f9e85278d6de4f8d946283153d00cf2',1,'FGKSlope']]]
+  ['x_2779',['X',['../structFGKSlope.html#a74d7c9ffc845d6ace733987f357b96c5',1,'FGKSlope']]]
 ];

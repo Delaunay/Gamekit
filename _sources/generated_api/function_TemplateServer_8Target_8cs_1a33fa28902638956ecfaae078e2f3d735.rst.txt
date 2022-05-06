@@ -1,0 +1,14 @@
+.. _exhale_function_TemplateServer_8Target_8cs_1a33fa28902638956ecfaae078e2f3d735:
+
+Function Add
+============
+
+- Defined in :ref:`file_Source_Python_gamekit_templates_TemplateServer.Target.cs`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Add("{ProjectName}")
+   :project: GameKit

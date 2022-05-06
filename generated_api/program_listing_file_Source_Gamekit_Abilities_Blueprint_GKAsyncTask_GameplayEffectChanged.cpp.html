@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d8eb16f7
+                6fb183e0
 
               </div>
 <div role="search">
@@ -152,11 +152,16 @@
 <span class="cm">    }</span>
 <span class="cm">    //----------------------------------------------------*/</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// This gets triggered multiple times with the same effect</span>
 <span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnActiveGameplayEffectAddedDelegateToSelf</span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="w"></span>
 <span class="w">            </span><span class="n">ListenForGameplayEffectStackChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">OnGameplayEffectAdded_Native</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnAnyGameplayEffectRemovedDelegate</span><span class="p">().</span><span class="n">AddUObject</span><span class="p">(</span><span class="w"></span>
 <span class="w">            </span><span class="n">ListenForGameplayEffectStackChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">OnGameplayEffectRemoved_Native</span><span class="p">);</span><span class="w"></span>
+
+
+
+<span class="w">    </span><span class="c1">// AbilitySystemComponent-&gt;OnGameplayEffectAppliedDelegateToSelf</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ListenForGameplayEffectStackChange</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -181,8 +186,10 @@
 <span class="w">    </span><span class="c1">// AbilitySystemComponent-&gt;OnGameplayEffectDurationChange</span>
 <span class="w">    </span><span class="c1">// AbilitySystemComponent-&gt;OnGameplayEffectTimeChangeDelegate</span>
 
-<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectStackChangeDelegate</span><span class="p">(</span><span class="n">ActiveHandle</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="n">AddUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">OnGameplayEffectStackChange_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectStackChangeDelegate</span><span class="p">(</span><span class="n">ActiveHandle</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddUObject</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="o">&amp;</span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">OnGameplayEffectStackChange_Native</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetOwner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w">   </span><span class="n">CurrentTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetTimeSeconds</span><span class="p">();</span><span class="w"></span>
@@ -195,7 +202,11 @@
 <span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w">  </span><span class="n">Tags</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetGameplayEffectTargetTagsFromHandle</span><span class="p">(</span><span class="n">ActiveHandle</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">OnGameplayEffectAdded</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">ActiveHandle</span><span class="p">,</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">EffectDef</span><span class="p">),</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentTime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Start</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">ActiveHandle</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">EffectDef</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Tags</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Duration</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentTime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Start</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FActiveGameplayEffect</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EffectRemoved</span><span class="p">)</span><span class="w"></span>

@@ -15,6 +15,7 @@ Subdirectories
 --------------
 
 - :ref:`dir_Source_Python_gamekit_commands`
+- :ref:`dir_Source_Python_gamekit_templates`
 
 
 Files

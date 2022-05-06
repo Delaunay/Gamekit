@@ -1,0 +1,14 @@
+.. _exhale_variable_TemplateServer_8Target_8cs_1ad3a27ba8980640319863c7769511f6a3:
+
+Variable __pad0__
+=================
+
+- Defined in :ref:`file_Source_Python_gamekit_templates_TemplateServer.Target.cs`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: __pad0__
+   :project: GameKit
