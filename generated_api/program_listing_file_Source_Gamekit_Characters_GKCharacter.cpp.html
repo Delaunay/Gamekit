@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b9ca1be0
+                d8eb16f7
 
               </div>
 <div role="search">
@@ -412,6 +412,11 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// FIXME: for host the team is assigned before beginplay</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnRep_Team</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">// Initialize our abilities</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -589,7 +594,7 @@
 
 <span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">BindAbilityActivationToInputComponent</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">GAIB</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Abilities got bound&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Abilities got bound&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="n">InputsBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -611,6 +616,7 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Got assigned a team&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="n">Team</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TeamID</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">OnTeamAssigned</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

@@ -186,12 +186,14 @@ Program Listing for File GKCharacter.h
    
        bool InputsBound;
    
-   public:
+   protected:
        // IGenericTeamAgentInterface
        // --------------------------
        
        UPROPERTY(replicated, BlueprintReadOnly, Category = "Team", ReplicatedUsing=OnRep_Team)
        FGenericTeamId Team;
+   
+   public:
    
        UFUNCTION()
        void OnRep_Team() { 

@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b9ca1be0
+                d8eb16f7
 
               </div>
 <div role="search">
@@ -577,6 +577,13 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// If it is not a client or a dedicated server, then we need</span>
+<span class="w">    </span><span class="c1">// to broadcast the replication event that will trigger the fog setup</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnRep_TeamFogs</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">// Start drawing the fog</span>
 <span class="w">    </span><span class="c1">// For this method to work we need a better way to synchronize the textures</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bAsyncDraw</span><span class="p">)</span><span class="w"></span>
@@ -598,10 +605,12 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKFogOfWarVolume</span><span class="o">::</span><span class="n">RegisterActorComponent</span><span class="p">(</span><span class="n">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Skipping on client&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FScopeLock</span><span class="w"> </span><span class="nf">ScopeLock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FScopeLock</span><span class="w"> </span><span class="n">ScopeLock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Mutex</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">ActorComponents</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">-&gt;</span><span class="n">GetFaction</span><span class="p">();</span><span class="w"></span>

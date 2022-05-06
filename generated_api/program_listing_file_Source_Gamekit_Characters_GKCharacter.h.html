@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b9ca1be0
+                d8eb16f7
 
               </div>
 <div role="search">
@@ -286,12 +286,14 @@
 
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">InputsBound</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// IGenericTeamAgentInterface</span>
 <span class="w">    </span><span class="c1">// --------------------------</span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">replicated</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_Team</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">Team</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnRep_Team</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
