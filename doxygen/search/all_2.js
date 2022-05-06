@@ -46,6 +46,5 @@ var searchData=
   ['buffer_162',['Buffer',['../classAGKFogOfWarTeam.html#ae72f770a562179b61c78e829440f7b47',1,'AGKFogOfWarTeam::Buffer()'],['../classUGKShadowCasting.html#af4f228371a1fa86b16711e21c531673b',1,'UGKShadowCasting::Buffer()']]],
   ['buildteamcache_163',['BuildTeamCache',['../classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e',1,'AGKWorldSettings']]],
   ['bupscaling_164',['bUpscaling',['../classAGKFogOfWarVolume.html#ab5db3281ed3dbb4feb4338a14f76928e',1,'AGKFogOfWarVolume']]],
-  ['buseupscaledvision_165',['bUseUpscaledVision',['../classAGKFogOfWarVolume.html#af0b01b5757b2ed31b5b9a8aba8c041c0',1,'AGKFogOfWarVolume::bUseUpscaledVision()'],['../classUGKTransformerStrategy.html#a9d5daf1ccfe09e1a43ab6d58eee7556d',1,'UGKTransformerStrategy::bUseUpscaledVision()']]],
-  ['bytecote_166',['ByteCote',['../classUGKLuaScript.html#aeeb634b729f0d7aaa75d4e252e687204',1,'UGKLuaScript']]]
+  ['buseupscaledvision_165',['bUseUpscaledVision',['../classAGKFogOfWarVolume.html#af0b01b5757b2ed31b5b9a8aba8c041c0',1,'AGKFogOfWarVolume::bUseUpscaledVision()'],['../classUGKTransformerStrategy.html#a9d5daf1ccfe09e1a43ab6d58eee7556d',1,'UGKTransformerStrategy::bUseUpscaledVision()']]]
 ];
