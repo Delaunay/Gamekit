@@ -28,12 +28,12 @@ public:
     // Create a new ULuaScript that just saves the path to the script
     // Other engine can now reference the script using the ULuaScript
     UObject* FactoryCreateFile(UClass* InClass,
-                                UObject* InParent,
-                                FName InName,
-                                EObjectFlags Flags,
-                                const FString& Filename,
-                                const TCHAR* Parms,
-                                FFeedbackContext* Warn,
-                                bool& bOutOperationCanceled);
+                               UObject* InParent,
+                               FName InName,
+                               EObjectFlags Flags,
+                               const FString& Filename,
+                               const TCHAR* Parms,
+                               FFeedbackContext* Warn,
+                               bool& bOutOperationCanceled);
 
 };

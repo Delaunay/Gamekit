@@ -13,7 +13,8 @@
 #include "GKLuaScript.generated.h"
 
 /**
- * Lua script asset, simply hold the path to the lua script
+ * Lua script asset, simply hold the path to the lua script.
+ * In cooked builds it holds the bytecode
  */
 UCLASS()
 class GAMEKIT_API UGKLuaScript : public UObject
@@ -26,9 +27,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString LuaScriptPath;
 
+	// UPROPERTY(Transient)
+	// FString Code;
+
 	FString GetScriptPath() {
 		return FPaths::Combine(FPaths::ProjectDir(), LuaScriptPath);
 	}
+
+	// Generate the Lua byte code
+	void Compile();
 
 	// Cached bytecote
 	TArray<uint8> ByteCote;
