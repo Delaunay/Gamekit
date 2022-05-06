@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tests_2epy_1802',['tests.py',['../tests_8py.html',1,'']]]
+  ['upscaling_2eusf_1811',['Upscaling.usf',['../Upscaling_8usf.html',1,'']]],
+  ['upscaling_5fbuffer_2eusf_1812',['Upscaling_Buffer.usf',['../Upscaling__Buffer_8usf.html',1,'']]]
 ];

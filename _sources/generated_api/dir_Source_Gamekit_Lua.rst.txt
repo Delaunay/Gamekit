@@ -15,11 +15,13 @@ Directory Lua
 Files
 -----
 
-- :ref:`file_Source_Gamekit_Lua_LuaActions.cpp`
-- :ref:`file_Source_Gamekit_Lua_LuaActions.h`
-- :ref:`file_Source_Gamekit_Lua_LuaScript.cpp`
-- :ref:`file_Source_Gamekit_Lua_LuaScript.h`
-- :ref:`file_Source_Gamekit_Lua_LuaScriptFactory.cpp`
-- :ref:`file_Source_Gamekit_Lua_LuaScriptFactory.h`
+- :ref:`file_Source_Gamekit_Lua_GKLua.cpp`
+- :ref:`file_Source_Gamekit_Lua_GKLua.h`
+- :ref:`file_Source_Gamekit_Lua_GKLuaActions.cpp`
+- :ref:`file_Source_Gamekit_Lua_GKLuaActions.h`
+- :ref:`file_Source_Gamekit_Lua_GKLuaScript.cpp`
+- :ref:`file_Source_Gamekit_Lua_GKLuaScript.h`
+- :ref:`file_Source_Gamekit_Lua_GKLuaScriptFactory.cpp`
+- :ref:`file_Source_Gamekit_Lua_GKLuaScriptFactory.h`
 
 

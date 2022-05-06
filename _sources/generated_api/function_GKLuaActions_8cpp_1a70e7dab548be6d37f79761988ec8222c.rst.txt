@@ -1,0 +1,14 @@
+.. _exhale_function_GKLuaActions_8cpp_1a70e7dab548be6d37f79761988ec8222c:
+
+Function Register
+=================
+
+- Defined in :ref:`file_Source_Gamekit_Lua_GKLuaActions.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Register()
+   :project: GameKit

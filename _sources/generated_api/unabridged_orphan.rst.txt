@@ -860,6 +860,46 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Lua_GKLua.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLua.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaActions.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaActions.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaScript.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaScript.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaScriptFactory.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Lua_GKLuaScriptFactory.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Online_GKMatchmakingAdapter.cpp.rst
 
 .. toctree::
@@ -1251,36 +1291,6 @@ Files
    :maxdepth: 5
 
    file_Source_Python_gamekit_commands_install.py.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaActions.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaActions.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaScript.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaScript.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaScriptFactory.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Lua_LuaScriptFactory.h.rst
 
 .. toctree::
    :maxdepth: 5

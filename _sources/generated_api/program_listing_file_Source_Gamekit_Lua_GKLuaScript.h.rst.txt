@@ -1,0 +1,44 @@
+
+.. _program_listing_file_Source_Gamekit_Lua_GKLuaScript.h:
+
+Program Listing for File GKLuaScript.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Lua_GKLuaScript.h>` (``Source/Gamekit/Lua/GKLuaScript.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Lua/GKLua.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "UObject/NoExportTypes.h"
+   
+   // Generated
+   #include "GKLuaScript.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKLuaScript : public UObject
+   {
+       GENERATED_BODY()
+   
+   public:
+       // The path is relative to the project's folder
+       // use GetScriptPath() to get a path that will resolve to an actual file
+       UPROPERTY(EditAnywhere, BlueprintReadOnly)
+       FString LuaScriptPath;
+   
+       FString GetScriptPath() {
+           return FPaths::Combine(FPaths::ProjectDir(), LuaScriptPath);
+       }
+   
+       // Cached bytecote
+       TArray<uint8> ByteCote;
+   };

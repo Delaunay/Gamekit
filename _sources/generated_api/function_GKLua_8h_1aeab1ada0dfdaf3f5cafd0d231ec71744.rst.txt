@@ -1,0 +1,14 @@
+.. _exhale_function_GKLua_8h_1aeab1ada0dfdaf3f5cafd0d231ec71744:
+
+Function DECLARE_LOG_CATEGORY_EXTERN(LogGKLua, Log, All)
+========================================================
+
+- Defined in :ref:`file_Source_Gamekit_Lua_GKLua.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_LOG_CATEGORY_EXTERN(LogGKLua, Log, All)
+   :project: GameKit
