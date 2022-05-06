@@ -465,6 +465,13 @@ void AGKFogOfWarVolume::BeginPlay()
 {
     Super::BeginPlay();
 
+    // If it is not a client or a dedicated server, then we need
+    // to broadcast the replication event that will trigger the fog setup
+    if (GetNetMode() != ENetMode::NM_Client && GetNetMode() != ENetMode::NM_DedicatedServer){
+        OnRep_TeamFogs();
+        return;
+    }
+
     // Start drawing the fog
     // For this method to work we need a better way to synchronize the textures
     if (bAsyncDraw)
@@ -486,8 +493,10 @@ void AGKFogOfWarVolume::BeginPlay()
 
 void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
-    if (GetNetMode() == ENetMode::NM_Client)
+    if (GetNetMode() == ENetMode::NM_Client){
+        GKFOG_WARNING(TEXT("Skipping on client"));
         return;
+    }
 
     FScopeLock ScopeLock(&Mutex);
     ActorComponents.Add(c);

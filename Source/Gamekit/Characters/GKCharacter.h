@@ -205,13 +205,15 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     bool InputsBound;
 
-public:
+protected:
     // IGenericTeamAgentInterface
     // --------------------------
     
     //! This is set by the Player Controller on possession
     UPROPERTY(replicated, BlueprintReadOnly, Category = "Team", ReplicatedUsing=OnRep_Team)
     FGenericTeamId Team;
+
+public:
 
     UFUNCTION()
     void OnRep_Team() { 

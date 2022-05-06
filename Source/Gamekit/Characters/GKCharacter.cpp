@@ -300,6 +300,11 @@ void AGKCharacterBase::BeginPlay()
 {
     Super::BeginPlay();
 
+    // FIXME: for host the team is assigned before beginplay
+    if (GetNetMode() != ENetMode::NM_Client && GetNetMode() != ENetMode::NM_DedicatedServer) {
+        OnRep_Team();
+    }
+
     // Initialize our abilities
     if (AbilitySystemComponent)
     {
@@ -477,7 +482,7 @@ void AGKCharacterBase::SetupPlayerInputComponent(UInputComponent *PlayerInputCom
 
         AbilitySystemComponent->BindAbilityActivationToInputComponent(InputComponent, GAIB);
 
-        UE_LOG(LogGamekit, Log, TEXT("Abilities got bound"));
+        GK_LOG(TEXT("Abilities got bound"));
         InputsBound = true;
     }
 }
@@ -499,6 +504,7 @@ void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) {
     if (GetNetMode() == ENetMode::NM_Client)
         return;
 
+    GK_WARNING(TEXT("Got assigned a team"));
     Team = TeamID; 
     OnTeamAssigned.Broadcast(Team);
 }
