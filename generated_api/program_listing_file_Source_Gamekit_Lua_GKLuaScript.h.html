@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a8575b6
+                418eec6
 
               </div>
 <div role="search">
@@ -135,9 +135,15 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">LuaScriptPath</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// UPROPERTY(Transient)</span>
+<span class="w">    </span><span class="c1">// FString Code;</span>
+
 <span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="nf">GetScriptPath</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FPaths</span><span class="o">::</span><span class="n">Combine</span><span class="p">(</span><span class="n">FPaths</span><span class="o">::</span><span class="n">ProjectDir</span><span class="p">(),</span><span class="w"> </span><span class="n">LuaScriptPath</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Generate the Lua byte code</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Compile</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Cached bytecote</span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">uint8</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ByteCote</span><span class="p">;</span><span class="w"></span>

@@ -35,9 +35,15 @@ Program Listing for File GKLuaScript.h
        UPROPERTY(EditAnywhere, BlueprintReadOnly)
        FString LuaScriptPath;
    
+       // UPROPERTY(Transient)
+       // FString Code;
+   
        FString GetScriptPath() {
            return FPaths::Combine(FPaths::ProjectDir(), LuaScriptPath);
        }
+   
+       // Generate the Lua byte code
+       void Compile();
    
        // Cached bytecote
        TArray<uint8> ByteCote;

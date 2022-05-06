@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a8575b6
+                418eec6
 
               </div>
 <div role="search">
@@ -114,6 +114,41 @@
 
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Lua/GKLuaScript.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Misc/FileHelper.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Misc/Paths.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#ifdef WITH_LUA</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="cp">#define LUA_COMPAT_APIINTCASTS 1</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lua.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lauxlib.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lualib.h&quot;</span><span class="cp"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#endif</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKLuaScript</span><span class="o">::</span><span class="n">Compile</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="cp">#ifdef WITH_LUA</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">lua_State</span><span class="o">*</span><span class="w"> </span><span class="n">LuaState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lua_open</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Code</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FFileHelper</span><span class="o">::</span><span class="n">LoadFileToString</span><span class="p">(</span><span class="n">Code</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">GetScriptPath</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// load a null terminated string</span>
+<span class="w">    </span><span class="n">luaL_loadstring</span><span class="p">(</span><span class="n">LuaState</span><span class="p">,</span><span class="w"> </span><span class="n">TCHAR_TO_ANSI</span><span class="p">(</span><span class="o">*</span><span class="n">Code</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Writer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="n">lua_State</span><span class="o">*</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">userdata</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">uint8</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">uint8</span><span class="o">&gt;*</span><span class="p">)</span><span class="n">userdata</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Buffer</span><span class="o">-&gt;</span><span class="n">Append</span><span class="p">((</span><span class="n">uint8</span><span class="o">*</span><span class="p">)</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">lua_dump</span><span class="p">(</span><span class="n">LuaState</span><span class="p">,</span><span class="w"> </span><span class="n">Writer</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">ByteCote</span><span class="p">),</span><span class="w"> </span><span class="o">!</span><span class="n">bDebug</span><span class="p">);</span><span class="w"></span>
+<span class="cp">#endif</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

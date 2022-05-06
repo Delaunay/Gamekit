@@ -31,6 +31,10 @@ Includes
 
 - ``Gamekit/Lua/GKLuaScript.h`` (:ref:`file_Source_Gamekit_Lua_GKLuaScript.h`)
 
+- ``Misc/FileHelper.h``
+
+- ``Misc/Paths.h``
+
 
 
 
