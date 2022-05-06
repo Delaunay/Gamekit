@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                aab3e6a3
+                b9ca1be0
 
               </div>
 <div role="search">
@@ -400,20 +400,21 @@
 <span class="w">    </span><span class="c1">// ---------------</span>
 <span class="w">    </span><span class="c1">// auto TargetRotator = UGKUtilityLibrary::BetterLookAtRotation(Location, Destination);</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetRotator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">FindLookAtRotation</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">Destination</span><span class="p">);</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">CurrentRot</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">RootComponent</span><span class="o">-&gt;</span><span class="n">GetComponentRotation</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetYaw</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TargetRotator</span><span class="p">.</span><span class="n">Yaw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CurrentRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetYaw</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">TargetRotator</span><span class="p">.</span><span class="n">Yaw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CurrentRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Before</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">TargetYaw</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// This is the most reliable way of getting the smallest angle</span>
+<span class="w">    </span><span class="c1">// was positive, becomes negative, i.e we will turn the other way</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">360</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">TargetYaw</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">-180</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetYaw</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// -----------------</span>
 
 <span class="w">    </span><span class="c1">// Limit turn speed</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">MaxTurnStep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TurnRate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">;</span><span class="w"></span>
