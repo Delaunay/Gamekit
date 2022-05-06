@@ -63,6 +63,12 @@ Overview
      readable text.
 
 
+
+1. Create a new lua file inside the your content folder
+2. When the editor is going to import the script it will ask you which
+   class this script is inheriting from.
+3. When the content of the script is modified the script will be reimported by the editor
+
 Expose your own classes
 -----------------------
 

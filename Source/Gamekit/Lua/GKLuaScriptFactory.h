@@ -2,23 +2,26 @@
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Lua/GKLua.h"
+
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "Factories/Factory.h"
 
 // Generated
-#include "LuaScriptFactory.generated.h"
+#include "GKLuaScriptFactory.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GAMEKIT_API ULuaScriptFactory : public UFactory
+class GAMEKIT_API UGKLuaScriptFactory : public UFactory
 {
     GENERATED_BODY()
 
 public:
-    ULuaScriptFactory(const FObjectInitializer& ObjectInitializer);
+    UGKLuaScriptFactory(const FObjectInitializer& ObjectInitializer);
 
     bool FactoryCanImport(const FString& Filename);
 

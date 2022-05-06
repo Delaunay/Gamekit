@@ -2,12 +2,16 @@
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Lua/GKLua.h"
+
+// Unreal Engine
 #include "CoreMinimal.h"
 #include "KismetCompilerModule.h"
 #include "AssetTypeActions_Base.h"
 #include "Misc/MessageDialog.h"
 
-class FAssetTypeActions_LuaScript : public FAssetTypeActions_Base
+class FGKAssetTypeActions_LuaScript : public FAssetTypeActions_Base
 {
 public:
     virtual FText GetName() const override;
