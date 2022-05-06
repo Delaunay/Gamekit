@@ -288,20 +288,21 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
     // ---------------
     // auto TargetRotator = UGKUtilityLibrary::BetterLookAtRotation(Location, Destination);
     auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
+
     auto CurrentRot    = RootComponent->GetComponentRotation();
-    auto TargetYaw     = (TargetRotator.Yaw - CurrentRot.Yaw);
+    auto TargetYaw     = TargetRotator.Yaw - CurrentRot.Yaw;
     auto Before        = TargetYaw;
 
-    // This is the most reliable way of getting the smallest angle
-    if (TargetYaw > 180)
+    // was positive, becomes negative, i.e we will turn the other way
+    if (TargetYaw > 180) 
     {
-        TargetYaw = 360 - TargetYaw;
+        TargetYaw = TargetYaw - 360;
     }
+
     if (TargetYaw < -180)
     {
         TargetYaw = TargetYaw + 360;
     }
-    // -----------------
 
     // Limit turn speed
     auto MaxTurnStep = TurnRate * DeltaTime;
