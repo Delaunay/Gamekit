@@ -22,7 +22,12 @@ setup_kwargs = dict(
         'console_scripts': [
             'gkcli = gamekit.cli:main',
         ]
-    }
+    },
+    package_data={
+        "gamekit": [
+            'gamekit/templates/TemplateServer.Target.cs'
+        ]
+    },
 )
 
 if __name__ == "__main__":

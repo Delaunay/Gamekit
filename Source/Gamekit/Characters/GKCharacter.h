@@ -24,7 +24,6 @@ class UGameplayEffect;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTeamAssignedDelegate, FGenericTeamId, Team); 
 
 /** Base class for Character, Designed to be blueprinted
 
@@ -217,7 +216,7 @@ public:
 
     UFUNCTION()
     void OnRep_Team() { 
-        OnTeamAssigned.Broadcast(Team);
+        ReceiveTeamAssigned(Team);
     }
 
     void SetGenericTeamId(const FGenericTeamId &TeamID) override;
@@ -226,10 +225,8 @@ public:
     UFUNCTION(BlueprintPure, Category = "Team")
     FGenericTeamId GetGenericTeamId() const override;
 
-    //! Called when a new team is assigned to the Pawn
-    //! Called both on the server and client
-    UPROPERTY(BlueprintAssignable, Category = "Team")
-    FGKTeamAssignedDelegate OnTeamAssigned;
+    UFUNCTION(BlueprintImplementableEvent, Category = "Team", meta = (DisplayName = "OnTeamAssigned"))
+    void ReceiveTeamAssigned(FGenericTeamId NewTeam);
 
     bool bPreviousVisibility;
 };

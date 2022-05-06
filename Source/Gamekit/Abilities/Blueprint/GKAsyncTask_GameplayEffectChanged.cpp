@@ -40,11 +40,16 @@ UGKAsyncTask_GameplayEffectChanged *UGKAsyncTask_GameplayEffectChanged::ListenFo
     }
     //----------------------------------------------------*/
 
+    // This gets triggered multiple times with the same effect
     AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(
             ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native);
 
     AbilitySystemComponent->OnAnyGameplayEffectRemovedDelegate().AddUObject(
             ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native);
+
+
+
+    // AbilitySystemComponent->OnGameplayEffectAppliedDelegateToSelf
 
     return ListenForGameplayEffectStackChange;
 }
@@ -69,8 +74,10 @@ void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySy
     // AbilitySystemComponent->OnGameplayEffectDurationChange
     // AbilitySystemComponent->OnGameplayEffectTimeChangeDelegate
 
-    AbilitySystemComponent->OnGameplayEffectStackChangeDelegate(ActiveHandle)
-            ->AddUObject(this, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native);
+    AbilitySystemComponent->OnGameplayEffectStackChangeDelegate(ActiveHandle)->AddUObject(
+        this, 
+        &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native
+    );
 
     UWorld *World       = AbilitySystemComponent->GetOwner()->GetWorld();
     float   CurrentTime = World->GetTimeSeconds();
@@ -83,7 +90,11 @@ void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySy
     FGameplayTagContainer  Tags      = *AbilitySystemComponent->GetGameplayEffectTargetTagsFromHandle(ActiveHandle);
 
     OnGameplayEffectAdded.Broadcast(
-            ActiveHandle, const_cast<UGameplayEffect *>(EffectDef), Tags, Duration - (CurrentTime - Start));
+        ActiveHandle, 
+        const_cast<UGameplayEffect *>(EffectDef), 
+        Tags, 
+        Duration - (CurrentTime - Start)
+    );
 }
 
 void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &EffectRemoved)

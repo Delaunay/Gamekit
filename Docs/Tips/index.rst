@@ -3,6 +3,28 @@ Tips & Tricks
 
 Useful examples https://www.ue4community.wiki/logging-lgpidy6i
 
+
+* Prefer Implementable Event of Delegate Assignment
+  Users can receive the event right away in the case of implementable event
+  Blueprint Assignable have to be assigned first during begin play
+  which might happen after the event is fired!
+
+.. code-block::
+
+   UFUNCTION(BlueprintImplementableEvent, Category = "Team", meta = (DisplayName = "OnTeamAssigned"))
+   void ReceiveTeamAssigned(FGenericTeamId NewTeam);
+
+
+.. code-block::
+
+    static FName NAME_AGKCharacterBase_ReceiveTeamAssigned = FName(TEXT("ReceiveTeamAssigned"));
+    void AGKCharacterBase::ReceiveTeamAssigned(FGenericTeamId NewTeam)
+    {
+        GKCharacterBase_eventReceiveTeamAssigned_Parms Parms;
+        Parms.NewTeam=NewTeam;
+        ProcessEvent(FindFunctionChecked(NAME_AGKCharacterBase_ReceiveTeamAssigned),&Parms);
+    }
+
 Logging values
 --------------
 

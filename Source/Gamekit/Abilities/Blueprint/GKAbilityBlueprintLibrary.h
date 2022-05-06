@@ -69,4 +69,9 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintPure, Category = "AbilitySlot")
     static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput);
+
+    UFUNCTION(BlueprintPure, Category = "Debug")
+    static FString GetGEHandleAsString(FActiveGameplayEffectHandle Handle){
+        return Handle.ToString();
+    }
 };

@@ -300,11 +300,6 @@ void AGKCharacterBase::BeginPlay()
 {
     Super::BeginPlay();
 
-    // FIXME: for host the team is assigned before beginplay
-    if (GetNetMode() != ENetMode::NM_Client && GetNetMode() != ENetMode::NM_DedicatedServer) {
-        OnRep_Team();
-    }
-
     // Initialize our abilities
     if (AbilitySystemComponent)
     {
@@ -506,7 +501,7 @@ void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) {
 
     GK_WARNING(TEXT("Got assigned a team"));
     Team = TeamID; 
-    OnTeamAssigned.Broadcast(Team);
+    ReceiveTeamAssigned(Team);
 }
 
 FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Team; }
