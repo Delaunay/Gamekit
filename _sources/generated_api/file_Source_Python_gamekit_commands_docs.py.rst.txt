@@ -50,3 +50,5 @@ Variables
 
 - :ref:`exhale_variable_namespacegamekit_1_1commands_1_1docs_1a3a5fc0825e6e12c4ee3a1202badbe2c1`
 
+- :ref:`exhale_variable_namespacegamekit_1_1commands_1_1docs_1ab868bdf99e7396c7c175a47c4a7add80`
+

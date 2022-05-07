@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacegamekit_1_1commands_1_1docs_1ab868bdf99e7396c7c175a47c4a7add80:
+
+Variable gamekit::commands::docs::COOKIECUTTER
+==============================================
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_docs.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: gamekit::commands::docs::COOKIECUTTER
+   :project: GameKit
