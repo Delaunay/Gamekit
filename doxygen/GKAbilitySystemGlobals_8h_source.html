@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">446d6364</span>
+   &#160;<span id="projectnumber">3e32e31d</span>
    </div>
   </td>
  </tr>
@@ -91,40 +91,49 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;UCLASS(config = Game)</div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html">   16</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a>: public UAbilitySystemGlobals</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a08eedb2cf1609ae0d88c3ae7f941124b">   18</a></span>&#160;    GENERATED_UCLASS_BODY()</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#acec060febc3f4d5b6ca81ba6168c0a60">   18</a></span>&#160;    GENERATED_UCLASS_BODY()</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    public:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    FGameplayTag ActivateFailNotYetLearnedTag;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    FGameplayTag AnimationCastPointTag;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    UPROPERTY(config)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    FName ActivateFailNotYetLearnedName;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    FName AnimationCastPointName;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a74a21c3052387c8508b7dfb1d4c2065c">   28</a></span>&#160;    FGameplayTag DeathTag;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    UPROPERTY(config)</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#aa6b40bd0e4f5cb0b6dbb8c013ee4e10b">   31</a></span>&#160;    FName DeathName;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a101dcb8b182cb73b1bc9ce04a436fd53">   34</a></span>&#160;    FGameplayTag DeathDispelTag;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    UPROPERTY(config)</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#ad4b7f0e276e1f48467391eb890be622a">   37</a></span>&#160;    FName DeathDispelName;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    virtual <span class="keywordtype">void</span> InitGlobalTags() override;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// THINK: We could a secondary global curve here for our curve generation system</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a3e3f8adde686b14b60850f434be1a7bb">   29</a></span>&#160;    FGameplayTag ActivateFailNotYetLearnedTag;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    UPROPERTY(config)</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a341dfeb10b744f852c5eac04876c0e02">   32</a></span>&#160;    FName ActivateFailNotYetLearnedName;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a74a21c3052387c8508b7dfb1d4c2065c">   35</a></span>&#160;    FGameplayTag DeathTag;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    UPROPERTY(config)</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#aa6b40bd0e4f5cb0b6dbb8c013ee4e10b">   38</a></span>&#160;    FName DeathName;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#a101dcb8b182cb73b1bc9ce04a436fd53">   41</a></span>&#160;    FGameplayTag DeathDispelTag;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    UPROPERTY(config)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html#ad4b7f0e276e1f48467391eb890be622a">   44</a></span>&#160;    FName DeathDispelName;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    virtual <span class="keywordtype">void</span> InitGlobalTags() override;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// THINK: We could a secondary global curve here for our curve generation system</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html">GKAbilitySystemGlobals.h</a></div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a101dcb8b182cb73b1bc9ce04a436fd53"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a101dcb8b182cb73b1bc9ce04a436fd53">UGKAbilitySystemGlobals::DeathDispelTag</a></div><div class="ttdeci">FGameplayTag DeathDispelTag</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:34</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a08eedb2cf1609ae0d88c3ae7f941124b"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a08eedb2cf1609ae0d88c3ae7f941124b">UGKAbilitySystemGlobals::ActivateFailNotYetLearnedName</a></div><div class="ttdeci">GENERATED_UCLASS_BODY() public FName ActivateFailNotYetLearnedName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:18</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a101dcb8b182cb73b1bc9ce04a436fd53"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a101dcb8b182cb73b1bc9ce04a436fd53">UGKAbilitySystemGlobals::DeathDispelTag</a></div><div class="ttdeci">FGameplayTag DeathDispelTag</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:41</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_acec060febc3f4d5b6ca81ba6168c0a60"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#acec060febc3f4d5b6ca81ba6168c0a60">UGKAbilitySystemGlobals::AnimationCastPointName</a></div><div class="ttdeci">GENERATED_UCLASS_BODY() public FName AnimationCastPointName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:18</div></div>
 <div class="ttc" id="aclassUGKAbilitySystemGlobals_html"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:16</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a74a21c3052387c8508b7dfb1d4c2065c"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a74a21c3052387c8508b7dfb1d4c2065c">UGKAbilitySystemGlobals::DeathTag</a></div><div class="ttdeci">FGameplayTag DeathTag</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:28</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_ad4b7f0e276e1f48467391eb890be622a"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#ad4b7f0e276e1f48467391eb890be622a">UGKAbilitySystemGlobals::DeathDispelName</a></div><div class="ttdeci">FName DeathDispelName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:37</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_aa6b40bd0e4f5cb0b6dbb8c013ee4e10b"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#aa6b40bd0e4f5cb0b6dbb8c013ee4e10b">UGKAbilitySystemGlobals::DeathName</a></div><div class="ttdeci">FName DeathName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:31</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a3e3f8adde686b14b60850f434be1a7bb"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a3e3f8adde686b14b60850f434be1a7bb">UGKAbilitySystemGlobals::ActivateFailNotYetLearnedTag</a></div><div class="ttdeci">FGameplayTag ActivateFailNotYetLearnedTag</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:29</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a74a21c3052387c8508b7dfb1d4c2065c"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a74a21c3052387c8508b7dfb1d4c2065c">UGKAbilitySystemGlobals::DeathTag</a></div><div class="ttdeci">FGameplayTag DeathTag</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:35</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_a341dfeb10b744f852c5eac04876c0e02"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#a341dfeb10b744f852c5eac04876c0e02">UGKAbilitySystemGlobals::ActivateFailNotYetLearnedName</a></div><div class="ttdeci">FName ActivateFailNotYetLearnedName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:32</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_ad4b7f0e276e1f48467391eb890be622a"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#ad4b7f0e276e1f48467391eb890be622a">UGKAbilitySystemGlobals::DeathDispelName</a></div><div class="ttdeci">FName DeathDispelName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:44</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html_aa6b40bd0e4f5cb0b6dbb8c013ee4e10b"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#aa6b40bd0e4f5cb0b6dbb8c013ee4e10b">UGKAbilitySystemGlobals::DeathName</a></div><div class="ttdeci">FName DeathName</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:38</div></div>
 <div class="ttc" id="aclassUGKAbilitySystemGlobals_html_adabd505c624de3a6313c48577d430efd"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html#adabd505c624de3a6313c48577d430efd">UGKAbilitySystemGlobals::InitGlobalTags</a></div><div class="ttdeci">virtual void InitGlobalTags() override</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.cpp:8</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

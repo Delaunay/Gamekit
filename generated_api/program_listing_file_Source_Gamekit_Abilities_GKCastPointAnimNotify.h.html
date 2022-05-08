@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -128,11 +128,14 @@
 <span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">Notify</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">USkeletalMeshComponent</span><span class="w"> </span><span class="o">*</span><span class="n">MeshComp</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UAnimSequenceBase</span><span class="w"> </span><span class="o">*</span><span class="n">Animation</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FAnimNotifyEventReference</span><span class="o">&amp;</span><span class="w"> </span><span class="n">EventReference</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Gameplay tag broadcasted to the owner of the ability</span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">CastPointEventTag</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="nf">GetCastPointEventTag</span><span class="p">();</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

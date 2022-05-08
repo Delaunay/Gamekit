@@ -1,7 +1,8 @@
 <map id="Source/Gamekit/Abilities/GKAbilitySystemGlobals.h" name="Source/Gamekit/Abilities/GKAbilitySystemGlobals.h">
-<area shape="rect" id="node1" title=" " alt="" coords="342,5,539,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="462,5,659,47"/>
 <area shape="rect" id="node2" href="$GKAbilitySystemGlobals_8cpp.html" title=" " alt="" coords="5,95,217,136"/>
-<area shape="rect" id="node3" href="$GKGameplayAbility_8cpp.html" title=" " alt="" coords="241,95,424,136"/>
-<area shape="rect" id="node4" href="$GKCharacter_8cpp.html" title=" " alt="" coords="449,95,649,136"/>
-<area shape="rect" id="node5" href="$GKEngineSubsystem_8cpp.html" title=" " alt="" coords="673,95,883,136"/>
+<area shape="rect" id="node3" href="$GKCastPointAnimNotify_8cpp.html" title=" " alt="" coords="241,95,445,136"/>
+<area shape="rect" id="node4" href="$GKGameplayAbility_8cpp.html" title=" " alt="" coords="469,95,652,136"/>
+<area shape="rect" id="node5" href="$GKCharacter_8cpp.html" title=" " alt="" coords="677,95,877,136"/>
+<area shape="rect" id="node6" href="$GKEngineSubsystem_8cpp.html" title=" " alt="" coords="901,95,1111,136"/>
 </map>

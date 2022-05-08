@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -661,12 +661,6 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="cm">/*</span>
-<span class="cm">    if (EventData.TargetData) {</span>
-
-<span class="cm">    }</span>
-<span class="cm">    //*/</span><span class="w"></span>
-
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">K2_CommitAbility</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
@@ -733,6 +727,12 @@
 <span class="w">            </span><span class="n">EGameplayTargetingConfirmation</span><span class="o">::</span><span class="n">UserConfirmed</span><span class="p">,</span><span class="w"> </span><span class="c1">// ConfirmationType</span>
 <span class="w">            </span><span class="n">TargetActor</span><span class="w">                                    </span><span class="c1">// TargetActor</span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// FIXME: Those are not set on the initial spawn</span>
+<span class="w">    </span><span class="c1">// but they should be set when StartTargeting is called</span>
+<span class="w">    </span><span class="c1">// Inside the `WaitForTargetDataUsingActor` task</span>
+<span class="w">    </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">OwningAbility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">SourceActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorInfo</span><span class="p">().</span><span class="n">AvatarActor</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">TargetingStartDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">Cancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetingCancelled</span><span class="p">);</span><span class="w"></span>
@@ -1069,6 +1069,8 @@
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Target</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Direction</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Direction</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Loc</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ensure</span><span class="p">(</span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="p">.</span><span class="n">TargetGameplayEffectSpecs</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// The attachment is probably Character/class/Skeleton defined</span>
 <span class="w">    </span><span class="c1">// ...</span>

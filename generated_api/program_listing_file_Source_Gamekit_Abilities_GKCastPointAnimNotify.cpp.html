@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -113,9 +113,12 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKCastPointAnimNotify.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemBlueprintLibrary.h&quot;</span><span class="cp"></span>
+
+
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKCastPointAnimNotify::Notify</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">USkeletalMeshComponent</span><span class="w"> </span><span class="o">*</span><span class="n">MeshComp</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UAnimSequenceBase</span><span class="w"> </span><span class="o">*</span><span class="n">Animation</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FAnimNotifyEventReference</span><span class="o">&amp;</span><span class="w"> </span><span class="n">EventReference</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -124,8 +127,41 @@
 <span class="w">    </span><span class="c1">// Send Game play event</span>
 <span class="w">    </span><span class="n">AActor</span><span class="w"> </span><span class="o">*</span><span class="n">Owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MeshComp</span><span class="o">-&gt;</span><span class="n">GetOwner</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// How can I populate the TargetData here</span>
-<span class="w">    </span><span class="n">UAbilitySystemBlueprintLibrary</span><span class="o">::</span><span class="n">SendGameplayEventToActor</span><span class="p">(</span><span class="n">Owner</span><span class="p">,</span><span class="w"> </span><span class="n">CastPointEventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// this prevent the editor from printing scary error message</span>
+<span class="w">    </span><span class="c1">// when the animation is played in the editor</span>
+<span class="w">    </span><span class="c1">// ASC is not populated in the animation editor</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">::</span><span class="n">IsValid</span><span class="p">(</span><span class="n">Owner</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">UAbilitySystemBlueprintLibrary</span><span class="o">::</span><span class="n">GetAbilitySystemComponent</span><span class="p">(</span><span class="n">Owner</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// How can I populate the TargetData here</span>
+<span class="w">        </span><span class="n">UAbilitySystemBlueprintLibrary</span><span class="o">::</span><span class="n">SendGameplayEventToActor</span><span class="p">(</span><span class="n">Owner</span><span class="p">,</span><span class="w"> </span><span class="n">CastPointEventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">UGKAbilitySystemGlobals</span><span class="o">*</span><span class="w"> </span><span class="nf">Get</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UAbilitySystemGlobals</span><span class="o">*</span><span class="w"> </span><span class="n">ASG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ASG</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FGameplayTag</span><span class="w"> </span><span class="nf">GetDefaultAnimTag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ASG</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ASG</span><span class="o">-&gt;</span><span class="n">AnimationCastPointTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">EmptyTag</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGameplayTag</span><span class="w"> </span><span class="nf">UGKCastPointAnimNotify::GetCastPointEventTag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">DefaultTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetDefaultAnimTag</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CastPointEventTag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">EmptyTag</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DefaultTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CastPointEventTag</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

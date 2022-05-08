@@ -19,6 +19,46 @@ Features
 * **Multiplayer ready**
 * **Basic UI**: easier debugging
 
+Setup
+-----
+
+GameTags
+^^^^^^^^
+
+Gamekit Tags:
+
+* AnimationCastPointName: Tag sent when animation reach the cast point
+* DeathTag: Tag set on death
+* DeathDispelTag: Speciall dispel flags set on death (removes all debuffs)
+* ActivateFailNotYetLearnedName: Ability has not been learn yet
+
+
+Unreal Engine GA tags
+
+* ActivateFailIsDeadName: Character is dead
+* ActivateFailCooldownName: Ability is till in cooldown
+* ActivateFailCostName: Resource level does not meet the ability cost
+* ActivateFailTagsBlockedTag: Ability is blocked by a debuff
+* ActivateFailTagsMissingName: Ability has missing requirement
+* ActivateFailNetworkingName: Internal error due to networking
+
+You can set those tags in `DefaultGame.ini`.
+
+.. code-block:: ini
+
+	[/Script/GameplayAbilities.AbilitySystemGlobals]
+	ActivateFailIsDeadName=State.Dead
+	ActivateFailCooldownName=Failure.Cooldown
+	ActivateFailCostName=Failure.Cost
+	ActivateFailTagsBlockedName=Failure.Blocked
+	ActivateFailTagsMissingName=Failure.Missing
+	ActivateFailNetworkingName=Failure.Network
+	ActivateFailNotYetLearnedName=Failure.NotLearned
+	DeathDispelName=Dispel.Death
+	DeathName=State.Dead
+
+   GlobalCurveTableName=CompositeCurveTable'/Game/Data/CurveDatabaseCache.CurveDatabaseCache'
+
 
 Define Abilities
 ----------------
@@ -169,7 +209,7 @@ a spell button.
 
 #. Ability requirements/cost are not met
 
-#. Ability cannot be cast because of debuf
+#. Ability cannot be cast because of debuff
 
 .. image:: /_static/btn_cooldown.PNG
    :width: 60

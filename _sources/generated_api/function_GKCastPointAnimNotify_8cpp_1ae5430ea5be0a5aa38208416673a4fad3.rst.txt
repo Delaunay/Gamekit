@@ -1,0 +1,14 @@
+.. _exhale_function_GKCastPointAnimNotify_8cpp_1ae5430ea5be0a5aa38208416673a4fad3:
+
+Function Get
+============
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKCastPointAnimNotify.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Get()
+   :project: GameKit

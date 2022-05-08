@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -201,6 +201,8 @@
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_PlayMontageAndWaitForEvent</span><span class="o">::</span><span class="n">OnGameplayEvent</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w">              </span><span class="n">EventTag</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="o">*</span><span class="n">Payload</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ensureMsgf</span><span class="p">(</span><span class="n">EventTag</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">EmptyTag</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;EventTag is empty; did your forget to set the Cast Point Event Tag inside the animation montage ?&quot;</span><span class="p">));</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldBroadcastAbilityTaskDelegates</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">TempData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Payload</span><span class="p">;</span><span class="w"></span>

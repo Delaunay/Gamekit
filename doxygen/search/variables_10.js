@@ -1,16 +1,20 @@
 var searchData=
 [
-  ['randomrotation_2692',['RandomRotation',['../classAGKGameResource.html#a8323777098a49261703a16000cd88398',1,'AGKGameResource']]],
-  ['randomsize_2693',['RandomSize',['../classAGKGameResource.html#a08f2a1bc18bc68a0b10e389efee31e18',1,'AGKGameResource']]],
-  ['range_2694',['Range',['../structFGKProjectileStatic.html#aa49254a3b842f249cb31323340b8760a',1,'FGKProjectileStatic']]],
-  ['raritylevel_2695',['RarityLevel',['../classAGKGameResource.html#a44cfc7bf90971307db9b69d8099b5719',1,'AGKGameResource']]],
-  ['rate_2696',['Rate',['../classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a88c8fb0fc99f3cbfce8a914f13de16ac',1,'UGKAbilityTask_PlayMontageAndWaitForEvent::Rate()'],['../classUGKGameplayAbility.html#a47ebbd968363eebcb52c6c8174ba49b9',1,'UGKGameplayAbility::Rate()']]],
-  ['resourcedescription_2697',['ResourceDescription',['../classAGKGameResource.html#a07fa3aade17a1322abfefdbcc2887a74',1,'AGKGameResource']]],
-  ['resourceicon_2698',['ResourceIcon',['../classAGKGameResource.html#a135b7c5fca50ca56a317dcd3afe2286f',1,'AGKGameResource']]],
-  ['resourcemesh_2699',['ResourceMesh',['../classAGKGameResource.html#a37f63facbb7189c0d3b2333964c02d89',1,'AGKGameResource']]],
-  ['resourcename_2700',['ResourceName',['../classAGKGameResource.html#ae61bb72a3143b860a619906fed507d0a',1,'AGKGameResource']]],
-  ['restoreparentonfailure_2701',['RestoreParentOnFailure',['../classUGKWidgetDragVisual.html#ac76813d640dbba35f65d2aa78da12abd',1,'UGKWidgetDragVisual']]],
-  ['rootcomponent_2702',['RootComponent',['../classUGKAbilityTask__MoveToDestination.html#afba70e288ee4d09c735a013ed467c40c',1,'UGKAbilityTask_MoveToDestination']]],
-  ['rootscene_2703',['RootScene',['../classAGKTopDownPawn.html#a77ca1db3f1362bbe70e1fdd95005e0e9',1,'AGKTopDownPawn']]],
-  ['row_2704',['Row',['../structTMatrix3D.html#a9d779873b1fd3e4fc4e42864af4c48c3',1,'TMatrix3D']]]
+  ['s_2707',['S',['../namespacegamekit_1_1fbm.html#a9fca6e00cd0629f73ccb6566a3ba337e',1,'gamekit::fbm']]],
+  ['saveddataversion_2708',['SavedDataVersion',['../classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71',1,'UGKSaveGame']]],
+  ['saveslot_2709',['SaveSlot',['../classUGKGameInstanceBase.html#a4ab13e304ea77290d81216668ca22123',1,'UGKGameInstanceBase']]],
+  ['saveuserindex_2710',['SaveUserIndex',['../classUGKGameInstanceBase.html#a2a3ec593b3073d06dee0fd4dd2f96c6c',1,'UGKGameInstanceBase']]],
+  ['selectedunit_2711',['SelectedUnit',['../classAGKTacticianController.html#a516a1a1388f1933b69f6ab2ada615c20',1,'AGKTacticianController']]],
+  ['sequential_2712',['Sequential',['../structFGKQuestObjectives.html#aaf3986ca8078a9a64d23917b26f89f35',1,'FGKQuestObjectives']]],
+  ['shortdescription_2713',['ShortDescription',['../structFGKSimpleObjective.html#a188b9ef502118f6b9bcbdb7a8d212ee9',1,'FGKSimpleObjective::ShortDescription()'],['../structFGKQuestObjectives.html#a18dcf7aabd747b75e7ba9c9227381bdf',1,'FGKQuestObjectives::ShortDescription()']]],
+  ['showonlyactors_2714',['ShowOnlyActors',['../classAGKMinimapVolume.html#ae2f321cbe5149ef94439ed99ece164fc',1,'AGKMinimapVolume']]],
+  ['slot_2715',['Slot',['../structFGKAbilityStatic.html#a3a8febaf137ed75056a35e00ae0b5949',1,'FGKAbilityStatic']]],
+  ['slotnumber_2716',['SlotNumber',['../structFGKAbilitySlot.html#aae0bab9662fbca2ca4b716e245567b18',1,'FGKAbilitySlot']]],
+  ['slotteditems_2717',['SlottedItems',['../classUGKSaveGame.html#ac5493c2a757741a43f96a7a18f8e6322',1,'UGKSaveGame']]],
+  ['st_2718',['st',['../namespacegamekit_1_1fbm.html#a0c23cb5c32e31e1810eb7da462c7ac92',1,'gamekit::fbm']]],
+  ['start_2719',['Start',['../structFGKLinePoints.html#a9dfa4d34c2a9c3ac724b163716ec97fa',1,'FGKLinePoints']]],
+  ['startsection_2720',['StartSection',['../classUGKAbilityTask__PlayMontageAndWaitForEvent.html#af11ded87f30a1990f8e33ee558621bfa',1,'UGKAbilityTask_PlayMontageAndWaitForEvent::StartSection()'],['../classUGKGameplayAbility.html#ac1fd145bc5fc80faa439af0b64e43753',1,'UGKGameplayAbility::StartSection()']]],
+  ['statusdisplay_2721',['StatusDisplay',['../classAGKUnitCharacter.html#a7845df61178f1c4c90bb50643423a3d8',1,'AGKUnitCharacter']]],
+  ['str_2722',['str',['../classgamekit_1_1commands_1_1cook_1_1CookGame.html#a00b0e8f142ae0d4ea8250ffb73995d76',1,'gamekit.commands.cook.CookGame.str()'],['../classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#aabcd844ac746904d790b9c6f53337ba8',1,'gamekit.commands.dedicated.Dedicated.str()'],['../classgamekit_1_1commands_1_1disable_1_1Disable.html#a92b10237954360a7ab018bbf996da430',1,'gamekit.commands.disable.Disable.str()'],['../classgamekit_1_1commands_1_1docs_1_1Docs.html#a10b68b382b0545b8ff6b33b58e4b748d',1,'gamekit.commands.docs.Docs.str()'],['../classgamekit_1_1commands_1_1init_1_1Init.html#a5b334ad0733dfaff41508c0dabb1c55e',1,'gamekit.commands.init.Init.str()'],['../classgamekit_1_1commands_1_1install_1_1Install.html#a0babd3bb2951db438a1d5273dcc510f0',1,'gamekit.commands.install.Install.str()'],['../classgamekit_1_1commands_1_1tests_1_1RunTests.html#a0b95ab5d23e425ac94dd9f237b602cdb',1,'gamekit.commands.tests.RunTests.str()'],['../classgamekit_1_1commands_1_1vscode_1_1VSCode.html#a3fc2b3d5969203566e7dab716a380743',1,'gamekit.commands.vscode.VSCode.str()']]],
+  ['strategy_2723',['Strategy',['../classAGKFogOfWarVolume.html#aafe8b3bc207fc490068a8ea410b8a78c',1,'AGKFogOfWarVolume']]]
 ];

@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -52,6 +52,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Abilities</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gametags">GameTags</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ability-datatable-initialization">Ability DataTable Initialization</a></li>
@@ -148,6 +152,43 @@
 <li><p><strong>Multiplayer ready</strong></p></li>
 <li><p><strong>Basic UI</strong>: easier debugging</p></li>
 </ul>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
+<section id="gametags">
+<h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this headline"></a></h3>
+<p>Gamekit Tags:</p>
+<ul class="simple">
+<li><p>AnimationCastPointName: Tag sent when animation reach the cast point</p></li>
+<li><p>DeathTag: Tag set on death</p></li>
+<li><p>DeathDispelTag: Speciall dispel flags set on death (removes all debuffs)</p></li>
+<li><p>ActivateFailNotYetLearnedName: Ability has not been learn yet</p></li>
+</ul>
+<p>Unreal Engine GA tags</p>
+<ul class="simple">
+<li><p>ActivateFailIsDeadName: Character is dead</p></li>
+<li><p>ActivateFailCooldownName: Ability is till in cooldown</p></li>
+<li><p>ActivateFailCostName: Resource level does not meet the ability cost</p></li>
+<li><p>ActivateFailTagsBlockedTag: Ability is blocked by a debuff</p></li>
+<li><p>ActivateFailTagsMissingName: Ability has missing requirement</p></li>
+<li><p>ActivateFailNetworkingName: Internal error due to networking</p></li>
+</ul>
+<p>You can set those tags in <cite>DefaultGame.ini</cite>.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">[/Script/GameplayAbilities.AbilitySystemGlobals]</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailIsDeadName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailCooldownName</span><span class="o">=</span><span class="s">Failure.Cooldown</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailCostName</span><span class="o">=</span><span class="s">Failure.Cost</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailTagsBlockedName</span><span class="o">=</span><span class="s">Failure.Blocked</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailTagsMissingName</span><span class="o">=</span><span class="s">Failure.Missing</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailNetworkingName</span><span class="o">=</span><span class="s">Failure.Network</span><span class="w"></span>
+<span class="w">     </span><span class="na">ActivateFailNotYetLearnedName</span><span class="o">=</span><span class="s">Failure.NotLearned</span><span class="w"></span>
+<span class="w">     </span><span class="na">DeathDispelName</span><span class="o">=</span><span class="s">Dispel.Death</span><span class="w"></span>
+<span class="w">     </span><span class="na">DeathName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
+
+<span class="na">GlobalCurveTableName</span><span class="o">=</span><span class="s">CompositeCurveTable&#39;/Game/Data/CurveDatabaseCache.CurveDatabaseCache&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="define-abilities">
 <h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this headline"></a></h2>
@@ -272,7 +313,7 @@ a spell button.</p>
 <li><p>Ability is on cooldown</p></li>
 <li><p>Backswing animation</p></li>
 <li><p>Ability requirements/cost are not met</p></li>
-<li><p>Ability cannot be cast because of debuf</p></li>
+<li><p>Ability cannot be cast because of debuff</p></li>
 </ol>
 <a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="../_images/btn_cooldown.PNG" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
 <a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>

@@ -26,6 +26,13 @@ Program Listing for File GKAbilitySystemGlobals.h
    {
        GENERATED_UCLASS_BODY()
        public:
+   
+       UPROPERTY()
+       FGameplayTag AnimationCastPointTag;
+   
+       UPROPERTY(config)
+       FName AnimationCastPointName;
+   
        UPROPERTY()
        FGameplayTag ActivateFailNotYetLearnedTag;
    

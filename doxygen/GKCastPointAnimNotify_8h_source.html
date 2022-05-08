@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">446d6364</span>
+   &#160;<span id="projectnumber">3e32e31d</span>
    </div>
   </td>
  </tr>
@@ -95,15 +95,23 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    GENERATED_BODY()</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> Notify(<span class="keyword">class</span> USkeletalMeshComponent *MeshComp, <span class="keyword">class</span> UAnimSequenceBase *Animation, <span class="keyword">const</span> FAnimNotifyEventReference&amp; EventReference) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Gameplay tag broadcasted to the owner of the ability</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classUGKCastPointAnimNotify.html#a2cdfde4db45fe459ff4dc92a81b920ad">   27</a></span>&#160;    FGameplayTag CastPointEventTag;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> Notify(<span class="keyword">class</span> USkeletalMeshComponent *MeshComp, <span class="keyword">class</span> UAnimSequenceBase *Animation, <span class="keyword">const</span> FAnimNotifyEventReference&amp; EventReference) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Gameplay tag broadcasted to the owner of the ability</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classUGKCastPointAnimNotify.html#a2cdfde4db45fe459ff4dc92a81b920ad">   28</a></span>&#160;    FGameplayTag CastPointEventTag;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    FGameplayTag GetCastPointEventTag();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassUGKCastPointAnimNotify_html_a41b088fbbd20135f17571befd4f03ad2"><div class="ttname"><a href="classUGKCastPointAnimNotify.html#a41b088fbbd20135f17571befd4f03ad2">UGKCastPointAnimNotify::Notify</a></div><div class="ttdeci">void Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference &amp;EventReference) override</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:8</div></div>
-<div class="ttc" id="aclassUGKCastPointAnimNotify_html_a2cdfde4db45fe459ff4dc92a81b920ad"><div class="ttname"><a href="classUGKCastPointAnimNotify.html#a2cdfde4db45fe459ff4dc92a81b920ad">UGKCastPointAnimNotify::CastPointEventTag</a></div><div class="ttdeci">FGameplayTag CastPointEventTag</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.h:27</div></div>
+<div class="ttc" id="aGKCastPointAnimNotify_8cpp_html_ae5430ea5be0a5aa38208416673a4fad3"><div class="ttname"><a href="GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3">Get</a></div><div class="ttdeci">UGKAbilitySystemGlobals * Get()</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:28</div></div>
+<div class="ttc" id="aGKAbilitySystemGlobals_8h_html"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html">GKAbilitySystemGlobals.h</a></div></div>
+<div class="ttc" id="aclassUGKCastPointAnimNotify_html_a41b088fbbd20135f17571befd4f03ad2"><div class="ttname"><a href="classUGKCastPointAnimNotify.html#a41b088fbbd20135f17571befd4f03ad2">UGKCastPointAnimNotify::Notify</a></div><div class="ttdeci">void Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference &amp;EventReference) override</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:11</div></div>
+<div class="ttc" id="aGKCastPointAnimNotify_8cpp_html_a6b691291570f513f3cffaa71f686f492"><div class="ttname"><a href="GKCastPointAnimNotify_8cpp.html#a6b691291570f513f3cffaa71f686f492">GetDefaultAnimTag</a></div><div class="ttdeci">FGameplayTag GetDefaultAnimTag()</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:34</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:16</div></div>
+<div class="ttc" id="aclassUGKCastPointAnimNotify_html_a9524272024c6cd5ea3e250286d7878f2"><div class="ttname"><a href="classUGKCastPointAnimNotify.html#a9524272024c6cd5ea3e250286d7878f2">UGKCastPointAnimNotify::GetCastPointEventTag</a></div><div class="ttdeci">FGameplayTag GetCastPointEventTag()</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:44</div></div>
+<div class="ttc" id="aclassUGKCastPointAnimNotify_html_a2cdfde4db45fe459ff4dc92a81b920ad"><div class="ttname"><a href="classUGKCastPointAnimNotify.html#a2cdfde4db45fe459ff4dc92a81b920ad">UGKCastPointAnimNotify::CastPointEventTag</a></div><div class="ttdeci">FGameplayTag CastPointEventTag</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.h:28</div></div>
 <div class="ttc" id="aGKCastPointAnimNotify_8h_html"><div class="ttname"><a href="GKCastPointAnimNotify_8h.html">GKCastPointAnimNotify.h</a></div></div>
 <div class="ttc" id="aclassUGKCastPointAnimNotify_html"><div class="ttname"><a href="classUGKCastPointAnimNotify.html">UGKCastPointAnimNotify</a></div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.h:18</div></div>
 <!-- start footer part -->

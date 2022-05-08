@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -210,9 +210,14 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">EffectName</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Curve</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GameplayEffectClass</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
 <span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>

@@ -43,6 +43,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.cpp`
 
+- :ref:`file_Source_Gamekit_Abilities_GKCastPointAnimNotify.cpp`
+
 - :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
 
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`

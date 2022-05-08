@@ -110,9 +110,14 @@ Program Listing for File GKAbilityStatic.h
    {
        GENERATED_USTRUCT_BODY()
    
+       UPROPERTY(EditAnywhere, BlueprintReadOnly)
        FName EffectName;
    
+       UPROPERTY(EditAnywhere, BlueprintReadOnly)
        TArray<float> Curve;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly)
+       TSubclassOf<UGameplayAbility> GameplayEffectClass;
    };
    
    USTRUCT(BlueprintType)

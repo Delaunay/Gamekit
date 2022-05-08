@@ -1,6 +1,7 @@
 <map id="UGKGameplayAbility::LoadFromDataTable" name="UGKGameplayAbility::LoadFromDataTable">
 <area shape="rect" id="node1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="5,39,165,80"/>
 <area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ae0408633c5c18856d45e0406349379a2" title=" " alt="" coords="213,5,448,47"/>
-<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="231,71,430,112"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="231,71,430,112"/>
 <area shape="rect" id="node3" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="496,39,723,80"/>
+<area shape="rect" id="node4" href="$GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="771,46,816,73"/>
 </map>

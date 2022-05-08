@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                446d6364
+                3e32e31d
 
               </div>
 <div role="search">
@@ -159,10 +159,12 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">StartTargeting</span><span class="p">(</span><span class="n">Ability</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">SourceActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OwningAbility</span><span class="o">-&gt;</span><span class="n">GetActorInfo</span><span class="p">().</span><span class="n">AvatarActor</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ensure</span><span class="p">(</span><span class="n">OwningAbility</span><span class="p">)){</span><span class="w"></span>
+<span class="w">        </span><span class="n">SourceActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OwningAbility</span><span class="o">-&gt;</span><span class="n">GetActorInfo</span><span class="p">().</span><span class="n">AvatarActor</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Init the targeting before the tick</span>
-<span class="w">    </span><span class="n">TargetValidityChanged</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">LatestHitResult</span><span class="p">,</span><span class="w"> </span><span class="n">bIsTargetValid</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Init the targeting before the tick</span>
+<span class="w">        </span><span class="n">TargetValidityChanged</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">LatestHitResult</span><span class="p">,</span><span class="w"> </span><span class="n">bIsTargetValid</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKAbilityTarget_PlayerControllerTrace</span><span class="o">::</span><span class="n">Deselect</span><span class="p">()</span><span class="w"></span>

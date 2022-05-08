@@ -39,6 +39,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilities.cpp`
 
+- :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.cpp`
+
 
 
 

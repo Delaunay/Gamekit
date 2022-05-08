@@ -2,9 +2,9 @@
 <area shape="rect" id="node1" title="Draw the fog of war for each factions." alt="" coords="5,264,164,305"/>
 <area shape="rect" id="node2" href="$classUGKRayCasting__Line.html#add62b1c55f10871528c28ab7b9b5f91f" title="Draw the line of sight using the right method." alt="" coords="212,169,371,211"/>
 <area shape="rect" id="node9" href="$classUGKRayCasting__Line.html#a4d598153cd8e305347794241bd51d473" title=" " alt="" coords="1008,201,1193,243"/>
-<area shape="rect" id="node3" href="$classUGKFogOfWarStrategy.html#ac80e1f00892f133a184cf75790fe34c9" title=" " alt="" coords="441,71,623,112"/>
+<area shape="rect" id="node3" href="$classUGKFogOfWarStrategy.html#ac80e1f00892f133a184cf75790fe34c9" title=" " alt="" coords="441,136,623,177"/>
 <area shape="rect" id="node4" href="$classUGKRayCasting__Line.html#aff9d7dd8015327bb3f7464dac7e8a23f" title="Draw the line of sight using LineTrace." alt="" coords="427,201,637,243"/>
-<area shape="rect" id="node13" href="$classUGKRayCasting__Line.html#ab23d3324b19beea293cff2894dc2fd2f" title="Draw the ligne of sight using a material (no collision)" alt="" coords="419,136,645,177"/>
+<area shape="rect" id="node13" href="$classUGKRayCasting__Line.html#ab23d3324b19beea293cff2894dc2fd2f" title="Draw the ligne of sight using a material (no collision)" alt="" coords="419,71,645,112"/>
 <area shape="rect" id="node5" href="$classUGKFogOfWarStrategy.html#a373ca3119167bc4b6a2142d5208ac948" title=" " alt="" coords="742,71,911,112"/>
 <area shape="rect" id="node7" href="$classAGKFogOfWarVolume.html#a17edecf722a45e05593f37d0c2e77367" title=" " alt="" coords="741,267,912,308"/>
 <area shape="rect" id="node8" href="$classUGKRayCasting__Line.html#ae34cb3fb871d7f58ba4b27f752274d2f" title=" " alt="" coords="747,201,906,243"/>
@@ -13,5 +13,6 @@
 <area shape="rect" id="node10" href="$classUGKRayCasting__Line.html#ae186df9765fe1b18be2e2bcbbdc22f71" title=" " alt="" coords="1241,201,1400,243"/>
 <area shape="rect" id="node11" href="$classAGKFogOfWarVolume.html#a4d720bc82c2854aba2b85c4aa0a86476" title=" " alt="" coords="1448,201,1619,243"/>
 <area shape="rect" id="node14" href="$classUGKFogOfWarLibrary.html#a4226c2eb7b37654b64b773512bc0d62e" title=" " alt="" coords="743,5,910,47"/>
-<area shape="rect" id="node15" href="$classUGKRayCasting__Line.html#a8138dfa12d2a7628e564fd1ed48f9d85" title=" " alt="" coords="693,136,960,177"/>
+<area shape="rect" id="node16" href="$classUGKRayCasting__Line.html#a8138dfa12d2a7628e564fd1ed48f9d85" title=" " alt="" coords="693,136,960,177"/>
+<area shape="rect" id="node15" href="$GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="1078,13,1123,39"/>
 </map>
