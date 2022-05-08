@@ -47,10 +47,12 @@ void AGKAbilityTarget_PlayerControllerTrace::StartTargeting(UGKGameplayAbility *
 {
     Super::StartTargeting(Ability);
 
-    SourceActor = OwningAbility->GetActorInfo().AvatarActor.Get();
+    if (ensure(OwningAbility)){
+        SourceActor = OwningAbility->GetActorInfo().AvatarActor.Get();
 
-    // Init the targeting before the tick
-    TargetValidityChanged.Broadcast(LatestHitResult, bIsTargetValid);
+        // Init the targeting before the tick
+        TargetValidityChanged.Broadcast(LatestHitResult, bIsTargetValid);
+    }
 }
 
 void AGKAbilityTarget_PlayerControllerTrace::Deselect()

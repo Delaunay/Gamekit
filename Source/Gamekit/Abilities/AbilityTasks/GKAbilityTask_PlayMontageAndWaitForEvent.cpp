@@ -89,6 +89,8 @@ void UGKAbilityTask_PlayMontageAndWaitForEvent::OnMontageEnded(UAnimMontage *Mon
 void UGKAbilityTask_PlayMontageAndWaitForEvent::OnGameplayEvent(FGameplayTag              EventTag,
                                                                 const FGameplayEventData *Payload)
 {
+    ensureMsgf(EventTag != FGameplayTag::EmptyTag, TEXT("EventTag is empty; did your forget to set the Cast Point Event Tag inside the animation montage ?"));
+
     if (ShouldBroadcastAbilityTaskDelegates())
     {
         FGameplayEventData TempData = *Payload;

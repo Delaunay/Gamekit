@@ -2,6 +2,11 @@
 
 #include "Gamekit/Projectiles/GKAbilityEffectActor.h"
 
+
+// Gamekit
+#include "Gamekit/Abilities/GKAbilities.h"
+
+
 // Sets default values
 AGKAbilityEffectActor::AGKAbilityEffectActor()
 {
@@ -11,6 +16,14 @@ AGKAbilityEffectActor::AGKAbilityEffectActor()
 
 void AGKAbilityEffectActor::ApplyToTargets()
 {
+    // Clients do not apply to target
+    if (GetNetMode() == ENetMode::NM_Client){
+        return;
+    }
+
+    ensure(GameplayEffects.TargetGameplayEffectSpecs.Num() > 0);
+    ensure(GameplayEffects.TargetData.Data.Num() > 0);
+
     // Iterate list of gameplay effects
     for (const FGameplayEffectSpecHandle &SpecHandle: GameplayEffects.TargetGameplayEffectSpecs)
     {
@@ -21,6 +34,8 @@ void AGKAbilityEffectActor::ApplyToTargets()
             {
                 Data->ApplyGameplayEffectSpec(*SpecHandle.Data.Get());
             }
+        } else {
+            GKGA_WARNING(TEXT("Gameplay Effect Spec Handle has become invalid"));
         }
     }
 }

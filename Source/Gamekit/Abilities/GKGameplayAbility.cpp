@@ -549,12 +549,6 @@ void UGKGameplayAbility::OnAbilityAnimationEvent(FGameplayTag EventTag, FGamepla
         return;
     }
 
-    /*
-    if (EventData.TargetData) {
-
-    }
-    //*/
-
     if (K2_CommitAbility())
     {
         SpawnProjectile(EventTag, EventData);
@@ -621,6 +615,12 @@ void UGKGameplayAbility::ActivateAbility_PointTarget()
             EGameplayTargetingConfirmation::UserConfirmed, // ConfirmationType
             TargetActor                                    // TargetActor
     );
+
+    // FIXME: Those are not set on the initial spawn 
+    // but they should be set when StartTargeting is called
+    // Inside the `WaitForTargetDataUsingActor` task
+    TargetActor->OwningAbility = this;
+    TargetActor->SourceActor = GetActorInfo().AvatarActor.Get();
 
     TargetingStartDelegate.Broadcast();
     TargetTask->Cancelled.AddDynamic(this, &UGKGameplayAbility::OnAbilityTargetingCancelled);
@@ -957,6 +957,8 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
     ProjectileInstance->Target          = Target;
     ProjectileInstance->Direction       = (Direction - Loc);
     ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EventTag, EventData);
+
+    ensure(ProjectileInstance->GameplayEffects.TargetGameplayEffectSpecs.Num() > 0);
 
     // The attachment is probably Character/class/Skeleton defined
     // ...

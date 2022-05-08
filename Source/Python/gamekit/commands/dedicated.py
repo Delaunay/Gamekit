@@ -33,7 +33,7 @@ class Dedicated(Command):
 
     @staticmethod
     def generate_server_target(project, server_target):
-        template = pkg_resources.resource_filename(__name__, '../templates/TemplateServer.Target.cs')
+        template = pkg_resources.resource_filename(__name__, '../templates/TemplateServer.Target')
 
         with open(template, 'r') as template_file:
             template = template_file.read()

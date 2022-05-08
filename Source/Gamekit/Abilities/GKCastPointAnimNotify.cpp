@@ -5,6 +5,7 @@
 // Unreal Engine
 #include "AbilitySystemBlueprintLibrary.h"
 
+
 void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference& EventReference)
 {
     UAnimNotify::Notify(MeshComp, Animation, EventReference);
@@ -12,6 +13,11 @@ void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, clas
     // Send Game play event
     AActor *Owner = MeshComp->GetOwner();
 
-    // How can I populate the TargetData here
-    UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Owner, CastPointEventTag, FGameplayEventData());
+    // this prevent the editor from printing scary error message
+    // when the animation is played in the editor
+    // ASC is not populated in the animation editor
+    if (::IsValid(Owner) && UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Owner)) {
+        // How can I populate the TargetData here
+        UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Owner, CastPointEventTag, FGameplayEventData());
+    }
 }

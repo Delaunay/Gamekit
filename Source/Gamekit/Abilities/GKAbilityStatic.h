@@ -98,9 +98,14 @@ struct GAMEKIT_API FGKAbilityEffect
 {
     GENERATED_USTRUCT_BODY()
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
     FName EffectName;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
     TArray<float> Curve;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    TSubclassOf<UGameplayAbility> GameplayEffectClass;
 };
 
 /*! Holds all data that is shared across all instances of a single ability
