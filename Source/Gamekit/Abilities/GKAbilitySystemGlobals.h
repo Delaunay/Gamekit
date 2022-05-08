@@ -17,6 +17,13 @@ class GAMEKIT_API UGKAbilitySystemGlobals: public UAbilitySystemGlobals
 {
     GENERATED_UCLASS_BODY()
     public:
+
+    UPROPERTY()
+    FGameplayTag AnimationCastPointTag;
+
+    UPROPERTY(config)
+    FName AnimationCastPointName;
+
     /** TryActivate failed due to the ability not being learned */
     UPROPERTY()
     FGameplayTag ActivateFailNotYetLearnedTag;

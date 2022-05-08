@@ -23,4 +23,9 @@ void UGKAbilitySystemGlobals::InitGlobalTags()
     {
         DeathDispelTag = FGameplayTag::RequestGameplayTag(DeathDispelName);
     }
+
+    if (AnimationCastPointName != NAME_None)
+    {
+        AnimationCastPointTag = FGameplayTag::RequestGameplayTag(AnimationCastPointName);
+    }
 }

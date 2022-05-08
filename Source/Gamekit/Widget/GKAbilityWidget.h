@@ -45,7 +45,7 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnEndTargeting(bool Cancelled);
 
-    //! Disabled because of a debuf
+    //! Disabled because of a debuff
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnAbilityDisabled(bool Enabled);
 

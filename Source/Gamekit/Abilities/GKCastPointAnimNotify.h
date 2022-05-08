@@ -20,9 +20,12 @@ class GAMEKIT_API UGKCastPointAnimNotify: public UAnimNotify
     GENERATED_BODY()
 
     public:
+
     void Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference& EventReference) override;
 
     // Gameplay tag broadcasted to the owner of the ability
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     FGameplayTag CastPointEventTag;
+
+    FGameplayTag GetCastPointEventTag();
 };
