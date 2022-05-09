@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                4013a88b
+                b344aaa5
 
               </div>
 <div role="search">
@@ -783,6 +783,17 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::ActivateAbility_Native</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Cancel current targeting task if any</span>
+<span class="w">    </span><span class="c1">// this is to free up the delegates</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// This is the real cancel targeting</span>
+<span class="w">    </span><span class="n">GetAbilitySystemComponentFromActorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">TargetCancel</span><span class="p">();</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">AbilityData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityData</span><span class="p">)</span><span class="w"></span>

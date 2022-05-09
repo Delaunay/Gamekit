@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                4013a88b
+                b344aaa5
 
               </div>
 <div role="search">
@@ -413,7 +413,9 @@
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">Cancelled</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="p">());</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">StopTargeting</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">UGKAbilityTask_WaitForTargetData</span><span class="o">::</span><span class="n">ShouldReplicateDataToServer</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"></span>

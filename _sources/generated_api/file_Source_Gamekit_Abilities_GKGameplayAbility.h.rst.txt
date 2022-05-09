@@ -81,9 +81,9 @@ Functions
 
 - :ref:`exhale_function_GKGameplayAbility_8h_1ab1e0c9832cd6b4037d9b4d490f2cddc1`
 
-- :ref:`exhale_function_GKGameplayAbility_8h_1a861feaa684ae52fe639425e10b65e092`
-
 - :ref:`exhale_function_GKGameplayAbility_8h_1a3b8206e72ac9e2536ff9c24ccad8c306`
+
+- :ref:`exhale_function_GKGameplayAbility_8h_1a861feaa684ae52fe639425e10b65e092`
 
 - :ref:`exhale_function_GKGameplayAbility_8h_1a5396a8662d5cc84c9f632669377f5a10`
 

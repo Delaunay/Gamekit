@@ -1,0 +1,4 @@
+<map id="UGKAbilityTask_WaitForTargetData::ExternalCancel" name="UGKAbilityTask_WaitForTargetData::ExternalCancel">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,224,47"/>
+<area shape="rect" id="node2" href="$classAGKAbilityTarget__Actor.html#abae807d1933d440c5e549efb3a4df13b" title="Disable the targeting actor / make it ready for reuse." alt="" coords="272,5,445,47"/>
+</map>

@@ -313,7 +313,9 @@ Program Listing for File GKAbilityTask_WaitTargetData.cpp
        {
            Cancelled.Broadcast(FGameplayAbilityTargetDataHandle());
        }
+   
        Super::ExternalCancel();
+       TargetActor->StopTargeting();
    }
    
    bool UGKAbilityTask_WaitForTargetData::ShouldReplicateDataToServer() const
