@@ -1,7 +1,0 @@
-<map id="UGKGameplayAbility::MakeEffectContainerSpec" name="UGKGameplayAbility::MakeEffectContainerSpec">
-<area shape="rect" id="node1" title=" " alt="" coords="5,71,201,112"/>
-<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ad148bbb1d5a1085910f7e92a939c7e6c" title=" " alt="" coords="249,63,479,119"/>
-<area shape="rect" id="node3" href="$structFGKGameplayEffectContainerSpec.html#aa545c4912759918a75568320d69f657d" title=" " alt="" coords="562,5,778,47"/>
-<area shape="rect" id="node4" href="$classUGKAbilitySystemComponent.html#a31af9bf679014266cd63ecce2256f7a9" title="Version of function in AbilitySystemGlobals that returns correct type." alt="" coords="527,71,813,112"/>
-<area shape="rect" id="node5" href="$classUGKTargetType.html#a4366bf4b4ac708a4e862a759c3c3ba60" title=" " alt="" coords="571,137,769,163"/>
-</map>

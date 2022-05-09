@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                3e32e31d
+                4013a88b
 
               </div>
 <div role="search">
@@ -193,6 +193,22 @@
 <span class="w">    </span><span class="n">Ammo</span><span class="p">,</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
+<span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EGK_EffectSlot</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Default Slot, for easier edit in editor</span>
+<span class="w">    </span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TargetEffect</span><span class="p">,</span><span class="w">   </span><span class="c1">// Effects applied to the target</span>
+<span class="w">                    </span><span class="c1">// In the case of a projectile, the projectile will apply the effects</span>
+<span class="w">                    </span><span class="c1">// to the hit</span>
+
+<span class="w">    </span><span class="n">CasterEffect</span><span class="p">,</span><span class="w">   </span><span class="c1">// Effects applied to the Caster</span>
+
+
+<span class="w">    </span><span class="n">PassiveEffect</span><span class="p">,</span><span class="w">  </span><span class="c1">// Effects that are applied once the ability is learnt</span>
+<span class="p">};</span><span class="w"></span>
+
 <span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKAbilityCost</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -216,8 +232,20 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Curve</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// Gameplay effect have their own curve data</span>
+<span class="w">    </span><span class="c1">// but we want it to use our curve, but the GA system does not like that much</span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GameplayEffectClass</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GameplayEffectClass</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+
+<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKAbilityEffects</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKAbilityEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Effects</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
 <span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
@@ -250,7 +278,7 @@
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="n">FGKAbilityEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityEffects</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">EGK_EffectSlot</span><span class="p">,</span><span class="w"> </span><span class="n">FGKAbilityEffects</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityEffects</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGKAbilityCost</span><span class="w"> </span><span class="n">Cost</span><span class="p">;</span><span class="w"></span>

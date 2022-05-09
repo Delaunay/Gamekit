@@ -1,0 +1,14 @@
+.. _exhale_enum_GKAbilityStatic_8h_1a9bc3aac591efd00e62a6414342d5ffec:
+
+Enum EGK_EffectSlot
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_EffectSlot
+   :project: GameKit

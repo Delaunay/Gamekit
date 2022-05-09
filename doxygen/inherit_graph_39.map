@@ -1,11 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classgamekit_1_1conf_1_1Command.html" title=" " alt="" coords="5,213,184,240"/>
-<area shape="rect" id="node2" href="$classgamekit_1_1commands_1_1cook_1_1CookGame.html" title=" " alt="" coords="232,5,495,32"/>
-<area shape="rect" id="node3" href="$classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html" title=" " alt="" coords="251,57,475,98"/>
-<area shape="rect" id="node4" href="$classgamekit_1_1commands_1_1disable_1_1Disable.html" title=" " alt="" coords="260,122,467,163"/>
-<area shape="rect" id="node5" href="$classgamekit_1_1commands_1_1docs_1_1Docs.html" title=" " alt="" coords="252,188,475,215"/>
-<area shape="rect" id="node6" href="$classgamekit_1_1commands_1_1init_1_1Init.html" title=" " alt="" coords="262,239,465,265"/>
-<area shape="rect" id="node7" href="$classgamekit_1_1commands_1_1install_1_1Install.html" title=" " alt="" coords="263,290,463,331"/>
-<area shape="rect" id="node8" href="$classgamekit_1_1commands_1_1tests_1_1RunTests.html" title=" " alt="" coords="255,355,472,397"/>
-<area shape="rect" id="node9" href="$classgamekit_1_1commands_1_1vscode_1_1VSCode.html" title=" " alt="" coords="260,421,467,462"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,112,61"/>
+<area shape="rect" id="node2" href="$classGamekit.html" title=" " alt="" coords="233,5,311,32"/>
+<area shape="rect" id="node3" href="$classUnrealBuildTool_1_1Rules_1_1GamekitTestSuite.html" title=" " alt="" coords="160,57,384,98"/>
 </map>

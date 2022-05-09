@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                3e32e31d
+                4013a88b
 
               </div>
 <div role="search">
@@ -231,6 +231,53 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+
+
+<span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">EGK_EffectSlot</span><span class="w">            </span><span class="n">EffectSlot</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="n">int32</span><span class="w">                     </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKAbilityEffects</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Effects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityEffects</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">EffectSlot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="o">*</span><span class="n">Effects</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">FGKAbilityEffects</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w">  </span><span class="n">AbilitiyEffets</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                           </span><span class="n">int32</span><span class="w">                     </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// First figure out our actor info</span>
+<span class="w">    </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">ReturnSpec</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">OwningActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOwningActorFromActorInfo</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">AGKCharacterBase</span><span class="o">*</span><span class="w"> </span><span class="n">OwningCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">OwningActor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKAbilitySystemComponent</span><span class="o">*</span><span class="w"> </span><span class="n">OwningASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">::</span><span class="n">GetAbilitySystemComponentFromActor</span><span class="p">(</span><span class="n">OwningActor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OwningASC</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// If we don&#39;t have an override level, use the default on the ability itself</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INDEX_NONE</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">GetAbilityLevel</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Build GameplayEffectSpecs for each applied effect</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGKAbilityEffect</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Effect</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">AbilitiyEffets</span><span class="p">.</span><span class="n">Effects</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ReturnSpec</span><span class="p">.</span><span class="n">TargetGameplayEffectSpecs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">MakeOutgoingGameplayEffectSpec</span><span class="p">(</span><span class="n">Effect</span><span class="p">.</span><span class="n">GameplayEffectClass</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ReturnSpec</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
 <span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpecFromContainer</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGKGameplayEffectContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Container</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w">         </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
@@ -258,8 +305,8 @@
 <span class="w">        </span><span class="c1">// If we don&#39;t have an override level, use the default on the ability itself</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INDEX_NONE</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">                    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">GetAbilityLevel</span><span class="p">();</span><span class="w"> </span><span class="c1">// OwningASC-&gt;GetDefaultAbilityLevel();</span>
+<span class="w">            </span><span class="c1">// OwningASC-&gt;GetDefaultAbilityLevel();</span>
+<span class="w">            </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">GetAbilityLevel</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">        </span><span class="c1">// Build GameplayEffectSpecs for each applied effect</span>
@@ -270,19 +317,6 @@
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ReturnSpec</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w">              </span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                           </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                           </span><span class="n">int32</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGKGameplayEffectContainer</span><span class="w"> </span><span class="o">*</span><span class="n">FoundContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EffectContainerMap</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">ContainerTag</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FoundContainer</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MakeEffectContainerSpecFromContainer</span><span class="p">(</span><span class="o">*</span><span class="n">FoundContainer</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="n">TArray</span><span class="o">&lt;</span><span class="n">FActiveGameplayEffectHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyEffectContainerSpec</span><span class="p">(</span><span class="w"></span>
@@ -298,13 +332,6 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AllEffects</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FActiveGameplayEffectHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ApplyEffectContainer</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w">              </span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                             </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">EventData</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                             </span><span class="n">int32</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGKGameplayEffectContainerSpec</span><span class="w"> </span><span class="n">Spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">ContainerTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">,</span><span class="w"> </span><span class="n">OverrideGameplayLevel</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ApplyEffectContainerSpec</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// This allow animation to be standard, and Gameplay designed can tweak the CastPoint independently</span>
 <span class="c1">// from the actual animation</span>
@@ -1068,7 +1095,8 @@
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">ProjectileData</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">ProjectileData</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Target</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">Direction</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Direction</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Loc</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeEffectContainerSpec</span><span class="p">(</span><span class="n">EGK_EffectSlot</span><span class="o">::</span><span class="n">TargetEffect</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">ensure</span><span class="p">(</span><span class="n">ProjectileInstance</span><span class="o">-&gt;</span><span class="n">GameplayEffects</span><span class="p">.</span><span class="n">TargetGameplayEffectSpecs</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
@@ -1158,6 +1186,49 @@
 <span class="w">        </span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">TryActivateAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">// Applies a gameplay effect container, by creating and then applying the spec</span>
+<span class="cm">UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = &quot;EventData&quot;))</span>
+<span class="cm">virtual TArray&lt;FActiveGameplayEffectHandle&gt; ApplyEffectContainer(FGameplayTag              ContainerTag,</span>
+<span class="cm">    const FGameplayEventData&amp; EventData,</span>
+<span class="cm">    int32 OverrideGameplayLevel = -1);</span>
+
+
+<span class="cm">TArray&lt;FActiveGameplayEffectHandle&gt; UGKGameplayAbility::ApplyEffectContainer(FGameplayTag              ContainerTag,</span>
+<span class="cm">                                                                             const FGameplayEventData &amp;EventData,</span>
+<span class="cm">                                                                             int32 OverrideGameplayLevel)</span>
+<span class="cm">{</span>
+<span class="cm">    FGKGameplayEffectContainerSpec Spec = MakeEffectContainerSpec(ContainerTag, EventData, OverrideGameplayLevel);</span>
+<span class="cm">    return ApplyEffectContainerSpec(Spec);</span>
+<span class="cm">}</span>
+
+<span class="cm">// Search for and make a gameplay effect container spec to be applied later, from the EffectContainerMap</span>
+<span class="cm">virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGameplayTag              ContainerTag,</span>
+<span class="cm">    const FGameplayEventData&amp; EventData,</span>
+<span class="cm">    int32 OverrideGameplayLevel = -1);</span>
+
+<span class="cm">// TODO: remove this</span>
+<span class="cm">// Map of gameplay tags to gameplay effect containers</span>
+<span class="cm">UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = GameplayEffects)</span>
+<span class="cm">TMap&lt;FGameplayTag, FGKGameplayEffectContainer&gt; EffectContainerMap;</span>
+
+<span class="cm">FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGameplayTag              ContainerTag,</span>
+<span class="cm">    const FGameplayEventData&amp; EventData,</span>
+<span class="cm">    int32 OverrideGameplayLevel)</span>
+<span class="cm">{</span>
+<span class="cm">    FGKGameplayEffectContainer* FoundContainer = EffectContainerMap.Find(ContainerTag);</span>
+
+<span class="cm">    if (FoundContainer)</span>
+<span class="cm">    {</span>
+<span class="cm">        return MakeEffectContainerSpecFromContainer(*FoundContainer, EventData, OverrideGameplayLevel);</span>
+<span class="cm">    }</span>
+<span class="cm">    return FGKGameplayEffectContainerSpec();</span>
+<span class="cm">}</span>
+
+
+<span class="cm">*/</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

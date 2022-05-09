@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">3e32e31d</span>
+   &#160;<span id="projectnumber">4013a88b</span>
    </div>
   </td>
  </tr>
@@ -178,6 +178,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKAbilityEffect.html">FGKAbilityEffect</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKAbilityEffects.html">FGKAbilityEffects</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKAbilityStatic.html">FGKAbilityStatic</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -234,6 +236,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a62db423c801c352ffb38576228a35bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bc3aac591efd00e62a6414342d5ffec"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffec">EGK_EffectSlot</a> : uint8 { <a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffeca6adf97f83acf6453d4a6a4b1070f3754">EGK_EffectSlot::None</a>, 
+<a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffeca62afffd27f4c4fec607d6d27f4eb0823">EGK_EffectSlot::TargetEffect</a>, 
+<a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffeca48f372d292343d5f1559fdd8fb336582">EGK_EffectSlot::CasterEffect</a>, 
+<a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffecab5a49a146da455505c68add880647e1c">EGK_EffectSlot::PassiveEffect</a>
+ }</td></tr>
+<tr class="memdesc:a9bc3aac591efd00e62a6414342d5ffec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify the effect to apply under specific conditions.  <a href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffec">More...</a><br /></td></tr>
+<tr class="separator:a9bc3aac591efd00e62a6414342d5ffec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a00e2a6c6de06d35993be5d13c3afd494"></a>
@@ -290,6 +299,36 @@ Enumerations</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a75720bf524d3e8434548df55673d9c36a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a75720bf524d3e8434548df55673d9c36a7d74f3b92b19da5e606d737d339a9679"></a>Item&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a75720bf524d3e8434548df55673d9c36a88bb766f0cc321759ed2eeb0bc06be5d"></a>Skill&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a9bc3aac591efd00e62a6414342d5ffec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bc3aac591efd00e62a6414342d5ffec">&#9670;&nbsp;</a></span>EGK_EffectSlot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="GKAbilityStatic_8h.html#a9bc3aac591efd00e62a6414342d5ffec">EGK_EffectSlot</a> : uint8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specify the effect to apply under specific conditions. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9bc3aac591efd00e62a6414342d5ffeca6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9bc3aac591efd00e62a6414342d5ffeca62afffd27f4c4fec607d6d27f4eb0823"></a>TargetEffect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9bc3aac591efd00e62a6414342d5ffeca48f372d292343d5f1559fdd8fb336582"></a>CasterEffect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9bc3aac591efd00e62a6414342d5ffecab5a49a146da455505c68add880647e1c"></a>PassiveEffect&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
