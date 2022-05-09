@@ -119,6 +119,53 @@ void UGKGameplayAbility::K2_GetAbilityStatic(FGKAbilityStatic &AbilityStaticOut,
     }
 }
 
+
+
+FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(EGK_EffectSlot            EffectSlot,
+                                                                           const FGameplayEventData& EventData,
+                                                                           int32                     OverrideGameplayLevel)
+{
+
+    auto Data = GetAbilityStatic();
+
+    FGKAbilityEffects const* Effects = Data->AbilityEffects.Find(EffectSlot);
+
+    if (Effects) {
+        return MakeEffectContainerSpec(*Effects, EventData, OverrideGameplayLevel);
+    }
+
+    return FGKGameplayEffectContainerSpec();
+}
+
+FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGKAbilityEffects const&  AbilitiyEffets,
+                                                                           const FGameplayEventData& EventData,
+                                                                           int32                     OverrideGameplayLevel)
+{
+    // First figure out our actor info
+    FGKGameplayEffectContainerSpec ReturnSpec;
+    AActor* OwningActor = GetOwningActorFromActorInfo();
+    AGKCharacterBase* OwningCharacter = Cast<AGKCharacterBase>(OwningActor);
+    UGKAbilitySystemComponent* OwningASC = UGKAbilitySystemComponent::GetAbilitySystemComponentFromActor(OwningActor);
+
+    if (OwningASC)
+    {
+        // If we don't have an override level, use the default on the ability itself
+        if (OverrideGameplayLevel == INDEX_NONE)
+        {
+            OverrideGameplayLevel = OverrideGameplayLevel = this->GetAbilityLevel();
+        }
+
+        // Build GameplayEffectSpecs for each applied effect
+        for (const FGKAbilityEffect& Effect : AbilitiyEffets.Effects)
+        {
+            ReturnSpec.TargetGameplayEffectSpecs.Add(
+                MakeOutgoingGameplayEffectSpec(Effect.GameplayEffectClass, OverrideGameplayLevel)
+            );
+        }
+    }
+    return ReturnSpec;
+}
+
 FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromContainer(
         const FGKGameplayEffectContainer &Container,
         const FGameplayEventData         &EventData,
@@ -146,8 +193,8 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromCo
         // If we don't have an override level, use the default on the ability itself
         if (OverrideGameplayLevel == INDEX_NONE)
         {
-            OverrideGameplayLevel = OverrideGameplayLevel =
-                    this->GetAbilityLevel(); // OwningASC->GetDefaultAbilityLevel();
+            // OwningASC->GetDefaultAbilityLevel();
+            OverrideGameplayLevel = OverrideGameplayLevel = this->GetAbilityLevel();
         }
 
         // Build GameplayEffectSpecs for each applied effect
@@ -158,19 +205,6 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromCo
         }
     }
     return ReturnSpec;
-}
-
-FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGameplayTag              ContainerTag,
-                                                                           const FGameplayEventData &EventData,
-                                                                           int32 OverrideGameplayLevel)
-{
-    FGKGameplayEffectContainer *FoundContainer = EffectContainerMap.Find(ContainerTag);
-
-    if (FoundContainer)
-    {
-        return MakeEffectContainerSpecFromContainer(*FoundContainer, EventData, OverrideGameplayLevel);
-    }
-    return FGKGameplayEffectContainerSpec();
 }
 
 TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainerSpec(
@@ -186,13 +220,6 @@ TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainerSpec
     return AllEffects;
 }
 
-TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainer(FGameplayTag              ContainerTag,
-                                                                             const FGameplayEventData &EventData,
-                                                                             int32 OverrideGameplayLevel)
-{
-    FGKGameplayEffectContainerSpec Spec = MakeEffectContainerSpec(ContainerTag, EventData, OverrideGameplayLevel);
-    return ApplyEffectContainerSpec(Spec);
-}
 
 // This allow animation to be standard, and Gameplay designed can tweak the CastPoint independently
 // from the actual animation
@@ -956,7 +983,8 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
     ProjectileInstance->ProjectileData  = Data->ProjectileData;
     ProjectileInstance->Target          = Target;
     ProjectileInstance->Direction       = (Direction - Loc);
-    ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EventTag, EventData);
+
+    ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EGK_EffectSlot::TargetEffect, EventData);
 
     ensure(ProjectileInstance->GameplayEffects.TargetGameplayEffectSpecs.Num() > 0);
 
@@ -1046,3 +1074,46 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
         ActorInfo->AbilitySystemComponent->TryActivateAbility(Handle);
     }
 }
+
+
+/*
+// Applies a gameplay effect container, by creating and then applying the spec
+UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
+virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainer(FGameplayTag              ContainerTag,
+    const FGameplayEventData& EventData,
+    int32 OverrideGameplayLevel = -1);
+
+
+TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainer(FGameplayTag              ContainerTag,
+                                                                             const FGameplayEventData &EventData,
+                                                                             int32 OverrideGameplayLevel)
+{
+    FGKGameplayEffectContainerSpec Spec = MakeEffectContainerSpec(ContainerTag, EventData, OverrideGameplayLevel);
+    return ApplyEffectContainerSpec(Spec);
+}
+
+// Search for and make a gameplay effect container spec to be applied later, from the EffectContainerMap 
+virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGameplayTag              ContainerTag,
+    const FGameplayEventData& EventData,
+    int32 OverrideGameplayLevel = -1);
+
+// TODO: remove this
+// Map of gameplay tags to gameplay effect containers 
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = GameplayEffects)
+TMap<FGameplayTag, FGKGameplayEffectContainer> EffectContainerMap;
+
+FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGameplayTag              ContainerTag,
+    const FGameplayEventData& EventData,
+    int32 OverrideGameplayLevel)
+{
+    FGKGameplayEffectContainer* FoundContainer = EffectContainerMap.Find(ContainerTag);
+
+    if (FoundContainer)
+    {
+        return MakeEffectContainerSpecFromContainer(*FoundContainer, EventData, OverrideGameplayLevel);
+    }
+    return FGKGameplayEffectContainerSpec();
+}
+
+
+*/

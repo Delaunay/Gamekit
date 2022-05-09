@@ -81,6 +81,23 @@ enum class EGK_ItemSlot : uint8
     Ammo,
 };
 
+//! Specify the effect to apply under specific conditions
+UENUM(BlueprintType)
+enum class EGK_EffectSlot : uint8 
+{
+    // Default Slot, for easier edit in editor
+    None,
+
+    TargetEffect,   // Effects applied to the target
+                    // In the case of a projectile, the projectile will apply the effects
+                    // to the hit
+
+    CasterEffect,   // Effects applied to the Caster 
+
+
+    PassiveEffect,  // Effects that are applied once the ability is learnt
+};
+
 USTRUCT(BlueprintType)
 struct GAMEKIT_API FGKAbilityCost
 {
@@ -104,8 +121,20 @@ struct GAMEKIT_API FGKAbilityEffect
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     TArray<float> Curve;
 
+    // Gameplay effect have their own curve data
+    // but we want it to use our curve, but the GA system does not like that much 
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    TSubclassOf<UGameplayAbility> GameplayEffectClass;
+    TSubclassOf<UGameplayEffect> GameplayEffectClass;
+};
+
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKAbilityEffects
+{
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    TArray<FGKAbilityEffect> Effects;
 };
 
 /*! Holds all data that is shared across all instances of a single ability
@@ -153,9 +182,8 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     float Duration;
 
     //! Customize the ability effect
-    //! This is ability specific so be aware of the keys!
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
-    TMap<FName, FGKAbilityEffect> AbilityEffects;
+    TMap<EGK_EffectSlot, FGKAbilityEffects> AbilityEffects;
 
     //! Specify the cost of this ability (mana, energy, etc...)
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)

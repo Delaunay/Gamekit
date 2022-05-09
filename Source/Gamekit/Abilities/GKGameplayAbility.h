@@ -213,10 +213,6 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     void SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData);
 
     public:
-    // TODO: remove this
-    /** Map of gameplay tags to gameplay effect containers */
-    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = GameplayEffects)
-    TMap<FGameplayTag, FGKGameplayEffectContainer> EffectContainerMap;
 
     /** Make gameplay effect container spec to be applied later, using the passed in container */
     UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
@@ -225,22 +221,20 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
             const FGameplayEventData &        EventData,
             int32                             OverrideGameplayLevel = -1);
 
-    /** Search for and make a gameplay effect container spec to be applied later, from the EffectContainerMap */
+
     UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
-    virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGameplayTag              ContainerTag,
-                                                                   const FGameplayEventData &EventData,
-                                                                   int32 OverrideGameplayLevel = -1);
+    virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(EGK_EffectSlot            EffectSlot,
+                                                                   const FGameplayEventData& EventData,
+                                                                   int32                     OverrideGameplayLevel = -1);
+
+    FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGKAbilityEffects const& AbilitiyEffets,
+                                                           const FGameplayEventData& EventData,
+                                                           int32                     OverrideGameplayLevel = -1);
 
     /** Applies a gameplay effect container spec that was previously created */
     UFUNCTION(BlueprintCallable, Category = Ability)
     virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainerSpec(
             const FGKGameplayEffectContainerSpec &ContainerSpec);
-
-    /** Applies a gameplay effect container, by creating and then applying the spec */
-    UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
-    virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainer(FGameplayTag              ContainerTag,
-                                                                     const FGameplayEventData &EventData,
-                                                                     int32 OverrideGameplayLevel = -1);
 
     friend class AGKCharacterBase;
 
