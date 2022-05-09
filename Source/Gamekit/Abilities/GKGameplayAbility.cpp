@@ -671,6 +671,17 @@ void UGKGameplayAbility::ActivateAbility_Toggle()
 
 void UGKGameplayAbility::ActivateAbility_Native()
 {
+    // Cancel current targeting task if any
+    // this is to free up the delegates
+    if (TargetTask) {
+        TargetTask->ExternalCancel();
+        TargetTask->EndTask();
+        TargetTask = nullptr;
+    }
+
+    // This is the real cancel targeting
+    GetAbilitySystemComponentFromActorInfo()->TargetCancel();
+
     auto AbilityData = GetAbilityStatic();
 
     if (!AbilityData)

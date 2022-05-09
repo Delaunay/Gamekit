@@ -319,7 +319,9 @@ void UGKAbilityTask_WaitForTargetData::ExternalCancel()
     {
         Cancelled.Broadcast(FGameplayAbilityTargetDataHandle());
     }
+
     Super::ExternalCancel();
+    TargetActor->StopTargeting();
 }
 
 bool UGKAbilityTask_WaitForTargetData::ShouldReplicateDataToServer() const
