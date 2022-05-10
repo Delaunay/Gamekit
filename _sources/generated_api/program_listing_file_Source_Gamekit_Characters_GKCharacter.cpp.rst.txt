@@ -516,5 +516,8 @@ Program Listing for File GKCharacter.cpp
        ReceiveTeamAssigned(Team);
    }
    
-   FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Team; }
+   FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { 
+       //
+       return Team; 
+   }
    

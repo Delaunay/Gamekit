@@ -128,7 +128,9 @@ Program Listing for File Matrix.h
            }
        }
    
-       FORCEINLINE bool Valid(FIntVector V) const { return V.X >= 0 && V.X < Width() && V.Y >= 0 && V.Y < Height(); }
+       FORCEINLINE bool Valid(FIntVector V) const { 
+           return V.X >= 0 && V.X < Width() && V.Y >= 0 && V.Y < Height() && V.Z >= 0 && V.Z < Depth;
+       }
    
        FORCEINLINE int Width() const { return Col; }
        FORCEINLINE int Height() const { return Row; }

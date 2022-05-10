@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b344aaa5
+                51fb9586
 
               </div>
 <div role="search">
@@ -177,6 +177,10 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Faction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">Faction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeduceFaction</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">vol</span><span class="o">-&gt;</span><span class="n">GetFogOfWarPostprocessMaterial</span><span class="p">(</span><span class="n">Faction</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -209,7 +213,8 @@
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">TeamInfo</span><span class="o">-&gt;</span><span class="n">Name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;TeamID %d is not inside the enum&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOwner</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;%s, TeamID %d is not inside the enum&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">AActor</span><span class="o">::</span><span class="n">GetDebugName</span><span class="p">(</span><span class="n">Owner</span><span class="p">),</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -245,7 +250,10 @@
 <span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Did not find a component to set the FoW collision&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">RegisterComponent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// The component is going to be registered when the team is set</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetGenericTeamId</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">NoTeam</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">RegisterComponent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">UGKFogOfWarComponent</span><span class="o">::</span><span class="n">RegisterComponent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -277,6 +285,11 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FoWVolume</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Faction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Faction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeduceFaction</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FoWVolume</span><span class="o">-&gt;</span><span class="n">SetFogOfWarMaterialParameters</span><span class="p">(</span><span class="n">Faction</span><span class="p">,</span><span class="w"> </span><span class="n">Material</span><span class="p">);</span><span class="w"></span>
