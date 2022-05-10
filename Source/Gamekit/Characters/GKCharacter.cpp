@@ -504,5 +504,8 @@ void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) {
     ReceiveTeamAssigned(Team);
 }
 
-FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { return Team; }
+FGenericTeamId AGKCharacterBase::GetGenericTeamId() const { 
+    //
+    return Team; 
+}
 

@@ -65,6 +65,10 @@ UMaterialInterface *UGKFogOfWarComponent::GetFogOfWarPostprocessMaterial()
         return nullptr;
     }
 
+    if (Faction == NAME_None){
+        Faction = DeduceFaction();
+    }
+
     return vol->GetFogOfWarPostprocessMaterial(Faction);
 }
 
@@ -97,7 +101,8 @@ FName UGKFogOfWarComponent::DeduceFaction() const
 
     if (!TeamInfo || TeamInfo->Name == NAME_None)
     {
-        GKFOG_WARNING(TEXT("TeamID %d is not inside the enum"), TeamId);
+        AActor* Owner = GetOwner();
+        GKFOG_WARNING(TEXT("%s, TeamID %d is not inside the enum"), *AActor::GetDebugName(Owner), TeamId);
         return NAME_None;
     }
 
@@ -133,7 +138,10 @@ void UGKFogOfWarComponent::BeginPlay()
         GKFOG_LOG(TEXT("Did not find a component to set the FoW collision"));
     }
 
-    RegisterComponent();
+    // The component is going to be registered when the team is set
+    if (GetGenericTeamId() != FGenericTeamId::NoTeam){
+        RegisterComponent();
+    }
 }
 
 bool UGKFogOfWarComponent::RegisterComponent() {
@@ -165,6 +173,11 @@ void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynami
     if (FoWVolume == nullptr)
     {
         return;
+    }
+
+    if (Faction == NAME_None)
+    {
+        Faction = DeduceFaction();
     }
 
     return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material);

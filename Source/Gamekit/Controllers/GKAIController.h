@@ -20,21 +20,31 @@ class GAMEKIT_API AGKAIController: public AAIController
     
 
 public:
-    // IGenericTeamAgentInterface
-    // --------------------------
-    public:
-    FGenericTeamId TeamId;
-
     // Called when the controller team changed
     // Called on the server and client
     virtual void OnTeamChange();
 
+    virtual void OnPossess(APawn* InPawn) override {
+        Super::OnPossess(InPawn);
+
+        if (GetGenericTeamId() == FGenericTeamId::NoTeam){
+            return;
+        }
+
+        auto Agent = Cast<IGenericTeamAgentInterface>(InPawn);
+
+        if (Agent)
+        {
+            Agent->SetGenericTeamId(GetGenericTeamId());
+        }
+    }
+
     public:
     /** Assigns Team Agent to given TeamID */
     UFUNCTION(BlueprintCallable, Category = "Team")
-    void SetGenericTeamId(const FGenericTeamId &TID) override;
+    void SetGenericTeamId(const FGenericTeamId &TeamID) override;
 
     /** Retrieve team identifier in form of FGenericTeamId */
     UFUNCTION(BlueprintCallable, Category = "Team")
-    FGenericTeamId GetGenericTeamId() const override { return TeamId; }
+    FGenericTeamId GetGenericTeamId() const override { return Super::GetGenericTeamId(); }
 };

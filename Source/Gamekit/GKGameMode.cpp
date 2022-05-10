@@ -96,3 +96,4 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
 
     return AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
 }
+

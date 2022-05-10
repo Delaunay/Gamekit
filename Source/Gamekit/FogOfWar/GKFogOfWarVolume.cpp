@@ -127,7 +127,7 @@ void AGKFogOfWarVolume::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
 }
 
 void AGKFogOfWarVolume::UpdateFogOfWarMaterialParameters(FName name, UMaterialInstanceDynamic *Material) {
-  ensure(name != NAME_None);
+    ensure(name != NAME_None);
 
     GKFOG_LOG(TEXT("Setting For of War Materials"));
     if (Material == nullptr)
