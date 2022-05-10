@@ -22,8 +22,6 @@
 class UGKGameplayAbility;
 class UGameplayEffect;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGiveAbilityEventSignature, FGameplayAbilitySpec, AbilitySpec);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKCharacterDiedDelegate, AGKCharacterBase *, Character);
 
 /** Base class for Character, Designed to be blueprinted
 
@@ -94,8 +92,10 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     UFUNCTION(BlueprintCallable, Category = "Death")
     virtual void Die();
 
-    UPROPERTY(BlueprintAssignable, Category = "Death")
-    FGKCharacterDiedDelegate OnCharacterDied;
+    UFUNCTION(BlueprintImplementableEvent, Category = "Death", meta = (DisplayName = "On Death"))
+    void ReceiveDeath();
+
+    void OnDeath_Native();
 
     // IGKSelectableInterface
     UFUNCTION(BlueprintCallable, Category = "UnitSelection")
@@ -146,11 +146,11 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     // Allow to rebind abilities
     // void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);
 
-    UPROPERTY(BlueprintAssignable, Category = Abilities)
-    FGiveAbilityEventSignature OnGiveAbility;
+    UFUNCTION(BlueprintImplementableEvent, Category = "Ability", meta = (DisplayName = "On New Ability"))
+    void ReceiveNewAbility(FGameplayAbilitySpec NewAbilAbilitySpecity);
 
     //! Client side register the granted ability
-    void OnGiveAbility_Native(FGameplayAbilitySpec &AbilitySpec);
+    void OnNewAbility_Native(FGameplayAbilitySpec &AbilitySpec);
 
     //! Low level ability activation
     UFUNCTION(BlueprintCallable, Category = Abilities)

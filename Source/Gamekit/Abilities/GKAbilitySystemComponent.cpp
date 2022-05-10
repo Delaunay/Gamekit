@@ -46,7 +46,7 @@ void UGKAbilitySystemComponent::OnGiveAbility(FGameplayAbilitySpec &AbilitySpec)
     }
 
     // "Grant" Client Ability
-    Character->OnGiveAbility_Native(AbilitySpec);
+    Character->OnNewAbility_Native(AbilitySpec);
 }
 
 UGKAbilitySystemComponent *UGKAbilitySystemComponent::GetAbilitySystemComponentFromActor(const AActor *Actor,

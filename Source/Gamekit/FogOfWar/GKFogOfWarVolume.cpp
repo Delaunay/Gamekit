@@ -494,7 +494,7 @@ void AGKFogOfWarVolume::BeginPlay()
 void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 {
     if (GetNetMode() == ENetMode::NM_Client){
-        GKFOG_WARNING(TEXT("Skipping on client"));
+        GKFOG_LOG(TEXT("Skipping on client"));
         return;
     }
 
@@ -511,7 +511,7 @@ void AGKFogOfWarVolume::RegisterActorComponent(UGKFogOfWarComponent *c)
 
     if (c->BlocksVision)
     {
-        GKFOG_WARNING(TEXT("Register blocking"));
+        GKFOG_LOG(TEXT("Register blocking"));
         Blocking.Add(c);
     }
 }
