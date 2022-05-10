@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                51fb9586
+                bb1fa3f2
 
               </div>
 <div role="search">
@@ -403,7 +403,11 @@
 <span class="w">    </span><span class="c1">//*/</span>
 
 <span class="w">    </span><span class="c1">// let blueprints do something about it</span>
-<span class="w">    </span><span class="n">OnCharacterDied</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnDeath_Native</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnDeath_Native</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ReceiveDeath</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">IsDead</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetAttributeSet</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Health</span><span class="p">.</span><span class="n">GetCurrentValue</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
@@ -541,21 +545,18 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">Deselect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">OnDeselect</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnGiveAbility_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnNewAbility_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// AbilityName is the unique tag per ability</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKAbilitySlot</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">Log</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Adding Ability %s with Input %d: %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Adding Ability %s with Input %d: %s&quot;</span><span class="p">),</span><span class="w"></span>
 <span class="w">           </span><span class="o">*</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetFName</span><span class="p">().</span><span class="n">ToString</span><span class="p">(),</span><span class="w"></span>
 <span class="w">           </span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">,</span><span class="w"></span>
 <span class="w">           </span><span class="o">*</span><span class="n">UEnum</span><span class="o">::</span><span class="n">GetValueAsString</span><span class="p">(</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">)));</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">OnGiveAbility</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ReceiveNewAbility</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">ActivateAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"></span>

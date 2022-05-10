@@ -303,7 +303,11 @@ Program Listing for File GKCharacter.cpp
        //*/
    
        // let blueprints do something about it
-       OnCharacterDied.Broadcast(this);
+       OnDeath_Native();
+   }
+   
+   void AGKCharacterBase::OnDeath_Native() {
+       ReceiveDeath();
    }
    
    bool AGKCharacterBase::IsDead() { return GetAttributeSet()->Health.GetCurrentValue() == 0.f; }
@@ -441,21 +445,18 @@ Program Listing for File GKCharacter.cpp
    
    void AGKCharacterBase::Deselect() { OnDeselect(); }
    
-   void AGKCharacterBase::OnGiveAbility_Native(FGameplayAbilitySpec &AbilitySpec)
+   void AGKCharacterBase::OnNewAbility_Native(FGameplayAbilitySpec &AbilitySpec)
    {
        // AbilityName is the unique tag per ability
        auto Id = FGKAbilitySlot(AbilitySpec.InputID);
    
-       //
-       UE_LOG(LogGamekit,
-              Log,
-              TEXT("Adding Ability %s with Input %d: %s"),
+       GK_LOG(TEXT("Adding Ability %s with Input %d: %s"),
               *AbilitySpec.Ability->GetFName().ToString(),
               AbilitySpec.InputID,
               *UEnum::GetValueAsString(EGK_MOBA_AbilityInputID(AbilitySpec.InputID)));
    
        AbilitySpecs.Add(Id, AbilitySpec);
-       OnGiveAbility.Broadcast(AbilitySpec);
+       ReceiveNewAbility(AbilitySpec);
    }
    
    bool AGKCharacterBase::ActivateAbility(FGKAbilitySlot Slot)

@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                51fb9586
+                bb1fa3f2
 
               </div>
 <div role="search">
@@ -606,7 +606,7 @@
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKFogOfWarVolume</span><span class="o">::</span><span class="n">RegisterActorComponent</span><span class="p">(</span><span class="n">UGKFogOfWarComponent</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Skipping on client&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Skipping on client&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -623,7 +623,7 @@
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">BlocksVision</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">GKFOG_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Register blocking&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Register blocking&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="n">Blocking</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

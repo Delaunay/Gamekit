@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                51fb9586
+                bb1fa3f2
 
               </div>
 <div role="search">
@@ -250,10 +250,9 @@
 <span class="w">        </span><span class="n">GKFOG_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Did not find a component to set the FoW collision&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// The component is going to be registered when the team is set</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetGenericTeamId</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">NoTeam</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="n">RegisterComponent</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Components always need to be registered even if they do not have</span>
+<span class="w">    </span><span class="c1">// a faction/team in case they are blocking</span>
+<span class="w">    </span><span class="n">RegisterComponent</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">UGKFogOfWarComponent</span><span class="o">::</span><span class="n">RegisterComponent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

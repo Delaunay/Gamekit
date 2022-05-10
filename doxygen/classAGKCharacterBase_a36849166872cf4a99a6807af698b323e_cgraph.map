@@ -1,10 +1,12 @@
 <map id="AGKCharacterBase::OnHealthChanged_Native" name="AGKCharacterBase::OnHealthChanged_Native">
-<area shape="rect" id="node1" title=" " alt="" coords="5,89,219,131"/>
-<area shape="rect" id="node2" href="$classAGKCharacterBase.html#aaa634fafbee198ea90673ae787861f45" title=" " alt="" coords="267,97,441,123"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,115,219,156"/>
+<area shape="rect" id="node2" href="$classAGKCharacterBase.html#aaa634fafbee198ea90673ae787861f45" title=" " alt="" coords="267,122,441,149"/>
 <area shape="rect" id="node3" href="$classAGKCharacterBase.html#a8e36043d5d7518ab8384e9f15c68c5a6" title=" " alt="" coords="489,5,743,47"/>
 <area shape="rect" id="node5" href="$classAGKCharacterBase.html#abe3b0f2ec151e8c8740bd48bb720e296" title=" " alt="" coords="511,71,721,98"/>
 <area shape="rect" id="node7" href="$GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="593,122,639,149"/>
-<area shape="rect" id="node8" href="$structFGKAnimationSet.html#a89bd1a53572df14ff734a051b07f3c8b" title=" " alt="" coords="519,173,713,199"/>
+<area shape="rect" id="node8" href="$classAGKCharacterBase.html#a16c5c4f4f05f110b47bb5b116576f855" title=" " alt="" coords="511,173,721,215"/>
+<area shape="rect" id="node10" href="$structFGKAnimationSet.html#a89bd1a53572df14ff734a051b07f3c8b" title=" " alt="" coords="519,239,713,266"/>
 <area shape="rect" id="node4" href="$classAGKCharacterBase.html#af3c4ba4aef3dca123c72e796dee0df78" title=" " alt="" coords="795,5,1013,47"/>
 <area shape="rect" id="node6" href="$classAGKCharacterBase.html#acbf60803193e37369950d23b88c4196b" title=" " alt="" coords="791,71,1017,98"/>
+<area shape="rect" id="node9" href="$classAGKCharacterBase.html#ab84dddc01b53b03350480fdb927e1128" title=" " alt="" coords="802,173,1006,215"/>
 </map>

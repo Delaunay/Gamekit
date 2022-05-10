@@ -150,10 +150,9 @@ Program Listing for File GKFogOfWarComponent.cpp
            GKFOG_LOG(TEXT("Did not find a component to set the FoW collision"));
        }
    
-       // The component is going to be registered when the team is set
-       if (GetGenericTeamId() != FGenericTeamId::NoTeam){
-           RegisterComponent();
-       }
+       // Components always need to be registered even if they do not have
+       // a faction/team in case they are blocking
+       RegisterComponent();
    }
    
    bool UGKFogOfWarComponent::RegisterComponent() {
