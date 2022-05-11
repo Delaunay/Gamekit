@@ -4,7 +4,6 @@
 
 // Gamekit
 #include "Gamekit/Gamekit.h"
-#include "Gamekit/Utilities/GKNetworkedEvent.h"
 
 // Unreal Engine
 #include "GameFramework/PlayerController.h"
@@ -24,8 +23,7 @@
  */
 UCLASS(Blueprintable)
 class GAMEKIT_API AGKPlayerController: public APlayerController, 
-                                       public IGenericTeamAgentInterface,
-                                       public IActorReadyInterface
+                                       public IGenericTeamAgentInterface
 {
     GENERATED_BODY()
 
@@ -42,26 +40,6 @@ class GAMEKIT_API AGKPlayerController: public APlayerController,
 
     void GetNetworkMetrics();
 
-    // IActorReady implementation
-    // Event Gatherer
-    UPROPERTY(Transient)
-    FGKEventGatherer InitEventGatherer;
-
-    virtual void AddRequiredEvent(FName Name) {
-        GetReadyEventGather().AddRequiredEvent(Name);
-
-        static FName DefaultDelegate = "ReceiveReady";
-        if (!GetReadyEventGather().IsRegistered(this, DefaultDelegate)){
-            GetReadyEventGather().GetDelegate().AddDynamic(this, &AGKPlayerController::ReceiveReady);
-        }
-    }
-
-    FGKEventGatherer& GetReadyEventGather()  override {
-        return InitEventGatherer;
-    }
-
-    UFUNCTION(BlueprintImplementableEvent, Category = "Multiplayer Init", meta = (DisplayName = "On Ready"))
-    void ReceiveReady();
     // ----------------
 
     protected:

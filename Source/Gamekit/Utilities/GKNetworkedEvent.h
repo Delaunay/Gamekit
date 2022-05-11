@@ -30,8 +30,16 @@ struct GAMEKIT_API FGKEvent {
     int Count;
 };
 
-// Waits for a list of event to be received,
-// before broadcasting its own event
+// Waits for a list of event to be received, before broadcasting its own event
+// the idea behind this was to wait for a bunch of event
+// that get replicated at random times and then sent a single event
+// to tell that everything is ready
+//
+// This is not needed right now. We moved some code arround 
+// so replication is more deterministic. Mainly modified the 
+// GameMode to spawn pawn with defered construction which is used to
+// populate properties early which makes their replicate batched with spawning
+//
 USTRUCT()
 struct GAMEKIT_API FGKEventGatherer {
     GENERATED_USTRUCT_BODY()
