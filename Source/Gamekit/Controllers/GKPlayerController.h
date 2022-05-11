@@ -4,15 +4,16 @@
 
 // Gamekit
 #include "Gamekit/Gamekit.h"
+#include "Gamekit/Utilities/GKNetworkedEvent.h"
 
 // Unreal Engine
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
 #include "GenericTeamAgentInterface.h"
 
-
 // Generated
 #include "GKPlayerController.generated.h"
+
 
 /** Base class for PlayerController, should be blueprinted 
  * The controller is the one with the Team Agent interface because it is the top
@@ -23,7 +24,8 @@
  */
 UCLASS(Blueprintable)
 class GAMEKIT_API AGKPlayerController: public APlayerController, 
-                                       public IGenericTeamAgentInterface
+                                       public IGenericTeamAgentInterface,
+                                       public IActorReadyInterface
 {
     GENERATED_BODY()
 
@@ -40,16 +42,41 @@ class GAMEKIT_API AGKPlayerController: public APlayerController,
 
     void GetNetworkMetrics();
 
+    // IActorReady implementation
+    // Event Gatherer
+    UPROPERTY(Transient)
+    FGKEventGatherer InitEventGatherer;
+
+    virtual void AddRequiredEvent(FName Name) {
+        GetReadyEventGather().AddRequiredEvent(Name);
+
+        static FName DefaultDelegate = "ReceiveReady";
+        if (!GetReadyEventGather().IsRegistered(this, DefaultDelegate)){
+            GetReadyEventGather().GetDelegate().AddDynamic(this, &AGKPlayerController::ReceiveReady);
+        }
+    }
+
+    FGKEventGatherer& GetReadyEventGather()  override {
+        return InitEventGatherer;
+    }
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "Multiplayer Init", meta = (DisplayName = "On Ready"))
+    void ReceiveReady();
+    // ----------------
+
     protected:
     /** Called when a global save game as been loaded */
     void HandleSaveGameLoaded(class UGKSaveGame *NewSaveGame);
 
-    public:
+    public: 
     // Sets up Client info for GAS
-    void AcknowledgePossession(APawn *P) override;
+    void AcknowledgePossession(APawn * NewPawn) override;
 
     // Set Generic Team ID on possession
-    void ServerAcknowledgePossession_Implementation(APawn *P) override;
+    void ServerAcknowledgePossession_Implementation(APawn * NewPawn) override;
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "Pawn", meta = (DisplayName = "On Acknowledge Possession"))
+    void ReceiveAcknowledgePossession(APawn* NewPawn);
 
     // Replication
     // -----------

@@ -94,6 +94,8 @@ APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewP
 {
     SetGenericTeamIdFromPlayerStart(NewPlayer, StartSpot);
 
-    return AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
+    auto Actor = AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
+    Actor->ForceNetUpdate();
+    return Actor;
 }
 
