@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -205,8 +205,41 @@
 <span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">AGKGameModeBaseBase</span><span class="o">::</span><span class="n">SpawnDefaultPawnFor_Implementation</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">StartSpot</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">SetGenericTeamIdFromPlayerStart</span><span class="p">(</span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">StartSpot</span><span class="p">);</span><span class="w"></span>
-
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">AGameModeBase</span><span class="o">::</span><span class="n">SpawnDefaultPawnFor_Implementation</span><span class="p">(</span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">StartSpot</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">AGKGameModeBaseBase</span><span class="o">::</span><span class="n">SpawnDefaultPawnAtTransform_Implementation</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FTransform</span><span class="o">&amp;</span><span class="w"> </span><span class="n">SpawnTransform</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FActorSpawnParameters</span><span class="w"> </span><span class="n">SpawnInfo</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">Instigator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetInstigator</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">ObjectFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">RF_Transient</span><span class="p">;</span><span class="w">  </span><span class="c1">// We never want to save default player pawns into a map</span>
+<span class="w">    </span><span class="n">SpawnInfo</span><span class="p">.</span><span class="n">bDeferConstruction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UClass</span><span class="o">*</span><span class="w"> </span><span class="n">PawnClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetDefaultPawnClassForController</span><span class="p">(</span><span class="n">NewPlayer</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">ResultPawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">SpawnActor</span><span class="o">&lt;</span><span class="n">APawn</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PawnClass</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnTransform</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnInfo</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Populate replicated data so everything gets populated</span>
+<span class="w">    </span><span class="c1">// when the pawn gets sent down to clients</span>
+<span class="w">    </span><span class="n">PawnConstruction</span><span class="p">(</span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">ResultPawn</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ResultPawn</span><span class="o">-&gt;</span><span class="n">FinishSpawning</span><span class="p">(</span><span class="n">SpawnTransform</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ResultPawn</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGameMode</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;SpawnDefaultPawnAtTransform: Couldn&#39;t spawn Pawn of type %s at %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">GetNameSafe</span><span class="p">(</span><span class="n">PawnClass</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">SpawnTransform</span><span class="p">.</span><span class="n">ToHumanReadableString</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResultPawn</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKGameModeBaseBase</span><span class="o">::</span><span class="n">PawnConstruction</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">NewPawn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">IGenericTeamAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">NewPlayer</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">PawnActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">IGenericTeamAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">NewPawn</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TeamActor</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">PawnActor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">PawnActor</span><span class="o">-&gt;</span><span class="n">SetGenericTeamId</span><span class="p">(</span><span class="n">TeamActor</span><span class="o">-&gt;</span><span class="n">GetGenericTeamId</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

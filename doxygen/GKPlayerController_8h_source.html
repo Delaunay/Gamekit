@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">bb1fa3f2</span>
+   &#160;<span id="projectnumber">fb91cdbd</span>
    </div>
   </td>
  </tr>
@@ -89,9 +89,9 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;GameFramework/PlayerInput.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;GenericTeamAgentInterface.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Generated</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;GKPlayerController.generated.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// Generated</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;GKPlayerController.generated.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;UCLASS(Blueprintable)</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classAGKPlayerController.html">   25</a></span>&#160;class GAMEKIT_API <a class="code" href="classAGKPlayerController.html">AGKPlayerController</a>: public APlayerController, </div>
@@ -110,62 +110,69 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> GetNetworkMetrics();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> HandleSaveGameLoaded(<span class="keyword">class</span> <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *NewSaveGame);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Sets up Client info for GAS</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> AcknowledgePossession(APawn *P) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Set Generic Team ID on possession</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> ServerAcknowledgePossession_Implementation(APawn *P) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Replication</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// -----------</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> GetLifetimeReplicatedProps(TArray&lt;FLifetimeProperty&gt; &amp;OutLifetimeProps) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;     </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// IGenericTeamAgentInterface</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// --------------------------</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    UPROPERTY(BlueprintReadOnly, Replicated, ReplicatedUsing=OnRep_TeamChange)</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classAGKPlayerController.html#aeb89f4c973ee52a258c0015ecd571d74">   63</a></span>&#160;    FGenericTeamId TeamId;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    UFUNCTION()</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> OnRep_TeamChange();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Called when the controller team changed</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Called on the server and client</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    virtual <span class="keywordtype">void</span> OnTeamChange();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;public:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    UFUNCTION(BlueprintCallable, Category = &quot;Team&quot;)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> SetGenericTeamId(const FGenericTeamId&amp; TID) override;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// ----------------</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> HandleSaveGameLoaded(<span class="keyword">class</span> <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *NewSaveGame);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">public</span>: </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Sets up Client info for GAS</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> AcknowledgePossession(APawn * NewPawn) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Set Generic Team ID on possession</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> ServerAcknowledgePossession_Implementation(APawn * NewPawn) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    UFUNCTION(BlueprintImplementableEvent, Category = <span class="stringliteral">&quot;Pawn&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (DisplayName = <span class="stringliteral">&quot;On Acknowledge Possession&quot;</span>))</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> ReceiveAcknowledgePossession(APawn* NewPawn);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Replication</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// -----------</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> GetLifetimeReplicatedProps(TArray&lt;FLifetimeProperty&gt; &amp;OutLifetimeProps) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;     </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// IGenericTeamAgentInterface</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// --------------------------</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    UPROPERTY(BlueprintReadOnly, Replicated, ReplicatedUsing=OnRep_TeamChange)</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classAGKPlayerController.html#aeb89f4c973ee52a258c0015ecd571d74">   68</a></span>&#160;    FGenericTeamId TeamId;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    UFUNCTION()</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> OnRep_TeamChange();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Called when the controller team changed</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Called on the server and client</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    virtual <span class="keywordtype">void</span> OnTeamChange();</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classAGKPlayerController.html#a04b6143a63dace332f9fa869c5a38899">   78</a></span>&#160;    FGenericTeamId GetGenericTeamId()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> TeamId; }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;public:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    UFUNCTION(BlueprintCallable, Category = &quot;Team&quot;)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> SetGenericTeamId(const FGenericTeamId&amp; TID) override;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classAGKPlayerController.html#a04b6143a63dace332f9fa869c5a38899">   83</a></span>&#160;    FGenericTeamId GetGenericTeamId()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> TeamId; }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
 <div class="ttc" id="aGKGameInstance_8h_html"><div class="ttname"><a href="GKGameInstance_8h.html">GKGameInstance.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_af3c4ba4aef3dca123c72e796dee0df78"><div class="ttname"><a href="classAGKCharacterBase.html#af3c4ba4aef3dca123c72e796dee0df78">AGKCharacterBase::GetAbilitySystemComponent</a></div><div class="ttdeci">UAbilitySystemComponent * GetAbilitySystemComponent() const override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:216</div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_a607357246a2a857a3f66440d655475e4"><div class="ttname"><a href="classAGKPlayerController.html#a607357246a2a857a3f66440d655475e4">AGKPlayerController::GetLifetimeReplicatedProps</a></div><div class="ttdeci">void GetLifetimeReplicatedProps(TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:54</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_ad31e8d9d49675b4d4a54007505a482eb"><div class="ttname"><a href="classAGKPlayerController.html#ad31e8d9d49675b4d4a54007505a482eb">AGKPlayerController::AcknowledgePossession</a></div><div class="ttdeci">void AcknowledgePossession(APawn *NewPawn) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:25</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_a607357246a2a857a3f66440d655475e4"><div class="ttname"><a href="classAGKPlayerController.html#a607357246a2a857a3f66440d655475e4">AGKPlayerController::GetLifetimeReplicatedProps</a></div><div class="ttdeci">void GetLifetimeReplicatedProps(TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:56</div></div>
 <div class="ttc" id="aclassAGKPlayerController_html_a4e946091be2f8f5912e51119f8650a35"><div class="ttname"><a href="classAGKPlayerController.html#a4e946091be2f8f5912e51119f8650a35">AGKPlayerController::AGKPlayerController</a></div><div class="ttdeci">AGKPlayerController()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:16</div></div>
 <div class="ttc" id="aclassAGKPlayerController_html"><div class="ttname"><a href="classAGKPlayerController.html">AGKPlayerController</a></div><div class="ttdef"><b>Definition:</b> GKPlayerController.h:25</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
 <div class="ttc" id="aGKItem_8h_html"><div class="ttname"><a href="GKItem_8h.html">GKItem.h</a></div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_acaf49caaf5d192482327646e014a247c"><div class="ttname"><a href="classAGKPlayerController.html#acaf49caaf5d192482327646e014a247c">AGKPlayerController::OnRep_TeamChange</a></div><div class="ttdeci">void OnRep_TeamChange()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:62</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_acaf49caaf5d192482327646e014a247c"><div class="ttname"><a href="classAGKPlayerController.html#acaf49caaf5d192482327646e014a247c">AGKPlayerController::OnRep_TeamChange</a></div><div class="ttdeci">void OnRep_TeamChange()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:64</div></div>
 <div class="ttc" id="aclassUGKSaveGame_html"><div class="ttname"><a href="classUGKSaveGame.html">UGKSaveGame</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:32</div></div>
 <div class="ttc" id="aGKPlayerController_8h_html"><div class="ttname"><a href="GKPlayerController_8h.html">GKPlayerController.h</a></div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_a5716823eb31c52881e705f32be1f0d31"><div class="ttname"><a href="classAGKPlayerController.html#a5716823eb31c52881e705f32be1f0d31">AGKPlayerController::ServerAcknowledgePossession_Implementation</a></div><div class="ttdeci">void ServerAcknowledgePossession_Implementation(APawn *P) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:36</div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_a04b6143a63dace332f9fa869c5a38899"><div class="ttname"><a href="classAGKPlayerController.html#a04b6143a63dace332f9fa869c5a38899">AGKPlayerController::GetGenericTeamId</a></div><div class="ttdeci">FGenericTeamId GetGenericTeamId() const override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.h:78</div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_ab8bf8458d5e0ae1168198ba9d08f6db5"><div class="ttname"><a href="classAGKPlayerController.html#ab8bf8458d5e0ae1168198ba9d08f6db5">AGKPlayerController::SetGenericTeamId</a></div><div class="ttdeci">void SetGenericTeamId(const FGenericTeamId &amp;TID) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:67</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_a45e84c4c7379484b47335370986497e0"><div class="ttname"><a href="classAGKPlayerController.html#a45e84c4c7379484b47335370986497e0">AGKPlayerController::ReceiveAcknowledgePossession</a></div><div class="ttdeci">void ReceiveAcknowledgePossession(APawn *NewPawn)</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_a04b6143a63dace332f9fa869c5a38899"><div class="ttname"><a href="classAGKPlayerController.html#a04b6143a63dace332f9fa869c5a38899">AGKPlayerController::GetGenericTeamId</a></div><div class="ttdeci">FGenericTeamId GetGenericTeamId() const override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.h:83</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_a5d5727977042db5664adac1d263e48d5"><div class="ttname"><a href="classAGKPlayerController.html#a5d5727977042db5664adac1d263e48d5">AGKPlayerController::ServerAcknowledgePossession_Implementation</a></div><div class="ttdeci">void ServerAcknowledgePossession_Implementation(APawn *NewPawn) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:38</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_ab8bf8458d5e0ae1168198ba9d08f6db5"><div class="ttname"><a href="classAGKPlayerController.html#ab8bf8458d5e0ae1168198ba9d08f6db5">AGKPlayerController::SetGenericTeamId</a></div><div class="ttdeci">void SetGenericTeamId(const FGenericTeamId &amp;TID) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:69</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html"><div class="ttname"><a href="classAGKCharacterBase.html">AGKCharacterBase</a></div><div class="ttdef"><b>Definition:</b> GKCharacter.h:47</div></div>
 <div class="ttc" id="aclassAGKPlayerController_html_af7bc2b7f8b04538d3f6d562ffab4e7b0"><div class="ttname"><a href="classAGKPlayerController.html#af7bc2b7f8b04538d3f6d562ffab4e7b0">AGKPlayerController::BeginPlay</a></div><div class="ttdeci">virtual void BeginPlay() override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:23</div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_ae7f562297ee10a536f729428f32931eb"><div class="ttname"><a href="classAGKPlayerController.html#ae7f562297ee10a536f729428f32931eb">AGKPlayerController::OnTeamChange</a></div><div class="ttdeci">virtual void OnTeamChange()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:64</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_ae7f562297ee10a536f729428f32931eb"><div class="ttname"><a href="classAGKPlayerController.html#ae7f562297ee10a536f729428f32931eb">AGKPlayerController::OnTeamChange</a></div><div class="ttdeci">virtual void OnTeamChange()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:66</div></div>
 <div class="ttc" id="aGKSaveGame_8h_html"><div class="ttname"><a href="GKSaveGame_8h.html">GKSaveGame.h</a></div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_aef7facf530fc76c7af21a2c2c41c2bd2"><div class="ttname"><a href="classAGKPlayerController.html#aef7facf530fc76c7af21a2c2c41c2bd2">AGKPlayerController::AcknowledgePossession</a></div><div class="ttdeci">void AcknowledgePossession(APawn *P) override</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:25</div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_aeb89f4c973ee52a258c0015ecd571d74"><div class="ttname"><a href="classAGKPlayerController.html#aeb89f4c973ee52a258c0015ecd571d74">AGKPlayerController::TeamId</a></div><div class="ttdeci">FGenericTeamId TeamId</div><div class="ttdef"><b>Definition:</b> GKPlayerController.h:63</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_aeb89f4c973ee52a258c0015ecd571d74"><div class="ttname"><a href="classAGKPlayerController.html#aeb89f4c973ee52a258c0015ecd571d74">AGKPlayerController::TeamId</a></div><div class="ttdeci">FGenericTeamId TeamId</div><div class="ttdef"><b>Definition:</b> GKPlayerController.h:68</div></div>
 <div class="ttc" id="aGKCharacter_8h_html"><div class="ttname"><a href="GKCharacter_8h.html">GKCharacter.h</a></div></div>
-<div class="ttc" id="aclassAGKPlayerController_html_aee146e8c14574c69bb443f5b5451cc53"><div class="ttname"><a href="classAGKPlayerController.html#aee146e8c14574c69bb443f5b5451cc53">AGKPlayerController::GetNetworkMetrics</a></div><div class="ttdeci">void GetNetworkMetrics()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:47</div></div>
+<div class="ttc" id="aclassAGKPlayerController_html_aee146e8c14574c69bb443f5b5451cc53"><div class="ttname"><a href="classAGKPlayerController.html#aee146e8c14574c69bb443f5b5451cc53">AGKPlayerController::GetNetworkMetrics</a></div><div class="ttdeci">void GetNetworkMetrics()</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:49</div></div>
 <div class="ttc" id="aclassAGKPlayerController_html_a522787c0ecddedb06175eb77f93393a3"><div class="ttname"><a href="classAGKPlayerController.html#a522787c0ecddedb06175eb77f93393a3">AGKPlayerController::GetKeysForAction</a></div><div class="ttdeci">const TArray&lt; FInputActionKeyMapping &gt; &amp; GetKeysForAction(const FName ActionName)</div><div class="ttdef"><b>Definition:</b> GKPlayerController.cpp:18</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

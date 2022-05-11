@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -122,9 +122,9 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/PlayerInput.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GenericTeamAgentInterface.h&quot;</span><span class="cp"></span>
 
-
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKPlayerController.generated.h&quot;</span><span class="cp"></span>
+
 
 <span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">)</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">AGKPlayerController</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">APlayerController</span><span class="p">,</span><span class="w"></span>
@@ -143,15 +143,20 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetNetworkMetrics</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// ----------------</span>
+
 <span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">HandleSaveGameLoaded</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKSaveGame</span><span class="w"> </span><span class="o">*</span><span class="n">NewSaveGame</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Sets up Client info for GAS</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">AcknowledgePossession</span><span class="p">(</span><span class="n">APawn</span><span class="w"> </span><span class="o">*</span><span class="n">P</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">AcknowledgePossession</span><span class="p">(</span><span class="n">APawn</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NewPawn</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Set Generic Team ID on possession</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ServerAcknowledgePossession_Implementation</span><span class="p">(</span><span class="n">APawn</span><span class="w"> </span><span class="o">*</span><span class="n">P</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ServerAcknowledgePossession_Implementation</span><span class="p">(</span><span class="n">APawn</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NewPawn</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Pawn&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;On Acknowledge Possession&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ReceiveAcknowledgePossession</span><span class="p">(</span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">NewPawn</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Replication</span>
 <span class="w">    </span><span class="c1">// -----------</span>

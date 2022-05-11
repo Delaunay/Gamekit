@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -291,7 +291,9 @@
 <span class="w">        </span><span class="n">Faction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeduceFaction</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FoWVolume</span><span class="o">-&gt;</span><span class="n">SetFogOfWarMaterialParameters</span><span class="p">(</span><span class="n">Faction</span><span class="p">,</span><span class="w"> </span><span class="n">Material</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Faction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FoWVolume</span><span class="o">-&gt;</span><span class="n">SetFogOfWarMaterialParameters</span><span class="p">(</span><span class="n">Faction</span><span class="p">,</span><span class="w"> </span><span class="n">Material</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKFogOfWarComponent</span><span class="o">::</span><span class="n">SetCollisionFoWResponse</span><span class="p">(</span><span class="n">UPrimitiveComponent</span><span class="w"> </span><span class="o">*</span><span class="n">Primitive</span><span class="p">,</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="w"> </span><span class="n">Channel</span><span class="p">)</span><span class="w"></span>

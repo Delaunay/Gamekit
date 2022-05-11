@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -119,6 +119,7 @@
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/GameModeBase.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/GameMode.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKGameMode.generated.h&quot;</span><span class="cp"></span>
@@ -138,6 +139,11 @@
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Portal</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="nf">SpawnDefaultPawnFor_Implementation</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">StartSpot</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="nf">SpawnDefaultPawnAtTransform_Implementation</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FTransform</span><span class="o">&amp;</span><span class="w"> </span><span class="n">SpawnTransform</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Called when the pawn is spawned, right before FinishSpawning is called</span>
+<span class="w">    </span><span class="c1">// this can be used to set critical data right before the spawn gets replicated</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PawnConstruction</span><span class="p">(</span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">NewPlayer</span><span class="p">,</span><span class="w"> </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">NewPawn</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// void GenericPlayerInitialization(AController* Controller) override;</span>
 

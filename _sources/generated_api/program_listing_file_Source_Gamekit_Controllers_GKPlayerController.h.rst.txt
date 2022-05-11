@@ -22,9 +22,9 @@ Program Listing for File GKPlayerController.h
    #include "GameFramework/PlayerInput.h"
    #include "GenericTeamAgentInterface.h"
    
-   
    // Generated
    #include "GKPlayerController.generated.h"
+   
    
    UCLASS(Blueprintable)
    class GAMEKIT_API AGKPlayerController: public APlayerController, 
@@ -43,15 +43,20 @@ Program Listing for File GKPlayerController.h
    
        void GetNetworkMetrics();
    
+       // ----------------
+   
        protected:
        void HandleSaveGameLoaded(class UGKSaveGame *NewSaveGame);
    
-       public:
+       public: 
        // Sets up Client info for GAS
-       void AcknowledgePossession(APawn *P) override;
+       void AcknowledgePossession(APawn * NewPawn) override;
    
        // Set Generic Team ID on possession
-       void ServerAcknowledgePossession_Implementation(APawn *P) override;
+       void ServerAcknowledgePossession_Implementation(APawn * NewPawn) override;
+   
+       UFUNCTION(BlueprintImplementableEvent, Category = "Pawn", meta = (DisplayName = "On Acknowledge Possession"))
+       void ReceiveAcknowledgePossession(APawn* NewPawn);
    
        // Replication
        // -----------

@@ -31,6 +31,8 @@ Includes
 
 - ``GKGameMode.generated.h``
 
+- ``GameFramework/GameMode.h``
+
 - ``GameFramework/GameModeBase.h``
 
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)

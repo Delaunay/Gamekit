@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKEvent:
+
+Struct FGKEvent
+===============
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKEvent
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

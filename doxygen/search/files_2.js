@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dedicated_2epy_1592',['dedicated.py',['../dedicated_8py.html',1,'']]],
-  ['disable_2epy_1593',['disable.py',['../disable_8py.html',1,'']]],
-  ['docs_2epy_1594',['docs.py',['../docs_8py.html',1,'']]]
+  ['dedicated_2epy_1615',['dedicated.py',['../dedicated_8py.html',1,'']]],
+  ['disable_2epy_1616',['disable.py',['../disable_8py.html',1,'']]],
+  ['docs_2epy_1617',['docs.py',['../docs_8py.html',1,'']]]
 ];

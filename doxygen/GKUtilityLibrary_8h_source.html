@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">bb1fa3f2</span>
+   &#160;<span id="projectnumber">fb91cdbd</span>
    </div>
   </td>
  </tr>
@@ -209,8 +209,11 @@ $(function() {
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">static</span> FName NetRoleToString(ENetRole NetRole);</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContext&quot;</span>))</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNetworkMetrics.html">FGKNetworkMetrics</a> GetNetworkMetrics(<span class="keyword">const</span> UObject *WorldContext);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;};</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">static</span> FString GetNetworkPrefix(<span class="keyword">const</span> UObject* WorldContext);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContext&quot;</span>))</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNetworkMetrics.html">FGKNetworkMetrics</a> GetNetworkMetrics(<span class="keyword">const</span> UObject *WorldContext);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKCastPointAnimNotify_8cpp_html_ae5430ea5be0a5aa38208416673a4fad3"><div class="ttname"><a href="GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3">Get</a></div><div class="ttdeci">UGKAbilitySystemGlobals * Get()</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:28</div></div>
 <div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
@@ -231,6 +234,7 @@ $(function() {
 <div class="ttc" id="aGKUtilityLibrary_8h_html"><div class="ttname"><a href="GKUtilityLibrary_8h.html">GKUtilityLibrary.h</a></div></div>
 <div class="ttc" id="aGKUtilityLibrary_8h_html_a133d81012099cb3e1e8d5f81a839ee29a8e4dbde44b9f0b348adedc55d7dd648c"><div class="ttname"><a href="GKUtilityLibrary_8h.html#a133d81012099cb3e1e8d5f81a839ee29a8e4dbde44b9f0b348adedc55d7dd648c">EGKRelativePosition::BotLeft</a></div><div class="ttdeci">@ BotLeft</div></div>
 <div class="ttc" id="astructFGKTeamInfo_html_a444b0a09cdbdb03f2e12ebfe428c34ab"><div class="ttname"><a href="structFGKTeamInfo.html#a444b0a09cdbdb03f2e12ebfe428c34ab">FGKTeamInfo::Color</a></div><div class="ttdeci">FLinearColor Color</div><div class="ttdoc">Display color.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:35</div></div>
+<div class="ttc" id="aclassUGKUtilityLibrary_html_a345fd7d54d12a80d9be7838e4f746e88"><div class="ttname"><a href="classUGKUtilityLibrary.html#a345fd7d54d12a80d9be7838e4f746e88">UGKUtilityLibrary::GetNetworkPrefix</a></div><div class="ttdeci">static FString GetNetworkPrefix(const UObject *WorldContext)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:499</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_adc541900e774a4e6f6d0b22ebf8fb031"><div class="ttname"><a href="classUGKUtilityLibrary.html#adc541900e774a4e6f6d0b22ebf8fb031">UGKUtilityLibrary::GetNetworkMetrics</a></div><div class="ttdeci">static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:461</div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a3cfb6acffc7ccc1a7846840e82b738bb"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a3cfb6acffc7ccc1a7846840e82b738bb">UGKCoordinateLibrary::ToScreenCoordinate</a></div><div class="ttdeci">static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize)</div><div class="ttdoc">Returns coordinate (0, PixelSize)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:19</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_ae072300bf9de3d6e538d3db14e827d4d"><div class="ttname"><a href="classUGKUtilityLibrary.html#ae072300bf9de3d6e538d3db14e827d4d">UGKUtilityLibrary::GetVisibleBounds_Math</a></div><div class="ttdeci">static void GetVisibleBounds_Math(FVector Location, AActor *Actor, FVector &amp;OutMin, FVector &amp;OutMax)</div><div class="ttdoc">this is not as stable as GetVisibleBounds</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:336</div></div>

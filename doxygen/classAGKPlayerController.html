@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">bb1fa3f2</span>
+   &#160;<span id="projectnumber">fb91cdbd</span>
    </div>
   </td>
  </tr>
@@ -111,10 +111,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a522787c0ecddedb06175eb77f93393a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee146e8c14574c69bb443f5b5451cc53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#aee146e8c14574c69bb443f5b5451cc53">GetNetworkMetrics</a> ()</td></tr>
 <tr class="separator:aee146e8c14574c69bb443f5b5451cc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef7facf530fc76c7af21a2c2c41c2bd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#aef7facf530fc76c7af21a2c2c41c2bd2">AcknowledgePossession</a> (APawn *P) override</td></tr>
-<tr class="separator:aef7facf530fc76c7af21a2c2c41c2bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5716823eb31c52881e705f32be1f0d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#a5716823eb31c52881e705f32be1f0d31">ServerAcknowledgePossession_Implementation</a> (APawn *P) override</td></tr>
-<tr class="separator:a5716823eb31c52881e705f32be1f0d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad31e8d9d49675b4d4a54007505a482eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#ad31e8d9d49675b4d4a54007505a482eb">AcknowledgePossession</a> (APawn *NewPawn) override</td></tr>
+<tr class="separator:ad31e8d9d49675b4d4a54007505a482eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d5727977042db5664adac1d263e48d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#a5d5727977042db5664adac1d263e48d5">ServerAcknowledgePossession_Implementation</a> (APawn *NewPawn) override</td></tr>
+<tr class="separator:a5d5727977042db5664adac1d263e48d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e84c4c7379484b47335370986497e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#a45e84c4c7379484b47335370986497e0">ReceiveAcknowledgePossession</a> (APawn *NewPawn)</td></tr>
+<tr class="separator:a45e84c4c7379484b47335370986497e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a607357246a2a857a3f66440d655475e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#a607357246a2a857a3f66440d655475e4">GetLifetimeReplicatedProps</a> (TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const</td></tr>
 <tr class="separator:a607357246a2a857a3f66440d655475e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaf49caaf5d192482327646e014a247c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKPlayerController.html#acaf49caaf5d192482327646e014a247c">OnRep_TeamChange</a> ()</td></tr>
@@ -158,8 +160,8 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aef7facf530fc76c7af21a2c2c41c2bd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef7facf530fc76c7af21a2c2c41c2bd2">&#9670;&nbsp;</a></span>AcknowledgePossession()</h2>
+<a id="ad31e8d9d49675b4d4a54007505a482eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31e8d9d49675b4d4a54007505a482eb">&#9670;&nbsp;</a></span>AcknowledgePossession()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +173,7 @@ Protected Member Functions</h2></td></tr>
           <td class="memname">void AGKPlayerController::AcknowledgePossession </td>
           <td>(</td>
           <td class="paramtype">APawn *&#160;</td>
-          <td class="paramname"><em>P</em></td><td>)</td>
+          <td class="paramname"><em>NewPawn</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -184,10 +186,11 @@ Protected Member Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classAGKPlayerController_aef7facf530fc76c7af21a2c2c41c2bd2_cgraph.png" border="0" usemap="#classAGKPlayerController_aef7facf530fc76c7af21a2c2c41c2bd2_cgraph" alt=""/></div>
-<map name="classAGKPlayerController_aef7facf530fc76c7af21a2c2c41c2bd2_cgraph" id="classAGKPlayerController_aef7facf530fc76c7af21a2c2c41c2bd2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,195,47"/>
-<area shape="rect" href="classAGKCharacterBase.html#af3c4ba4aef3dca123c72e796dee0df78" title=" " alt="" coords="243,5,460,47"/>
+<div class="center"><img src="classAGKPlayerController_ad31e8d9d49675b4d4a54007505a482eb_cgraph.png" border="0" usemap="#classAGKPlayerController_ad31e8d9d49675b4d4a54007505a482eb_cgraph" alt=""/></div>
+<map name="classAGKPlayerController_ad31e8d9d49675b4d4a54007505a482eb_cgraph" id="classAGKPlayerController_ad31e8d9d49675b4d4a54007505a482eb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,195,80"/>
+<area shape="rect" href="classAGKCharacterBase.html#af3c4ba4aef3dca123c72e796dee0df78" title=" " alt="" coords="255,5,472,47"/>
+<area shape="rect" href="classAGKPlayerController.html#a45e84c4c7379484b47335370986497e0" title=" " alt="" coords="243,71,484,112"/>
 </map>
 </div>
 
@@ -376,8 +379,26 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a5716823eb31c52881e705f32be1f0d31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5716823eb31c52881e705f32be1f0d31">&#9670;&nbsp;</a></span>ServerAcknowledgePossession_Implementation()</h2>
+<a id="a45e84c4c7379484b47335370986497e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e84c4c7379484b47335370986497e0">&#9670;&nbsp;</a></span>ReceiveAcknowledgePossession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKPlayerController::ReceiveAcknowledgePossession </td>
+          <td>(</td>
+          <td class="paramtype">APawn *&#160;</td>
+          <td class="paramname"><em>NewPawn</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5d5727977042db5664adac1d263e48d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d5727977042db5664adac1d263e48d5">&#9670;&nbsp;</a></span>ServerAcknowledgePossession_Implementation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -389,7 +410,7 @@ Here is the call graph for this function:</div>
           <td class="memname">void AGKPlayerController::ServerAcknowledgePossession_Implementation </td>
           <td>(</td>
           <td class="paramtype">APawn *&#160;</td>
-          <td class="paramname"><em>P</em></td><td>)</td>
+          <td class="paramname"><em>NewPawn</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -402,8 +423,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classAGKPlayerController_a5716823eb31c52881e705f32be1f0d31_cgraph.png" border="0" usemap="#classAGKPlayerController_a5716823eb31c52881e705f32be1f0d31_cgraph" alt=""/></div>
-<map name="classAGKPlayerController_a5716823eb31c52881e705f32be1f0d31_cgraph" id="classAGKPlayerController_a5716823eb31c52881e705f32be1f0d31_cgraph">
+<div class="center"><img src="classAGKPlayerController_a5d5727977042db5664adac1d263e48d5_cgraph.png" border="0" usemap="#classAGKPlayerController_a5d5727977042db5664adac1d263e48d5_cgraph" alt=""/></div>
+<map name="classAGKPlayerController_a5d5727977042db5664adac1d263e48d5_cgraph" id="classAGKPlayerController_a5d5727977042db5664adac1d263e48d5_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,236,61"/>
 <area shape="rect" href="classAGKPlayerController.html#a04b6143a63dace332f9fa869c5a38899" title=" " alt="" coords="284,13,439,54"/>
 </map>

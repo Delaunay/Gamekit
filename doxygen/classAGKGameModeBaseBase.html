@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">bb1fa3f2</span>
+   &#160;<span id="projectnumber">fb91cdbd</span>
    </div>
   </td>
  </tr>
@@ -108,6 +108,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a03e1722bf08bf0039fee579fbf920a3c"><td class="memItemLeft" align="right" valign="top">APawn *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKGameModeBaseBase.html#a03e1722bf08bf0039fee579fbf920a3c">SpawnDefaultPawnFor_Implementation</a> (AController *NewPlayer, AActor *StartSpot) override</td></tr>
 <tr class="memdesc:a03e1722bf08bf0039fee579fbf920a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawn the default pawn for a given player &amp; set the team assignment.  <a href="classAGKGameModeBaseBase.html#a03e1722bf08bf0039fee579fbf920a3c">More...</a><br /></td></tr>
 <tr class="separator:a03e1722bf08bf0039fee579fbf920a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35fbcd14fa46dd8da0c71ae17d53298"><td class="memItemLeft" align="right" valign="top">APawn *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKGameModeBaseBase.html#ae35fbcd14fa46dd8da0c71ae17d53298">SpawnDefaultPawnAtTransform_Implementation</a> (AController *NewPlayer, const FTransform &amp;SpawnTransform) override</td></tr>
+<tr class="separator:ae35fbcd14fa46dd8da0c71ae17d53298"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6a2b001ed1fcd1bd3c9109b07f98b2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKGameModeBaseBase.html#adf6a2b001ed1fcd1bd3c9109b07f98b2">PawnConstruction</a> (AController *NewPlayer, APawn *NewPawn)</td></tr>
+<tr class="separator:adf6a2b001ed1fcd1bd3c9109b07f98b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1291b7f6f5338bfe91faf15412357af"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKGameModeBaseBase.html#aa1291b7f6f5338bfe91faf15412357af">ResetLevel</a> () override</td></tr>
 <tr class="memdesc:aa1291b7f6f5338bfe91faf15412357af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the faction for a given controller.  <a href="classAGKGameModeBaseBase.html#aa1291b7f6f5338bfe91faf15412357af">More...</a><br /></td></tr>
 <tr class="separator:aa1291b7f6f5338bfe91faf15412357af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,6 +332,42 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="adf6a2b001ed1fcd1bd3c9109b07f98b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf6a2b001ed1fcd1bd3c9109b07f98b2">&#9670;&nbsp;</a></span>PawnConstruction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKGameModeBaseBase::PawnConstruction </td>
+          <td>(</td>
+          <td class="paramtype">AController *&#160;</td>
+          <td class="paramname"><em>NewPlayer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">APawn *&#160;</td>
+          <td class="paramname"><em>NewPawn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa1291b7f6f5338bfe91faf15412357af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1291b7f6f5338bfe91faf15412357af">&#9670;&nbsp;</a></span>ResetLevel()</h2>
 
@@ -398,6 +438,51 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae35fbcd14fa46dd8da0c71ae17d53298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae35fbcd14fa46dd8da0c71ae17d53298">&#9670;&nbsp;</a></span>SpawnDefaultPawnAtTransform_Implementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">APawn * AGKGameModeBaseBase::SpawnDefaultPawnAtTransform_Implementation </td>
+          <td>(</td>
+          <td class="paramtype">AController *&#160;</td>
+          <td class="paramname"><em>NewPlayer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTransform &amp;&#160;</td>
+          <td class="paramname"><em>SpawnTransform</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAGKGameModeBaseBase_ae35fbcd14fa46dd8da0c71ae17d53298_cgraph.png" border="0" usemap="#classAGKGameModeBaseBase_ae35fbcd14fa46dd8da0c71ae17d53298_cgraph" alt=""/></div>
+<map name="classAGKGameModeBaseBase_ae35fbcd14fa46dd8da0c71ae17d53298_cgraph" id="classAGKGameModeBaseBase_ae35fbcd14fa46dd8da0c71ae17d53298_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,240,61"/>
+<area shape="rect" href="classAGKGameModeBaseBase.html#adf6a2b001ed1fcd1bd3c9109b07f98b2" title=" " alt="" coords="288,13,477,54"/>
+</map>
+</div>
 
 </div>
 </div>

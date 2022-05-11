@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -605,6 +605,37 @@
 
 <span class="w">    </span><span class="c1">// Connection to the server</span>
 <span class="w">    </span><span class="c1">// auto Connection = Driver-&gt;ServerConnection;</span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FString</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetNetworkPrefix</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Prefix</span><span class="p">;</span><span class="w"></span>
+
+<span class="cp">#if !(UE_BUILD_SHIPPING || UE_BUILD_TEST) </span><span class="c1">// Do not Print in Shipping or Test</span>
+<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">World</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">World</span><span class="o">-&gt;</span><span class="n">WorldType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EWorldType</span><span class="o">::</span><span class="n">PIE</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">())</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_Client</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// GPlayInEditorID 0 is always the server, so 1 will be first client.</span>
+<span class="w">                </span><span class="c1">// You want to keep this logic in sync with GeneratePIEViewportWindowTitle and UpdatePlayInEditorWorldDebugString</span>
+<span class="w">                </span><span class="n">Prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Printf</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Client %d: &quot;</span><span class="p">),</span><span class="w"> </span><span class="n">GPlayInEditorID</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_DedicatedServer</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_ListenServer</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="n">Prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Printf</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Server: &quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_Standalone</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="cp">#endif</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Prefix</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

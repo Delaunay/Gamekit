@@ -1,0 +1,14 @@
+.. _exhale_function_GKNetworkedEvent_8h_1a7733c9b94a57c873569e55ecd70fba4e:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKEventGate)
+=========================================================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKEventGate)
+   :project: GameKit

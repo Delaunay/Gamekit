@@ -1,0 +1,19 @@
+
+.. _program_listing_file_Source_Gamekit_Utilities_GKNetworkedEvent.cpp:
+
+Program Listing for File GKNetworkedEvent.cpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Utilities_GKNetworkedEvent.cpp>` (``Source/Gamekit/Utilities/GKNetworkedEvent.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #include "Gamekit/Utilities/GKNetworkedEvent.h"
+   
+   UActorReadyInterface::UActorReadyInterface(const FObjectInitializer& ObjectInitializer)
+   : Super(ObjectInitializer)
+   {
+   }

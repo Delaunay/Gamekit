@@ -1,0 +1,17 @@
+.. _exhale_class_classIActorReadyInterface:
+
+Class IActorReadyInterface
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IActorReadyInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

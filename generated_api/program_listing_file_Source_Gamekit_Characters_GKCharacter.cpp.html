@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb1fa3f2
+                fb91cdbd
 
               </div>
 <div role="search">
@@ -612,8 +612,13 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Got assigned a team&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="n">Team</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TeamID</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Authority: %s, got assigned team %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">GetDebugName</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="n">Team</span><span class="p">.</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">ReceiveTeamAssigned</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnRep_Team</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Client: %s, got assigned team %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">GetDebugName</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="n">Team</span><span class="p">.</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
 <span class="w">    </span><span class="n">ReceiveTeamAssigned</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 

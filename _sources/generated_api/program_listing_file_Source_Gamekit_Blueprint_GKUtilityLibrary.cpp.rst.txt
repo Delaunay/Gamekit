@@ -506,3 +506,34 @@ Program Listing for File GKUtilityLibrary.cpp
        // Connection to the server
        // auto Connection = Driver->ServerConnection;
    }
+   
+   
+   FString UGKUtilityLibrary::GetNetworkPrefix(const UObject* WorldContextObject) {
+       FString Prefix;
+   
+   #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST) // Do not Print in Shipping or Test
+       UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
+       if (World)
+       {
+           if (World->WorldType == EWorldType::PIE)
+           {
+               switch (World->GetNetMode())
+               {
+               case NM_Client:
+                   // GPlayInEditorID 0 is always the server, so 1 will be first client.
+                   // You want to keep this logic in sync with GeneratePIEViewportWindowTitle and UpdatePlayInEditorWorldDebugString
+                   Prefix = FString::Printf(TEXT("Client %d: "), GPlayInEditorID);
+                   break;
+               case NM_DedicatedServer:
+               case NM_ListenServer:
+                   Prefix = FString::Printf(TEXT("Server: "));
+                   break;
+               case NM_Standalone:
+                   break;
+               }
+           }
+       }
+   #endif
+   
+       return Prefix;
+   }

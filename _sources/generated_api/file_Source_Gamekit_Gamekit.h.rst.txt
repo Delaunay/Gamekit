@@ -107,6 +107,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_States_GKPrivatePlayerState.cpp`
 
+- :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.h`
+
 
 
 

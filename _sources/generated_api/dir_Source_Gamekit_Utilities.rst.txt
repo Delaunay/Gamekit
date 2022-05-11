@@ -16,6 +16,8 @@ Files
 -----
 
 - :ref:`file_Source_Gamekit_Utilities_GKBitFlag.h`
+- :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.cpp`
+- :ref:`file_Source_Gamekit_Utilities_GKNetworkedEvent.h`
 - :ref:`file_Source_Gamekit_Utilities_GKSelection.cpp`
 - :ref:`file_Source_Gamekit_Utilities_GKSelection.h`
 
