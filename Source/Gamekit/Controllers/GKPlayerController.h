@@ -10,9 +10,9 @@
 #include "GameFramework/PlayerInput.h"
 #include "GenericTeamAgentInterface.h"
 
-
 // Generated
 #include "GKPlayerController.generated.h"
+
 
 /** Base class for PlayerController, should be blueprinted 
  * The controller is the one with the Team Agent interface because it is the top
@@ -40,16 +40,21 @@ class GAMEKIT_API AGKPlayerController: public APlayerController,
 
     void GetNetworkMetrics();
 
+    // ----------------
+
     protected:
     /** Called when a global save game as been loaded */
     void HandleSaveGameLoaded(class UGKSaveGame *NewSaveGame);
 
-    public:
+    public: 
     // Sets up Client info for GAS
-    void AcknowledgePossession(APawn *P) override;
+    void AcknowledgePossession(APawn * NewPawn) override;
 
     // Set Generic Team ID on possession
-    void ServerAcknowledgePossession_Implementation(APawn *P) override;
+    void ServerAcknowledgePossession_Implementation(APawn * NewPawn) override;
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "Pawn", meta = (DisplayName = "On Acknowledge Possession"))
+    void ReceiveAcknowledgePossession(APawn* NewPawn);
 
     // Replication
     // -----------

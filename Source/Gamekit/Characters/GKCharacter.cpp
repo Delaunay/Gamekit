@@ -500,8 +500,13 @@ void AGKCharacterBase::SetGenericTeamId(const FGenericTeamId &TeamID) {
     if (GetNetMode() == ENetMode::NM_Client)
         return;
 
-    GK_WARNING(TEXT("Got assigned a team"));
-    Team = TeamID; 
+    Team = TeamID;
+    GK_LOG(TEXT("Authority: %s, got assigned team %d"), *GetDebugName(this), Team.GetId());
+    ReceiveTeamAssigned(Team);
+}
+
+void AGKCharacterBase::OnRep_Team() {
+    GK_LOG(TEXT("Client: %s, got assigned team %d"), *GetDebugName(this), Team.GetId());
     ReceiveTeamAssigned(Team);
 }
 

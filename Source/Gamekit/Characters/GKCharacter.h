@@ -215,9 +215,7 @@ protected:
 public:
 
     UFUNCTION()
-    void OnRep_Team() { 
-        ReceiveTeamAssigned(Team);
-    }
+    void OnRep_Team();
 
     void SetGenericTeamId(const FGenericTeamId &TeamID) override;
 

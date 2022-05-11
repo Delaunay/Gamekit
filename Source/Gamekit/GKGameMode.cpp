@@ -93,7 +93,39 @@ void AGKGameModeBaseBase::SetGenericTeamIdFromPlayerStart(AController *NewPlayer
 APawn* AGKGameModeBaseBase::SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot)
 {
     SetGenericTeamIdFromPlayerStart(NewPlayer, StartSpot);
-
     return AGameModeBase::SpawnDefaultPawnFor_Implementation(NewPlayer, StartSpot);
 }
 
+
+APawn* AGKGameModeBaseBase::SpawnDefaultPawnAtTransform_Implementation(AController* NewPlayer, const FTransform& SpawnTransform)
+{
+    FActorSpawnParameters SpawnInfo;
+    SpawnInfo.Instigator = GetInstigator();
+    SpawnInfo.ObjectFlags |= RF_Transient;	// We never want to save default player pawns into a map
+    SpawnInfo.bDeferConstruction = true;
+
+    UClass* PawnClass = GetDefaultPawnClassForController(NewPlayer);
+
+    APawn* ResultPawn = GetWorld()->SpawnActor<APawn>(PawnClass, SpawnTransform, SpawnInfo);
+
+    // Populate replicated data so everything gets populated
+    // when the pawn gets sent down to clients
+    PawnConstruction(NewPlayer, ResultPawn);
+
+    ResultPawn->FinishSpawning(SpawnTransform);
+
+    if (!ResultPawn)
+    {
+        UE_LOG(LogGameMode, Warning, TEXT("SpawnDefaultPawnAtTransform: Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(PawnClass), *SpawnTransform.ToHumanReadableString());
+    }
+    return ResultPawn;
+}
+
+void AGKGameModeBaseBase::PawnConstruction(AController* NewPlayer, APawn* NewPawn) {
+    auto TeamActor = Cast<IGenericTeamAgentInterface>(NewPlayer);
+    auto PawnActor = Cast<IGenericTeamAgentInterface>(NewPawn);
+
+    if (TeamActor && PawnActor) {
+        PawnActor->SetGenericTeamId(TeamActor->GetGenericTeamId());
+    }
+}

@@ -31,6 +31,8 @@ void AGKPlayerController::AcknowledgePossession(APawn *P)
     {
         CharacterBase->GetAbilitySystemComponent()->InitAbilityActorInfo(CharacterBase, CharacterBase);
     }
+
+    ReceiveAcknowledgePossession(P);
 }
 
 void AGKPlayerController::ServerAcknowledgePossession_Implementation(APawn *P) {

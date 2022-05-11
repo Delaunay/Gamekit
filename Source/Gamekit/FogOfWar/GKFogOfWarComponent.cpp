@@ -176,10 +176,12 @@ void UGKFogOfWarComponent::SetFogOfWarMaterialParameters(UMaterialInstanceDynami
 
     if (Faction == NAME_None)
     {
-        Faction = DeduceFaction();
+        Faction = DeduceFaction(); 
     }
 
-    return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material);
+    if (Faction != NAME_None) {
+        return FoWVolume->SetFogOfWarMaterialParameters(Faction, Material);
+    }
 }
 
 void UGKFogOfWarComponent::SetCollisionFoWResponse(UPrimitiveComponent *Primitive, ECollisionChannel Channel)

@@ -7,6 +7,7 @@
 
 // Unreal Engine
 #include "GameFramework/GameModeBase.h"
+#include "GameFramework/GameMode.h"
 
 // Generated
 #include "GKGameMode.generated.h"
@@ -47,6 +48,11 @@ class GAMEKIT_API AGKGameModeBaseBase: public AGameModeBase
 
     //! Spawn the default pawn for a given player & set the team assignment
     APawn* SpawnDefaultPawnFor_Implementation(AController* NewPlayer, AActor* StartSpot) override;
+    APawn* SpawnDefaultPawnAtTransform_Implementation(AController* NewPlayer, const FTransform& SpawnTransform) override;
+
+    // Called when the pawn is spawned, right before FinishSpawning is called
+    // this can be used to set critical data right before the spawn gets replicated
+    virtual void PawnConstruction(AController* NewPlayer, APawn* NewPawn);
 
     //! Set the faction for a given controller
     // void GenericPlayerInitialization(AController* Controller) override; 

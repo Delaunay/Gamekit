@@ -147,5 +147,8 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     static FName NetRoleToString(ENetRole NetRole);
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
+    static FString GetNetworkPrefix(const UObject* WorldContext);
+
+    UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
     static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext);
 };
