@@ -114,13 +114,21 @@ struct GAMEKIT_API FGKQuestData: public FTableRowBase
     //! Objective are stored as Game tags
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Objective)
     TArray<FGKQuestObjectives> Objectives;
+
+    //! If part of a quest chain, Name the next quest
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Objective)
+    FName Next;
 };
 
+
+// This is used for the Widget Tree display
 UCLASS(BlueprintType)
 class UGKQuestDataRef: public UObject
 {
     GENERATED_BODY()
     public:
+
+
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Quest, Meta = (ExposeOnSpawn = true))
     FGKQuestData Data;
 };
