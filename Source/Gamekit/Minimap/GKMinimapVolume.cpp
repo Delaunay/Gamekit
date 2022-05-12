@@ -3,7 +3,9 @@
 #include "Gamekit/Minimap/GKMinimapVolume.h"
 
 // Gamekit
+#include "Gamekit/GKLog.h"
 #include "Gamekit/Minimap/GKMinimapComponent.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
 // Unreal Engine
 #include "Components/BrushComponent.h"
@@ -36,6 +38,10 @@ AGKMinimapVolume::AGKMinimapVolume()
     PrimaryActorTick.bCanEverTick = true;
     bMinimapEnabled               = true;
     FramePerSeconds               = 30.f;
+
+    FriendlyColor = FLinearColor(0, 1, 0, 1);
+    NeutralColor = FLinearColor(0, 0, 1, 1);
+    HostileColor = FLinearColor(1, 0, 0, 1);
 
     AllowClass = ALandscape::StaticClass();
 }
@@ -91,18 +97,84 @@ void AGKMinimapVolume::DrawMinimap()
     UKismetRenderingLibrary::EndDrawCanvasToRenderTarget(GetWorld(), Context);
 }
 
+
+FLinearColor AGKMinimapVolume::GetTeamColor(AActor* Actor) {
+    auto CurrentAgent = Cast<IGenericTeamAgentInterface>(Actor);
+
+    if (CurrentAgent == nullptr) {
+        GK_LOG(TEXT("Actor is null"));
+        return FLinearColor(1, 1, 1, 0);
+    }
+
+    auto WorldSettings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+
+    if (WorldSettings) {
+        auto TeamInfo = WorldSettings->GetTeamInfo(CurrentAgent->GetGenericTeamId().GetId());
+
+        if (TeamInfo) {
+            return TeamInfo->Color;
+        }
+
+        GK_LOG(TEXT("TeamInfo Missing"));
+    }
+
+    return FLinearColor(1, 1, 1, 0);
+}
+
+
+FLinearColor AGKMinimapVolume::GetTeamAptitudeColor(AActor* Actor) {
+    auto PlayerController = UGKUtilityLibrary::GetFirstLocalPlayerController(GetWorld());
+    auto LocalAgent = Cast<IGenericTeamAgentInterface>(PlayerController);
+    auto CurrentAgent = Cast<IGenericTeamAgentInterface>(Actor);
+
+    if (CurrentAgent == nullptr) {
+        GK_LOG(TEXT("Actor is null"));
+        return FLinearColor(1, 1, 1, 0);
+    }
+
+    if (LocalAgent == nullptr) {
+        GK_LOG(TEXT("Local Player Controller does not implement IGenericTeamAgentInterface"));
+        return FLinearColor(1, 1, 1, 0);
+    }
+
+    ETeamAttitude::Type Attitude = LocalAgent->GetTeamAttitudeTowards(*Actor);
+
+    switch (Attitude) {
+        case ETeamAttitude::Friendly: return FriendlyColor;
+        case ETeamAttitude::Neutral:  return NeutralColor;
+        case ETeamAttitude::Hostile:  return HostileColor;
+    }
+
+    return FLinearColor(1, 1, 1, 0);
+}
+
+FLinearColor AGKMinimapVolume::GetColor(AActor* Actor) {
+
+    switch(ColorMode){
+    case EGK_MinimapColorMode::TeamColors: return GetTeamColor(Actor);
+    case EGK_MinimapColorMode::TeamAptitude: return GetTeamAptitudeColor(Actor);
+    }
+
+    return FLinearColor(1, 1, 1, 0);
+}
+
 void AGKMinimapVolume::DrawActorCompoment(UGKMinimapComponent *Compoment, UCanvas *Canvas)
 {
     AActor *Actor = Compoment->GetOwner();
 
     auto Start = GetScreenCoordinate(Actor->GetActorLocation()) - Compoment->Size / 2.f;
 
-    Canvas->K2_DrawMaterial(Cast<UMaterialInterface>(Compoment->Material),
+    FLinearColor Color = GetColor(Actor);
+
+    static FName ColorName = "Color";
+    Compoment->MaterialInstance->SetVectorParameterValue(ColorName, FVector4(Color.R, Color.G, Color.B, Color.A));
+
+    Canvas->K2_DrawMaterial(Cast<UMaterialInterface>(Compoment->MaterialInstance),
                             Start,                                   // Screen Position
                             FVector2D::UnitVector * Compoment->Size, // Screen Size
                             FVector2D(0.f, 0.f),                     // Coordinate
                             FVector2D::UnitVector,                   // Coordinate Size
-                            0.f,                                     // Rotation
+                            - Actor->GetActorRotation().Yaw,         // Rotation
                             FVector2D(0.5f, 0.5f)                    // Pivot
     );
 }
@@ -116,7 +188,7 @@ void AGKMinimapVolume::UpdateSizes()
 
     if (MapSize.X == 0 || MapSize.Y == 0)
     {
-        UE_LOG(LogGamekit, Warning, TEXT("Map size too small (%.2f x %.2f)"), MapSize.X, MapSize.Y);
+        GK_WARNING(TEXT("Map size too small (%.2f x %.2f)"), MapSize.X, MapSize.Y);
 
         // If size == 0 it will trigger assert on the RHI side
         MapSize.X = 100.f;

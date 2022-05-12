@@ -7,6 +7,8 @@
 
 // Unreal Engine
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMaterialLibrary.h"
+
 
 // Sets default values for this component's properties
 UGKMinimapComponent::UGKMinimapComponent()
@@ -38,6 +40,13 @@ void UGKMinimapComponent::BeginPlay()
     {
         return;
     }
+
+    MaterialInstance = UKismetMaterialLibrary::CreateDynamicMaterialInstance(
+        GetWorld(), 
+        Material,
+        NAME_None,
+        EMIDCreationFlags::None
+    );
 
     mini->RegisterActorComponent(this);
 }

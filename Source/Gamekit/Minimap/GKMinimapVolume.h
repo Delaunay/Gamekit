@@ -9,9 +9,19 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Volume.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKMinimapVolume.generated.h"
+
+
+UENUM(BlueprintType)
+enum class EGK_MinimapColorMode : uint8
+{
+    TeamColors   UMETA(DisplayName = "TeamColors"),
+    TeamAptitude UMETA(DisplayName = "TeamAptitude"),
+};
+
 
 struct FGKFactionMinimap
 {
@@ -133,9 +143,26 @@ class GAMEKIT_API AGKMinimapVolume: public AVolume
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
     TSubclassOf<AActor> AllowClass;
 
-    private:
-    TMap<FName, FGKFactionMinimap> FactionMinimap;
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    EGK_MinimapColorMode ColorMode;
 
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor FriendlyColor;
+
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor NeutralColor;
+
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor HostileColor;
+
+    FLinearColor GetColor(AActor* Actor);
+    FLinearColor GetTeamAptitudeColor(AActor* Actor);
+    FLinearColor GetTeamColor(AActor* Actor);
+
+    private:
+    TMap<FGenericTeamId, FGKFactionMinimap> FactionMinimap;
+
+    // bool                                bCaptureOnce;
     FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute
     FVector2D                           MapSize;
     TArray<class UGKMinimapComponent *> ActorComponents;

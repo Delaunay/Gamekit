@@ -151,4 +151,7 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
     static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext);
+
+    UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContextObject"))
+    static APlayerController* GetFirstLocalPlayerController(const UObject* WorldContextObject);
 };

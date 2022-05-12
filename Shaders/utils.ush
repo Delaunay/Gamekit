@@ -6,3 +6,24 @@
 vec2 scale(vec2 uv, vec2 _scale){
     return mul(mat2(_scale.x,0.0,0.0,_scale.y), uv);
 }
+
+
+float triangle_sign(float2 p1, float2 p2, float2 p3)
+{
+    return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+}
+
+bool PointInTriangle (float2 x, float2 v1, float2 v2, float2 v3)
+{
+    float d1, d2, d3;
+    bool has_neg, has_pos;
+
+    d1 = triangle_sign(x, v1, v2);
+    d2 = triangle_sign(x, v2, v3);
+    d3 = triangle_sign(x, v3, v1);
+
+    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+    return !(has_neg && has_pos);
+}

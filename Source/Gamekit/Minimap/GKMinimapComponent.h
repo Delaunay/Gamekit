@@ -33,6 +33,9 @@ class GAMEKIT_API UGKMinimapComponent: public UActorComponent
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     class UMaterialInterface *Material;
 
+    UPROPERTY(Transient)
+    class UMaterialInstanceDynamic* MaterialInstance;
+
     //!
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
     float Size;
