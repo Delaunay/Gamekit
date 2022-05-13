@@ -1,0 +1,7 @@
+<map id="AGKMinimapVolume::DrawControllerFieldOfView" name="AGKMinimapVolume::DrawControllerFieldOfView">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,268,80"/>
+<area shape="rect" id="node2" href="$classUGKUtilityLibrary.html#a93312194a2017034bba4b29780d6c0b6" title=" " alt="" coords="316,5,503,47"/>
+<area shape="rect" id="node3" href="$classUGKCoordinateLibrary.html#a3cfb6acffc7ccc1a7846840e82b738bb" title="Returns coordinate (0, PixelSize)" alt="" coords="326,71,493,112"/>
+<area shape="rect" id="node4" href="$classUGKCoordinateLibrary.html#a16684a79f434cd6c8de552262735243c" title="Returns coordinate (0, 1)" alt="" coords="551,71,717,112"/>
+<area shape="rect" id="node5" href="$classUGKCoordinateLibrary.html#a6f317e1e43d4427dac1c5061fe0a3ee9" title=" " alt="" coords="765,71,947,112"/>
+</map>

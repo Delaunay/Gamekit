@@ -35,6 +35,8 @@ Includes
 
 - ``Kismet/GameplayStatics.h``
 
+- ``Kismet/KismetMaterialLibrary.h``
+
 
 
 

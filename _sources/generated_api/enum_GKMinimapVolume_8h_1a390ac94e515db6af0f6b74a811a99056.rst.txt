@@ -1,0 +1,14 @@
+.. _exhale_enum_GKMinimapVolume_8h_1a390ac94e515db6af0f6b74a811a99056:
+
+Enum EGK_MinimapColorMode
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_MinimapColorMode
+   :project: GameKit

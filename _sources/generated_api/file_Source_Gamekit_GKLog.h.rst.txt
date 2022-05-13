@@ -61,6 +61,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_GKWorldSettings.cpp`
 
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.cpp`
+
 - :ref:`file_Source_Gamekit_States_GKPlayerState.cpp`
 
 - :ref:`file_Source_Gamekit_States_GKPrivatePlayerState.cpp`

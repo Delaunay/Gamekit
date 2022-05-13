@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -121,9 +121,19 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/Volume.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Runtime/Core/Public/HAL/ThreadingBase.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GenericTeamAgentInterface.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKMinimapVolume.generated.h&quot;</span><span class="cp"></span>
+
+
+<span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EGK_MinimapColorMode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TeamColors</span><span class="w">   </span><span class="nf">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TeamColors&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">TeamAptitude</span><span class="w"> </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TeamAptitude&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">FGKFactionMinimap</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -157,7 +167,7 @@
 <span class="w">    </span><span class="c1">// You can combine them using a material</span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap|Async&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">FramePerSeconds</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">LimitFramePerSeconds</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Minimap</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UCanvasRenderTarget2D</span><span class="w"> </span><span class="o">*</span><span class="n">MinimapCanvas</span><span class="p">;</span><span class="w"></span>
@@ -191,6 +201,20 @@
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Coordinate</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">GetScreenCoordinate</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">loc</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetTextureCoordinate</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GetTextureSize</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">DrawControllerFieldOfView</span><span class="p">(</span><span class="n">UCanvas</span><span class="o">*</span><span class="w"> </span><span class="n">Canvas</span><span class="p">,</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap|Field of View&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDrawControllerFieldOfView</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap|Field of View&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">FieldOfViewColor</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap|Field of View&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">FieldOfViewTickness</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap|Field of View&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">ETraceTypeQuery</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GroundChannel</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Coordinate</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">GetMapSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">MapSize</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
@@ -208,12 +232,36 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AllowClass</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span><span class="w"> </span><span class="n">FGKFactionMinimap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FactionMinimap</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">EGK_MinimapColorMode</span><span class="w"> </span><span class="n">ColorMode</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">FriendlyColor</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">NeutralColor</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">HostileColor</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditInstanceOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Minimap&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCaptureTerrainOnce</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="nf">GetColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="nf">GetTeamAptitudeColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="nf">GetTeamColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGenericTeamId</span><span class="p">,</span><span class="w"> </span><span class="n">FGKFactionMinimap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FactionMinimap</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// bool                                bCaptureOnce;</span>
 <span class="w">    </span><span class="n">FCriticalSection</span><span class="w">                    </span><span class="n">Mutex</span><span class="p">;</span><span class="w"> </span><span class="c1">// Mutex to sync adding/removing components with the fog compute</span>
 <span class="w">    </span><span class="n">FVector2D</span><span class="w">                           </span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKMinimapComponent</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">ActorComponents</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w">                               </span><span class="n">DeltaAccumulator</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerController</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

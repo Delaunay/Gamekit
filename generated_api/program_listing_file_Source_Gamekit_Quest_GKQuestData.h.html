@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -177,13 +177,20 @@
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Objective</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKQuestObjectives</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Objectives</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Objective</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">Next</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
+
+<span class="c1">// This is used for the Widget Tree display</span>
 <span class="n">UCLASS</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">UGKQuestDataRef</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UObject</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+
+
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quest</span><span class="p">,</span><span class="w"> </span><span class="n">Meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ExposeOnSpawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGKQuestData</span><span class="w"> </span><span class="n">Data</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>

@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -119,6 +119,8 @@
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/GameplayStatics.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetMaterialLibrary.h&quot;</span><span class="cp"></span>
+
 
 <span class="c1">// Sets default values for this component&#39;s properties</span>
 <span class="n">UGKMinimapComponent</span><span class="o">::</span><span class="n">UGKMinimapComponent</span><span class="p">()</span><span class="w"></span>
@@ -150,6 +152,13 @@
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MaterialInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMaterialLibrary</span><span class="o">::</span><span class="n">CreateDynamicMaterialInstance</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Material</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">NAME_None</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">EMIDCreationFlags</span><span class="o">::</span><span class="n">None</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">mini</span><span class="o">-&gt;</span><span class="n">RegisterActorComponent</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

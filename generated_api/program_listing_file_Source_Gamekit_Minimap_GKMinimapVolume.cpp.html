@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -115,7 +115,10 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Minimap/GKMinimapVolume.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Minimap/GKMinimapComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKUtilityLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKCoordinateLibrary.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Components/BrushComponent.h&quot;</span><span class="cp"></span>
@@ -147,7 +150,15 @@
 
 <span class="w">    </span><span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">bMinimapEnabled</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">FramePerSeconds</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="mf">30.f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">LimitFramePerSeconds</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="mf">30.f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">bDrawControllerFieldOfView</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FieldOfViewTickness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FriendlyColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">NeutralColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">HostileColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FieldOfViewColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DeltaAccumulator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AllowClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALandscape</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -169,13 +180,65 @@
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UpdateSizes</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ShowOnlyActors</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShowOnlyActors</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Actor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;AGKMinimapVolume::ShowOnlyActors element %d th is none&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bCaptureTerrainOnce</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MinimapCapture</span><span class="o">-&gt;</span><span class="n">CaptureScene</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DrawMinimap</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">DeltaAccumulator</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Delta</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DeltaAccumulator</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">LimitFramePerSeconds</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">DeltaAccumulator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">DrawMinimap</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">DrawControllerFieldOfView</span><span class="p">(</span><span class="n">UCanvas</span><span class="o">*</span><span class="w"> </span><span class="n">Canvas</span><span class="p">,</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PlayerController</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Corners</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Corners</span><span class="p">.</span><span class="n">Reserve</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetControllerFieldOfView</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"> </span><span class="n">PlayerController</span><span class="p">,</span><span class="w"> </span><span class="n">GroundChannel</span><span class="p">,</span><span class="w"> </span><span class="n">Corners</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Corners</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Canvas</span><span class="o">-&gt;</span><span class="n">K2_DrawLine</span><span class="p">(</span><span class="n">UGKCoordinateLibrary</span><span class="o">::</span><span class="n">ToScreenCoordinate</span><span class="p">(</span><span class="n">Corners</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">MapSize</span><span class="p">,</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">UGKCoordinateLibrary</span><span class="o">::</span><span class="n">ToScreenCoordinate</span><span class="p">(</span><span class="n">Corners</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">MapSize</span><span class="p">,</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">FieldOfViewTickness</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FieldOfViewColor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Corners</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Canvas</span><span class="o">-&gt;</span><span class="n">K2_DrawLine</span><span class="p">(</span><span class="n">UGKCoordinateLibrary</span><span class="o">::</span><span class="n">ToScreenCoordinate</span><span class="p">(</span><span class="n">Corners</span><span class="p">[</span><span class="n">Last</span><span class="p">],</span><span class="w"> </span><span class="n">MapSize</span><span class="p">,</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">UGKCoordinateLibrary</span><span class="o">::</span><span class="n">ToScreenCoordinate</span><span class="p">(</span><span class="n">Corners</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">MapSize</span><span class="p">,</span><span class="w"> </span><span class="n">TextureSize</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">FieldOfViewTickness</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FieldOfViewColor</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">DrawMinimap</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">FScopeLock</span><span class="w"> </span><span class="nf">ScopeLock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">PlayerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetFirstLocalPlayerController</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UCanvas</span><span class="w"> </span><span class="o">*</span><span class="w">                  </span><span class="n">Canvas</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">FVector2D</span><span class="w">                  </span><span class="n">Size</span><span class="p">;</span><span class="w"></span>
@@ -186,11 +249,17 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">MinimapCapture</span><span class="o">-&gt;</span><span class="n">CaptureScene</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bCaptureTerrainOnce</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MinimapCapture</span><span class="o">-&gt;</span><span class="n">CaptureScene</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UKismetRenderingLibrary</span><span class="o">::</span><span class="n">BeginDrawCanvasToRenderTarget</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"> </span><span class="n">MinimapCanvas</span><span class="p">,</span><span class="w"> </span><span class="n">Canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Size</span><span class="p">,</span><span class="w"> </span><span class="n">Context</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UKismetRenderingLibrary</span><span class="o">::</span><span class="n">ClearRenderTarget2D</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"> </span><span class="n">MinimapCanvas</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDrawControllerFieldOfView</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">DrawControllerFieldOfView</span><span class="p">(</span><span class="n">Canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Component</span><span class="o">:</span><span class="w"> </span><span class="n">ActorComponents</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -203,18 +272,93 @@
 <span class="w">    </span><span class="n">UKismetRenderingLibrary</span><span class="o">::</span><span class="n">EndDrawCanvasToRenderTarget</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"> </span><span class="n">Context</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+
+<span class="n">FLinearColor</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">GetTeamColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">CurrentAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">IGenericTeamAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentAgent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Actor is null&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">WorldSettings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorldSettings</span><span class="o">-&gt;</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">CurrentAgent</span><span class="o">-&gt;</span><span class="n">GetGenericTeamId</span><span class="p">().</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TeamInfo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">TeamInfo</span><span class="o">-&gt;</span><span class="n">Color</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;TeamInfo Missing&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FLinearColor</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">GetTeamAptitudeColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">LocalAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">IGenericTeamAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerController</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">CurrentAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">IGenericTeamAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentAgent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Actor is null&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">LocalAgent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PlayerController</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Local Player Controller (%s) does not implement IGenericTeamAgentInterface&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">GetClass</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetName</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalAgent</span><span class="o">-&gt;</span><span class="n">GetTeamAttitudeTowards</span><span class="p">(</span><span class="o">*</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">Attitude</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ETeamAttitude</span><span class="o">::</span><span class="no">Friendly</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FriendlyColor</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ETeamAttitude</span><span class="o">::</span><span class="no">Neutral</span><span class="p">:</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">NeutralColor</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ETeamAttitude</span><span class="o">::</span><span class="no">Hostile</span><span class="p">:</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">HostileColor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FLinearColor</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">GetColor</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="n">ColorMode</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_MinimapColorMode</span><span class="o">::</span><span class="no">TeamColors</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetTeamColor</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_MinimapColorMode</span><span class="o">::</span><span class="no">TeamAptitude</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetTeamAptitudeColor</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKMinimapVolume</span><span class="o">::</span><span class="n">DrawActorCompoment</span><span class="p">(</span><span class="n">UGKMinimapComponent</span><span class="w"> </span><span class="o">*</span><span class="n">Compoment</span><span class="p">,</span><span class="w"> </span><span class="n">UCanvas</span><span class="w"> </span><span class="o">*</span><span class="n">Canvas</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">AActor</span><span class="w"> </span><span class="o">*</span><span class="n">Actor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">GetOwner</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// If the actor is hidden then it will not show on the minimap</span>
+<span class="w">    </span><span class="c1">// hidden is driven my the fog of war</span>
+<span class="w">    </span><span class="c1">// this a hacker modify the hidden flag it will just show the last known value</span>
+<span class="w">    </span><span class="c1">// as the actor is not replicated when not visible anyway</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">IsHidden</span><span class="p">()){</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetScreenCoordinate</span><span class="p">(</span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">Size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.f</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">Canvas</span><span class="o">-&gt;</span><span class="n">K2_DrawMaterial</span><span class="p">(</span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UMaterialInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">Material</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetColor</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">ColorName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Color&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">MaterialInstance</span><span class="o">-&gt;</span><span class="n">SetVectorParameterValue</span><span class="p">(</span><span class="n">ColorName</span><span class="p">,</span><span class="w"> </span><span class="n">FVector4</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">A</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Canvas</span><span class="o">-&gt;</span><span class="n">K2_DrawMaterial</span><span class="p">(</span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UMaterialInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">MaterialInstance</span><span class="p">),</span><span class="w"></span>
 <span class="w">                            </span><span class="n">Start</span><span class="p">,</span><span class="w">                                   </span><span class="c1">// Screen Position</span>
 <span class="w">                            </span><span class="n">FVector2D</span><span class="o">::</span><span class="n">UnitVector</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Compoment</span><span class="o">-&gt;</span><span class="n">Size</span><span class="p">,</span><span class="w"> </span><span class="c1">// Screen Size</span>
 <span class="w">                            </span><span class="n">FVector2D</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">),</span><span class="w">                     </span><span class="c1">// Coordinate</span>
 <span class="w">                            </span><span class="n">FVector2D</span><span class="o">::</span><span class="n">UnitVector</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Coordinate Size</span>
-<span class="w">                            </span><span class="mf">0.f</span><span class="p">,</span><span class="w">                                     </span><span class="c1">// Rotation</span>
+<span class="w">                            </span><span class="o">-</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorRotation</span><span class="p">().</span><span class="n">Yaw</span><span class="p">,</span><span class="w">         </span><span class="c1">// Rotation</span>
 <span class="w">                            </span><span class="n">FVector2D</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">)</span><span class="w">                    </span><span class="c1">// Pivot</span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -228,7 +372,7 @@
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Map size too small (%.2f x %.2f)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Map size too small (%.2f x %.2f)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">MapSize</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">        </span><span class="c1">// If size == 0 it will trigger assert on the RHI side</span>
 <span class="w">        </span><span class="n">MapSize</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.f</span><span class="p">;</span><span class="w"></span>

@@ -1,9 +1,10 @@
 <map id="Source/Gamekit/Minimap/GKMinimapVolume.h" name="Source/Gamekit/Minimap/GKMinimapVolume.h">
-<area shape="rect" id="node1" title=" " alt="" coords="283,5,469,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="385,5,572,47"/>
 <area shape="rect" id="node2" href="$Gamekit_8h.html" title=" " alt="" coords="102,102,253,129"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,184,123,211"/>
 <area shape="rect" id="node5" title=" " alt="" coords="277,102,475,129"/>
 <area shape="rect" id="node6" title=" " alt="" coords="499,95,664,136"/>
-<area shape="rect" id="node7" title=" " alt="" coords="688,102,917,129"/>
+<area shape="rect" id="node7" title=" " alt="" coords="689,102,903,129"/>
+<area shape="rect" id="node8" title=" " alt="" coords="928,102,1157,129"/>
 <area shape="rect" id="node4" title=" " alt="" coords="147,184,344,211"/>
 </map>

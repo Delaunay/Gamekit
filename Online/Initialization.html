@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -124,7 +124,26 @@ which gets replicated down.</p>
 <li><p>[HNSPlayerController_C_0] Client 2: BeginPlay       &lt;—+</p></li>
 <li><p>[HNSPlayerController_C_1] Server: TeamAssigned      &lt;-+</p></li>
 <li><p>[HNSPlayerController_C_0] Client 2: TeamAssigned    &lt;-+</p></li>
+<li><p>Team assignment could happen in <code class="docutils literal notranslate"><span class="pre">InitNewPlayer</span></code> for matchmaking
+Get the team from the options,</p></li>
 </ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FString</span><span class="w"> </span><span class="n">InName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGameplayStatics</span><span class="o">::</span><span class="n">ParseOption</span><span class="p">(</span><span class="n">Options</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">)).</span><span class="n">Left</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">InName</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">())</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">InName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Printf</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;%s%i&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">DefaultPlayerName</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"> </span><span class="n">NewPlayerController</span><span class="o">-&gt;</span><span class="n">PlayerState</span><span class="o">-&gt;</span><span class="n">GetPlayerId</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can initialize actor very early using <cite>OnActorPreSpawnInitialization</cite>
+problem is we lack the Start info</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Broadcast delegate before the actor and its contained components are initialized</span>
+<span class="n">OnActorPreSpawnInitialization</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">Actor</span><span class="o">-&gt;</span><span class="n">PostSpawnInitialize</span><span class="p">(</span><span class="n">UserTransform</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnParameters</span><span class="p">.</span><span class="n">Owner</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnParameters</span><span class="p">.</span><span class="n">Instigator</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnParameters</span><span class="p">.</span><span class="n">IsRemoteOwned</span><span class="p">(),</span><span class="w"> </span><span class="n">SpawnParameters</span><span class="p">.</span><span class="n">bNoFail</span><span class="p">,</span><span class="w"> </span><span class="n">SpawnParameters</span><span class="p">.</span><span class="n">bDeferConstruction</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
 
 
            </div>

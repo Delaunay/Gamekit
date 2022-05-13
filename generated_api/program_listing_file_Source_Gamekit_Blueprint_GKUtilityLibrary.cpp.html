@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -607,6 +607,25 @@
 <span class="w">    </span><span class="c1">// auto Connection = Driver-&gt;ServerConnection;</span>
 <span class="p">}</span><span class="w"></span>
 
+<span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetFirstLocalPlayerController</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">FConstPlayerControllerIterator</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetPlayerControllerIterator</span><span class="p">();</span><span class="w"> </span><span class="n">Iterator</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">Iterator</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iterator</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PlayerController</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ULocalPlayer</span><span class="o">*</span><span class="w"> </span><span class="n">LocalPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">ULocalPlayer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">Player</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">LocalPlayer</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">PlayerController</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="n">FString</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetNetworkPrefix</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Prefix</span><span class="p">;</span><span class="w"></span>

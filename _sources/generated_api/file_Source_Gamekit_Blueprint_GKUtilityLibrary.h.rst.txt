@@ -63,6 +63,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_GKGameMode.cpp`
 
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.cpp`
+
 - :ref:`file_Source_GamekitTestSuite_Blueprint_GKUtilityLibraryTest.cpp`
 
 

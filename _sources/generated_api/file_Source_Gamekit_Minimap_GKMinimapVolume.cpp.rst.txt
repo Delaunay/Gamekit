@@ -37,6 +37,12 @@ Includes
 
 - ``Engine/CanvasRenderTarget2D.h``
 
+- ``Gamekit/Blueprint/GKCoordinateLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h`)
+
+- ``Gamekit/Blueprint/GKUtilityLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`)
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
 - ``Gamekit/Minimap/GKMinimapComponent.h`` (:ref:`file_Source_Gamekit_Minimap_GKMinimapComponent.h`)
 
 - ``Gamekit/Minimap/GKMinimapVolume.h`` (:ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.h`)

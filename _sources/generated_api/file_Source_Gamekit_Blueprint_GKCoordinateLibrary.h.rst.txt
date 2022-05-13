@@ -51,6 +51,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_RayCasting_V3.cpp`
 
+- :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.cpp`
+
 
 
 

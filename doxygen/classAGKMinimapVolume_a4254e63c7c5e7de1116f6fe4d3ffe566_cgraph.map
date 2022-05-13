@@ -1,4 +1,7 @@
 <map id="AGKMinimapVolume::DrawActorCompoment" name="AGKMinimapVolume::DrawActorCompoment">
-<area shape="rect" id="node1" title="Draw a single component on the given canvas." alt="" coords="5,5,237,47"/>
-<area shape="rect" id="node2" href="$classAGKMinimapVolume.html#a565f4dbe73f251ac2d49189aa016178b" title="Returns the screen (Pixel) coordinate given a world coordinates." alt="" coords="285,5,516,47"/>
+<area shape="rect" id="node1" title="Draw a single component on the given canvas." alt="" coords="5,68,237,109"/>
+<area shape="rect" id="node2" href="$classAGKMinimapVolume.html#a417a2861483a44c9e347b8621158e60b" title=" " alt="" coords="290,46,511,73"/>
+<area shape="rect" id="node5" href="$classAGKMinimapVolume.html#a565f4dbe73f251ac2d49189aa016178b" title="Returns the screen (Pixel) coordinate given a world coordinates." alt="" coords="285,97,516,139"/>
+<area shape="rect" id="node3" href="$classAGKMinimapVolume.html#aa6c0506199989d1ad9393b12d5b6131d" title=" " alt="" coords="564,5,787,47"/>
+<area shape="rect" id="node4" href="$classAGKMinimapVolume.html#ace245198b4c8c7db4deaf76384ec6952" title=" " alt="" coords="564,71,787,112"/>
 </map>

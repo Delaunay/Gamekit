@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                fb91cdbd
+                29878247
 
               </div>
 <div role="search">
@@ -151,6 +151,8 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnReplicationPausedChanged</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">bIsReplicationPaused</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FLifetimeProperty</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">OutLifetimeProps</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">BeginPlay</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PossessedBy</span><span class="p">(</span><span class="n">AController</span><span class="w"> </span><span class="o">*</span><span class="n">NewController</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
@@ -161,21 +163,9 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Delta</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FLifetimeProperty</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OutLifetimeProps</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Implement IAbilitySystemInterface</span>
-<span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilitySystemComponent</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">GetCharacterLevel</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">SetCharacterLevel</span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">NewLevel</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnHealthChanged_Native</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FOnAttributeChangeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ClearGameplayAbilities</span><span class="p">();</span><span class="w"></span>
-
+<span class="w">    </span><span class="c1">// ========================================================================</span>
+<span class="w">    </span><span class="c1">//  Dying</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Death</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsDead</span><span class="p">();</span><span class="w"></span>
 
@@ -186,8 +176,13 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ReceiveDeath</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnDeath_Native</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 
+
+
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 <span class="w">    </span><span class="c1">// IGKSelectableInterface</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UnitSelection&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">Deselect</span><span class="p">();</span><span class="w"></span>
 
@@ -199,29 +194,24 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UnitSelection&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnDeselect</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// -------</span>
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 
-<span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Replicated</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">CharacterLevel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">PostInitProperties</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">UGKAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">UGKAttributeSet</span><span class="w"> </span><span class="o">*</span><span class="n">AttributeSet</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Friended to allow access to handle functions above</span>
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAttributeSet</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAbilitySystemComponent</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddPassiveEffect</span><span class="p">(</span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">Effect</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="cm">/* Game Play Ability System</span>
-<span class="cm">     * --------------------------------------------------------------------------------------- */</span><span class="w"></span>
-<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Bind the abilities to inputs</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">UInputComponent</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">UInputComponent</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">InputsBound</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ========================================================================</span>
+<span class="w">    </span><span class="c1">// Game Play Ability System</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abilities|Move&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">MoveToLocation</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">loc</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKAttributeSet</span><span class="o">*</span><span class="w"> </span><span class="n">GetAttributeSet</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">GrantAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityClass</span><span class="p">);</span><span class="w"></span>
@@ -232,68 +222,94 @@
 <span class="w">    </span><span class="c1">// Allow to rebind abilities</span>
 <span class="w">    </span><span class="c1">// void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);</span>
 
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;On New Ability&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ReceiveNewAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="n">NewAbilAbilitySpecity</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnNewAbility_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">ActivateAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">MoveToLocation</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">loc</span><span class="p">);</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">AbilityCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">UGKAttributeSet</span><span class="w"> </span><span class="o">*</span><span class="n">GetAttributeSet</span><span class="p">();</span><span class="w"></span>
-
+<span class="w">    </span><span class="c1">// Slot</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKGameplayAbility</span><span class="w"> </span><span class="o">*</span><span class="n">GetAbilityInstance</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">GetAbilityHandle</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// DataTable</span>
-<span class="w">    </span><span class="c1">// ---------</span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">ActivateAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Friended to allow access to handle functions above</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAttributeSet</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAbilitySystemComponent</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddPassiveEffect</span><span class="p">(</span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Implement IAbilitySystemInterface</span>
+<span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="o">*</span><span class="w"> </span><span class="nf">GetAbilitySystemComponent</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">GetCharacterLevel</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">SetCharacterLevel</span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">NewLevel</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;On New Ability&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ReceiveNewAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="n">NewAbilAbilitySpecity</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnNewAbility_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnHealthChanged_Native</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FOnAttributeChangeData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ClearGameplayAbilities</span><span class="p">();</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGKAbilitySlot</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Replicated</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">CharacterLevel</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKAbilitySystemComponent</span><span class="o">*</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKAttributeSet</span><span class="o">*</span><span class="w"> </span><span class="n">AttributeSet</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ========================================================================</span>
+
+
+
+<span class="w">    </span><span class="c1">// ========================================================================</span>
+<span class="w">    </span><span class="c1">// Data Driven Hooks</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="k">protected</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Unit|Data&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="w"> </span><span class="o">*</span><span class="n">UnitDataTable</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">UnitDataTable</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Unit|Data&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">UnitRowName</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">Category</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Unit|Data&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GetUnitStatic&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">meta</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ScriptName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GetUnitStatic&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">K2_GetUnitStatic</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UnitStatic</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Valid</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKUnitStatic</span><span class="o">*</span><span class="w"> </span><span class="n">UnitStatic</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">*</span><span class="nf">GetUnitStatic</span><span class="p">();</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Unit|Data&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GetUnitStatic&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ScriptName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GetUnitStatic&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">K2_GetUnitStatic</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="o">&amp;</span><span class="w"> </span><span class="n">UnitStatic</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Valid</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKUnitStatic</span><span class="o">*</span><span class="w"> </span><span class="nf">GetUnitStatic</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnDataTableChanged_Native</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UnitDef</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKUnitStatic</span><span class="o">&amp;</span><span class="w"> </span><span class="n">UnitDef</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKUnitStatic</span><span class="w"> </span><span class="o">*</span><span class="n">UnitStatic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">PostInitProperties</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGKAbilitySlot</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilitySpecs</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">InputsBound</span><span class="p">;</span><span class="w"></span>
-
-<span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 <span class="w">    </span><span class="c1">// IGenericTeamAgentInterface</span>
-<span class="w">    </span><span class="c1">// --------------------------</span>
-
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="k">protected</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">replicated</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ReplicatedUsing</span><span class="o">=</span><span class="n">OnRep_Team</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">Team</span><span class="p">;</span><span class="w"></span>
 
 <span class="k">public</span><span class="o">:</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnRep_Team</span><span class="p">();</span><span class="w"></span>
 
@@ -304,6 +320,8 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;OnTeamAssigned&quot;</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ReceiveTeamAssigned</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">NewTeam</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ========================================================================</span>
 
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bPreviousVisibility</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
