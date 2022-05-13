@@ -495,6 +495,25 @@ FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldConte
     // auto Connection = Driver->ServerConnection;
 }
 
+APlayerController* UGKUtilityLibrary::GetFirstLocalPlayerController(const UObject* WorldContextObject) {
+    UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
+
+    for (FConstPlayerControllerIterator Iterator = World->GetPlayerControllerIterator(); Iterator; ++Iterator)
+    {
+        APlayerController* PlayerController = Iterator->Get();
+        if (PlayerController)
+        {
+            ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(PlayerController->Player);
+
+            if (LocalPlayer)
+            {
+                return PlayerController;
+            }
+        }
+    }
+
+    return nullptr;
+}
 
 FString UGKUtilityLibrary::GetNetworkPrefix(const UObject* WorldContextObject) {
     FString Prefix;

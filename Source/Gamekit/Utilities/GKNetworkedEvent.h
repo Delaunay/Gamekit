@@ -104,13 +104,13 @@ private:
 UINTERFACE()
 class GAMEKIT_API UActorReadyInterface : public UInterface
 {
-	GENERATED_UINTERFACE_BODY()
+    GENERATED_UINTERFACE_BODY()
 };
 
 
 class GAMEKIT_API IActorReadyInterface
 {
-	GENERATED_IINTERFACE_BODY()
+    GENERATED_IINTERFACE_BODY()
 
     virtual void RecordEvent(FName Name){
         GetReadyEventGather().RecordEvent(Name);

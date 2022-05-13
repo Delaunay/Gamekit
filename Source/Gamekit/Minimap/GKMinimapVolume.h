@@ -9,9 +9,19 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Volume.h"
 #include "Runtime/Core/Public/HAL/ThreadingBase.h"
+#include "GenericTeamAgentInterface.h"
 
 // Generated
 #include "GKMinimapVolume.generated.h"
+
+
+UENUM(BlueprintType)
+enum class EGK_MinimapColorMode : uint8
+{
+    TeamColors   UMETA(DisplayName = "TeamColors"),
+    TeamAptitude UMETA(DisplayName = "TeamAptitude"),
+};
+
 
 struct FGKFactionMinimap
 {
@@ -61,9 +71,8 @@ class GAMEKIT_API AGKMinimapVolume: public AVolume
     // This generate a separate texture from the Fog Of War Volume
     // You can combine them using a material
 
-    //! Represents how often the Minimap is redrawn
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minimap|Async")
-    float FramePerSeconds;
+    float LimitFramePerSeconds;
 
     //! Texture used to render component on the minimap
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Minimap)
@@ -111,6 +120,20 @@ class GAMEKIT_API AGKMinimapVolume: public AVolume
     UFUNCTION(BlueprintPure, Category = Coordinate)
     inline FVector2D GetScreenCoordinate(FVector loc) const { return GetTextureCoordinate(loc) * GetTextureSize(); }
 
+    void DrawControllerFieldOfView(UCanvas* Canvas, FVector2D TextureSize);
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap|Field of View")
+    bool bDrawControllerFieldOfView;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap|Field of View")
+    FLinearColor FieldOfViewColor;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap|Field of View")
+    float FieldOfViewTickness;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Minimap|Field of View")
+    TEnumAsByte<ETraceTypeQuery> GroundChannel;
+
     //! Returns the volume size
     UFUNCTION(BlueprintPure, Category = Coordinate)
     inline FVector2D GetMapSize() const { return MapSize; }
@@ -133,10 +156,34 @@ class GAMEKIT_API AGKMinimapVolume: public AVolume
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
     TSubclassOf<AActor> AllowClass;
 
-    private:
-    TMap<FName, FGKFactionMinimap> FactionMinimap;
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    EGK_MinimapColorMode ColorMode;
 
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor FriendlyColor;
+
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor NeutralColor;
+
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    FLinearColor HostileColor;
+
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    bool bCaptureTerrainOnce;
+
+    FLinearColor GetColor(AActor* Actor);
+    FLinearColor GetTeamAptitudeColor(AActor* Actor);
+    FLinearColor GetTeamColor(AActor* Actor);
+
+    private:
+    TMap<FGenericTeamId, FGKFactionMinimap> FactionMinimap;
+
+    // bool                                bCaptureOnce;
     FCriticalSection                    Mutex; // Mutex to sync adding/removing components with the fog compute
     FVector2D                           MapSize;
     TArray<class UGKMinimapComponent *> ActorComponents;
+    float                               DeltaAccumulator;
+
+
+    APlayerController* PlayerController;
 };

@@ -59,6 +59,8 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     void OnReplicationPausedChanged(bool bIsReplicationPaused);
 
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
     virtual void BeginPlay() override;
 
     virtual void PossessedBy(AController *NewController) override;
@@ -69,23 +71,9 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     void Tick(float Delta) override;
 
-    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
-
-    // Implement IAbilitySystemInterface
-    UAbilitySystemComponent *GetAbilitySystemComponent() const override;
-
-    /** Returns the character level that is passed to the ability system */
-    UFUNCTION(BlueprintCallable)
-    virtual int32 GetCharacterLevel() const;
-
-    /** Modifies the character level, this may change abilities. Returns true on success */
-    UFUNCTION(BlueprintCallable)
-    virtual bool SetCharacterLevel(int32 NewLevel);
-
-    virtual void OnHealthChanged_Native(const FOnAttributeChangeData &Data);
-
-    void ClearGameplayAbilities();
-
+    // ========================================================================
+    //  Dying
+    // ------------------------------------------------------------------------
     UFUNCTION(BlueprintPure, Category = Death)
     bool IsDead();
 
@@ -96,8 +84,13 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     void ReceiveDeath();
 
     void OnDeath_Native();
+    // ========================================================================
+ 
 
+
+    // ========================================================================
     // IGKSelectableInterface
+    // ------------------------------------------------------------------------
     UFUNCTION(BlueprintCallable, Category = "UnitSelection")
     void Deselect();
 
@@ -109,32 +102,24 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     UFUNCTION(BlueprintImplementableEvent, Category = "UnitSelection")
     void OnDeselect();
-    // -------
+    // ========================================================================
 
-    protected:
-    /** The level of this character, should not be modified directly once it has already spawned */
-    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
-    int32 CharacterLevel;
+    void PostInitProperties() override;
 
-    /** The component used to handle ability system interactions */
-    UPROPERTY()
-    UGKAbilitySystemComponent *AbilitySystemComponent;
-
-    /** List of attributes modified by the ability system */
-    UPROPERTY()
-    UGKAttributeSet *AttributeSet;
-
-    // Friended to allow access to handle functions above
-    friend class UGKAttributeSet;
-    friend class UGKAbilitySystemComponent;
-
-    void AddPassiveEffect(UGameplayEffect *Effect);
-
-    /* Game Play Ability System
-     * --------------------------------------------------------------------------------------- */
-    public:
     // Bind the abilities to inputs
-    void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override;
+    void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+    bool InputsBound;
+
+    // ========================================================================
+    // Game Play Ability System
+    // ------------------------------------------------------------------------
+public:
+    UFUNCTION(BlueprintCallable, Category = "Abilities|Move")
+    void MoveToLocation(FVector loc);
+
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    UGKAttributeSet* GetAttributeSet();
 
     //! Can only be called by the Authority,
     UFUNCTION(BlueprintCallable, Category = Abilities)
@@ -146,74 +131,105 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
     // Allow to rebind abilities
     // void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);
 
-    UFUNCTION(BlueprintImplementableEvent, Category = "Ability", meta = (DisplayName = "On New Ability"))
-    void ReceiveNewAbility(FGameplayAbilitySpec NewAbilAbilitySpecity);
-
-    //! Client side register the granted ability
-    void OnNewAbility_Native(FGameplayAbilitySpec &AbilitySpec);
-
-    //! Low level ability activation
-    UFUNCTION(BlueprintCallable, Category = Abilities)
-    bool ActivateAbility(FGKAbilitySlot Slot);
-
-    UFUNCTION(BlueprintCallable, Category = Abilities)
-    void MoveToLocation(FVector loc);
-
     UFUNCTION(BlueprintCallable, Category = Abilities)
     int AbilityCount() const;
 
-    UFUNCTION(BlueprintCallable, Category = Abilities)
-    UGKAttributeSet *GetAttributeSet();
-
+    // Slot
     UFUNCTION(BlueprintCallable, Category = Abilities)
     UGKGameplayAbility *GetAbilityInstance(FGKAbilitySlot Slot);
 
     UFUNCTION(BlueprintCallable, Category = Abilities)
     FGameplayAbilitySpecHandle GetAbilityHandle(FGKAbilitySlot Slot);
 
-    // DataTable
-    // ---------
+    //! Low level ability activation
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    bool ActivateAbility(FGKAbilitySlot Slot);
+
+    // Friended to allow access to handle functions above
+    friend class UGKAttributeSet;
+    friend class UGKAbilitySystemComponent;
+
+    void AddPassiveEffect(UGameplayEffect* Effect);
+
+    // Implement IAbilitySystemInterface
+    UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+    /** Returns the character level that is passed to the ability system */
+    UFUNCTION(BlueprintCallable)
+    virtual int32 GetCharacterLevel() const;
+
+    /** Modifies the character level, this may change abilities. Returns true on success */
+    UFUNCTION(BlueprintCallable)
+    virtual bool SetCharacterLevel(int32 NewLevel);
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "Ability", meta = (DisplayName = "On New Ability"))
+    void ReceiveNewAbility(FGKAbilitySlot Slot, FGameplayAbilitySpec NewAbilAbilitySpecity);
+
+    //! Client side register the granted ability
+    void OnNewAbility_Native(FGameplayAbilitySpec& AbilitySpec);
+
+    virtual void OnHealthChanged_Native(const FOnAttributeChangeData& Data);
+
+    void ClearGameplayAbilities();
+protected:
+    TMap<FGKAbilitySlot, FGameplayAbilitySpec> AbilitySpecs;
+
+    /** The level of this character, should not be modified directly once it has already spawned */
+    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
+    int32 CharacterLevel;
+
+    /** The component used to handle ability system interactions */
+    UPROPERTY()
+    UGKAbilitySystemComponent* AbilitySystemComponent;
+
+    /** List of attributes modified by the ability system */
+    UPROPERTY()
+    UGKAttributeSet* AttributeSet;
+    // ========================================================================
+
+
+
+    // ========================================================================
+    // Data Driven Hooks
+    // ------------------------------------------------------------------------
+protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Unit|Data")
-    class UDataTable *UnitDataTable;
+    class UDataTable* UnitDataTable;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Unit|Data")
     FName UnitRowName;
 
-    UFUNCTION(BlueprintCallable,
-              Category    = "Unit|Data",
-              DisplayName = "GetUnitStatic",
-              meta        = (ScriptName = "GetUnitStatic"))
-    void K2_GetUnitStatic(FGKUnitStatic &UnitStatic, bool &Valid);
+    //! Cached lookup
+    FGKUnitStatic* UnitStatic;
 
-    FGKUnitStatic *GetUnitStatic();
+public:
+    UFUNCTION(BlueprintCallable,
+        Category = "Unit|Data",
+        DisplayName = "GetUnitStatic",
+        meta = (ScriptName = "GetUnitStatic"))
+    void K2_GetUnitStatic(FGKUnitStatic& UnitStatic, bool& Valid);
+
+    FGKUnitStatic* GetUnitStatic();
 
     UFUNCTION()
     void OnDataTableChanged_Native();
 
     //! Called everytime the Static data is loaded (init & reimport)
     //! Needs to be called after ASC get initialized with its Actor info
-    virtual void LoadFromDataTable(FGKUnitStatic &UnitDef);
+    virtual void LoadFromDataTable(FGKUnitStatic& UnitDef);
 
-    //! Cached lookup
-    FGKUnitStatic *UnitStatic;
+    // ========================================================================
 
-    void PostInitProperties() override;
 
-    protected:
-    TMap<FGKAbilitySlot, FGameplayAbilitySpec> AbilitySpecs;
-
-    bool InputsBound;
-
-protected:
+    // ========================================================================
     // IGenericTeamAgentInterface
-    // --------------------------
-    
+    // ------------------------------------------------------------------------
+protected:
     //! This is set by the Player Controller on possession
     UPROPERTY(replicated, BlueprintReadOnly, Category = "Team", ReplicatedUsing=OnRep_Team)
     FGenericTeamId Team;
 
 public:
-
     UFUNCTION()
     void OnRep_Team();
 
@@ -225,6 +241,8 @@ public:
 
     UFUNCTION(BlueprintImplementableEvent, Category = "Team", meta = (DisplayName = "OnTeamAssigned"))
     void ReceiveTeamAssigned(FGenericTeamId NewTeam);
+
+    // ========================================================================
 
     bool bPreviousVisibility;
 };

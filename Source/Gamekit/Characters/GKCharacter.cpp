@@ -444,7 +444,7 @@ void AGKCharacterBase::OnNewAbility_Native(FGameplayAbilitySpec &AbilitySpec)
            *UEnum::GetValueAsString(EGK_MOBA_AbilityInputID(AbilitySpec.InputID)));
 
     AbilitySpecs.Add(Id, AbilitySpec);
-    ReceiveNewAbility(AbilitySpec);
+    ReceiveNewAbility(Id, AbilitySpec);
 }
 
 bool AGKCharacterBase::ActivateAbility(FGKAbilitySlot Slot)
