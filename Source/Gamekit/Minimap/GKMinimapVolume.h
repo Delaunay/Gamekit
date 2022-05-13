@@ -168,6 +168,9 @@ class GAMEKIT_API AGKMinimapVolume: public AVolume
     UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
     FLinearColor HostileColor;
 
+    UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Minimap")
+    bool bCaptureTerrainOnce;
+
     FLinearColor GetColor(AActor* Actor);
     FLinearColor GetTeamAptitudeColor(AActor* Actor);
     FLinearColor GetTeamColor(AActor* Actor);

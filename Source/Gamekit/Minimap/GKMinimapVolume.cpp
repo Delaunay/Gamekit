@@ -76,6 +76,10 @@ void AGKMinimapVolume::BeginPlay()
             GK_WARNING(TEXT("AGKMinimapVolume::ShowOnlyActors element %d th is none"), i);
         }
     }
+
+    if (bCaptureTerrainOnce) {
+        MinimapCapture->CaptureScene();
+    }
 }
 
 void AGKMinimapVolume::Tick(float Delta) { 
@@ -133,7 +137,9 @@ void AGKMinimapVolume::DrawMinimap()
         return;
     }
 
-    MinimapCapture->CaptureScene();
+    if (!bCaptureTerrainOnce) {
+        MinimapCapture->CaptureScene();
+    }
 
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), MinimapCanvas, Canvas, Size, Context);
 
