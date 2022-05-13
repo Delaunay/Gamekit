@@ -6,6 +6,7 @@
 #include "Gamekit/GKLog.h"
 #include "Gamekit/Minimap/GKMinimapComponent.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 
 // Unreal Engine
 #include "Components/BrushComponent.h"
@@ -37,11 +38,15 @@ AGKMinimapVolume::AGKMinimapVolume()
 
     PrimaryActorTick.bCanEverTick = true;
     bMinimapEnabled               = true;
-    FramePerSeconds               = 30.f;
+    LimitFramePerSeconds          = 30.f;
+    bDrawControllerFieldOfView    = true;
 
+    FieldOfViewTickness = 5;
     FriendlyColor = FLinearColor(0, 1, 0, 1);
     NeutralColor = FLinearColor(0, 0, 1, 1);
     HostileColor = FLinearColor(1, 0, 0, 1);
+    FieldOfViewColor = FLinearColor(0, 1, 1, 1);
+    DeltaAccumulator = 0;
 
     AllowClass = ALandscape::StaticClass();
 }
@@ -63,13 +68,61 @@ void AGKMinimapVolume::BeginPlay()
     Super::BeginPlay();
 
     UpdateSizes();
+
+    for (int i = 0; i < ShowOnlyActors.Num(); i++) {
+        AActor* Actor = ShowOnlyActors[i];
+
+        if (Actor == nullptr){
+            GK_WARNING(TEXT("AGKMinimapVolume::ShowOnlyActors element %d th is none"), i);
+        }
+    }
 }
 
-void AGKMinimapVolume::Tick(float Delta) { DrawMinimap(); }
+void AGKMinimapVolume::Tick(float Delta) { 
+    if (GetNetMode() == ENetMode::NM_DedicatedServer) {
+        return;
+    }
+
+    DeltaAccumulator += Delta;
+
+    if (DeltaAccumulator < 1 / LimitFramePerSeconds)
+    {
+        return;
+    }
+    DeltaAccumulator = 0;
+
+    DrawMinimap(); 
+}
+
+
+void AGKMinimapVolume::DrawControllerFieldOfView(UCanvas* Canvas, FVector2D TextureSize){
+    if (PlayerController == nullptr) {
+        return;
+    }
+
+    TArray<FVector> Corners;
+    Corners.Reserve(4);
+    UGKUtilityLibrary::GetControllerFieldOfView(GetWorld(), PlayerController, GroundChannel, Corners);
+
+    for (int i = 1; i < Corners.Num(); i++)
+    {
+        Canvas->K2_DrawLine(UGKCoordinateLibrary::ToScreenCoordinate(Corners[i - 1], MapSize, TextureSize),
+            UGKCoordinateLibrary::ToScreenCoordinate(Corners[i], MapSize, TextureSize),
+            FieldOfViewTickness,
+            FieldOfViewColor);
+    }
+
+    auto Last = Corners.Num() - 1;
+    Canvas->K2_DrawLine(UGKCoordinateLibrary::ToScreenCoordinate(Corners[Last], MapSize, TextureSize),
+        UGKCoordinateLibrary::ToScreenCoordinate(Corners[0], MapSize, TextureSize),
+        FieldOfViewTickness,
+        FieldOfViewColor);
+}
 
 void AGKMinimapVolume::DrawMinimap()
 {
     FScopeLock ScopeLock(&Mutex);
+    PlayerController = UGKUtilityLibrary::GetFirstLocalPlayerController(GetWorld());
 
     UCanvas *                  Canvas;
     FVector2D                  Size;
@@ -85,6 +138,10 @@ void AGKMinimapVolume::DrawMinimap()
     UKismetRenderingLibrary::BeginDrawCanvasToRenderTarget(GetWorld(), MinimapCanvas, Canvas, Size, Context);
 
     UKismetRenderingLibrary::ClearRenderTarget2D(GetWorld(), MinimapCanvas);
+
+    if (bDrawControllerFieldOfView){
+        DrawControllerFieldOfView(Canvas, Size);
+    }
 
     for (auto &Component: ActorComponents)
     {
@@ -123,7 +180,6 @@ FLinearColor AGKMinimapVolume::GetTeamColor(AActor* Actor) {
 
 
 FLinearColor AGKMinimapVolume::GetTeamAptitudeColor(AActor* Actor) {
-    auto PlayerController = UGKUtilityLibrary::GetFirstLocalPlayerController(GetWorld());
     auto LocalAgent = Cast<IGenericTeamAgentInterface>(PlayerController);
     auto CurrentAgent = Cast<IGenericTeamAgentInterface>(Actor);
 
@@ -133,7 +189,9 @@ FLinearColor AGKMinimapVolume::GetTeamAptitudeColor(AActor* Actor) {
     }
 
     if (LocalAgent == nullptr) {
-        GK_LOG(TEXT("Local Player Controller does not implement IGenericTeamAgentInterface"));
+        if (PlayerController){
+            GK_LOG(TEXT("Local Player Controller (%s) does not implement IGenericTeamAgentInterface"), *PlayerController->GetClass()->GetName());
+        }
         return FLinearColor(1, 1, 1, 0);
     }
 
@@ -161,6 +219,14 @@ FLinearColor AGKMinimapVolume::GetColor(AActor* Actor) {
 void AGKMinimapVolume::DrawActorCompoment(UGKMinimapComponent *Compoment, UCanvas *Canvas)
 {
     AActor *Actor = Compoment->GetOwner();
+
+    // If the actor is hidden then it will not show on the minimap
+    // hidden is driven my the fog of war
+    // this a hacker modify the hidden flag it will just show the last known value
+    // as the actor is not replicated when not visible anyway
+    if (Actor->IsHidden()){
+        return;
+    }
 
     auto Start = GetScreenCoordinate(Actor->GetActorLocation()) - Compoment->Size / 2.f;
 
