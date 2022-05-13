@@ -77,9 +77,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKGameplayAbility_8h_1ab4e847ee9b096ce1e987ffce5d00758a`
-
 - :ref:`exhale_function_GKGameplayAbility_8h_1ab1e0c9832cd6b4037d9b4d490f2cddc1`
+
+- :ref:`exhale_function_GKGameplayAbility_8h_1ab4e847ee9b096ce1e987ffce5d00758a`
 
 - :ref:`exhale_function_GKGameplayAbility_8h_1a861feaa684ae52fe639425e10b65e092`
 
