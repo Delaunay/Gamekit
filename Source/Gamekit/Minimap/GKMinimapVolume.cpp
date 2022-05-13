@@ -40,6 +40,7 @@ AGKMinimapVolume::AGKMinimapVolume()
     bMinimapEnabled               = true;
     LimitFramePerSeconds          = 30.f;
     bDrawControllerFieldOfView    = true;
+    bCaptureTerrainOnce           = true;
 
     FieldOfViewTickness = 5;
     FriendlyColor = FLinearColor(0, 1, 0, 1);

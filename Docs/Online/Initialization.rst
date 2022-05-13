@@ -40,3 +40,10 @@ which gets replicated down.
 	OnActorPreSpawnInitialization.Broadcast(Actor);
 
 	Actor->PostSpawnInitialize(UserTransform, SpawnParameters.Owner, SpawnParameters.Instigator, SpawnParameters.IsRemoteOwned(), SpawnParameters.bNoFail, SpawnParameters.bDeferConstruction);
+
+
+Match Quality:
+
+    Q = p * (1 - p) / var(player ratings)
+
+Quality is highest when p = 0.5 and player ratings close together
