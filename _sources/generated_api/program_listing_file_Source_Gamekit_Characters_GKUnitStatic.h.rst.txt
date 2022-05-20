@@ -92,4 +92,7 @@ Program Listing for File GKUnitStatic.h
    
        UPROPERTY(EditAnywhere, BlueprintReadWrite)
        TSubclassOf<UGKGameplayAbility> AbilityClass;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       int DefaultLevel;
    };

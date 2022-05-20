@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dedicated_1499',['Dedicated',['../classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html',1,'gamekit::commands::dedicated']]],
-  ['disable_1500',['Disable',['../classgamekit_1_1commands_1_1disable_1_1Disable.html',1,'gamekit::commands::disable']]],
-  ['docs_1501',['Docs',['../classgamekit_1_1commands_1_1docs_1_1Docs.html',1,'gamekit::commands::docs']]]
+  ['dedicated_1500',['Dedicated',['../classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html',1,'gamekit::commands::dedicated']]],
+  ['disable_1501',['Disable',['../classgamekit_1_1commands_1_1disable_1_1Disable.html',1,'gamekit::commands::disable']]],
+  ['docs_1502',['Docs',['../classgamekit_1_1commands_1_1docs_1_1Docs.html',1,'gamekit::commands::docs']]]
 ];
