@@ -58,3 +58,11 @@ float2 UnCenteredUV(float2 uv) {
         - (uv.y - 1) / 2.f
     );
 }
+
+
+//! Returns an angle between 0-1, where 1 is 360
+float NormalizedAngle(float Angle) {
+    int p = Angle < 0;
+    float pi2 = pi() * 2.f;
+    return (p * (Angle + pi2) + Angle * (1 - p)) / pi2;
+}

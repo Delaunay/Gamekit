@@ -87,4 +87,7 @@ struct GAMEKIT_API FGKInputAbilityPair
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<UGKGameplayAbility> AbilityClass;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int DefaultLevel;
 };

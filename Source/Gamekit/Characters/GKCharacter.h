@@ -123,7 +123,7 @@ public:
 
     //! Can only be called by the Authority,
     UFUNCTION(BlueprintCallable, Category = Abilities)
-    void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
+    void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass, int Level = 0);
 
     UFUNCTION(BlueprintCallable, Category = Abilities)
     void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);

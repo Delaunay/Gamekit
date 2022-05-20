@@ -370,17 +370,24 @@ bool AGKCharacterBase::SetCharacterLevel(int32 NewLevel)
     return false;
 }
 
-void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass) /* InputID -1 */
+void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass, int Level) /* InputID -1 */
 {
     // Only called with authority
     // This has input binding that should be customizable
     // 0 is None, The enum for AbilityInput starts at one
-    FGameplayAbilitySpec Spec =
-            FGameplayAbilitySpec(AbilityClass,
-                                 1,
-                                 static_cast<int32>(Slot.SlotNumber), // EGK_MOBA_AbilityInputID::Skill1 + offset
-                                 this);
-    FGameplayAbilitySpecHandle Handle = AbilitySystemComponent->GiveAbility(Spec);
+    FGameplayAbilitySpec Spec = FGameplayAbilitySpec(
+        AbilityClass,
+        Level,
+        static_cast<int32>(Slot.SlotNumber), // EGK_MOBA_AbilityInputID::Skill1 + offset
+        this
+    );
+
+    FGameplayAbilitySpecHandle Handle = GetAbilityHandle(Slot);
+    if (!Handle.IsValid()) {
+        Handle = AbilitySystemComponent->GiveAbility(Spec);
+    } else {
+        GK_LOG(TEXT("Ability was already granted"));
+    }
 }
 
 void AGKCharacterBase::EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass)
