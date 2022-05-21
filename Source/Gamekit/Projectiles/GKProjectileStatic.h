@@ -49,4 +49,8 @@ struct GAMEKIT_API FGKProjectileStatic: public FTableRowBase
     //! Max length before the actor destroy itself
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
     float Range;
+
+    //! Class this projectile will react(explode) to
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+    TSubclassOf<AActor> ValidTarget;
 };

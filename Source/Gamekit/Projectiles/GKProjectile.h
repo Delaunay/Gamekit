@@ -12,6 +12,7 @@
 // Generated
 #include "GKProjectile.generated.h"
 
+
 UCLASS(BlueprintType)
 class GAMEKIT_API AGKProjectile: public AGKAbilityEffectActor
 {
