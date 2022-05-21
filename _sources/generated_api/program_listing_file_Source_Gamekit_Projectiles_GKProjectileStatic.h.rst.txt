@@ -53,4 +53,7 @@ Program Listing for File GKProjectileStatic.h
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
        float Range;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);
+       TSubclassOf<AActor> ValidTarget;
    };

@@ -24,6 +24,7 @@ Program Listing for File GKProjectile.h
    // Generated
    #include "GKProjectile.generated.h"
    
+   
    UCLASS(BlueprintType)
    class GAMEKIT_API AGKProjectile: public AGKAbilityEffectActor
    {

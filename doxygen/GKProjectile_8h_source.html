@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">563c3935</span>
+   &#160;<span id="projectnumber">3ed5d8d0</span>
    </div>
   </td>
  </tr>
@@ -91,67 +91,68 @@ $(function() {
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Generated</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;GKProjectile.generated.h&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;UCLASS(BlueprintType)</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classAGKProjectile.html">   16</a></span>&#160;class GAMEKIT_API <a class="code" href="classAGKProjectile.html">AGKProjectile</a>: public <a class="code" href="classAGKAbilityEffectActor.html">AGKAbilityEffectActor</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Sets default values for this actor&#39;s properties</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classAGKProjectile.html">AGKProjectile</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Called when the game starts or when spawned</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> BeginPlay() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Called every frame</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Tick(<span class="keywordtype">float</span> DeltaTime) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> GetLifetimeReplicatedProps(TArray&lt;FLifetimeProperty&gt; &amp;OutLifetimeProps) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> InitProjectileMovement();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">   36</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structFGKProjectileStatic.html">FGKProjectileStatic</a> <a class="code" href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">ProjectileData</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">   39</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    FVector <a class="code" href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">Direction</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">   42</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    AActor *<a class="code" href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">Target</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">   46</a></span>&#160;    <span class="keyword">class </span>UProjectileMovementComponent *<a class="code" href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">ProjectileMovementComponent</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#ad17981839658268ca64376446e6f8964">   49</a></span>&#160;    float DistanceTravelled = 0.f;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a250f93eb292f4adc30909e3828e65723">   52</a></span>&#160;    FVector PreviousLoc;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;UCLASS(BlueprintType)</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classAGKProjectile.html">   17</a></span>&#160;class GAMEKIT_API <a class="code" href="classAGKProjectile.html">AGKProjectile</a>: public <a class="code" href="classAGKAbilityEffectActor.html">AGKAbilityEffectActor</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// Sets default values for this actor&#39;s properties</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classAGKProjectile.html">AGKProjectile</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Called when the game starts or when spawned</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> BeginPlay() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Called every frame</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Tick(<span class="keywordtype">float</span> DeltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> GetLifetimeReplicatedProps(TArray&lt;FLifetimeProperty&gt; &amp;OutLifetimeProps) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> InitProjectileMovement();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">   37</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="structFGKProjectileStatic.html">FGKProjectileStatic</a> <a class="code" href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">ProjectileData</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">   40</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    FVector <a class="code" href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">Direction</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">   43</a></span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Replicated, Category = Projectile);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    AActor *<a class="code" href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">Target</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Projectile);</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">   47</a></span>&#160;    <span class="keyword">class </span>UProjectileMovementComponent *<a class="code" href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">ProjectileMovementComponent</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#ad17981839658268ca64376446e6f8964">   50</a></span>&#160;    float DistanceTravelled = 0.f;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classAGKProjectile.html#a250f93eb292f4adc30909e3828e65723">   53</a></span>&#160;    FVector PreviousLoc;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassAGKProjectile_html_a575ccaf3e68c9062cf61506825a5b97d"><div class="ttname"><a href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">AGKProjectile::ProjectileMovementComponent</a></div><div class="ttdeci">class UProjectileMovementComponent * ProjectileMovementComponent</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:46</div></div>
-<div class="ttc" id="aclassAGKProjectile_html_a83ca13b96d6d6edc37dfd31de9d04b68"><div class="ttname"><a href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">AGKProjectile::Direction</a></div><div class="ttdeci">FVector Direction</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:39</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_a575ccaf3e68c9062cf61506825a5b97d"><div class="ttname"><a href="classAGKProjectile.html#a575ccaf3e68c9062cf61506825a5b97d">AGKProjectile::ProjectileMovementComponent</a></div><div class="ttdeci">class UProjectileMovementComponent * ProjectileMovementComponent</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:47</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_a83ca13b96d6d6edc37dfd31de9d04b68"><div class="ttname"><a href="classAGKProjectile.html#a83ca13b96d6d6edc37dfd31de9d04b68">AGKProjectile::Direction</a></div><div class="ttdeci">FVector Direction</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:40</div></div>
 <div class="ttc" id="astructFGKProjectileStatic_html_aa9ef03869fb501bb9ca215aeb3aacf58"><div class="ttname"><a href="structFGKProjectileStatic.html#aa9ef03869fb501bb9ca215aeb3aacf58">FGKProjectileStatic::HomingAcceleration</a></div><div class="ttdeci">float HomingAcceleration</div><div class="ttdef"><b>Definition:</b> GKProjectileStatic.h:42</div></div>
 <div class="ttc" id="aGKAbilityEffectActor_8h_html"><div class="ttname"><a href="GKAbilityEffectActor_8h.html">GKAbilityEffectActor.h</a></div></div>
-<div class="ttc" id="aclassAGKProjectile_html_a8bf7dfb4146786f1754ee47352b06aaf"><div class="ttname"><a href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">AGKProjectile::ProjectileData</a></div><div class="ttdeci">FGKProjectileStatic ProjectileData</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:36</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_a8bf7dfb4146786f1754ee47352b06aaf"><div class="ttname"><a href="classAGKProjectile.html#a8bf7dfb4146786f1754ee47352b06aaf">AGKProjectile::ProjectileData</a></div><div class="ttdeci">FGKProjectileStatic ProjectileData</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:37</div></div>
 <div class="ttc" id="aclassAGKProjectile_html_a3690dc11ac71d98292410289f184c3dd"><div class="ttname"><a href="classAGKProjectile.html#a3690dc11ac71d98292410289f184c3dd">AGKProjectile::BeginPlay</a></div><div class="ttdeci">virtual void BeginPlay() override</div><div class="ttdef"><b>Definition:</b> GKProjectile.cpp:23</div></div>
 <div class="ttc" id="aclassAGKProjectile_html_ac28c2a40d6ec68fe652ea8313bb8a89b"><div class="ttname"><a href="classAGKProjectile.html#ac28c2a40d6ec68fe652ea8313bb8a89b">AGKProjectile::Tick</a></div><div class="ttdeci">virtual void Tick(float DeltaTime) override</div><div class="ttdef"><b>Definition:</b> GKProjectile.cpp:37</div></div>
 <div class="ttc" id="aclassAGKProjectile_html_a68d40c7cbd965926d4b29d35a8bbdfc9"><div class="ttname"><a href="classAGKProjectile.html#a68d40c7cbd965926d4b29d35a8bbdfc9">AGKProjectile::AGKProjectile</a></div><div class="ttdeci">AGKProjectile()</div><div class="ttdef"><b>Definition:</b> GKProjectile.cpp:9</div></div>
 <div class="ttc" id="aGKProjectileStatic_8h_html_afd9e90c3cf6c1436d328ee750d950eb4ab04a8341537fac392bfd17776491d03c"><div class="ttname"><a href="GKProjectileStatic_8h.html#afd9e90c3cf6c1436d328ee750d950eb4ab04a8341537fac392bfd17776491d03c">EGK_ProjectileBehavior::Directional</a></div><div class="ttdeci">@ Directional</div></div>
 <div class="ttc" id="astructFGKProjectileStatic_html_a827802b432601d6ccef7409c5c16f36a"><div class="ttname"><a href="structFGKProjectileStatic.html#a827802b432601d6ccef7409c5c16f36a">FGKProjectileStatic::BaseSpeed</a></div><div class="ttdeci">float BaseSpeed</div><div class="ttdoc">Base projectile speed.</div><div class="ttdef"><b>Definition:</b> GKProjectileStatic.h:33</div></div>
 <div class="ttc" id="aclassAGKProjectile_html_a1285f50c705848474c40ab7a83003344"><div class="ttname"><a href="classAGKProjectile.html#a1285f50c705848474c40ab7a83003344">AGKProjectile::InitProjectileMovement</a></div><div class="ttdeci">void InitProjectileMovement()</div><div class="ttdef"><b>Definition:</b> GKProjectile.cpp:64</div></div>
-<div class="ttc" id="aclassAGKProjectile_html_ad17981839658268ca64376446e6f8964"><div class="ttname"><a href="classAGKProjectile.html#ad17981839658268ca64376446e6f8964">AGKProjectile::DistanceTravelled</a></div><div class="ttdeci">float DistanceTravelled</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:49</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_ad17981839658268ca64376446e6f8964"><div class="ttname"><a href="classAGKProjectile.html#ad17981839658268ca64376446e6f8964">AGKProjectile::DistanceTravelled</a></div><div class="ttdeci">float DistanceTravelled</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:50</div></div>
 <div class="ttc" id="astructFGKProjectileStatic_html_a498db6222d86d272aa0161deef6d96bf"><div class="ttname"><a href="structFGKProjectileStatic.html#a498db6222d86d272aa0161deef6d96bf">FGKProjectileStatic::Behavior</a></div><div class="ttdeci">EGK_ProjectileBehavior Behavior</div><div class="ttdoc">How the projectlie behave.</div><div class="ttdef"><b>Definition:</b> GKProjectileStatic.h:46</div></div>
-<div class="ttc" id="aclassAGKProjectile_html_a250f93eb292f4adc30909e3828e65723"><div class="ttname"><a href="classAGKProjectile.html#a250f93eb292f4adc30909e3828e65723">AGKProjectile::PreviousLoc</a></div><div class="ttdeci">FVector PreviousLoc</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:52</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_a250f93eb292f4adc30909e3828e65723"><div class="ttname"><a href="classAGKProjectile.html#a250f93eb292f4adc30909e3828e65723">AGKProjectile::PreviousLoc</a></div><div class="ttdeci">FVector PreviousLoc</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:53</div></div>
 <div class="ttc" id="aGKProjectile_8h_html"><div class="ttname"><a href="GKProjectile_8h.html">GKProjectile.h</a></div></div>
 <div class="ttc" id="aGKProjectileStatic_8h_html"><div class="ttname"><a href="GKProjectileStatic_8h.html">GKProjectileStatic.h</a></div></div>
 <div class="ttc" id="astructFGKProjectileStatic_html"><div class="ttname"><a href="structFGKProjectileStatic.html">FGKProjectileStatic</a></div><div class="ttdef"><b>Definition:</b> GKProjectileStatic.h:25</div></div>
 <div class="ttc" id="aclassAGKAbilityEffectActor_html"><div class="ttname"><a href="classAGKAbilityEffectActor.html">AGKAbilityEffectActor</a></div><div class="ttdef"><b>Definition:</b> GKAbilityEffectActor.h:18</div></div>
 <div class="ttc" id="aclassAGKProjectile_html_a20d97cd8d6ba30240c84cc00b9bd5a52"><div class="ttname"><a href="classAGKProjectile.html#a20d97cd8d6ba30240c84cc00b9bd5a52">AGKProjectile::GetLifetimeReplicatedProps</a></div><div class="ttdeci">void GetLifetimeReplicatedProps(TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const override</div><div class="ttdef"><b>Definition:</b> GKProjectile.cpp:59</div></div>
-<div class="ttc" id="aclassAGKProjectile_html_aa82442944c4acea14bde8af3ec0eef33"><div class="ttname"><a href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">AGKProjectile::Target</a></div><div class="ttdeci">AActor * Target</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:42</div></div>
-<div class="ttc" id="aclassAGKProjectile_html"><div class="ttname"><a href="classAGKProjectile.html">AGKProjectile</a></div><div class="ttdef"><b>Definition:</b> GKProjectile.h:16</div></div>
+<div class="ttc" id="aclassAGKProjectile_html_aa82442944c4acea14bde8af3ec0eef33"><div class="ttname"><a href="classAGKProjectile.html#aa82442944c4acea14bde8af3ec0eef33">AGKProjectile::Target</a></div><div class="ttdeci">AActor * Target</div><div class="ttdef"><b>Definition:</b> GKProjectile.h:43</div></div>
+<div class="ttc" id="aclassAGKProjectile_html"><div class="ttname"><a href="classAGKProjectile.html">AGKProjectile</a></div><div class="ttdef"><b>Definition:</b> GKProjectile.h:17</div></div>
 <div class="ttc" id="aGKProjectileStatic_8h_html_afd9e90c3cf6c1436d328ee750d950eb4aa6872d6e9346c20428a772226380abc6"><div class="ttname"><a href="GKProjectileStatic_8h.html#afd9e90c3cf6c1436d328ee750d950eb4aa6872d6e9346c20428a772226380abc6">EGK_ProjectileBehavior::UnitTarget</a></div><div class="ttdeci">@ UnitTarget</div></div>
 <div class="ttc" id="aGKHexGridUtilities_8cpp_html_aa9c384ac09b86a7c4936345caf7fabe8"><div class="ttname"><a href="GKHexGridUtilities_8cpp.html#aa9c384ac09b86a7c4936345caf7fabe8">Distance</a></div><div class="ttdeci">float Distance(FIntVector a, FIntVector b)</div><div class="ttdef"><b>Definition:</b> GKHexGridUtilities.cpp:109</div></div>
 <div class="ttc" id="astructFGKProjectileStatic_html_aa49254a3b842f249cb31323340b8760a"><div class="ttname"><a href="structFGKProjectileStatic.html#aa49254a3b842f249cb31323340b8760a">FGKProjectileStatic::Range</a></div><div class="ttdeci">float Range</div><div class="ttdoc">Max length before the actor destroy itself.</div><div class="ttdef"><b>Definition:</b> GKProjectileStatic.h:50</div></div>
