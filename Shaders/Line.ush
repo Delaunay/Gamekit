@@ -1,0 +1,31 @@
+#pragma once
+
+float DrawRectangle(float2 UV, float2 Center, float2 Size, float FallOFf) {
+    float v = distance(max(abs(UV - Center) - Size * 0.5, 0), float2(0, 0)) / FallOFf;
+    return 1 - clamp(v, 0, 1);
+}
+
+
+float2 Rotate2D(float2 UV, float2 Center, float Rot) {
+    // return UV;
+
+    float2 p = UV - Center;
+
+    float sr = sin(Rot * 6.283178);
+    float cr = cos(Rot * 6.283178);
+
+    // Rot Matrix
+    float2x2 mat = float2x2(
+        cr, -sr,
+        sr,  cr
+    );
+
+    return mul(p, mat) + Center;
+}
+
+float DrawLine(float2 UV, float2 Center, float2 Size, float FallOFf, float Rot) {
+    float2 UVRot = Rotate2D(UV, Center, Rot);
+
+    return DrawRectangle(UVRot, Center, Size, FallOFf);
+}
+
