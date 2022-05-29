@@ -1,0 +1,6 @@
+Localization
+============
+
+
+
+https://poedit.net/

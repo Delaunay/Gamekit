@@ -329,7 +329,10 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
         TargetTask->EndTask();
         TargetTask = nullptr;
     }
-    // ------------------
+
+    // cancel all the another abilities 
+    auto ASC = GetAbilitySystemComponentFromActorInfo();
+    ASC->CancelAbilities(nullptr, nullptr, this);
 
     //*
     // Both rotates to face target and move towarsd it
