@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -123,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="competitive">
-<h1>Competitive<a class="headerlink" href="#competitive" title="Permalink to this headline"></a></h1>
+<h1>Competitive<a class="headerlink" href="#competitive" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>Small number of players on a single instance (10-100)</p></li>
 <li><p>Teams of players (2-10)</p></li>
@@ -138,7 +139,7 @@
 <li><p>Avoid latency spikes at all cost</p></li>
 </ul>
 <section id="system-overview">
-<h2>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline"></a></h2>
+<h2>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this heading"></a></h2>
 <img alt="../_images/CompetitiveOverview.png" src="../_images/CompetitiveOverview.png" />
 <ol class="arabic simple">
 <li><p>Client start matchaming by sending a matchmaking request to the game coordinator</p></li>
@@ -151,7 +152,7 @@
 </ol>
 </section>
 <section id="the-game-coordinator">
-<h2>The game coordinator<a class="headerlink" href="#the-game-coordinator" title="Permalink to this headline"></a></h2>
+<h2>The game coordinator<a class="headerlink" href="#the-game-coordinator" title="Permalink to this heading"></a></h2>
 <img alt="../_images/SkilDistribution.png" src="../_images/SkilDistribution.png" />
 <p>Its goal is to group players with similar skill, to provide interesting games;
 To group players it needs first to estimate skill of each players using a rating system.</p>
@@ -159,7 +160,7 @@ To group players it needs first to estimate skill of each players using a rating
 Typically servers will be able to handle multiple instance of a dedicated server,
 but spliting the load accross many servers will improve the experience (lower latency).</p>
 <section id="ranking-systems">
-<h3>Ranking Systems<a class="headerlink" href="#ranking-systems" title="Permalink to this headline"></a></h3>
+<h3>Ranking Systems<a class="headerlink" href="#ranking-systems" title="Permalink to this heading"></a></h3>
 <p>Goals:</p>
 <ul class="simple">
 <li><p>Put players of similar skills together to create interesting matches</p></li>
@@ -167,7 +168,7 @@ but spliting the load accross many servers will improve the experience (lower la
 <li><p><a class="reference external" href="https://github.com/Delaunay/Ranked">https://github.com/Delaunay/Ranked</a></p></li>
 </ul>
 <section id="initialization">
-<h4>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline"></a></h4>
+<h4>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading"></a></h4>
 <ol class="arabic simple">
 <li><p>Give new players a fixed amount of points</p></li>
 </ol>
@@ -206,13 +207,13 @@ to estimate the rank from match data <code class="docutils literal notranslate">
 boostraping a new game.</p>
 </div>
 <section id="elo-systems">
-<h5>Elo Systems<a class="headerlink" href="#elo-systems" title="Permalink to this headline"></a></h5>
+<h5>Elo Systems<a class="headerlink" href="#elo-systems" title="Permalink to this heading"></a></h5>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This system is considered outdated</p>
 </div>
 <section id="updates">
-<h6>Updates<a class="headerlink" href="#updates" title="Permalink to this headline"></a></h6>
+<h6>Updates<a class="headerlink" href="#updates" title="Permalink to this heading"></a></h6>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>pi ~ N(ui, s ** 2)  # Performance is normally distributed around their skill
 
 Probbility of winning is:
@@ -262,7 +263,7 @@ rank increase, so high skill player will quickly climb the ladder
 to the high skill stage.</p>
 </section>
 <section id="issues">
-<h6>Issues<a class="headerlink" href="#issues" title="Permalink to this headline"></a></h6>
+<h6>Issues<a class="headerlink" href="#issues" title="Permalink to this heading"></a></h6>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Inflation/Deflation: Elo has a fixed amount of points in its pool (win-loss) is a zero sum game so inflation/deflation should not happen</dt><dd><ul>
@@ -281,10 +282,10 @@ to the high skill stage.</p>
 </section>
 </section>
 <section id="glicko-2">
-<h5>Glicko-2<a class="headerlink" href="#glicko-2" title="Permalink to this headline"></a></h5>
+<h5>Glicko-2<a class="headerlink" href="#glicko-2" title="Permalink to this heading"></a></h5>
 <p>The <a class="reference external" href="http://www.glicko.net/glicko/glicko2.pdf">paper</a> goes in great details how to implement such a ranking system.</p>
 <section id="id1">
-<h6>Initialization<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h6>
+<h6>Initialization<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h6>
 <ul>
 <li><p>Starts with calibration matches (n=~10)</p></li>
 <li><p>Unrated player starts with</p>
@@ -306,7 +307,7 @@ phi = RD / 173.7178
 </section>
 </section>
 <section id="trueskill-like">
-<h5>TrueSkill Like<a class="headerlink" href="#trueskill-like" title="Permalink to this headline"></a></h5>
+<h5>TrueSkill Like<a class="headerlink" href="#trueskill-like" title="Permalink to this heading"></a></h5>
 <p>Baysian Generative Model for skill</p>
 <ul class="simple">
 <li><p>Takes into account teams, so performance is function of the teammates permutation</p></li>
@@ -367,7 +368,7 @@ Rank = (Team_i - Team_(i - 1))      # Rank
 </section>
 </section>
 <section id="concerns">
-<h3>Concerns<a class="headerlink" href="#concerns" title="Permalink to this headline"></a></h3>
+<h3>Concerns<a class="headerlink" href="#concerns" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Alternate accounts; as the score of player increase match becomes fair
 Some player will be actively looking for easier matches by creating
@@ -426,7 +427,7 @@ a simple sum of their solo skills.</p></li>
 </section>
 </section>
 <section id="team-assignment">
-<h2>Team Assignment<a class="headerlink" href="#team-assignment" title="Permalink to this headline"></a></h2>
+<h2>Team Assignment<a class="headerlink" href="#team-assignment" title="Permalink to this heading"></a></h2>
 <p>The game mode is in charge of the team assignment, teams need to be assigned to Pawn (for targeting)
 and PlayerControllers. PlayerController team assignment will drive all the logic.
 The team assignment needs to be on both the pawn &amp; the controller for effect like Possession
@@ -442,7 +443,7 @@ as possible</p></li>
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo rating</a></p>

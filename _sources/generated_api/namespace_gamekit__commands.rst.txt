@@ -29,6 +29,8 @@ Namespaces
 
 - :ref:`namespace_gamekit__commands__install`
 
+- :ref:`namespace_gamekit__commands__local`
+
 - :ref:`namespace_gamekit__commands__tests`
 
 - :ref:`namespace_gamekit__commands__vscode`

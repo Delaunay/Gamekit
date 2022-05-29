@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -119,7 +120,7 @@
            <div itemprop="articleBody">
              
   <section id="fog-of-war">
-<h1>Fog Of War<a class="headerlink" href="#fog-of-war" title="Permalink to this headline"></a></h1>
+<h1>Fog Of War<a class="headerlink" href="#fog-of-war" title="Permalink to this heading"></a></h1>
 <p>Fog of war have an important impact on the overall game in a multiplayer setting.
 Indeed, the fog of war brings a new dimension to the gameplay, that new dimensions needs
 to be protected from cheater that might reveal hidden part of the map.
@@ -134,7 +135,7 @@ It can be used to implement post processing/filters on the texture itself before
 </ul>
 <img alt="../_images/FogOFWar_System.png" src="../_images/FogOFWar_System.png" />
 <section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Multi Team (uses <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">IGenericTeamAgentInterface</span></code>)</p></li>
 <li><p>Multi Actors</p></li>
@@ -149,7 +150,7 @@ It can be used to implement post processing/filters on the texture itself before
 <img alt="../_images/FogOFWarOverview.PNG" src="../_images/FogOFWarOverview.PNG" />
 </section>
 <section id="get-started">
-<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h2>
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code> over the area that will be covered by the fog</p>
 <ol class="arabic simple">
@@ -175,7 +176,7 @@ to render the fog</p></li>
 </ol>
 </section>
 <section id="multiplayer">
-<h2>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this headline"></a></h2>
+<h2>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">AActor::IsReplicationPausedForConnection</span></code> needs to be updated to only enable
 replication for actors that are visible to the player controller’s team.
@@ -187,7 +188,7 @@ Clients can only access the visible set of their faction.</p></li>
 <img alt="../_images/FogReplication.png" src="../_images/FogReplication.png" />
 </section>
 <section id="memory-usage">
-<h2>Memory Usage<a class="headerlink" href="#memory-usage" title="Permalink to this headline"></a></h2>
+<h2>Memory Usage<a class="headerlink" href="#memory-usage" title="Permalink to this heading"></a></h2>
 <p>The map is split in tiles, there are 2 permanent layers</p>
 <ul class="simple">
 <li><p>Terrain</p></li>
@@ -205,7 +206,7 @@ Clients can only access the visible set of their faction.</p></li>
 to the fog of war (but they can be registered as obstacle).</p>
 </div>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Map Size 400’000 x 400’000 (400x400 meters)</p></li>
 <li><p>Grid Size: 16 x 16 x 32</p></li>

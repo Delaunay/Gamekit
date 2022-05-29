@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -122,19 +123,19 @@
            <div itemprop="articleBody">
              
   <section id="drawing-strategies">
-<h1>Drawing Strategies<a class="headerlink" href="#drawing-strategies" title="Permalink to this headline"></a></h1>
+<h1>Drawing Strategies<a class="headerlink" href="#drawing-strategies" title="Permalink to this heading"></a></h1>
 <p><a class="reference internal" href="../generated_api/classAGKFogOfWarVolume.html#_CPPv417AGKFogOfWarVolume" title="AGKFogOfWarVolume"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AGKFogOfWarVolume</span></code></a> implements different strategies that implements the fog of war drawing.
 The default implementation is <a class="reference internal" href="../generated_api/classUGKShadowCasting.html#_CPPv416UGKShadowCasting" title="UGKShadowCasting"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKShadowCasting</span></code></a>, other strategies are provided for their
 educational value but should not be used in production.</p>
 <section id="implementations">
-<h2>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline"></a></h2>
+<h2>Implementations<a class="headerlink" href="#implementations" title="Permalink to this heading"></a></h2>
 <p>All fog implementations inherit from <a class="reference internal" href="../generated_api/classUGKFogOfWarStrategy.html#_CPPv419UGKFogOfWarStrategy" title="UGKFogOfWarStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKFogOfWarStrategy</span></code></a>.
 Drawing the fog is half of the problem, has you will need to be able to query
 the fog to know if a unit from Team X is visible by Team Y for replication purposes.
 If the feature is not implemented, clients will receive replication updates for hidden units
 and cheater could use the data to gain an unfair advantage.</p>
 <section id="raycast-v1">
-<h3>RayCast V1<a class="headerlink" href="#raycast-v1" title="Permalink to this headline"></a></h3>
+<h3>RayCast V1<a class="headerlink" href="#raycast-v1" title="Permalink to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>RayCast is using a custom collision channel, it is expected to be using <code class="docutils literal notranslate"><span class="pre">ECC_GameTraceChannel1</span></code> by default,
@@ -179,7 +180,7 @@ by default all actors block visions.</p>
 </table>
 </section>
 <section id="raycast-v2">
-<h3>RayCast V2<a class="headerlink" href="#raycast-v2" title="Permalink to this headline"></a></h3>
+<h3>RayCast V2<a class="headerlink" href="#raycast-v2" title="Permalink to this heading"></a></h3>
 <p>Draws <code class="docutils literal notranslate"><span class="pre">n</span></code> rays, draw triangles with a material.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -204,7 +205,7 @@ by default all actors block visions.</p>
 </table>
 </section>
 <section id="raycast-v3">
-<h3>RayCast V3<a class="headerlink" href="#raycast-v3" title="Permalink to this headline"></a></h3>
+<h3>RayCast V3<a class="headerlink" href="#raycast-v3" title="Permalink to this heading"></a></h3>
 <p>For each actors in vision range trace 4 rays; 2 Left/right rays, one that misses and one that hits</p>
 <table class="docutils align-default">
 <colgroup>
@@ -225,7 +226,7 @@ by default all actors block visions.</p>
 </table>
 </section>
 <section id="discrete-tiles-v1">
-<h3>Discrete Tiles V1<a class="headerlink" href="#discrete-tiles-v1" title="Permalink to this headline"></a></h3>
+<h3>Discrete Tiles V1<a class="headerlink" href="#discrete-tiles-v1" title="Permalink to this heading"></a></h3>
 <p>Split the world in square tiles &amp; draw the line of sight.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -246,7 +247,7 @@ by default all actors block visions.</p>
 </table>
 </section>
 <section id="comparison">
-<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline"></a></h3>
+<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20%" />
@@ -313,13 +314,13 @@ Casting</p>
 </section>
 </section>
 <section id="transforms-exploration-upscaling">
-<h2>Transforms (Exploration &amp; Upscaling)<a class="headerlink" href="#transforms-exploration-upscaling" title="Permalink to this headline"></a></h2>
+<h2>Transforms (Exploration &amp; Upscaling)<a class="headerlink" href="#transforms-exploration-upscaling" title="Permalink to this heading"></a></h2>
 <p><a class="reference internal" href="../generated_api/classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKTransformerStrategy</span></code></a> can be used to implement post processing steps on the fog textures, to
 tweak its final look.</p>
 <p>Exploration &amp; Upscaling are both implemented using <a class="reference internal" href="../generated_api/classUGKTransformerStrategy.html#_CPPv422UGKTransformerStrategy" title="UGKTransformerStrategy"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKTransformerStrategy</span></code></a>.</p>
 </section>
 <section id="idea">
-<h2>Idea<a class="headerlink" href="#idea" title="Permalink to this headline"></a></h2>
+<h2>Idea<a class="headerlink" href="#idea" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Change the drawing backend per actors
 * Make client use a prettier/slower implementation

@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -121,7 +122,7 @@
            <div itemprop="articleBody">
              
   <section id="cheating">
-<h1>Cheating<a class="headerlink" href="#cheating" title="Permalink to this headline"></a></h1>
+<h1>Cheating<a class="headerlink" href="#cheating" title="Permalink to this heading"></a></h1>
 <p>You can limit cheating by forcing server be the authority on all data.
 Clients interaction can be seen as making RPC calls to the server for everything where the parameters are derived inside the client itself.
 As such, no data from the client is used &amp; altering the memory of the client will have reduced impact if any.</p>
@@ -143,9 +144,9 @@ The encryption key can be fetched in memory and used to decrypt the traffic.
 It is still recommended to encrypt the traffic as it will prevent outsider from listenning in.</p>
 </div>
 <section id="protection-methods">
-<h2>Protection Methods<a class="headerlink" href="#protection-methods" title="Permalink to this headline"></a></h2>
+<h2>Protection Methods<a class="headerlink" href="#protection-methods" title="Permalink to this heading"></a></h2>
 <section id="server-side-authority">
-<h3>Server side authority<a class="headerlink" href="#server-side-authority" title="Permalink to this headline"></a></h3>
+<h3>Server side authority<a class="headerlink" href="#server-side-authority" title="Permalink to this heading"></a></h3>
 <p>When a client perform an action, the parameters of the action are derived from the server game state,
 the client parameters are never consumed. In the case of a cheating client, the server will be unable
 to derive the parameters and the cheat will fail.</p>
@@ -155,7 +156,7 @@ to derive the parameters and the cheat will fail.</p>
 </div>
 </section>
 <section id="limiting-information">
-<h3>Limiting Information<a class="headerlink" href="#limiting-information" title="Permalink to this headline"></a></h3>
+<h3>Limiting Information<a class="headerlink" href="#limiting-information" title="Permalink to this heading"></a></h3>
 <p>Server side authority is not enough to prevent all the hacks.
 Game clients can have information replicated to them yet invisible to the client under normal circumstances.
 Cheating clients could fetch those hidden information (enemy position, for example) and display them to the
@@ -166,7 +167,7 @@ player giving them an edge. See <a class="reference internal" href="../generated
 </div>
 </section>
 <section id="anti-cheats">
-<h3>Anti Cheats<a class="headerlink" href="#anti-cheats" title="Permalink to this headline"></a></h3>
+<h3>Anti Cheats<a class="headerlink" href="#anti-cheats" title="Permalink to this heading"></a></h3>
 <p>The main goal of anticheats is to detect players reading/writing values inside the game’s RAM.
 Additional goals could be detecting scripting/input automation (i.e player-bot)</p>
 <div class="admonition note">
@@ -175,7 +176,7 @@ Additional goals could be detecting scripting/input automation (i.e player-bot)<
 </div>
 </section>
 <section id="overwatchs">
-<h3>Overwatchs<a class="headerlink" href="#overwatchs" title="Permalink to this headline"></a></h3>
+<h3>Overwatchs<a class="headerlink" href="#overwatchs" title="Permalink to this heading"></a></h3>
 <p>Allow players to review suspicious games.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -183,7 +184,7 @@ Additional goals could be detecting scripting/input automation (i.e player-bot)<
 </div>
 </section>
 <section id="anomaly-detection">
-<h3>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline"></a></h3>
+<h3>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this heading"></a></h3>
 <p>Clients will send input &amp; movement information periodically, those can be checked for anomaly (low variance, variance of variance, etc…)</p>
 <p>In addition, clients will have a set of invariant values that cannot change on the client itself,
 for the server to verify them the clients would have to send them periodically.</p>
@@ -199,7 +200,7 @@ the current modified values.</p></li>
 </section>
 </section>
 <section id="attack-vectors">
-<h2>Attack Vectors<a class="headerlink" href="#attack-vectors" title="Permalink to this headline"></a></h2>
+<h2>Attack Vectors<a class="headerlink" href="#attack-vectors" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>DLL injection, use DLL loading rules to make the game load yours instead of the official DLL</p></li>
 <li><p>Function Hooking; override original functions at runtime to execute arbitrary code</p></li>

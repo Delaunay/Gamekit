@@ -15,6 +15,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -130,7 +131,7 @@
            <div itemprop="articleBody">
              
   <section id="shaders">
-<h1>Shaders<a class="headerlink" href="#shaders" title="Permalink to this headline"></a></h1>
+<h1>Shaders<a class="headerlink" href="#shaders" title="Permalink to this heading"></a></h1>
 <p>Unreal Shading language is HLSL.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.ush</span></code>: Unreal Shader Headers</p>
@@ -146,7 +147,7 @@
 </li>
 </ul>
 <section id="write-hlsl-functions-for-your-materials">
-<h2>Write HLSL functions for your materials<a class="headerlink" href="#write-hlsl-functions-for-your-materials" title="Permalink to this headline"></a></h2>
+<h2>Write HLSL functions for your materials<a class="headerlink" href="#write-hlsl-functions-for-your-materials" title="Permalink to this heading"></a></h2>
 <p>To write shader code directly, you can add a custom shader path in your project module.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Maps ``/Gamekit`` to ``/path/to/project/Gamekit/Shaders``</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitModule::StartupModule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -166,9 +167,9 @@
 </div>
 <p>To include a Gamekit shader file simply add <code class="docutils literal notranslate"><span class="pre">/&lt;ShaderFolderShortcut&gt;/&lt;ShaderFile:</span> <span class="pre">fire&gt;.ush</span></code></p>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
 <section id="gaussian-blur">
-<h4>Gaussian Blur<a class="headerlink" href="#gaussian-blur" title="Permalink to this headline"></a></h4>
+<h4>Gaussian Blur<a class="headerlink" href="#gaussian-blur" title="Permalink to this heading"></a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SamplerState</span><span class="w"> </span><span class="n">TexSampler</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">//! Simple 3x3 Gaussian Kernel</span>
@@ -192,7 +193,7 @@
 </section>
 </section>
 <section id="custom-shaders">
-<h2>Custom Shaders<a class="headerlink" href="#custom-shaders" title="Permalink to this headline"></a></h2>
+<h2>Custom Shaders<a class="headerlink" href="#custom-shaders" title="Permalink to this heading"></a></h2>
 <p>To follow this part you will need to do the steps described in the previous section.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -309,7 +310,7 @@ your library.</p>
 </pre></div>
 </div>
 <section id="initialize-input-target">
-<h3>Initialize Input Target<a class="headerlink" href="#initialize-input-target" title="Permalink to this headline"></a></h3>
+<h3>Initialize Input Target<a class="headerlink" href="#initialize-input-target" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copy your input texture to the target texture</span>
 <span class="n">RHICmdList</span><span class="p">.</span><span class="n">CopyTexture</span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="n">GetTextureRHI</span><span class="p">(</span><span class="n">CachedParams</span><span class="p">.</span><span class="n">OriginalTexture</span><span class="p">),</span><span class="w"></span>
@@ -339,7 +340,7 @@ your library.</p>
 </div>
 </section>
 <section id="retrive-output">
-<h3>Retrive Output<a class="headerlink" href="#retrive-output" title="Permalink to this headline"></a></h3>
+<h3>Retrive Output<a class="headerlink" href="#retrive-output" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copy the output target to the output texture</span>
 <span class="n">RHICmdList</span><span class="p">.</span><span class="n">CopyTexture</span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="n">ComputeShaderOutput</span><span class="o">-&gt;</span><span class="n">GetRenderTargetItem</span><span class="p">().</span><span class="n">ShaderResourceTexture</span><span class="p">,</span><span class="w"></span>
@@ -349,12 +350,12 @@ your library.</p>
 </pre></div>
 </div>
 <section id="use-custom-shaders-as-materials">
-<h4>Use Custom Shaders as materials<a class="headerlink" href="#use-custom-shaders-as-materials" title="Permalink to this headline"></a></h4>
+<h4>Use Custom Shaders as materials<a class="headerlink" href="#use-custom-shaders-as-materials" title="Permalink to this heading"></a></h4>
 </section>
 </section>
 </section>
 <section id="shader-parameters">
-<h2>Shader Parameters<a class="headerlink" href="#shader-parameters" title="Permalink to this headline"></a></h2>
+<h2>Shader Parameters<a class="headerlink" href="#shader-parameters" title="Permalink to this heading"></a></h2>
 <p>Common abbreviation:</p>
 <ul class="simple">
 <li><p>RDG: render graph</p></li>
@@ -385,7 +386,7 @@ your library.</p>
 </ul>
 </section>
 <section id="common-errors">
-<h2>Common Errors<a class="headerlink" href="#common-errors" title="Permalink to this headline"></a></h2>
+<h2>Common Errors<a class="headerlink" href="#common-errors" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:344<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Windows GetLastError: The operation completed successfully. <span class="o">(</span><span class="m">0</span><span class="o">)</span>
 <span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error: <span class="o">===</span> Critical error: <span class="o">===</span>
 <span class="o">[</span><span class="m">2022</span>.02.19-18.32.59:345<span class="o">][</span><span class="m">522</span><span class="o">]</span>LogWindows: Error:
@@ -397,7 +398,7 @@ your library.</p>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Rendering/ShaderInPlugin/Overview/">Custom Shaders</a></p>

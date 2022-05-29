@@ -1270,6 +1270,11 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Python_gamekit_commands_local.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Container_Matrix.cpp.rst
 
 .. toctree::

@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -31,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -108,7 +109,7 @@
            <div itemprop="articleBody">
              
   <section id="tips-tricks">
-<h1>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Permalink to this headline"></a></h1>
+<h1>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Permalink to this heading"></a></h1>
 <p>Useful examples <a class="reference external" href="https://www.ue4community.wiki/logging-lgpidy6i">https://www.ue4community.wiki/logging-lgpidy6i</a></p>
 <ul class="simple">
 <li><p>Prefer Implementable Event of Delegate Assignment
@@ -130,7 +131,7 @@ which might happen after the event is fired!</p></li>
 </pre></div>
 </div>
 <section id="logging-values">
-<h2>Logging values<a class="headerlink" href="#logging-values" title="Permalink to this headline"></a></h2>
+<h2>Logging values<a class="headerlink" href="#logging-values" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FName</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
 <span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogChessy</span><span class="p">,</span><span class="w"> </span><span class="n">Verbose</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Creating a new render target for %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
 </pre></div>
@@ -142,7 +143,7 @@ which might happen after the event is fired!</p></li>
 </div>
 </section>
 <section id="doxygen-friendly">
-<h2>Doxygen Friendly<a class="headerlink" href="#doxygen-friendly" title="Permalink to this headline"></a></h2>
+<h2>Doxygen Friendly<a class="headerlink" href="#doxygen-friendly" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Do not put arguments to UCLASS, doxygen does not like it, the whole header file will get ignored</span>
 <span class="n">UCLASS</span><span class="p">(</span><span class="w"> </span><span class="n">ClassGroup</span><span class="o">=</span><span class="p">(</span><span class="n">Custom</span><span class="p">),</span><span class="w"> </span><span class="n">meta</span><span class="o">=</span><span class="p">(</span><span class="n">BlueprintSpawnableComponent</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UFogOfWarComponent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UActorComponent</span><span class="w"></span>
@@ -172,7 +173,7 @@ which might happen after the event is fired!</p></li>
 </div>
 </section>
 <section id="generating-textures">
-<h2>Generating Textures<a class="headerlink" href="#generating-textures" title="Permalink to this headline"></a></h2>
+<h2>Generating Textures<a class="headerlink" href="#generating-textures" title="Permalink to this heading"></a></h2>
 <p>You can use blender to generate texture and use an orthographic camera to export the render as texture.</p>
 <ul class="simple">
 <li><p>Create square plan with the material we want to export</p></li>
@@ -185,7 +186,7 @@ which might happen after the event is fired!</p></li>
 <img alt="../_images/OrthographicRender.png" src="../_images/OrthographicRender.png" />
 </section>
 <section id="others">
-<h2>Others<a class="headerlink" href="#others" title="Permalink to this headline"></a></h2>
+<h2>Others<a class="headerlink" href="#others" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Controllers/index.html">Controllers</a></li>

@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -124,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="machine-learning">
-<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline"></a></h1>
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this heading"></a></h1>
 <p>Gamekit as a Reinforcement learning environment</p>
 <ul class="simple">
 <li><p>Smarter AI</p></li>
@@ -138,7 +139,7 @@
 <p>This documentation was moved to <a class="reference external" href="https://delaunay.github.io/GKMachineLearning/">GKML</a></p>
 </div>
 <section id="install-prerequisite-training">
-<h2>Install prerequisite (Training)<a class="headerlink" href="#install-prerequisite-training" title="Permalink to this headline"></a></h2>
+<h2>Install prerequisite (Training)<a class="headerlink" href="#install-prerequisite-training" title="Permalink to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Using a NVIDIA GPU (Pascal+, 10 series or newer) for this tutorial is recommended.</p>
@@ -174,7 +175,7 @@ This might break your environment. You should build a virtualenv just for UE.</p
 </div>
 </section>
 <section id="run-actionrpg-example">
-<h2>Run ActionRPG example<a class="headerlink" href="#run-actionrpg-example" title="Permalink to this headline"></a></h2>
+<h2>Run ActionRPG example<a class="headerlink" href="#run-actionrpg-example" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Donwload the <a class="reference external" href="https://www.unrealengine.com/marketplace/en-US/product/action-rpg">ActionRPG example</a> from the marketplace</p></li>
 <li><p>Move the project file to <code class="docutils literal notranslate"><span class="pre">E:\UnrealEngine\ActionRPG</span></code></p></li>
@@ -239,13 +240,13 @@ E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe E:<span class="se">\G</sp
 </div>
 </section>
 <section id="making-of-a-gym-enviroment">
-<h2>Making of a gym enviroment<a class="headerlink" href="#making-of-a-gym-enviroment" title="Permalink to this headline"></a></h2>
+<h2>Making of a gym enviroment<a class="headerlink" href="#making-of-a-gym-enviroment" title="Permalink to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The example is available for download as a <a class="reference external" href="https://github.com/Delaunay/cartpole">standalone project</a></p>
 </div>
 <section id="basic-setup">
-<h3>Basic Setup<a class="headerlink" href="#basic-setup" title="Permalink to this headline"></a></h3>
+<h3>Basic Setup<a class="headerlink" href="#basic-setup" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Add Input mapping <code class="docutils literal notranslate"><span class="pre">CartMove</span></code></p>
 <blockquote>
@@ -276,7 +277,7 @@ E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe E:<span class="se">\G</sp
 </div>
 </section>
 <section id="define-the-action-space">
-<h3>Define the action space<a class="headerlink" href="#define-the-action-space" title="Permalink to this headline"></a></h3>
+<h3>Define the action space<a class="headerlink" href="#define-the-action-space" title="Permalink to this heading"></a></h3>
 <p>The action space is defined by adding <code class="docutils literal notranslate"><span class="pre">U4MLActuator</span></code> to the agent configuration.</p>
 <ul>
 <li><p>Available actuators:</p>
@@ -308,7 +309,7 @@ E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe E:<span class="se">\G</sp
 since only 1 Axis input that varies between -1 and 1.</p>
 </section>
 <section id="define-the-observation-space">
-<h3>Define the observation space<a class="headerlink" href="#define-the-observation-space" title="Permalink to this headline"></a></h3>
+<h3>Define the observation space<a class="headerlink" href="#define-the-observation-space" title="Permalink to this heading"></a></h3>
 <p>The observation space is defined by adding <code class="docutils literal notranslate"><span class="pre">U4MLSensor</span></code> to the agent configuration.</p>
 <ul>
 <li><p>Available sensors:</p>
@@ -405,7 +406,7 @@ The <code class="docutils literal notranslate"><span class="pre">AActor</span></
 </div>
 </section>
 <section id="define-a-custom-reward">
-<h3>Define a custom reward<a class="headerlink" href="#define-a-custom-reward" title="Permalink to this headline"></a></h3>
+<h3>Define a custom reward<a class="headerlink" href="#define-a-custom-reward" title="Permalink to this heading"></a></h3>
 <p>A simple approach that does not require to modify the game code is to configure
 the observation space so the reward can be computed for each given observsation,
 as such the custom reward can be computed in the python script itself.
@@ -416,11 +417,11 @@ to create a custom C++ <code class="docutils literal notranslate"><span class="p
 <p>In our example we use the X rotation angle (Roll) as the reward.</p>
 </section>
 <section id="training">
-<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline"></a></h3>
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 <section id="wishlist">
-<h2>Wishlist<a class="headerlink" href="#wishlist" title="Permalink to this headline"></a></h2>
+<h2>Wishlist<a class="headerlink" href="#wishlist" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>open-sourced MLApadater python package</p></li>
 <li><p>be able to pick a ‘.uproject’ (you can make it happen already by using <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> as a path) instead of relying on an implicit path (‘UnrealEngine/&lt;PROJECT_NAME&gt;’)</p></li>
@@ -449,7 +450,7 @@ trained is fully reusable.</p>
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/API/Plugins/MLAdapter/">MLAdapter</a></p>

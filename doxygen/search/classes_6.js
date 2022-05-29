@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['runtests_1553',['RunTests',['../classgamekit_1_1commands_1_1tests_1_1RunTests.html',1,'gamekit::commands::tests']]]
+  ['local_1556',['Local',['../classgamekit_1_1commands_1_1local_1_1Local.html',1,'gamekit::commands::local']]]
 ];

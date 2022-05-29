@@ -1,0 +1,52 @@
+
+.. _file_Source_Python_gamekit_commands_local.py:
+
+File local.py
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Python_gamekit_commands>` (``Source/Python/gamekit/commands``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Python/gamekit/commands/local.py``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Python_gamekit_commands_local.py.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_gamekit__commands__local`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classgamekit_1_1commands_1_1local_1_1Local`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacegamekit_1_1commands_1_1local_1a954a2b7b6eb6b1e041f0086eac9f255d`
+

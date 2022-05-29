@@ -15,6 +15,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -31,7 +32,7 @@
             <a href="../../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -108,7 +109,7 @@
            <div itemprop="articleBody">
              
   <section id="testing">
-<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h1>
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h1>
 <ul>
 <li><p>Ground Truth Data in the Functional Testing Editor plugin.</p></li>
 <li><p>Unit testing of C++ code</p></li>
@@ -127,7 +128,7 @@
 </li>
 </ul>
 <section id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline"></a></h2>
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Google test is included</dt><dd><ul>
@@ -183,9 +184,9 @@ included inside the engine’s code.</p>
 </div>
 </section>
 <section id="automation-tests">
-<h2>Automation Tests<a class="headerlink" href="#automation-tests" title="Permalink to this headline"></a></h2>
+<h2>Automation Tests<a class="headerlink" href="#automation-tests" title="Permalink to this heading"></a></h2>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Gamekit Tests</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitTestSuite/GKTestUtilities.h&quot;</span><span class="cp"></span>
 
@@ -199,7 +200,7 @@ included inside the engine’s code.</p>
 </div>
 </section>
 <section id="get-started">
-<h3>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline"></a></h3>
+<h3>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To get started I would suggest checking out <cite>InputTestFramework</cite> which seems to most publicly tested
@@ -234,11 +235,11 @@ In addition it will teach you to mock user inputs to test your game bindings.</p
 </div>
 </section>
 <section id="mocking">
-<h3>Mocking<a class="headerlink" href="#mocking" title="Permalink to this headline"></a></h3>
+<h3>Mocking<a class="headerlink" href="#mocking" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 <section id="python-automation-test">
-<h2>Python Automation Test<a class="headerlink" href="#python-automation-test" title="Permalink to this headline"></a></h2>
+<h2>Python Automation Test<a class="headerlink" href="#python-automation-test" title="Permalink to this heading"></a></h2>
 <p>UE expects your python automation test to be saved inside <code class="docutils literal notranslate"><span class="pre">Project/Content/Python</span></code>.
 Files should be named <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code>. The tests will showup under the Editor section.</p>
 <div class="admonition note">
@@ -278,7 +279,7 @@ Files should be named <code class="docutils literal notranslate"><span class="pr
 </li>
 </ul>
 <section id="id1">
-<h3>Example<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>Example<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Both printing and logging shows as</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unreal</span>
 
@@ -343,13 +344,13 @@ LogAutomationController: Error: automation_test.unittest_utilities.TestFailedExc
 </section>
 </section>
 <section id="functional-testing-actor">
-<h2>Functional Testing Actor<a class="headerlink" href="#functional-testing-actor" title="Permalink to this headline"></a></h2>
+<h2>Functional Testing Actor<a class="headerlink" href="#functional-testing-actor" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">AFunctionalTest</span></code> actor in your level and call it fromt the level blueprint</p></li>
 </ul>
 </section>
 <section id="screen-comparison">
-<h2>Screen Comparison<a class="headerlink" href="#screen-comparison" title="Permalink to this headline"></a></h2>
+<h2>Screen Comparison<a class="headerlink" href="#screen-comparison" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Screenshot</span> <span class="pre">Test</span> <span class="pre">Actor</span></code></p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">Take</span> <span class="pre">Automation</span> <span class="pre">Screenshot</span> <span class="pre">at</span> <span class="pre">Camera</span></code> inside blueprints</p></li>
@@ -357,12 +358,12 @@ LogAutomationController: Error: automation_test.unittest_utilities.TestFailedExc
 </ul>
 </section>
 <section id="coverage">
-<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline"></a></h2>
+<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this heading"></a></h2>
 <section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h3>
 </section>
 <section id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>dll</p></li>
 <li><p>add -coverage flags</p></li>
@@ -370,7 +371,7 @@ LogAutomationController: Error: automation_test.unittest_utilities.TestFailedExc
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/Automation/">Automation System Overview</a></p>

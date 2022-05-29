@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -120,9 +121,9 @@
            <div itemprop="articleBody">
              
   <section id="procedural-level-generation">
-<h1>Procedural Level Generation<a class="headerlink" href="#procedural-level-generation" title="Permalink to this headline"></a></h1>
+<h1>Procedural Level Generation<a class="headerlink" href="#procedural-level-generation" title="Permalink to this heading"></a></h1>
 <section id="discrete-level-generation">
-<h2>Discrete Level Generation<a class="headerlink" href="#discrete-level-generation" title="Permalink to this headline"></a></h2>
+<h2>Discrete Level Generation<a class="headerlink" href="#discrete-level-generation" title="Permalink to this heading"></a></h2>
 <p>The level is split into discret chunks, the prodecural process will assign each chunk a mesh/entity to be spawned.</p>
 <p>A cheap representation of the level is used to speed up the generation process.
 Gamekit implements a <code class="docutils literal notranslate"><span class="pre">T3DArray&lt;T&gt;</span></code> that can be used as such representation.</p>
@@ -150,7 +151,7 @@ to the spawning actor (the level actor) this will avoid the extra overhead of sp
 </div>
 </section>
 <section id="landscape-generation">
-<h2>Landscape Generation<a class="headerlink" href="#landscape-generation" title="Permalink to this headline"></a></h2>
+<h2>Landscape Generation<a class="headerlink" href="#landscape-generation" title="Permalink to this heading"></a></h2>
 <p>Lanscape can be generated from a height map which can be a regular image.
 To make a complex landscape multiple layers of maps can be used for different entity.</p>
 <p>For that kind of image generation you will want to use <a class="reference external" href="https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu">GP-GPU compute capabilities</a>
@@ -162,7 +163,7 @@ to parallelize the generation process as much as possible.</p>
 <img alt="../_images/height_map.png" src="../_images/height_map.png" />
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://www.iquilezles.org/www/articles/morenoise/morenoise.htm">Procedural Generation</a></p>

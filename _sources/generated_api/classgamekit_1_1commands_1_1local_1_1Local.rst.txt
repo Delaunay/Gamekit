@@ -1,0 +1,26 @@
+.. _exhale_class_classgamekit_1_1commands_1_1local_1_1Local:
+
+Class Local
+===========
+
+- Defined in :ref:`file_Source_Python_gamekit_commands_local.py`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public gamekit.conf.Command`` (:ref:`exhale_class_classgamekit_1_1conf_1_1Command`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: gamekit::commands::local::Local
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

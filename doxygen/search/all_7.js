@@ -374,6 +374,7 @@ var searchData=
   ['groundchannel_813',['GroundChannel',['../classAGKMinimapVolume.html#a97d6cb5bf4bddca05f5a1847f8f70471',1,'AGKMinimapVolume']]],
   ['init_814',['init',['../namespacegamekit_1_1commands_1_1init.html',1,'gamekit::commands']]],
   ['install_815',['install',['../namespacegamekit_1_1commands_1_1install.html',1,'gamekit::commands']]],
-  ['tests_816',['tests',['../namespacegamekit_1_1commands_1_1tests.html',1,'gamekit::commands']]],
-  ['vscode_817',['vscode',['../namespacegamekit_1_1commands_1_1vscode.html',1,'gamekit::commands']]]
+  ['local_816',['local',['../namespacegamekit_1_1commands_1_1local.html',1,'gamekit::commands']]],
+  ['tests_817',['tests',['../namespacegamekit_1_1commands_1_1tests.html',1,'gamekit::commands']]],
+  ['vscode_818',['vscode',['../namespacegamekit_1_1commands_1_1vscode.html',1,'gamekit::commands']]]
 ];

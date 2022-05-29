@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -133,7 +134,7 @@
            <div itemprop="articleBody">
              
   <section id="abilities">
-<h1>Abilities<a class="headerlink" href="#abilities" title="Permalink to this headline"></a></h1>
+<h1>Abilities<a class="headerlink" href="#abilities" title="Permalink to this heading"></a></h1>
 <p>Relevant classes:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../generated_api/classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKGameplayAbility</span></code></a>: basic Gameplay Ability for skills and items, implements a few top down casting options</p></li>
@@ -145,7 +146,7 @@
 <li><p><a class="reference internal" href="../generated_api/classUGKAbilityWidget.html#_CPPv416UGKAbilityWidget" title="UGKAbilityWidget"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAbilityWidget</span></code></a>: defines a basic interface for widget representing an ability state</p></li>
 </ul>
 <section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Data-Driven</strong>: Ability can generate their own GameplayEffect at runtime</p></li>
 <li><p><strong>Generic</strong>: Ability does not assume a specific Character/Skeleton</p></li>
@@ -154,9 +155,9 @@
 </ul>
 </section>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <section id="gametags">
-<h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this headline"></a></h3>
+<h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
 <p>Gamekit Tags:</p>
 <ul class="simple">
 <li><p>AnimationCastPointName: Tag sent when animation reach the cast point</p></li>
@@ -191,7 +192,7 @@
 </section>
 </section>
 <section id="define-abilities">
-<h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this headline"></a></h2>
+<h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this heading"></a></h2>
 <p>Abilities are define inside a json file.
 The list of customizable properties can be found here <a class="reference internal" href="../generated_api/structFGKAbilityStatic.html#_CPPv416FGKAbilityStatic" title="FGKAbilityStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAbilityStatic</span></code></a></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
@@ -237,21 +238,21 @@ The list of customizable properties can be found here <a class="reference intern
 </div>
 </section>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <section id="ability-datatable-initialization">
-<h3>Ability DataTable Initialization<a class="headerlink" href="#ability-datatable-initialization" title="Permalink to this headline"></a></h3>
+<h3>Ability DataTable Initialization<a class="headerlink" href="#ability-datatable-initialization" title="Permalink to this heading"></a></h3>
 <img alt="../_images/AbilityDataDriven.png" src="../_images/AbilityDataDriven.png" />
 </section>
 <section id="ability-activation-flow">
-<h3>Ability Activation Flow<a class="headerlink" href="#ability-activation-flow" title="Permalink to this headline"></a></h3>
+<h3>Ability Activation Flow<a class="headerlink" href="#ability-activation-flow" title="Permalink to this heading"></a></h3>
 <img alt="../_images/AbilityActivationFlow.png" src="../_images/AbilityActivationFlow.png" />
 </section>
 <section id="ability-replication-flow">
-<h3>Ability Replication Flow<a class="headerlink" href="#ability-replication-flow" title="Permalink to this headline"></a></h3>
+<h3>Ability Replication Flow<a class="headerlink" href="#ability-replication-flow" title="Permalink to this heading"></a></h3>
 <img alt="../_images/AbilityReplicationFlow.png" src="../_images/AbilityReplicationFlow.png" />
 </section>
 <section id="animations">
-<h3>Animations<a class="headerlink" href="#animations" title="Permalink to this headline"></a></h3>
+<h3>Animations<a class="headerlink" href="#animations" title="Permalink to this heading"></a></h3>
 <p>To make abilities generic, the animations montage themselves are not specified.
 Instead an animation kind is set (Channelling, Attack, Cast, etc..) which is a single enumerator
 <a class="reference internal" href="../generated_api/enum_GKAnimationSet_8h_1af1632aa373bb04c47e7939d94b8becab.html#_CPPv420EGK_AbilityAnimation" title="EGK_AbilityAnimation"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">EGK_AbilityAnimation</span></code></a> representing the kind of annimation an ability can use.</p>
@@ -300,9 +301,9 @@ characters which can have different animation as well.</p>
 </section>
 </section>
 <section id="user-interface">
-<h2>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline"></a></h2>
+<h2>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this heading"></a></h2>
 <section id="spell-button-states">
-<h3>Spell Button States<a class="headerlink" href="#spell-button-states" title="Permalink to this headline"></a></h3>
+<h3>Spell Button States<a class="headerlink" href="#spell-button-states" title="Permalink to this heading"></a></h3>
 <p>See <a class="reference internal" href="../generated_api/classUGKAbilityWidget.html#_CPPv416UGKAbilityWidget" title="UGKAbilityWidget"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAbilityWidget</span></code></a> for a basic set of implementable event</p>
 <p>Here is a list of states you might want to consider when implementing
 a spell button.</p>
@@ -323,7 +324,7 @@ a spell button.</p>
 <a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
 </section>
 <section id="ui-ability-state">
-<h3>UI &amp; Ability State<a class="headerlink" href="#ui-ability-state" title="Permalink to this headline"></a></h3>
+<h3>UI &amp; Ability State<a class="headerlink" href="#ui-ability-state" title="Permalink to this heading"></a></h3>
 <p>The easiest way to bind the ability to a UI element is to use async task that will wait on events</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../generated_api/classUGKAsyncTaskCooldownChanged.html#_CPPv427UGKAsyncTaskCooldownChanged" title="UGKAsyncTaskCooldownChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTaskCooldownChanged</span></code></a>: can be used to keep track of the cooldowns.</p></li>
@@ -331,7 +332,7 @@ a spell button.</p>
 <li><p><a class="reference internal" href="../generated_api/classUGKAsyncTask__GameplayEffectChanged.html#_CPPv434UGKAsyncTask_GameplayEffectChanged" title="UGKAsyncTask_GameplayEffectChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTask_GameplayEffectChanged</span></code></a>: can be used to listen to debuff that will disable spell casting.</p></li>
 </ul>
 <section id="resources">
-<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this headline"></a></h4>
+<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h4>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
 <dd><p>Gameplay Ability System <a class="reference external" href="https://github.com/tranek/GASDocumentation">GAS</a>.</p>

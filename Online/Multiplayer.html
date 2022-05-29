@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -126,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="multiplayer">
-<h1>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this headline"></a></h1>
+<h1>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>How classes are used inside a multiplayer game</p></li>
 </ul>
@@ -186,7 +187,7 @@
 <li><p>ACharacter are setup for replications</p></li>
 </ul>
 <section id="common-actor-configurations">
-<h2>Common Actor Configurations<a class="headerlink" href="#common-actor-configurations" title="Permalink to this headline"></a></h2>
+<h2>Common Actor Configurations<a class="headerlink" href="#common-actor-configurations" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Local Play: No server, one player</p></li>
 <li><p>Hosting Client: Host is both a server &amp; and a client</p></li>
@@ -243,7 +244,7 @@
 </table>
 </section>
 <section id="about-servers">
-<h2>About Servers<a class="headerlink" href="#about-servers" title="Permalink to this headline"></a></h2>
+<h2>About Servers<a class="headerlink" href="#about-servers" title="Permalink to this heading"></a></h2>
 <p>The games are truely only running on the server. Clients forwards their inputs to the server
 and render the state of the game. The state of the game between the clients and the server is
 kept in sync through replication.</p>
@@ -254,14 +255,14 @@ Instead, we can interpolate its location given its current location, destination
 Character will move beyond their target, or the actions of other players will not be reflected.</p>
 </section>
 <section id="code-snippet">
-<h2>Code Snippet<a class="headerlink" href="#code-snippet" title="Permalink to this headline"></a></h2>
+<h2>Code Snippet<a class="headerlink" href="#code-snippet" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">HasAuthority</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="w"></span>
 <span class="n">ShouldShowUI</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="w"></span>
 <span class="n">AcceptRemoteConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_DedicatedServer</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_ListenServer</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="server-only-code-blocks">
-<h3>Server Only code blocks<a class="headerlink" href="#server-only-code-blocks" title="Permalink to this headline"></a></h3>
+<h3>Server Only code blocks<a class="headerlink" href="#server-only-code-blocks" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if WITH_SERVER_CODE</span>
 
 <span class="c1">// code to load up your mananger and stuff here</span>
@@ -271,7 +272,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="client-only-code-blocks">
-<h3>Client only code blocks<a class="headerlink" href="#client-only-code-blocks" title="Permalink to this headline"></a></h3>
+<h3>Client only code blocks<a class="headerlink" href="#client-only-code-blocks" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if !UE_SERVER</span>
 
 <span class="cp">#endif</span>
@@ -279,7 +280,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="actor-network-configuration">
-<h3>Actor Network configuration<a class="headerlink" href="#actor-network-configuration" title="Permalink to this headline"></a></h3>
+<h3>Actor Network configuration<a class="headerlink" href="#actor-network-configuration" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AActor</span><span class="o">::</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w">    </span><span class="c1">// Standalone | Dedicated  | Listen | Client</span>
 <span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w">  </span><span class="c1">// Simulated  | Autonomous | Authority</span>
 <span class="n">AActor</span><span class="o">::</span><span class="n">GetRemoteRole</span><span class="p">()</span><span class="w"> </span><span class="c1">// Simulated  | Autonomous | Authority</span>
@@ -287,7 +288,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="conditionnal-execution-of-some-code">
-<h3>Conditionnal execution of some code<a class="headerlink" href="#conditionnal-execution-of-some-code" title="Permalink to this headline"></a></h3>
+<h3>Conditionnal execution of some code<a class="headerlink" href="#conditionnal-execution-of-some-code" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// HasAuthority in blueprints:</span>
 <span class="n">HasAuthority</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ROLE_Authority</span><span class="p">);</span><span class="w"></span>
 
@@ -298,7 +299,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="network-conditions">
-<h3>Network Conditions<a class="headerlink" href="#network-conditions" title="Permalink to this headline"></a></h3>
+<h3>Network Conditions<a class="headerlink" href="#network-conditions" title="Permalink to this heading"></a></h3>
 <p>Netowrk conditions metrics are stored inside the <code class="docutils literal notranslate"><span class="pre">UNetDriver</span></code> stored inside the world.
 In addition you can hook yourself to the <code class="docutils literal notranslate"><span class="pre">FOnNetworkProcessingCausingSlowFrame</span></code> delegate inside <code class="docutils literal notranslate"><span class="pre">IpNetDriver</span></code>
 to display warning to users when network is being slow.</p>
@@ -472,7 +473,7 @@ to display warning to users when network is being slow.</p>
 </table>
 </section>
 <section id="replication">
-<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this headline"></a></h3>
+<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Net/Core/PushModel/PushModel.h&quot;</span><span class="cp"></span>
 
 <span class="w">     </span><span class="n">FDoRepLifetimeParams</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">;</span><span class="w"></span>
@@ -490,7 +491,7 @@ to display warning to users when network is being slow.</p>
 </div>
 </section>
 <section id="advanced-replication">
-<h3>Advanced Replication<a class="headerlink" href="#advanced-replication" title="Permalink to this headline"></a></h3>
+<h3>Advanced Replication<a class="headerlink" href="#advanced-replication" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// this seems to work well, channel does not close</span>
 <span class="kt">bool</span><span class="w"> </span><span class="nf">AGKCharacterBase::IsReplicationPausedForConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FNetViewer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ConnectionOwnerNetViewer</span><span class="p">)</span><span class="w"></span>
 
@@ -537,7 +538,7 @@ to display warning to users when network is being slow.</p>
 </dl>
 </section>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h3>
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h3>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># DefaultEngine.ini</span><span class="w"></span>
 <span class="k">[PacketSimulationSettings]</span><span class="w"></span>
 <span class="na">PktLag</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
@@ -549,7 +550,7 @@ to display warning to users when network is being slow.</p>
 </div>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h3>
+<h3>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h3>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://www.unrealengine.com/en-US/blog/finding-network-based-exploits?sessionInvalidated=true">Simulate Network Conditions</a></p>

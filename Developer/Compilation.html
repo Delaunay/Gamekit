@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                d1c811e4
+                0ca373df
 
               </div>
 <div role="search">
@@ -120,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="compilation">
-<h1>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline"></a></h1>
+<h1>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading"></a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You will need upward of 130 Go of space to compile UE4 with debug symbols</p>
@@ -142,7 +143,7 @@
 </pre></div>
 </div>
 <section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>Install build tool</p>
 <blockquote>
@@ -160,7 +161,7 @@
 the compiler and the build tools can be installed without visual studio.</p>
 </div>
 <section id="git">
-<h3>Git<a class="headerlink" href="#git" title="Permalink to this headline"></a></h3>
+<h3>Git<a class="headerlink" href="#git" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows file permissions are wrong when using WSL</span>
 git config --global core.filemode <span class="nb">false</span>
 
@@ -171,9 +172,9 @@ git config --global core.autocrlf <span class="nb">true</span>
 </section>
 </section>
 <section id="linux">
-<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h2>
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h2>
 <section id="compile-libaries-with-ue4-clang">
-<h3>Compile libaries with UE4 clang<a class="headerlink" href="#compile-libaries-with-ue4-clang" title="Permalink to this headline"></a></h3>
+<h3>Compile libaries with UE4 clang<a class="headerlink" href="#compile-libaries-with-ue4-clang" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">EngineDir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$SCRIPT_DIR</span><span class="s2">/../../../&quot;</span>
 <span class="nv">InstallClangDir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EngineDir</span><span class="s2">/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/&quot;</span>
 <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">InstallClangDir</span><span class="si">}</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
