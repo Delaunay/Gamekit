@@ -69,15 +69,15 @@ Functions
 
 - :ref:`exhale_function_GKItemTypes_8h_1a48b8b70d84a875bd50835a558545816d`
 
-- :ref:`exhale_function_GKItemTypes_8h_1aeaa00e87e067b796b0ca8c92a2740535`
-
 - :ref:`exhale_function_GKItemTypes_8h_1ac11ca505951dc00ddce58bbe2820a52e`
+
+- :ref:`exhale_function_GKItemTypes_8h_1aeaa00e87e067b796b0ca8c92a2740535`
 
 - :ref:`exhale_function_GKItemTypes_8h_1aad48a28464dad608433e539531822b55`
 
 - :ref:`exhale_function_GKItemTypes_8h_1a4b03dafbaf82e7ba373dc76e7c25c3f2`
 
-- :ref:`exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e`
-
 - :ref:`exhale_function_GKItemTypes_8h_1a67e36e38974f304506844b3a2528b7aa`
+
+- :ref:`exhale_function_GKItemTypes_8h_1a1b4f179e5a42c8d1d210397de1d9d79e`
 
