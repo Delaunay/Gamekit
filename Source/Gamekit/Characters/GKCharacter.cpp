@@ -390,6 +390,11 @@ void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplay
     }
 }
 
+void AGKCharacterBase::RemoveAbility(FGKAbilitySlot Slot) {
+    auto Handle = GetAbilityHandle(Slot);
+    AbilitySystemComponent->SetRemoveAbilityOnEnd(Handle);
+}
+
 void AGKCharacterBase::EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass)
 {
     // Only called with authority

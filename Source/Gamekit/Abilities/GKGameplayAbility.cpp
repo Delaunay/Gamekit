@@ -674,6 +674,10 @@ void UGKGameplayAbility::ActivateAbility_Toggle()
 
 void UGKGameplayAbility::ActivateAbility_Native()
 {
+    if (GetAbilityLevel() <= 0){
+        return;
+    }
+
     // Cancel current targeting task if any
     // this is to free up the delegates
     if (TargetTask) {

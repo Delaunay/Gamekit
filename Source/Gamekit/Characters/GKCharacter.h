@@ -125,6 +125,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = Abilities)
     void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass, int Level = 0);
 
+    //! Remove ability, if currently active, it will be removed once the activation ends
+    UFUNCTION(BlueprintCallable, Category = Abilities)
+    void RemoveAbility(FGKAbilitySlot Slot);
+
     UFUNCTION(BlueprintCallable, Category = Abilities)
     void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
 
