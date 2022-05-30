@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                1d1acd74
+                69cf0dea
 
               </div>
 <div role="search">
@@ -166,8 +166,7 @@
 <span class="w">    </span><span class="n">bBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::NativeDestruct</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::RemoveListeners</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bBound</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
@@ -196,6 +195,11 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">bBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::NativeDestruct</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">RemoveListeners</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnAbilityInsufficientResources_Native</span><span class="p">(</span><span class="n">FGameplayAttribute</span><span class="w"> </span><span class="n">Attribute</span><span class="p">,</span><span class="w"></span>

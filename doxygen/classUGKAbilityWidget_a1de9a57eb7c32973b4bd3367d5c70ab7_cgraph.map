@@ -1,5 +1,6 @@
 <map id="UGKAbilityWidget::NativeDestruct" name="UGKAbilityWidget::NativeDestruct">
 <area shape="rect" id="node1" title=" " alt="" coords="5,39,196,80"/>
-<area shape="rect" id="node2" href="$classUGKAsyncTaskAttributeChanged.html#a11429ac8a0b08fca7872aac3faa20db8" title=" " alt="" coords="247,5,481,47"/>
-<area shape="rect" id="node3" href="$classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c" title=" " alt="" coords="244,71,484,112"/>
+<area shape="rect" id="node2" href="$classUGKAbilityWidget.html#aac2c832af7d09db90cffbd24daf4b317" title=" " alt="" coords="244,39,445,80"/>
+<area shape="rect" id="node3" href="$classUGKAsyncTaskAttributeChanged.html#a11429ac8a0b08fca7872aac3faa20db8" title=" " alt="" coords="497,5,730,47"/>
+<area shape="rect" id="node4" href="$classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c" title=" " alt="" coords="493,71,733,112"/>
 </map>

@@ -65,8 +65,7 @@ Program Listing for File GKAbilityWidget.cpp
        bBound = true;
    }
    
-   void UGKAbilityWidget::NativeDestruct()
-   {
+   void UGKAbilityWidget::RemoveListeners() {
        if (!bBound)
        {
            return;
@@ -95,6 +94,11 @@ Program Listing for File GKAbilityWidget.cpp
        }
    
        bBound = false;
+   }
+   
+   void UGKAbilityWidget::NativeDestruct()
+   {
+       RemoveListeners(); 
    }
    
    void UGKAbilityWidget::OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute,
