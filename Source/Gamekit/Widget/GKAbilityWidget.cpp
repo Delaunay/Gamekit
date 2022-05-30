@@ -53,8 +53,7 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     bBound = true;
 }
 
-void UGKAbilityWidget::NativeDestruct()
-{
+void UGKAbilityWidget::RemoveListeners() {
     if (!bBound)
     {
         return;
@@ -83,6 +82,11 @@ void UGKAbilityWidget::NativeDestruct()
     }
 
     bBound = false;
+}
+
+void UGKAbilityWidget::NativeDestruct()
+{
+    RemoveListeners(); 
 }
 
 void UGKAbilityWidget::OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute,

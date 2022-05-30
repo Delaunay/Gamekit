@@ -70,6 +70,9 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     virtual void SetupListeners(class UGKGameplayAbility *AbilityIn);
 
+    UFUNCTION(BlueprintCallable, BlueprintCosmetic)
+    void RemoveListeners();
+
     void NativeDestruct() override;
 
     protected:
