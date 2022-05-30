@@ -27,6 +27,7 @@ Program Listing for File GKGameplayAbility.h
    
    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate);
    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKTargetingStartDelegate);
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKAbilityRemovalDelegate);
    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTargetingResultDelegate, bool, TargetCancelled);
    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level);
    
@@ -159,6 +160,11 @@ Program Listing for File GKGameplayAbility.h
    
        UPROPERTY(BlueprintAssignable)
        FGKTargetingStartDelegate TargetingStartDelegate;
+   
+       UPROPERTY(BlueprintAssignable)
+       FGKAbilityRemovalDelegate OnAbilityRemoved;
+   
+       void OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
    
        // -----------------------------------------------------------------
        UFUNCTION(BlueprintCallable, Category = Ability)

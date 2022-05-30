@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0ca373df
+                1d1acd74
 
               </div>
 <div role="search">
@@ -787,6 +787,10 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::ActivateAbility_Native</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GetAbilityLevel</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">// Cancel current targeting task if any</span>
 <span class="w">    </span><span class="c1">// this is to free up the delegates</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -898,6 +902,11 @@
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CooldownEffect</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::OnRemoveAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Spec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGameplayAbility</span><span class="o">::</span><span class="n">OnRemoveAbility</span><span class="p">(</span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnAbilityRemoved</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKGameplayAbility::NewCostEffectFromConfig</span><span class="p">(</span><span class="n">FGKAbilityCost</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Conf</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>

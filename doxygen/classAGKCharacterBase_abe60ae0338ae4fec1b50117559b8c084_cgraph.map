@@ -1,0 +1,4 @@
+<map id="AGKCharacterBase::RemoveAbility" name="AGKCharacterBase::RemoveAbility">
+<area shape="rect" id="node1" title="Remove ability, if currently active, it will be removed once the activation ends." alt="" coords="5,5,212,47"/>
+<area shape="rect" id="node2" href="$classAGKCharacterBase.html#a7771e5e002a8ef88579a4693f8ef89ee" title=" " alt="" coords="260,5,477,47"/>
+</map>

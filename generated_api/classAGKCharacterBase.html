@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0ca373df
+                1d1acd74
 
               </div>
 <div role="search">
@@ -413,6 +413,12 @@
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase13RemoveAbilityE14FGKAbilitySlot">
+<span id="_CPPv3N16AGKCharacterBase13RemoveAbilityE14FGKAbilitySlot"></span><span id="_CPPv2N16AGKCharacterBase13RemoveAbilityE14FGKAbilitySlot"></span><span id="AGKCharacterBase::RemoveAbility__FGKAbilitySlot"></span><span class="target" id="classAGKCharacterBase_1abe60ae0338ae4fec1b50117559b8c084"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RemoveAbility</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structFGKAbilitySlot.html#_CPPv414FGKAbilitySlot" title="FGKAbilitySlot"><span class="n"><span class="pre">FGKAbilitySlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase13RemoveAbilityE14FGKAbilitySlot" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remove ability, if currently active, it will be removed once the activation ends. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE">
 <span id="_CPPv3N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="_CPPv2N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE"></span><span id="AGKCharacterBase::EquipItem__EGK_ItemSlot.TSubclassOf:UGKGameplayAbility:"></span><span class="target" id="classAGKCharacterBase_1a5d17b44503fb294d4ef7e25b3c738979"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EquipItem</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda.html#_CPPv412EGK_ItemSlot" title="EGK_ItemSlot"><span class="n"><span class="pre">EGK_ItemSlot</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Slot</span></span>, <span class="n"><span class="pre">TSubclassOf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classUGKGameplayAbility.html#_CPPv418UGKGameplayAbility" title="UGKGameplayAbility"><span class="n"><span class="pre">UGKGameplayAbility</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AbilityClass</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase9EquipItemE12EGK_ItemSlot11TSubclassOfI18UGKGameplayAbilityE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -469,6 +475,12 @@
 <dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase19OnNewAbility_NativeER20FGameplayAbilitySpec">
 <span id="_CPPv3N16AGKCharacterBase19OnNewAbility_NativeER20FGameplayAbilitySpec"></span><span id="_CPPv2N16AGKCharacterBase19OnNewAbility_NativeER20FGameplayAbilitySpec"></span><span id="AGKCharacterBase::OnNewAbility_Native__FGameplayAbilitySpecR"></span><span class="target" id="classAGKCharacterBase_1a47b47b77c5b84d7a4ef54f8b640cb2fd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnNewAbility_Native</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">AbilitySpec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase19OnNewAbility_NativeER20FGameplayAbilitySpec" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Client side register the granted ability. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase23OnAbilityRemoved_NativeER20FGameplayAbilitySpec">
+<span id="_CPPv3N16AGKCharacterBase23OnAbilityRemoved_NativeER20FGameplayAbilitySpec"></span><span id="_CPPv2N16AGKCharacterBase23OnAbilityRemoved_NativeER20FGameplayAbilitySpec"></span><span id="AGKCharacterBase::OnAbilityRemoved_Native__FGameplayAbilitySpecR"></span><span class="target" id="classAGKCharacterBase_1a41afb7113afa1352ac4423ae9ee37d6f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnAbilityRemoved_Native</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">AbilitySpec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase23OnAbilityRemoved_NativeER20FGameplayAbilitySpec" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Client side register the removal. </p>
 </dd></dl>
 
 <dl class="cpp function">

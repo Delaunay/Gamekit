@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0ca373df
+                1d1acd74
 
               </div>
 <div role="search">
@@ -501,6 +501,22 @@
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Ability was already granted&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">RemoveAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityHandle</span><span class="p">(</span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">SetRemoveAbilityOnEnd</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnAbilityRemoved_Native</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKAbilitySlot</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Removing Ability %s with Input %d: %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetFName</span><span class="p">().</span><span class="n">ToString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="n">UEnum</span><span class="o">::</span><span class="n">GetValueAsString</span><span class="p">(</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="p">(</span><span class="n">AbilitySpec</span><span class="p">.</span><span class="n">InputID</span><span class="p">)));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AbilitySpecs</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">Id</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">EquipItem</span><span class="p">(</span><span class="n">EGK_ItemSlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityClass</span><span class="p">)</span><span class="w"></span>

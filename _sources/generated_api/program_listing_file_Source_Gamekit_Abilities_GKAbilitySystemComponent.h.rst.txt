@@ -82,6 +82,8 @@ Program Listing for File GKAbilitySystemComponent.h
    
        void OnGiveAbility(FGameplayAbilitySpec &AbilitySpec) override;
    
+       void OnRemoveAbility(FGameplayAbilitySpec& Spec) override;
+   
        UFUNCTION(BlueprintCallable)
        bool IsInitialized() const;
    

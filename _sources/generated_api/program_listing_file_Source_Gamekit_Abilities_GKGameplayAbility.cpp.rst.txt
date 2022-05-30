@@ -686,6 +686,10 @@ Program Listing for File GKGameplayAbility.cpp
    
    void UGKGameplayAbility::ActivateAbility_Native()
    {
+       if (GetAbilityLevel() <= 0){
+           return;
+       }
+   
        // Cancel current targeting task if any
        // this is to free up the delegates
        if (TargetTask) {
@@ -797,6 +801,11 @@ Program Listing for File GKGameplayAbility.cpp
    
        return CooldownEffect;
    };
+   
+   void UGKGameplayAbility::OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) {
+       UGameplayAbility::OnRemoveAbility(ActorInfo, Spec);
+       OnAbilityRemoved.Broadcast();
+   }
    
    UGameplayEffect *UGKGameplayAbility::NewCostEffectFromConfig(FGKAbilityCost &Conf)
    {

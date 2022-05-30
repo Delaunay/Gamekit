@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0ca373df
+                1d1acd74
 
               </div>
 <div role="search">
@@ -135,6 +135,25 @@
 <span class="w">                                                       </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">FailureReason</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">OnAbilityFailed</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">FailureReason</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">::</span><span class="n">OnRemoveAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Spec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">OnRemoveAbility</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AGKCharacterBase</span><span class="o">*</span><span class="w"> </span><span class="n">Character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetOwner</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Character</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">Warning</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Removing an Ability to a non AGKCharacterBase, replication will not work %s&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="o">*</span><span class="n">GetOwner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">StaticClass</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetName</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// &quot;Grant&quot; Client Ability</span>
+<span class="w">    </span><span class="n">Character</span><span class="o">-&gt;</span><span class="n">OnAbilityRemoved_Native</span><span class="p">(</span><span class="n">Spec</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">::</span><span class="n">OnGiveAbility</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilitySpec</span><span class="p">)</span><span class="w"></span>

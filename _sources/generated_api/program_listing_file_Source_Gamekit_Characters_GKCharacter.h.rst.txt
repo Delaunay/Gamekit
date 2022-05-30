@@ -117,6 +117,9 @@ Program Listing for File GKCharacter.h
        void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass, int Level = 0);
    
        UFUNCTION(BlueprintCallable, Category = Abilities)
+       void RemoveAbility(FGKAbilitySlot Slot);
+   
+       UFUNCTION(BlueprintCallable, Category = Abilities)
        void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
    
        // Allow to rebind abilities
@@ -154,6 +157,8 @@ Program Listing for File GKCharacter.h
        void ReceiveNewAbility(FGKAbilitySlot Slot, FGameplayAbilitySpec NewAbilAbilitySpecity);
    
        void OnNewAbility_Native(FGameplayAbilitySpec& AbilitySpec);
+   
+       void OnAbilityRemoved_Native(FGameplayAbilitySpec& AbilitySpec);
    
        virtual void OnHealthChanged_Native(const FOnAttributeChangeData& Data);
    

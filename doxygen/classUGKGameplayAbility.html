@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">0ca373df</span>
+   &#160;<span id="projectnumber">1d1acd74</span>
    </div>
   </td>
  </tr>
@@ -158,6 +158,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab38e0b33efea6fc3f24e7dba47d4936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a63f5a16e7a29dcd5fc73830cc9f0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#a77a63f5a16e7a29dcd5fc73830cc9f0b">OnAbilityTargetAcquired</a> (const FGameplayAbilityTargetDataHandle &amp;Data)</td></tr>
 <tr class="separator:a77a63f5a16e7a29dcd5fc73830cc9f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747a8b8cffdb97a44b9f314f98159feb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#a747a8b8cffdb97a44b9f314f98159feb">OnRemoveAbility</a> (const FGameplayAbilityActorInfo *ActorInfo, const FGameplayAbilitySpec &amp;Spec) override</td></tr>
+<tr class="separator:a747a8b8cffdb97a44b9f314f98159feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad32c041003bd0df5381d94703c5cd4c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#ad32c041003bd0df5381d94703c5cd4c5">GetTargetLocation</a> (FGameplayAbilityTargetDataHandle TargetData, FVector &amp;Position, AActor *&amp;Target, int32 Index=0)</td></tr>
 <tr class="memdesc:ad32c041003bd0df5381d94703c5cd4c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the TargetData and try to fetch a location and an actor.  <a href="classUGKGameplayAbility.html#ad32c041003bd0df5381d94703c5cd4c5">More...</a><br /></td></tr>
 <tr class="separator:ad32c041003bd0df5381d94703c5cd4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,6 +255,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ae25a8017992fd944cbc59ec4eb1b9bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6361f5b6063e15b9cf430b003f76ff27"><td class="memItemLeft" align="right" valign="top">FGKTargetingStartDelegate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#a6361f5b6063e15b9cf430b003f76ff27">TargetingStartDelegate</a></td></tr>
 <tr class="separator:a6361f5b6063e15b9cf430b003f76ff27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101060683d77bc9b8846eff519eae27a"><td class="memItemLeft" align="right" valign="top">FGKAbilityRemovalDelegate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#a101060683d77bc9b8846eff519eae27a">OnAbilityRemoved</a></td></tr>
+<tr class="separator:a101060683d77bc9b8846eff519eae27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53b8012b0d39e1353f16d21a1c4c5dd4"><td class="memItemLeft" align="right" valign="top">UGameplayEffect *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#a53b8012b0d39e1353f16d21a1c4c5dd4">CooldownEffectInstance</a></td></tr>
 <tr class="separator:a53b8012b0d39e1353f16d21a1c4c5dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa39a5d666f09da66616a7c08da516f3a"><td class="memItemLeft" align="right" valign="top">UGameplayEffect *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKGameplayAbility.html#aa39a5d666f09da66616a7c08da516f3a">CostEffectInstance</a></td></tr>
@@ -2001,6 +2005,42 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a747a8b8cffdb97a44b9f314f98159feb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747a8b8cffdb97a44b9f314f98159feb">&#9670;&nbsp;</a></span>OnRemoveAbility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKGameplayAbility::OnRemoveAbility </td>
+          <td>(</td>
+          <td class="paramtype">const FGameplayAbilityActorInfo *&#160;</td>
+          <td class="paramname"><em>ActorInfo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FGameplayAbilitySpec &amp;&#160;</td>
+          <td class="paramname"><em>Spec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad5c1d58b05e8d541c6925258750d1729"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad5c1d58b05e8d541c6925258750d1729">&#9670;&nbsp;</a></span>PostInitProperties()</h2>
 
@@ -2328,6 +2368,20 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Server RPC to client Note that the Level returned by this event is the correct one The level stored in the ability spec can be lagging behind if replication has not happened yet </p>
+
+</div>
+</div>
+<a id="a101060683d77bc9b8846eff519eae27a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101060683d77bc9b8846eff519eae27a">&#9670;&nbsp;</a></span>OnAbilityRemoved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FGKAbilityRemovalDelegate UGKGameplayAbility::OnAbilityRemoved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

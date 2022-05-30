@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8h_1a191be7977bf303c469230fba4c3cc783:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKAbilityRemovalDelegate)
+======================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKAbilityRemovalDelegate)
+   :project: GameKit

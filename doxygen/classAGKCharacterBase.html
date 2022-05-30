@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">0ca373df</span>
+   &#160;<span id="projectnumber">1d1acd74</span>
    </div>
   </td>
  </tr>
@@ -161,6 +161,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10ea7eaac68ce4ea253250c866143781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a10ea7eaac68ce4ea253250c866143781">GrantAbility</a> (<a class="el" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot, TSubclassOf&lt; <a class="el" href="classUGKGameplayAbility.html">UGKGameplayAbility</a> &gt; AbilityClass, int Level=0)</td></tr>
 <tr class="memdesc:a10ea7eaac68ce4ea253250c866143781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can only be called by the Authority,.  <a href="classAGKCharacterBase.html#a10ea7eaac68ce4ea253250c866143781">More...</a><br /></td></tr>
 <tr class="separator:a10ea7eaac68ce4ea253250c866143781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe60ae0338ae4fec1b50117559b8c084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#abe60ae0338ae4fec1b50117559b8c084">RemoveAbility</a> (<a class="el" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot)</td></tr>
+<tr class="memdesc:abe60ae0338ae4fec1b50117559b8c084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove ability, if currently active, it will be removed once the activation ends.  <a href="classAGKCharacterBase.html#abe60ae0338ae4fec1b50117559b8c084">More...</a><br /></td></tr>
+<tr class="separator:abe60ae0338ae4fec1b50117559b8c084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d17b44503fb294d4ef7e25b3c738979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a5d17b44503fb294d4ef7e25b3c738979">EquipItem</a> (<a class="el" href="GKAbilityStatic_8h.html#a62db423c801c352ffb38576228a35bda">EGK_ItemSlot</a> Slot, TSubclassOf&lt; <a class="el" href="classUGKGameplayAbility.html">UGKGameplayAbility</a> &gt; AbilityClass)</td></tr>
 <tr class="separator:a5d17b44503fb294d4ef7e25b3c738979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bce1f0dc3c0490858750abbbc499a3c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a5bce1f0dc3c0490858750abbbc499a3c">AbilityCount</a> () const</td></tr>
@@ -185,6 +188,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47b47b77c5b84d7a4ef54f8b640cb2fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a47b47b77c5b84d7a4ef54f8b640cb2fd">OnNewAbility_Native</a> (FGameplayAbilitySpec &amp;AbilitySpec)</td></tr>
 <tr class="memdesc:a47b47b77c5b84d7a4ef54f8b640cb2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side register the granted ability.  <a href="classAGKCharacterBase.html#a47b47b77c5b84d7a4ef54f8b640cb2fd">More...</a><br /></td></tr>
 <tr class="separator:a47b47b77c5b84d7a4ef54f8b640cb2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41afb7113afa1352ac4423ae9ee37d6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a41afb7113afa1352ac4423ae9ee37d6f">OnAbilityRemoved_Native</a> (FGameplayAbilitySpec &amp;AbilitySpec)</td></tr>
+<tr class="memdesc:a41afb7113afa1352ac4423ae9ee37d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client side register the removal.  <a href="classAGKCharacterBase.html#a41afb7113afa1352ac4423ae9ee37d6f">More...</a><br /></td></tr>
+<tr class="separator:a41afb7113afa1352ac4423ae9ee37d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36849166872cf4a99a6807af698b323e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a36849166872cf4a99a6807af698b323e">OnHealthChanged_Native</a> (const FOnAttributeChangeData &amp;Data)</td></tr>
 <tr class="separator:a36849166872cf4a99a6807af698b323e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e36043d5d7518ab8384e9f15c68c5a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a8e36043d5d7518ab8384e9f15c68c5a6">ClearGameplayAbilities</a> ()</td></tr>
@@ -887,6 +893,26 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a41afb7113afa1352ac4423ae9ee37d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41afb7113afa1352ac4423ae9ee37d6f">&#9670;&nbsp;</a></span>OnAbilityRemoved_Native()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::OnAbilityRemoved_Native </td>
+          <td>(</td>
+          <td class="paramtype">FGameplayAbilitySpec &amp;&#160;</td>
+          <td class="paramname"><em>AbilitySpec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Client side register the removal. </p>
+
+</div>
+</div>
 <a id="ac63334d5ec31418311750e01c7552872"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac63334d5ec31418311750e01c7552872">&#9670;&nbsp;</a></span>OnDataTableChanged_Native()</h2>
 
@@ -1229,6 +1255,35 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe60ae0338ae4fec1b50117559b8c084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe60ae0338ae4fec1b50117559b8c084">&#9670;&nbsp;</a></span>RemoveAbility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::RemoveAbility </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>&#160;</td>
+          <td class="paramname"><em>Slot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove ability, if currently active, it will be removed once the activation ends. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAGKCharacterBase_abe60ae0338ae4fec1b50117559b8c084_cgraph.png" border="0" usemap="#classAGKCharacterBase_abe60ae0338ae4fec1b50117559b8c084_cgraph" alt=""/></div>
+<map name="classAGKCharacterBase_abe60ae0338ae4fec1b50117559b8c084_cgraph" id="classAGKCharacterBase_abe60ae0338ae4fec1b50117559b8c084_cgraph">
+<area shape="rect" title="Remove ability, if currently active, it will be removed once the activation ends." alt="" coords="5,5,212,47"/>
+<area shape="rect" href="classAGKCharacterBase.html#a7771e5e002a8ef88579a4693f8ef89ee" title=" " alt="" coords="260,5,477,47"/>
+</map>
+</div>
 
 </div>
 </div>

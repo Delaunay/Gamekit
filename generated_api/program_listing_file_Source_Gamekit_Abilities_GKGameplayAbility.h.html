@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0ca373df
+                1d1acd74
 
               </div>
 <div role="search">
@@ -128,6 +128,7 @@
 
 <span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE</span><span class="p">(</span><span class="n">FGKCancelBackswingDelegate</span><span class="p">);</span><span class="w"></span>
 <span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE</span><span class="p">(</span><span class="n">FGKTargetingStartDelegate</span><span class="p">);</span><span class="w"></span>
+<span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE</span><span class="p">(</span><span class="n">FGKAbilityRemovalDelegate</span><span class="p">);</span><span class="w"></span>
 <span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span><span class="p">(</span><span class="n">FGKTargetingResultDelegate</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">TargetCancelled</span><span class="p">);</span><span class="w"></span>
 <span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span><span class="p">(</span><span class="n">FGKAbilityLevelUpDelegate</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Level</span><span class="p">);</span><span class="w"></span>
 
@@ -260,6 +261,11 @@
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGKTargetingStartDelegate</span><span class="w"> </span><span class="n">TargetingStartDelegate</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKAbilityRemovalDelegate</span><span class="w"> </span><span class="n">OnAbilityRemoved</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnRemoveAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Spec</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// -----------------------------------------------------------------</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
