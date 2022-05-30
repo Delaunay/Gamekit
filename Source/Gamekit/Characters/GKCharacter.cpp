@@ -395,6 +395,17 @@ void AGKCharacterBase::RemoveAbility(FGKAbilitySlot Slot) {
     AbilitySystemComponent->SetRemoveAbilityOnEnd(Handle);
 }
 
+void AGKCharacterBase::OnAbilityRemoved_Native(FGameplayAbilitySpec& AbilitySpec) {
+    auto Id = FGKAbilitySlot(AbilitySpec.InputID);
+
+    GK_LOG(TEXT("Removing Ability %s with Input %d: %s"),
+        *AbilitySpec.Ability->GetFName().ToString(),
+        AbilitySpec.InputID,
+        *UEnum::GetValueAsString(EGK_MOBA_AbilityInputID(AbilitySpec.InputID)));
+
+    AbilitySpecs.Remove(Id);
+}
+
 void AGKCharacterBase::EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass)
 {
     // Only called with authority

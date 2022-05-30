@@ -790,6 +790,11 @@ UGameplayEffect *UGKGameplayAbility::NewCooldownEffectFromConfig(TArray<float> &
     return CooldownEffect;
 };
 
+void UGKGameplayAbility::OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) {
+    UGameplayAbility::OnRemoveAbility(ActorInfo, Spec);
+    OnAbilityRemoved.Broadcast();
+}
+
 UGameplayEffect *UGKGameplayAbility::NewCostEffectFromConfig(FGKAbilityCost &Conf)
 {
     if (Conf.Value.Num() <= 0)

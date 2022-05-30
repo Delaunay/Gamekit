@@ -24,6 +24,25 @@ void UGKAbilitySystemComponent::OnAbilityFailed_Native(const UGameplayAbility * 
     OnAbilityFailed.Broadcast(Ability, FailureReason);
 }
 
+
+void UGKAbilitySystemComponent::OnRemoveAbility(FGameplayAbilitySpec& Spec) {
+    Super::OnRemoveAbility(Spec);
+
+    AGKCharacterBase* Character = Cast<AGKCharacterBase>(GetOwner());
+
+    if (Character == nullptr)
+    {
+        UE_LOG(LogGamekit,
+            Warning,
+            TEXT("Removing an Ability to a non AGKCharacterBase, replication will not work %s"),
+            *GetOwner()->StaticClass()->GetName());
+        return;
+    }
+
+    // "Grant" Client Ability
+    Character->OnAbilityRemoved_Native(Spec);
+}
+
 void UGKAbilitySystemComponent::OnGiveAbility(FGameplayAbilitySpec &AbilitySpec)
 {
     // Generate the ActorInfo an set it on the instance

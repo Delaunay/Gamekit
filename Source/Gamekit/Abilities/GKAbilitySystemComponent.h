@@ -76,6 +76,8 @@ class GAMEKIT_API UGKAbilitySystemComponent: public UAbilitySystemComponent
     //! Used to receive the Granted ability through network
     void OnGiveAbility(FGameplayAbilitySpec &AbilitySpec) override;
 
+    void OnRemoveAbility(FGameplayAbilitySpec& Spec) override;
+
     UFUNCTION(BlueprintCallable)
     bool IsInitialized() const;
 

@@ -15,6 +15,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKCancelBackswingDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKTargetingStartDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGKAbilityRemovalDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKTargetingResultDelegate, bool, TargetCancelled);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKAbilityLevelUpDelegate, int, Level);
 
@@ -199,6 +200,11 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     UPROPERTY(BlueprintAssignable)
     FGKTargetingStartDelegate TargetingStartDelegate;
+
+    UPROPERTY(BlueprintAssignable)
+    FGKAbilityRemovalDelegate OnAbilityRemoved;
+
+    void OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 
     // -----------------------------------------------------------------
     //! Reads the TargetData and try to fetch a location and an actor

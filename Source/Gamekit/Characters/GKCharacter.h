@@ -172,6 +172,9 @@ public:
     //! Client side register the granted ability
     void OnNewAbility_Native(FGameplayAbilitySpec& AbilitySpec);
 
+    //! Client side register the removal
+    void OnAbilityRemoved_Native(FGameplayAbilitySpec& AbilitySpec);
+
     virtual void OnHealthChanged_Native(const FOnAttributeChangeData& Data);
 
     void ClearGameplayAbilities();
