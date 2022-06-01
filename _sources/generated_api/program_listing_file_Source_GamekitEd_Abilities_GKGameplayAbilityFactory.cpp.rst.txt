@@ -1,0 +1,53 @@
+
+.. _program_listing_file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.cpp:
+
+Program Listing for File GKGameplayAbilityFactory.cpp
+=====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.cpp>` (``Source/GamekitEd/Abilities/GKGameplayAbilityFactory.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "GamekitEd/Abilities/GKGameplayAbilityFactory.h"
+   
+   
+   #include "Gamekit/Abilities/GKGameplayAbility.h"
+   
+   #define LOCTEXT_NAMESPACE "GKGameplayAbilityFactory"
+   
+   
+   UGKGameplayAbilityFactory::UGKGameplayAbilityFactory(const FObjectInitializer& ObjectInitializer)
+       : Super(ObjectInitializer)
+   {
+       SupportedClass = UGKGameplayAbility::StaticClass();
+       bCreateNew = true;
+       bEditAfterNew = true;
+   }
+   
+   
+   UObject* UGKGameplayAbilityFactory::FactoryCreateNew(UClass* Class,
+                                                        UObject* InParent,
+                                                        FName Name,
+                                                        EObjectFlags Flags,
+                                                        UObject* Context,
+                                                        FFeedbackContext* Warn)
+   {
+       UGKGameplayAbility* Ability = nullptr;
+   
+       if (ensure(SupportedClass == Class))
+       {
+           ensure(0 != (RF_Public & Flags));
+           Ability = NewObject<UGKGameplayAbility>(InParent, Name, Flags);
+   
+           if (Ability)
+           {
+   
+           }
+       }
+   
+       return Ability;
+   }

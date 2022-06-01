@@ -1,0 +1,14 @@
+.. _exhale_variable_GamekitEd_8cpp_1a23c7a005e4125b481b2e196b0f20b041:
+
+Variable FGamekitEdModule
+=========================
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEd.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: FGamekitEdModule
+   :project: GameKit

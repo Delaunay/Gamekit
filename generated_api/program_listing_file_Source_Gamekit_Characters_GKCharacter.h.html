@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                7481ee6d
+                6cb6b955
 
               </div>
 <div role="search">
@@ -213,6 +213,9 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKAttributeSet</span><span class="o">*</span><span class="w"> </span><span class="n">GetAttributeSet</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Make grant ability work with data table</span>
+<span class="w">    </span><span class="c1">// --------------------------------------</span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abilities</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">GrantAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">,</span><span class="w"> </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGKGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityClass</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>

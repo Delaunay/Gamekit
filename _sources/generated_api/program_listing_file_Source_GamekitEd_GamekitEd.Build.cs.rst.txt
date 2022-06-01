@@ -1,0 +1,44 @@
+
+.. _program_listing_file_Source_GamekitEd_GamekitEd.Build.cs:
+
+Program Listing for File GamekitEd.Build.cs
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_GamekitEd.Build.cs>` (``Source/GamekitEd/GamekitEd.Build.cs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: csharp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   using UnrealBuildTool;
+   
+   public class GamekitEd : ModuleRules
+   {
+       public GamekitEd(ReadOnlyTargetRules Target) : base(Target)
+       {
+           PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+   
+           PrivateIncludePaths.AddRange(new string[]{
+               "GamekitEd"
+           });
+   
+           PublicDependencyModuleNames.AddRange(new string[]{
+               "UnrealEd",
+   
+               "Gamekit",
+               "NetCore",
+               "Core",
+               "RenderCore",
+               "RHI"
+           });
+   
+           PrivateDependencyModuleNames.AddRange(new string[] {
+               "GameplayAbilities",
+   
+               // Defaults
+               "CoreUObject",
+           });
+       }
+   }

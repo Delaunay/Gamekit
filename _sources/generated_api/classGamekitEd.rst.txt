@@ -1,0 +1,26 @@
+.. _exhale_class_classGamekitEd:
+
+Class GamekitEd
+===============
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEd.Build.cs`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public ModuleRules``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: GamekitEd
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

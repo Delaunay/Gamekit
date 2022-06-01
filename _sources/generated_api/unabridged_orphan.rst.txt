@@ -161,6 +161,16 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_GamekitEd.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_Source_GamekitEd_Abilities.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_GamekitTestSuite.rst
 
 .. toctree::
@@ -256,6 +266,21 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Gamekit.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GamekitEd.Build.cs.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GamekitEd.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GamekitEd.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -756,6 +781,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_GKGameplayAbility.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.h.rst
 
 .. toctree::
    :maxdepth: 5

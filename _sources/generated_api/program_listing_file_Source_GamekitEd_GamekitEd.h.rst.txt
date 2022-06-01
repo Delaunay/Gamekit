@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_GamekitEd_GamekitEd.h:
+
+Program Listing for File GamekitEd.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_GamekitEd.h>` (``Source/GamekitEd/GamekitEd.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "Modules/ModuleManager.h"
+   
+   DECLARE_LOG_CATEGORY_EXTERN(LogGamekitEd, Log, All);
+   
+   class FGamekitEdModule : public IModuleInterface
+   {
+   public:
+       virtual void StartupModule() override;
+   
+       virtual void ShutdownModule() override;
+   };

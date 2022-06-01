@@ -74,10 +74,10 @@ Program Listing for File GKGameplayAbility.h
        // DataTable
        // ---------
    
-       UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
        class UDataTable *AbilityDataTable;
    
-       UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
        FName AbilityRowName;
    
        UFUNCTION(BlueprintCallable,

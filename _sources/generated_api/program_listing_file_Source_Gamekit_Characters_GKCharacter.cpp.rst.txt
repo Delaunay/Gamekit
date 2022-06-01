@@ -395,6 +395,7 @@ Program Listing for File GKCharacter.cpp
        );
    
        FGameplayAbilitySpecHandle Handle = GetAbilityHandle(Slot);
+   
        if (!Handle.IsValid()) {
            Handle = AbilitySystemComponent->GiveAbility(Spec);
        } else {

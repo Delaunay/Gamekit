@@ -61,6 +61,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.h`
 
+- :ref:`file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.cpp`
+
 
 
 
