@@ -30,7 +30,7 @@
         {
             "Name": "GamekitEd",
             "Type": "Editor",
-            "LoadingPhase": "PostConfigInit"
+            "LoadingPhase": "PostSplashScreen"
         }
     ],
     "Plugins": [
