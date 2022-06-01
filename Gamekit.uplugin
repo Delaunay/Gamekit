@@ -15,31 +15,44 @@
   "IsBetaVersion": false,
   "IsExperimentalVersion": false,
   "Installed": false,
-  "Modules": [
-    {
-      "Name": "Gamekit",
-      "Type": "Runtime",
-      "LoadingPhase": "PostConfigInit",
-      "WhitelistPlatforms": [ "Win64" ]
-    },
-    {
-      "Name": "GamekitTestSuite",
-      "Type": "DeveloperTool",
-      "LoadingPhase": "PostConfigInit"
-    }
-  ],
-  "Plugins": [
-    {
-      "Name": "GameplayAbilities",
-      "Enabled": true
-    },
-    {
-      "Name": "EnhancedInput",
-      "Enabled": true
-    },
-    {
-      "Name": "Niagara",
-      "Enabled": true
-    }
-  ]
+    "Modules": [
+        {
+            "Name": "Gamekit",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit",
+            "WhitelistPlatforms": [ "Win64" ]
+        },
+        {
+            "Name": "GamekitTestSuite",
+            "Type": "DeveloperTool",
+            "LoadingPhase": "PostConfigInit"
+        },
+        {
+            "Name": "GamekitEd",
+            "Type": "Editor",
+            "LoadingPhase": "PostConfigInit"
+        }
+    ],
+    "Plugins": [
+        {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+        },
+        {
+            "Name": "EnhancedInput",
+            "Enabled": true
+        },
+        {
+            "Name": "Niagara",
+            "Enabled": true
+        },
+        {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+        },
+        {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+        }
+    ]
 }

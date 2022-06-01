@@ -383,6 +383,7 @@ void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplay
     );
 
     FGameplayAbilitySpecHandle Handle = GetAbilityHandle(Slot);
+
     if (!Handle.IsValid()) {
         Handle = AbilitySystemComponent->GiveAbility(Spec);
     } else {

@@ -89,11 +89,11 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     // ---------
 
     //! DataTable used to fetch values for its data-driven effect
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
     class UDataTable *AbilityDataTable;
 
     //! Row Name used to fetch the values for its data-driven effect
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Ability|Data")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
     FName AbilityRowName;
 
     //! Retrieve the values from the DataTable for its data-driven effect

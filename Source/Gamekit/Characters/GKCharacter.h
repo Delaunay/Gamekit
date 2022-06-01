@@ -121,6 +121,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = Abilities)
     UGKAttributeSet* GetAttributeSet();
 
+    // Make grant ability work with data table
+    // --------------------------------------
+ 
     //! Can only be called by the Authority,
     UFUNCTION(BlueprintCallable, Category = Abilities)
     void GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass, int Level = 0);
