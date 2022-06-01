@@ -70,9 +70,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKFogOfWarComponent_8h_1afe8199e4807cfd7e45e0397b3f2e1297`
-
 - :ref:`exhale_function_GKFogOfWarComponent_8h_1ab55200f5fc9bd70d7378ffb0a22a66ab`
+
+- :ref:`exhale_function_GKFogOfWarComponent_8h_1afe8199e4807cfd7e45e0397b3f2e1297`
 
 
 Variables
