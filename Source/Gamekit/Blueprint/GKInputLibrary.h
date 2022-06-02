@@ -2,10 +2,14 @@
 
 #pragma once
 
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityInputs.h"
+
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "GameFramework/PlayerInput.h"
 
 // Generated
 #include "GKInputLibrary.generated.h"
@@ -35,4 +39,13 @@ class GAMEKIT_API UGKInputLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintPure, Category = "Input|EdgePan")
     static FVector2D EdgePanDirection(FVector2D MouseXYViewport);
+
+    UFUNCTION(BlueprintPure, Category = "Input")
+    static const TArray<FInputActionKeyMapping>& GetKeysForAction(APlayerController* Controller, const FName& ActionName);
+
+    UFUNCTION(BlueprintPure, Category = "Input")
+    static FText GetKeysForInputID(APlayerController* Controller, const EGK_MOBA_AbilityInputID InputID);
+
+    UFUNCTION(BlueprintPure, Category = "Input")
+    static FText GetKeysFromInputEnum(APlayerController* Controller, UEnum* Enum, int Value);
 };

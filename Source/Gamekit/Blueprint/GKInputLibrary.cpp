@@ -3,7 +3,10 @@
 #include "Gamekit/Blueprint/GKInputLibrary.h"
 
 // Unreal Engine
+#include "GameFramework/PlayerController.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetInputLibrary.h"
+
 
 FInputActionValue UGKInputLibrary::MakeBooleanAction(bool value) { return FInputActionValue(value); }
 
@@ -35,4 +38,26 @@ FVector2D UGKInputLibrary::EdgePanDirection(FVector2D Position)
 
     // Truncate to nearest Integer
     return FVector2D(FMath::TruncToFloat(Position.X), FMath::TruncToFloat(Position.Y));
+}
+
+const TArray<FInputActionKeyMapping>& UGKInputLibrary::GetKeysForAction(APlayerController* Controller, const FName& ActionName)
+{
+    return Controller->PlayerInput->GetKeysForAction(ActionName);
+}
+
+FText UGKInputLibrary::GetKeysForInputID(APlayerController* Controller, const EGK_MOBA_AbilityInputID InputID) {
+    UEnum* Enum = StaticEnum<EGK_MOBA_AbilityInputID>();
+    return GetKeysFromInputEnum(Controller, Enum, int(InputID));
+}
+
+FText UGKInputLibrary::GetKeysFromInputEnum(APlayerController* Controller, UEnum* Enum, int Value) {
+    FText Name = Enum->GetDisplayNameTextByValue(int64(Value));
+
+    auto& Results = GetKeysForAction(Controller, FName(*Name.ToString()));
+
+    if (Results.Num() <= 0) {
+        return FText();
+    }
+
+    return UKismetInputLibrary::Key_GetDisplayName(Results[0].Key);
 }
