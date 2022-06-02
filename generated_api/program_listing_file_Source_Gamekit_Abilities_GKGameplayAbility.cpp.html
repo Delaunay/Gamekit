@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                45fa4660e
+                a99ef9662
 
               </div>
 <div role="search">
@@ -437,7 +437,7 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">TargetingResultDelegate</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">TargetTask</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
@@ -480,7 +480,7 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityMoveToTargetCompleted</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MoveToTargetTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MoveToTargetTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">MoveToTargetTask</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">MoveToTargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="n">MoveToTargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
@@ -601,7 +601,7 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">CancelAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="n">bReplicateCancelAbility</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AnimTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AnimTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">AnimTask</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
@@ -793,7 +793,7 @@
 
 <span class="w">    </span><span class="c1">// Cancel current targeting task if any</span>
 <span class="w">    </span><span class="c1">// this is to free up the delegates</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">TargetTask</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetTask</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="n">TargetTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
@@ -1176,7 +1176,7 @@
 <span class="w">    </span><span class="c1">// We could also use it to add multiple points</span>
 <span class="w">    </span><span class="c1">// but not as flexible as an Ability queue</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">MovementTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CurrentTask</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MovementTask</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MovementTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">MovementTask</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w">       </span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APlayerController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">PlayerController</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
 <span class="w">        </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Result</span><span class="p">;</span><span class="w"></span>

@@ -336,7 +336,7 @@ Program Listing for File GKGameplayAbility.cpp
    {
        TargetingResultDelegate.Broadcast(false);
    
-       if (TargetTask)
+       if (TargetTask && IsValid(TargetTask))
        {
            TargetTask->EndTask();
            TargetTask = nullptr;
@@ -379,7 +379,7 @@ Program Listing for File GKGameplayAbility.cpp
    
    void UGKGameplayAbility::OnAbilityMoveToTargetCompleted(const FGameplayAbilityTargetDataHandle &Data)
    {
-       if (MoveToTargetTask)
+       if (MoveToTargetTask && IsValid(MoveToTargetTask))
        {
            MoveToTargetTask->EndTask();
            MoveToTargetTask = nullptr;
@@ -500,7 +500,7 @@ Program Listing for File GKGameplayAbility.cpp
    {
        Super::CancelAbility(Handle, ActorInfo, ActivationInfo, bReplicateCancelAbility);
    
-       if (AnimTask)
+       if (AnimTask && IsValid(AnimTask))
        {
            AnimTask->ExternalCancel();
        }
@@ -692,7 +692,7 @@ Program Listing for File GKGameplayAbility.cpp
    
        // Cancel current targeting task if any
        // this is to free up the delegates
-       if (TargetTask) {
+       if (TargetTask && IsValid(TargetTask)) {
            TargetTask->ExternalCancel();
            TargetTask->EndTask();
            TargetTask = nullptr;
@@ -1075,7 +1075,7 @@ Program Listing for File GKGameplayAbility.cpp
        // We could also use it to add multiple points
        // but not as flexible as an Ability queue
        auto MovementTask = Cast<UGKAbilityTask_MoveToDestination>(CurrentTask);
-       if (MovementTask)
+       if (MovementTask && IsValid(MovementTask))
        {
            auto       Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
            FHitResult Result;
