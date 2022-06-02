@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                c4b339bc
+                52582a7bc
 
               </div>
 <div role="search">
@@ -116,7 +116,10 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKInputLibrary.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/PlayerController.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetInputLibrary.h&quot;</span><span class="cp"></span>
+
 
 <span class="n">FInputActionValue</span><span class="w"> </span><span class="nf">UGKInputLibrary::MakeBooleanAction</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FInputActionValue</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
@@ -148,6 +151,28 @@
 
 <span class="w">    </span><span class="c1">// Truncate to nearest Integer</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FVector2D</span><span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">TruncToFloat</span><span class="p">(</span><span class="n">Position</span><span class="p">.</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">TruncToFloat</span><span class="p">(</span><span class="n">Position</span><span class="p">.</span><span class="n">Y</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FInputActionKeyMapping</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">UGKInputLibrary</span><span class="o">::</span><span class="n">GetKeysForAction</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FName</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ActionName</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">PlayerInput</span><span class="o">-&gt;</span><span class="n">GetKeysForAction</span><span class="p">(</span><span class="n">ActionName</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FText</span><span class="w"> </span><span class="n">UGKInputLibrary</span><span class="o">::</span><span class="n">GetKeysForInputID</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EGK_MOBA_AbilityInputID</span><span class="w"> </span><span class="n">InputID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">Enum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StaticEnum</span><span class="o">&lt;</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GetKeysFromInputEnum</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="n">Enum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">InputID</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FText</span><span class="w"> </span><span class="n">UGKInputLibrary</span><span class="o">::</span><span class="n">GetKeysFromInputEnum</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">Enum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Enum</span><span class="o">-&gt;</span><span class="n">GetDisplayNameTextByValue</span><span class="p">(</span><span class="n">int64</span><span class="p">(</span><span class="n">Value</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetKeysForAction</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="o">*</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">()));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Results</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FText</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UKismetInputLibrary</span><span class="o">::</span><span class="n">Key_GetDisplayName</span><span class="p">(</span><span class="n">Results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Key</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

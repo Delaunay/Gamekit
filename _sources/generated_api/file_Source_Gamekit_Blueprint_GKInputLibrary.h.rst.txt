@@ -33,6 +33,10 @@ Includes
 
 - ``GKInputLibrary.generated.h``
 
+- ``GameFramework/PlayerInput.h``
+
+- ``Gamekit/Abilities/GKAbilityInputs.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInputs.h`)
+
 - ``InputActionValue.h``
 
 - ``Kismet/BlueprintFunctionLibrary.h``

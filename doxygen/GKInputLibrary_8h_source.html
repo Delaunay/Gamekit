@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">c4b339bc</span>
+   &#160;<span id="projectnumber">52582a7bc</span>
    </div>
   </td>
  </tr>
@@ -81,46 +81,64 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Unreal Engine</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;InputActionValue.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// Generated</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;GKInputLibrary.generated.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;UCLASS()</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classUGKInputLibrary.html">   17</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKInputLibrary.html">UGKInputLibrary</a>: public UBlueprintFunctionLibrary</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeBooleanAction(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis1DAction(<span class="keywordtype">float</span> value);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis2DAction(FVector2D value);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis3DAction(FVector value);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input|EdgePan&quot;</span>)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> IsEdgePanning(FVector2D MouseXYViewport, FVector4 Margins);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input|EdgePan&quot;</span>)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> FVector2D EdgePanDirection(FVector2D MouseXYViewport);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Gamekit</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKAbilityInputs_8h.html">Gamekit/Abilities/GKAbilityInputs.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// Unreal Engine</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;InputActionValue.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;GameFramework/PlayerInput.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Generated</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;GKInputLibrary.generated.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;UCLASS()</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classUGKInputLibrary.html">   21</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKInputLibrary.html">UGKInputLibrary</a>: public UBlueprintFunctionLibrary</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeBooleanAction(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis1DAction(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis2DAction(FVector2D value);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> FInputActionValue MakeAxis3DAction(FVector value);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input|EdgePan&quot;</span>)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> IsEdgePanning(FVector2D MouseXYViewport, FVector4 Margins);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input|EdgePan&quot;</span>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> FVector2D EdgePanDirection(FVector2D MouseXYViewport);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> TArray&lt;FInputActionKeyMapping&gt;&amp; GetKeysForAction(APlayerController* Controller, <span class="keyword">const</span> FName&amp; ActionName);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">static</span> FText GetKeysForInputID(APlayerController* Controller, <span class="keyword">const</span> <a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> InputID);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> FText GetKeysFromInputEnum(APlayerController* Controller, UEnum* Enum, <span class="keywordtype">int</span> Value);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassUGKInputLibrary_html_a80e8d1deef9bda009bf78d45a97a2df3"><div class="ttname"><a href="classUGKInputLibrary.html#a80e8d1deef9bda009bf78d45a97a2df3">UGKInputLibrary::MakeAxis3DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis3DAction(FVector value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:14</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_aa0c30fc358190da3accd5958a029afc1"><div class="ttname"><a href="classUGKInputLibrary.html#aa0c30fc358190da3accd5958a029afc1">UGKInputLibrary::IsEdgePanning</a></div><div class="ttdeci">static bool IsEdgePanning(FVector2D MouseXYViewport, FVector4 Margins)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:16</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html"><div class="ttname"><a href="classUGKInputLibrary.html">UGKInputLibrary</a></div><div class="ttdef"><b>Definition:</b> GKInputLibrary.h:17</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_ace053b689fcbcadc3a9835d526c29841"><div class="ttname"><a href="classUGKInputLibrary.html#ace053b689fcbcadc3a9835d526c29841">UGKInputLibrary::MakeAxis2DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis2DAction(FVector2D value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:12</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_a5dbb3bcec742bce740f3df5b1ad20e12"><div class="ttname"><a href="classUGKInputLibrary.html#a5dbb3bcec742bce740f3df5b1ad20e12">UGKInputLibrary::MakeAxis1DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis1DAction(float value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:10</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_a963a6f32ce2357d54aca008a5932e472"><div class="ttname"><a href="classUGKInputLibrary.html#a963a6f32ce2357d54aca008a5932e472">UGKInputLibrary::MakeBooleanAction</a></div><div class="ttdeci">static FInputActionValue MakeBooleanAction(bool value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:8</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_a80e8d1deef9bda009bf78d45a97a2df3"><div class="ttname"><a href="classUGKInputLibrary.html#a80e8d1deef9bda009bf78d45a97a2df3">UGKInputLibrary::MakeAxis3DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis3DAction(FVector value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:17</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_aa0c30fc358190da3accd5958a029afc1"><div class="ttname"><a href="classUGKInputLibrary.html#aa0c30fc358190da3accd5958a029afc1">UGKInputLibrary::IsEdgePanning</a></div><div class="ttdeci">static bool IsEdgePanning(FVector2D MouseXYViewport, FVector4 Margins)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:19</div></div>
+<div class="ttc" id="aGKAbilityInputs_8h_html"><div class="ttname"><a href="GKAbilityInputs_8h.html">GKAbilityInputs.h</a></div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html"><div class="ttname"><a href="classUGKInputLibrary.html">UGKInputLibrary</a></div><div class="ttdef"><b>Definition:</b> GKInputLibrary.h:21</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_ace053b689fcbcadc3a9835d526c29841"><div class="ttname"><a href="classUGKInputLibrary.html#ace053b689fcbcadc3a9835d526c29841">UGKInputLibrary::MakeAxis2DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis2DAction(FVector2D value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:15</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_a62e77d3dcf81589b35d8a9c5a0da9560"><div class="ttname"><a href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560">UGKInputLibrary::GetKeysFromInputEnum</a></div><div class="ttdeci">static FText GetKeysFromInputEnum(APlayerController *Controller, UEnum *Enum, int Value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:53</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_a5dbb3bcec742bce740f3df5b1ad20e12"><div class="ttname"><a href="classUGKInputLibrary.html#a5dbb3bcec742bce740f3df5b1ad20e12">UGKInputLibrary::MakeAxis1DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis1DAction(float value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:13</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_a963a6f32ce2357d54aca008a5932e472"><div class="ttname"><a href="classUGKInputLibrary.html#a963a6f32ce2357d54aca008a5932e472">UGKInputLibrary::MakeBooleanAction</a></div><div class="ttdeci">static FInputActionValue MakeBooleanAction(bool value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:11</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_add546c9f93631f074f6938bc919356fd"><div class="ttname"><a href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">UGKInputLibrary::GetKeysForInputID</a></div><div class="ttdeci">static FText GetKeysForInputID(APlayerController *Controller, const EGK_MOBA_AbilityInputID InputID)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:48</div></div>
 <div class="ttc" id="aGKInputLibrary_8h_html"><div class="ttname"><a href="GKInputLibrary_8h.html">GKInputLibrary.h</a></div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_a277c8bf5889e2557463ff50778237dee"><div class="ttname"><a href="classUGKInputLibrary.html#a277c8bf5889e2557463ff50778237dee">UGKInputLibrary::EdgePanDirection</a></div><div class="ttdeci">static FVector2D EdgePanDirection(FVector2D MouseXYViewport)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:22</div></div>
+<div class="ttc" id="aGKAbilityInputs_8h_html_a5926be264f6313e59bb65648750bdd6a"><div class="ttname"><a href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a></div><div class="ttdeci">EGK_MOBA_AbilityInputID</div><div class="ttdef"><b>Definition:</b> GKAbilityInputs.h:12</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_a277c8bf5889e2557463ff50778237dee"><div class="ttname"><a href="classUGKInputLibrary.html#a277c8bf5889e2557463ff50778237dee">UGKInputLibrary::EdgePanDirection</a></div><div class="ttdeci">static FVector2D EdgePanDirection(FVector2D MouseXYViewport)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:25</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_ab3eedf24bb6e3892009932dd83793bae"><div class="ttname"><a href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">UGKInputLibrary::GetKeysForAction</a></div><div class="ttdeci">static const TArray&lt; FInputActionKeyMapping &gt; &amp; GetKeysForAction(APlayerController *Controller, const FName &amp;ActionName)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:43</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                c4b339bc
+                52582a7bc
 
               </div>
 <div role="search">
@@ -115,10 +115,14 @@
 
 <span class="cp">#pragma once</span>
 
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInputs.h&quot;</span><span class="cp"></span>
+
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;InputActionValue.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/BlueprintFunctionLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/PlayerInput.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKInputLibrary.generated.h&quot;</span><span class="cp"></span>
@@ -145,6 +149,15 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input|EdgePan&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">EdgePanDirection</span><span class="p">(</span><span class="n">FVector2D</span><span class="w"> </span><span class="n">MouseXYViewport</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FInputActionKeyMapping</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">GetKeysForAction</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FName</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ActionName</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">GetKeysForInputID</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EGK_MOBA_AbilityInputID</span><span class="w"> </span><span class="n">InputID</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Input&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">GetKeysFromInputEnum</span><span class="p">(</span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">,</span><span class="w"> </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">Enum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Value</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

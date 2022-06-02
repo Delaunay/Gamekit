@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vscode_2epy_1880',['vscode.py',['../vscode_8py.html',1,'']]]
+  ['vscode_2epy_1882',['vscode.py',['../vscode_8py.html',1,'']]]
 ];

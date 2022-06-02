@@ -29,7 +29,11 @@ Includes
 --------
 
 
+- ``GameFramework/PlayerController.h``
+
 - ``Gamekit/Blueprint/GKInputLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKInputLibrary.h`)
+
+- ``Kismet/KismetInputLibrary.h``
 
 - ``Kismet/KismetSystemLibrary.h``
 

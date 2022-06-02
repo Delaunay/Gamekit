@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">c4b339bc</span>
+   &#160;<span id="projectnumber">52582a7bc</span>
    </div>
   </td>
  </tr>
@@ -111,6 +111,12 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:aa0c30fc358190da3accd5958a029afc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a277c8bf5889e2557463ff50778237dee"><td class="memItemLeft" align="right" valign="top">static FVector2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#a277c8bf5889e2557463ff50778237dee">EdgePanDirection</a> (FVector2D MouseXYViewport)</td></tr>
 <tr class="separator:a277c8bf5889e2557463ff50778237dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3eedf24bb6e3892009932dd83793bae"><td class="memItemLeft" align="right" valign="top">static const TArray&lt; FInputActionKeyMapping &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">GetKeysForAction</a> (APlayerController *Controller, const FName &amp;ActionName)</td></tr>
+<tr class="separator:ab3eedf24bb6e3892009932dd83793bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add546c9f93631f074f6938bc919356fd"><td class="memItemLeft" align="right" valign="top">static FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">GetKeysForInputID</a> (APlayerController *Controller, const <a class="el" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> InputID)</td></tr>
+<tr class="separator:add546c9f93631f074f6938bc919356fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e77d3dcf81589b35d8a9c5a0da9560"><td class="memItemLeft" align="right" valign="top">static FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560">GetKeysFromInputEnum</a> (APlayerController *Controller, UEnum *Enum, int Value)</td></tr>
+<tr class="separator:a62e77d3dcf81589b35d8a9c5a0da9560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a277c8bf5889e2557463ff50778237dee"></a>
@@ -136,6 +142,139 @@ Static Private Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3eedf24bb6e3892009932dd83793bae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3eedf24bb6e3892009932dd83793bae">&#9670;&nbsp;</a></span>GetKeysForAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const TArray&lt; FInputActionKeyMapping &gt; &amp; UGKInputLibrary::GetKeysForAction </td>
+          <td>(</td>
+          <td class="paramtype">APlayerController *&#160;</td>
+          <td class="paramname"><em>Controller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FName &amp;&#160;</td>
+          <td class="paramname"><em>ActionName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add546c9f93631f074f6938bc919356fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add546c9f93631f074f6938bc919356fd">&#9670;&nbsp;</a></span>GetKeysForInputID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FText UGKInputLibrary::GetKeysForInputID </td>
+          <td>(</td>
+          <td class="paramtype">APlayerController *&#160;</td>
+          <td class="paramname"><em>Controller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a>&#160;</td>
+          <td class="paramname"><em>InputID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph.png" border="0" usemap="#classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph" alt=""/></div>
+<map name="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph" id="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,196,47"/>
+<area shape="rect" href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560" title=" " alt="" coords="244,5,435,47"/>
+<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title=" " alt="" coords="483,5,673,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62e77d3dcf81589b35d8a9c5a0da9560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62e77d3dcf81589b35d8a9c5a0da9560">&#9670;&nbsp;</a></span>GetKeysFromInputEnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FText UGKInputLibrary::GetKeysFromInputEnum </td>
+          <td>(</td>
+          <td class="paramtype">APlayerController *&#160;</td>
+          <td class="paramname"><em>Controller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UEnum *&#160;</td>
+          <td class="paramname"><em>Enum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph.png" border="0" usemap="#classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph" alt=""/></div>
+<map name="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph" id="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,196,47"/>
+<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title=" " alt="" coords="244,5,435,47"/>
+</map>
+</div>
 
 </div>
 </div>

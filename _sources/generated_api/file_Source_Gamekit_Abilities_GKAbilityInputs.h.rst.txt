@@ -37,6 +37,8 @@ Included By
 -----------
 
 
+- :ref:`file_Source_Gamekit_Blueprint_GKInputLibrary.h`
+
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
 
 - :ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`
