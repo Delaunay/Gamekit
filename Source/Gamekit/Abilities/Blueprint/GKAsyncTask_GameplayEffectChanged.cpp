@@ -6,15 +6,18 @@
 #include "TimerManager.h"
 
 UGKAsyncTask_GameplayEffectChanged *UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(
-        UAbilitySystemComponent *AbilitySystemComponent)
+        UAbilitySystemComponent *AbilitySystemComponent,
+        FGameplayTagContainer FilterQuery)
 {
-    UGKAsyncTask_GameplayEffectChanged *ListenForGameplayEffectStackChange =
+    UGKAsyncTask_GameplayEffectChanged * ListenForGameplayEffectChange =
             NewObject<UGKAsyncTask_GameplayEffectChanged>();
-    ListenForGameplayEffectStackChange->AbilitySystemComponent = AbilitySystemComponent;
+
+    ListenForGameplayEffectChange->AbilitySystemComponent = AbilitySystemComponent;
+    ListenForGameplayEffectChange->OneOf = FilterQuery;
 
     if (!IsValid(AbilitySystemComponent))
     {
-        ListenForGameplayEffectStackChange->EndTask();
+        ListenForGameplayEffectChange->EndTask();
         return nullptr;
     }
 
@@ -42,16 +45,14 @@ UGKAsyncTask_GameplayEffectChanged *UGKAsyncTask_GameplayEffectChanged::ListenFo
 
     // This gets triggered multiple times with the same effect
     AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(
-            ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native);
+        ListenForGameplayEffectChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native);
 
     AbilitySystemComponent->OnAnyGameplayEffectRemovedDelegate().AddUObject(
-            ListenForGameplayEffectStackChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native);
-
-
+        ListenForGameplayEffectChange, &UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native);
 
     // AbilitySystemComponent->OnGameplayEffectAppliedDelegateToSelf
 
-    return ListenForGameplayEffectStackChange;
+    return ListenForGameplayEffectChange;
 }
 
 void UGKAsyncTask_GameplayEffectChanged::EndTask()
@@ -87,7 +88,16 @@ void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySy
     AbilitySystemComponent->GetGameplayEffectStartTimeAndDuration(ActiveHandle, Start, Duration);
 
     UGameplayEffect const *EffectDef = AbilitySystemComponent->GetGameplayEffectDefForHandle(ActiveHandle);
-    FGameplayTagContainer  Tags      = *AbilitySystemComponent->GetGameplayEffectTargetTagsFromHandle(ActiveHandle);
+    FGameplayTagContainer Tags       = *AbilitySystemComponent->GetGameplayEffectTargetTagsFromHandle(ActiveHandle);
+    
+    if (!OneOf.IsEmpty()){
+        FGameplayTagContainer GrantedTags;
+        SpecApplied.GetAllGrantedTags(GrantedTags);
+
+        if (!OneOf.HasAnyExact(GrantedTags)) {
+            return;
+        }
+    }
 
     OnGameplayEffectAdded.Broadcast(
         ActiveHandle, 
@@ -99,6 +109,15 @@ void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySy
 
 void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &EffectRemoved)
 {
+    if (!OneOf.IsEmpty()) {
+        FGameplayTagContainer GrantedTags;
+        EffectRemoved.Spec.GetAllGrantedTags(GrantedTags);
+
+        if (!OneOf.HasAnyExact(GrantedTags)) {
+            return;
+        }
+    }
+
     OnGameplayEffectRemoved.Broadcast(EffectRemoved.Handle);
 }
 

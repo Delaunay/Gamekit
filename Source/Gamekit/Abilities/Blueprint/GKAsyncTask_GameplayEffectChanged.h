@@ -38,7 +38,9 @@ class GAMEKIT_API UGKAsyncTask_GameplayEffectChanged: public UBlueprintAsyncActi
     public:
     UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
     static UGKAsyncTask_GameplayEffectChanged *ListenForGameplayEffectChange(
-            UAbilitySystemComponent *AbilitySystemComponent);
+        UAbilitySystemComponent *AbilitySystemComponent,
+        FGameplayTagContainer SelectedTags = FGameplayTagContainer()
+    );
 
     public:
     virtual void OnGameplayEffectAdded_Native(UAbilitySystemComponent *   Target,
@@ -52,6 +54,12 @@ class GAMEKIT_API UGKAsyncTask_GameplayEffectChanged: public UBlueprintAsyncActi
                                                     int32                       PreviousStackCount);
 
     public:
+
+
+    // List all the allowed tags
+    UPROPERTY()
+    FGameplayTagContainer OneOf;
+
     UPROPERTY(BlueprintAssignable)
     FGKOnGameplayEffectAdded OnGameplayEffectAdded;
 

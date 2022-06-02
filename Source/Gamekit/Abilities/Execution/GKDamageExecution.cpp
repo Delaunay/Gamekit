@@ -1,6 +1,6 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
-#include "Gamekit/Abilities/GKDamageExecution.h"
+#include "Gamekit/Abilities/Execution/GKDamageExecution.h"
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"

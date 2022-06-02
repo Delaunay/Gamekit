@@ -3,10 +3,13 @@
 // Gamekit
 #include "Gamekit/Abilities/Blueprint/GKAsyncTaskAttributeChanged.h"
 #include "Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
+#include "Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
 
 void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
 {
+    DisableCount = 0;
+
     if (!InAbility)
     {
         return;
@@ -22,8 +25,7 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     auto ASC = Ability->GetAbilitySystemComponentFromActorInfo();
 
     // Attribute
-    AttributeChangedTask =
-            UGKAsyncTaskAttributeChanged::ListenForAttributesChange(ASC, Ability->GetAbilityCostAttribute());
+    AttributeChangedTask = UGKAsyncTaskAttributeChanged::ListenForAttributesChange(ASC, Ability->GetAbilityCostAttribute());
 
     AttributeChangedTask->OnAttributeChanged.AddDynamic(this, &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
 
@@ -32,15 +34,21 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     CooldownChangedTask->OnCooldownBegin.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownBegin_Native);
     CooldownChangedTask->OnCooldownEnd.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownEnd_Native);
 
+    // Debuffs
+    DisableEffectTask = UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(
+        ASC,
+        DisableTags
+    );
+
+    DisableEffectTask->OnGameplayEffectAdded.AddDynamic(this, &UGKAbilityWidget::OnBeginDisabled_Native);
+    DisableEffectTask->OnGameplayEffectRemoved.AddDynamic(this, &UGKAbilityWidget::OnEndDisabled_Native);
+
     // Targeting
     Ability->TargetingStartDelegate.AddDynamic(this, &UGKAbilityWidget::OnStartTargeting);
     Ability->TargetingResultDelegate.AddDynamic(this, &UGKAbilityWidget::OnEndTargeting);
 
     // Level up
     Ability->OnAbilityLevelUp.AddDynamic(this, &UGKAbilityWidget::OnAbilityLevelUp);
-
-    // Listen to Gameplay effect
-    // TODO: Issue [#6]
 
     // Start
     // Note Activate should be useless in that case

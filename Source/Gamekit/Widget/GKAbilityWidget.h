@@ -24,6 +24,13 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     GENERATED_BODY()
 
     public:
+    //! Query that match any gameplay effect that disable ability casting
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FGameplayTagContainer DisableTags;
+
+    UFUNCTION(BlueprintCallable)
+    bool IsDisabled() const { return DisableCount != 0; }
+
     //! This ability cooldown started
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnAbilityCooldownBegin(float TimeRemaining, float Duration);
@@ -52,6 +59,16 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     //! Mana is lacking
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnAbilityInsufficientResources(bool CostMet);
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+    void OnBeginDisabled(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration);
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+    void OnEndDisabled(FActiveGameplayEffectHandle EffectHandle);
+
+    void OnBeginDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {}
+
+    void OnEndDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle) {}
 
     virtual void OnAbilityCooldownBegin_Implementation(float TimeRemaining, float Duration) {}
 
@@ -85,6 +102,8 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
 
     class UGKAsyncTaskCooldownChanged *CooldownChangedTask;
 
+    class UGKAsyncTask_GameplayEffectChanged* DisableEffectTask;
+
     UFUNCTION()
     void OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute, float NewValue, float OldValue);
 
@@ -93,4 +112,22 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
 
     UFUNCTION()
     void OnAbilityCooldownEnd_Native(FGameplayTag CooldownTag, float TimeRemaining, float Duration);
+
+
+    // Disable Handling
+    // we track the count of all the stacked disables
+    UFUNCTION()
+    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {
+        DisableCount += 1;
+        OnBeginDisabled(EffectHandle, Effect, Tags, Duration);
+    }
+
+    UFUNCTION()
+    void OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle) {
+        DisableCount -= 1 * (DisableCount > 0);
+        OnEndDisabled(EffectHandle);
+    }
+
+    UPROPERTY()
+    int DisableCount;
 };
