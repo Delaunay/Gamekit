@@ -36,6 +36,12 @@ Program Listing for File GKAbilityWidget.h
        GENERATED_BODY()
    
        public:
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       FGameplayTagContainer DisableTags;
+   
+       UFUNCTION(BlueprintCallable)
+       bool IsDisabled() const { return DisableCount != 0; }
+   
        UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
        void OnAbilityCooldownBegin(float TimeRemaining, float Duration);
    
@@ -56,6 +62,16 @@ Program Listing for File GKAbilityWidget.h
    
        UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
        void OnAbilityInsufficientResources(bool CostMet);
+   
+       UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+       void OnBeginDisabled(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration);
+   
+       UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+       void OnEndDisabled(FActiveGameplayEffectHandle EffectHandle);
+   
+       void OnBeginDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {}
+   
+       void OnEndDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle) {}
    
        virtual void OnAbilityCooldownBegin_Implementation(float TimeRemaining, float Duration) {}
    
@@ -89,6 +105,8 @@ Program Listing for File GKAbilityWidget.h
    
        class UGKAsyncTaskCooldownChanged *CooldownChangedTask;
    
+       class UGKAsyncTask_GameplayEffectChanged* DisableEffectTask;
+   
        UFUNCTION()
        void OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute, float NewValue, float OldValue);
    
@@ -97,4 +115,22 @@ Program Listing for File GKAbilityWidget.h
    
        UFUNCTION()
        void OnAbilityCooldownEnd_Native(FGameplayTag CooldownTag, float TimeRemaining, float Duration);
+   
+   
+       // Disable Handling
+       // we track the count of all the stacked disables
+       UFUNCTION()
+       void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {
+           DisableCount += 1;
+           OnBeginDisabled(EffectHandle, Effect, Tags, Duration);
+       }
+   
+       UFUNCTION()
+       void OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle) {
+           DisableCount -= 1 * (DisableCount > 0);
+           OnEndDisabled(EffectHandle);
+       }
+   
+       UPROPERTY()
+       int DisableCount;
    };

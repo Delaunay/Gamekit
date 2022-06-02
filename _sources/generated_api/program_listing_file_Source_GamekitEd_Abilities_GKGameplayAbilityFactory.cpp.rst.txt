@@ -20,34 +20,3 @@ Program Listing for File GKGameplayAbilityFactory.cpp
    #define LOCTEXT_NAMESPACE "GKGameplayAbilityFactory"
    
    
-   UGKGameplayAbilityFactory::UGKGameplayAbilityFactory(const FObjectInitializer& ObjectInitializer)
-       : Super(ObjectInitializer)
-   {
-       SupportedClass = UGKGameplayAbility::StaticClass();
-       bCreateNew = true;
-       bEditAfterNew = true;
-   }
-   
-   
-   UObject* UGKGameplayAbilityFactory::FactoryCreateNew(UClass* Class,
-                                                        UObject* InParent,
-                                                        FName Name,
-                                                        EObjectFlags Flags,
-                                                        UObject* Context,
-                                                        FFeedbackContext* Warn)
-   {
-       UGKGameplayAbility* Ability = nullptr;
-   
-       if (ensure(SupportedClass == Class))
-       {
-           ensure(0 != (RF_Public & Flags));
-           Ability = NewObject<UGKGameplayAbility>(InParent, Name, Flags);
-   
-           if (Ability)
-           {
-   
-           }
-       }
-   
-       return Ability;
-   }

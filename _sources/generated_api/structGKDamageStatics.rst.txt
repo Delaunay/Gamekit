@@ -3,7 +3,7 @@
 Struct GKDamageStatics
 ======================
 
-- Defined in :ref:`file_Source_Gamekit_Abilities_GKDamageExecution.cpp`
+- Defined in :ref:`file_Source_Gamekit_Abilities_Execution_GKDamageExecution.cpp`
 
 
 Struct Documentation

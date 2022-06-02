@@ -45,6 +45,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.cpp`
 
+- :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.cpp`
+
 
 
 

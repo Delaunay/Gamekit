@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Abilities_Abilities:
+
+
+Directory Abilities
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Abilities/Abilities``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`
+
+

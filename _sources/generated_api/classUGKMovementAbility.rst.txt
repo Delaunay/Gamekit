@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKMovementAbility:
+
+Class UGKMovementAbility
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKGameplayAbility`` (:ref:`exhale_class_classUGKGameplayAbility`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKMovementAbility
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

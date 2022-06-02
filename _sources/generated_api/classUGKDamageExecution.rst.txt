@@ -3,7 +3,7 @@
 Class UGKDamageExecution
 ========================
 
-- Defined in :ref:`file_Source_Gamekit_Abilities_GKDamageExecution.h`
+- Defined in :ref:`file_Source_Gamekit_Abilities_Execution_GKDamageExecution.h`
 
 
 Inheritance Relationships

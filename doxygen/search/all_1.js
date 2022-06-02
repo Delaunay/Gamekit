@@ -20,7 +20,7 @@ var searchData=
   ['abilitytargetactorclass_22',['AbilityTargetActorClass',['../structFGKAbilityStatic.html#aae5d09beffb358aa78b668662c07ad48',1,'FGKAbilityStatic']]],
   ['acknowledgepossession_23',['AcknowledgePossession',['../classAGKPlayerController.html#ad31e8d9d49675b4d4a54007505a482eb',1,'AGKPlayerController']]],
   ['activate_24',['Activate',['../classUGKAbilityTask__MoveToDestination.html#a4a6d61f40b2050b4744b92dc3be632ef',1,'UGKAbilityTask_MoveToDestination::Activate()'],['../classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a9405e7242b22b52278a6c0b659f5e096',1,'UGKAbilityTask_PlayMontageAndWaitForEvent::Activate()'],['../classUGKAbilityTask__WaitForTargetData.html#a9419dce6b8ea262474bd179e73c031a1',1,'UGKAbilityTask_WaitForTargetData::Activate()']]],
-  ['activateability_25',['ActivateAbility',['../classAGKCharacterBase.html#acb76e6120076ce16854139dcd124906b',1,'AGKCharacterBase']]],
+  ['activateability_25',['ActivateAbility',['../classUGKMovementAbility.html#a52a538fec762a7fe9c08db31f4621bfb',1,'UGKMovementAbility::ActivateAbility()'],['../classAGKCharacterBase.html#acb76e6120076ce16854139dcd124906b',1,'AGKCharacterBase::ActivateAbility()']]],
   ['activateability_5factortarget_26',['ActivateAbility_ActorTarget',['../classUGKGameplayAbility.html#ab09bddbd7014dbdbaeff65d17dac37de',1,'UGKGameplayAbility']]],
   ['activateability_5fhidden_27',['ActivateAbility_Hidden',['../classUGKGameplayAbility.html#ac9aa9b01c041f01d7e5a1450742d4ba7',1,'UGKGameplayAbility']]],
   ['activateability_5fnative_28',['ActivateAbility_Native',['../classUGKGameplayAbility.html#a434c6432be041cd15343b3bb92497839',1,'UGKGameplayAbility']]],

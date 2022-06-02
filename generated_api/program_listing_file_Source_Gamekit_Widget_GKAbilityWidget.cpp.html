@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0e0411889
+                45fa4660e
 
               </div>
 <div role="search">
@@ -116,10 +116,13 @@
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Blueprint/GKAsyncTaskAttributeChanged.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKGameplayAbility.h&quot;</span><span class="cp"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::SetupListeners</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UGKGameplayAbility</span><span class="w"> </span><span class="o">*</span><span class="n">InAbility</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">InAbility</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
@@ -135,8 +138,7 @@
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilitySystemComponentFromActorInfo</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Attribute</span>
-<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">            </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="o">::</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityCostAttribute</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="o">::</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityCostAttribute</span><span class="p">());</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
 
@@ -145,15 +147,21 @@
 <span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// Debuffs</span>
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">ListenForGameplayEffectChange</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">ASC</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">DisableTags</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectAdded</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnBeginDisabled_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectRemoved</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnEndDisabled_Native</span><span class="p">);</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1">// Targeting</span>
 <span class="w">    </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">TargetingStartDelegate</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnStartTargeting</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">TargetingResultDelegate</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnEndTargeting</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Level up</span>
 <span class="w">    </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">OnAbilityLevelUp</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityLevelUp</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Listen to Gameplay effect</span>
-<span class="w">    </span><span class="c1">// TODO: Issue [#6]</span>
 
 <span class="w">    </span><span class="c1">// Start</span>
 <span class="w">    </span><span class="c1">// Note Activate should be useless in that case</span>

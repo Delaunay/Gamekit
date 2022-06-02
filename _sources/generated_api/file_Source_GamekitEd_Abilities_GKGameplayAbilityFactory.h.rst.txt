@@ -33,8 +33,6 @@ Includes
 
 - ``Factories/Factory.h``
 
-- ``GKGameplayAbilityFactory.generated.h``
-
 - ``GamekitEd/GamekitEd.h`` (:ref:`file_Source_GamekitEd_GamekitEd.h`)
 
 - ``UObject/ObjectMacros.h``
@@ -48,11 +46,4 @@ Included By
 - :ref:`file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.cpp`
 
 
-
-
-Classes
--------
-
-
-- :ref:`exhale_class_classUGKGameplayAbilityFactory`
 

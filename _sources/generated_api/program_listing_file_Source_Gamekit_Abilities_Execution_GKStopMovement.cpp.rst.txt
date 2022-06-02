@@ -1,0 +1,50 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Execution_GKStopMovement.cpp:
+
+Program Listing for File GKStopMovement.cpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Execution_GKStopMovement.cpp>` (``Source/Gamekit/Abilities/Execution/GKStopMovement.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #include "Gamekit/Abilities/Execution/GKStopMovement.h"
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
+   #include "Gamekit/Abilities/GKAttributeSet.h"
+   
+   // Unreal Engine
+   #include "GameFramework/MovementComponent.h"
+   
+   
+   UGKStopMovement::UGKStopMovement()
+   {
+   
+   }
+   
+   void UGKStopMovement::Execute_Implementation(const FGameplayEffectCustomExecutionParameters &ExecutionParams,
+                                                OUT FGameplayEffectCustomExecutionOutput &OutExecutionOutput) const
+   {
+       UAbilitySystemComponent *TargetAbilitySystemComponent = ExecutionParams.GetTargetAbilitySystemComponent();
+   
+       // Cancel Moving Ability
+       TargetAbilitySystemComponent->CancelAbility(MovementAbility.GetDefaultObject());
+   
+       // Stop all movement commands if any
+       AActor* TargetActor = TargetAbilitySystemComponent ? TargetAbilitySystemComponent->GetAvatarActor_Direct() : nullptr;
+   
+       if (TargetActor) {
+           UMovementComponent* Comp = Cast<UMovementComponent>(TargetActor->GetComponentByClass(UMovementComponent::StaticClass()));
+   
+           if (Comp) {
+               Comp->StopMovementImmediately();
+           }
+       }
+   
+       OutExecutionOutput.MarkConditionalGameplayEffectsToTrigger();
+   }

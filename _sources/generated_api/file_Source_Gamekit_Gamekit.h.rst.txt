@@ -45,6 +45,10 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
 
+- :ref:`file_Source_Gamekit_Abilities_Execution_GKDamageExecution.h`
+
+- :ref:`file_Source_Gamekit_Abilities_Execution_GKStopMovement.h`
+
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`
@@ -52,8 +56,6 @@ Included By
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityTypes.h`
 
 - :ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`
-
-- :ref:`file_Source_Gamekit_Abilities_GKDamageExecution.h`
 
 - :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
 

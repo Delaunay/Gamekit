@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                0e0411889
+                45fa4660e
 
               </div>
 <div role="search">
@@ -148,7 +148,9 @@
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">BlueprintInternalUseOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="w"> </span><span class="o">*</span><span class="n">ListenForGameplayEffectChange</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">SelectedTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnGameplayEffectAdded_Native</span><span class="p">(</span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="w">   </span><span class="n">Target</span><span class="p">,</span><span class="w"></span>
@@ -162,6 +164,12 @@
 <span class="w">                                                    </span><span class="n">int32</span><span class="w">                       </span><span class="n">PreviousStackCount</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">// List all the allowed tags</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">OneOf</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGKOnGameplayEffectAdded</span><span class="w"> </span><span class="n">OnGameplayEffectAdded</span><span class="p">;</span><span class="w"></span>
 

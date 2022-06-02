@@ -1,0 +1,39 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Execution_GKStopMovement.h:
+
+Program Listing for File GKStopMovement.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Execution_GKStopMovement.h>` (``Source/Gamekit/Abilities/Execution/GKStopMovement.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   
+   // Unreal Engine
+   #include "GameplayEffectExecutionCalculation.h"
+   
+   // Generated
+   #include "GKStopMovement.generated.h"
+   
+   UCLASS(BlueprintType, Blueprintable)
+   class GAMEKIT_API UGKStopMovement: public UGameplayEffectExecutionCalculation
+   {
+       GENERATED_BODY()
+   
+       public:
+       UGKStopMovement();
+   
+       virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters &ExecutionParams,
+                                           OUT FGameplayEffectCustomExecutionOutput &OutExecutionOutput) const override;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       TSubclassOf<UGameplayAbility> MovementAbility;
+   };

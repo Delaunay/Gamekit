@@ -31,12 +31,22 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_Gamekit_Abilities_Abilities.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_Gamekit_Abilities_AbilityTasks.rst
 
 .. toctree::
    :maxdepth: 5
 
    dir_Source_Gamekit_Abilities_Blueprint.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_Source_Gamekit_Abilities_Execution.rst
 
 .. toctree::
    :maxdepth: 5
@@ -660,12 +670,12 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Abilities_GKDamageExecution.cpp.rst
+   file_Source_Gamekit_Abilities_Execution_GKDamageExecution.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Abilities_GKDamageExecution.h.rst
+   file_Source_Gamekit_Abilities_Execution_GKDamageExecution.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -940,6 +950,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Grid_GKMovementUtility.cpp.rst
 
 .. toctree::
@@ -1116,6 +1136,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Items_GKSkillItem.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Execution_GKStopMovement.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Execution_GKStopMovement.h.rst
 
 .. toctree::
    :maxdepth: 5

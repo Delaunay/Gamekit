@@ -33,6 +33,8 @@ Includes
 
 - ``Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h`` (:ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.h`)
 
+- ``Gamekit/Abilities/Blueprint/GKAsyncTask_GameplayEffectChanged.h`` (:ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTask_GameplayEffectChanged.h`)
+
 - ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
 
 - ``Gamekit/Widget/GKAbilityWidget.h`` (:ref:`file_Source_Gamekit_Widget_GKAbilityWidget.h`)
