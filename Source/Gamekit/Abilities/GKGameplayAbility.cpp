@@ -324,7 +324,7 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
 {
     TargetingResultDelegate.Broadcast(false);
 
-    if (TargetTask)
+    if (TargetTask && IsValid(TargetTask))
     {
         TargetTask->EndTask();
         TargetTask = nullptr;
@@ -367,7 +367,7 @@ void UGKGameplayAbility::OnAbilityMoveToTargetCancelled(const FGameplayAbilityTa
 
 void UGKGameplayAbility::OnAbilityMoveToTargetCompleted(const FGameplayAbilityTargetDataHandle &Data)
 {
-    if (MoveToTargetTask)
+    if (MoveToTargetTask && IsValid(MoveToTargetTask))
     {
         MoveToTargetTask->EndTask();
         MoveToTargetTask = nullptr;
@@ -488,7 +488,7 @@ void UGKGameplayAbility::CancelAbility(const FGameplayAbilitySpecHandle     Hand
 {
     Super::CancelAbility(Handle, ActorInfo, ActivationInfo, bReplicateCancelAbility);
 
-    if (AnimTask)
+    if (AnimTask && IsValid(AnimTask))
     {
         AnimTask->ExternalCancel();
     }
@@ -680,7 +680,7 @@ void UGKGameplayAbility::ActivateAbility_Native()
 
     // Cancel current targeting task if any
     // this is to free up the delegates
-    if (TargetTask) {
+    if (TargetTask && IsValid(TargetTask)) {
         TargetTask->ExternalCancel();
         TargetTask->EndTask();
         TargetTask = nullptr;
@@ -1063,7 +1063,7 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
     // We could also use it to add multiple points
     // but not as flexible as an Ability queue
     auto MovementTask = Cast<UGKAbilityTask_MoveToDestination>(CurrentTask);
-    if (MovementTask)
+    if (MovementTask && IsValid(MovementTask))
     {
         auto       Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
         FHitResult Result;
