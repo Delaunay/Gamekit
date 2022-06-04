@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a99ef9662
+                9b69be7a6
 
               </div>
 <div role="search">
@@ -124,18 +124,18 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameplayEffect.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameplayEffectExtension.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Net/UnrealNetwork.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/CharacterMovementComponent.h&quot;</span><span class="cp"></span>
 
 <span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">UGKAttributeSet</span><span class="p">()</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">Health</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">MaxHealth</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">Mana</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">),</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="n">MoveSpeed</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">),</span><span class="w"> </span><span class="n">Damage</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Health</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">MaxHealth</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">Mana</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">(</span><span class="mf">100.f</span><span class="p">),</span><span class="w"> </span><span class="n">Armor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveSpeed</span><span class="p">(</span><span class="mf">600.0f</span><span class="p">),</span><span class="w"> </span><span class="n">Damage</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">NameToAttribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;Health&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Health</span><span class="p">},</span><span class="w"></span>
 <span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;MaxHealth&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MaxHealth</span><span class="p">},</span><span class="w"></span>
 <span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;Mana&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Mana</span><span class="p">},</span><span class="w"></span>
 <span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;MaxMana&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">},</span><span class="w"></span>
 <span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;Damage&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Damage</span><span class="p">},</span><span class="w"></span>
-<span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;AttackPower&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">},</span><span class="w"></span>
-<span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;DefensePower&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">},</span><span class="w"></span>
+<span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;Armor&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Armor</span><span class="p">},</span><span class="w"></span>
 <span class="w">                       </span><span class="p">{</span><span class="n">FName</span><span class="p">(</span><span class="s">&quot;MoveSpeed&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">MoveSpeed</span><span class="p">}};</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -147,8 +147,8 @@
 <span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHealth</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Mana</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Armor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Damage</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">DOREPLIFETIME</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">MoveSpeed</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -172,14 +172,14 @@
 <span class="w">    </span><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">,</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">OnRep_AttackPower</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OldValue</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">OnRep_Damage</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OldValue</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">,</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Damage</span><span class="p">,</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">OnRep_DefensePower</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OldValue</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">OnRep_Armor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OldValue</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">,</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">GAMEPLAYATTRIBUTE_REPNOTIFY</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Armor</span><span class="p">,</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">OnRep_MoveSpeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OldValue</span><span class="p">)</span><span class="w"></span>
@@ -218,6 +218,26 @@
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">AdjustAttributeForMaxChange</span><span class="p">(</span><span class="n">Mana</span><span class="p">,</span><span class="w"> </span><span class="n">MaxMana</span><span class="p">,</span><span class="w"> </span><span class="n">NewValue</span><span class="p">,</span><span class="w"> </span><span class="n">GetManaAttribute</span><span class="p">());</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Attribute</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GetMoveSpeedAttribute</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetMovementComponentMaxSpeed</span><span class="p">(</span><span class="n">NewValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">SetMovementComponentMaxSpeed</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ActorInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorInfo</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ActorInfo</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Avatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AvatarActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Avatar</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">UCharacterMovementComponent</span><span class="o">*</span><span class="w"> </span><span class="n">MoveComp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UCharacterMovementComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Avatar</span><span class="o">-&gt;</span><span class="n">GetComponentByClass</span><span class="p">(</span><span class="n">UCharacterMovementComponent</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MoveComp</span><span class="o">-&gt;</span><span class="n">MaxWalkSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Value</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">PostGameplayEffectExecute</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectModCallbackData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">)</span><span class="w"></span>

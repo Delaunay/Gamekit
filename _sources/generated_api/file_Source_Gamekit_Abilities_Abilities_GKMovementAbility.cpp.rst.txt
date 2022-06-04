@@ -33,6 +33,10 @@ Includes
 
 - ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`)
 
+- ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
+
+- ``Gamekit/Abilities/GKAttributeSet.h`` (:ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`)
+
 
 
 

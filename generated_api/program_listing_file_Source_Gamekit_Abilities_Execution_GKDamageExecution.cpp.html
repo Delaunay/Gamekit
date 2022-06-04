@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a99ef9662
+                9b69be7a6
 
               </div>
 <div role="search">
@@ -121,21 +121,14 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">GKDamageStatics</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">DECLARE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">DefensePower</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">DECLARE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">AttackPower</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DECLARE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">Armor</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">DECLARE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">Damage</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">GKDamageStatics</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="c1">// Capture the Target&#39;s DefensePower attribute. Do not snapshot it, because we want to use the health value at</span>
 <span class="w">        </span><span class="c1">// the moment we apply the execution.</span>
-<span class="w">        </span><span class="n">DEFINE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">,</span><span class="w"> </span><span class="n">Target</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="c1">// Capture the Source&#39;s AttackPower. We do want to snapshot this at the moment we create the GameplayEffectSpec</span>
-<span class="w">        </span><span class="c1">// that will execute the damage. (imagine we fire a projectile: we create the GE Spec when the projectile is</span>
-<span class="w">        </span><span class="c1">// fired. When it hits the target, we want to use the AttackPower at the moment the projectile was launched, not</span>
-<span class="w">        </span><span class="c1">// when it hits).</span>
-<span class="w">        </span><span class="n">DEFINE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">,</span><span class="w"> </span><span class="n">Source</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">DEFINE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Armor</span><span class="p">,</span><span class="w"> </span><span class="n">Target</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">        </span><span class="c1">// Also capture the source&#39;s raw Damage, which is normally passed in directly via the execution</span>
 <span class="w">        </span><span class="n">DEFINE_ATTRIBUTE_CAPTUREDEF</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Damage</span><span class="p">,</span><span class="w"> </span><span class="n">Source</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
@@ -150,8 +143,7 @@
 
 <span class="n">UGKDamageExecution</span><span class="o">::</span><span class="n">UGKDamageExecution</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">RelevantAttributesToCapture</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">DefensePowerDef</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">RelevantAttributesToCapture</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">AttackPowerDef</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">RelevantAttributesToCapture</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">ArmorDef</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">RelevantAttributesToCapture</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">DamageDef</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -182,16 +174,15 @@
 <span class="w">    </span><span class="c1">// --------------------------------------</span>
 
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">DefensePower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">DefensePowerDef</span><span class="p">,</span><span class="w"> </span><span class="n">EvaluationParameters</span><span class="p">,</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">ArmorDef</span><span class="p">,</span><span class="w"> </span><span class="n">EvaluationParameters</span><span class="p">,</span><span class="w"> </span><span class="n">DefensePower</span><span class="p">);</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DefensePower</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">DefensePower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">AttackPower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">AttackPowerDef</span><span class="p">,</span><span class="w"> </span><span class="n">EvaluationParameters</span><span class="p">,</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">DamageDef</span><span class="p">,</span><span class="w"> </span><span class="n">EvaluationParameters</span><span class="p">,</span><span class="w"> </span><span class="n">AttackPower</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Damage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.f</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">AttemptCalculateCapturedAttributeMagnitude</span><span class="p">(</span><span class="n">DamageStatics</span><span class="p">().</span><span class="n">DamageDef</span><span class="p">,</span><span class="w"> </span><span class="n">EvaluationParameters</span><span class="p">,</span><span class="w"> </span><span class="n">Damage</span><span class="p">);</span><span class="w"></span>

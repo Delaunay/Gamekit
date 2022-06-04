@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a99ef9662
+                9b69be7a6
 
               </div>
 <div role="search">
@@ -330,6 +330,11 @@
 <span id="_CPPv3N15UGKAttributeSet15GetCurrentValueE5FName"></span><span id="_CPPv2N15UGKAttributeSet15GetCurrentValueE5FName"></span><span id="UGKAttributeSet::GetCurrentValue__FName"></span><span class="target" id="classUGKAttributeSet_1aa7a55baf0850ea2c4465f40e526d20d5"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCurrentValue</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FName</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">AttributeName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet15GetCurrentValueE5FName" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet28SetMovementComponentMaxSpeedEf">
+<span id="_CPPv3N15UGKAttributeSet28SetMovementComponentMaxSpeedEf"></span><span id="_CPPv2N15UGKAttributeSet28SetMovementComponentMaxSpeedEf"></span><span id="UGKAttributeSet::SetMovementComponentMaxSpeed__float"></span><span class="target" id="classUGKAttributeSet_1acccd6c921dba5d0e9cddcd85f4e2c524"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetMovementComponentMaxSpeed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet28SetMovementComponentMaxSpeedEf" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
@@ -358,18 +363,6 @@
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet11AttackPowerE">
-<span id="_CPPv3N15UGKAttributeSet11AttackPowerE"></span><span id="_CPPv2N15UGKAttributeSet11AttackPowerE"></span><span id="UGKAttributeSet::AttackPower__FGameplayAttributeData"></span><span class="target" id="classUGKAttributeSet_1a9449b9acb78c447c05fa1693b7e06312"></span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AttackPower</span></span></span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet11AttackPowerE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>AttackPower of the attacker is multiplied by the base Damage to reduce health, so 1.0 means no bonus </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet12DefensePowerE">
-<span id="_CPPv3N15UGKAttributeSet12DefensePowerE"></span><span id="_CPPv2N15UGKAttributeSet12DefensePowerE"></span><span id="UGKAttributeSet::DefensePower__FGameplayAttributeData"></span><span class="target" id="classUGKAttributeSet_1a9d0cf8a39f8ce27062146dd106bf7722"></span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefensePower</span></span></span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet12DefensePowerE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Base Damage is divided by DefensePower to get actual damage done, so 1.0 means no bonus </p>
-</dd></dl>
-
-<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet9MoveSpeedE">
 <span id="_CPPv3N15UGKAttributeSet9MoveSpeedE"></span><span id="_CPPv2N15UGKAttributeSet9MoveSpeedE"></span><span id="UGKAttributeSet::MoveSpeed__FGameplayAttributeData"></span><span class="target" id="classUGKAttributeSet_1a6e54615e5c23bf3b1039d073bb385fa9"></span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MoveSpeed</span></span></span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet9MoveSpeedE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>MoveSpeed affects how fast characters can move </p>
@@ -378,8 +371,12 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet6DamageE">
 <span id="_CPPv3N15UGKAttributeSet6DamageE"></span><span id="_CPPv2N15UGKAttributeSet6DamageE"></span><span id="UGKAttributeSet::Damage__FGameplayAttributeData"></span><span class="target" id="classUGKAttributeSet_1a1141d2271aef405e493f56e7276bf93d"></span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Damage</span></span></span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet6DamageE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Damage is a ‘temporary’ attribute used by the DamageExecution to calculate final damage, which then turns into -Health </p>
-</dd></dl>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet5ArmorE">
+<span id="_CPPv3N15UGKAttributeSet5ArmorE"></span><span id="_CPPv2N15UGKAttributeSet5ArmorE"></span><span id="UGKAttributeSet::Armor__FGameplayAttributeData"></span><span class="target" id="classUGKAttributeSet_1a43ac3866cc9538b37121503630169fc3"></span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Armor</span></span></span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet5ArmorE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
@@ -411,18 +408,18 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet17OnRep_AttackPowerERK22FGameplayAttributeData">
-<span id="_CPPv3N15UGKAttributeSet17OnRep_AttackPowerERK22FGameplayAttributeData"></span><span id="_CPPv2N15UGKAttributeSet17OnRep_AttackPowerERK22FGameplayAttributeData"></span><span id="UGKAttributeSet::OnRep_AttackPower__FGameplayAttributeDataCR"></span><span class="target" id="classUGKAttributeSet_1af7232143f6ce1dfebc2ea324afd64156"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_AttackPower</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OldValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet17OnRep_AttackPowerERK22FGameplayAttributeData" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet18OnRep_DefensePowerERK22FGameplayAttributeData">
-<span id="_CPPv3N15UGKAttributeSet18OnRep_DefensePowerERK22FGameplayAttributeData"></span><span id="_CPPv2N15UGKAttributeSet18OnRep_DefensePowerERK22FGameplayAttributeData"></span><span id="UGKAttributeSet::OnRep_DefensePower__FGameplayAttributeDataCR"></span><span class="target" id="classUGKAttributeSet_1a64e45fd5b147668dedee3482bfc5b390"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_DefensePower</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OldValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet18OnRep_DefensePowerERK22FGameplayAttributeData" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet15OnRep_MoveSpeedERK22FGameplayAttributeData">
 <span id="_CPPv3N15UGKAttributeSet15OnRep_MoveSpeedERK22FGameplayAttributeData"></span><span id="_CPPv2N15UGKAttributeSet15OnRep_MoveSpeedERK22FGameplayAttributeData"></span><span id="UGKAttributeSet::OnRep_MoveSpeed__FGameplayAttributeDataCR"></span><span class="target" id="classUGKAttributeSet_1a0c490eb74127bfff1c352fe5f9ad05b0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_MoveSpeed</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OldValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet15OnRep_MoveSpeedERK22FGameplayAttributeData" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet12OnRep_DamageERK22FGameplayAttributeData">
+<span id="_CPPv3N15UGKAttributeSet12OnRep_DamageERK22FGameplayAttributeData"></span><span id="_CPPv2N15UGKAttributeSet12OnRep_DamageERK22FGameplayAttributeData"></span><span id="UGKAttributeSet::OnRep_Damage__FGameplayAttributeDataCR"></span><span class="target" id="classUGKAttributeSet_1a46f4c613cd5a8252aacbc034a4c711c3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_Damage</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OldValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet12OnRep_DamageERK22FGameplayAttributeData" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15UGKAttributeSet11OnRep_ArmorERK22FGameplayAttributeData">
+<span id="_CPPv3N15UGKAttributeSet11OnRep_ArmorERK22FGameplayAttributeData"></span><span id="_CPPv2N15UGKAttributeSet11OnRep_ArmorERK22FGameplayAttributeData"></span><span id="UGKAttributeSet::OnRep_Armor__FGameplayAttributeDataCR"></span><span class="target" id="classUGKAttributeSet_1a5118f71bf9185410e2c00bf14bfa432d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRep_Armor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">FGameplayAttributeData</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">OldValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15UGKAttributeSet11OnRep_ArmorERK22FGameplayAttributeData" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>

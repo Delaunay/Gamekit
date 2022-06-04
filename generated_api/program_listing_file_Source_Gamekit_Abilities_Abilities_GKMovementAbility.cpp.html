@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a99ef9662
+                9b69be7a6
 
               </div>
 <div role="search">
@@ -118,6 +118,8 @@
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAttributeSet.h&quot;</span><span class="cp"></span>
 
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKMovementAbility::ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
@@ -135,21 +137,25 @@
 <span class="w">    </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetHitResultUnderCursor</span><span class="p">(</span><span class="n">GroundChannel</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">Out</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">UGKAttributeSet</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAttributeSet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetAttributeSet</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">MoveToDestination</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">NAME_None</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">Out</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="mi">10</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Distance Tolerance</span>
-<span class="w">        </span><span class="mi">15</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Angle Tolerance</span>
-<span class="w">        </span><span class="mi">150</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Turn Rate</span>
-<span class="w">        </span><span class="mi">600</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Speed</span>
-<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Move To Target (i.e not rot only)</span>
+<span class="w">        </span><span class="mi">10</span><span class="p">,</span><span class="w">                         </span><span class="c1">// Distance Tolerance</span>
+<span class="w">        </span><span class="mi">15</span><span class="p">,</span><span class="w">                         </span><span class="c1">// Angle Tolerance</span>
+<span class="w">        </span><span class="mi">150</span><span class="p">,</span><span class="w">                        </span><span class="c1">// Turn Rate</span>
+<span class="w">        </span><span class="n">Attributes</span><span class="o">-&gt;</span><span class="n">GetMoveSpeed</span><span class="p">(),</span><span class="w"> </span><span class="c1">// Speed</span>
+<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w">                       </span><span class="c1">// Move To Target (i.e not rot only)</span>
 <span class="w">        </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nb">false</span><span class="w">                   </span><span class="c1">// Debug</span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKMovementAbility::OnMovementEnded</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

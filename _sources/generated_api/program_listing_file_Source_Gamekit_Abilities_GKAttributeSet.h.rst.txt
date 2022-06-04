@@ -46,37 +46,33 @@ Program Listing for File GKAttributeSet.h
        virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData &Data) override;
        virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
    
-       UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_Health)
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_Health)
        FGameplayAttributeData Health;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, Health)
    
-       UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
        FGameplayAttributeData MaxHealth;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, MaxHealth)
    
-       UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_Mana)
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Mana", ReplicatedUsing = OnRep_Mana)
        FGameplayAttributeData Mana;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, Mana)
    
-       UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_MaxMana)
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Mana", ReplicatedUsing = OnRep_MaxMana)
        FGameplayAttributeData MaxMana;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, MaxMana)
    
-       UPROPERTY(BlueprintReadOnly, Category = "Damage", ReplicatedUsing = OnRep_AttackPower)
-       FGameplayAttributeData AttackPower;
-       ATTRIBUTE_ACCESSORS(UGKAttributeSet, AttackPower)
-   
-       UPROPERTY(BlueprintReadOnly, Category = "Damage", ReplicatedUsing = OnRep_DefensePower)
-       FGameplayAttributeData DefensePower;
-       ATTRIBUTE_ACCESSORS(UGKAttributeSet, DefensePower)
-   
-       UPROPERTY(BlueprintReadOnly, Category = "MoveSpeed", ReplicatedUsing = OnRep_MoveSpeed)
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "MoveSpeed", ReplicatedUsing = OnRep_MoveSpeed)
        FGameplayAttributeData MoveSpeed;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, MoveSpeed)
    
-       UPROPERTY(BlueprintReadOnly, Category = "Damage")
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Damage", ReplicatedUsing = OnRep_Damage)
        FGameplayAttributeData Damage;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, Damage)
+   
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Armor", ReplicatedUsing = OnRep_Armor)
+       FGameplayAttributeData Armor;
+       ATTRIBUTE_ACCESSORS(UGKAttributeSet, Armor)
    
        UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
        FGameplayAttributeData GetAttribute(FName AttributeName);
@@ -86,6 +82,8 @@ Program Listing for File GKAttributeSet.h
    
        UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
        float GetCurrentValue(FName AttributeName);
+   
+       void SetMovementComponentMaxSpeed(float Value);
    
        protected:
        void AdjustAttributeForMaxChange(FGameplayAttributeData &      AffectedAttribute,
@@ -105,16 +103,16 @@ Program Listing for File GKAttributeSet.h
        virtual void OnRep_Mana(const FGameplayAttributeData &OldValue);
    
        UFUNCTION()
-       virtual void OnRep_MaxMana(const FGameplayAttributeData &OldValue);
+       virtual void OnRep_MaxMana(const FGameplayAttributeData& OldValue);
    
        UFUNCTION()
-       virtual void OnRep_AttackPower(const FGameplayAttributeData &OldValue);
+       virtual void OnRep_MoveSpeed(const FGameplayAttributeData& OldValue);
    
        UFUNCTION()
-       virtual void OnRep_DefensePower(const FGameplayAttributeData &OldValue);
+       virtual void OnRep_Damage(const FGameplayAttributeData& OldValue);
    
        UFUNCTION()
-       virtual void OnRep_MoveSpeed(const FGameplayAttributeData &OldValue);
+       virtual void OnRep_Armor(const FGameplayAttributeData& OldValue);
    
        TMap<FName, FGameplayAttributeData> NameToAttribute;
    };

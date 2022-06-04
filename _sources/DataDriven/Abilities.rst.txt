@@ -32,6 +32,24 @@ Gamekit Tags:
 * DeathDispelTag: Speciall dispel flags set on death (removes all debuffs)
 * ActivateFailNotYetLearnedName: Ability has not been learn yet
 
+* Buff
+	* Immunity
+	* Level
+		* Minor
+
+* Debuff
+	* Level
+	* Stun
+	* Silence
+	* Mute
+	* Root
+	* Break
+
+* Dispel
+	* Level
+
+* Failure
+
 
 Unreal Engine GA tags
 
