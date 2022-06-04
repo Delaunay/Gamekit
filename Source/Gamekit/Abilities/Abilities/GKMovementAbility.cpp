@@ -5,6 +5,8 @@
 
 // Gamekit
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
+#include "Gamekit/Abilities/GKAbilitySystemComponent.h"
+#include "Gamekit/Abilities/GKAttributeSet.h"
 
 
 void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
@@ -22,21 +24,25 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 	FHitResult Out;
 	Controller->GetHitResultUnderCursor(GroundChannel, false, Out);
 
+	UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ActorInfo->AbilitySystemComponent->GetAttributeSet(UGKAttributeSet::StaticClass()));
+
 	auto Task = UGKAbilityTask_MoveToDestination::MoveToDestination(
 		this,
 		NAME_None,
 		Out.ImpactPoint, 
-		10,						// Distance Tolerance 
-		15,						// Angle Tolerance
-		150,					// Turn Rate
-		600,					// Speed
-		true,					// Move To Target (i.e not rot only)
+		10,							// Distance Tolerance 
+		15,							// Angle Tolerance
+		150,						// Turn Rate
+		Attributes->GetMoveSpeed(), // Speed
+		true,						// Move To Target (i.e not rot only)
 		EGK_AbilityBehavior::PointTarget,
 		false					// Debug
 	);
 
 	Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
 	Task->OnCancelled.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
+
+	Task->ReadyForActivation();
 }
 
 void UGKMovementAbility::OnMovementEnded(const FGameplayAbilityTargetDataHandle& TargetData) {

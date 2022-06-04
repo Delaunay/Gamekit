@@ -11,18 +11,18 @@
 #include "GameplayEffect.h"
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UGKAttributeSet::UGKAttributeSet():
-    Health(100.f), MaxHealth(100.f), Mana(100.f), MaxMana(100.f), AttackPower(1.0f), DefensePower(1.0f),
-    MoveSpeed(1.0f), Damage(0.0f)
+    Health(100.f), MaxHealth(100.f), Mana(100.f), MaxMana(100.f), Armor(1.0f),
+    MoveSpeed(600.0f), Damage(0.0f)
 {
     NameToAttribute = {{FName("Health"), Health},
                        {FName("MaxHealth"), MaxHealth},
                        {FName("Mana"), Mana},
                        {FName("MaxMana"), MaxMana},
                        {FName("Damage"), Damage},
-                       {FName("AttackPower"), AttackPower},
-                       {FName("DefensePower"), DefensePower},
+                       {FName("Armor"), Armor},
                        {FName("MoveSpeed"), MoveSpeed}};
 }
 
@@ -34,8 +34,8 @@ void UGKAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutL
     DOREPLIFETIME(UGKAttributeSet, MaxHealth);
     DOREPLIFETIME(UGKAttributeSet, Mana);
     DOREPLIFETIME(UGKAttributeSet, MaxMana);
-    DOREPLIFETIME(UGKAttributeSet, AttackPower);
-    DOREPLIFETIME(UGKAttributeSet, DefensePower);
+    DOREPLIFETIME(UGKAttributeSet, Armor);
+    DOREPLIFETIME(UGKAttributeSet, Damage);
     DOREPLIFETIME(UGKAttributeSet, MoveSpeed);
 }
 
@@ -59,14 +59,14 @@ void UGKAttributeSet::OnRep_MaxMana(const FGameplayAttributeData &OldValue)
     GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, MaxMana, OldValue);
 }
 
-void UGKAttributeSet::OnRep_AttackPower(const FGameplayAttributeData &OldValue)
+void UGKAttributeSet::OnRep_Damage(const FGameplayAttributeData &OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, AttackPower, OldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, Damage, OldValue);
 }
 
-void UGKAttributeSet::OnRep_DefensePower(const FGameplayAttributeData &OldValue)
+void UGKAttributeSet::OnRep_Armor(const FGameplayAttributeData &OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, DefensePower, OldValue);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, Armor, OldValue);
 }
 
 void UGKAttributeSet::OnRep_MoveSpeed(const FGameplayAttributeData &OldValue)
@@ -105,6 +105,26 @@ void UGKAttributeSet::PreAttributeChange(const FGameplayAttribute &Attribute, fl
     {
         AdjustAttributeForMaxChange(Mana, MaxMana, NewValue, GetManaAttribute());
     }
+    else if (Attribute == GetMoveSpeedAttribute())
+    {
+        SetMovementComponentMaxSpeed(NewValue);
+    }
+}
+
+void UGKAttributeSet::SetMovementComponentMaxSpeed(float Value) {
+    auto ActorInfo = GetActorInfo();
+
+    if (!ActorInfo)
+        return;
+
+    auto Avatar = GetActorInfo()->AvatarActor;
+    if (!Avatar.IsValid())
+        return;
+
+    
+    UCharacterMovementComponent* MoveComp = Cast<UCharacterMovementComponent>(Avatar->GetComponentByClass(UCharacterMovementComponent::StaticClass()));
+    
+    MoveComp->MaxWalkSpeed = Value;
 }
 
 void UGKAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData &Data)

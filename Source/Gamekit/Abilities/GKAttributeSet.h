@@ -39,45 +39,37 @@ class GAMEKIT_API UGKAttributeSet: public UAttributeSet
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
     /** Current Health, when 0 we expect owner to die. Capped by MaxHealth */
-    UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_Health)
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_Health)
     FGameplayAttributeData Health;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, Health)
 
     /** MaxHealth is its own attribute, since GameplayEffects may modify it */
-    UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
     FGameplayAttributeData MaxHealth;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, MaxHealth)
 
     /** Current Mana, used to execute special abilities. Capped by MaxMana */
-    UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_Mana)
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Mana", ReplicatedUsing = OnRep_Mana)
     FGameplayAttributeData Mana;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, Mana)
 
     /** MaxMana is its own attribute, since GameplayEffects may modify it */
-    UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_MaxMana)
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Mana", ReplicatedUsing = OnRep_MaxMana)
     FGameplayAttributeData MaxMana;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, MaxMana)
 
-    /** AttackPower of the attacker is multiplied by the base Damage to reduce health, so 1.0 means no bonus */
-    UPROPERTY(BlueprintReadOnly, Category = "Damage", ReplicatedUsing = OnRep_AttackPower)
-    FGameplayAttributeData AttackPower;
-    ATTRIBUTE_ACCESSORS(UGKAttributeSet, AttackPower)
-
-    /** Base Damage is divided by DefensePower to get actual damage done, so 1.0 means no bonus */
-    UPROPERTY(BlueprintReadOnly, Category = "Damage", ReplicatedUsing = OnRep_DefensePower)
-    FGameplayAttributeData DefensePower;
-    ATTRIBUTE_ACCESSORS(UGKAttributeSet, DefensePower)
-
     /** MoveSpeed affects how fast characters can move */
-    UPROPERTY(BlueprintReadOnly, Category = "MoveSpeed", ReplicatedUsing = OnRep_MoveSpeed)
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "MoveSpeed", ReplicatedUsing = OnRep_MoveSpeed)
     FGameplayAttributeData MoveSpeed;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, MoveSpeed)
 
-    /** Damage is a 'temporary' attribute used by the DamageExecution to calculate final damage, which then turns into
-     * -Health */
-    UPROPERTY(BlueprintReadOnly, Category = "Damage")
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Damage", ReplicatedUsing = OnRep_Damage)
     FGameplayAttributeData Damage;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, Damage)
+
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Armor", ReplicatedUsing = OnRep_Armor)
+    FGameplayAttributeData Armor;
+    ATTRIBUTE_ACCESSORS(UGKAttributeSet, Armor)
 
     UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
     FGameplayAttributeData GetAttribute(FName AttributeName);
@@ -87,6 +79,8 @@ class GAMEKIT_API UGKAttributeSet: public UAttributeSet
 
     UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Attributes")
     float GetCurrentValue(FName AttributeName);
+
+    void SetMovementComponentMaxSpeed(float Value);
 
     protected:
     /** Helper function to proportionally adjust the value of an attribute when it's associated max attribute changes.
@@ -108,16 +102,16 @@ class GAMEKIT_API UGKAttributeSet: public UAttributeSet
     virtual void OnRep_Mana(const FGameplayAttributeData &OldValue);
 
     UFUNCTION()
-    virtual void OnRep_MaxMana(const FGameplayAttributeData &OldValue);
+    virtual void OnRep_MaxMana(const FGameplayAttributeData& OldValue);
 
     UFUNCTION()
-    virtual void OnRep_AttackPower(const FGameplayAttributeData &OldValue);
+    virtual void OnRep_MoveSpeed(const FGameplayAttributeData& OldValue);
 
     UFUNCTION()
-    virtual void OnRep_DefensePower(const FGameplayAttributeData &OldValue);
+    virtual void OnRep_Damage(const FGameplayAttributeData& OldValue);
 
     UFUNCTION()
-    virtual void OnRep_MoveSpeed(const FGameplayAttributeData &OldValue);
+    virtual void OnRep_Armor(const FGameplayAttributeData& OldValue);
 
     TMap<FName, FGameplayAttributeData> NameToAttribute;
 };
