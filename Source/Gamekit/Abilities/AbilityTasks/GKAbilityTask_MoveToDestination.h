@@ -130,6 +130,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 
     virtual void Activate() override;
 
+    UFUNCTION()
     virtual void ExternalCancel() override;
 
     // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;

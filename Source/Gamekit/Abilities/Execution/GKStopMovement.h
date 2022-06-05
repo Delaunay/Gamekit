@@ -26,5 +26,11 @@ class GAMEKIT_API UGKStopMovement: public UGameplayEffectExecutionCalculation
                                         OUT FGameplayEffectCustomExecutionOutput &OutExecutionOutput) const override;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TSubclassOf<UGameplayAbility> MovementAbility;
+    TSubclassOf<UGameplayAbility> AbilityToStop;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FGameplayTagContainer AbilityTagsToStop;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    bool bUseTags;
 };

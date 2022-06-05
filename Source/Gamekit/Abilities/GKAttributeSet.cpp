@@ -17,13 +17,16 @@ UGKAttributeSet::UGKAttributeSet():
     Health(100.f), MaxHealth(100.f), Mana(100.f), MaxMana(100.f), Armor(1.0f),
     MoveSpeed(600.0f), Damage(0.0f)
 {
-    NameToAttribute = {{FName("Health"), Health},
-                       {FName("MaxHealth"), MaxHealth},
-                       {FName("Mana"), Mana},
-                       {FName("MaxMana"), MaxMana},
-                       {FName("Damage"), Damage},
-                       {FName("Armor"), Armor},
-                       {FName("MoveSpeed"), MoveSpeed}};
+    NameToAttribute = {
+        {FName("Health"), Health},
+        {FName("MaxHealth"), MaxHealth},
+        {FName("Mana"), Mana},
+        {FName("MaxMana"), MaxMana},
+        {FName("Damage"), Damage},
+        {FName("Armor"), Armor},
+        {FName("MoveSpeed"), MoveSpeed},
+        {FName("Experience"), Experience}
+    };
 }
 
 void UGKAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
@@ -37,6 +40,12 @@ void UGKAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutL
     DOREPLIFETIME(UGKAttributeSet, Armor);
     DOREPLIFETIME(UGKAttributeSet, Damage);
     DOREPLIFETIME(UGKAttributeSet, MoveSpeed);
+    DOREPLIFETIME(UGKAttributeSet, Experience);
+}
+
+void UGKAttributeSet::OnRep_Experience(const FGameplayAttributeData& OldValue)
+{
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UGKAttributeSet, Experience, OldValue);
 }
 
 void UGKAttributeSet::OnRep_Health(const FGameplayAttributeData &OldValue)

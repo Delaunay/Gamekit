@@ -366,6 +366,8 @@ void UGKAbilityTask_MoveToDestination::Activate() {}
 
 void UGKAbilityTask_MoveToDestination::ExternalCancel()
 {
+    Super::ExternalCancel();
+
     bIsFinished = true;
     OnCancelled.Broadcast(TargetData);
     EndTask();

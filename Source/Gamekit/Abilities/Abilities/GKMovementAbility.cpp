@@ -9,6 +9,21 @@
 #include "Gamekit/Abilities/GKAttributeSet.h"
 
 
+UGKMovementAbility::UGKMovementAbility() {
+	GroundChannel = ECollisionChannel::ECC_WorldStatic;
+
+	static FGameplayTag Root = FGameplayTag::RequestGameplayTag("Debuff.Root");
+	static FGameplayTag Stun = FGameplayTag::RequestGameplayTag("Debuff.Stun");
+	static FGameplayTag Dead = FGameplayTag::RequestGameplayTag("State.Dead");
+	static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
+
+	AbilityTags.AddTag(Move);
+
+	ActivationBlockedTags.AddTag(Root);
+	ActivationBlockedTags.AddTag(Stun);
+	ActivationBlockedTags.AddTag(Dead);
+}
+
 void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	const FGameplayAbilityActorInfo* ActorInfo,
 	const FGameplayAbilityActivationInfo ActivationInfo,
@@ -26,7 +41,7 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 
 	UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ActorInfo->AbilitySystemComponent->GetAttributeSet(UGKAttributeSet::StaticClass()));
 
-	auto Task = UGKAbilityTask_MoveToDestination::MoveToDestination(
+	Task = UGKAbilityTask_MoveToDestination::MoveToDestination(
 		this,
 		NAME_None,
 		Out.ImpactPoint, 
@@ -39,12 +54,28 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 		false					// Debug
 	);
 
-	Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
-	Task->OnCancelled.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
 
+	Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
+	Task->OnCancelled.AddDynamic(this, &UGKMovementAbility::OnMovementCancelled);
+
+	FGameplayTagContainer OutTags;
+	CommitAbility(Handle, ActorInfo, ActivationInfo, &OutTags);
 	Task->ReadyForActivation();
 }
 
 void UGKMovementAbility::OnMovementEnded(const FGameplayAbilityTargetDataHandle& TargetData) {
+	if (IsValid(Task)) {
+		OnGameplayAbilityCancelled.RemoveAll(Task);
+		Task = nullptr;
+	}
 	K2_EndAbility();
+}
+
+void UGKMovementAbility::OnMovementCancelled(const FGameplayAbilityTargetDataHandle& Data) {
+	if (IsValid(Task)) {
+		Task->EndTask();
+		OnGameplayAbilityCancelled.RemoveAll(Task);
+		Task = nullptr;
+	}
+	K2_CancelAbility();
 }

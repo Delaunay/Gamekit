@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 #include "Gamekit/Abilities/GKAttributeSet.h"
+#include "Gamekit/Abilities/Abilities/GKMovementAbility.h"
 
 // Unreal Engine
 #include "GameFramework/MovementComponent.h"
@@ -12,7 +13,12 @@
 
 UGKStopMovement::UGKStopMovement()
 {
+    AbilityToStop = UGameplayAbility::StaticClass();
 
+    static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
+    AbilityTagsToStop = FGameplayTagContainer(Move);
+
+    bUseTags = true;
 }
 
 void UGKStopMovement::Execute_Implementation(const FGameplayEffectCustomExecutionParameters &ExecutionParams,
@@ -21,7 +27,13 @@ void UGKStopMovement::Execute_Implementation(const FGameplayEffectCustomExecutio
     UAbilitySystemComponent *TargetAbilitySystemComponent = ExecutionParams.GetTargetAbilitySystemComponent();
 
     // Cancel Moving Ability
-    TargetAbilitySystemComponent->CancelAbility(MovementAbility.GetDefaultObject());
+    if (bUseTags) {
+        TargetAbilitySystemComponent->CancelAbilities(&AbilityTagsToStop);
+    } else {
+        UGameplayAbility* CDO = Cast<UGameplayAbility>(AbilityToStop->GetDefaultObject());
+        TargetAbilitySystemComponent->CancelAbility(CDO);
+    }
+
 
     // Stop all movement commands if any
     AActor* TargetActor = TargetAbilitySystemComponent ? TargetAbilitySystemComponent->GetAvatarActor_Direct() : nullptr;

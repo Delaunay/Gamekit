@@ -43,6 +43,11 @@ class GAMEKIT_API UGKAttributeSet: public UAttributeSet
     FGameplayAttributeData Health;
     ATTRIBUTE_ACCESSORS(UGKAttributeSet, Health)
 
+    /** Current Health, when 0 we expect owner to die. Capped by MaxHealth */
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Experience", ReplicatedUsing = OnRep_Experience)
+    FGameplayAttributeData Experience;
+    ATTRIBUTE_ACCESSORS(UGKAttributeSet, Experience)
+
     /** MaxHealth is its own attribute, since GameplayEffects may modify it */
     UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
     FGameplayAttributeData MaxHealth;
@@ -112,6 +117,9 @@ class GAMEKIT_API UGKAttributeSet: public UAttributeSet
 
     UFUNCTION()
     virtual void OnRep_Armor(const FGameplayAttributeData& OldValue);
+
+    UFUNCTION()
+    void OnRep_Experience(const FGameplayAttributeData& OldValue);
 
     TMap<FName, FGameplayAttributeData> NameToAttribute;
 };
