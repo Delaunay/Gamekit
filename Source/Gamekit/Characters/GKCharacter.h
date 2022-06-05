@@ -22,7 +22,6 @@
 class UGKGameplayAbility;
 class UGameplayEffect;
 
-
 /** Base class for Character, Designed to be blueprinted
 
 Automatic input binding
