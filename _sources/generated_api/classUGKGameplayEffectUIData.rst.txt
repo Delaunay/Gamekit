@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKGameplayEffectUIData:
+
+Class UGKGameplayEffectUIData
+=============================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGameplayEffectUIData``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKGameplayEffectUIData
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

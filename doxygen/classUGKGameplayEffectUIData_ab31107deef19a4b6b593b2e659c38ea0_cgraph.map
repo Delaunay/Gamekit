@@ -1,0 +1,6 @@
+<map id="UGKGameplayEffectUIData::K2_GetAbilityStatic" name="UGKGameplayEffectUIData::K2_GetAbilityStatic">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,205,112"/>
+<area shape="rect" id="node2" href="$classUGKGameplayEffectUIData.html#ad87a9e877255b7c75d35be0684277798" title=" " alt="" coords="253,71,453,112"/>
+<area shape="rect" id="node3" href="$classUGKGameplayEffectUIData.html#a7dfaa94e7d26d2487d118d9ffb8c13c1" title=" " alt="" coords="511,5,711,47"/>
+<area shape="rect" id="node4" href="$classUGKGameplayEffectUIData.html#a87c760e8356a0fbdcf316982a2c1c33b" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="501,71,721,112"/>
+</map>

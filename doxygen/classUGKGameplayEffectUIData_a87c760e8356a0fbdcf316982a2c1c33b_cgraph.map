@@ -1,0 +1,5 @@
+<map id="UGKGameplayEffectUIData::OnDataTableChanged_Native" name="UGKGameplayEffectUIData::OnDataTableChanged_Native">
+<area shape="rect" id="node1" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="5,5,225,47"/>
+<area shape="rect" id="node2" href="$classUGKGameplayEffectUIData.html#ad87a9e877255b7c75d35be0684277798" title=" " alt="" coords="273,5,473,47"/>
+<area shape="rect" id="node3" href="$classUGKGameplayEffectUIData.html#a7dfaa94e7d26d2487d118d9ffb8c13c1" title=" " alt="" coords="521,5,721,47"/>
+</map>

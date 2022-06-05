@@ -1,0 +1,56 @@
+
+.. _file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h:
+
+File GKGameplayEffectUIData.h
+=============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Effect>` (``Source/Gamekit/Abilities/Effect``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Effect/GKGameplayEffectUIData.h``)
+-------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKGameplayEffectUIData.generated.h``
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
+- ``GameplayEffectUIData.h`` (:ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKGameplayEffectUIData`
+

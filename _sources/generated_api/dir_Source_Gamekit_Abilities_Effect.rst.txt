@@ -1,0 +1,21 @@
+.. _dir_Source_Gamekit_Abilities_Effect:
+
+
+Directory Effect
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities>` (``Source/Gamekit/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/Gamekit/Abilities/Effect``
+
+
+Files
+-----
+
+- :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h`
+
+

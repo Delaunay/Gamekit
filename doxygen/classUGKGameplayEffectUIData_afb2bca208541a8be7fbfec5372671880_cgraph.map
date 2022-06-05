@@ -1,0 +1,6 @@
+<map id="UGKGameplayEffectUIData::PostInitProperties" name="UGKGameplayEffectUIData::PostInitProperties">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,205,47"/>
+<area shape="rect" id="node2" href="$classUGKGameplayEffectUIData.html#a87c760e8356a0fbdcf316982a2c1c33b" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="253,5,473,47"/>
+<area shape="rect" id="node3" href="$classUGKGameplayEffectUIData.html#ad87a9e877255b7c75d35be0684277798" title=" " alt="" coords="521,5,721,47"/>
+<area shape="rect" id="node4" href="$classUGKGameplayEffectUIData.html#a7dfaa94e7d26d2487d118d9ffb8c13c1" title=" " alt="" coords="769,5,969,47"/>
+</map>

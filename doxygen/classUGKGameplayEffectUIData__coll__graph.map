@@ -1,0 +1,8 @@
+<map id="UGKGameplayEffectUIData" name="UGKGameplayEffectUIData">
+<area shape="rect" id="node1" title=" " alt="" coords="51,260,251,287"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,171,187,197"/>
+<area shape="rect" id="node3" href="$structFGKAbilityStatic.html" title=" " alt="" coords="211,171,339,197"/>
+<area shape="rect" id="node4" title=" " alt="" coords="119,5,241,32"/>
+<area shape="rect" id="node5" href="$structFGKProjectileStatic.html" title=" " alt="" coords="201,81,348,108"/>
+<area shape="rect" id="node6" href="$structFGKAbilityCost.html" title=" " alt="" coords="372,81,492,108"/>
+</map>

@@ -1,7 +1,7 @@
 <map id="Source/Gamekit/Projectiles" name="Source/Gamekit/Projectiles">
 <area shape="rect" id="node1" href="dir_70608fac11d04c4e063913b6c6f4729f.html" title="Projectiles" alt="" coords="27,52,117,100"/>
 <area shape="rect" id="node2" href="dir_37c4e376b7a1ef705e91e65dafb9ce72.html" title="Abilities" alt="" coords="35,148,109,196"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000023_000003.html" title="2" alt="" coords="67,122,76,137"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000003_000023.html" title="2" alt="" coords="68,112,77,126"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000024_000003.html" title="2" alt="" coords="67,122,76,137"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000003_000024.html" title="2" alt="" coords="68,112,77,126"/>
 <area shape="rect" id="clust1" href="dir_ffcfa0f40e6e8214d8efbcb38a39e1d2.html" title="Gamekit" alt="" coords="16,16,128,111"/>
 </map>

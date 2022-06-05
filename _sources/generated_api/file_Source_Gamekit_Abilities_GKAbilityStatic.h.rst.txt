@@ -57,6 +57,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`
 
+- :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h`
+
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.cpp`
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.cpp`

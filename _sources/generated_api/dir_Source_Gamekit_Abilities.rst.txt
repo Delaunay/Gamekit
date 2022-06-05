@@ -17,6 +17,7 @@ Subdirectories
 - :ref:`dir_Source_Gamekit_Abilities_Abilities`
 - :ref:`dir_Source_Gamekit_Abilities_AbilityTasks`
 - :ref:`dir_Source_Gamekit_Abilities_Blueprint`
+- :ref:`dir_Source_Gamekit_Abilities_Effect`
 - :ref:`dir_Source_Gamekit_Abilities_Execution`
 - :ref:`dir_Source_Gamekit_Abilities_Targeting`
 

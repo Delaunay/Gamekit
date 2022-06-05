@@ -46,6 +46,11 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_Gamekit_Abilities_Effect.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_Gamekit_Abilities_Execution.rst
 
 .. toctree::
@@ -801,6 +806,16 @@ Files
    :maxdepth: 5
 
    file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h.rst
 
 .. toctree::
    :maxdepth: 5

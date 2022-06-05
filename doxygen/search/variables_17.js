@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['zoommax_2964',['ZoomMax',['../classAGKTopDownPawn.html#adde4e44744dc76ad76f9361aaeb16664',1,'AGKTopDownPawn']]],
-  ['zoommin_2965',['ZoomMin',['../classAGKTopDownPawn.html#aa20af4db189054d63b03dd946ccc243f',1,'AGKTopDownPawn']]],
-  ['zoomspeed_2966',['ZoomSpeed',['../classAGKTopDownPawn.html#a2ef8729ef9246906168594e503e2e40e',1,'AGKTopDownPawn']]]
+  ['zoommax_2970',['ZoomMax',['../classAGKTopDownPawn.html#adde4e44744dc76ad76f9361aaeb16664',1,'AGKTopDownPawn']]],
+  ['zoommin_2971',['ZoomMin',['../classAGKTopDownPawn.html#aa20af4db189054d63b03dd946ccc243f',1,'AGKTopDownPawn']]],
+  ['zoomspeed_2972',['ZoomSpeed',['../classAGKTopDownPawn.html#a2ef8729ef9246906168594e503e2e40e',1,'AGKTopDownPawn']]]
 ];

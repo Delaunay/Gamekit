@@ -1,0 +1,64 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h:
+
+Program Listing for File GKGameplayEffectUIData.h
+=================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h>` (``Source/Gamekit/Abilities/Effect/GKGameplayEffectUIData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilityStatic.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameplayEffectUIData.h"
+   
+   // Generated
+   #include "GKGameplayEffectUIData.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKGameplayEffectUIData : public UGameplayEffectUIData
+   {
+       GENERATED_BODY()
+   public:
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effect|Data")
+       FText Name;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effect|Data")
+       FText Description;
+   
+       // Our gameplay effect reuse gameplay ability data as much as possible
+       // -------------------------------------------------------------------
+       
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
+       class UDataTable* AbilityDataTable;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability|Data")
+       FName AbilityRowName;
+   
+       UFUNCTION(BlueprintCallable,
+           Category = "Ability|Data",
+           DisplayName = "GetAbilityStatic",
+           meta = (ScriptName = "GetAbilityStatic"))
+       void K2_GetAbilityStatic(FGKAbilityStatic& AbilityStatic, bool& Valid);
+   
+       FGKAbilityStatic* GetAbilityStatic();
+   
+       void LoadFromDataTable(FGKAbilityStatic& AbilityStatic);
+   
+       UFUNCTION()
+       void OnDataTableChanged_Native();
+   
+       void PostInitProperties() override;
+   
+       FGKAbilityStatic* AbilityStatic;
+   };
