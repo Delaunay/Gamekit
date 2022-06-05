@@ -34,7 +34,6 @@ Program Listing for File GKCharacter.h
    class UGKGameplayAbility;
    class UGameplayEffect;
    
-   
    UCLASS(Blueprintable)
    class GAMEKIT_API AGKCharacterBase: public ACharacter,
                                        public IAbilitySystemInterface,
