@@ -29,14 +29,23 @@ Program Listing for File GKMovementAbility.h
        GENERATED_BODY()
        
    public:
+       UGKMovementAbility();
+   
        void ActivateAbility(const FGameplayAbilitySpecHandle Handle, 
                             const FGameplayAbilityActorInfo* ActorInfo, 
                             const FGameplayAbilityActivationInfo ActivationInfo, 
                             const FGameplayEventData* TriggerEventData) override;
    
+   
+       // Trace that always block
        UPROPERTY()
        TEnumAsByte<ECollisionChannel> GroundChannel;
    
        UFUNCTION()
        void OnMovementEnded(const FGameplayAbilityTargetDataHandle& TargetData);
+   
+       UFUNCTION()
+       void OnMovementCancelled(const FGameplayAbilityTargetDataHandle& Data);
+   
+       class UGKAbilityTask_MoveToDestination* Task;
    };

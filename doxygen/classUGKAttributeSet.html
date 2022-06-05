@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">9b69be7a6</span>
+   &#160;<span id="projectnumber">33fd83ffc</span>
    </div>
   </td>
  </tr>
@@ -123,6 +123,8 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:abe5f3cb9c179e260a855fa0f0ba24504"><td class="memItemLeft" align="right" valign="top">FGameplayAttributeData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#abe5f3cb9c179e260a855fa0f0ba24504">Health</a></td></tr>
 <tr class="separator:abe5f3cb9c179e260a855fa0f0ba24504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbaefd89149233985b5f488002d4f078"><td class="memItemLeft" align="right" valign="top">FGameplayAttributeData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#adbaefd89149233985b5f488002d4f078">Experience</a></td></tr>
+<tr class="separator:adbaefd89149233985b5f488002d4f078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125969bb159543891573940ee800bcf4"><td class="memItemLeft" align="right" valign="top">FGameplayAttributeData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#a125969bb159543891573940ee800bcf4">MaxHealth</a></td></tr>
 <tr class="separator:a125969bb159543891573940ee800bcf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6dee01f3b107eb3c67516c35fc6f8d4"><td class="memItemLeft" align="right" valign="top">FGameplayAttributeData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#ad6dee01f3b107eb3c67516c35fc6f8d4">Mana</a></td></tr>
@@ -154,6 +156,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a46f4c613cd5a8252aacbc034a4c711c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5118f71bf9185410e2c00bf14bfa432d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#a5118f71bf9185410e2c00bf14bfa432d">OnRep_Armor</a> (const FGameplayAttributeData &amp;OldValue)</td></tr>
 <tr class="separator:a5118f71bf9185410e2c00bf14bfa432d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7927cbb2a138680ce95b467825fbe84f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAttributeSet.html#a7927cbb2a138680ce95b467825fbe84f">OnRep_Experience</a> (const FGameplayAttributeData &amp;OldValue)</td></tr>
+<tr class="separator:a7927cbb2a138680ce95b467825fbe84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -375,6 +379,32 @@ Here is the call graph for this function:</div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7927cbb2a138680ce95b467825fbe84f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7927cbb2a138680ce95b467825fbe84f">&#9670;&nbsp;</a></span>OnRep_Experience()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAttributeSet::OnRep_Experience </td>
+          <td>(</td>
+          <td class="paramtype">const FGameplayAttributeData &amp;&#160;</td>
+          <td class="paramname"><em>OldValue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -627,6 +657,21 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbaefd89149233985b5f488002d4f078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbaefd89149233985b5f488002d4f078">&#9670;&nbsp;</a></span>Experience</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FGameplayAttributeData UGKAttributeSet::Experience</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current Health, when 0 we expect owner to die. Capped by MaxHealth </p>
 
 </div>
 </div>

@@ -378,6 +378,8 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    
    void UGKAbilityTask_MoveToDestination::ExternalCancel()
    {
+       Super::ExternalCancel();
+   
        bIsFinished = true;
        OnCancelled.Broadcast(TargetData);
        EndTask();

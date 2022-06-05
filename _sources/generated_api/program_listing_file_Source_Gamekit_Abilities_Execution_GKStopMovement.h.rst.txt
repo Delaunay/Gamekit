@@ -35,5 +35,11 @@ Program Listing for File GKStopMovement.h
                                            OUT FGameplayEffectCustomExecutionOutput &OutExecutionOutput) const override;
    
        UPROPERTY(EditAnywhere, BlueprintReadWrite)
-       TSubclassOf<UGameplayAbility> MovementAbility;
+       TSubclassOf<UGameplayAbility> AbilityToStop;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       FGameplayTagContainer AbilityTagsToStop;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite)
+       bool bUseTags;
    };

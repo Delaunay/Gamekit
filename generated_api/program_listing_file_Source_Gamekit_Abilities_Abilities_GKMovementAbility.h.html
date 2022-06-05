@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9b69be7a6
+                33fd83ffc
 
               </div>
 <div role="search">
@@ -130,16 +130,25 @@
 <span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
 
 <span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKMovementAbility</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
 <span class="w">                         </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
 <span class="w">                         </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"></span>
 <span class="w">                         </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">*</span><span class="w"> </span><span class="n">TriggerEventData</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
+
+<span class="w">    </span><span class="c1">// Trace that always block</span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">ECollisionChannel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GroundChannel</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnMovementEnded</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnMovementCancelled</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAbilityTask_MoveToDestination</span><span class="o">*</span><span class="w"> </span><span class="n">Task</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

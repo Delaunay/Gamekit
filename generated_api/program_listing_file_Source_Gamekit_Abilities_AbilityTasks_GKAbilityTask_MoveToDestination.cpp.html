@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9b69be7a6
+                33fd83ffc
 
               </div>
 <div role="search">
@@ -479,6 +479,8 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">ExternalCancel</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">bIsFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>

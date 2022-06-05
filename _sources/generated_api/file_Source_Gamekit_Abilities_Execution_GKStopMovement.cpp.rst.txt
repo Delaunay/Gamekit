@@ -31,6 +31,8 @@ Includes
 
 - ``GameFramework/MovementComponent.h``
 
+- ``Gamekit/Abilities/Abilities/GKMovementAbility.h`` (:ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`)
+
 - ``Gamekit/Abilities/Execution/GKStopMovement.h`` (:ref:`file_Source_Gamekit_Abilities_Execution_GKStopMovement.h`)
 
 - ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)

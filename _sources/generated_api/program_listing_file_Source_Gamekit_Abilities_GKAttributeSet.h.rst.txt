@@ -50,6 +50,10 @@ Program Listing for File GKAttributeSet.h
        FGameplayAttributeData Health;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, Health)
    
+       UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Experience", ReplicatedUsing = OnRep_Experience)
+       FGameplayAttributeData Experience;
+       ATTRIBUTE_ACCESSORS(UGKAttributeSet, Experience)
+   
        UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
        FGameplayAttributeData MaxHealth;
        ATTRIBUTE_ACCESSORS(UGKAttributeSet, MaxHealth)
@@ -113,6 +117,9 @@ Program Listing for File GKAttributeSet.h
    
        UFUNCTION()
        virtual void OnRep_Armor(const FGameplayAttributeData& OldValue);
+   
+       UFUNCTION()
+       void OnRep_Experience(const FGameplayAttributeData& OldValue);
    
        TMap<FName, FGameplayAttributeData> NameToAttribute;
    };

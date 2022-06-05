@@ -86,6 +86,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
    
        virtual void Activate() override;
    
+       UFUNCTION()
        virtual void ExternalCancel() override;
    
        // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;

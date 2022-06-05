@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9b69be7a6
+                33fd83ffc
 
               </div>
 <div role="search">
@@ -136,7 +136,13 @@
 <span class="w">                                        </span><span class="n">OUT</span><span class="w"> </span><span class="n">FGameplayEffectCustomExecutionOutput</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OutExecutionOutput</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MovementAbility</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UGameplayAbility</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityToStop</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">AbilityTagsToStop</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUseTags</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

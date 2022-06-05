@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9b69be7a6
+                33fd83ffc
 
               </div>
 <div role="search">
@@ -122,7 +122,22 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAttributeSet.h&quot;</span><span class="cp"></span>
 
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">UGKMovementAbility::ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">UGKMovementAbility</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GroundChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Debuff.Root&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Stun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Debuff.Stun&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Dead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;State.Dead&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Ability.Move&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AbilityTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Move</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Stun</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Dead</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">*</span><span class="w"> </span><span class="n">TriggerEventData</span><span class="p">)</span><span class="w"></span>
@@ -139,7 +154,7 @@
 
 <span class="w">    </span><span class="n">UGKAttributeSet</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAttributeSet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetAttributeSet</span><span class="p">(</span><span class="n">UGKAttributeSet</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">MoveToDestination</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">MoveToDestination</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">NAME_None</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">Out</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">,</span><span class="w"></span>
@@ -152,14 +167,30 @@
 <span class="w">        </span><span class="nb">false</span><span class="w">                   </span><span class="c1">// Debug</span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementCancelled</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">OutTags</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">CommitAbility</span><span class="p">(</span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OutTags</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">UGKMovementAbility::OnMovementEnded</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementEnded</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="n">Task</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnGameplayAbilityCancelled</span><span class="p">.</span><span class="n">RemoveAll</span><span class="p">(</span><span class="n">Task</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="n">K2_EndAbility</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">OnMovementCancelled</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="n">Task</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Task</span><span class="o">-&gt;</span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnGameplayAbilityCancelled</span><span class="p">.</span><span class="n">RemoveAll</span><span class="p">(</span><span class="n">Task</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

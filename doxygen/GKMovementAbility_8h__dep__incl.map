@@ -1,4 +1,5 @@
 <map id="Source/Gamekit/Abilities/Abilities/GKMovementAbility.h" name="Source/Gamekit/Abilities/Abilities/GKMovementAbility.h">
-<area shape="rect" id="node1" title=" " alt="" coords="13,5,237,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="143,5,367,47"/>
 <area shape="rect" id="node2" href="$GKMovementAbility_8cpp.html" title=" " alt="" coords="5,95,244,136"/>
+<area shape="rect" id="node3" href="$GKStopMovement_8cpp.html" title=" " alt="" coords="268,95,507,136"/>
 </map>

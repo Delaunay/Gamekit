@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9b69be7a6
+                33fd83ffc
 
               </div>
 <div role="search">
@@ -118,6 +118,7 @@
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemComponent.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAttributeSet.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Abilities/GKMovementAbility.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/MovementComponent.h&quot;</span><span class="cp"></span>
@@ -125,7 +126,12 @@
 
 <span class="n">UGKStopMovement</span><span class="o">::</span><span class="n">UGKStopMovement</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilityToStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGameplayAbility</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Ability.Move&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilityTagsToStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(</span><span class="n">Move</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bUseTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKStopMovement</span><span class="o">::</span><span class="n">Execute_Implementation</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectCustomExecutionParameters</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ExecutionParams</span><span class="p">,</span><span class="w"></span>
@@ -134,7 +140,13 @@
 <span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">TargetAbilitySystemComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExecutionParams</span><span class="p">.</span><span class="n">GetTargetAbilitySystemComponent</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Cancel Moving Ability</span>
-<span class="w">    </span><span class="n">TargetAbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">CancelAbility</span><span class="p">(</span><span class="n">MovementAbility</span><span class="p">.</span><span class="n">GetDefaultObject</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUseTags</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetAbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">CancelAbilities</span><span class="p">(</span><span class="o">&amp;</span><span class="n">AbilityTagsToStop</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UGameplayAbility</span><span class="o">*</span><span class="w"> </span><span class="n">CDO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGameplayAbility</span><span class="o">&gt;</span><span class="p">(</span><span class="n">AbilityToStop</span><span class="o">-&gt;</span><span class="n">GetDefaultObject</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetAbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">CancelAbility</span><span class="p">(</span><span class="n">CDO</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 
 <span class="w">    </span><span class="c1">// Stop all movement commands if any</span>
 <span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetAbilitySystemComponent</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">TargetAbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">GetAvatarActor_Direct</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
