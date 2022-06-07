@@ -27,29 +27,64 @@ GameTags
 
 Gamekit Tags:
 
-* AnimationCastPointName: Tag sent when animation reach the cast point
-* DeathTag: Tag set on death
-* DeathDispelTag: Speciall dispel flags set on death (removes all debuffs)
-* ActivateFailNotYetLearnedName: Ability has not been learn yet
+* Ability: use to tag abilities
+	* Exclusive: Used to prevent activation of multiple abilities witht the `Exclusive` tag
+	* Move: Used to tag abilities performing movement operation
+	* Passive: tag passive abilities
 
-* Buff
-	* Immunity
-	* Level
+* Animation: used to tag animation
+	* CastPoint: Tag is sent when the animation reach the point where projectile/effect should be
+	  spawned.
+
+* Cooldown: used to tag cooldowns; to prevent the same ability from being casted all the time
+
+* Buff: Improves the effectiveness of a character
+	* Immunity: protects against debuff and disables
+	* Armor increase
+	* Damage
+	* Health bonus
+	* Level: level of the disable
 		* Minor
+		* Medium
+		* Strong
 
-* Debuff
-	* Level
-	* Stun
-	* Silence
-	* Mute
-	* Root
-	* Break
+* Debuff: reduce the effectiveness of a character
+	* Level: level of the disable
+		* Minor
+		* Medium
+		* Strong
+	* Armor reduction
+	* Health Penalty
+	* Damage decrease
 
-* Dispel
-	* Level
+* Disable: prevent character for performing certain actions
+	* Level: level of the disable
+		* Minor
+		* Medium
+		* Strong
+	* Stun: prevents movement, spell casting and item usage
+	* Silence: prevents spell casting
+	* Mute: prevent item usage
+	* Root: prevent all movements
+	* Break: disable passive abilities
+	* Dead: removes all buffs, debuffs and disables
 
-* Failure
+* Dispel: removes debuff and disables
+	* Level: level of the disable
+		* Minor
+		* Medium
+		* Strong
 
+* Failure: used to report errors back to the users
+	* Blocked
+	* Cost
+	* Missing
+	* Network
+	* NotLearned
+
+* GameplayCue: used to spawn effect in reseponse to gameplay effects
+
+* Quest: used to tag objectives for the quest system
 
 Unreal Engine GA tags
 
