@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">a86448ce7</span>
+   &#160;<span id="projectnumber">6ac551053</span>
    </div>
   </td>
  </tr>
@@ -121,6 +121,8 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:a6faabae52e4937976c04402475e327c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d94c249a732c88e8bd6c5c74ca7ec4e"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityBlueprintLibrary.html#a7d94c249a732c88e8bd6c5c74ca7ec4e">GetGEHandleAsString</a> (FActiveGameplayEffectHandle Handle)</td></tr>
 <tr class="separator:a7d94c249a732c88e8bd6c5c74ca7ec4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a163bbb7edd910b168bd07187527bb7b6"><td class="memItemLeft" align="right" valign="top">static FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityBlueprintLibrary.html#a163bbb7edd910b168bd07187527bb7b6">GetFailureReasonFor</a> (UGameplayAbility *Ability, FGameplayTagContainer ReasonTags, bool &amp;bHandled)</td></tr>
+<tr class="separator:a163bbb7edd910b168bd07187527bb7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Expose the Gameplay Ability System to the editor </p>
@@ -288,6 +290,59 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <p>Safe way to query the Animation set, should always return a valid animation NB: the animation can change if multiple animations are available for the same animation kind </p>
+
+</div>
+</div>
+<a id="a163bbb7edd910b168bd07187527bb7b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a163bbb7edd910b168bd07187527bb7b6">&#9670;&nbsp;</a></span>GetFailureReasonFor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FText UGKAbilityBlueprintLibrary::GetFailureReasonFor </td>
+          <td>(</td>
+          <td class="paramtype">UGameplayAbility *&#160;</td>
+          <td class="paramname"><em>Ability</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FGameplayTagContainer&#160;</td>
+          <td class="paramname"><em>ReasonTags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>bHandled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAbilityBlueprintLibrary_a163bbb7edd910b168bd07187527bb7b6_cgraph.png" border="0" usemap="#classUGKAbilityBlueprintLibrary_a163bbb7edd910b168bd07187527bb7b6_cgraph" alt=""/></div>
+<map name="classUGKAbilityBlueprintLibrary_a163bbb7edd910b168bd07187527bb7b6_cgraph" id="classUGKAbilityBlueprintLibrary_a163bbb7edd910b168bd07187527bb7b6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,203,47"/>
+<area shape="rect" href="GKAbilityBlueprintLibrary_8cpp.html#ac7c289629b26169ea60f81877678f86c" title=" " alt="" coords="251,13,395,39"/>
+<area shape="rect" href="GKAbilityBlueprintLibrary_8cpp.html#a8f6c705628fadfabcf535be6211ef6b2" title=" " alt="" coords="443,13,624,39"/>
+<area shape="rect" href="GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="672,13,717,39"/>
+</map>
+</div>
 
 </div>
 </div>

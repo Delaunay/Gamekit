@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a86448ce7
+                6ac551053
 
               </div>
 <div role="search">
@@ -1194,11 +1194,14 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MovementTask</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">MovementTask</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w">       </span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APlayerController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorInfo</span><span class="o">-&gt;</span><span class="n">PlayerController</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// TODO:: Fix this trace</span>
-<span class="w">        </span><span class="n">ETraceTypeQuery</span><span class="w"> </span><span class="n">Channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UEngineTypes</span><span class="o">::</span><span class="n">ConvertToTraceType</span><span class="p">(</span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetHitResultUnderCursorByChannel</span><span class="p">(</span><span class="n">Channel</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">Result</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MovementTask</span><span class="o">-&gt;</span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Controller</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">FHitResult</span><span class="w"> </span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// TODO:: Fix this trace</span>
+<span class="w">            </span><span class="n">ETraceTypeQuery</span><span class="w"> </span><span class="n">Channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UEngineTypes</span><span class="o">::</span><span class="n">ConvertToTraceType</span><span class="p">(</span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetHitResultUnderCursorByChannel</span><span class="p">(</span><span class="n">Channel</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">Result</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">MovementTask</span><span class="o">-&gt;</span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// This is a bit laggy</span>

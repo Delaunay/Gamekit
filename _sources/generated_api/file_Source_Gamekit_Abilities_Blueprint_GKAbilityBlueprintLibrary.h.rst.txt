@@ -58,5 +58,7 @@ Classes
 -------
 
 
+- :ref:`exhale_struct_structFGKFailureTagMapping`
+
 - :ref:`exhale_class_classUGKAbilityBlueprintLibrary`
 

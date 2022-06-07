@@ -33,9 +33,27 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
 
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
 - ``Misc/ConfigCacheIni.h``
 
 
 
 
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2`
+
+- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1ac7c289629b26169ea60f81877678f86c`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4`
 

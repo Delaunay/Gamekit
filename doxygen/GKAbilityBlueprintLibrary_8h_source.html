@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">a86448ce7</span>
+   &#160;<span id="projectnumber">6ac551053</span>
    </div>
   </td>
  </tr>
@@ -94,82 +94,117 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// Generated</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;GKAbilityBlueprintLibrary.generated.h&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;UCLASS()</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html">   22</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKAbilityBlueprintLibrary.html">UGKAbilityBlueprintLibrary</a>: public UBlueprintFunctionLibrary</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    GENERATED_UCLASS_BODY()</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// Debug FGameplayAbilitySpec</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// --------------------------</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> GetInputIDFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;USTRUCT(BlueprintType)</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structFGKFailureTagMapping.html">   21</a></span>&#160;struct GAMEKIT_API <a class="code" href="structFGKFailureTagMapping.html">FGKFailureTagMapping</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    GENERATED_USTRUCT_BODY()</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structFGKFailureTagMapping.html#a7de9455fac948d139f575bf0b74358ba">   26</a></span>&#160;    <a class="code" href="structFGKFailureTagMapping.html#a7de9455fac948d139f575bf0b74358ba">FGKFailureTagMapping</a>() {}</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structFGKFailureTagMapping.html#af4731a0ef31e73de196620171b7096cc">   28</a></span>&#160;    <a class="code" href="structFGKFailureTagMapping.html#af4731a0ef31e73de196620171b7096cc">FGKFailureTagMapping</a>(FGameplayTag FailureTag, FText LocalReason):</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        FailureTag(FailureTag), LocalReason(LocalReason)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {}</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structFGKFailureTagMapping.html#acfd5e8c7f45fa6beda2646a83d74a55f">   33</a></span>&#160;    FGameplayTag FailureTag;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span>UGameplayAbility *GetGameplayAbilityFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> UGameplayEffect *GetGameplayEffectFromHandle(<span class="keyword">const</span> FActiveGameplayEffectHandle &amp;Handle);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// TODO: This does a full copy</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Effect&quot;</span>)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> AddTargetsToEffectContainerSpec(<span class="keyword">const</span> <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> &amp;ContainerSpec,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                                                   <span class="keyword">const</span> TArray&lt;FHitResult&gt; &amp;            HitResults,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                                                   <span class="keyword">const</span> TArray&lt;AActor *&gt; &amp;              TargetActors);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Effect&quot;</span>)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    TArray&lt;FActiveGameplayEffectHandle&gt; ApplyExternalEffectContainerSpec(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">const</span> <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> &amp;ContainerSpec);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Animation&quot;</span>)</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html#aaaa1f2176001a9a04ee1a895f41c8954">   55</a></span>&#160;    class UAnimMontage *GetAnimation(const <a class="code" href="structFGKAnimationSet.html">FGKAnimationSet</a> &amp;AnimationSet, <a class="code" href="GKAnimationSet_8h.html#af1632aa373bb04c47e7939d94b8becab">EGK_AbilityAnimation</a> AnimKind)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> AnimationSet.GetAnimations(AnimKind).Sample();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structFGKFailureTagMapping.html#a2237a184604c957635d7f62c6d4244b6">   36</a></span>&#160;    FText LocalReason;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;UCLASS()</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html">   44</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKAbilityBlueprintLibrary.html">UGKAbilityBlueprintLibrary</a>: public UBlueprintFunctionLibrary</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    GENERATED_UCLASS_BODY()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Debug FGameplayAbilitySpec</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// --------------------------</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> GetInputIDFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span>UGameplayAbility *GetGameplayAbilityFromAbilitySpec(<span class="keyword">const</span> FGameplayAbilitySpec &amp;Spec);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// FGameplayAbilityTargetData Getter</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// UFUNCTION(BlueprintCallable, Category = &quot;Ability|TargetData&quot;)</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetData const &amp;value,</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">//                                          bool &amp;HasHitResult);</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|TargetData&quot;</span>)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &amp;Handle,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                             int32                                   Index,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                             <span class="keywordtype">bool</span> &amp;                                  HasHitResult);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;AbilitySlot&quot;)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    static <a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> AbilitySlotFromInput(<a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> AbilityInput);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Debug&quot;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> UGameplayEffect *GetGameplayEffectFromHandle(<span class="keyword">const</span> FActiveGameplayEffectHandle &amp;Handle);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// TODO: This does a full copy</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Effect&quot;</span>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> AddTargetsToEffectContainerSpec(<span class="keyword">const</span> <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> &amp;ContainerSpec,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                                                   <span class="keyword">const</span> TArray&lt;FHitResult&gt; &amp;            HitResults,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                                                   <span class="keyword">const</span> TArray&lt;AActor *&gt; &amp;              TargetActors);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Effect&quot;</span>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    TArray&lt;FActiveGameplayEffectHandle&gt; ApplyExternalEffectContainerSpec(</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">const</span> <a class="code" href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a> &amp;ContainerSpec);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;Debug&quot;)</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html#a7d94c249a732c88e8bd6c5c74ca7ec4e">   74</a></span>&#160;    static FString GetGEHandleAsString(FActiveGameplayEffectHandle Handle){</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> Handle.ToString();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Animation&quot;</span>)</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html#aaaa1f2176001a9a04ee1a895f41c8954">   77</a></span>&#160;    class UAnimMontage *GetAnimation(const <a class="code" href="structFGKAnimationSet.html">FGKAnimationSet</a> &amp;AnimationSet, <a class="code" href="GKAnimationSet_8h.html#af1632aa373bb04c47e7939d94b8becab">EGK_AbilityAnimation</a> AnimKind)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> AnimationSet.GetAnimations(AnimKind).Sample();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// FGameplayAbilityTargetData Getter</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// UFUNCTION(BlueprintCallable, Category = &quot;Ability|TargetData&quot;)</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetData const &amp;value,</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">//                                          bool &amp;HasHitResult);</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|TargetData&quot;</span>)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &amp;Handle,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                             int32                                   Index,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                             <span class="keywordtype">bool</span> &amp;                                  HasHitResult);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;AbilitySlot&quot;)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    static <a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> AbilitySlotFromInput(<a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> AbilityInput);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;Debug&quot;)</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classUGKAbilityBlueprintLibrary.html#a7d94c249a732c88e8bd6c5c74ca7ec4e">   96</a></span>&#160;    static FString GetGEHandleAsString(FActiveGameplayEffectHandle Handle){</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> Handle.ToString();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;UI&quot;</span>)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    static FText GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, <span class="keywordtype">bool</span>&amp; bHandled);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a9953fc0d4728ed787759d58864d13a77"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a9953fc0d4728ed787759d58864d13a77">UGKAbilityBlueprintLibrary::GetGameplayAbilityFromAbilitySpec</a></div><div class="ttdeci">static class UGameplayAbility * GetGameplayAbilityFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:23</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html">UGKAbilityBlueprintLibrary</a></div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:22</div></div>
+<div class="ttc" id="astructFGKFailureTagMapping_html_a7de9455fac948d139f575bf0b74358ba"><div class="ttname"><a href="structFGKFailureTagMapping.html#a7de9455fac948d139f575bf0b74358ba">FGKFailureTagMapping::FGKFailureTagMapping</a></div><div class="ttdeci">FGKFailureTagMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:26</div></div>
+<div class="ttc" id="aGKCastPointAnimNotify_8cpp_html_ae5430ea5be0a5aa38208416673a4fad3"><div class="ttname"><a href="GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3">Get</a></div><div class="ttdeci">UGKAbilitySystemGlobals * Get()</div><div class="ttdef"><b>Definition:</b> GKCastPointAnimNotify.cpp:28</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a9953fc0d4728ed787759d58864d13a77"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a9953fc0d4728ed787759d58864d13a77">UGKAbilityBlueprintLibrary::GetGameplayAbilityFromAbilitySpec</a></div><div class="ttdeci">static class UGameplayAbility * GetGameplayAbilityFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:27</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html">UGKAbilityBlueprintLibrary</a></div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:44</div></div>
 <div class="ttc" id="aGKAbilitySystemComponent_8h_html"><div class="ttname"><a href="GKAbilitySystemComponent_8h.html">GKAbilitySystemComponent.h</a></div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_aee1d17ebc902e7000841d085624c52d6"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#aee1d17ebc902e7000841d085624c52d6">UGKAbilityBlueprintLibrary::GetGameplayEffectFromHandle</a></div><div class="ttdeci">static UGameplayEffect * GetGameplayEffectFromHandle(const FActiveGameplayEffectHandle &amp;Handle)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:28</div></div>
+<div class="ttc" id="aGKAbilitySystemGlobals_8h_html"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html">GKAbilitySystemGlobals.h</a></div></div>
+<div class="ttc" id="aGKAbilityBlueprintLibrary_8cpp_html_a8f6c705628fadfabcf535be6211ef6b2"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8cpp.html#a8f6c705628fadfabcf535be6211ef6b2">GenerateFailureMapping</a></div><div class="ttdeci">TArray&lt; FGKFailureTagMapping &gt; GenerateFailureMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:97</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_aee1d17ebc902e7000841d085624c52d6"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#aee1d17ebc902e7000841d085624c52d6">UGKAbilityBlueprintLibrary::GetGameplayEffectFromHandle</a></div><div class="ttdeci">static UGameplayEffect * GetGameplayEffectFromHandle(const FActiveGameplayEffectHandle &amp;Handle)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:32</div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a></div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.h:42</div></div>
 <div class="ttc" id="aGKAnimationSet_8h_html"><div class="ttname"><a href="GKAnimationSet_8h.html">GKAnimationSet.h</a></div></div>
 <div class="ttc" id="aGKAbilityBlueprintLibrary_8h_html"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8h.html">GKAbilityBlueprintLibrary.h</a></div></div>
+<div class="ttc" id="astructFGKFailureTagMapping_html"><div class="ttname"><a href="structFGKFailureTagMapping.html">FGKFailureTagMapping</a></div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:21</div></div>
 <div class="ttc" id="astructFGKAnimationSet_html"><div class="ttname"><a href="structFGKAnimationSet.html">FGKAnimationSet</a></div><div class="ttdef"><b>Definition:</b> GKAnimationSet.h:46</div></div>
 <div class="ttc" id="aGKAbilityTypes_8h_html"><div class="ttname"><a href="GKAbilityTypes_8h.html">GKAbilityTypes.h</a></div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html_a1a74f696d03cb1dfac5f906b7c8beb68"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html#a1a74f696d03cb1dfac5f906b7c8beb68">FGKGameplayEffectContainerSpec::TargetGameplayEffectSpecs</a></div><div class="ttdeci">TArray&lt; FGameplayEffectSpecHandle &gt; TargetGameplayEffectSpecs</div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.h:55</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a4fb97c5920500fef8d9ab128fcd82e80"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a4fb97c5920500fef8d9ab128fcd82e80">UGKAbilityBlueprintLibrary::GetAbilityHandleFromAbilitySpec</a></div><div class="ttdeci">static GENERATED_UCLASS_BODY() public FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:18</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a4fb97c5920500fef8d9ab128fcd82e80"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a4fb97c5920500fef8d9ab128fcd82e80">UGKAbilityBlueprintLibrary::GetAbilityHandleFromAbilitySpec</a></div><div class="ttdeci">static GENERATED_UCLASS_BODY() public FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:22</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a136f2580c96cf76bea6fd734f2467bf5"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a136f2580c96cf76bea6fd734f2467bf5">UGKAbilityBlueprintLibrary::GetTargetDataHitResult</a></div><div class="ttdeci">static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &amp;Handle, int32 Index, bool &amp;HasHitResult)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:64</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:16</div></div>
+<div class="ttc" id="astructFGKFailureTagMapping_html_af4731a0ef31e73de196620171b7096cc"><div class="ttname"><a href="structFGKFailureTagMapping.html#af4731a0ef31e73de196620171b7096cc">FGKFailureTagMapping::FGKFailureTagMapping</a></div><div class="ttdeci">FGKFailureTagMapping(FGameplayTag FailureTag, FText LocalReason)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:28</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a136f2580c96cf76bea6fd734f2467bf5"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a136f2580c96cf76bea6fd734f2467bf5">UGKAbilityBlueprintLibrary::GetTargetDataHitResult</a></div><div class="ttdeci">static FHitResult GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &amp;Handle, int32 Index, bool &amp;HasHitResult)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:68</div></div>
 <div class="ttc" id="aGKAnimationSet_8h_html_af1632aa373bb04c47e7939d94b8becab"><div class="ttname"><a href="GKAnimationSet_8h.html#af1632aa373bb04c47e7939d94b8becab">EGK_AbilityAnimation</a></div><div class="ttdeci">EGK_AbilityAnimation</div><div class="ttdef"><b>Definition:</b> GKAnimationSet.h:16</div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html_a946103212d79e4be2dd27a7659691469"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html#a946103212d79e4be2dd27a7659691469">FGKGameplayEffectContainerSpec::TargetData</a></div><div class="ttdeci">FGameplayAbilityTargetDataHandle TargetData</div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.h:51</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a046ad6925e2f327a1d6bb14f48a567f0"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a046ad6925e2f327a1d6bb14f48a567f0">UGKAbilityBlueprintLibrary::AddTargetsToEffectContainerSpec</a></div><div class="ttdeci">FGKGameplayEffectContainerSpec AddTargetsToEffectContainerSpec(const FGKGameplayEffectContainerSpec &amp;ContainerSpec, const TArray&lt; FHitResult &gt; &amp;HitResults, const TArray&lt; AActor * &gt; &amp;TargetActors)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:34</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a046ad6925e2f327a1d6bb14f48a567f0"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a046ad6925e2f327a1d6bb14f48a567f0">UGKAbilityBlueprintLibrary::AddTargetsToEffectContainerSpec</a></div><div class="ttdeci">FGKGameplayEffectContainerSpec AddTargetsToEffectContainerSpec(const FGKGameplayEffectContainerSpec &amp;ContainerSpec, const TArray&lt; FHitResult &gt; &amp;HitResults, const TArray&lt; AActor * &gt; &amp;TargetActors)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:38</div></div>
+<div class="ttc" id="aGKAbilityBlueprintLibrary_8cpp_html_afa7779fe56b160955b535cd6a8aaf8f4"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8cpp.html#afa7779fe56b160955b535cd6a8aaf8f4">NAMESPACE</a></div><div class="ttdeci">#define NAMESPACE</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:13</div></div>
 <div class="ttc" id="astructFGKAbilitySlot_html"><div class="ttname"><a href="structFGKAbilitySlot.html">FGKAbilitySlot</a></div><div class="ttdef"><b>Definition:</b> GKItemTypes.h:28</div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html_aa545c4912759918a75568320d69f657d"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html#aa545c4912759918a75568320d69f657d">FGKGameplayEffectContainerSpec::AddTargets</a></div><div class="ttdeci">void AddTargets(const TArray&lt; FHitResult &gt; &amp;HitResults, const TArray&lt; AActor * &gt; &amp;TargetActors)</div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.cpp:15</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a6faabae52e4937976c04402475e327c0"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a6faabae52e4937976c04402475e327c0">UGKAbilityBlueprintLibrary::AbilitySlotFromInput</a></div><div class="ttdeci">static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:87</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a8e85680f147b9095abc32aa69879e23d"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a8e85680f147b9095abc32aa69879e23d">UGKAbilityBlueprintLibrary::ApplyExternalEffectContainerSpec</a></div><div class="ttdeci">TArray&lt; FActiveGameplayEffectHandle &gt; ApplyExternalEffectContainerSpec(const FGKGameplayEffectContainerSpec &amp;ContainerSpec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:44</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a6faabae52e4937976c04402475e327c0"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a6faabae52e4937976c04402475e327c0">UGKAbilityBlueprintLibrary::AbilitySlotFromInput</a></div><div class="ttdeci">static FGKAbilitySlot AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:91</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a8e85680f147b9095abc32aa69879e23d"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a8e85680f147b9095abc32aa69879e23d">UGKAbilityBlueprintLibrary::ApplyExternalEffectContainerSpec</a></div><div class="ttdeci">TArray&lt; FActiveGameplayEffectHandle &gt; ApplyExternalEffectContainerSpec(const FGKGameplayEffectContainerSpec &amp;ContainerSpec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:48</div></div>
 <div class="ttc" id="aGKAbilityInputs_8h_html_a5926be264f6313e59bb65648750bdd6a"><div class="ttname"><a href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a></div><div class="ttdeci">EGK_MOBA_AbilityInputID</div><div class="ttdef"><b>Definition:</b> GKAbilityInputs.h:12</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a163bbb7edd910b168bd07187527bb7b6"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a163bbb7edd910b168bd07187527bb7b6">UGKAbilityBlueprintLibrary::GetFailureReasonFor</a></div><div class="ttdeci">static FText GetFailureReasonFor(UGameplayAbility *Ability, FGameplayTagContainer ReasonTags, bool &amp;bHandled)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:127</div></div>
+<div class="ttc" id="aGKAbilityBlueprintLibrary_8cpp_html_ac7c289629b26169ea60f81877678f86c"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8cpp.html#ac7c289629b26169ea60f81877678f86c">GetFailureMapping</a></div><div class="ttdeci">TArray&lt; FGKFailureTagMapping &gt; const  &amp; GetFailureMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:121</div></div>
 <div class="ttc" id="aGKItemTypes_8h_html"><div class="ttname"><a href="GKItemTypes_8h.html">GKItemTypes.h</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

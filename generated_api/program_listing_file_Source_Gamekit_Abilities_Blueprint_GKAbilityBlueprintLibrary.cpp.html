@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a86448ce7
+                6ac551053
 
               </div>
 <div role="search">
@@ -117,9 +117,13 @@
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Misc/ConfigCacheIni.h&quot;</span><span class="cp"></span>
+
+
+<span class="cp">#define NAMESPACE &quot;GamekitAbilities&quot;</span>
 
 <span class="n">UGKAbilityBlueprintLibrary</span><span class="o">::</span><span class="n">UGKAbilityBlueprintLibrary</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FObjectInitializer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"></span>
@@ -200,6 +204,51 @@
 <span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">UGKAbilityBlueprintLibrary</span><span class="o">::</span><span class="n">AbilitySlotFromInput</span><span class="p">(</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="w"> </span><span class="n">AbilityInput</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FGKAbilitySlot</span><span class="p">(</span><span class="n">AbilityInput</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GenerateFailureMapping</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// TODO: make this a datatable</span>
+<span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ASGlobals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityCost</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityCost&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability cost not met&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityCooldown</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityCooldown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability is on cooldown&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityBlocked</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityBlocked&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability is blocked by an active effect&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityMissing</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityMissing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability requirements are not met&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNetwork</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Internal error&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityDead</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityDead&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You are dead&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNotLearned&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability was not learnt yet&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailCostTag</span><span class="p">,</span><span class="w">          </span><span class="n">AbilityCost</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailCooldownTag</span><span class="p">,</span><span class="w">      </span><span class="n">AbilityCooldown</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailTagsBlockedTag</span><span class="p">,</span><span class="w">   </span><span class="n">AbilityBlocked</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailTagsMissingTag</span><span class="p">,</span><span class="w">   </span><span class="n">AbilityMissing</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailNetworkingTag</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityNetwork</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailIsDeadTag</span><span class="p">,</span><span class="w">        </span><span class="n">AbilityDead</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailNotYetLearnedTag</span><span class="p">,</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">GetFailureMapping</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Mappings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateFailureMapping</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Mappings</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FText</span><span class="w"> </span><span class="n">UGKAbilityBlueprintLibrary</span><span class="o">::</span><span class="n">GetFailureReasonFor</span><span class="p">(</span><span class="n">UGameplayAbility</span><span class="o">*</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">ReasonTags</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bHandled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">GameplayTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReasonTags</span><span class="p">.</span><span class="n">GetByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">bHandled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">FGKFailureTagMapping</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Entry</span><span class="o">:</span><span class="w"> </span><span class="n">GetFailureMapping</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Entry</span><span class="p">.</span><span class="n">FailureTag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GameplayTag</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">bHandled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Entry</span><span class="p">.</span><span class="n">LocalReason</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityUnknown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Internal Failure reason&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

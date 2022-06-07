@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a86448ce7
+                6ac551053
 
               </div>
 <div role="search">
@@ -118,6 +118,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structFGKEvent.html">Struct FGKEvent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKEventGatherer.html">Struct FGKEventGatherer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKFailureTagMapping.html">Struct FGKFailureTagMapping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
@@ -333,8 +334,10 @@
 <li class="toctree-l4"><a class="reference internal" href="function_GKAbilitiesTest_8cpp_1ae5fe3851bf4866485038e47751c6d4d4.html">Function GAMEKIT_TEST(Abilities., UGKGameplayability, GetRelativePosition)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKUtilityLibraryTest_8cpp_1a8ca62182ed073fed22e9bfe6e2091d39.html">Function GAMEKIT_TEST(Blueprint., UGKUtilityLibrary, GetRelativePosition)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKFogOfWarTest_8cpp_1ac0429ab7da8d9876eda056fa13eaad1a.html">Function GAMEKIT_TEST(FogOfWar., AGKFogOfWarVolume, GetRelativePosition)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2.html">Function GenerateFailureMapping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1ae5430ea5be0a5aa38208416673a4fad3.html">Function Get</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1a6b691291570f513f3cffaa71f686f492.html">Function GetDefaultAnimTag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1ac7c289629b26169ea60f81877678f86c.html">Function GetFailureMapping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d.html">Function GetImpactPoint</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKSharedTexture_8cpp_1a2829158c26bbb94c8750013583943d29.html">Function GetTextureFormat</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_GKUpscalingShader_8cpp_1a696a5b630ad60871824c6069cc73c79f.html">Function GetTextureRHI</a></li>
@@ -446,6 +449,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_GKMovementUtility_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_GKGameplayAbilityFactory_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_GamekitTestSuiteModule_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4.html">Define NAMESPACE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_GKUpscalingShader_8cpp_1ac31132757814da57c9e459e2d6595176.html">Define NUM_THREADS_PER_GROUP_DIMENSION</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_Upscaling_8usf_1acf567fd79abc0801bba69cbd5ff82315.html">Define TEXEL_2x2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_Upscaling__Buffer_8usf_1acf567fd79abc0801bba69cbd5ff82315.html">Define TEXEL_2x2</a></li>
@@ -747,6 +751,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="structFGKFactionMinimap.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structFGKFailureTagMapping.html">Struct FGKFailureTagMapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structFGKFailureTagMapping.html#struct-documentation">Struct Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -2900,6 +2912,14 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2.html">Function GenerateFailureMapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1ae5430ea5be0a5aa38208416673a4fad3.html">Function Get</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1ae5430ea5be0a5aa38208416673a4fad3.html#function-documentation">Function Documentation</a></li>
 </ul>
@@ -2910,6 +2930,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1a6b691291570f513f3cffaa71f686f492.html">Function GetDefaultAnimTag</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_GKCastPointAnimNotify_8cpp_1a6b691291570f513f3cffaa71f686f492.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1ac7c289629b26169ea60f81877678f86c.html">Function GetFailureMapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_GKAbilityBlueprintLibrary_8cpp_1ac7c289629b26169ea60f81877678f86c.html#function-documentation">Function Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -3756,6 +3784,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="define_GamekitTestSuiteModule_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="define_GamekitTestSuiteModule_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4.html">Define NAMESPACE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4.html#define-documentation">Define Documentation</a></li>
 </ul>
 </li>
 </ul>

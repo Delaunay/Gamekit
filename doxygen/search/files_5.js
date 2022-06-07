@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['init_2epy_1932',['init.py',['../init_8py.html',1,'']]],
-  ['install_2epy_1933',['install.py',['../install_8py.html',1,'']]]
+  ['init_2epy_1940',['init.py',['../init_8py.html',1,'']]],
+  ['install_2epy_1941',['install.py',['../install_8py.html',1,'']]]
 ];

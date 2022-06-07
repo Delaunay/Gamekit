@@ -1,0 +1,14 @@
+.. _exhale_define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4:
+
+Define NAMESPACE
+================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NAMESPACE
+   :project: GameKit

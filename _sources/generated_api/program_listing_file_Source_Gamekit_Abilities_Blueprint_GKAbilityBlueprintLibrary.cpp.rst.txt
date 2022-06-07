@@ -16,9 +16,13 @@ Program Listing for File GKAbilityBlueprintLibrary.cpp
    
    // Gamekit
    #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
+   #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
    
    // Unreal Engine
    #include "Misc/ConfigCacheIni.h"
+   
+   
+   #define NAMESPACE "GamekitAbilities"
    
    UGKAbilityBlueprintLibrary::UGKAbilityBlueprintLibrary(const FObjectInitializer &ObjectInitializer):
        Super(ObjectInitializer)
@@ -99,4 +103,49 @@ Program Listing for File GKAbilityBlueprintLibrary.cpp
    FGKAbilitySlot UGKAbilityBlueprintLibrary::AbilitySlotFromInput(EGK_MOBA_AbilityInputID AbilityInput)
    {
        return FGKAbilitySlot(AbilityInput);
+   }
+   
+   
+   TArray<FGKFailureTagMapping> GenerateFailureMapping() {
+       // TODO: make this a datatable
+       auto& ASGlobals = (UGKAbilitySystemGlobals&) (UGKAbilitySystemGlobals::Get());
+       
+       FText AbilityCost       = NSLOCTEXT(NAMESPACE, "AbilityCost", "Ability cost not met");
+       FText AbilityCooldown   = NSLOCTEXT(NAMESPACE, "AbilityCooldown", "Ability is on cooldown");
+       FText AbilityBlocked    = NSLOCTEXT(NAMESPACE, "AbilityBlocked", "Ability is blocked by an active effect");
+       FText AbilityMissing    = NSLOCTEXT(NAMESPACE, "AbilityMissing", "Ability requirements are not met");
+       FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork", "Internal error");
+       FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead", "You are dead");
+       FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned", "Ability was not learnt yet");
+   
+       return TArray<FGKFailureTagMapping>{
+           FGKFailureTagMapping{ ASGlobals.ActivateFailCostTag,          AbilityCost },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailCooldownTag,      AbilityCooldown },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailTagsBlockedTag,   AbilityBlocked },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailTagsMissingTag,   AbilityMissing },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailNetworkingTag,    AbilityNetwork },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailIsDeadTag,        AbilityDead },
+           FGKFailureTagMapping{ ASGlobals.ActivateFailNotYetLearnedTag, AbilityNotLearned },
+       };
+   }
+   
+   
+   TArray<FGKFailureTagMapping> const& GetFailureMapping() {
+       static TArray<FGKFailureTagMapping> Mappings = GenerateFailureMapping();
+       return Mappings;
+   }
+   
+   
+   FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, bool& bHandled) {
+       FGameplayTag GameplayTag = ReasonTags.GetByIndex(0);
+       bHandled = false;
+   
+       for(FGKFailureTagMapping const& Entry: GetFailureMapping()) {
+           if (Entry.FailureTag == GameplayTag){
+               bHandled = true;
+               return Entry.LocalReason;
+           }
+       }
+   
+       return NSLOCTEXT(NAMESPACE, "AbilityUnknown", "Internal Failure reason");
    }

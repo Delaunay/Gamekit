@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKFailureTagMapping:
+
+Struct FGKFailureTagMapping
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKFailureTagMapping
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

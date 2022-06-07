@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2:
+
+Function GenerateFailureMapping
+===============================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GenerateFailureMapping()
+   :project: GameKit

@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                a86448ce7
+                6ac551053
 
               </div>
 <div role="search">
@@ -128,6 +128,28 @@
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAbilityBlueprintLibrary.generated.h&quot;</span><span class="cp"></span>
 
+
+
+<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKFailureTagMapping</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKFailureTagMapping</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKFailureTagMapping</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">FailureTag</span><span class="p">,</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">LocalReason</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">FailureTag</span><span class="p">(</span><span class="n">FailureTag</span><span class="p">),</span><span class="w"> </span><span class="n">LocalReason</span><span class="p">(</span><span class="n">LocalReason</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">FailureTag</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">LocalReason</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+
 <span class="n">UCLASS</span><span class="p">()</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UGKAbilityBlueprintLibrary</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UBlueprintFunctionLibrary</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -181,6 +203,9 @@
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="n">GetGEHandleAsString</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Handle</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UI&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">GetFailureReasonFor</span><span class="p">(</span><span class="n">UGameplayAbility</span><span class="o">*</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">ReasonTags</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bHandled</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

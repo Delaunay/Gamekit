@@ -41,6 +41,8 @@ Included By
 -----------
 
 
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.cpp`
+
 - :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.cpp`
 
 - :ref:`file_Source_Gamekit_Abilities_GKCastPointAnimNotify.cpp`
