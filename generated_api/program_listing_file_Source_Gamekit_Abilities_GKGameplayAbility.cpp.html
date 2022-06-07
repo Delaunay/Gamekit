@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b1301c56b
+                79230a3e1
 
               </div>
 <div role="search">
@@ -1228,7 +1228,7 @@
 
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::SetupCancelByTags</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CanceledByTags</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CancelledByTags</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Delegate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FOnGameplayEffectTagCountChanged</span><span class="o">::</span><span class="n">FDelegate</span><span class="o">::</span><span class="n">CreateUObject</span><span class="p">(</span><span class="w"></span>
 <span class="w">            </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="o">&amp;</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">CancelAbilityFromTag</span><span class="w"></span>
@@ -1241,7 +1241,7 @@
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::CancelAbilityFromTag</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Tag</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">Count</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CanceledByTags</span><span class="p">.</span><span class="n">HasTag</span><span class="p">(</span><span class="n">Tag</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CancelledByTags</span><span class="p">.</span><span class="n">HasTag</span><span class="p">(</span><span class="n">Tag</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">K2_CancelAbility</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="n">ClearCancelByTags</span><span class="p">(</span><span class="n">CurrentActorInfo</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>

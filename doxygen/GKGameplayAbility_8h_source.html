@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">b1301c56b</span>
+   &#160;<span id="projectnumber">79230a3e1</span>
    </div>
   </td>
  </tr>
@@ -337,7 +337,7 @@ $(function() {
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="comment">// Ability cancellation</span></div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    UPROPERTY(EditDefaultsOnly, Category = Tags, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (Categories = &quot;Tags&quot;))</div>
-<div class="line"><a name="l00332"></a><span class="lineno"><a class="line" href="classUGKGameplayAbility.html#a5f1f82717baa0b2851bd39224a39f741">  332</a></span>&#160;    FGameplayTagContainer CanceledByTags;</div>
+<div class="line"><a name="l00332"></a><span class="lineno"><a class="line" href="classUGKGameplayAbility.html#ac47153847216cc3d5437e96b9e5c8f82">  332</a></span>&#160;    FGameplayTagContainer CancelledByTags;</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
 <div class="line"><a name="l00334"></a><span class="lineno"><a class="line" href="classUGKGameplayAbility.html#a87b45b8fcc5ce6297ffd3190cbc0d071">  334</a></span>&#160;    FDelegateHandle CancelByTagsDelegateHandle;</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
@@ -418,6 +418,7 @@ $(function() {
 <div class="ttc" id="astructFGKAbilityEffects_html_a0c08cb7529144e76a9b2a219c972fd7a"><div class="ttname"><a href="structFGKAbilityEffects.html#a0c08cb7529144e76a9b2a219c972fd7a">FGKAbilityEffects::Effects</a></div><div class="ttdeci">TArray&lt; FGKAbilityEffect &gt; Effects</div><div class="ttdef"><b>Definition:</b> GKAbilityStatic.h:137</div></div>
 <div class="ttc" id="astructFGKAbilityCost_html_a4cfb36533c534e6af3633fa10a6061cf"><div class="ttname"><a href="structFGKAbilityCost.html#a4cfb36533c534e6af3633fa10a6061cf">FGKAbilityCost::Value</a></div><div class="ttdeci">TArray&lt; float &gt; Value</div><div class="ttdef"><b>Definition:</b> GKAbilityStatic.h:110</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_a9dc76877d85ffe53aa97217a780a46f0"><div class="ttname"><a href="classUGKGameplayAbility.html#a9dc76877d85ffe53aa97217a780a46f0">UGKGameplayAbility::AnimMontages</a></div><div class="ttdeci">FGKAnimationArray AnimMontages</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:138</div></div>
+<div class="ttc" id="aclassUGKGameplayAbility_html_ac47153847216cc3d5437e96b9e5c8f82"><div class="ttname"><a href="classUGKGameplayAbility.html#ac47153847216cc3d5437e96b9e5c8f82">UGKGameplayAbility::CancelledByTags</a></div><div class="ttdeci">FGameplayTagContainer CancelledByTags</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:332</div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html">FGKGameplayEffectContainerSpec</a></div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.h:42</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_a747a8b8cffdb97a44b9f314f98159feb"><div class="ttname"><a href="classUGKGameplayAbility.html#a747a8b8cffdb97a44b9f314f98159feb">UGKGameplayAbility::OnRemoveAbility</a></div><div class="ttdeci">void OnRemoveAbility(const FGameplayAbilityActorInfo *ActorInfo, const FGameplayAbilitySpec &amp;Spec) override</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:808</div></div>
 <div class="ttc" id="aGKAbilityTask__WaitTargetData_8h_html"><div class="ttname"><a href="GKAbilityTask__WaitTargetData_8h.html">GKAbilityTask_WaitTargetData.h</a></div></div>
@@ -490,7 +491,6 @@ $(function() {
 <div class="ttc" id="aclassUGKGameplayAbility_html_ad4e41425ebbcfaa77b664d04de3c48f6"><div class="ttname"><a href="classUGKGameplayAbility.html#ad4e41425ebbcfaa77b664d04de3c48f6">UGKGameplayAbility::ApplyGameplayEffectToOwnerDynamic</a></div><div class="ttdeci">void ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo *ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const UGameplayEffect *GameplayEffect, float GameplayEffectLevel, int32 Stacks=1) const</div><div class="ttdoc">Apply GameEffect without using GameEffect CDO.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:536</div></div>
 <div class="ttc" id="aGKProjectile_8h_html"><div class="ttname"><a href="GKProjectile_8h.html">GKProjectile.h</a></div></div>
 <div class="ttc" id="aGKTargetType_8h_html"><div class="ttname"><a href="GKTargetType_8h.html">GKTargetType.h</a></div></div>
-<div class="ttc" id="aclassUGKGameplayAbility_html_a5f1f82717baa0b2851bd39224a39f741"><div class="ttname"><a href="classUGKGameplayAbility.html#a5f1f82717baa0b2851bd39224a39f741">UGKGameplayAbility::CanceledByTags</a></div><div class="ttdeci">FGameplayTagContainer CanceledByTags</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:332</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_ac9aa9b01c041f01d7e5a1450742d4ba7"><div class="ttname"><a href="classUGKGameplayAbility.html#ac9aa9b01c041f01d7e5a1450742d4ba7">UGKGameplayAbility::ActivateAbility_Hidden</a></div><div class="ttdeci">void ActivateAbility_Hidden()</div><div class="ttdoc">Activation function for an hidden activity that does not show in UI.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:598</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_a53b8012b0d39e1353f16d21a1c4c5dd4"><div class="ttname"><a href="classUGKGameplayAbility.html#a53b8012b0d39e1353f16d21a1c4c5dd4">UGKGameplayAbility::CooldownEffectInstance</a></div><div class="ttdeci">UGameplayEffect * CooldownEffectInstance</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:258</div></div>
 <div class="ttc" id="aGKCastPointAnimNotify_8h_html"><div class="ttname"><a href="GKCastPointAnimNotify_8h.html">GKCastPointAnimNotify.h</a></div></div>

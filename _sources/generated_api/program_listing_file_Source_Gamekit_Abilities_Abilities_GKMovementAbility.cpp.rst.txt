@@ -31,14 +31,28 @@ Program Listing for File GKMovementAbility.cpp
        static FGameplayTag Exclusive = FGameplayTag::RequestGameplayTag("Ability.Exclusive");
    
        AbilityTags.AddTag(Move);
+       // this ability is blocked by other exclusive abilities
+       // but it does not block exclusive abilities
        AbilityTags.AddTag(Exclusive);
    
+       // Does not block exclusive ability i.e
+       // we can start targeting while moving
+       // but we cannot start targeting while casting
+   
+       // Another option would be to allow the movement ability to be started
+       // but the task would only start once the Exclusive tag is removed
+       // this would allow users to queue the move right away and simulate a kind of
+       // ability queue
+       BlockAbilitiesWithTag.RemoveTag(Exclusive);
+   
+       // Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags
        ActivationBlockedTags.AddTag(Root);
        ActivationBlockedTags.AddTag(Stun);
        ActivationBlockedTags.AddTag(Dead);
    
-       CanceledByTags.AddTag(Stun);
-       CanceledByTags.AddTag(Root);
+       CancelledByTags.AddTag(Stun);
+       CancelledByTags.AddTag(Root);
+       CancelledByTags.AddTag(Dead);
    }
    
    void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,

@@ -1127,7 +1127,7 @@ Program Listing for File GKGameplayAbility.cpp
    
    
    void UGKGameplayAbility::SetupCancelByTags(const FGameplayAbilityActorInfo* ActorInfo) {
-       if (CanceledByTags.IsValid()) {
+       if (CancelledByTags.IsValid()) {
            auto Delegate = FOnGameplayEffectTagCountChanged::FDelegate::CreateUObject(
                this,
                &UGKGameplayAbility::CancelAbilityFromTag
@@ -1140,7 +1140,7 @@ Program Listing for File GKGameplayAbility.cpp
    }
    
    void UGKGameplayAbility::CancelAbilityFromTag(const FGameplayTag Tag, int32 Count) {
-       if (CanceledByTags.HasTag(Tag)) {
+       if (CancelledByTags.HasTag(Tag)) {
            K2_CancelAbility();
            ClearCancelByTags(CurrentActorInfo);
        }

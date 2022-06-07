@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                b1301c56b
+                79230a3e1
 
               </div>
 <div role="search">
@@ -132,14 +132,28 @@
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Exclusive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Ability.Exclusive&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AbilityTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Move</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// this ability is blocked by other exclusive abilities</span>
+<span class="w">    </span><span class="c1">// but it does not block exclusive abilities</span>
 <span class="w">    </span><span class="n">AbilityTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Exclusive</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// Does not block exclusive ability i.e</span>
+<span class="w">    </span><span class="c1">// we can start targeting while moving</span>
+<span class="w">    </span><span class="c1">// but we cannot start targeting while casting</span>
+
+<span class="w">    </span><span class="c1">// Another option would be to allow the movement ability to be started</span>
+<span class="w">    </span><span class="c1">// but the task would only start once the Exclusive tag is removed</span>
+<span class="w">    </span><span class="c1">// this would allow users to queue the move right away and simulate a kind of</span>
+<span class="w">    </span><span class="c1">// ability queue</span>
+<span class="w">    </span><span class="n">BlockAbilitiesWithTag</span><span class="p">.</span><span class="n">RemoveTag</span><span class="p">(</span><span class="n">Exclusive</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags</span>
 <span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Stun</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Dead</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">CanceledByTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Stun</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">CanceledByTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CancelledByTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Stun</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CancelledByTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CancelledByTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">Dead</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>

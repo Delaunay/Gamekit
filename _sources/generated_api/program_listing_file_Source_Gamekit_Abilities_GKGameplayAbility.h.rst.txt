@@ -270,7 +270,7 @@ Program Listing for File GKGameplayAbility.h
        // Ability cancellation
    
        UPROPERTY(EditDefaultsOnly, Category = Tags, meta = (Categories = "Tags"))
-       FGameplayTagContainer CanceledByTags;
+       FGameplayTagContainer CancelledByTags;
    
        FDelegateHandle CancelByTagsDelegateHandle;
    
