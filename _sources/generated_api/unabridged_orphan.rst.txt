@@ -615,6 +615,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Abilities_Abilities_GKAttackAbility.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKAttackAbility.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Abilities_GKAttributeSet.cpp.rst
 
 .. toctree::
@@ -631,6 +641,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_Targeting_GKCachedAbilityTargetActorInterface.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h.rst
 
 .. toctree::
    :maxdepth: 5

@@ -15,6 +15,10 @@ Directory Abilities
 Files
 -----
 
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKAttackAbility.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKAttackAbility.h`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h`
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp`
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`
 

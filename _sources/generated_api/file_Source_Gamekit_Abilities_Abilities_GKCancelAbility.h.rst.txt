@@ -1,0 +1,54 @@
+
+.. _file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h:
+
+File GKCancelAbility.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Abilities>` (``Source/Gamekit/Abilities/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Abilities/GKCancelAbility.h``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKCancelAbility.generated.h``
+
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classUGKCancelAbility`
+

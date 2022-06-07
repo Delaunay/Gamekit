@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">79230a3e1</span>
+   &#160;<span id="projectnumber">bb3c4398e</span>
    </div>
   </td>
  </tr>
@@ -194,7 +194,7 @@ $(function() {
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    class <a class="code" href="classAGKAbilityTarget__Actor.html">AGKAbilityTarget_Actor</a> *SpawnAbilityTarget_Actor();</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    UFUNCTION()</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">void</span> OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    virtual <span class="keywordtype">void</span> OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    UFUNCTION()</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordtype">void</span> OnAbilityAnimationAbort(FGameplayTag EventTag, FGameplayEventData EventData);</div>
@@ -506,7 +506,7 @@ $(function() {
 <div class="ttc" id="aclassUGKAbilityTask__WaitForTargetData_html_aa150476846d0cf88bc926b8bbbd02d3f"><div class="ttname"><a href="classUGKAbilityTask__WaitForTargetData.html#aa150476846d0cf88bc926b8bbbd02d3f">UGKAbilityTask_WaitForTargetData::Cancelled</a></div><div class="ttdeci">FGKWaitTargetDataDelegate Cancelled</div><div class="ttdef"><b>Definition:</b> GKAbilityTask_WaitTargetData.h:30</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_a36ea491c3af9d12599b8b9d6b5a2e294"><div class="ttname"><a href="classUGKGameplayAbility.html#a36ea491c3af9d12599b8b9d6b5a2e294">UGKGameplayAbility::Immediate</a></div><div class="ttdeci">bool Immediate</div><div class="ttdoc">If immediate == true, the animation is not played.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:156</div></div>
 <div class="ttc" id="astructFGKAnimationArray_html_a3e8f49f3fc3f4ad4af03189986bdb996"><div class="ttname"><a href="structFGKAnimationArray.html#a3e8f49f3fc3f4ad4af03189986bdb996">FGKAnimationArray::Animations</a></div><div class="ttdeci">TArray&lt; class UAnimMontage * &gt; Animations</div><div class="ttdef"><b>Definition:</b> GKAnimationSet.h:32</div></div>
-<div class="ttc" id="aclassUGKGameplayAbility_html_a1e7f2829efa9f8694925c5398da38604"><div class="ttname"><a href="classUGKGameplayAbility.html#a1e7f2829efa9f8694925c5398da38604">UGKGameplayAbility::OnAbilityAnimationBlendOut</a></div><div class="ttdeci">void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData)</div><div class="ttdoc">New animation is taking over, make sure the ability is in a clean state for next call.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:444</div></div>
+<div class="ttc" id="aclassUGKGameplayAbility_html_a1e7f2829efa9f8694925c5398da38604"><div class="ttname"><a href="classUGKGameplayAbility.html#a1e7f2829efa9f8694925c5398da38604">UGKGameplayAbility::OnAbilityAnimationBlendOut</a></div><div class="ttdeci">virtual void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData)</div><div class="ttdoc">New animation is taking over, make sure the ability is in a clean state for next call.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:444</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_ab2f7e6fe72dd4bf19aac98a6c7aeaec2"><div class="ttname"><a href="classUGKGameplayAbility.html#ab2f7e6fe72dd4bf19aac98a6c7aeaec2">UGKGameplayAbility::InputPressed</a></div><div class="ttdeci">virtual void InputPressed(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo *ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) override</div><div class="ttdoc">Called when the the Ability is active and it is pressed a second time.</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:1071</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html_a163d075b3691b41ca2836942d4cdf2fb"><div class="ttname"><a href="classUGKGameplayAbility.html#a163d075b3691b41ca2836942d4cdf2fb">UGKGameplayAbility::MakeEffectContainerSpec</a></div><div class="ttdeci">virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(EGK_EffectSlot EffectSlot, const FGameplayEventData &amp;EventData, int32 OverrideGameplayLevel=-1)</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:128</div></div>
 <div class="ttc" id="aclassAGKProjectile_html"><div class="ttname"><a href="classAGKProjectile.html">AGKProjectile</a></div><div class="ttdef"><b>Definition:</b> GKProjectile.h:17</div></div>

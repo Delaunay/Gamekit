@@ -127,7 +127,7 @@ Program Listing for File GKGameplayAbility.h
        class AGKAbilityTarget_Actor *SpawnAbilityTarget_Actor();
    
        UFUNCTION()
-       void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);
+       virtual void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);
    
        UFUNCTION()
        void OnAbilityAnimationAbort(FGameplayTag EventTag, FGameplayEventData EventData);

@@ -15,9 +15,11 @@ Base Type
 - ``public UGameplayAbility``
 
 
-Derived Type
-************
+Derived Types
+*************
 
+- ``public UGKAttackAbility`` (:ref:`exhale_class_classUGKAttackAbility`)
+- ``public UGKCancelAbility`` (:ref:`exhale_class_classUGKCancelAbility`)
 - ``public UGKMovementAbility`` (:ref:`exhale_class_classUGKMovementAbility`)
 
 

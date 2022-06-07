@@ -1,5 +1,7 @@
 <map id="UGKGameplayAbility" name="UGKGameplayAbility">
-<area shape="rect" id="node1" title=" " alt="" coords="7,80,167,107"/>
-<area shape="rect" id="node3" href="$classUGKMovementAbility.html" title=" " alt="" coords="5,155,168,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="16,5,157,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="153,80,313,107"/>
+<area shape="rect" id="node3" href="$classUGKAttackAbility.html" title=" " alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node4" href="$classUGKCancelAbility.html" title=" " alt="" coords="165,155,301,181"/>
+<area shape="rect" id="node5" href="$classUGKMovementAbility.html" title=" " alt="" coords="325,155,487,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="162,5,303,32"/>
 </map>

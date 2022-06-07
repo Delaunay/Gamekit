@@ -1,0 +1,30 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp:
+
+Program Listing for File GKCancelAbility.cpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp>` (``Source/Gamekit/Abilities/Abilities/GKCancelAbility.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   // Header
+   #include "Gamekit/Abilities/Abilities/GKCancelAbility.h"
+   
+   // Unreal Engine
+   #include "AbilitySystemComponent.h"
+   
+   
+   void UGKCancelAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
+       const FGameplayAbilityActorInfo* ActorInfo,
+       const FGameplayAbilityActivationInfo ActivationInfo,
+       const FGameplayEventData* TriggerEventData) 
+   {
+       CommitAbility(Handle, ActorInfo, ActivationInfo);
+       ActorInfo->AbilitySystemComponent->CancelAllAbilities();
+       EndAbility(Handle, ActorInfo, ActivationInfo, false, false);
+   }

@@ -5,7 +5,7 @@ var searchData=
   ['cameraboom_175',['CameraBoom',['../classAGKTopDownPawn.html#a9b51929b911ab1b8c404dc4cd1374a44',1,'AGKTopDownPawn']]],
   ['cameracomponent_176',['CameraComponent',['../classAGKTopDownPawn.html#a40702e1829b25317920f666b8e323520',1,'AGKTopDownPawn']]],
   ['cameraposition_177',['CameraPosition',['../classAGKMinimapVolume.html#a17d6ec94313c6bf108e1c418803c78cd',1,'AGKMinimapVolume']]],
-  ['canactivateability_178',['CanActivateAbility',['../classUGKGameplayAbility.html#a3dee52ee52a85d7bbee81a25423e2e66',1,'UGKGameplayAbility']]],
+  ['canactivateability_178',['CanActivateAbility',['../classUGKCancelAbility.html#a2e8e27d7b78fb8233699ad5ccd474919',1,'UGKCancelAbility::CanActivateAbility()'],['../classUGKGameplayAbility.html#a3dee52ee52a85d7bbee81a25423e2e66',1,'UGKGameplayAbility::CanActivateAbility()']]],
   ['cancel_179',['Cancel',['../GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6aaea4788705e6873b424c65e91c2846b19',1,'GKAbilityInputs.h']]],
   ['cancelability_180',['CancelAbility',['../classUGKGameplayAbility.html#a250306b1a6a211dc515c29413540865d',1,'UGKGameplayAbility']]],
   ['cancelabilityfromtag_181',['CancelAbilityFromTag',['../classUGKGameplayAbility.html#a3bd798ef7b295cec792556e3ebf819ee',1,'UGKGameplayAbility']]],

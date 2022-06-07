@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                79230a3e1
+                bb3c4398e
 
               </div>
 <div role="search">
@@ -186,7 +186,9 @@
 <li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTask__GameplayEffectChanged.html">Class UGKAsyncTask_GameplayEffectChanged</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskAttributeChanged.html">Class UGKAsyncTaskAttributeChanged</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKAsyncTaskCooldownChanged.html">Class UGKAsyncTaskCooldownChanged</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKAttackAbility.html">Class UGKAttackAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKAttributeSet.html">Class UGKAttributeSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKCancelAbility.html">Class UGKCancelAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKCanvasUpscaler.html">Class UGKCanvasUpscaler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKCastPointAnimNotify.html">Class UGKCastPointAnimNotify</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKCoordinateLibrary.html">Class UGKCoordinateLibrary</a></li>
@@ -287,9 +289,11 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGameplayAbility</span></code></p></li>
 </ul>
 </section>
-<section id="derived-type">
-<h3>Derived Type<a class="headerlink" href="#derived-type" title="Permalink to this heading"></a></h3>
+<section id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this heading"></a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKAttackAbility</span></code> (<a class="reference internal" href="classUGKAttackAbility.html#exhale-class-classugkattackability"><span class="std std-ref">Class UGKAttackAbility</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKCancelAbility</span></code> (<a class="reference internal" href="classUGKCancelAbility.html#exhale-class-classugkcancelability"><span class="std std-ref">Class UGKCancelAbility</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKMovementAbility</span></code> (<a class="reference internal" href="classUGKMovementAbility.html#exhale-class-classugkmovementability"><span class="std std-ref">Class UGKMovementAbility</span></a>)</p></li>
 </ul>
 </section>
@@ -303,7 +307,7 @@
 <p>For ability with charges, just make the ability consume charges on activation remove cooldown, give an effect that grant charges overtime Add the Charge Gametag the the Ability Tag Requirement</p>
 <p>TODO: Measure GA Latency : Measure RPC Latency (Ping-Pong) with BP</p>
 <p>TODO: Add an option to execute a queued ability which would skip the Need to Request a target data from the user </p>
-<p>Subclassed by <a class="reference internal" href="classUGKMovementAbility.html#classUGKMovementAbility"><span class="std std-ref">UGKMovementAbility</span></a></p>
+<p>Subclassed by <a class="reference internal" href="classUGKAttackAbility.html#classUGKAttackAbility"><span class="std std-ref">UGKAttackAbility</span></a>, <a class="reference internal" href="classUGKCancelAbility.html#classUGKCancelAbility"><span class="std std-ref">UGKCancelAbility</span></a>, <a class="reference internal" href="classUGKMovementAbility.html#classUGKMovementAbility"><span class="std std-ref">UGKMovementAbility</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
@@ -701,7 +705,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData">
-<span id="_CPPv3N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData"></span><span id="_CPPv2N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData"></span><span id="UGKGameplayAbility::OnAbilityAnimationBlendOut__FGameplayTag.FGameplayEventData"></span><span class="target" id="classUGKGameplayAbility_1a1e7f2829efa9f8694925c5398da38604"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnAbilityAnimationBlendOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayTag</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EventTag</span></span>, <span class="n"><span class="pre">FGameplayEventData</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EventData</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData"></span><span id="_CPPv2N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData"></span><span id="UGKGameplayAbility::OnAbilityAnimationBlendOut__FGameplayTag.FGameplayEventData"></span><span class="target" id="classUGKGameplayAbility_1a1e7f2829efa9f8694925c5398da38604"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnAbilityAnimationBlendOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayTag</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EventTag</span></span>, <span class="n"><span class="pre">FGameplayEventData</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EventData</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18UGKGameplayAbility26OnAbilityAnimationBlendOutE12FGameplayTag18FGameplayEventData" title="Permalink to this definition"></a><br /></dt>
 <dd><p>New animation is taking over, make sure the ability is in a clean state for next call. </p>
 </dd></dl>
 

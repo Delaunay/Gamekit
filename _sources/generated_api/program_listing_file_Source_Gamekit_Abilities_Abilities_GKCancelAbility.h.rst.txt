@@ -1,0 +1,42 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h:
+
+Program Listing for File GKCancelAbility.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h>` (``Source/Gamekit/Abilities/Abilities/GKCancelAbility.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKGameplayAbility.h"
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   
+   // Generated
+   #include "GKCancelAbility.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKCancelAbility : public UGKGameplayAbility
+   {
+       GENERATED_BODY()
+   
+   public:
+   
+       virtual bool CanActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayTagContainer* SourceTags = nullptr, const FGameplayTagContainer* TargetTags = nullptr, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override
+       {
+           return true;
+       }
+   
+       void ActivateAbility(const FGameplayAbilitySpecHandle Handle,
+                            const FGameplayAbilityActorInfo* ActorInfo,
+                            const FGameplayAbilityActivationInfo ActivationInfo,
+                            const FGameplayEventData* TriggerEventData) override;
+   };
