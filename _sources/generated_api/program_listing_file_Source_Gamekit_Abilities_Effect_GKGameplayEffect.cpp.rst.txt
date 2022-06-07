@@ -1,0 +1,17 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.cpp:
+
+Program Listing for File GKGameplayEffect.cpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.cpp>` (``Source/Gamekit/Abilities/Effect/GKGameplayEffect.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   
+   #include "Abilities/Effect/GKGameplayEffect.h"
+   

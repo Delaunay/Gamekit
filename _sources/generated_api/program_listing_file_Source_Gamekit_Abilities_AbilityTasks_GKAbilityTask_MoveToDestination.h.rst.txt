@@ -49,6 +49,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
                float               Speed             = 600.f,
                bool                MoveToTarget      = true,
                EGK_AbilityBehavior TargetKind        = EGK_AbilityBehavior::PointTarget,
+               FGameplayTagContainer        CancelTag         = FGameplayTagContainer(),
                bool                Debug             = false);
    
        UFUNCTION(BlueprintCallable,
@@ -65,6 +66,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
                bool                                    MoveToTarget          = true,
                bool                                    bUseMovementComponent = true,
                EGK_AbilityBehavior                     TargetKind            = EGK_AbilityBehavior::PointTarget,
+               FGameplayTagContainer                   CancelTag             = FGameplayTagContainer(),
                bool                                    Debug                 = false);
    
        UPROPERTY(BlueprintAssignable)
@@ -88,6 +90,9 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
    
        UFUNCTION()
        virtual void ExternalCancel() override;
+   
+       UFUNCTION()
+       void OnReceiveGameplayTag(const FGameplayTag Tag, int32 Count);
    
        // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
    
@@ -134,6 +139,11 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
    
        UPROPERTY()
        bool bRotationFinished;
+   
+       UPROPERTY()
+       FGameplayTagContainer CancelTag;
+   
+       FDelegateHandle DelegateHandle;
    
        // Cached Variables
        class APawn *                    Character;

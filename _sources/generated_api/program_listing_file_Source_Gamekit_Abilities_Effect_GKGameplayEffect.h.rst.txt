@@ -1,0 +1,32 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.h:
+
+Program Listing for File GKGameplayEffect.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.h>` (``Source/Gamekit/Abilities/Effect/GKGameplayEffect.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "GameplayEffect.h"
+   #include "GKGameplayEffect.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKGameplayEffect : public UGameplayEffect
+   {
+       GENERATED_BODY()
+       
+   
+   public:
+       // This is a wish list, I cant implement it like that because I would need to modify how 
+       // `FActiveGameplayEffectsContainer::AddActiveGameplayEffectGrantedTagsAndModifiers` applies the tags
+       
+       // UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Tags, meta = (Categories = "CancelAbilitiesWithTags"))
+       // FInheritedTagContainer CancelAbilitiesWithTags;
+   };

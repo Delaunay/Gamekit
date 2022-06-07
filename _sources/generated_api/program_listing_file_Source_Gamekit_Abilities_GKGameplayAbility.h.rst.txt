@@ -67,6 +67,8 @@ Program Listing for File GKGameplayAbility.h
    
        void ActivateAbility_Toggle();
    
+       void K2_EndAbility() override;
+   
        public:
        // Constructor and overrides
        UGKGameplayAbility();
@@ -263,6 +265,22 @@ Program Listing for File GKGameplayAbility.h
    
        UFUNCTION(BlueprintCallable, Category = ActivationTags)
        FGameplayTagContainer GetActivationRequiredTag();
+   
+       // ------------------------------------------------
+       // Ability cancellation
+   
+       UPROPERTY(EditDefaultsOnly, Category = Tags, meta = (Categories = "Tags"))
+       FGameplayTagContainer CanceledByTags;
+   
+       FDelegateHandle CancelByTagsDelegateHandle;
+   
+       void SetupCancelByTags(const FGameplayAbilityActorInfo* ActorInfo);
+   
+       UFUNCTION()
+       void CancelAbilityFromTag(const FGameplayTag Tag, int32 Count);
+   
+       void ClearCancelByTags(const FGameplayAbilityActorInfo* ActorInfo);
+       // ------------------------------------------------
    
        UFUNCTION(BlueprintCallable, Category = Cooldown)
        const FGameplayTagContainer &GetAbilityCooldownTags() const;

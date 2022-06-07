@@ -28,12 +28,17 @@ Program Listing for File GKMovementAbility.cpp
        static FGameplayTag Stun = FGameplayTag::RequestGameplayTag("Debuff.Stun");
        static FGameplayTag Dead = FGameplayTag::RequestGameplayTag("State.Dead");
        static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
+       static FGameplayTag Exclusive = FGameplayTag::RequestGameplayTag("Ability.Exclusive");
    
        AbilityTags.AddTag(Move);
+       AbilityTags.AddTag(Exclusive);
    
        ActivationBlockedTags.AddTag(Root);
        ActivationBlockedTags.AddTag(Stun);
        ActivationBlockedTags.AddTag(Dead);
+   
+       CanceledByTags.AddTag(Stun);
+       CanceledByTags.AddTag(Root);
    }
    
    void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
@@ -42,6 +47,8 @@ Program Listing for File GKMovementAbility.cpp
        const FGameplayEventData* TriggerEventData) 
    {
        APlayerController* Controller = ActorInfo->PlayerController.Get();
+   
+       SetupCancelByTags(ActorInfo);
    
        if (!Controller) {
            EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
@@ -53,6 +60,10 @@ Program Listing for File GKMovementAbility.cpp
    
        UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ActorInfo->AbilitySystemComponent->GetAttributeSet(UGKAttributeSet::StaticClass()));
    
+       FGameplayTagContainer CancelTags;
+       // CancelTags.AddTag(FGameplayTag::RequestGameplayTag("Debuff.Stun"));
+       // CancelTags.AddTag(FGameplayTag::RequestGameplayTag("Debuff.Root"));
+   
        Task = UGKAbilityTask_MoveToDestination::MoveToDestination(
            this,
            NAME_None,
@@ -63,9 +74,9 @@ Program Listing for File GKMovementAbility.cpp
            Attributes->GetMoveSpeed(), // Speed
            true,                       // Move To Target (i.e not rot only)
            EGK_AbilityBehavior::PointTarget,
+           CancelTags,
            false                   // Debug
        );
-   
    
        Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);
        Task->OnCancelled.AddDynamic(this, &UGKMovementAbility::OnMovementCancelled);
@@ -80,6 +91,7 @@ Program Listing for File GKMovementAbility.cpp
            OnGameplayAbilityCancelled.RemoveAll(Task);
            Task = nullptr;
        }
+   
        K2_EndAbility();
    }
    
@@ -89,5 +101,6 @@ Program Listing for File GKMovementAbility.cpp
            OnGameplayAbilityCancelled.RemoveAll(Task);
            Task = nullptr;
        }
+   
        K2_CancelAbility();
    }

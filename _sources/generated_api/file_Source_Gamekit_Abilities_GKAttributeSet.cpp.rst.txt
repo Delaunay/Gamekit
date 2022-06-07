@@ -39,7 +39,7 @@ Includes
 
 - ``Gamekit/Controllers/GKPlayerController.h`` (:ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`)
 
-- ``GameplayEffect.h``
+- ``GameplayEffect.h`` (:ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.h`)
 
 - ``GameplayEffectExtension.h``
 

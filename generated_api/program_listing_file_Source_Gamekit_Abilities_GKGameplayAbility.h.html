@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                2b0acea7b
+                b1301c56b
 
               </div>
 <div role="search">
@@ -167,6 +167,8 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ActivateAbility_PointTarget</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ActivateAbility_Toggle</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">K2_EndAbility</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Constructor and overrides</span>
@@ -364,6 +366,22 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActivationTags</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">GetActivationRequiredTag</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Ability cancellation</span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Categories</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Tags&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CanceledByTags</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FDelegateHandle</span><span class="w"> </span><span class="n">CancelByTagsDelegateHandle</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetupCancelByTags</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">CancelAbilityFromTag</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Tag</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">Count</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ClearCancelByTags</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------</span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cooldown</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">GetAbilityCooldownTags</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>

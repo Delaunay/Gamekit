@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                2b0acea7b
+                b1301c56b
 
               </div>
 <div role="search">
@@ -150,6 +150,7 @@
 <span class="w">            </span><span class="kt">float</span><span class="w">               </span><span class="n">Speed</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mf">600.f</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">MoveToTarget</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w">        </span><span class="n">CancelTag</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">Debug</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"></span>
@@ -166,6 +167,7 @@
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">MoveToTarget</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUseMovementComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w">                     </span><span class="n">TargetKind</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w">                   </span><span class="n">CancelTag</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">Debug</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
@@ -189,6 +191,9 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">ExternalCancel</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnReceiveGameplayTag</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Tag</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">Count</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// void GetLifetimeReplicatedProps(TArray&lt;FLifetimeProperty&gt; &amp;OutLifetimeProps) const;</span>
 
@@ -235,6 +240,11 @@
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRotationFinished</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FDelegateHandle</span><span class="w"> </span><span class="n">DelegateHandle</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Cached Variables</span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">APawn</span><span class="w"> </span><span class="o">*</span><span class="w">                    </span><span class="n">Character</span><span class="p">;</span><span class="w"></span>
