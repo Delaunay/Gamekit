@@ -394,6 +394,7 @@ void AGKCharacterBase::GrantAbility(FGKAbilitySlot Slot, TSubclassOf<UGKGameplay
 void AGKCharacterBase::RemoveAbility(FGKAbilitySlot Slot) {
     auto Handle = GetAbilityHandle(Slot);
     AbilitySystemComponent->SetRemoveAbilityOnEnd(Handle);
+    AbilitySystemComponent->CancelAbilityHandle(Handle);
 }
 
 void AGKCharacterBase::OnAbilityRemoved_Native(FGameplayAbilitySpec& AbilitySpec) {
