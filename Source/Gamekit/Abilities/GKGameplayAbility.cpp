@@ -1081,11 +1081,14 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
     if (MovementTask && IsValid(MovementTask))
     {
         auto       Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
-        FHitResult Result;
-        // TODO:: Fix this trace
-        ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
-        Controller->GetHitResultUnderCursorByChannel(Channel, false, Result);
-        MovementTask->Destination = Result.ImpactPoint;
+
+        if (Controller){
+            FHitResult Result;
+            // TODO:: Fix this trace
+            ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
+            Controller->GetHitResultUnderCursorByChannel(Channel, false, Result);
+            MovementTask->Destination = Result.ImpactPoint;
+        }
     }
 
     // This is a bit laggy

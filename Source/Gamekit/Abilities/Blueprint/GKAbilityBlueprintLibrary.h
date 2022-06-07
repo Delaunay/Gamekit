@@ -15,6 +15,28 @@
 // Generated
 #include "GKAbilityBlueprintLibrary.generated.h"
 
+
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKFailureTagMapping
+{
+    GENERATED_USTRUCT_BODY()
+
+public:
+    FGKFailureTagMapping() {}
+
+    FGKFailureTagMapping(FGameplayTag FailureTag, FText LocalReason):
+        FailureTag(FailureTag), LocalReason(LocalReason)
+    {}
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    FGameplayTag FailureTag;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    FText LocalReason;
+};
+
+
 /**
  * Expose the Gameplay Ability System to the editor
  */
@@ -74,4 +96,7 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
     static FString GetGEHandleAsString(FActiveGameplayEffectHandle Handle){
         return Handle.ToString();
     }
+
+    UFUNCTION(BlueprintPure, Category = "UI")
+    static FText GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, bool& bHandled);
 };
