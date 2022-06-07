@@ -35,6 +35,10 @@ UGKGameplayAbility::UGKGameplayAbility()
     ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("State.Dead")));
     ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Debuff.Stun")));
 
+    static FGameplayTag Exclusive = FGameplayTag::RequestGameplayTag(FName("Ability.Exclusive"));
+    BlockAbilitiesWithTag.AddTag(Exclusive);
+    AbilityTags.AddTag(Exclusive);
+
     Immediate     = false;
     AbilityStatic = nullptr;
 
@@ -334,19 +338,22 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
     auto ASC = GetAbilitySystemComponentFromActorInfo();
     ASC->CancelAbilities(nullptr, nullptr, this);
 
-    //*
-    // Both rotates to face target and move towarsd it
-    MoveToTargetTask = UGKAbilityTask_MoveToDestination::MoveToTarget(this,
-                                                                      NAME_None,
-                                                                      Data,
-                                                                      GetAbilityStatic()->CastMaxRange, // Dist Tol
-                                                                      15.f,                             // Angle Tol
-                                                                      150.f,                            // Turn Rate
-                                                                      600.f,                            // Speed
-                                                                      true, // Move to target
-                                                                      true, // Use Movement Component
-                                                                      GetAbilityStatic()->AbilityBehavior,
-                                                                      true);
+    UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ASC->GetAttributeSet(UGKAttributeSet::StaticClass()));
+
+    // Both rotates to face target and move towards it
+    MoveToTargetTask = UGKAbilityTask_MoveToDestination::MoveToTarget(
+        this,
+        NAME_None,
+        Data,
+        GetAbilityStatic()->CastMaxRange, // Dist Tol
+        15.f,                             // Angle Tol
+        150.f,                            // Turn Rate
+        Attributes->GetMoveSpeed(),       // Speed
+        true, // Move to target
+        true, // Use Movement Component
+        GetAbilityStatic()->AbilityBehavior,
+        FGameplayTagContainer(),
+        true);
 
     // MoveToTargetStartDelegate.Broadcast();
     MoveToTargetTask->OnCancelled.AddDynamic(this, &UGKGameplayAbility::OnAbilityMoveToTargetCancelled);
@@ -582,7 +589,6 @@ void UGKGameplayAbility::OnAbilityAnimationEvent(FGameplayTag EventTag, FGamepla
     if (K2_CommitAbility())
     {
         SpawnProjectile(EventTag, EventData);
-        K2_EndAbility();
         return;
     }
 
@@ -672,11 +678,20 @@ void UGKGameplayAbility::ActivateAbility_Toggle()
     }
 };
 
+
+void UGKGameplayAbility::K2_EndAbility() {
+    ClearCancelByTags(CurrentActorInfo);
+
+    Super::K2_EndAbility();
+}
+
 void UGKGameplayAbility::ActivateAbility_Native()
 {
     if (GetAbilityLevel() <= 0){
         return;
     }
+
+    SetupCancelByTags(CurrentActorInfo);
 
     // Cancel current targeting task if any
     // this is to free up the delegates
@@ -1098,6 +1113,32 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
     }
 }
 
+
+void UGKGameplayAbility::SetupCancelByTags(const FGameplayAbilityActorInfo* ActorInfo) {
+    if (CancelledByTags.IsValid()) {
+        auto Delegate = FOnGameplayEffectTagCountChanged::FDelegate::CreateUObject(
+            this,
+            &UGKGameplayAbility::CancelAbilityFromTag
+        );
+
+        CancelByTagsDelegateHandle = Delegate.GetHandle();
+
+        ActorInfo->AbilitySystemComponent->RegisterGenericGameplayTagEvent().Add(Delegate);
+    }
+}
+
+void UGKGameplayAbility::CancelAbilityFromTag(const FGameplayTag Tag, int32 Count) {
+    if (CancelledByTags.HasTag(Tag)) {
+        K2_CancelAbility();
+        ClearCancelByTags(CurrentActorInfo);
+    }
+}
+
+void UGKGameplayAbility::ClearCancelByTags(const FGameplayAbilityActorInfo* ActorInfo) {
+    if (CancelByTagsDelegateHandle.IsValid()) {
+        ActorInfo->AbilitySystemComponent->RegisterGenericGameplayTagEvent().Remove(CancelByTagsDelegateHandle);
+    }
+}
 
 /*
 // Applies a gameplay effect container, by creating and then applying the spec

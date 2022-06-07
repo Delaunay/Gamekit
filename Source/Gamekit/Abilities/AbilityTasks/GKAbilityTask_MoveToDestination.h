@@ -81,6 +81,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             float               Speed             = 600.f,
             bool                MoveToTarget      = true,
             EGK_AbilityBehavior TargetKind        = EGK_AbilityBehavior::PointTarget,
+            FGameplayTagContainer        CancelTag         = FGameplayTagContainer(),
             bool                Debug             = false);
 
     /**
@@ -107,6 +108,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             bool                                    MoveToTarget          = true,
             bool                                    bUseMovementComponent = true,
             EGK_AbilityBehavior                     TargetKind            = EGK_AbilityBehavior::PointTarget,
+            FGameplayTagContainer                   CancelTag             = FGameplayTagContainer(),
             bool                                    Debug                 = false);
 
     /** Reached Destination */
@@ -132,6 +134,9 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 
     UFUNCTION()
     virtual void ExternalCancel() override;
+
+    UFUNCTION()
+    void OnReceiveGameplayTag(const FGameplayTag Tag, int32 Count);
 
     // void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const;
 
@@ -178,6 +183,11 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
 
     UPROPERTY()
     bool bRotationFinished;
+
+    UPROPERTY()
+    FGameplayTagContainer CancelTag;
+
+    FDelegateHandle DelegateHandle;
 
     // Cached Variables
     class APawn *                    Character;

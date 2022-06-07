@@ -163,7 +163,12 @@ void UGKAbilityTask_PlayMontageAndWaitForEvent::Activate()
 
     // Play the animation
     bPlayedMontage = GKAbilitySystemComponent->PlayMontage(
-                             Ability, Ability->GetCurrentActivationInfo(), MontageToPlay, Rate, StartSection) > 0.f;
+        Ability, 
+        Ability->GetCurrentActivationInfo(), 
+        MontageToPlay, 
+        Rate, 
+        StartSection
+    ) > 0.f;
 
     if (!bPlayedMontage)
     {

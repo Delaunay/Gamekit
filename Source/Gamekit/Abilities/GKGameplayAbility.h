@@ -81,6 +81,8 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     //! Ability that is Toggled on/off
     void ActivateAbility_Toggle();
 
+    void K2_EndAbility() override;
+
     public:
     // Constructor and overrides
     UGKGameplayAbility();
@@ -321,6 +323,23 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     //! returns a list of tags that are required for this ability to be activable
     UFUNCTION(BlueprintCallable, Category = ActivationTags)
     FGameplayTagContainer GetActivationRequiredTag();
+
+    // ------------------------------------------------
+    // Ability cancellation
+
+    /** This ability gets canceled by those tags */
+    UPROPERTY(EditDefaultsOnly, Category = Tags, meta = (Categories = "Tags"))
+    FGameplayTagContainer CancelledByTags;
+
+    FDelegateHandle CancelByTagsDelegateHandle;
+
+    void SetupCancelByTags(const FGameplayAbilityActorInfo* ActorInfo);
+
+    UFUNCTION()
+    void CancelAbilityFromTag(const FGameplayTag Tag, int32 Count);
+
+    void ClearCancelByTags(const FGameplayAbilityActorInfo* ActorInfo);
+    // ------------------------------------------------
 
     //! Returns the Cooldown tags to listen to
     UFUNCTION(BlueprintCallable, Category = Cooldown)

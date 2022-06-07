@@ -14,6 +14,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Net/UnrealNetwork.h"
+#include "AbilitySystemComponent.h"
 
 //#define DEBUG_MOVEMENT
 
@@ -50,6 +51,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
         bool                                    MoveToTarget,
         bool                                    bUseMovementComponent,
         EGK_AbilityBehavior                     TargetKind,
+        FGameplayTagContainer                   CancelTag,
         bool                                    Debug)
 {
     UGKAbilityTask_MoveToDestination *MyObj =
@@ -70,6 +72,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
     MyObj->TargetKind        = TargetKind;
+    MyObj->CancelTag = CancelTag;
 
     if (bUseMovementComponent)
     {
@@ -135,6 +138,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
                                                                                       float   Speed,
                                                                                       bool    MoveToTarget,
                                                                                       EGK_AbilityBehavior TargetKind,
+                                                                                      FGameplayTagContainer CancelTag,
                                                                                       bool                Debug)
 {
     UGKAbilityTask_MoveToDestination *MyObj =
@@ -155,6 +159,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
     MyObj->TargetKind        = TargetKind;
+    MyObj->CancelTag = CancelTag;
 
     MyObj->Init();
     return MyObj;
@@ -191,8 +196,31 @@ void UGKAbilityTask_MoveToDestination::Init()
         return;
     }
 
+   if (CancelTag.IsValid()){
+        auto Delegate = FOnGameplayEffectTagCountChanged::FDelegate::CreateUObject(
+            this,
+            &UGKAbilityTask_MoveToDestination::OnReceiveGameplayTag
+        );
+
+        DelegateHandle = Delegate.GetHandle();
+
+        AbilitySystemComponent->RegisterGenericGameplayTagEvent().Add(Delegate);
+   }
+
+    /* This is not needed, it is already handled
+     *
     Ability->OnGameplayAbilityCancelled.Add(FOnGameplayAbilityCancelled::FDelegate::CreateUObject(
             this, &UGKAbilityTask_MoveToDestination::ExternalCancel));
+    */
+}
+
+void UGKAbilityTask_MoveToDestination::OnReceiveGameplayTag(const FGameplayTag Tag, int32 Count) 
+{
+    if (CancelTag.HasTag(Tag)){
+        // Ability cancel is going to cancel this task as well
+        Ability->K2_CancelAbility();
+        AbilitySystemComponent->RegisterGenericGameplayTagEvent().Remove(DelegateHandle);
+    }
 }
 
 void UGKAbilityTask_MoveToDestination::InitSimulatedTask(UGameplayTasksComponent &InGameReplayTasksComponent)
@@ -323,7 +351,11 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         }
         bRotationFinished = true;
 
-        if (bTurnOnly)
+        // if rooted we cannot move
+        static FGameplayTag Root = FGameplayTag::RequestGameplayTag("Debuff.Root");
+        bool bRooted = AbilitySystemComponent->HasMatchingGameplayTag(Root);
+
+        if (bTurnOnly || bRooted)
         {
             // Rotation is finished
             bIsFinished = true;
