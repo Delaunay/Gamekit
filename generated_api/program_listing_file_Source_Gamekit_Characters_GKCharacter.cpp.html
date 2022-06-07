@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb3c4398e
+                ad183d0f7
 
               </div>
 <div role="search">
@@ -506,6 +506,7 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">RemoveAbility</span><span class="p">(</span><span class="n">FGKAbilitySlot</span><span class="w"> </span><span class="n">Slot</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityHandle</span><span class="p">(</span><span class="n">Slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">CancelAbilityHandle</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">SetRemoveAbilityOnEnd</span><span class="p">(</span><span class="n">Handle</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
