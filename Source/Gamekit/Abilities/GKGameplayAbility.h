@@ -165,7 +165,7 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     //! New animation is taking over, make sure the ability is in a clean state for next call
     UFUNCTION()
-    void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);
+    virtual void OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData);
 
     //! Animation was cancelled externally
     UFUNCTION()
