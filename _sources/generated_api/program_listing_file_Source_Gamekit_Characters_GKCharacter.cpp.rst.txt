@@ -405,8 +405,8 @@ Program Listing for File GKCharacter.cpp
    
    void AGKCharacterBase::RemoveAbility(FGKAbilitySlot Slot) {
        auto Handle = GetAbilityHandle(Slot);
-       AbilitySystemComponent->CancelAbilityHandle(Handle);
        AbilitySystemComponent->SetRemoveAbilityOnEnd(Handle);
+       AbilitySystemComponent->CancelAbilityHandle(Handle);
    }
    
    void AGKCharacterBase::OnAbilityRemoved_Native(FGameplayAbilitySpec& AbilitySpec) {
