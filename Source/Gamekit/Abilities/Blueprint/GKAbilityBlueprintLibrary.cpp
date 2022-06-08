@@ -98,13 +98,13 @@ TArray<FGKFailureTagMapping> GenerateFailureMapping() {
     // TODO: make this a datatable
     auto& ASGlobals = (UGKAbilitySystemGlobals&) (UGKAbilitySystemGlobals::Get());
     
-    FText AbilityCost       = NSLOCTEXT(NAMESPACE, "AbilityCost", "Ability cost not met");
-    FText AbilityCooldown   = NSLOCTEXT(NAMESPACE, "AbilityCooldown", "Ability is on cooldown");
-    FText AbilityBlocked    = NSLOCTEXT(NAMESPACE, "AbilityBlocked", "Ability is blocked by an active effect");
-    FText AbilityMissing    = NSLOCTEXT(NAMESPACE, "AbilityMissing", "Ability requirements are not met");
-    FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork", "Internal error");
-    FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead", "You are dead");
-    FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned", "Ability was not learnt yet");
+    FText AbilityCost       = NSLOCTEXT(NAMESPACE, "AbilityCost"        , "Ability cost not met");
+    FText AbilityCooldown   = NSLOCTEXT(NAMESPACE, "AbilityCooldown"    , "Ability is on cooldown");
+    FText AbilityBlocked    = NSLOCTEXT(NAMESPACE, "AbilityBlocked"     , "Ability is blocked by an active effect");
+    FText AbilityMissing    = NSLOCTEXT(NAMESPACE, "AbilityMissing"     , "Ability requirements are not met");
+    FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork"     , "Internal error");
+    FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead"        , "You are dead");
+    FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned"  , "Ability was not learnt yet");
 
     return TArray<FGKFailureTagMapping>{
         FGKFailureTagMapping{ ASGlobals.ActivateFailCostTag,          AbilityCost },

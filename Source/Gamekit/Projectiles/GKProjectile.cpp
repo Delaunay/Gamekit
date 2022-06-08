@@ -2,6 +2,10 @@
 
 #include "Gamekit/Projectiles/GKProjectile.h"
 
+
+// Gamekit
+#include "Gamekit/Characters/GKCharacter.h"
+
 // Unreal Engine
 #include "GameFramework/ProjectileMovementComponent.h"
 
@@ -38,7 +42,22 @@ void AGKProjectile::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if (!ProjectileMovementComponent->bIsHomingProjectile)
+
+    if (ProjectileMovementComponent->bIsHomingProjectile)
+    {
+        if (!IsValid(Target)){
+            Destroy();
+            return;
+        }
+
+        auto* TargetCharacter = Cast<AGKCharacterBase>(Target);
+
+        if (TargetCharacter && TargetCharacter->IsDead()) {
+            ProjectileMovementComponent->bIsHomingProjectile = false;
+            return;
+        }
+    }
+    else if (!ProjectileMovementComponent->bIsHomingProjectile)
     {
         auto CurrentLoc = GetActorLocation();
         auto Distance   = FVector::Dist(CurrentLoc, PreviousLoc);
@@ -52,6 +71,7 @@ void AGKProjectile::Tick(float DeltaTime)
         if (DistanceTravelled >= ProjectileData.Range)
         {
             Destroy();
+            return;
         }
     }
 }

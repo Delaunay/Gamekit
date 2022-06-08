@@ -43,18 +43,21 @@ void UGKAbilityTask_PlayMontageAndWaitForEvent::OnMontageBlendingOut(UAnimMontag
         }
     }
 
+    auto DataHandle = FGameplayEventData();
+    DataHandle.TargetData = TargetData;
+
     if (bInterrupted)
     {
         if (ShouldBroadcastAbilityTaskDelegates())
         {
-            OnInterrupted.Broadcast(FGameplayTag(), FGameplayEventData());
+            OnInterrupted.Broadcast(FGameplayTag(), DataHandle);
         }
     }
     else
     {
         if (ShouldBroadcastAbilityTaskDelegates())
         {
-            OnBlendOut.Broadcast(FGameplayTag(), FGameplayEventData());
+            OnBlendOut.Broadcast(FGameplayTag(), DataHandle);
         }
     }
 }
@@ -68,7 +71,10 @@ void UGKAbilityTask_PlayMontageAndWaitForEvent::OnAbilityCancelled()
         // Let the BP handle the interrupt as well
         if (ShouldBroadcastAbilityTaskDelegates())
         {
-            OnCancelled.Broadcast(FGameplayTag(), FGameplayEventData());
+            auto DataHandle = FGameplayEventData();
+            DataHandle.TargetData = TargetData;
+
+            OnCancelled.Broadcast(FGameplayTag(), DataHandle);
         }
     }
 }
@@ -79,7 +85,10 @@ void UGKAbilityTask_PlayMontageAndWaitForEvent::OnMontageEnded(UAnimMontage *Mon
     {
         if (ShouldBroadcastAbilityTaskDelegates())
         {
-            OnCompleted.Broadcast(FGameplayTag(), FGameplayEventData());
+            auto DataHandle = FGameplayEventData();
+            DataHandle.TargetData = TargetData;
+
+            OnCompleted.Broadcast(FGameplayTag(), DataHandle);
         }
     }
 

@@ -25,8 +25,6 @@ Setup
 GameTags
 ^^^^^^^^
 
-Gamekit Tags:
-
 * Ability: use to tag abilities
 	* Exclusive: Used to prevent activation of multiple abilities witht the `Exclusive` tag
 	* Move: Used to tag abilities performing movement operation
@@ -43,13 +41,14 @@ Gamekit Tags:
 	* Armor increase
 	* Damage
 	* Health bonus
-	* Level: level of the disable
+	* Haste: increase movement speed
+	* Level: level of the buff
 		* Minor
 		* Medium
 		* Strong
 
 * Debuff: reduce the effectiveness of a character
-	* Level: level of the disable
+	* Level: level of the debuff
 		* Minor
 		* Medium
 		* Strong
@@ -68,9 +67,13 @@ Gamekit Tags:
 	* Root: prevent all movements
 	* Break: disable passive abilities
 	* Dead: removes all buffs, debuffs and disables
+		* Death is both a disable and a dispel, on depth all active effects are removed
+		  but all actions are disabled.
+	* Etheral: cannot do physical damage, cannot be damaged by physical attacks [TODO]
+	* Disarmed: cannot do physical attacks [TODO]
 
 * Dispel: removes debuff and disables
-	* Level: level of the disable
+	* Level: level of the dispel
 		* Minor
 		* Medium
 		* Strong
@@ -83,6 +86,14 @@ Gamekit Tags:
 	* NotLearned
 
 * GameplayCue: used to spawn effect in reseponse to gameplay effects
+  All disables will have an effect so players can see it easily
+	* Immunity
+	* Stun
+	* Silence
+	* Mute
+	* Root
+	* Break
+
 
 * Quest: used to tag objectives for the quest system
 

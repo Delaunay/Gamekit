@@ -62,6 +62,10 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 
 	UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ActorInfo->AbilitySystemComponent->GetAttributeSet(UGKAttributeSet::StaticClass()));
 
+	// cancel all the another abilities 
+	auto ASC = GetAbilitySystemComponentFromActorInfo();
+	ASC->CancelAbilities(nullptr, nullptr, this);
+
 	FGameplayTagContainer CancelTags;
 	// CancelTags.AddTag(FGameplayTag::RequestGameplayTag("Debuff.Stun"));
 	// CancelTags.AddTag(FGameplayTag::RequestGameplayTag("Debuff.Root"));

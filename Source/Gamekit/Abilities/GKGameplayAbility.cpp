@@ -441,8 +441,40 @@ void UGKGameplayAbility::OnAbilityMoveToTargetCompleted(const FGameplayAbilityTa
     AnimTask->ReadyForActivation();
 }
 
+bool IsTargetDataValid(FGameplayAbilityTargetDataHandle TargetDataHandle) {
+    int BreathingTargets = 0;
+
+    for(TSharedPtr<FGameplayAbilityTargetData>& TargetData: TargetDataHandle.Data) {
+        if (!TargetData.IsValid()) {
+            continue;
+        }
+
+        FGameplayAbilityTargetData* Target = TargetData.Get();
+        TArray<TWeakObjectPtr<AActor>> Actors = Target->GetActors();
+
+        for(TWeakObjectPtr<AActor>& ActorPtr: Actors) {
+            if (!ActorPtr.IsValid()) {
+                continue;
+            }
+
+            auto* Actor = Cast<AGKCharacterBase>(ActorPtr.Get());
+            BreathingTargets += int(!Actor->IsDead());
+        }
+    }
+
+    return BreathingTargets > 0;
+}
+
 void UGKGameplayAbility::OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGameplayEventData EventData)
 {
+    auto AbilityInfo = GetAbilityStatic();
+
+    if (AbilityInfo->bLoop && CanActivateAbility(CurrentSpecHandle, CurrentActorInfo) && IsTargetDataValid(EventData.TargetData))
+    {
+        OnAbilityTargetAcquired(EventData.TargetData);
+        return;
+    }
+
     K2_EndAbility();
     AnimTask = nullptr;
 }

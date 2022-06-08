@@ -39,6 +39,7 @@ enum class EGK_MOBA_AbilityInputID : uint8
 	AttackMove		UMETA(DisplayName = "AttackMove"),   // Area & Target
 	FollowTarget	UMETA(DisplayName = "FollowTarget"), // Follow Ally
 	Patrol			UMETA(DisplayName = "Patrol"),		 // Go through multiple points
+	Halt			UMETA(DIsplayName = "Halt"),		 // Cancel all current actions
 
 	Size
     // clang-format on

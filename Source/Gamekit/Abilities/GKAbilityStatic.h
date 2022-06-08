@@ -175,6 +175,10 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     int32 MaxLevel;
 
+    //! The ability activate itself after the end of the animation
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+    bool bLoop;
+
     //! Duration the ability linger after being cast
     //! used for damage overtime abilities or active buffs
     //! Should be a TArray | Ability Level can change this

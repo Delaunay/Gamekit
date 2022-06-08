@@ -27,12 +27,16 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     // Attribute
     AttributeChangedTask = UGKAsyncTaskAttributeChanged::ListenForAttributesChange(ASC, Ability->GetAbilityCostAttribute());
 
-    AttributeChangedTask->OnAttributeChanged.AddDynamic(this, &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
+    if (AttributeChangedTask) {
+         AttributeChangedTask->OnAttributeChanged.AddDynamic(this, &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
+    }
 
-    CooldownChangedTask = UGKAsyncTaskCooldownChanged::ListenForCooldownChange(ASC, *Ability->GetCooldownTags(), true);
-
-    CooldownChangedTask->OnCooldownBegin.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownBegin_Native);
-    CooldownChangedTask->OnCooldownEnd.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownEnd_Native);
+    auto* CooldownTags = Ability->GetCooldownTags();
+    if (CooldownTags != nullptr){
+        CooldownChangedTask = UGKAsyncTaskCooldownChanged::ListenForCooldownChange(ASC, *CooldownTags, true);
+        CooldownChangedTask->OnCooldownBegin.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownBegin_Native);
+        CooldownChangedTask->OnCooldownEnd.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownEnd_Native);
+    }
 
     // Debuffs
     DisableEffectTask = UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(
@@ -52,11 +56,16 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
 
     // Start
     // Note Activate should be useless in that case
-    CooldownChangedTask->RegisterWithGameInstance(Ability->GetWorld());
-    AttributeChangedTask->RegisterWithGameInstance(Ability->GetWorld());
+   
+    if (CooldownChangedTask){
+        CooldownChangedTask->RegisterWithGameInstance(Ability->GetWorld());
+        CooldownChangedTask->Activate();
+    }
 
-    CooldownChangedTask->Activate();
-    AttributeChangedTask->Activate();
+    if (AttributeChangedTask){
+        AttributeChangedTask->RegisterWithGameInstance(Ability->GetWorld());
+        AttributeChangedTask->Activate();
+    }
 
     bBound = true;
 }
