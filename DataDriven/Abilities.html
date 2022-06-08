@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                6ac551053
+                43150e7c8
 
               </div>
 <div role="search">
@@ -158,10 +158,9 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <section id="gametags">
 <h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
-<p>Gamekit Tags:</p>
-<ul class="simple">
+<ul>
 <li><dl class="simple">
-<dt>Ability: use to tag abilities</dt><dd><ul>
+<dt>Ability: use to tag abilities</dt><dd><ul class="simple">
 <li><p>Exclusive: Used to prevent activation of multiple abilities witht the <cite>Exclusive</cite> tag</p></li>
 <li><p>Move: Used to tag abilities performing movement operation</p></li>
 <li><p>Passive: tag passive abilities</p></li>
@@ -170,7 +169,7 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Animation: used to tag animation</dt><dd><ul>
+<dt>Animation: used to tag animation</dt><dd><ul class="simple">
 <li><p>CastPoint: Tag is sent when the animation reach the point where projectile/effect should be
 spawned.</p></li>
 </ul>
@@ -179,13 +178,14 @@ spawned.</p></li>
 </li>
 <li><p>Cooldown: used to tag cooldowns; to prevent the same ability from being casted all the time</p></li>
 <li><dl class="simple">
-<dt>Buff: Improves the effectiveness of a character</dt><dd><ul>
+<dt>Buff: Improves the effectiveness of a character</dt><dd><ul class="simple">
 <li><p>Immunity: protects against debuff and disables</p></li>
 <li><p>Armor increase</p></li>
 <li><p>Damage</p></li>
 <li><p>Health bonus</p></li>
+<li><p>Haste: increase movement speed</p></li>
 <li><dl class="simple">
-<dt>Level: level of the disable</dt><dd><ul>
+<dt>Level: level of the buff</dt><dd><ul>
 <li><p>Minor</p></li>
 <li><p>Medium</p></li>
 <li><p>Strong</p></li>
@@ -198,9 +198,9 @@ spawned.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Debuff: reduce the effectiveness of a character</dt><dd><ul>
+<dt>Debuff: reduce the effectiveness of a character</dt><dd><ul class="simple">
 <li><dl class="simple">
-<dt>Level: level of the disable</dt><dd><ul>
+<dt>Level: level of the debuff</dt><dd><ul>
 <li><p>Minor</p></li>
 <li><p>Medium</p></li>
 <li><p>Strong</p></li>
@@ -216,7 +216,7 @@ spawned.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Disable: prevent character for performing certain actions</dt><dd><ul>
+<dt>Disable: prevent character for performing certain actions</dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>Level: level of the disable</dt><dd><ul>
 <li><p>Minor</p></li>
@@ -231,15 +231,24 @@ spawned.</p></li>
 <li><p>Mute: prevent item usage</p></li>
 <li><p>Root: prevent all movements</p></li>
 <li><p>Break: disable passive abilities</p></li>
-<li><p>Dead: removes all buffs, debuffs and disables</p></li>
+<li><dl class="simple">
+<dt>Dead: removes all buffs, debuffs and disables</dt><dd><ul>
+<li><p>Death is both a disable and a dispel, on depth all active effects are removed
+but all actions are disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Etheral: cannot do physical damage, cannot be damaged by physical attacks [TODO]</p></li>
+<li><p>Disarmed: cannot do physical attacks [TODO]</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Dispel: removes debuff and disables</dt><dd><ul>
+<dt>Dispel: removes debuff and disables</dt><dd><ul class="simple">
 <li><dl class="simple">
-<dt>Level: level of the disable</dt><dd><ul>
+<dt>Level: level of the dispel</dt><dd><ul>
 <li><p>Minor</p></li>
 <li><p>Medium</p></li>
 <li><p>Strong</p></li>
@@ -252,7 +261,7 @@ spawned.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Failure: used to report errors back to the users</dt><dd><ul>
+<dt>Failure: used to report errors back to the users</dt><dd><ul class="simple">
 <li><p>Blocked</p></li>
 <li><p>Cost</p></li>
 <li><p>Missing</p></li>
@@ -262,7 +271,19 @@ spawned.</p></li>
 </dd>
 </dl>
 </li>
-<li><p>GameplayCue: used to spawn effect in reseponse to gameplay effects</p></li>
+<li><p>GameplayCue: used to spawn effect in reseponse to gameplay effects
+All disables will have an effect so players can see it easily</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Immunity</p></li>
+<li><p>Stun</p></li>
+<li><p>Silence</p></li>
+<li><p>Mute</p></li>
+<li><p>Root</p></li>
+<li><p>Break</p></li>
+</ul>
+</div></blockquote>
+</li>
 <li><p>Quest: used to tag objectives for the quest system</p></li>
 </ul>
 <p>Unreal Engine GA tags</p>

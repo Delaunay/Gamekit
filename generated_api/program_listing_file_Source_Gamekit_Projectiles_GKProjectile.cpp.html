@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                6ac551053
+                43150e7c8
 
               </div>
 <div role="search">
@@ -115,6 +115,10 @@
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Projectiles/GKProjectile.h&quot;</span><span class="cp"></span>
 
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Characters/GKCharacter.h&quot;</span><span class="cp"></span>
+
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/ProjectileMovementComponent.h&quot;</span><span class="cp"></span>
 
@@ -151,7 +155,22 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ProjectileMovementComponent</span><span class="o">-&gt;</span><span class="n">bIsHomingProjectile</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ProjectileMovementComponent</span><span class="o">-&gt;</span><span class="n">bIsHomingProjectile</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsValid</span><span class="p">(</span><span class="n">Target</span><span class="p">)){</span><span class="w"></span>
+<span class="w">            </span><span class="n">Destroy</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">TargetCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Target</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetCharacter</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TargetCharacter</span><span class="o">-&gt;</span><span class="n">IsDead</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ProjectileMovementComponent</span><span class="o">-&gt;</span><span class="n">bIsHomingProjectile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ProjectileMovementComponent</span><span class="o">-&gt;</span><span class="n">bIsHomingProjectile</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">CurrentLoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Distance</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">Dist</span><span class="p">(</span><span class="n">CurrentLoc</span><span class="p">,</span><span class="w"> </span><span class="n">PreviousLoc</span><span class="p">);</span><span class="w"></span>
@@ -165,6 +184,7 @@
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DistanceTravelled</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ProjectileData</span><span class="p">.</span><span class="n">Range</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="n">Destroy</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

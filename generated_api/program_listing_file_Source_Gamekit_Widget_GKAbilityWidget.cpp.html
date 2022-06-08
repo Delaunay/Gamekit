@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                6ac551053
+                43150e7c8
 
               </div>
 <div role="search">
@@ -140,12 +140,16 @@
 <span class="w">    </span><span class="c1">// Attribute</span>
 <span class="w">    </span><span class="n">AttributeChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="o">::</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityCostAttribute</span><span class="p">());</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AttributeChangedTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">CooldownChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">ListenForCooldownChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">(),</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">ListenForCooldownChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownTags</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Debuffs</span>
 <span class="w">    </span><span class="n">DisableEffectTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">ListenForGameplayEffectChange</span><span class="p">(</span><span class="w"></span>
@@ -165,11 +169,16 @@
 
 <span class="w">    </span><span class="c1">// Start</span>
 <span class="w">    </span><span class="c1">// Note Activate should be useless in that case</span>
-<span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
-<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownChangedTask</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AttributeChangedTask</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">bBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

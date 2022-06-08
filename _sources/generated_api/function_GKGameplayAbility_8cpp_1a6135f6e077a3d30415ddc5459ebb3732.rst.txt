@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8cpp_1a6135f6e077a3d30415ddc5459ebb3732:
+
+Function IsTargetDataValid
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: IsTargetDataValid(FGameplayAbilityTargetDataHandle)
+   :project: GameKit

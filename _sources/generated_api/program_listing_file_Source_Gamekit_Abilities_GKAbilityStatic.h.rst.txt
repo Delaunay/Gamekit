@@ -175,6 +175,9 @@ Program Listing for File GKAbilityStatic.h
        int32 MaxLevel;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+       bool bLoop;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
        float Duration;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)

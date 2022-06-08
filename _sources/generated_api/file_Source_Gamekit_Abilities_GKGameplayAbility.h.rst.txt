@@ -45,8 +45,6 @@ Included By
 -----------
 
 
-- :ref:`file_Source_Gamekit_Abilities_Abilities_GKAttackAbility.h`
-
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h`
 
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`

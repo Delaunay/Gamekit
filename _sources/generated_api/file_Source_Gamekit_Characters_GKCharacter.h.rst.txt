@@ -69,6 +69,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Controllers_GKPlayerController.cpp`
 
+- :ref:`file_Source_Gamekit_Projectiles_GKProjectile.cpp`
+
 
 
 

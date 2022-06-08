@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                6ac551053
+                43150e7c8
 
               </div>
 <div role="search">
@@ -156,18 +156,21 @@
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">DataHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">DataHandle</span><span class="p">.</span><span class="n">TargetData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bInterrupted</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldBroadcastAbilityTaskDelegates</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">OnInterrupted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">OnInterrupted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">DataHandle</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="k">else</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldBroadcastAbilityTaskDelegates</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">OnBlendOut</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">OnBlendOut</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">DataHandle</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -181,7 +184,10 @@
 <span class="w">        </span><span class="c1">// Let the BP handle the interrupt as well</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldBroadcastAbilityTaskDelegates</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">DataHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">DataHandle</span><span class="p">.</span><span class="n">TargetData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">OnCancelled</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">DataHandle</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -192,7 +198,10 @@
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldBroadcastAbilityTaskDelegates</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">DataHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">DataHandle</span><span class="p">.</span><span class="n">TargetData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="p">(),</span><span class="w"> </span><span class="n">DataHandle</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 

@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                6ac551053
+                43150e7c8
 
               </div>
 <div role="search">
@@ -554,8 +554,40 @@
 <span class="w">    </span><span class="n">AnimTask</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+<span class="kt">bool</span><span class="w"> </span><span class="n">IsTargetDataValid</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="w"> </span><span class="n">TargetDataHandle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">BreathingTargets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">TSharedPtr</span><span class="o">&lt;</span><span class="n">FGameplayAbilityTargetData</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">TargetData</span><span class="o">:</span><span class="w"> </span><span class="n">TargetDataHandle</span><span class="p">.</span><span class="n">Data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">TargetData</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FGameplayAbilityTargetData</span><span class="o">*</span><span class="w"> </span><span class="n">Target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">Actors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="o">-&gt;</span><span class="n">GetActors</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">ActorPtr</span><span class="o">:</span><span class="w"> </span><span class="n">Actors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ActorPtr</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKCharacterBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ActorPtr</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">BreathingTargets</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="o">!</span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">IsDead</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">BreathingTargets</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityAnimationBlendOut</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="w"> </span><span class="n">EventData</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">AbilityInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityInfo</span><span class="o">-&gt;</span><span class="n">bLoop</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">CanActivateAbility</span><span class="p">(</span><span class="n">CurrentSpecHandle</span><span class="p">,</span><span class="w"> </span><span class="n">CurrentActorInfo</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsTargetDataValid</span><span class="p">(</span><span class="n">EventData</span><span class="p">.</span><span class="n">TargetData</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="n">EventData</span><span class="p">.</span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">K2_EndAbility</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="n">AnimTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

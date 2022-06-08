@@ -31,6 +31,8 @@ Includes
 
 - ``GameFramework/ProjectileMovementComponent.h``
 
+- ``Gamekit/Characters/GKCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKCharacter.h`)
+
 - ``Gamekit/Projectiles/GKProjectile.h`` (:ref:`file_Source_Gamekit_Projectiles_GKProjectile.h`)
 
 
