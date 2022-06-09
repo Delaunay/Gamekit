@@ -32,15 +32,7 @@ Program Listing for File GKAbilitySystemGlobals.cpp
    
    UGKAbilitySystemGlobals::UGKAbilitySystemGlobals(const FObjectInitializer &ObjectInitializer): Super(ObjectInitializer)
    {
-       CooldownDataTable = nullptr;
-       static ConstructorHelpers::FObjectFinder<UDataTable> CooldownTagsTableObject(
-           TEXT("DataTable'/Gamekit/Data/AbilityCooldownTags.AbilityCooldownTags'"));
-   
-       if (CooldownTagsTableObject.Succeeded()) {
-           CooldownDataTable = CooldownTagsTableObject.Object;
-       }
    }
-   
    
    void UGKAbilitySystemGlobals::InitGlobalTags()
    {
@@ -60,8 +52,4 @@ Program Listing for File GKAbilitySystemGlobals.cpp
    
    UGKAbilitySystemGlobals& UGKAbilitySystemGlobals::GetGlobals() {
        return (UGKAbilitySystemGlobals&) UGKAbilitySystemGlobals::Get();
-   }
-   
-   UDataTable* GetCooldownTable() {
-       return UGKAbilitySystemGlobals::GetGlobals().CooldownDataTable;
    }

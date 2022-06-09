@@ -93,17 +93,9 @@ Program Listing for File GKAbilitySystemGlobals.h
    
        virtual void InitGlobalTags() override;
    
-   
-       UPROPERTY()
-       UDataTable* CooldownDataTable;
-   
-       UPROPERTY(config)
-       FSoftObjectPath WhateverConfigIwanttosee;
-   
        //
        // THINK: We could a secondary global curve here for our curve generation system
        //
    };
    
    
-   UDataTable* GetCooldownTable();

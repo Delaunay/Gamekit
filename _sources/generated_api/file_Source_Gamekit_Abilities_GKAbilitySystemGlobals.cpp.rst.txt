@@ -42,8 +42,6 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKAbilitySystemGlobals_8cpp_1ae3046ee6181d6f6fe7d52e3b3294f5e9`
-
 - :ref:`exhale_function_GKAbilitySystemGlobals_8cpp_1a83c17172670f158181e3c8c6cafb9654`
 
 

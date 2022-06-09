@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                27afcc061
+                f525469d0
 
               </div>
 <div role="search">
@@ -133,15 +133,7 @@
 
 <span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">UGKAbilitySystemGlobals</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FObjectInitializer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">CooldownDataTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">ConstructorHelpers</span><span class="o">::</span><span class="n">FObjectFinder</span><span class="o">&lt;</span><span class="n">UDataTable</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CooldownTagsTableObject</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;DataTable&#39;/Gamekit/Data/AbilityCooldownTags.AbilityCooldownTags&#39;&quot;</span><span class="p">));</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTagsTableObject</span><span class="p">.</span><span class="n">Succeeded</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">CooldownDataTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CooldownTagsTableObject</span><span class="p">.</span><span class="n">Object</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
-
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">InitGlobalTags</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -161,10 +153,6 @@
 
 <span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">GetGlobals</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">GetCooldownTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">GetGlobals</span><span class="p">().</span><span class="n">CooldownDataTable</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
