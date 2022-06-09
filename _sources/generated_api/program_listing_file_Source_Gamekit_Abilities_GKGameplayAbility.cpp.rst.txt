@@ -84,11 +84,10 @@ Program Listing for File GKGameplayAbility.cpp
        }
    }
    
-   void UGKGameplayAbility::LoadFromDataTable(FGKAbilityStatic &AbilityDef) const
+   void UGKGameplayAbility::LoadFromDataTable(FGKAbilityStatic &AbilityDef)
    {
        UE_LOG(LogGamekit, Log, TEXT("Init Ability from table %s"), *AbilityDef.Name.ToString());
-   
-       // CostEffectInstance     = NewCostEffectFromConfig(AbilityDef.Cost);
+       CostEffectInstance     = NewCostEffectFromConfig(AbilityDef.Cost);
    }
    
    
@@ -111,7 +110,7 @@ Program Listing for File GKGameplayAbility.cpp
    
            if (AbilityStatic != nullptr)
            {
-               LoadFromDataTable(*AbilityStatic);
+               ((UGKGameplayAbility*)(this))->LoadFromDataTable(*AbilityStatic);
            }
    
            // Listen to data table change

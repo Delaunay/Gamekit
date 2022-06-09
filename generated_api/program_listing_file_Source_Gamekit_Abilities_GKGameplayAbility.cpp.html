@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                98b239443
+                27afcc061
 
               </div>
 <div role="search">
@@ -185,11 +185,10 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityDef</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityDef</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Init Ability from table %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityDef</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// CostEffectInstance     = NewCostEffectFromConfig(AbilityDef.Cost);</span>
+<span class="w">    </span><span class="n">CostEffectInstance</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">NewCostEffectFromConfig</span><span class="p">(</span><span class="n">AbilityDef</span><span class="p">.</span><span class="n">Cost</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 
@@ -212,7 +211,7 @@
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityStatic</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="o">*</span><span class="n">AbilityStatic</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">((</span><span class="n">UGKGameplayAbility</span><span class="o">*</span><span class="p">)(</span><span class="k">this</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">LoadFromDataTable</span><span class="p">(</span><span class="o">*</span><span class="n">AbilityStatic</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">        </span><span class="c1">// Listen to data table change</span>

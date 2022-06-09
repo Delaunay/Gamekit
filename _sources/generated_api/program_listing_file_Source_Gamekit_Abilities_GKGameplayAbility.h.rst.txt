@@ -93,7 +93,7 @@ Program Listing for File GKGameplayAbility.h
        UFUNCTION()
        void OnDataTableChanged_Native() const;
    
-       virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef) const;
+       virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef);
    
        void PostInitProperties() override;
    
