@@ -220,6 +220,9 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     UFUNCTION(BlueprintCallable, Category = Ability)
     void SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData);
 
+    UFUNCTION(BlueprintCallable, Category = Ability)
+    void ApplyEffectsToTarget(FGameplayTag EventTag, FGameplayEventData EventData);
+
     public:
 
     /** Make gameplay effect container spec to be applied later, using the passed in container */

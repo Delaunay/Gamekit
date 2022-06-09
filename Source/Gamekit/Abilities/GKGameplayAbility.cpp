@@ -14,6 +14,7 @@
 #include "Gamekit/Characters/GKCharacter.h"
 #include "Gamekit/Controllers/GKPlayerController.h"
 #include "Gamekit/Gamekit.h"
+#include "Gamekit/Abilities/GKAbilities.h"
 #include "Gamekit/Projectiles/GKProjectile.h"
 
 // Unreal Engine
@@ -156,7 +157,7 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGKAb
         // If we don't have an override level, use the default on the ability itself
         if (OverrideGameplayLevel == INDEX_NONE)
         {
-            OverrideGameplayLevel = OverrideGameplayLevel = this->GetAbilityLevel();
+            OverrideGameplayLevel = this->GetAbilityLevel();
         }
 
         // Build GameplayEffectSpecs for each applied effect
@@ -327,7 +328,7 @@ FVector GetImpactPoint(const FGameplayAbilityTargetDataHandle &Data, int Index, 
 void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDataHandle &Data)
 {
     TargetingResultDelegate.Broadcast(false);
-
+   
     if (TargetTask && IsValid(TargetTask))
     {
         TargetTask->EndTask();
@@ -1005,12 +1006,41 @@ bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle Targ
     return false;
 }
 
+
+void UGKGameplayAbility::ApplyEffectsToTarget(FGameplayTag EventTag, FGameplayEventData EventData) {
+    FGKAbilityStatic* AbilityData = GetAbilityStatic();
+
+    FGKAbilityEffects const* GameplayEffects = AbilityData->AbilityEffects.Find(EGK_EffectSlot::TargetEffect);
+
+    TArray<FGameplayEffectSpecHandle> Specs;
+
+    for (const FGKAbilityEffect& Effect : GameplayEffects->Effects)
+    {
+        Specs.Add(MakeOutgoingGameplayEffectSpec(Effect.GameplayEffectClass, GetAbilityLevel()));
+    }
+
+    for(auto SpecHandle: Specs){
+        if (SpecHandle.IsValid())
+        {
+            // If effect is valid, iterate list of targets and apply to all
+            for (TSharedPtr<FGameplayAbilityTargetData> Data : EventData.TargetData.Data)
+            {
+                Data->ApplyGameplayEffectSpec(*SpecHandle.Data.Get());
+            }
+        }
+        else {
+            GKGA_WARNING(TEXT("Gameplay Effect Spec Handle has become invalid"));
+        }
+    }
+}
+
 void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData)
 {
     FGKAbilityStatic *Data = GetAbilityStatic();
 
     if (!Data || !Data->ProjectileActorClass)
     {
+        ApplyEffectsToTarget(EventTag, EventData);
         return;
     }
 
@@ -1054,7 +1084,7 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
     ProjectileInstance->Target          = Target;
     ProjectileInstance->Direction       = (Direction - Loc);
 
-    ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EGK_EffectSlot::TargetEffect, EventData);
+    ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EGK_EffectSlot::TargetEffect, EventData, GetAbilityLevel());
 
     ensure(ProjectileInstance->GameplayEffects.TargetGameplayEffectSpecs.Num() > 0);
 
