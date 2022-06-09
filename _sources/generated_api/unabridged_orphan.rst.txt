@@ -860,16 +860,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Characters_GKGASCharacter.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Characters_GKGASCharacter.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_Source_Gamekit_Grid_GKGrid.cpp.rst
 
 .. toctree::

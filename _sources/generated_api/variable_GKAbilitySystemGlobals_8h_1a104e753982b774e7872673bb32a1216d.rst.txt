@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a104e753982b774e7872673bb32a1216d:
+
+Variable DisableMedium
+======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DisableMedium
+   :project: GameKit

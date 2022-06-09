@@ -187,6 +187,9 @@ Program Listing for File GKAbilityStatic.h
        FGKAbilityCost Cost;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+       FGameplayTagContainer CooldownTags;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
        TArray<float> Cooldown;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)

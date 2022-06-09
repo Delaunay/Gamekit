@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a5edec208e21405c7da0ca23d7b99df43:
+
+Variable Debuff
+===============
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Debuff
+   :project: GameKit

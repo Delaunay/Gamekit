@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a618ba7208433a0b014d121e611aa928a:
+
+Variable BuffMedium
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BuffMedium
+   :project: GameKit

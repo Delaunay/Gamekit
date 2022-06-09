@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1adbc8c412071317606ce71af353b435ad:
+
+Variable Disable
+================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Disable
+   :project: GameKit

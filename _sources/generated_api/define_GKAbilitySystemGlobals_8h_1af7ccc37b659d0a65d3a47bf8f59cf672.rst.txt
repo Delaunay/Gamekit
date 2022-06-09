@@ -1,0 +1,14 @@
+.. _exhale_define_GKAbilitySystemGlobals_8h_1af7ccc37b659d0a65d3a47bf8f59cf672:
+
+Define GKTAG
+============
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKTAG
+   :project: GameKit

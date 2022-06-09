@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a5f4d5b92eb4991bc9fcb8517b2bfd768:
+
+Variable DispelMinor
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DispelMinor
+   :project: GameKit

@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a042cbccc1a71dd62bc82d4427258f6cf:
+
+Variable DisableMinor
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DisableMinor
+   :project: GameKit

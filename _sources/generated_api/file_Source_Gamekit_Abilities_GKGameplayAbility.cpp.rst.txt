@@ -71,6 +71,8 @@ Includes
 
 - ``Kismet/KismetMathLibrary.h``
 
+- ``NativeGameplayTags.h``
+
 
 
 
@@ -81,6 +83,8 @@ Functions
 
 
 - :ref:`exhale_function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d`
+
+- :ref:`exhale_function_GKGameplayAbility_8cpp_1aa973ac4ccdcda808f870b1145822a2df`
 
 - :ref:`exhale_function_GKGameplayAbility_8cpp_1a6135f6e077a3d30415ddc5459ebb3732`
 

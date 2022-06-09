@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -121,6 +121,7 @@
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Misc/ConfigCacheIni.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NativeGameplayTags.h&quot;</span><span class="cp"></span>
 
 
 <span class="cp">#define NAMESPACE &quot;GamekitAbilities&quot;</span>
@@ -220,13 +221,13 @@
 <span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNotLearned&quot;</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability was not learnt yet&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailCostTag</span><span class="p">,</span><span class="w">          </span><span class="n">AbilityCost</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailCooldownTag</span><span class="p">,</span><span class="w">      </span><span class="n">AbilityCooldown</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailTagsBlockedTag</span><span class="p">,</span><span class="w">   </span><span class="n">AbilityBlocked</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailTagsMissingTag</span><span class="p">,</span><span class="w">   </span><span class="n">AbilityMissing</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailNetworkingTag</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityNetwork</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailIsDeadTag</span><span class="p">,</span><span class="w">        </span><span class="n">AbilityDead</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">ASGlobals</span><span class="p">.</span><span class="n">ActivateFailNotYetLearnedTag</span><span class="p">,</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureCost</span><span class="p">,</span><span class="w">       </span><span class="n">AbilityCost</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureCooldown</span><span class="p">,</span><span class="w">   </span><span class="n">AbilityCooldown</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureBlocked</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityBlocked</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureMissing</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityMissing</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureNetwork</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityNetwork</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureDead</span><span class="p">,</span><span class="w">       </span><span class="n">AbilityDead</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureNotLearned</span><span class="p">,</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
 <span class="w">    </span><span class="p">};</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 

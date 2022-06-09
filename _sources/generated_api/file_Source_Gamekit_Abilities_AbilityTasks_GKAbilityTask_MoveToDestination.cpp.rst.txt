@@ -39,6 +39,8 @@ Includes
 
 - ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`)
 
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
 - ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
 
 - ``Gamekit/Blueprint/GKUtilityLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`)

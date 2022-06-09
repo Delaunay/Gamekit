@@ -18,6 +18,7 @@ Program Listing for File GKStopMovement.cpp
    #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
    #include "Gamekit/Abilities/GKAttributeSet.h"
    #include "Gamekit/Abilities/Abilities/GKMovementAbility.h"
+   #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
    
    // Unreal Engine
    #include "GameFramework/MovementComponent.h"
@@ -27,8 +28,7 @@ Program Listing for File GKStopMovement.cpp
    {
        AbilityToStop = UGameplayAbility::StaticClass();
    
-       static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
-       AbilityTagsToStop = FGameplayTagContainer(Move);
+       AbilityTagsToStop = FGameplayTagContainer(AbilityMove);
    
        bUseTags = true;
    }

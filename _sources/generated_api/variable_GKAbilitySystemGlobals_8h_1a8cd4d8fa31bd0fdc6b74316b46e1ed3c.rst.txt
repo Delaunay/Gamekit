@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a8cd4d8fa31bd0fdc6b74316b46e1ed3c:
+
+Variable FailureCost
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: FailureCost
+   :project: GameKit

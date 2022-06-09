@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -144,8 +144,8 @@
 <span class="w">         </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">CooldownTags</span><span class="o">-&gt;</span><span class="n">IsEmpty</span><span class="p">()){</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">ListenForCooldownChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownTags</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>

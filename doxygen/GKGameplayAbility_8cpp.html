@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">8a706ee97</span>
+   &#160;<span id="projectnumber">98b239443</span>
    </div>
   </td>
  </tr>
@@ -82,6 +82,7 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="GKGameplayAbility_8h_source.html">Gamekit/Abilities/GKGameplayAbility.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKAbilityTask__MoveToDestination_8h_source.html">Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKAbilityTask__PlayMontageAndWaitForEvent_8h_source.html">Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="GKAbilities_8h_source.html">Gamekit/Abilities/GKAbilities.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKAbilitySystemComponent_8h_source.html">Gamekit/Abilities/GKAbilitySystemComponent.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKAbilitySystemGlobals_8h_source.html">Gamekit/Abilities/GKAbilitySystemGlobals.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKCastPointAnimNotify_8h_source.html">Gamekit/Abilities/GKCastPointAnimNotify.h</a>&quot;</code><br />
@@ -91,7 +92,6 @@ $(function() {
 <code>#include &quot;<a class="el" href="GKCharacter_8h_source.html">Gamekit/Characters/GKCharacter.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKPlayerController_8h_source.html">Gamekit/Controllers/GKPlayerController.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Gamekit_8h_source.html">Gamekit/Gamekit.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="GKAbilities_8h_source.html">Gamekit/Abilities/GKAbilities.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKProjectile_8h_source.html">Gamekit/Projectiles/GKProjectile.h</a>&quot;</code><br />
 <code>#include &quot;Abilities/Tasks/AbilityTask_MoveToLocation.h&quot;</code><br />
 <code>#include &quot;Abilities/Tasks/AbilityTask_WaitTargetData.h&quot;</code><br />
@@ -100,61 +100,62 @@ $(function() {
 <code>#include &quot;GameplayCue_Types.h&quot;</code><br />
 <code>#include &quot;Kismet/GameplayStatics.h&quot;</code><br />
 <code>#include &quot;Kismet/KismetMathLibrary.h&quot;</code><br />
+<code>#include &quot;NativeGameplayTags.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for GKGameplayAbility.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="GKGameplayAbility_8cpp__incl.png" border="0" usemap="#Source_2Gamekit_2Abilities_2GKGameplayAbility_8cpp" alt=""/></div>
 <map name="Source_2Gamekit_2Abilities_2GKGameplayAbility_8cpp" id="Source_2Gamekit_2Abilities_2GKGameplayAbility_8cpp">
-<area shape="rect" title=" " alt="" coords="2767,5,2950,47"/>
-<area shape="rect" href="GKGameplayAbility_8h.html" title=" " alt="" coords="1175,295,1401,337"/>
-<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="1413,489,1563,515"/>
-<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="1855,481,2006,523"/>
-<area shape="rect" href="GKAbilityTask__MoveToDestination_8h.html" title=" " alt="" coords="2457,295,2753,337"/>
-<area shape="rect" href="GKAbilityTask__PlayMontageAndWaitForEvent_8h.html" title=" " alt="" coords="2189,288,2433,344"/>
-<area shape="rect" href="GKAbilitySystemComponent_8h.html" title=" " alt="" coords="757,191,957,233"/>
-<area shape="rect" href="GKAbilitySystemGlobals_8h.html" title=" " alt="" coords="2947,95,3147,136"/>
-<area shape="rect" href="GKCastPointAnimNotify_8h.html" title=" " alt="" coords="3472,295,3659,337"/>
-<area shape="rect" href="GKTargetType_8h.html" title=" " alt="" coords="264,295,461,337"/>
-<area shape="rect" href="GKAbilityTarget__PlayerControllerTrace_8h.html" title=" " alt="" coords="2582,184,2821,240"/>
-<area shape="rect" href="GKAbilityTask__WaitTargetData_8h.html" title=" " alt="" coords="3799,295,4033,337"/>
-<area shape="rect" href="GKCharacter_8h.html" title=" " alt="" coords="1475,95,1627,136"/>
-<area shape="rect" href="GKPlayerController_8h.html" title=" " alt="" coords="1779,191,1941,233"/>
-<area shape="rect" href="GKAbilities_8h.html" title=" " alt="" coords="3170,102,3393,129"/>
-<area shape="rect" title=" " alt="" coords="3417,95,3607,136"/>
-<area shape="rect" title=" " alt="" coords="3631,95,3822,136"/>
-<area shape="rect" title=" " alt="" coords="3847,102,4033,129"/>
-<area shape="rect" title=" " alt="" coords="4058,95,4257,136"/>
-<area shape="rect" title=" " alt="" coords="4281,102,4452,129"/>
-<area shape="rect" title=" " alt="" coords="4476,102,4671,129"/>
-<area shape="rect" title=" " alt="" coords="4695,102,4902,129"/>
-<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="1829,392,2029,433"/>
-<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="672,392,872,433"/>
-<area shape="rect" title=" " alt="" coords="1202,399,1401,426"/>
-<area shape="rect" title=" " alt="" coords="947,399,1178,426"/>
-<area shape="rect" title=" " alt="" coords="2030,481,2218,523"/>
-<area shape="rect" title=" " alt="" coords="2901,571,3019,597"/>
-<area shape="rect" title=" " alt="" coords="2695,399,2897,426"/>
-<area shape="rect" title=" " alt="" coords="2343,399,2670,426"/>
-<area shape="rect" title=" " alt="" coords="2105,392,2319,433"/>
-<area shape="rect" href="GKAbilityTarget__Actor_8h.html" title=" " alt="" coords="1966,295,2165,337"/>
-<area shape="rect" title=" " alt="" coords="952,303,1152,329"/>
-<area shape="rect" title=" " alt="" coords="587,303,877,329"/>
-<area shape="rect" title=" " alt="" coords="4821,199,4995,225"/>
-<area shape="rect" title=" " alt="" coords="4534,199,4797,225"/>
-<area shape="rect" title=" " alt="" coords="3557,392,3734,433"/>
-<area shape="rect" title=" " alt="" coords="3758,399,3943,426"/>
-<area shape="rect" title=" " alt="" coords="3023,399,3278,426"/>
-<area shape="rect" title=" " alt="" coords="222,392,410,433"/>
-<area shape="rect" title=" " alt="" coords="5,399,197,426"/>
-<area shape="rect" title=" " alt="" coords="3285,303,3448,329"/>
-<area shape="rect" title=" " alt="" coords="3303,399,3481,426"/>
-<area shape="rect" title=" " alt="" coords="2976,295,3211,337"/>
-<area shape="rect" title=" " alt="" coords="4019,399,4195,426"/>
-<area shape="rect" title=" " alt="" coords="4219,392,4407,433"/>
-<area shape="rect" href="GKAttributeSet_8h.html" title=" " alt="" coords="1033,191,1247,233"/>
-<area shape="rect" href="GKSelectableInterface_8h.html" title=" " alt="" coords="1649,481,1831,523"/>
-<area shape="rect" href="GKUnitStatic_8h.html" title=" " alt="" coords="1272,191,1424,233"/>
-<area shape="rect" href="GKInventoryInterface_8h.html" title=" " alt="" coords="1449,191,1653,233"/>
+<area shape="rect" title=" " alt="" coords="3485,5,3667,47"/>
+<area shape="rect" href="GKGameplayAbility_8h.html" title=" " alt="" coords="1186,295,1411,337"/>
+<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="962,489,1113,515"/>
+<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="3927,481,4078,523"/>
+<area shape="rect" href="GKAbilityTask__MoveToDestination_8h.html" title=" " alt="" coords="2845,295,3141,337"/>
+<area shape="rect" href="GKAbilityTask__PlayMontageAndWaitForEvent_8h.html" title=" " alt="" coords="2577,288,2821,344"/>
+<area shape="rect" href="GKAbilities_8h.html" title=" " alt="" coords="3783,102,4006,129"/>
+<area shape="rect" href="GKAbilitySystemComponent_8h.html" title=" " alt="" coords="721,191,921,233"/>
+<area shape="rect" href="GKAbilitySystemGlobals_8h.html" title=" " alt="" coords="3408,95,3608,136"/>
+<area shape="rect" title=" " alt="" coords="3741,199,3915,225"/>
+<area shape="rect" href="GKCastPointAnimNotify_8h.html" title=" " alt="" coords="3859,295,4045,337"/>
+<area shape="rect" href="GKTargetType_8h.html" title=" " alt="" coords="387,295,584,337"/>
+<area shape="rect" href="GKAbilityTarget__PlayerControllerTrace_8h.html" title=" " alt="" coords="2182,184,2421,240"/>
+<area shape="rect" href="GKAbilityTask__WaitTargetData_8h.html" title=" " alt="" coords="3165,295,3400,337"/>
+<area shape="rect" href="GKCharacter_8h.html" title=" " alt="" coords="165,95,317,136"/>
+<area shape="rect" href="GKPlayerController_8h.html" title=" " alt="" coords="945,191,1106,233"/>
+<area shape="rect" title=" " alt="" coords="4030,95,4221,136"/>
+<area shape="rect" title=" " alt="" coords="4245,95,4435,136"/>
+<area shape="rect" title=" " alt="" coords="4460,102,4647,129"/>
+<area shape="rect" title=" " alt="" coords="4671,95,4870,136"/>
+<area shape="rect" title=" " alt="" coords="4895,102,5065,129"/>
+<area shape="rect" title=" " alt="" coords="5089,102,5284,129"/>
+<area shape="rect" title=" " alt="" coords="5309,102,5515,129"/>
+<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="1755,392,1955,433"/>
+<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="749,392,949,433"/>
+<area shape="rect" title=" " alt="" coords="1175,399,1374,426"/>
+<area shape="rect" title=" " alt="" coords="1398,399,1629,426"/>
+<area shape="rect" title=" " alt="" coords="1761,481,1949,523"/>
+<area shape="rect" title=" " alt="" coords="3055,571,3172,597"/>
+<area shape="rect" title=" " alt="" coords="2823,399,3025,426"/>
+<area shape="rect" title=" " alt="" coords="2269,399,2595,426"/>
+<area shape="rect" title=" " alt="" coords="2030,392,2245,433"/>
+<area shape="rect" href="GKLog_8h.html" title=" " alt="" coords="4040,199,4176,225"/>
+<area shape="rect" href="GKAbilityTarget__Actor_8h.html" title=" " alt="" coords="1686,295,1885,337"/>
+<area shape="rect" title=" " alt="" coords="163,303,363,329"/>
+<area shape="rect" title=" " alt="" coords="609,303,898,329"/>
+<area shape="rect" title=" " alt="" coords="3542,199,3717,225"/>
+<area shape="rect" title=" " alt="" coords="3255,199,3518,225"/>
+<area shape="rect" title=" " alt="" coords="3927,392,4105,433"/>
+<area shape="rect" title=" " alt="" coords="3615,399,3801,426"/>
+<area shape="rect" title=" " alt="" coords="4129,399,4383,426"/>
+<area shape="rect" title=" " alt="" coords="199,392,387,433"/>
+<area shape="rect" title=" " alt="" coords="412,399,604,426"/>
+<area shape="rect" title=" " alt="" coords="2389,303,2552,329"/>
+<area shape="rect" title=" " alt="" coords="2620,399,2799,426"/>
+<area shape="rect" title=" " alt="" coords="2029,295,2264,337"/>
+<area shape="rect" title=" " alt="" coords="3415,399,3591,426"/>
+<area shape="rect" title=" " alt="" coords="3202,392,3390,433"/>
+<area shape="rect" href="GKAttributeSet_8h.html" title=" " alt="" coords="134,191,349,233"/>
+<area shape="rect" href="GKSelectableInterface_8h.html" title=" " alt="" coords="345,481,527,523"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -166,6 +167,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4913d3d77c628c97ae4808c22566728d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6135f6e077a3d30415ddc5459ebb3732"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbility_8cpp.html#a6135f6e077a3d30415ddc5459ebb3732">IsTargetDataValid</a> (FGameplayAbilityTargetDataHandle TargetDataHandle)</td></tr>
 <tr class="separator:a6135f6e077a3d30415ddc5459ebb3732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa973ac4ccdcda808f870b1145822a2df"><td class="memItemLeft" align="right" valign="top">FGameplayTag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbility_8cpp.html#aa973ac4ccdcda808f870b1145822a2df">GetUniqueCoodownGameplayTag</a> (int Count)</td></tr>
+<tr class="separator:aa973ac4ccdcda808f870b1145822a2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adce0a323e5bfb7eb46959e928ea2536e"><td class="memItemLeft" align="right" valign="top">UGameplayEffect *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbility_8cpp.html#adce0a323e5bfb7eb46959e928ea2536e">NewPassiveRegenEffect</a> (UObject *Parent, FGameplayAttribute Attribute, float Value, float Period, FName name)</td></tr>
 <tr class="separator:adce0a323e5bfb7eb46959e928ea2536e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -198,6 +201,24 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa973ac4ccdcda808f870b1145822a2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa973ac4ccdcda808f870b1145822a2df">&#9670;&nbsp;</a></span>GetUniqueCoodownGameplayTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FGameplayTag GetUniqueCoodownGameplayTag </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Count</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

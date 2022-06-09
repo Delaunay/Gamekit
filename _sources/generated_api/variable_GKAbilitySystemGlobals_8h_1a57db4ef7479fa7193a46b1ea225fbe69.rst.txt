@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a57db4ef7479fa7193a46b1ea225fbe69:
+
+Variable FailureNetwork
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: FailureNetwork
+   :project: GameKit

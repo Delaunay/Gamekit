@@ -65,8 +65,6 @@ Included By
 
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
 
-- :ref:`file_Source_Gamekit_Characters_GKGASCharacter.cpp`
-
 
 
 

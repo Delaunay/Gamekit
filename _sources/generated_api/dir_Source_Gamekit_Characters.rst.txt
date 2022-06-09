@@ -19,8 +19,6 @@ Files
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.h`
 - :ref:`file_Source_Gamekit_Characters_GKEnhancedInputInterface.cpp`
 - :ref:`file_Source_Gamekit_Characters_GKEnhancedInputInterface.h`
-- :ref:`file_Source_Gamekit_Characters_GKGASCharacter.cpp`
-- :ref:`file_Source_Gamekit_Characters_GKGASCharacter.h`
 - :ref:`file_Source_Gamekit_Characters_GKPawnEnchancedInput.cpp`
 - :ref:`file_Source_Gamekit_Characters_GKPawnEnchancedInput.h`
 - :ref:`file_Source_Gamekit_Characters_GKSelectableInterface.cpp`

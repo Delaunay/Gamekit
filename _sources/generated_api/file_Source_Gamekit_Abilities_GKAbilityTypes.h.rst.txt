@@ -53,8 +53,6 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_GKTargetType.h`
 
-- :ref:`file_Source_Gamekit_Characters_GKGASCharacter.cpp`
-
 - :ref:`file_Source_Gamekit_Projectiles_GKAbilityEffectActor.h`
 
 

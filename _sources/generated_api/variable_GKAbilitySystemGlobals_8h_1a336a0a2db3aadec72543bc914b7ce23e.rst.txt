@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a336a0a2db3aadec72543bc914b7ce23e:
+
+Variable DispelStrong
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DispelStrong
+   :project: GameKit

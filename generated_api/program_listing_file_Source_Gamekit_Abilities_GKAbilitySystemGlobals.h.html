@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -118,9 +118,71 @@
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NativeGameplayTags.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAbilitySystemGlobals.generated.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Those are defined as native gameplay tag so they will always be available when gamekit is used</span>
+<span class="c1">//</span>
+<span class="c1">// The gameplay ability plugin makes those configurable, but in our case we rely on quite a bit of them</span>
+<span class="c1">// and we do not want user to spend too much time figuring out how to set this up</span>
+<span class="c1">// So it is better experience to the user to just define them and allow them to build on top of them later on</span>
+<span class="c1">//</span>
+<span class="c1">// clang-format off</span>
+<span class="cp">#define GKTAGS(GKTAG)\</span>
+<span class="cp">    GKTAG(AbilityExclusive, &quot;Ability.Exclusive&quot;,        TEXT(&quot;Used to tag abilities that cannot be casted during the activation of another&quot;)) \</span>
+<span class="cp">    GKTAG(CooldownParent,   &quot;Ability.Cooldown&quot;,         TEXT(&quot;Used for setbycaller GE&quot;)) \</span>
+<span class="cp">    GKTAG(CostParent,       &quot;Ability.Cost&quot;,             TEXT(&quot;Used for setbycaller GE&quot;)) \</span>
+<span class="cp">    GKTAG(AbilityMove,      &quot;Ability.Move&quot;,             TEXT(&quot;Tag movement abilities&quot;)) \</span>
+<span class="cp">    GKTAG(AnimationCastPoint,   &quot;Animation.CastPoint&quot;,  TEXT(&quot;Used to tag the moment inside an animation sequence when the ability should apply its effects&quot;)) \</span>
+<span class="cp">    GKTAG(Dispel,           &quot;Dispel&quot;,                   TEXT(&quot;Removes malus effect&quot;)) \</span>
+<span class="cp">    GKTAG(DispelDebuff,     &quot;Dispel.Debuff&quot;,            TEXT(&quot;Remove all debuffs with level equal or lower&quot;)) \</span>
+<span class="cp">    GKTAG(DispelDisable,    &quot;Dispel.Disable&quot;,           TEXT(&quot;Remove all disables with level equal or lower&quot;)) \</span>
+<span class="cp">    GKTAG(DispelMinor,      &quot;Dispel.Level.Minor&quot;,       TEXT(&quot;Dispel level&quot;)) \</span>
+<span class="cp">    GKTAG(DispelMedium,     &quot;Dispel.Level.Medium&quot;,      TEXT(&quot;Dispel level&quot;)) \</span>
+<span class="cp">    GKTAG(DispelStrong,     &quot;Dispel.Level.Strong&quot;,      TEXT(&quot;Dispel level&quot;)) \</span>
+<span class="cp">    GKTAG(Buff,                 &quot;Buff&quot;,                 TEXT(&quot;&quot;)) \</span>
+<span class="cp">    GKTAG(BufffMinor,           &quot;Buff.Level.Minor&quot;,     TEXT(&quot;Buff level&quot;)) \</span>
+<span class="cp">    GKTAG(BuffMedium,           &quot;Buff.Level.Medium&quot;,    TEXT(&quot;Buff level&quot;)) \</span>
+<span class="cp">    GKTAG(BuffStrong,           &quot;Buff.Level.Strong&quot;,    TEXT(&quot;Buff level&quot;)) \</span>
+<span class="cp">    GKTAG(BuffImmunity,         &quot;Buff.Immunity&quot;,        TEXT(&quot;Grant immunity to debuffs and disables&quot;)) \</span>
+<span class="cp">    GKTAG(BuffDebuffImmunity,   &quot;Buff.Immunity.Debuff&quot;, TEXT(&quot;Grant immunity to debuffs&quot;)) \</span>
+<span class="cp">    GKTAG(BuffDisableImmunity,  &quot;Buff.Immunity.Disable&quot;,TEXT(&quot;Grant immunity to disables&quot;)) \</span>
+<span class="cp">    GKTAG(Disable,          &quot;Disable&quot;,                  TEXT(&quot;&quot;)) \</span>
+<span class="cp">    GKTAG(DisableMinor,     &quot;Disable.Level.Minor&quot;,      TEXT(&quot;Disable level&quot;)) \</span>
+<span class="cp">    GKTAG(DisableMedium,    &quot;Disable.Level.Medium&quot;,     TEXT(&quot;Disable level&quot;)) \</span>
+<span class="cp">    GKTAG(DisableStrong,    &quot;Disable.Level.Strong&quot;,     TEXT(&quot;Disable level&quot;)) \</span>
+<span class="cp">    GKTAG(DisableStun,      &quot;Disable.Stun&quot;,             TEXT(&quot;Disable the character completly (no spells, no items, no movements)&quot;)) \</span>
+<span class="cp">    GKTAG(DisableSilence,   &quot;Disable.Silence&quot;,          TEXT(&quot;Stops current spells and prevent future spell casting&quot;)) \</span>
+<span class="cp">    GKTAG(DisableRoot,      &quot;Disable.Root&quot;,             TEXT(&quot;Stop all movements and prevent future movements&quot;)) \</span>
+<span class="cp">    GKTAG(DisableBreak,     &quot;Disable.Break&quot;,            TEXT(&quot;Stop all passive abilities&quot;)) \</span>
+<span class="cp">    GKTAG(DisableMute,      &quot;Disable.Mute&quot;,             TEXT(&quot;Stop activating items&quot;)) \</span>
+<span class="cp">    GKTAG(DisableDisarmed,  &quot;Disable.Disarmed&quot;,         TEXT(&quot;Cannot perform physical attacks&quot;)) \</span>
+<span class="cp">    GKTAG(DisableEtheral,   &quot;Disable.Etheral&quot;,          TEXT(&quot;Immune to physical attacks but cannot do physical attacks&quot;)) \</span>
+<span class="cp">    GKTAG(DisableDead,      &quot;Disable.Dead&quot;,             TEXT(&quot;&quot;)) \</span>
+<span class="cp">    GKTAG(Debuff,               &quot;Debuff&quot;,               TEXT(&quot;&quot;)) \</span>
+<span class="cp">    GKTAG(DebuffMinor,          &quot;Debuff.Level.Minor&quot;,   TEXT(&quot;Debuff level&quot;)) \</span>
+<span class="cp">    GKTAG(DebuffMedium,         &quot;Debuff.Level.Medium&quot;,  TEXT(&quot;Debuff level&quot;)) \</span>
+<span class="cp">    GKTAG(DebuffStrong,         &quot;Debuff.Level.Strong&quot;,  TEXT(&quot;Debuff level&quot;)) \</span>
+<span class="cp">    GKTAG(FailureBlocked,   &quot;Failure.Blocked&quot;,          TEXT(&quot;Ability is blocked by a Tag&quot;)) \</span>
+<span class="cp">    GKTAG(FailureCooldown,  &quot;Failure.Cooldown&quot;,         TEXT(&quot;Ability is not ready yet&quot;)) \</span>
+<span class="cp">    GKTAG(FailureDead,      &quot;Failure.Dead&quot;,             TEXT(&quot;Character is dead&quot;)) \</span>
+<span class="cp">    GKTAG(FailureCost,      &quot;Failure.Cost&quot;,             TEXT(&quot;Ability cost is not met&quot;)) \</span>
+<span class="cp">    GKTAG(FailureMissing,   &quot;Failure.Missing&quot;,          TEXT(&quot;Ability requirements are not met&quot;)) \</span>
+<span class="cp">    GKTAG(FailureNetwork,   &quot;Failure.Network&quot;,          TEXT(&quot;Internal error&quot;)) \</span>
+<span class="cp">    GKTAG(FailureNotLearned,&quot;Failure.NotLearned&quot;,       TEXT(&quot;Ability was not learned&quot;))</span>
+
+
+<span class="c1">// clang-format on</span>
+
+<span class="cp">#define GKTAG(Name, Tag, Comment) extern FNativeGameplayTag Name;</span>
+<span class="w">    </span><span class="n">GKTAGS</span><span class="p">(</span><span class="n">GKTAG</span><span class="p">)</span><span class="w"></span>
+<span class="cp">#undef GKTAG</span>
+
+<span class="c1">// #define GKTAG(Name, _) FGameplayTag Get ## Name();</span>
+<span class="c1">// GKTAGS(GKTAG);</span>
+<span class="c1">// #undef GKTAG</span>
 
 <span class="n">UCLASS</span><span class="p">(</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Game</span><span class="p">)</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UAbilitySystemGlobals</span><span class="w"></span>
@@ -128,36 +190,24 @@
 <span class="w">    </span><span class="n">GENERATED_UCLASS_BODY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">AnimationCastPointTag</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">AnimationCastPointName</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">ActivateFailNotYetLearnedTag</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">ActivateFailNotYetLearnedName</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">DeathTag</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">DeathName</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">DeathDispelTag</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">DeathDispelName</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="w"> </span><span class="n">GetGlobals</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">InitGlobalTags</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownDataTable</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FSoftObjectPath</span><span class="w"> </span><span class="n">WhateverConfigIwanttosee</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">//</span>
 <span class="w">    </span><span class="c1">// THINK: We could a secondary global curve here for our curve generation system</span>
 <span class="w">    </span><span class="c1">//</span>
 <span class="p">};</span><span class="w"></span>
+
+
+<span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="nf">GetCooldownTable</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

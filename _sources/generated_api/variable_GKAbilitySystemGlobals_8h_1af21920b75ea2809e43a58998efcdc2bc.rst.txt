@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1af21920b75ea2809e43a58998efcdc2bc:
+
+Variable AnimationCastPoint
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: AnimationCastPoint
+   :project: GameKit

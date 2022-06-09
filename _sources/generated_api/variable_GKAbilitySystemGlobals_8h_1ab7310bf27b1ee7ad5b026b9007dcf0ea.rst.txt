@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1ab7310bf27b1ee7ad5b026b9007dcf0ea:
+
+Variable DispelMedium
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DispelMedium
+   :project: GameKit

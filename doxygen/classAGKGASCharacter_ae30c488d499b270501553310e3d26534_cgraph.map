@@ -1,4 +1,0 @@
-<map id="AGKGASCharacter::GetActivatableAbilities" name="AGKGASCharacter::GetActivatableAbilities">
-<area shape="rect" id="node1" title="Returns the Abilities that can be activated by the Player." alt="" coords="5,5,251,47"/>
-<area shape="rect" id="node2" href="$classAGKGASCharacter.html#a33137badf4a2bcd33ef846b47e96dd8e" title="returns the associated ASC associated with this actor" alt="" coords="299,5,512,47"/>
-</map>

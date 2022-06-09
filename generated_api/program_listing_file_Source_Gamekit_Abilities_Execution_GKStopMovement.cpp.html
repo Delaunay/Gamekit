@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -119,6 +119,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemComponent.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAttributeSet.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Abilities/GKMovementAbility.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/MovementComponent.h&quot;</span><span class="cp"></span>
@@ -128,8 +129,7 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">AbilityToStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGameplayAbility</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Ability.Move&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">AbilityTagsToStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(</span><span class="n">Move</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilityTagsToStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(</span><span class="n">AbilityMove</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">bUseTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

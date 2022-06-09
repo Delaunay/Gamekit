@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a2c4cdcf61e1d52b15b67fa7b0e34689a:
+
+Variable CooldownParent
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: CooldownParent
+   :project: GameKit

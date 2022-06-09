@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbility_8cpp_1aa973ac4ccdcda808f870b1145822a2df:
+
+Function GetUniqueCoodownGameplayTag
+====================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetUniqueCoodownGameplayTag(int)
+   :project: GameKit

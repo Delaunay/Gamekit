@@ -1,28 +1,34 @@
 <map id="UGKAbilityWidget::SetupListeners" name="UGKAbilityWidget::SetupListeners">
-<area shape="rect" id="node1" title=" " alt="" coords="5,585,248,611"/>
-<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ad49d7e5a608dd1fd715734de0f804552" title="Returns the Cost attributes to listen to." alt="" coords="331,23,512,64"/>
-<area shape="rect" id="node4" href="$classUGKAsyncTaskAttributeChanged.html#ae5ab7296af18db33bb16b001e96ba02f" title=" " alt="" coords="305,120,538,161"/>
-<area shape="rect" id="node6" href="$classUGKAsyncTaskCooldownChanged.html#a75007048dbc7cc34fee6a880e3bbdef3" title=" " alt="" coords="301,251,541,292"/>
-<area shape="rect" id="node11" href="$classUGKAsyncTask__GameplayEffectChanged.html#a7fb9ba9ac8342bfe8452eac1146d4e41" title=" " alt="" coords="296,398,547,454"/>
-<area shape="rect" id="node16" href="$classUGKAbilityWidget.html#a9d8dd8e8a78dd6a05220c18481d94044" title=" " alt="" coords="318,479,525,520"/>
-<area shape="rect" id="node18" href="$classUGKAbilityWidget.html#a5268d48f4f7258ad5da5e43495336036" title=" " alt="" coords="318,544,525,585"/>
-<area shape="rect" id="node20" href="$classUGKAbilityWidget.html#ac9a4b7206ef7cfe6c1a57b02308857f3" title=" " alt="" coords="316,609,527,651"/>
-<area shape="rect" id="node22" href="$classUGKAbilityWidget.html#a87ceabfe3f6f7e66f46fccadf0daad4d" title="This ability leveled up." alt="" coords="318,675,525,716"/>
-<area shape="rect" id="node23" href="$classUGKAbilityWidget.html#a7bb158cc03e411863214aeb6ea9cfdc1" title=" " alt="" coords="320,740,523,781"/>
-<area shape="rect" id="node24" href="$classUGKAbilityWidget.html#ab8e0102c7fd0939d4d70be5bccc6edbc" title=" " alt="" coords="298,805,545,847"/>
-<area shape="rect" id="node25" href="$classUGKAbilityWidget.html#a73a6993e2a325d46fc3d9ee78d984bc0" title=" " alt="" coords="297,871,546,898"/>
-<area shape="rect" id="node26" href="$classUGKAbilityWidget.html#a31fce39459a5bb9a78dc661e34b49e2f" title="User is currently selecting a target for this ability." alt="" coords="323,923,519,964"/>
-<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#ade5b6e530724364b947e57e5457d6a4f" title=" " alt="" coords="647,5,833,47"/>
-<area shape="rect" id="node5" href="$classUGKAsyncTaskAttributeChanged.html#ac64d808de940ee73900812d25f33e708" title=" " alt="" coords="623,71,857,112"/>
-<area shape="rect" id="node7" href="$classUGKAsyncTaskCooldownChanged.html#a7d1112ee7aaba2416bbf6276a9568b37" title=" " alt="" coords="620,136,860,177"/>
-<area shape="rect" id="node8" href="$classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c" title=" " alt="" coords="620,201,860,243"/>
-<area shape="rect" id="node9" href="$classUGKAsyncTaskCooldownChanged.html#aaa52e7f0481edd48eb04720eb71b9767" title=" " alt="" coords="595,267,885,308"/>
-<area shape="rect" id="node10" href="$classUGKAsyncTaskCooldownChanged.html#abc43ed35085750b4206cef8c0bfcd8ef" title=" " alt="" coords="964,267,1204,308"/>
-<area shape="rect" id="node12" href="$classUGKAsyncTask__GameplayEffectChanged.html#a0565cc1bef40c0f05e89ecf6715c4b0b" title=" " alt="" coords="625,332,855,373"/>
-<area shape="rect" id="node13" href="$classUGKAsyncTask__GameplayEffectChanged.html#a3da7ae6b82fb83d67ed8b398ba6d89d5" title=" " alt="" coords="611,398,869,454"/>
-<area shape="rect" id="node15" href="$classUGKAsyncTask__GameplayEffectChanged.html#a5bf2229e7c4655663e7c83eac490f56a" title=" " alt="" coords="601,478,879,534"/>
-<area shape="rect" id="node14" href="$classUGKAsyncTask__GameplayEffectChanged.html#a7fa23b8236cd0a68da4a466f19d17e12" title=" " alt="" coords="933,398,1235,454"/>
-<area shape="rect" id="node17" href="$classUGKAbilityWidget.html#af8c2be5e21a8ef9968fe16e9f547cf46" title="This ability cooldown started." alt="" coords="637,559,843,600"/>
-<area shape="rect" id="node19" href="$classUGKAbilityWidget.html#ac7a049c5396a0d681216cdbf235d00be" title="This ability cooldown ended." alt="" coords="637,624,843,665"/>
-<area shape="rect" id="node21" href="$classUGKAbilityWidget.html#a0584ba9a950af679858cffc9d626b0a6" title="Mana is lacking." alt="" coords="637,689,843,731"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,618,248,645"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ad49d7e5a608dd1fd715734de0f804552" title="Returns the Cost attributes to listen to." alt="" coords="331,52,512,93"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a5bb8d4bf5ed1a4352ced038aca1b01db" title=" " alt="" coords="341,133,501,175"/>
+<area shape="rect" id="node10" href="$classUGKAsyncTaskAttributeChanged.html#ae5ab7296af18db33bb16b001e96ba02f" title=" " alt="" coords="305,231,538,272"/>
+<area shape="rect" id="node12" href="$classUGKAsyncTaskCooldownChanged.html#a75007048dbc7cc34fee6a880e3bbdef3" title=" " alt="" coords="301,361,541,403"/>
+<area shape="rect" id="node17" href="$classUGKAsyncTask__GameplayEffectChanged.html#a7fb9ba9ac8342bfe8452eac1146d4e41" title=" " alt="" coords="296,465,547,521"/>
+<area shape="rect" id="node22" href="$classUGKAbilityWidget.html#a9d8dd8e8a78dd6a05220c18481d94044" title=" " alt="" coords="318,545,525,587"/>
+<area shape="rect" id="node24" href="$classUGKAbilityWidget.html#a5268d48f4f7258ad5da5e43495336036" title=" " alt="" coords="318,611,525,652"/>
+<area shape="rect" id="node26" href="$classUGKAbilityWidget.html#ac9a4b7206ef7cfe6c1a57b02308857f3" title=" " alt="" coords="316,676,527,717"/>
+<area shape="rect" id="node28" href="$classUGKAbilityWidget.html#a87ceabfe3f6f7e66f46fccadf0daad4d" title="This ability leveled up." alt="" coords="318,741,525,783"/>
+<area shape="rect" id="node29" href="$classUGKAbilityWidget.html#a7bb158cc03e411863214aeb6ea9cfdc1" title=" " alt="" coords="320,807,523,848"/>
+<area shape="rect" id="node30" href="$classUGKAbilityWidget.html#ab8e0102c7fd0939d4d70be5bccc6edbc" title=" " alt="" coords="298,872,545,913"/>
+<area shape="rect" id="node31" href="$classUGKAbilityWidget.html#a73a6993e2a325d46fc3d9ee78d984bc0" title=" " alt="" coords="297,938,546,965"/>
+<area shape="rect" id="node32" href="$classUGKAbilityWidget.html#a31fce39459a5bb9a78dc661e34b49e2f" title="User is currently selecting a target for this ability." alt="" coords="323,989,519,1031"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#ade5b6e530724364b947e57e5457d6a4f" title=" " alt="" coords="647,43,833,84"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a64646ca9b8301a83cecda3b3fb6a72e4" title=" " alt="" coords="635,108,845,149"/>
+<area shape="rect" id="node6" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="1004,79,1164,120"/>
+<area shape="rect" id="node9" href="$GKGameplayAbility_8cpp.html#aa973ac4ccdcda808f870b1145822a2df" title=" " alt="" coords="964,145,1204,171"/>
+<area shape="rect" id="node7" href="$classUGKGameplayAbility.html#a0715366e9cd46e19e34ae3652e3f5828" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="1288,5,1448,47"/>
+<area shape="rect" id="node8" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="1283,71,1453,127"/>
+<area shape="rect" id="node11" href="$classUGKAsyncTaskAttributeChanged.html#ac64d808de940ee73900812d25f33e708" title=" " alt="" coords="623,173,857,215"/>
+<area shape="rect" id="node13" href="$classUGKAsyncTaskCooldownChanged.html#a7d1112ee7aaba2416bbf6276a9568b37" title=" " alt="" coords="620,239,860,280"/>
+<area shape="rect" id="node14" href="$classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c" title=" " alt="" coords="620,304,860,345"/>
+<area shape="rect" id="node15" href="$classUGKAsyncTaskCooldownChanged.html#aaa52e7f0481edd48eb04720eb71b9767" title=" " alt="" coords="595,369,885,411"/>
+<area shape="rect" id="node16" href="$classUGKAsyncTaskCooldownChanged.html#abc43ed35085750b4206cef8c0bfcd8ef" title=" " alt="" coords="964,369,1204,411"/>
+<area shape="rect" id="node18" href="$classUGKAsyncTask__GameplayEffectChanged.html#a0565cc1bef40c0f05e89ecf6715c4b0b" title=" " alt="" coords="625,435,855,476"/>
+<area shape="rect" id="node19" href="$classUGKAsyncTask__GameplayEffectChanged.html#a3da7ae6b82fb83d67ed8b398ba6d89d5" title=" " alt="" coords="611,501,869,557"/>
+<area shape="rect" id="node21" href="$classUGKAsyncTask__GameplayEffectChanged.html#a5bf2229e7c4655663e7c83eac490f56a" title=" " alt="" coords="601,581,879,637"/>
+<area shape="rect" id="node20" href="$classUGKAsyncTask__GameplayEffectChanged.html#a7fa23b8236cd0a68da4a466f19d17e12" title=" " alt="" coords="933,501,1235,557"/>
+<area shape="rect" id="node23" href="$classUGKAbilityWidget.html#af8c2be5e21a8ef9968fe16e9f547cf46" title="This ability cooldown started." alt="" coords="637,661,843,703"/>
+<area shape="rect" id="node25" href="$classUGKAbilityWidget.html#ac7a049c5396a0d681216cdbf235d00be" title="This ability cooldown ended." alt="" coords="637,727,843,768"/>
+<area shape="rect" id="node27" href="$classUGKAbilityWidget.html#a0584ba9a950af679858cffc9d626b0a6" title="Mana is lacking." alt="" coords="637,792,843,833"/>
 </map>

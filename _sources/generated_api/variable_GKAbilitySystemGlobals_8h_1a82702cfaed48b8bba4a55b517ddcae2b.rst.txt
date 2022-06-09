@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a82702cfaed48b8bba4a55b517ddcae2b:
+
+Variable FailureCooldown
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: FailureCooldown
+   :project: GameKit

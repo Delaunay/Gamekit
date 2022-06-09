@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilitySystemGlobals_8h_1ae3046ee6181d6f6fe7d52e3b3294f5e9:
+
+Function GetCooldownTable()
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetCooldownTable()
+   :project: GameKit

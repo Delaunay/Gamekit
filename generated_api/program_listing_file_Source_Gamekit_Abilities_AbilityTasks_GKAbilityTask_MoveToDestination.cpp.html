@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -120,6 +120,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKUtilityLibrary.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;DrawDebugHelpers.h&quot;</span><span class="cp"></span>
@@ -465,8 +466,7 @@
 <span class="w">        </span><span class="n">bRotationFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">        </span><span class="c1">// if rooted we cannot move</span>
-<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">Root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="s">&quot;Debuff.Root&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRooted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">HasMatchingGameplayTag</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRooted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">HasMatchingGameplayTag</span><span class="p">(</span><span class="n">DisableRoot</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bTurnOnly</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">bRooted</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>

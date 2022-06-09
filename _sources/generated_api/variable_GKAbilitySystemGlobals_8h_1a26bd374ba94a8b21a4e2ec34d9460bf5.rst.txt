@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a26bd374ba94a8b21a4e2ec34d9460bf5:
+
+Variable BuffStrong
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BuffStrong
+   :project: GameKit

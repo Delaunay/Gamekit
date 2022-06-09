@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -189,16 +189,16 @@
 <span class="w">              </span><span class="n">meta</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ScriptName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GetAbilityStatic&quot;</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">K2_GetAbilityStatic</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityStatic</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Valid</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilityStatic</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnDataTableChanged_Native</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnDataTableChanged_Native</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityDef</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">LoadFromDataTable</span><span class="p">(</span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AbilityDef</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">PostInitProperties</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityStatic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="o">*</span><span class="n">AbilityStatic</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Animations</span>
 <span class="w">    </span><span class="c1">// ----------</span>
@@ -310,7 +310,9 @@
 <span class="w">    </span><span class="c1">// UGameplayAbility Overrides</span>
 <span class="w">    </span><span class="c1">//---------------------------</span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">GetCooldownGameplayEffect</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">GetCooldownTags</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">GetCooldownTagsFromSpec</span><span class="p">(</span><span class="n">FGameplayAbilitySpec</span><span class="o">*</span><span class="w"> </span><span class="n">Spec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownEffectInstance</span><span class="p">;</span><span class="w"></span>
@@ -351,7 +353,6 @@
 
 <span class="w">    </span><span class="c1">// Dynamic Init</span>
 <span class="w">    </span><span class="c1">// ------------</span>
-<span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">NewCooldownEffectFromConfig</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Durations</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UGameplayEffect</span><span class="w"> </span><span class="o">*</span><span class="nf">NewCostEffectFromConfig</span><span class="p">(</span><span class="n">FGKAbilityCost</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Conf</span><span class="p">);</span><span class="w"></span>
 

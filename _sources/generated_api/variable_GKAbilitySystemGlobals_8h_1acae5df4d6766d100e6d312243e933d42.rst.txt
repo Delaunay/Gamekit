@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1acae5df4d6766d100e6d312243e933d42:
+
+Variable AbilityExclusive
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: AbilityExclusive
+   :project: GameKit

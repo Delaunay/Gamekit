@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1aed4d73c6fd5ee4096ad30f7642e67de0:
+
+Variable BufffMinor
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BufffMinor
+   :project: GameKit

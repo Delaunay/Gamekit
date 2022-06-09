@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">8a706ee97</span>
+   &#160;<span id="projectnumber">98b239443</span>
    </div>
   </td>
  </tr>
@@ -73,24 +73,120 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">GKAbilitySystemGlobals.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="GKAbilitySystemGlobals_8h_source.html">Gamekit/Abilities/GKAbilitySystemGlobals.h</a>&quot;</code><br />
+<code>#include &quot;NativeGameplayTags.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for GKAbilitySystemGlobals.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="GKAbilitySystemGlobals_8cpp__incl.png" border="0" usemap="#Source_2Gamekit_2Abilities_2GKAbilitySystemGlobals_8cpp" alt=""/></div>
 <map name="Source_2Gamekit_2Abilities_2GKAbilitySystemGlobals_8cpp" id="Source_2Gamekit_2Abilities_2GKAbilitySystemGlobals_8cpp">
-<area shape="rect" title=" " alt="" coords="157,5,369,47"/>
-<area shape="rect" href="GKAbilitySystemGlobals_8h.html" title=" " alt="" coords="163,95,363,136"/>
+<area shape="rect" title=" " alt="" coords="440,5,652,47"/>
+<area shape="rect" href="GKAbilitySystemGlobals_8h.html" title=" " alt="" coords="378,95,578,136"/>
+<area shape="rect" title=" " alt="" coords="634,184,807,211"/>
 <area shape="rect" title=" " alt="" coords="5,184,180,211"/>
 <area shape="rect" title=" " alt="" coords="205,184,322,211"/>
 <area shape="rect" title=" " alt="" coords="347,184,609,211"/>
 </map>
 </div>
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0ed1499bb2ade62da374ef4c9d5d6603"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKAbilitySystemGlobals_8cpp.html#a0ed1499bb2ade62da374ef4c9d5d6603">GKTAG</a>(Name,  Tag,  DevComment)</td></tr>
+<tr class="separator:a0ed1499bb2ade62da374ef4c9d5d6603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a83c17172670f158181e3c8c6cafb9654"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKAbilitySystemGlobals_8cpp.html#a83c17172670f158181e3c8c6cafb9654">GKTAGS</a> (<a class="el" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a>)</td></tr>
+<tr class="separator:a83c17172670f158181e3c8c6cafb9654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3046ee6181d6f6fe7d52e3b3294f5e9"><td class="memItemLeft" align="right" valign="top">UDataTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKAbilitySystemGlobals_8cpp.html#ae3046ee6181d6f6fe7d52e3b3294f5e9">GetCooldownTable</a> ()</td></tr>
+<tr class="separator:ae3046ee6181d6f6fe7d52e3b3294f5e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a0ed1499bb2ade62da374ef4c9d5d6603"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed1499bb2ade62da374ef4c9d5d6603">&#9670;&nbsp;</a></span>GKTAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GKTAG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Tag, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">DevComment&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    FNativeGameplayTag Name(                                \</div>
+<div class="line">        UE_PLUGIN_NAME,                                     \</div>
+<div class="line">        UE_MODULE_NAME,                                     \</div>
+<div class="line">        Tag,                                                \</div>
+<div class="line">        DevComment,                                         \</div>
+<div class="line">        ENativeGameplayTagToken::PRIVATE_USE_MACRO_INSTEAD  \</div>
+<div class="line">    );</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae3046ee6181d6f6fe7d52e3b3294f5e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3046ee6181d6f6fe7d52e3b3294f5e9">&#9670;&nbsp;</a></span>GetCooldownTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UDataTable* GetCooldownTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83c17172670f158181e3c8c6cafb9654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c17172670f158181e3c8c6cafb9654">&#9670;&nbsp;</a></span>GKTAGS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GKTAGS </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

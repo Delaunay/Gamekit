@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -223,6 +223,10 @@
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span><span class="w"> </span><span class="n">Reliable</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ServerTryActivateAbility_Point</span><span class="p">(</span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">GetAbilityCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivatableAbilities</span><span class="p">.</span><span class="n">Items</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// protected:</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">Initialized</span><span class="p">;</span><span class="w"></span>

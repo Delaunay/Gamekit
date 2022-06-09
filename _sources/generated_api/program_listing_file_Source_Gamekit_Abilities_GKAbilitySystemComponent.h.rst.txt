@@ -123,6 +123,10 @@ Program Listing for File GKAbilitySystemComponent.h
        UFUNCTION(Server, Reliable)
        void ServerTryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
    
+       int GetAbilityCount() const {
+           return ActivatableAbilities.Items.Num();
+       }
+   
        // protected:
        bool Initialized;
    

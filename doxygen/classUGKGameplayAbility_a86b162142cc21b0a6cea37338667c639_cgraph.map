@@ -1,4 +1,8 @@
 <map id="UGKGameplayAbility::ApplyCooldown" name="UGKGameplayAbility::ApplyCooldown">
-<area shape="rect" id="node1" title="Apply Cooldown without using GameEffect CDO." alt="" coords="5,13,165,54"/>
-<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ad4e41425ebbcfaa77b664d04de3c48f6" title="Apply GameEffect without using GameEffect CDO." alt="" coords="213,5,440,61"/>
+<area shape="rect" id="node1" title="Apply Cooldown without using GameEffect CDO." alt="" coords="5,108,165,149"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="512,79,672,120"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a64646ca9b8301a83cecda3b3fb6a72e4" title=" " alt="" coords="213,137,424,179"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#a0715366e9cd46e19e34ae3652e3f5828" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="765,5,925,47"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="760,71,931,127"/>
+<area shape="rect" id="node6" href="$GKGameplayAbility_8cpp.html#aa973ac4ccdcda808f870b1145822a2df" title=" " alt="" coords="472,145,712,171"/>
 </map>

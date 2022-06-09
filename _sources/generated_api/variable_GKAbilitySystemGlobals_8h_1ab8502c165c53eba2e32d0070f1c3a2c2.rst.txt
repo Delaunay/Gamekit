@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1ab8502c165c53eba2e32d0070f1c3a2c2:
+
+Variable FailureNotLearned
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: FailureNotLearned
+   :project: GameKit

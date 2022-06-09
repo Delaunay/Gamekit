@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                8a706ee97
+                98b239443
 
               </div>
 <div role="search">
@@ -114,33 +114,57 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
+<span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NativeGameplayTags.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#define GKTAG(Name, Tag, DevComment)\</span>
+<span class="cp">    FNativeGameplayTag Name(                                \</span>
+<span class="cp">        UE_PLUGIN_NAME,                                     \</span>
+<span class="cp">        UE_MODULE_NAME,                                     \</span>
+<span class="cp">        Tag,                                                \</span>
+<span class="cp">        DevComment,                                         \</span>
+<span class="cp">        ENativeGameplayTagToken::PRIVATE_USE_MACRO_INSTEAD  \</span>
+<span class="cp">    );</span>
+
+<span class="n">GKTAGS</span><span class="p">(</span><span class="n">GKTAG</span><span class="p">);</span><span class="w"></span>
+
+<span class="cp">#undef GKTAG</span>
+
+
 <span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">UGKAbilitySystemGlobals</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FObjectInitializer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CooldownDataTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">ConstructorHelpers</span><span class="o">::</span><span class="n">FObjectFinder</span><span class="o">&lt;</span><span class="n">UDataTable</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CooldownTagsTableObject</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;DataTable&#39;/Gamekit/Data/AbilityCooldownTags.AbilityCooldownTags&#39;&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTagsTableObject</span><span class="p">.</span><span class="n">Succeeded</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownDataTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CooldownTagsTableObject</span><span class="p">.</span><span class="n">Object</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">InitGlobalTags</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UAbilitySystemGlobals</span><span class="o">::</span><span class="n">InitGlobalTags</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ActivateFailNotYetLearnedName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">ActivateFailNotYetLearnedTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">ActivateFailNotYetLearnedName</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailIsDeadTag</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">FailureDead</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailCooldownTag</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">FailureCooldown</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailCostTag</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">FailureCost</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailTagsBlockedTag</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FailureBlocked</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailTagsMissingTag</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FailureMissing</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateFailNetworkingTag</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">FailureNetwork</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DeathName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">DeathTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">DeathName</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DeathDispelName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">DeathDispelTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">DeathDispelName</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AnimationCastPointName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">AnimationCastPointTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">RequestGameplayTag</span><span class="p">(</span><span class="n">AnimationCastPointName</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">GetGlobals</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">UGKAbilitySystemGlobals</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">GetCooldownTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">GetGlobals</span><span class="p">().</span><span class="n">CooldownDataTable</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

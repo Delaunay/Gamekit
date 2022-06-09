@@ -35,6 +35,8 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
 
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
 - ``Gamekit/Abilities/GKAttributeSet.h`` (:ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`)
 
 

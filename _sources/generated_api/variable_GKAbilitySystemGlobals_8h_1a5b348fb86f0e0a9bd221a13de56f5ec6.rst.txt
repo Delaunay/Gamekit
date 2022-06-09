@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a5b348fb86f0e0a9bd221a13de56f5ec6:
+
+Variable DisableDisarmed
+========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: DisableDisarmed
+   :project: GameKit

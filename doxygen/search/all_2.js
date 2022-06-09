@@ -46,9 +46,16 @@ var searchData=
   ['bstopwhenabilityends_167',['bStopWhenAbilityEnds',['../classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a70d316bc00da88fbdf5df320be6bdf06',1,'UGKAbilityTask_PlayMontageAndWaitForEvent']]],
   ['btickenabled_168',['bTickEnabled',['../classAGKAbilityTarget__Actor.html#a193eb261e7975c6427642a187d6dc4c5',1,'AGKAbilityTarget_Actor']]],
   ['bturnonly_169',['bTurnOnly',['../classUGKAbilityTask__MoveToDestination.html#a5d7957db52d40b554c6e1b7161cf67e9',1,'UGKAbilityTask_MoveToDestination']]],
-  ['buffer_170',['Buffer',['../classAGKFogOfWarTeam.html#ae72f770a562179b61c78e829440f7b47',1,'AGKFogOfWarTeam::Buffer()'],['../classUGKShadowCasting.html#af4f228371a1fa86b16711e21c531673b',1,'UGKShadowCasting::Buffer()']]],
-  ['buildteamcache_171',['BuildTeamCache',['../classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e',1,'AGKWorldSettings']]],
-  ['bupscaling_172',['bUpscaling',['../classAGKFogOfWarVolume.html#ab5db3281ed3dbb4feb4338a14f76928e',1,'AGKFogOfWarVolume']]],
-  ['busetags_173',['bUseTags',['../classUGKStopMovement.html#ae5a2fee96544fb2ed37e32b881817354',1,'UGKStopMovement']]],
-  ['buseupscaledvision_174',['bUseUpscaledVision',['../classAGKFogOfWarVolume.html#af0b01b5757b2ed31b5b9a8aba8c041c0',1,'AGKFogOfWarVolume::bUseUpscaledVision()'],['../classUGKTransformerStrategy.html#a9d5daf1ccfe09e1a43ab6d58eee7556d',1,'UGKTransformerStrategy::bUseUpscaledVision()']]]
+  ['buff_170',['Buff',['../GKAbilitySystemGlobals_8h.html#a26f10e2e62ca88bd47983e2bc7a15db4',1,'GKAbilitySystemGlobals.h']]],
+  ['buffdebuffimmunity_171',['BuffDebuffImmunity',['../GKAbilitySystemGlobals_8h.html#a6af9c179efc439025a7f7b3c55421671',1,'GKAbilitySystemGlobals.h']]],
+  ['buffdisableimmunity_172',['BuffDisableImmunity',['../GKAbilitySystemGlobals_8h.html#a88d0cc8c1e09cc4745083dafc6794428',1,'GKAbilitySystemGlobals.h']]],
+  ['buffer_173',['Buffer',['../classAGKFogOfWarTeam.html#ae72f770a562179b61c78e829440f7b47',1,'AGKFogOfWarTeam::Buffer()'],['../classUGKShadowCasting.html#af4f228371a1fa86b16711e21c531673b',1,'UGKShadowCasting::Buffer()']]],
+  ['bufffminor_174',['BufffMinor',['../GKAbilitySystemGlobals_8h.html#aed4d73c6fd5ee4096ad30f7642e67de0',1,'GKAbilitySystemGlobals.h']]],
+  ['buffimmunity_175',['BuffImmunity',['../GKAbilitySystemGlobals_8h.html#af17e5697a1854404480b656bd539a57c',1,'GKAbilitySystemGlobals.h']]],
+  ['buffmedium_176',['BuffMedium',['../GKAbilitySystemGlobals_8h.html#a618ba7208433a0b014d121e611aa928a',1,'GKAbilitySystemGlobals.h']]],
+  ['buffstrong_177',['BuffStrong',['../GKAbilitySystemGlobals_8h.html#a26bd374ba94a8b21a4e2ec34d9460bf5',1,'GKAbilitySystemGlobals.h']]],
+  ['buildteamcache_178',['BuildTeamCache',['../classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e',1,'AGKWorldSettings']]],
+  ['bupscaling_179',['bUpscaling',['../classAGKFogOfWarVolume.html#ab5db3281ed3dbb4feb4338a14f76928e',1,'AGKFogOfWarVolume']]],
+  ['busetags_180',['bUseTags',['../classUGKStopMovement.html#ae5a2fee96544fb2ed37e32b881817354',1,'UGKStopMovement']]],
+  ['buseupscaledvision_181',['bUseUpscaledVision',['../classAGKFogOfWarVolume.html#af0b01b5757b2ed31b5b9a8aba8c041c0',1,'AGKFogOfWarVolume::bUseUpscaledVision()'],['../classUGKTransformerStrategy.html#a9d5daf1ccfe09e1a43ab6d58eee7556d',1,'UGKTransformerStrategy::bUseUpscaledVision()']]]
 ];

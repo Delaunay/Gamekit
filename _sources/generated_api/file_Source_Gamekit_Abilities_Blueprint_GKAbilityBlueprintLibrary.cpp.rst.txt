@@ -37,6 +37,8 @@ Includes
 
 - ``Misc/ConfigCacheIni.h``
 
+- ``NativeGameplayTags.h``
+
 
 
 

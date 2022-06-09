@@ -88,16 +88,16 @@ Program Listing for File GKGameplayAbility.h
                  meta        = (ScriptName = "GetAbilityStatic"))
        void K2_GetAbilityStatic(FGKAbilityStatic &AbilityStatic, bool &Valid);
    
-       FGKAbilityStatic *GetAbilityStatic();
+       FGKAbilityStatic *GetAbilityStatic() const;
    
        UFUNCTION()
-       void OnDataTableChanged_Native();
+       void OnDataTableChanged_Native() const;
    
-       virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef);
+       virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef) const;
    
        void PostInitProperties() override;
    
-       FGKAbilityStatic *AbilityStatic;
+       mutable FGKAbilityStatic *AbilityStatic;
    
        // Animations
        // ----------
@@ -209,7 +209,9 @@ Program Listing for File GKGameplayAbility.h
        // UGameplayAbility Overrides
        //---------------------------
    
-       virtual UGameplayEffect *GetCooldownGameplayEffect() const override;
+       FGameplayTagContainer const* GetCooldownTags() const;
+   
+       FGameplayTagContainer const* GetCooldownTagsFromSpec(FGameplayAbilitySpec* Spec) const;
    
        UPROPERTY()
        UGameplayEffect *CooldownEffectInstance;
@@ -250,7 +252,6 @@ Program Listing for File GKGameplayAbility.h
    
        // Dynamic Init
        // ------------
-       UGameplayEffect *NewCooldownEffectFromConfig(TArray<float> &Durations);
    
        UGameplayEffect *NewCostEffectFromConfig(FGKAbilityCost &Conf);
    

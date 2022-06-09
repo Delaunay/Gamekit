@@ -31,7 +31,25 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
 
+- ``NativeGameplayTags.h``
 
 
 
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKAbilitySystemGlobals_8cpp_1ae3046ee6181d6f6fe7d52e3b3294f5e9`
+
+- :ref:`exhale_function_GKAbilitySystemGlobals_8cpp_1a83c17172670f158181e3c8c6cafb9654`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKAbilitySystemGlobals_8cpp_1a0ed1499bb2ade62da374ef4c9d5d6603`
 

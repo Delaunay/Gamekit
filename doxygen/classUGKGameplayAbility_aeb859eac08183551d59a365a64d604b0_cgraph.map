@@ -1,0 +1,5 @@
+<map id="UGKGameplayAbility::OnDataTableChanged_Native" name="UGKGameplayAbility::OnDataTableChanged_Native">
+<area shape="rect" id="node1" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="5,5,176,61"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="224,13,384,54"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#a0715366e9cd46e19e34ae3652e3f5828" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="432,13,592,54"/>
+</map>

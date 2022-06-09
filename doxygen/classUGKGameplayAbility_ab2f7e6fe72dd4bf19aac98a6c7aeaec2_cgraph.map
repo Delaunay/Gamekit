@@ -1,9 +1,8 @@
 <map id="UGKGameplayAbility::InputPressed" name="UGKGameplayAbility::InputPressed">
 <area shape="rect" id="node1" title="Called when the the Ability is active and it is pressed a second time." alt="" coords="5,39,165,80"/>
 <area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a3dee52ee52a85d7bbee81a25423e2e66" title=" " alt="" coords="213,5,373,47"/>
-<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a250306b1a6a211dc515c29413540865d" title=" " alt="" coords="213,71,373,112"/>
-<area shape="rect" id="node3" href="$GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="518,13,563,39"/>
-<area shape="rect" id="node5" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a63930328b269ddaf4cc52e454909a872" title=" " alt="" coords="421,71,660,112"/>
-<area shape="rect" id="node6" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a1f387903e3b073a2a94f035278b5eceb" title=" " alt="" coords="708,71,973,112"/>
-<area shape="rect" id="node7" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#ad1333628a30921cda4ecb912a97a481d" title=" " alt="" coords="1021,71,1296,112"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#a250306b1a6a211dc515c29413540865d" title=" " alt="" coords="213,71,373,112"/>
+<area shape="rect" id="node4" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a63930328b269ddaf4cc52e454909a872" title=" " alt="" coords="421,71,660,112"/>
+<area shape="rect" id="node5" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#a1f387903e3b073a2a94f035278b5eceb" title=" " alt="" coords="708,71,973,112"/>
+<area shape="rect" id="node6" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#ad1333628a30921cda4ecb912a97a481d" title=" " alt="" coords="1021,71,1296,112"/>
 </map>

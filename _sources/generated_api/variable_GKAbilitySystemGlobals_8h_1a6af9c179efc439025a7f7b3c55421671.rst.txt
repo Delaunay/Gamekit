@@ -1,0 +1,14 @@
+.. _exhale_variable_GKAbilitySystemGlobals_8h_1a6af9c179efc439025a7f7b3c55421671:
+
+Variable BuffDebuffImmunity
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BuffDebuffImmunity
+   :project: GameKit
