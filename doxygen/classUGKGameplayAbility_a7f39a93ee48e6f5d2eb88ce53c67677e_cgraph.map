@@ -1,0 +1,10 @@
+<map id="UGKGameplayAbility::ApplyEffectsToTarget" name="UGKGameplayAbility::ApplyEffectsToTarget">
+<area shape="rect" id="node1" title=" " alt="" coords="5,111,171,152"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a28c0ad825c14462719fe1333a4ff9596" title=" " alt="" coords="219,111,379,152"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="432,37,592,79"/>
+<area shape="rect" id="node8" href="$classUGKGameplayAbility.html#a275a879c1da9ee978638ce84f5ba0919" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="427,103,597,159"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#ae0408633c5c18856d45e0406349379a2" title=" " alt="" coords="645,5,880,47"/>
+<area shape="rect" id="node7" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="663,71,862,112"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="928,39,1155,80"/>
+<area shape="rect" id="node6" href="$GKCastPointAnimNotify_8cpp.html#ae5430ea5be0a5aa38208416673a4fad3" title=" " alt="" coords="1203,46,1248,73"/>
+</map>

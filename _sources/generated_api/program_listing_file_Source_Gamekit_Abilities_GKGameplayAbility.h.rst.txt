@@ -179,6 +179,9 @@ Program Listing for File GKGameplayAbility.h
        UFUNCTION(BlueprintCallable, Category = Ability)
        void SpawnProjectile(FGameplayTag EventTag, FGameplayEventData EventData);
    
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       void ApplyEffectsToTarget(FGameplayTag EventTag, FGameplayEventData EventData);
+   
        public:
    
        UFUNCTION(BlueprintCallable, Category = Ability, meta = (AutoCreateRefTerm = "EventData"))
