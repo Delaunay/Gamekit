@@ -130,6 +130,10 @@ class GAMEKIT_API UGKAbilitySystemComponent: public UAbilitySystemComponent
     UFUNCTION(Server, Reliable)
     void ServerTryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point);
 
+    int GetAbilityCount() const {
+        return ActivatableAbilities.Items.Num();
+    }
+
     // protected:
     bool Initialized;
 

@@ -7,21 +7,16 @@
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 #include "Gamekit/Abilities/GKAttributeSet.h"
+#include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 
 UGKMovementAbility::UGKMovementAbility() {
 	GroundChannel = ECollisionChannel::ECC_WorldStatic;
 
-	static FGameplayTag Root = FGameplayTag::RequestGameplayTag("Debuff.Root");
-	static FGameplayTag Stun = FGameplayTag::RequestGameplayTag("Debuff.Stun");
-	static FGameplayTag Dead = FGameplayTag::RequestGameplayTag("State.Dead");
-	static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
-	static FGameplayTag Exclusive = FGameplayTag::RequestGameplayTag("Ability.Exclusive");
-
-	AbilityTags.AddTag(Move);
+	AbilityTags.AddTag(AbilityMove);
 	// this ability is blocked by other exclusive abilities
 	// but it does not block exclusive abilities
-	AbilityTags.AddTag(Exclusive);
+	AbilityTags.AddTag(AbilityExclusive);
 
 	// Does not block exclusive ability i.e
 	// we can start targeting while moving
@@ -31,16 +26,16 @@ UGKMovementAbility::UGKMovementAbility() {
 	// but the task would only start once the Exclusive tag is removed
 	// this would allow users to queue the move right away and simulate a kind of
 	// ability queue
-	BlockAbilitiesWithTag.RemoveTag(Exclusive);
+	BlockAbilitiesWithTag.RemoveTag(AbilityExclusive);
 
 	// Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags
-	ActivationBlockedTags.AddTag(Root);
-	ActivationBlockedTags.AddTag(Stun);
-	ActivationBlockedTags.AddTag(Dead);
+	ActivationBlockedTags.AddTag(DisableRoot);
+	ActivationBlockedTags.AddTag(DisableStun);
+	ActivationBlockedTags.AddTag(DisableDead);
 
-	CancelledByTags.AddTag(Stun);
-	CancelledByTags.AddTag(Root);
-	CancelledByTags.AddTag(Dead);
+	CancelledByTags.AddTag(DisableRoot);
+	CancelledByTags.AddTag(DisableStun);
+	CancelledByTags.AddTag(DisableDead);
 }
 
 void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,

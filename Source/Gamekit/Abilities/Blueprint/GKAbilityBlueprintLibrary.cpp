@@ -8,6 +8,7 @@
 
 // Unreal Engine
 #include "Misc/ConfigCacheIni.h"
+#include "NativeGameplayTags.h"
 
 
 #define NAMESPACE "GamekitAbilities"
@@ -107,13 +108,13 @@ TArray<FGKFailureTagMapping> GenerateFailureMapping() {
     FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned"  , "Ability was not learnt yet");
 
     return TArray<FGKFailureTagMapping>{
-        FGKFailureTagMapping{ ASGlobals.ActivateFailCostTag,          AbilityCost },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailCooldownTag,      AbilityCooldown },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailTagsBlockedTag,   AbilityBlocked },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailTagsMissingTag,   AbilityMissing },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailNetworkingTag,    AbilityNetwork },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailIsDeadTag,        AbilityDead },
-        FGKFailureTagMapping{ ASGlobals.ActivateFailNotYetLearnedTag, AbilityNotLearned },
+        FGKFailureTagMapping{ FailureCost,       AbilityCost },
+        FGKFailureTagMapping{ FailureCooldown,   AbilityCooldown },
+        FGKFailureTagMapping{ FailureBlocked,    AbilityBlocked },
+        FGKFailureTagMapping{ FailureMissing,    AbilityMissing },
+        FGKFailureTagMapping{ FailureNetwork,    AbilityNetwork },
+        FGKFailureTagMapping{ FailureDead,       AbilityDead },
+        FGKFailureTagMapping{ FailureNotLearned, AbilityNotLearned },
     };
 }
 

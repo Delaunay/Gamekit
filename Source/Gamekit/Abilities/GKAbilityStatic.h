@@ -193,6 +193,9 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     FGKAbilityCost Cost;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+    FGameplayTagContainer CooldownTags;
+
     //! Cooldown curve
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     TArray<float> Cooldown;

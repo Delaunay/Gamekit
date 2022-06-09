@@ -6,6 +6,7 @@
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 #include "Gamekit/Abilities/GKAttributeSet.h"
 #include "Gamekit/Abilities/Abilities/GKMovementAbility.h"
+#include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 // Unreal Engine
 #include "GameFramework/MovementComponent.h"
@@ -15,8 +16,7 @@ UGKStopMovement::UGKStopMovement()
 {
     AbilityToStop = UGameplayAbility::StaticClass();
 
-    static FGameplayTag Move = FGameplayTag::RequestGameplayTag("Ability.Move");
-    AbilityTagsToStop = FGameplayTagContainer(Move);
+    AbilityTagsToStop = FGameplayTagContainer(AbilityMove);
 
     bUseTags = true;
 }

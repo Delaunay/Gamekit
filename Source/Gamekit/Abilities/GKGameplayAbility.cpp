@@ -5,6 +5,7 @@
 // Gamekit
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_PlayMontageAndWaitForEvent.h"
+#include "Gamekit/Abilities/GKAbilities.h"
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 #include "Gamekit/Abilities/GKCastPointAnimNotify.h"
@@ -14,7 +15,6 @@
 #include "Gamekit/Characters/GKCharacter.h"
 #include "Gamekit/Controllers/GKPlayerController.h"
 #include "Gamekit/Gamekit.h"
-#include "Gamekit/Abilities/GKAbilities.h"
 #include "Gamekit/Projectiles/GKProjectile.h"
 
 // Unreal Engine
@@ -25,6 +25,7 @@
 #include "GameplayCue_Types.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "NativeGameplayTags.h"
 
 UGKGameplayEffectDyn::UGKGameplayEffectDyn(const FObjectInitializer &ObjectInitializer): Super(ObjectInitializer) {}
 
@@ -33,12 +34,11 @@ UGKGameplayAbility::UGKGameplayAbility()
     InstancingPolicy   = EGameplayAbilityInstancingPolicy::InstancedPerActor;
     NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
 
-    ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("State.Dead")));
-    ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Debuff.Stun")));
+    ActivationBlockedTags.AddTag(DisableDead);
+    ActivationBlockedTags.AddTag(DisableStun);
 
-    static FGameplayTag Exclusive = FGameplayTag::RequestGameplayTag(FName("Ability.Exclusive"));
-    BlockAbilitiesWithTag.AddTag(Exclusive);
-    AbilityTags.AddTag(Exclusive);
+    BlockAbilitiesWithTag.AddTag(AbilityExclusive);
+    AbilityTags.AddTag(AbilityExclusive);
 
     Immediate     = false;
     AbilityStatic = nullptr;
@@ -58,7 +58,7 @@ void UGKGameplayAbility::PostInitProperties()
     }
 }
 
-void UGKGameplayAbility::OnDataTableChanged_Native()
+void UGKGameplayAbility::OnDataTableChanged_Native() const
 {
     // Reset Cache
     AbilityStatic = nullptr;
@@ -75,12 +75,11 @@ void UGKGameplayAbility::OnDataTableChanged_Native()
 void UGKGameplayAbility::LoadFromDataTable(FGKAbilityStatic &AbilityDef)
 {
     UE_LOG(LogGamekit, Log, TEXT("Init Ability from table %s"), *AbilityDef.Name.ToString());
-
-    CooldownEffectInstance = NewCooldownEffectFromConfig(AbilityDef.Cooldown);
     CostEffectInstance     = NewCostEffectFromConfig(AbilityDef.Cost);
 }
 
-FGKAbilityStatic *UGKGameplayAbility::GetAbilityStatic()
+
+FGKAbilityStatic *UGKGameplayAbility::GetAbilityStatic() const
 {
     if (AbilityStatic)
     {
@@ -99,7 +98,7 @@ FGKAbilityStatic *UGKGameplayAbility::GetAbilityStatic()
 
         if (AbilityStatic != nullptr)
         {
-            LoadFromDataTable(*AbilityStatic);
+            ((UGKGameplayAbility*)(this))->LoadFromDataTable(*AbilityStatic);
         }
 
         // Listen to data table change
@@ -124,33 +123,32 @@ void UGKGameplayAbility::K2_GetAbilityStatic(FGKAbilityStatic &AbilityStaticOut,
     }
 }
 
-
-
 FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(EGK_EffectSlot            EffectSlot,
-                                                                           const FGameplayEventData& EventData,
-                                                                           int32                     OverrideGameplayLevel)
+                                                                           const FGameplayEventData &EventData,
+                                                                           int32 OverrideGameplayLevel)
 {
 
     auto Data = GetAbilityStatic();
 
-    FGKAbilityEffects const* Effects = Data->AbilityEffects.Find(EffectSlot);
+    FGKAbilityEffects const *Effects = Data->AbilityEffects.Find(EffectSlot);
 
-    if (Effects) {
+    if (Effects)
+    {
         return MakeEffectContainerSpec(*Effects, EventData, OverrideGameplayLevel);
     }
 
     return FGKGameplayEffectContainerSpec();
 }
 
-FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGKAbilityEffects const&  AbilitiyEffets,
-                                                                           const FGameplayEventData& EventData,
-                                                                           int32                     OverrideGameplayLevel)
+FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGKAbilityEffects const  &AbilitiyEffets,
+                                                                           const FGameplayEventData &EventData,
+                                                                           int32 OverrideGameplayLevel)
 {
     // First figure out our actor info
     FGKGameplayEffectContainerSpec ReturnSpec;
-    AActor* OwningActor = GetOwningActorFromActorInfo();
-    AGKCharacterBase* OwningCharacter = Cast<AGKCharacterBase>(OwningActor);
-    UGKAbilitySystemComponent* OwningASC = UGKAbilitySystemComponent::GetAbilitySystemComponentFromActor(OwningActor);
+    AActor                        *OwningActor     = GetOwningActorFromActorInfo();
+    AGKCharacterBase              *OwningCharacter = Cast<AGKCharacterBase>(OwningActor);
+    UGKAbilitySystemComponent *OwningASC = UGKAbilitySystemComponent::GetAbilitySystemComponentFromActor(OwningActor);
 
     if (OwningASC)
     {
@@ -161,11 +159,10 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpec(FGKAb
         }
 
         // Build GameplayEffectSpecs for each applied effect
-        for (const FGKAbilityEffect& Effect : AbilitiyEffets.Effects)
+        for (const FGKAbilityEffect &Effect: AbilitiyEffets.Effects)
         {
             ReturnSpec.TargetGameplayEffectSpecs.Add(
-                MakeOutgoingGameplayEffectSpec(Effect.GameplayEffectClass, OverrideGameplayLevel)
-            );
+                    MakeOutgoingGameplayEffectSpec(Effect.GameplayEffectClass, OverrideGameplayLevel));
         }
     }
     return ReturnSpec;
@@ -184,6 +181,7 @@ FGKGameplayEffectContainerSpec UGKGameplayAbility::MakeEffectContainerSpecFromCo
 
     if (OwningASC)
     {
+
         // If we have a target type, run the targeting logic. This is optional, targets can be added later
         if (Container.TargetType.Get())
         {
@@ -224,7 +222,6 @@ TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainerSpec
     }
     return AllEffects;
 }
-
 
 // This allow animation to be standard, and Gameplay designed can tweak the CastPoint independently
 // from the actual animation
@@ -328,33 +325,32 @@ FVector GetImpactPoint(const FGameplayAbilityTargetDataHandle &Data, int Index, 
 void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDataHandle &Data)
 {
     TargetingResultDelegate.Broadcast(false);
-   
+
     if (TargetTask && IsValid(TargetTask))
     {
         TargetTask->EndTask();
         TargetTask = nullptr;
     }
 
-    // cancel all the another abilities 
+    // cancel all the another abilities
     auto ASC = GetAbilitySystemComponentFromActorInfo();
     ASC->CancelAbilities(nullptr, nullptr, this);
 
-    UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ASC->GetAttributeSet(UGKAttributeSet::StaticClass()));
+    UGKAttributeSet const *Attributes = Cast<UGKAttributeSet>(ASC->GetAttributeSet(UGKAttributeSet::StaticClass()));
 
     // Both rotates to face target and move towards it
-    MoveToTargetTask = UGKAbilityTask_MoveToDestination::MoveToTarget(
-        this,
-        NAME_None,
-        Data,
-        GetAbilityStatic()->CastMaxRange, // Dist Tol
-        15.f,                             // Angle Tol
-        150.f,                            // Turn Rate
-        Attributes->GetMoveSpeed(),       // Speed
-        true, // Move to target
-        true, // Use Movement Component
-        GetAbilityStatic()->AbilityBehavior,
-        FGameplayTagContainer(),
-        true);
+    MoveToTargetTask = UGKAbilityTask_MoveToDestination::MoveToTarget(this,
+                                                                      NAME_None,
+                                                                      Data,
+                                                                      GetAbilityStatic()->CastMaxRange, // Dist Tol
+                                                                      15.f,                             // Angle Tol
+                                                                      150.f,                            // Turn Rate
+                                                                      Attributes->GetMoveSpeed(),       // Speed
+                                                                      true, // Move to target
+                                                                      true, // Use Movement Component
+                                                                      GetAbilityStatic()->AbilityBehavior,
+                                                                      FGameplayTagContainer(),
+                                                                      true);
 
     // MoveToTargetStartDelegate.Broadcast();
     MoveToTargetTask->OnCancelled.AddDynamic(this, &UGKGameplayAbility::OnAbilityMoveToTargetCancelled);
@@ -442,23 +438,28 @@ void UGKGameplayAbility::OnAbilityMoveToTargetCompleted(const FGameplayAbilityTa
     AnimTask->ReadyForActivation();
 }
 
-bool IsTargetDataValid(FGameplayAbilityTargetDataHandle TargetDataHandle) {
+bool IsTargetDataValid(FGameplayAbilityTargetDataHandle TargetDataHandle)
+{
     int BreathingTargets = 0;
 
-    for(TSharedPtr<FGameplayAbilityTargetData>& TargetData: TargetDataHandle.Data) {
-        if (!TargetData.IsValid()) {
+    for (TSharedPtr<FGameplayAbilityTargetData> &TargetData: TargetDataHandle.Data)
+    {
+        if (!TargetData.IsValid())
+        {
             continue;
         }
 
-        FGameplayAbilityTargetData* Target = TargetData.Get();
+        FGameplayAbilityTargetData    *Target = TargetData.Get();
         TArray<TWeakObjectPtr<AActor>> Actors = Target->GetActors();
 
-        for(TWeakObjectPtr<AActor>& ActorPtr: Actors) {
-            if (!ActorPtr.IsValid()) {
+        for (TWeakObjectPtr<AActor> &ActorPtr: Actors)
+        {
+            if (!ActorPtr.IsValid())
+            {
                 continue;
             }
 
-            auto* Actor = Cast<AGKCharacterBase>(ActorPtr.Get());
+            auto *Actor = Cast<AGKCharacterBase>(ActorPtr.Get());
             BreathingTargets += int(!Actor->IsDead());
         }
     }
@@ -470,7 +471,8 @@ void UGKGameplayAbility::OnAbilityAnimationBlendOut(FGameplayTag EventTag, FGame
 {
     auto AbilityInfo = GetAbilityStatic();
 
-    if (AbilityInfo->bLoop && CanActivateAbility(CurrentSpecHandle, CurrentActorInfo) && IsTargetDataValid(EventData.TargetData))
+    if (AbilityInfo->bLoop && CanActivateAbility(CurrentSpecHandle, CurrentActorInfo) &&
+        IsTargetDataValid(EventData.TargetData))
     {
         OnAbilityTargetAcquired(EventData.TargetData);
         return;
@@ -508,9 +510,9 @@ bool UGKGameplayAbility::CanActivateAbility(const FGameplayAbilitySpecHandle Han
 
     if (Spec == nullptr || Spec->Level <= 0)
     {
-        const FGameplayTag &NotYetLearnedTag =
-                ((UGKAbilitySystemGlobals &)UGKAbilitySystemGlobals::Get()).ActivateFailNotYetLearnedTag;
-        if (OptionalRelevantTags && NotYetLearnedTag.IsValid())
+        const FGameplayTag &NotYetLearnedTag = FailureNotLearned;
+
+        if (OptionalRelevantTags)
         {
             OptionalRelevantTags->AddTag(NotYetLearnedTag);
         }
@@ -536,19 +538,67 @@ void UGKGameplayAbility::CancelAbility(const FGameplayAbilitySpecHandle     Hand
     AnimTask = nullptr;
 }
 
+
+FGameplayTag GetUniqueCoodownGameplayTag(int Count) {
+    FName UniqueName = FName(FString("Ability.Cooldown.Ability") + FString::FromInt(Count));
+    return FGameplayTag::RequestGameplayTag(UniqueName);
+}
+
+
+
+FGameplayTagContainer const* UGKGameplayAbility::GetCooldownTags() const {
+    FGameplayAbilitySpec* Spec = CurrentActorInfo->AbilitySystemComponent->FindAbilitySpecFromHandle(CurrentSpecHandle);
+
+    return GetCooldownTagsFromSpec(Spec);
+}
+
+FGameplayTagContainer const* UGKGameplayAbility::GetCooldownTagsFromSpec(FGameplayAbilitySpec* Spec) const {
+    FGameplayTagContainer Container;
+
+    FGKAbilityStatic* AbilityData = GetAbilityStatic();
+
+    if (!AbilityData){
+        return nullptr;
+    }
+
+    // Cooldowns are unique per slot
+    if (AbilityData->CooldownTags.IsEmpty() && AbilityData->Cooldown.Num() > 0) {
+        FGameplayTag UniqueCooldownTag = GetUniqueCoodownGameplayTag(Spec->InputID);
+        AbilityData->CooldownTags.AddTag(UniqueCooldownTag);
+    }
+
+    return &AbilityData->CooldownTags;
+}
+
 void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Handle,
                                        const FGameplayAbilityActorInfo     *ActorInfo,
                                        const FGameplayAbilityActivationInfo ActivationInfo) const
 {
-    // No generated Effect
-    if (!CooldownEffectInstance)
-    {
-        // This uses the GameEffect CDO, when the Ability is not instantiated
-        return Super::ApplyCooldown(Handle, ActorInfo, ActivationInfo);
-    }
+    UGameplayEffect* CooldownGE = GetCooldownGameplayEffect();
+    FGKAbilityStatic* AbilityData = GetAbilityStatic();
+    int Level = GetAbilityLevel(Handle, ActorInfo);
 
-    return ApplyGameplayEffectToOwnerDynamic(
-            Handle, ActorInfo, ActivationInfo, CooldownEffectInstance, GetAbilityLevel(Handle, ActorInfo), 1);
+    if (CooldownGE && Level > 0)
+    {
+        FGameplayAbilitySpec* Spec = ActorInfo->AbilitySystemComponent->FindAbilitySpecFromHandle(Handle);
+        FGameplayTagContainer const* CooldownTags = GetCooldownTagsFromSpec(Spec);
+
+        FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(Handle, ActorInfo, ActivationInfo, CooldownGE->GetClass(), Level);
+
+        if (SpecHandle.IsValid()){
+            TArray<float> Durations = AbilityData->Cooldown;
+
+            SpecHandle.Data.Get()->DynamicGrantedTags.AppendTags(*CooldownTags);
+
+            float Duration = Durations[0];
+            if (Durations.Num() > 1) {
+                Duration = Durations[Level - 1];
+            } 
+
+            SpecHandle.Data.Get()->SetSetByCallerMagnitude(CooldownParent, Duration);
+            ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle);
+        }
+    }
 }
 
 void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle     Handle,
@@ -685,11 +735,11 @@ void UGKGameplayAbility::ActivateAbility_PointTarget()
             TargetActor                                    // TargetActor
     );
 
-    // FIXME: Those are not set on the initial spawn 
+    // FIXME: Those are not set on the initial spawn
     // but they should be set when StartTargeting is called
     // Inside the `WaitForTargetDataUsingActor` task
     TargetActor->OwningAbility = this;
-    TargetActor->SourceActor = GetActorInfo().AvatarActor.Get();
+    TargetActor->SourceActor   = GetActorInfo().AvatarActor.Get();
 
     TargetingStartDelegate.Broadcast();
     TargetTask->Cancelled.AddDynamic(this, &UGKGameplayAbility::OnAbilityTargetingCancelled);
@@ -711,8 +761,8 @@ void UGKGameplayAbility::ActivateAbility_Toggle()
     }
 };
 
-
-void UGKGameplayAbility::K2_EndAbility() {
+void UGKGameplayAbility::K2_EndAbility()
+{
     ClearCancelByTags(CurrentActorInfo);
 
     Super::K2_EndAbility();
@@ -720,7 +770,8 @@ void UGKGameplayAbility::K2_EndAbility() {
 
 void UGKGameplayAbility::ActivateAbility_Native()
 {
-    if (GetAbilityLevel() <= 0){
+    if (GetAbilityLevel() <= 0)
+    {
         return;
     }
 
@@ -728,7 +779,8 @@ void UGKGameplayAbility::ActivateAbility_Native()
 
     // Cancel current targeting task if any
     // this is to free up the delegates
-    if (TargetTask && IsValid(TargetTask)) {
+    if (TargetTask && IsValid(TargetTask))
+    {
         TargetTask->ExternalCancel();
         TargetTask->EndTask();
         TargetTask = nullptr;
@@ -795,17 +847,6 @@ void UGKGameplayAbility::LevelUpAbility()
     }
 }
 
-UGameplayEffect *UGKGameplayAbility::GetCooldownGameplayEffect() const
-{
-    if (CooldownEffectInstance)
-    {
-        UE_LOG(LogGamekit, Verbose, TEXT("Returns generated cooldown effect"));
-        return CooldownEffectInstance;
-    }
-
-    return Super::GetCooldownGameplayEffect();
-}
-
 UGameplayEffect *UGKGameplayAbility::GetCostGameplayEffect() const
 {
     if (CostEffectInstance)
@@ -817,28 +858,11 @@ UGameplayEffect *UGKGameplayAbility::GetCostGameplayEffect() const
     return Super::GetCostGameplayEffect();
 }
 
-UGameplayEffect *UGKGameplayAbility::NewCooldownEffectFromConfig(TArray<float> &Durations)
+
+
+
+void UGKGameplayAbility::OnRemoveAbility(const FGameplayAbilityActorInfo *ActorInfo, const FGameplayAbilitySpec &Spec)
 {
-    if (Durations.Num() <= 0)
-    {
-        UE_LOG(LogGamekit, Warning, TEXT("Cooldown value is not set!"));
-        return nullptr;
-    }
-
-    auto RowName = FName(FString("Cooldown.") + AbilityStatic->Name.ToString());
-
-    UGameplayEffect *CooldownEffect = NewObject<UGKGameplayEffectDyn>(this /*, TEXT("GameplayEffect.Cooldown") */);
-    CooldownEffect->DurationPolicy  = EGameplayEffectDurationType::HasDuration;
-
-    auto ScalableDuration             = GenerateCurveDataFromArray(RowName, Durations, true, false);
-    CooldownEffect->DurationMagnitude = ScalableDuration;
-
-    CooldownEffect->InheritableOwnedTagsContainer.AddTag(FGameplayTag::RequestGameplayTag(RowName));
-
-    return CooldownEffect;
-};
-
-void UGKGameplayAbility::OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) {
     UGameplayAbility::OnRemoveAbility(ActorInfo, Spec);
     OnAbilityRemoved.Broadcast();
 }
@@ -1006,29 +1030,31 @@ bool UGKGameplayAbility::GetTargetLocation(FGameplayAbilityTargetDataHandle Targ
     return false;
 }
 
+void UGKGameplayAbility::ApplyEffectsToTarget(FGameplayTag EventTag, FGameplayEventData EventData)
+{
+    FGKAbilityStatic *AbilityData = GetAbilityStatic();
 
-void UGKGameplayAbility::ApplyEffectsToTarget(FGameplayTag EventTag, FGameplayEventData EventData) {
-    FGKAbilityStatic* AbilityData = GetAbilityStatic();
-
-    FGKAbilityEffects const* GameplayEffects = AbilityData->AbilityEffects.Find(EGK_EffectSlot::TargetEffect);
+    FGKAbilityEffects const *GameplayEffects = AbilityData->AbilityEffects.Find(EGK_EffectSlot::TargetEffect);
 
     TArray<FGameplayEffectSpecHandle> Specs;
 
-    for (const FGKAbilityEffect& Effect : GameplayEffects->Effects)
+    for (const FGKAbilityEffect &Effect: GameplayEffects->Effects)
     {
         Specs.Add(MakeOutgoingGameplayEffectSpec(Effect.GameplayEffectClass, GetAbilityLevel()));
     }
 
-    for(auto SpecHandle: Specs){
+    for (auto SpecHandle: Specs)
+    {
         if (SpecHandle.IsValid())
         {
             // If effect is valid, iterate list of targets and apply to all
-            for (TSharedPtr<FGameplayAbilityTargetData> Data : EventData.TargetData.Data)
+            for (TSharedPtr<FGameplayAbilityTargetData> Data: EventData.TargetData.Data)
             {
                 Data->ApplyGameplayEffectSpec(*SpecHandle.Data.Get());
             }
         }
-        else {
+        else
+        {
             GKGA_WARNING(TEXT("Gameplay Effect Spec Handle has become invalid"));
         }
     }
@@ -1079,12 +1105,13 @@ void UGKGameplayAbility::SpawnProjectile(FGameplayTag EventTag, FGameplayEventDa
     auto ProjectileInstance =
             Actor->GetWorld()->SpawnActor<AGKProjectile>(Data->ProjectileActorClass, Transform, SpawnInfo);
 
-    Direction.Z                         = Loc.Z;
-    ProjectileInstance->ProjectileData  = Data->ProjectileData;
-    ProjectileInstance->Target          = Target;
-    ProjectileInstance->Direction       = (Direction - Loc);
+    Direction.Z                        = Loc.Z;
+    ProjectileInstance->ProjectileData = Data->ProjectileData;
+    ProjectileInstance->Target         = Target;
+    ProjectileInstance->Direction      = (Direction - Loc);
 
-    ProjectileInstance->GameplayEffects = MakeEffectContainerSpec(EGK_EffectSlot::TargetEffect, EventData, GetAbilityLevel());
+    ProjectileInstance->GameplayEffects =
+            MakeEffectContainerSpec(EGK_EffectSlot::TargetEffect, EventData, GetAbilityLevel());
 
     ensure(ProjectileInstance->GameplayEffects.TargetGameplayEffectSpecs.Num() > 0);
 
@@ -1142,9 +1169,10 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
     auto MovementTask = Cast<UGKAbilityTask_MoveToDestination>(CurrentTask);
     if (MovementTask && IsValid(MovementTask))
     {
-        auto       Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
+        auto Controller = Cast<APlayerController>(ActorInfo->PlayerController.Get());
 
-        if (Controller){
+        if (Controller)
+        {
             FHitResult Result;
             // TODO:: Fix this trace
             ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
@@ -1178,13 +1206,12 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
     }
 }
 
-
-void UGKGameplayAbility::SetupCancelByTags(const FGameplayAbilityActorInfo* ActorInfo) {
-    if (CancelledByTags.IsValid()) {
+void UGKGameplayAbility::SetupCancelByTags(const FGameplayAbilityActorInfo *ActorInfo)
+{
+    if (CancelledByTags.IsValid())
+    {
         auto Delegate = FOnGameplayEffectTagCountChanged::FDelegate::CreateUObject(
-            this,
-            &UGKGameplayAbility::CancelAbilityFromTag
-        );
+                this, &UGKGameplayAbility::CancelAbilityFromTag);
 
         CancelByTagsDelegateHandle = Delegate.GetHandle();
 
@@ -1192,15 +1219,19 @@ void UGKGameplayAbility::SetupCancelByTags(const FGameplayAbilityActorInfo* Acto
     }
 }
 
-void UGKGameplayAbility::CancelAbilityFromTag(const FGameplayTag Tag, int32 Count) {
-    if (CancelledByTags.HasTag(Tag)) {
+void UGKGameplayAbility::CancelAbilityFromTag(const FGameplayTag Tag, int32 Count)
+{
+    if (CancelledByTags.HasTag(Tag))
+    {
         K2_CancelAbility();
         ClearCancelByTags(CurrentActorInfo);
     }
 }
 
-void UGKGameplayAbility::ClearCancelByTags(const FGameplayAbilityActorInfo* ActorInfo) {
-    if (CancelByTagsDelegateHandle.IsValid()) {
+void UGKGameplayAbility::ClearCancelByTags(const FGameplayAbilityActorInfo *ActorInfo)
+{
+    if (CancelByTagsDelegateHandle.IsValid())
+    {
         ActorInfo->AbilitySystemComponent->RegisterGenericGameplayTagEvent().Remove(CancelByTagsDelegateHandle);
     }
 }
@@ -1221,13 +1252,13 @@ TArray<FActiveGameplayEffectHandle> UGKGameplayAbility::ApplyEffectContainer(FGa
     return ApplyEffectContainerSpec(Spec);
 }
 
-// Search for and make a gameplay effect container spec to be applied later, from the EffectContainerMap 
+// Search for and make a gameplay effect container spec to be applied later, from the EffectContainerMap
 virtual FGKGameplayEffectContainerSpec MakeEffectContainerSpec(FGameplayTag              ContainerTag,
     const FGameplayEventData& EventData,
     int32 OverrideGameplayLevel = -1);
 
 // TODO: remove this
-// Map of gameplay tags to gameplay effect containers 
+// Map of gameplay tags to gameplay effect containers
 UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = GameplayEffects)
 TMap<FGameplayTag, FGKGameplayEffectContainer> EffectContainerMap;
 

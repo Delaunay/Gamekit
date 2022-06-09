@@ -7,6 +7,7 @@
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
 #include "Gamekit/GKLog.h"
 #include "Gamekit/Gamekit.h"
+#include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 // Unreal Engine
 #include "DrawDebugHelpers.h"
@@ -352,8 +353,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         bRotationFinished = true;
 
         // if rooted we cannot move
-        static FGameplayTag Root = FGameplayTag::RequestGameplayTag("Debuff.Root");
-        bool bRooted = AbilitySystemComponent->HasMatchingGameplayTag(Root);
+        bool bRooted = AbilitySystemComponent->HasMatchingGameplayTag(DisableRoot);
 
         if (bTurnOnly || bRooted)
         {

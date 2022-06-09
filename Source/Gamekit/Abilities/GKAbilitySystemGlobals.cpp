@@ -1,6 +1,23 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
+// Unreal Engine
+#include "NativeGameplayTags.h"
+
+#define GKTAG(Name, Tag, DevComment)\
+    FNativeGameplayTag Name(                                \
+        UE_PLUGIN_NAME,                                     \
+        UE_MODULE_NAME,                                     \
+        Tag,                                                \
+        DevComment,                                         \
+        ENativeGameplayTagToken::PRIVATE_USE_MACRO_INSTEAD  \
+    );
+
+GKTAGS(GKTAG);
+
+#undef GKTAG
+
+
 UGKAbilitySystemGlobals::UGKAbilitySystemGlobals(const FObjectInitializer &ObjectInitializer): Super(ObjectInitializer)
 {
 }
@@ -9,23 +26,18 @@ void UGKAbilitySystemGlobals::InitGlobalTags()
 {
     UAbilitySystemGlobals::InitGlobalTags();
 
-    if (ActivateFailNotYetLearnedName != NAME_None)
-    {
-        ActivateFailNotYetLearnedTag = FGameplayTag::RequestGameplayTag(ActivateFailNotYetLearnedName);
-    }
+    ActivateFailIsDeadTag       = FailureDead;
+    ActivateFailCooldownTag     = FailureCooldown;
+    ActivateFailCostTag         = FailureCost;
+    ActivateFailTagsBlockedTag  = FailureBlocked;
+    ActivateFailTagsMissingTag  = FailureMissing;
+    ActivateFailNetworkingTag   = FailureNetwork;
 
-    if (DeathName != NAME_None)
-    {
-        DeathTag = FGameplayTag::RequestGameplayTag(DeathName);
-    }
 
-    if (DeathDispelName != NAME_None)
-    {
-        DeathDispelTag = FGameplayTag::RequestGameplayTag(DeathDispelName);
-    }
 
-    if (AnimationCastPointName != NAME_None)
-    {
-        AnimationCastPointTag = FGameplayTag::RequestGameplayTag(AnimationCastPointName);
-    }
+}
+
+
+UGKAbilitySystemGlobals& UGKAbilitySystemGlobals::GetGlobals() {
+    return (UGKAbilitySystemGlobals&) UGKAbilitySystemGlobals::Get();
 }

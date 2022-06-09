@@ -262,8 +262,8 @@ void AGKCharacterBase::Die()
     GetCharacterMovement()->Velocity     = FVector(0);
 
     // Clean up the ASC
-    const FGameplayTag &DeathDispelTag = ((UGKAbilitySystemGlobals &)UGKAbilitySystemGlobals::Get()).DeathDispelTag;
-    const FGameplayTag &DeathTag       = ((UGKAbilitySystemGlobals &)UGKAbilitySystemGlobals::Get()).DeathTag;
+    const FGameplayTag &DeathDispelTag = Dispel;
+    const FGameplayTag &DeathTag       = DisableDead;
 
     if (AbilitySystemComponent != nullptr)
     {

@@ -31,8 +31,8 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
          AttributeChangedTask->OnAttributeChanged.AddDynamic(this, &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
     }
 
-    auto* CooldownTags = Ability->GetCooldownTags();
-    if (CooldownTags != nullptr){
+    FGameplayTagContainer const* CooldownTags = Ability->GetCooldownTags();
+    if (CooldownTags != nullptr && !CooldownTags->IsEmpty()){
         CooldownChangedTask = UGKAsyncTaskCooldownChanged::ListenForCooldownChange(ASC, *CooldownTags, true);
         CooldownChangedTask->OnCooldownBegin.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownBegin_Native);
         CooldownChangedTask->OnCooldownEnd.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownEnd_Native);

@@ -1,11 +1,14 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
 #include "Gamekit/Abilities/GKCastPointAnimNotify.h"
+
+
+// Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 // Unreal Engine
 #include "AbilitySystemBlueprintLibrary.h"
-
+#include "NativeGameplayTags.h"
 
 
 void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, class UAnimSequenceBase *Animation, const FAnimNotifyEventReference& EventReference)
@@ -24,30 +27,6 @@ void UGKCastPointAnimNotify::Notify(class USkeletalMeshComponent *MeshComp, clas
     }
 }
 
-
-UGKAbilitySystemGlobals* Get() {
-    UAbilitySystemGlobals* ASG = &UAbilitySystemGlobals::Get();
-    return Cast<UGKAbilitySystemGlobals>(ASG);
-}
- 
-
-FGameplayTag GetDefaultAnimTag() {
-
-    auto ASG = Get();
-    if (ASG){
-        return ASG->AnimationCastPointTag;
-    }
-
-    return FGameplayTag::EmptyTag;
-}
-
 FGameplayTag UGKCastPointAnimNotify::GetCastPointEventTag() {
-
-    static FGameplayTag DefaultTag = GetDefaultAnimTag();
-
-    if (CastPointEventTag == FGameplayTag::EmptyTag){
-        return DefaultTag;
-    }
-
-    return CastPointEventTag;
+    return AnimationCastPoint;
 }

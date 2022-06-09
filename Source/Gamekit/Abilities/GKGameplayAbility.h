@@ -108,11 +108,11 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     //! Retrieve the values from the DataTable for its data-driven effect
     //! C++ version avoid to copy the entire struct
-    FGKAbilityStatic *GetAbilityStatic();
+    FGKAbilityStatic *GetAbilityStatic() const;
 
     //! Called everytime the DataTable is modified, refresh the cached lookup
     UFUNCTION()
-    void OnDataTableChanged_Native();
+    void OnDataTableChanged_Native() const;
 
     //! Called everytime the Static data is loaded (init & reimport)
     virtual void LoadFromDataTable(FGKAbilityStatic &AbilityDef);
@@ -122,7 +122,7 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     void PostInitProperties() override;
 
     //! Cached lookup, do not use!
-    FGKAbilityStatic *AbilityStatic;
+    mutable FGKAbilityStatic *AbilityStatic;
 
     // Animations
     // ----------
@@ -252,10 +252,9 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     // UGameplayAbility Overrides
     //---------------------------
 
-    //! Returns the gameplay effect used to determine cooldown
-    //! The standard implementation use the CDO but we want to define
-    //! the cooldown procedurally
-    virtual UGameplayEffect *GetCooldownGameplayEffect() const override;
+    FGameplayTagContainer const* GetCooldownTags() const;
+
+    FGameplayTagContainer const* GetCooldownTagsFromSpec(FGameplayAbilitySpec* Spec) const;
 
     UPROPERTY()
     UGameplayEffect *CooldownEffectInstance;
@@ -306,7 +305,6 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     // Dynamic Init
     // ------------
-    UGameplayEffect *NewCooldownEffectFromConfig(TArray<float> &Durations);
 
     UGameplayEffect *NewCostEffectFromConfig(FGKAbilityCost &Conf);
 
