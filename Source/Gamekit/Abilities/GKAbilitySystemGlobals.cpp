@@ -20,6 +20,10 @@ GKTAGS(GKTAG);
 
 UGKAbilitySystemGlobals::UGKAbilitySystemGlobals(const FObjectInitializer &ObjectInitializer): Super(ObjectInitializer)
 {
+    GameplayCueNotifyPaths.Add("/Gamekit/Abilities/Cues");
+
+    // This works
+    // GameplayCueNotifyPaths.Add("/Game/Abilities");
 }
 
 void UGKAbilitySystemGlobals::InitGlobalTags()
@@ -32,7 +36,6 @@ void UGKAbilitySystemGlobals::InitGlobalTags()
     ActivateFailTagsBlockedTag  = FailureBlocked;
     ActivateFailTagsMissingTag  = FailureMissing;
     ActivateFailNetworkingTag   = FailureNetwork;
-
 
 
 }
