@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                f374d863f
+                2bab8ffd1
 
               </div>
 <div role="search">
@@ -133,6 +133,10 @@
 
 <span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">UGKAbilitySystemGlobals</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FObjectInitializer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameplayCueNotifyPaths</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;/Gamekit/Abilities/Cues&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// This works</span>
+<span class="w">    </span><span class="c1">// GameplayCueNotifyPaths.Add(&quot;/Game/Abilities&quot;);</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">InitGlobalTags</span><span class="p">()</span><span class="w"></span>
@@ -145,7 +149,6 @@
 <span class="w">    </span><span class="n">ActivateFailTagsBlockedTag</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FailureBlocked</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ActivateFailTagsMissingTag</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">FailureMissing</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ActivateFailNetworkingTag</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">FailureNetwork</span><span class="p">;</span><span class="w"></span>
-
 
 
 <span class="p">}</span><span class="w"></span>
