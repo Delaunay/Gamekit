@@ -174,6 +174,9 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     UPROPERTY()
     FGameplayAbilityTargetDataHandle TargetData;
 
+    UPROPERTY()
+    bool bUsePathfinding;
+
     // States
     UPROPERTY()
     TWeakObjectPtr<AActor> TargetActor;

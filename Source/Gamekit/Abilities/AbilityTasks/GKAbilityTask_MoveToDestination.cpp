@@ -16,6 +16,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Net/UnrealNetwork.h"
 #include "AbilitySystemComponent.h"
+#include "NavigationSystem.h"
+#include "Navigation/PathFollowingComponent.h"
 
 //#define DEBUG_MOVEMENT
 
@@ -409,3 +411,4 @@ UGKAbilitySystemComponent *UGKAbilityTask_MoveToDestination::GetTargetASC()
 {
     return Cast<UGKAbilitySystemComponent>(AbilitySystemComponent);
 }
+
