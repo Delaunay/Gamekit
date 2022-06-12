@@ -15,48 +15,13 @@ DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All);
 // Generated
 #include "GKNavigationInterface.generated.h"
 
+USTRUCT(BlueprintType)
+struct FGKNavPathHandle {
+    GENERATED_USTRUCT_BODY()
 
-
-UCLASS(BlueprintType)
-class  UGKMovementRequestContext: public UObject {
-
-    GENERATED_BODY()
-
-public:
-    // Cached variables
-    UObject* WorldCtx;
-
-    // This component is kind of the task we want to create 
-    TObjectPtr<class UPathFollowingComponent> PathFollowingComponent;
-
-    TObjectPtr<class UNavigationSystemV1> NavSys;
-
-    FAIMoveRequest MovementRequest;
-
-    FPathFollowingRequestResult Result;
-
-    bool bAllowStrafe;
-
-    TSubclassOf<UNavigationQueryFilter> DefaultNavigationFilterClass;
-
-    // Helper functions
-    FPathFollowingRequestResult MoveTo(const FAIMoveRequest& MoveRequest, FNavPathSharedPtr* OutPath);
-
-    bool BuildPathfindingQuery(const FAIMoveRequest& MoveRequest, FPathFindingQuery& Query) const;
-
-    FAIRequestID RequestMove(const FAIMoveRequest& MoveRequest, FNavPathSharedPtr Path);
-
-    void FindPathForMoveRequest(const FAIMoveRequest& MoveRequest, FPathFindingQuery& Query, FNavPathSharedPtr& OutPath) const;
-
-    APawn* GetPawn() const;
-
-    APawn* GetPawn();
-
-    const FNavAgentProperties& GetNavAgentPropertiesRef() const;
-
-    FVector GetNavAgentLocation() const;
+    FNavPathSharedPtr NavPath;
+    FAIRequestID RequestID;
 };
-
 
 /**
  * Move some of the AIController logic interfacing with the navigation system to a blueprint library
@@ -68,42 +33,8 @@ class GAMEKIT_API UGKNavigationInterface : public UBlueprintFunctionLibrary
     GENERATED_BODY()
 public:
 
-    UFUNCTION(BlueprintPure, meta = (WorldContext = "WorldCtx"))
-    UGKMovementRequestContext* NewMovementContext(UObject* WorldCtx, class UPathFollowingComponent* PathFollowingComponent);
-
-    UFUNCTION(BlueprintPure)
-    void MoveToLocation(UGKMovementRequestContext* Mvt,
-                        const FVector& Dest,
-                        float AcceptanceRadius,
-                        bool bStopOnOverlap,
-                        bool bUsePathfinding,
-                        bool bProjectDestinationToNavigation,
-                        bool bCanStrafe,
-                        TSubclassOf<UNavigationQueryFilter> FilterClass,
-                        bool bAllowPartialPaths);
-
-    UFUNCTION(BlueprintCallable)
-    void MoveToActor(UGKMovementRequestContext* Movement,
-                     AActor* Goal,
-                     float AcceptanceRadius,
-                     bool bStopOnOverlap,
-                     bool bUsePathfinding,
-                     bool bCanStrafe,
-                     TSubclassOf<UNavigationQueryFilter> FilterClass,
-                     bool bAllowPartialPaths);
-
-
-    UFUNCTION(BlueprintCallable)
-    bool PauseMove(UGKMovementRequestContext* Mvt);
-
-    UFUNCTION(BlueprintCallable)
-    bool ResumeMove(UGKMovementRequestContext* Mvt);
-
-    UFUNCTION(BlueprintCallable)
-    void StopMovement(UGKMovementRequestContext* Mvt);
-
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldCtx"))
-    void SimplifiedMove(UObject* WorldCtx,
+    FGKNavPathHandle SimplifiedMove(UObject* WorldCtx,
                         AActor* Actor,
                         FVector const& Dest,
                         AActor* GoalActor,
@@ -115,5 +46,10 @@ public:
                         float AcceptanceRadius,
                         bool bStopOnOverlap,
                         bool bCanStrafe);
+
+    UFUNCTION(BlueprintPure)
+    void GetPathPoints(FGKNavPathHandle const& Path) {
+        return Path.NavPath->GetPathPoints();
+    }
 };
  
