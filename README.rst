@@ -9,6 +9,11 @@ Welcome to GameKit's documentation!
    :target: https://www.patreon.com/bePatron?u=10394303
    :alt: Patreon
 
+.. image:: https://github.com/Delaunay/Gamekit/blob/master/Docs/_static/Badges/DiscordBanner.png?raw=true
+   :target: https://discord.gg/9d2rYraF
+   :height: 18
+   :alt: Discord
+
 Goals
 ~~~~~
 
