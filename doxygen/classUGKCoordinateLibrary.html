@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">2bab8ffd1</span>
+   &#160;<span id="projectnumber">facbeb462</span>
    </div>
   </td>
  </tr>
@@ -109,10 +109,266 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a6f317e1e43d4427dac1c5061fe0a3ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a584bd56a675851cf6d7349d3398ddb28"><td class="memItemLeft" align="right" valign="top">static FVector2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#a584bd56a675851cf6d7349d3398ddb28">ToScreenCoordinate2D</a> (FVector2D WorldLocation, FVector2D MapSize, FVector2D TextureSize)</td></tr>
 <tr class="separator:a584bd56a675851cf6d7349d3398ddb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6361b7603beba6ceb75bfa9b473d0488"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#a6361b7603beba6ceb75bfa9b473d0488">ToProlateSpheroidal</a> (FVector p, double Radius=1)</td></tr>
+<tr class="separator:a6361b7603beba6ceb75bfa9b473d0488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ef560b3831fb9b103287cb06bd16af"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#a27ef560b3831fb9b103287cb06bd16af">FromProlateSpheroidal</a> (FVector Point, double Radius=1)</td></tr>
+<tr class="separator:a27ef560b3831fb9b103287cb06bd16af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c0b3a6b1b6326612755866f9628cd2"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#a49c0b3a6b1b6326612755866f9628cd2">FromToroidal</a> (FVector Point, double Radius=1)</td></tr>
+<tr class="separator:a49c0b3a6b1b6326612755866f9628cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2ecf5ba1dd07bb57a0ddec1cca71848"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#ae2ecf5ba1dd07bb57a0ddec1cca71848">FromBispherical</a> (FVector Point, double Radius=1)</td></tr>
+<tr class="separator:ae2ecf5ba1dd07bb57a0ddec1cca71848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442ab2bd9be23b08f29c36cb4b66f7d2"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#a442ab2bd9be23b08f29c36cb4b66f7d2">FromParabolicCylindrical</a> (FVector Point)</td></tr>
+<tr class="separator:a442ab2bd9be23b08f29c36cb4b66f7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae04d79dfe4643229542446136d0b8cf2"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#ae04d79dfe4643229542446136d0b8cf2">FromOblateSpheroidal</a> (FVector Point, double Radius=1)</td></tr>
+<tr class="separator:ae04d79dfe4643229542446136d0b8cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae308baa6fc4b1677c22ee1441ff86438"><td class="memItemLeft" align="right" valign="top">static FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKCoordinateLibrary.html#ae308baa6fc4b1677c22ee1441ff86438">FromBipolarCylindrical</a> (FVector Point, double Radius=1)</td></tr>
+<tr class="separator:ae308baa6fc4b1677c22ee1441ff86438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Should match the shader equivalent </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae308baa6fc4b1677c22ee1441ff86438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae308baa6fc4b1677c22ee1441ff86438">&#9670;&nbsp;</a></span>FromBipolarCylindrical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromBipolarCylindrical </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2ecf5ba1dd07bb57a0ddec1cca71848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2ecf5ba1dd07bb57a0ddec1cca71848">&#9670;&nbsp;</a></span>FromBispherical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromBispherical </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae04d79dfe4643229542446136d0b8cf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae04d79dfe4643229542446136d0b8cf2">&#9670;&nbsp;</a></span>FromOblateSpheroidal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromOblateSpheroidal </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a442ab2bd9be23b08f29c36cb4b66f7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a442ab2bd9be23b08f29c36cb4b66f7d2">&#9670;&nbsp;</a></span>FromParabolicCylindrical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromParabolicCylindrical </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27ef560b3831fb9b103287cb06bd16af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ef560b3831fb9b103287cb06bd16af">&#9670;&nbsp;</a></span>FromProlateSpheroidal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromProlateSpheroidal </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49c0b3a6b1b6326612755866f9628cd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49c0b3a6b1b6326612755866f9628cd2">&#9670;&nbsp;</a></span>FromToroidal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::FromToroidal </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6361b7603beba6ceb75bfa9b473d0488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6361b7603beba6ceb75bfa9b473d0488">&#9670;&nbsp;</a></span>ToProlateSpheroidal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FVector UGKCoordinateLibrary::ToProlateSpheroidal </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Radius</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a3cfb6acffc7ccc1a7846840e82b738bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cfb6acffc7ccc1a7846840e82b738bb">&#9670;&nbsp;</a></span>ToScreenCoordinate()</h2>
 

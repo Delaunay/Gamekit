@@ -72,10 +72,16 @@ var searchData=
   ['fractionalbrownianmotion_481',['FractionalBrownianmotion',['../classgamekit_1_1fbm_1_1FractionalBrownianmotion.html',1,'gamekit::fbm']]],
   ['frameperseconds_482',['FramePerSeconds',['../classAGKFogOfWarVolume.html#a21e91103c63a2cffd4ee97e0e0fd349b',1,'AGKFogOfWarVolume']]],
   ['friendlycolor_483',['FriendlyColor',['../classAGKMinimapVolume.html#a2bb7a40fdab17b90e5c0512e2e36a739',1,'AGKMinimapVolume']]],
-  ['fromtexturetogrid_484',['FromTextureToGrid',['../classAGKFogOfWarVolume.html#ada5d4f17d3ee801372b74962f403ee4c',1,'AGKFogOfWarVolume']]],
-  ['fstatquery_485',['FStatQuery',['../structFStatQuery.html',1,'']]],
-  ['full_486',['FULL',['../GK__CPU__Upscaler_8cpp.html#a7b05b8118861711fd8573e92759bbc34',1,'GK_CPU_Upscaler.cpp']]],
-  ['fupscalingdispatcher_487',['FUpscalingDispatcher',['../classFUpscalingDispatcher.html',1,'FUpscalingDispatcher'],['../classFUpscalingDispatcher.html#adb546ed72bbd3f1db55d0d5afa4c95c6',1,'FUpscalingDispatcher::FUpscalingDispatcher()']]],
-  ['fupscalingparameter_488',['FUpscalingParameter',['../structFUpscalingParameter.html',1,'']]],
-  ['fupscalingshader_489',['FUpscalingShader',['../classFUpscalingShader.html',1,'']]]
+  ['frombipolarcylindrical_484',['FromBipolarCylindrical',['../classUGKCoordinateLibrary.html#ae308baa6fc4b1677c22ee1441ff86438',1,'UGKCoordinateLibrary']]],
+  ['frombispherical_485',['FromBispherical',['../classUGKCoordinateLibrary.html#ae2ecf5ba1dd07bb57a0ddec1cca71848',1,'UGKCoordinateLibrary']]],
+  ['fromoblatespheroidal_486',['FromOblateSpheroidal',['../classUGKCoordinateLibrary.html#ae04d79dfe4643229542446136d0b8cf2',1,'UGKCoordinateLibrary']]],
+  ['fromparaboliccylindrical_487',['FromParabolicCylindrical',['../classUGKCoordinateLibrary.html#a442ab2bd9be23b08f29c36cb4b66f7d2',1,'UGKCoordinateLibrary']]],
+  ['fromprolatespheroidal_488',['FromProlateSpheroidal',['../classUGKCoordinateLibrary.html#a27ef560b3831fb9b103287cb06bd16af',1,'UGKCoordinateLibrary']]],
+  ['fromtexturetogrid_489',['FromTextureToGrid',['../classAGKFogOfWarVolume.html#ada5d4f17d3ee801372b74962f403ee4c',1,'AGKFogOfWarVolume']]],
+  ['fromtoroidal_490',['FromToroidal',['../classUGKCoordinateLibrary.html#a49c0b3a6b1b6326612755866f9628cd2',1,'UGKCoordinateLibrary']]],
+  ['fstatquery_491',['FStatQuery',['../structFStatQuery.html',1,'']]],
+  ['full_492',['FULL',['../GK__CPU__Upscaler_8cpp.html#a7b05b8118861711fd8573e92759bbc34',1,'GK_CPU_Upscaler.cpp']]],
+  ['fupscalingdispatcher_493',['FUpscalingDispatcher',['../classFUpscalingDispatcher.html',1,'FUpscalingDispatcher'],['../classFUpscalingDispatcher.html#adb546ed72bbd3f1db55d0d5afa4c95c6',1,'FUpscalingDispatcher::FUpscalingDispatcher()']]],
+  ['fupscalingparameter_494',['FUpscalingParameter',['../structFUpscalingParameter.html',1,'']]],
+  ['fupscalingshader_495',['FUpscalingShader',['../classFUpscalingShader.html',1,'']]]
 ];

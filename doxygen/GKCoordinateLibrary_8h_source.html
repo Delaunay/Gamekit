@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">2bab8ffd1</span>
+   &#160;<span id="projectnumber">facbeb462</span>
    </div>
   </td>
  </tr>
@@ -105,12 +105,104 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> FVector2D ToScreenCoordinate2D(FVector2D WorldLocation, FVector2D MapSize, FVector2D TextureSize);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#a6361b7603beba6ceb75bfa9b473d0488">   36</a></span>&#160;        static FVector ToProlateSpheroidal(FVector p, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">double</span> a = Radius;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">double</span> p1 = FMath::Sqrt(p.X * p.X + p.Y * p.Y + (p.Z + a) * (p.Z + a));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">double</span> p2 = FMath::Sqrt(p.X * p.X + p.Y * p.Y + (p.Z - a) * (p.Z - a));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">double</span> Sigma = (p1 + p1) / (2.0 * a);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">double</span> Tau = (p1 - p2) / (2.0 * a);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">double</span> Phi = FMath::Atan2(p.Y, p.X);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> FVector(Sigma, Tau, Phi);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#a27ef560b3831fb9b103287cb06bd16af">   49</a></span>&#160;     static FVector FromProlateSpheroidal(FVector Point, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">double</span> s = Point.X;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">double</span> t = Point.Y;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">double</span> p = Point.Z;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">double</span> v = Radius * FMath::Sqrt((s * s - 1) * (1 - t * t));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> FVector(v * FMath::Cos(p), v * FMath::Sin(p), Radius * s * t);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#a49c0b3a6b1b6326612755866f9628cd2">   61</a></span>&#160;     static FVector FromToroidal(FVector Point, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">double</span> s = Point.X;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">double</span> t = Point.Y;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">double</span> p = Point.Z;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">double</span> a = Radius;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">double</span> top = sinh(t);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">double</span> div = cosh(t) - FMath::Cos(s);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> FVector(a * top / div * FMath::Cos(p), a * top / div * FMath::Sin(p), a * FMath::Sin(s) / div);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#ae2ecf5ba1dd07bb57a0ddec1cca71848">   74</a></span>&#160;    static FVector FromBispherical(FVector Point, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">double</span> s = Point.X;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">double</span> t = Point.Y;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> p = Point.Z;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">double</span> a = Radius;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">double</span> top = sinh(t);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">double</span> div = cosh(t) - FMath::Cos(s);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> FVector(</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            a * FMath::Cos(p) * FMath::Sin(s) / (div),</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            a * FMath::Sin(p) * FMath::Sin(s) / (div),</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            a * sinh(t) / (div)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        );</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#a442ab2bd9be23b08f29c36cb4b66f7d2">   91</a></span>&#160;    static FVector FromParabolicCylindrical(FVector Point) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">double</span> s = Point.X;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">double</span> t = Point.Y;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">double</span> p = Point.Z;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> FVector(s * t, (t * t - s * s) / 2, p);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#ae04d79dfe4643229542446136d0b8cf2">   99</a></span>&#160;    static FVector FromOblateSpheroidal(FVector Point, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">double</span> a = Radius;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="namespacegamekit_1_1fbm.html#a335445d3c1e3f57e07581ed8d4b0b0ff">m</a> = Point.X;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">double</span> v = Point.Y;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">double</span> p = Point.Z;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> FVector(</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            a * cosh(<a class="code" href="namespacegamekit_1_1fbm.html#a335445d3c1e3f57e07581ed8d4b0b0ff">m</a>) * FMath::Cos(v) * FMath::Cos(p),</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            a * cosh(<a class="code" href="namespacegamekit_1_1fbm.html#a335445d3c1e3f57e07581ed8d4b0b0ff">m</a>) * FMath::Cos(v) * FMath::Sin(p),</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            a * sinh(<a class="code" href="namespacegamekit_1_1fbm.html#a335445d3c1e3f57e07581ed8d4b0b0ff">m</a>) * FMath::Sin(v)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        );</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Coordinate&quot;</span>)</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classUGKCoordinateLibrary.html#ae308baa6fc4b1677c22ee1441ff86438">  113</a></span>&#160;    static FVector FromBipolarCylindrical(FVector Point, <span class="keywordtype">double</span> Radius = 1) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">double</span> a = Radius;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">double</span> s = Point.X;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">double</span> t = Point.Y;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">double</span> z = Point.Z;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">return</span> FVector(</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            a * sinh(t) / (cosh(t) - FMath::Cos(s)),</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            a * FMath::Sin(t) / (cosh(t) - FMath::Cos(s)),</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            z</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        );</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a16684a79f434cd6c8de552262735243c"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a16684a79f434cd6c8de552262735243c">UGKCoordinateLibrary::ToTextureCoordinate</a></div><div class="ttdeci">static FVector2D ToTextureCoordinate(FVector WorldLocation, FVector2D MapSize)</div><div class="ttdoc">Returns coordinate (0, 1)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:5</div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a584bd56a675851cf6d7349d3398ddb28"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a584bd56a675851cf6d7349d3398ddb28">UGKCoordinateLibrary::ToScreenCoordinate2D</a></div><div class="ttdeci">static FVector2D ToScreenCoordinate2D(FVector2D WorldLocation, FVector2D MapSize, FVector2D TextureSize)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:24</div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a6f317e1e43d4427dac1c5061fe0a3ee9"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a6f317e1e43d4427dac1c5061fe0a3ee9">UGKCoordinateLibrary::ToTextureCoordinate2D</a></div><div class="ttdeci">static FVector2D ToTextureCoordinate2D(FVector2D WorldLocation, FVector2D MapSize)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:10</div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a3cfb6acffc7ccc1a7846840e82b738bb"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a3cfb6acffc7ccc1a7846840e82b738bb">UGKCoordinateLibrary::ToScreenCoordinate</a></div><div class="ttdeci">static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize)</div><div class="ttdoc">Returns coordinate (0, PixelSize)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:19</div></div>
+<div class="ttc" id="anamespacegamekit_1_1fbm_html_a335445d3c1e3f57e07581ed8d4b0b0ff"><div class="ttname"><a href="namespacegamekit_1_1fbm.html#a335445d3c1e3f57e07581ed8d4b0b0ff">gamekit.fbm.m</a></div><div class="ttdeci">m</div><div class="ttdef"><b>Definition:</b> fbm.py:107</div></div>
 <div class="ttc" id="aGKCoordinateLibrary_8h_html"><div class="ttname"><a href="GKCoordinateLibrary_8h.html">GKCoordinateLibrary.h</a></div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html"><div class="ttname"><a href="classUGKCoordinateLibrary.html">UGKCoordinateLibrary</a></div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.h:16</div></div>
 <!-- start footer part -->
