@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKNavPathHandle:
+
+Struct FGKNavPathHandle
+=======================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKNavPathHandle
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

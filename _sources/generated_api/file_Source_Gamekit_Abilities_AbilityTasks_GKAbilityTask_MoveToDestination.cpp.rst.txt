@@ -51,6 +51,10 @@ Includes
 
 - ``Kismet/KismetMathLibrary.h``
 
+- ``Navigation/PathFollowingComponent.h``
+
+- ``NavigationSystem.h``
+
 - ``Net/UnrealNetwork.h``
 
 

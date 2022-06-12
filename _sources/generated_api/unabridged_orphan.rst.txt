@@ -995,6 +995,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Blueprint_GKNavigationInterface.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Utilities_GKNetworkedEvent.cpp.rst
 
 .. toctree::

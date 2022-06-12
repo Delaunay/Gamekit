@@ -1,0 +1,14 @@
+.. _exhale_function_GKNavigationInterface_8cpp_1a753559e61f70f41de0e9952a64a74b4e:
+
+Function DEFINE_LOG_CATEGORY(LogGKNav)
+======================================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DEFINE_LOG_CATEGORY(LogGKNav)
+   :project: GameKit

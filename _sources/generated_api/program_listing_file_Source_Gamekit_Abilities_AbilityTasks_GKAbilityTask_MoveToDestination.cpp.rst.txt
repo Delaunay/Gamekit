@@ -28,6 +28,8 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    #include "Kismet/KismetMathLibrary.h"
    #include "Net/UnrealNetwork.h"
    #include "AbilitySystemComponent.h"
+   #include "NavigationSystem.h"
+   #include "Navigation/PathFollowingComponent.h"
    
    //#define DEBUG_MOVEMENT
    
@@ -421,3 +423,4 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    {
        return Cast<UGKAbilitySystemComponent>(AbilitySystemComponent);
    }
+   

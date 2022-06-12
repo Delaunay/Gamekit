@@ -21,6 +21,8 @@ Files
 - :ref:`file_Source_Gamekit_Blueprint_GKInputLibrary.h`
 - :ref:`file_Source_Gamekit_Blueprint_GKMazeGeneration.cpp`
 - :ref:`file_Source_Gamekit_Blueprint_GKMazeGeneration.h`
+- :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp`
+- :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`
 - :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp`
 - :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.h`
 - :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.cpp`

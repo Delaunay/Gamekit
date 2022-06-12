@@ -1,0 +1,14 @@
+.. _exhale_function_GKNavigationInterface_8h_1aea999a9f5a9f4af421a8f42d15a83f2c:
+
+Function DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All)
+========================================================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All)
+   :project: GameKit

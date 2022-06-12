@@ -130,6 +130,9 @@ Program Listing for File GKAbilityTask_MoveToDestination.h
        UPROPERTY()
        FGameplayAbilityTargetDataHandle TargetData;
    
+       UPROPERTY()
+       bool bUsePathfinding;
+   
        // States
        UPROPERTY()
        TWeakObjectPtr<AActor> TargetActor;

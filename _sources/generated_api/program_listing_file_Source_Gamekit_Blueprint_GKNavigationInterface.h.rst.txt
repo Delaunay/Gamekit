@@ -1,0 +1,63 @@
+
+.. _program_listing_file_Source_Gamekit_Blueprint_GKNavigationInterface.h:
+
+Program Listing for File GKNavigationInterface.h
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Blueprint_GKNavigationInterface.h>` (``Source/Gamekit/Blueprint/GKNavigationInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/GKLog.h"
+   
+   DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All);
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Kismet/BlueprintFunctionLibrary.h"
+   #include "AITypes.h"
+   
+   // Generated
+   #include "GKNavigationInterface.generated.h"
+   
+   USTRUCT(BlueprintType)
+   struct FGKNavPathHandle {
+       GENERATED_USTRUCT_BODY()
+   
+       FNavPathSharedPtr NavPath;
+       FAIRequestID RequestID;
+   };
+   
+   UCLASS()
+   class GAMEKIT_API UGKNavigationInterface : public UBlueprintFunctionLibrary
+   {
+       GENERATED_BODY()
+   public:
+   
+       UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldCtx"))
+       FGKNavPathHandle SimplifiedMove(UObject* WorldCtx,
+                           AActor* Actor,
+                           FVector const& Dest,
+                           AActor* GoalActor,
+                           TSubclassOf<UNavigationQueryFilter> FilterClass,
+                           bool bUsePathFinding,
+                           bool bMovetoActor,
+                           bool bAllowPartialPaths,
+                           bool bProjectDestinationToNavigation,
+                           float AcceptanceRadius,
+                           bool bStopOnOverlap,
+                           bool bCanStrafe);
+   
+       UFUNCTION(BlueprintPure)
+       void GetPathPoints(FGKNavPathHandle const& Path) {
+           return Path.NavPath->GetPathPoints();
+       }
+   };
+    

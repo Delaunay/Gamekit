@@ -1,0 +1,14 @@
+.. _exhale_define_GKNavigationInterface_8cpp_1a5a9e74fedd95fafe78f0f3ded6a4afb0:
+
+Define GKNAV_ERROR
+==================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKNAV_ERROR
+   :project: GameKit

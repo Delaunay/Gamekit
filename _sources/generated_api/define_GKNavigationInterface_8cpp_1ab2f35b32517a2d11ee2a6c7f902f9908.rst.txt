@@ -1,0 +1,14 @@
+.. _exhale_define_GKNavigationInterface_8cpp_1ab2f35b32517a2d11ee2a6c7f902f9908:
+
+Define GKNAV_WARNING
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GKNAV_WARNING
+   :project: GameKit

@@ -1,0 +1,67 @@
+
+.. _file_Source_Gamekit_Blueprint_GKNavigationInterface.h:
+
+File GKNavigationInterface.h
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Blueprint>` (``Source/Gamekit/Blueprint``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Blueprint/GKNavigationInterface.h``)
+-----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Blueprint_GKNavigationInterface.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AITypes.h``
+
+- ``CoreMinimal.h``
+
+- ``GKNavigationInterface.generated.h``
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``Kismet/BlueprintFunctionLibrary.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKNavPathHandle`
+
+- :ref:`exhale_class_classUGKNavigationInterface`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKNavigationInterface_8h_1aea999a9f5a9f4af421a8f42d15a83f2c`
+

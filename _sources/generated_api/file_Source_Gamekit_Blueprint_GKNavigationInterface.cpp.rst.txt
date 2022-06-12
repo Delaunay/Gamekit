@@ -1,0 +1,78 @@
+
+.. _file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp:
+
+File GKNavigationInterface.cpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Blueprint>` (``Source/Gamekit/Blueprint``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Blueprint/GKNavigationInterface.cpp``)
+-------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Blueprint_GKNavigationInterface.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Blueprint/GKNavigationInterface.h`` (:ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`)
+
+- ``NavFilters/NavigationQueryFilter.h``
+
+- ``Navigation/PathFollowingComponent.h``
+
+- ``NavigationSystem.h``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKNavigationInterface_8cpp_1a753559e61f70f41de0e9952a64a74b4e`
+
+- :ref:`exhale_function_GKNavigationInterface_8cpp_1a8a06838f50a812a5fd953b3419161d4d`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKNavigationInterface_8cpp_1a13666cde2e5985df10020667e1939ec8`
+
+- :ref:`exhale_define_GKNavigationInterface_8cpp_1a5a9e74fedd95fafe78f0f3ded6a4afb0`
+
+- :ref:`exhale_define_GKNavigationInterface_8cpp_1a83dfa9781899f31fe73d7a17a392c732`
+
+- :ref:`exhale_define_GKNavigationInterface_8cpp_1ab2f35b32517a2d11ee2a6c7f902f9908`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_GKNavigationInterface_8cpp_1a1ea36db9e6564d1e9e4bcf6b725a4c4f`
+
+- :ref:`exhale_variable_GKNavigationInterface_8cpp_1aad42db5e9d5dd6463ee2133d83f8204d`
+
+- :ref:`exhale_variable_GKNavigationInterface_8cpp_1a8bdc1ddc199ba56bf192dd2771eb2ae8`
+
+- :ref:`exhale_variable_GKNavigationInterface_8cpp_1a964f87bad3fab8f1d6b40d1f7251c7e3`
+
