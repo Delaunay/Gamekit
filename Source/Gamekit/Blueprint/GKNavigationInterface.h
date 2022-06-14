@@ -16,11 +16,12 @@ DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All);
 #include "GKNavigationInterface.generated.h"
 
 USTRUCT(BlueprintType)
-struct FGKNavPathHandle {
+struct FGKNavQueryResult {
     GENERATED_USTRUCT_BODY()
 
     FNavPathSharedPtr NavPath;
     FAIRequestID RequestID;
+    TEnumAsByte<EPathFollowingRequestResult::Type> Code;
 };
 
 /**
@@ -34,22 +35,49 @@ class GAMEKIT_API UGKNavigationInterface : public UBlueprintFunctionLibrary
 public:
 
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldCtx"))
-    FGKNavPathHandle SimplifiedMove(UObject* WorldCtx,
-                        AActor* Actor,
-                        FVector const& Dest,
-                        AActor* GoalActor,
-                        TSubclassOf<UNavigationQueryFilter> FilterClass,
-                        bool bUsePathFinding,
-                        bool bMovetoActor,
-                        bool bAllowPartialPaths,
-                        bool bProjectDestinationToNavigation,
-                        float AcceptanceRadius,
-                        bool bStopOnOverlap,
-                        bool bCanStrafe);
+    static FGKNavQueryResult SimplifiedMove(UObject* WorldCtx,
+        AActor* Actor,
+        FVector const& Dest,
+        AActor* GoalActor,
+        TSubclassOf<UNavigationQueryFilter> FilterClass,
+        bool bUsePathFinding,
+        bool bMoveToActor,
+        bool bAllowPartialPaths,
+        bool bProjectDestinationToNavigation,
+        float AcceptanceRadius,
+        bool bStopOnOverlap,
+        bool bCanStrafe,
+        bool bDebug
+    );
+
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldCtx"))
+    static FGKNavQueryResult FindPath(UObject* WorldCtx,
+        AActor* Actor,
+        FVector const& Dest,
+        AActor* GoalActor,
+        TSubclassOf<UNavigationQueryFilter> FilterClass,
+        bool bUsePathFinding,
+        bool bMoveToActor,
+        bool bAllowPartialPaths,
+        bool bProjectDestinationToNavigation,
+        float AcceptanceRadius,
+        bool bStopOnOverlap,
+        bool bCanStrafe,
+        bool bDebug
+    );
 
     UFUNCTION(BlueprintPure)
-    void GetPathPoints(FGKNavPathHandle const& Path) {
-        return Path.NavPath->GetPathPoints();
+    static TArray<FVector> GetPathPoints(FGKNavQueryResult const& Path) {
+        TArray<FVector> Points;
+
+        if (Path.Code == EPathFollowingRequestResult ::RequestSuccessful && Path.NavPath){
+            Points.Reserve(Path.NavPath->GetPathPoints().Num());
+
+            for(FNavPathPoint& Point: Path.NavPath->GetPathPoints()){
+                Points.Add(Point.Location);
+            }
+        }
+        return Points;
     }
 };
  
