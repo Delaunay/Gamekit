@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">487a812d8</span>
+   &#160;<span id="projectnumber">9a28a0996</span>
    </div>
   </td>
  </tr>
@@ -70,7 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classUGKNavigationInterface-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">UGKNavigationInterface Class Reference</div>  </div>
@@ -97,18 +97,20 @@ Collaboration diagram for UGKNavigationInterface:</div>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a3c0eaa1d8266d65cea57b150fe6383fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFGKNavPathHandle.html">FGKNavPathHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKNavigationInterface.html#a3c0eaa1d8266d65cea57b150fe6383fd">SimplifiedMove</a> (UObject *WorldCtx, AActor *Actor, FVector const &amp;<a class="el" href="GKNavigationInterface_8cpp.html#aad42db5e9d5dd6463ee2133d83f8204d">Dest</a>, AActor *<a class="el" href="GKNavigationInterface_8cpp.html#a8bdc1ddc199ba56bf192dd2771eb2ae8">GoalActor</a>, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool <a class="el" href="GKNavigationInterface_8cpp.html#a1ea36db9e6564d1e9e4bcf6b725a4c4f">bMovetoActor</a>, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe)</td></tr>
-<tr class="separator:a3c0eaa1d8266d65cea57b150fe6383fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2004aa0c087a2dc5896746785cad3ed5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKNavigationInterface.html#a2004aa0c087a2dc5896746785cad3ed5">GetPathPoints</a> (<a class="el" href="structFGKNavPathHandle.html">FGKNavPathHandle</a> const &amp;Path)</td></tr>
-<tr class="separator:a2004aa0c087a2dc5896746785cad3ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a322dc3751fbca7576638306185638bba"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKNavigationInterface.html#a322dc3751fbca7576638306185638bba">SimplifiedMove</a> (UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</td></tr>
+<tr class="separator:a322dc3751fbca7576638306185638bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5612711afe4837d86d3d9c69a65574"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574">FindPath</a> (UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</td></tr>
+<tr class="separator:aca5612711afe4837d86d3d9c69a65574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46b7ae549fdd1454336a905682d0bcc"><td class="memItemLeft" align="right" valign="top">static TArray&lt; FVector &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKNavigationInterface.html#ab46b7ae549fdd1454336a905682d0bcc">GetPathPoints</a> (<a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> const &amp;Path)</td></tr>
+<tr class="separator:ab46b7ae549fdd1454336a905682d0bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Move some of the AIController logic interfacing with the navigation system to a blueprint library so the logic can be reused without AIControllers </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2004aa0c087a2dc5896746785cad3ed5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2004aa0c087a2dc5896746785cad3ed5">&#9670;&nbsp;</a></span>GetPathPoints()</h2>
+<a id="aca5612711afe4837d86d3d9c69a65574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca5612711afe4837d86d3d9c69a65574">&#9670;&nbsp;</a></span>FindPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,30 +119,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void UGKNavigationInterface::GetPathPoints </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structFGKNavPathHandle.html">FGKNavPathHandle</a> const &amp;&#160;</td>
-          <td class="paramname"><em>Path</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3c0eaa1d8266d65cea57b150fe6383fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c0eaa1d8266d65cea57b150fe6383fd">&#9670;&nbsp;</a></span>SimplifiedMove()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structFGKNavPathHandle.html">FGKNavPathHandle</a> UGKNavigationInterface::SimplifiedMove </td>
+          <td class="memname"><a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> UGKNavigationInterface::FindPath </td>
           <td>(</td>
           <td class="paramtype">UObject *&#160;</td>
           <td class="paramname"><em>WorldCtx</em>, </td>
@@ -179,7 +158,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bMovetoActor</em>, </td>
+          <td class="paramname"><em>bMoveToActor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -209,7 +188,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bCanStrafe</em>&#160;</td>
+          <td class="paramname"><em>bCanStrafe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bDebug</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -217,6 +202,139 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab46b7ae549fdd1454336a905682d0bcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46b7ae549fdd1454336a905682d0bcc">&#9670;&nbsp;</a></span>GetPathPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static TArray&lt;FVector&gt; UGKNavigationInterface::GetPathPoints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> const &amp;&#160;</td>
+          <td class="paramname"><em>Path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a322dc3751fbca7576638306185638bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a322dc3751fbca7576638306185638bba">&#9670;&nbsp;</a></span>SimplifiedMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> UGKNavigationInterface::SimplifiedMove </td>
+          <td>(</td>
+          <td class="paramtype">UObject *&#160;</td>
+          <td class="paramname"><em>WorldCtx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AActor *&#160;</td>
+          <td class="paramname"><em>Actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FVector const &amp;&#160;</td>
+          <td class="paramname"><em>Dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AActor *&#160;</td>
+          <td class="paramname"><em>GoalActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TSubclassOf&lt; UNavigationQueryFilter &gt;&#160;</td>
+          <td class="paramname"><em>FilterClass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bUsePathFinding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bMoveToActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bAllowPartialPaths</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bProjectDestinationToNavigation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>AcceptanceRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bStopOnOverlap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bCanStrafe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bDebug</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

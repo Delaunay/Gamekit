@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                487a812d8
+                9a28a0996
 
               </div>
 <div role="search">
@@ -116,9 +116,7 @@
 <span class="c1">// Include</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKNavigationInterface.h&quot;</span><span class="cp"></span>
 
-
 <span class="c1">// Gamekit</span>
-
 <span class="cp">#define GKNAV_WARNING(Format, ...) GAMEKIT_LOG(LogGKNav, Warning, Format, __VA_ARGS__)</span>
 <span class="cp">#define GKNAV_DISPLAY(Format, ...) GAMEKIT_LOG(LogGKNav, Display, Format, __VA_ARGS__)</span>
 <span class="cp">#define GKNAV_LOG(Format, ...)     GAMEKIT_LOG(LogGKNav, Log, Format, __VA_ARGS__)</span>
@@ -130,10 +128,202 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Navigation/PathFollowingComponent.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NavigationSystem.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NavFilters/NavigationQueryFilter.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AIController.h&quot;</span><span class="cp"></span>
 
 
-<span class="n">FVector</span><span class="w"> </span><span class="n">GetGoalLocation</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"> </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">GoalLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dest</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">FGKMoveToArguments</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Inputs</span>
+<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Dest</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bUsePathFinding</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bMovetoActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bAllowPartialPaths</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bProjectDestinationToNavigation</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w">   </span><span class="n">AcceptanceRadius</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bStopOnOverlap</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bCanStrafe</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w">    </span><span class="n">bDebug</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Cached variables</span>
+<span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w">                      </span><span class="n">Pawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w">                     </span><span class="n">GoalLocation</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FNavAgentProperties</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w">  </span><span class="n">NavAgentProps</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPathFollowingComponent</span><span class="o">*</span><span class="w">    </span><span class="n">PathFollowingComponent</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">UNavigationSystemV1</span><span class="o">*</span><span class="w">        </span><span class="n">NavSys</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FPathFollowingRequestResult</span><span class="w"> </span><span class="n">ResultData</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FNavPathSharedPtr</span><span class="w">           </span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FPathFindingQuery</span><span class="w">           </span><span class="n">Query</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Results</span>
+<span class="w">    </span><span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGKMoveToArguments</span><span class="w"> </span><span class="nf">NewMoveTo</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Resolve Goal location; checks for Nans &amp; validity of the vector</span>
+<span class="w">    </span><span class="c1">// project the goal</span>
+<span class="w">    </span><span class="c1">// resolve actor goal location</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">ResolveGoalLocation</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Builds a NavQuery and find the nav path to follow to reach destination</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">FindPathToGoalSync</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Use the PathFollowing component to request a move if available</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">RequestPathFollowingMove</span><span class="p">(</span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Draw the path segments</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DebugDrawPath</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">HasReachedLocation</span><span class="p">(</span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">HasReached</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="nf">BuildsMoveRequest</span><span class="p">();</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+
+<span class="n">FAIMoveRequest</span><span class="w"> </span><span class="nf">FGKMoveToArguments::BuildsMoveRequest</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetGoalActor</span><span class="p">(</span><span class="n">GoalActor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetGoalLocation</span><span class="p">(</span><span class="n">GoalLocation</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetUsePathfinding</span><span class="p">(</span><span class="n">bUsePathFinding</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetAllowPartialPath</span><span class="p">(</span><span class="n">bAllowPartialPaths</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetProjectGoalLocation</span><span class="p">(</span><span class="n">bProjectDestinationToNavigation</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetNavigationFilter</span><span class="p">(</span><span class="o">*</span><span class="n">FilterClass</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">FilterClass</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">UNavigationQueryFilter</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetAcceptanceRadius</span><span class="p">(</span><span class="n">AcceptanceRadius</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetReachTestIncludesAgentRadius</span><span class="p">(</span><span class="n">bStopOnOverlap</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetCanStrafe</span><span class="p">(</span><span class="n">bCanStrafe</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FGKMoveToArguments</span><span class="w"> </span><span class="nf">FGKMoveToArguments::NewMoveTo</span><span class="p">(</span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKMoveToArguments</span><span class="w"> </span><span class="n">Args</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">LogAndReturnNull</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">Actor</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="n">Actor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">Dest</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="n">Dest</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">GoalActor</span><span class="w">                       </span><span class="o">=</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">FilterClass</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bUsePathFinding</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bMovetoActor</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bAllowPartialPaths</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bProjectDestinationToNavigation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">AcceptanceRadius</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bStopOnOverlap</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bCanStrafe</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">bDebug</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="n">bDebug</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">NavSys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FNavigationSystem</span><span class="o">::</span><span class="n">GetCurrent</span><span class="o">&lt;</span><span class="n">UNavigationSystemV1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Args</span><span class="p">.</span><span class="n">World</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Actor can both be an AIController or an Actor</span>
+<span class="w">    </span><span class="c1">// we put just Controller because more than just the AI controller could have the comp</span>
+<span class="w">    </span><span class="n">AController</span><span class="o">*</span><span class="w"> </span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">Pawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APawn</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Controller</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Controller</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Pawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetPawn</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">PathFollowingComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UPathFollowingComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetComponentByClass</span><span class="p">(</span><span class="n">UPathFollowingComponent</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Pawn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Pawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">PathFollowingComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UPathFollowingComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Args</span><span class="p">.</span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetComponentByClass</span><span class="p">(</span><span class="n">UPathFollowingComponent</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGKMoveToArguments::RequestPathFollowingMove</span><span class="p">(</span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathFollowingComponent</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">GetStatus</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EPathFollowingStatus</span><span class="o">::</span><span class="n">Idle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">AbortMove</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="o">*</span><span class="n">Controller</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">FPathFollowingResultFlags</span><span class="o">::</span><span class="n">ForcedScript</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FPathFollowingResultFlags</span><span class="o">::</span><span class="n">NewRequest</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">FAIRequestID</span><span class="o">::</span><span class="n">CurrentRequest</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">EPathFollowingVelocityMode</span><span class="o">::</span><span class="n">Keep</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">OnPathfindingQuery</span><span class="p">(</span><span class="n">Query</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// This happens earlier inside the AI controller</span>
+<span class="w">        </span><span class="c1">// because the FAIMoveRequest is created much earlier</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">HasReached</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMove</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">RequestSuccessful</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMoveWithImmediateFinish</span><span class="p">(</span><span class="n">EPathFollowingResult</span><span class="o">::</span><span class="n">Success</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">AlreadyAtGoal</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGKMoveToArguments::DebugDrawPath</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDebug</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">UKismetSystemLibrary</span><span class="o">::</span><span class="n">DrawDebugLine</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">World</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">LineStart</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">Point</span><span class="p">.</span><span class="n">Location</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">FLinearColor</span><span class="o">::</span><span class="n">Red</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mf">10.f</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mf">1.f</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">FGKMoveToArguments::ResolveGoalLocation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GoalLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dest</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanRequestMove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">INavAgentInterface</span><span class="o">*</span><span class="w"> </span><span class="n">NavGoal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">INavAgentInterface</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GoalActor</span><span class="p">);</span><span class="w"></span>
@@ -147,11 +337,82 @@
 <span class="w">            </span><span class="n">GoalLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GoalActor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Move to a destination</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GoalLocation</span><span class="p">.</span><span class="n">ContainsNaN</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">FAISystem</span><span class="o">::</span><span class="n">IsValidLocation</span><span class="p">(</span><span class="n">GoalLocation</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">bCanRequestMove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GoalLocation</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bCanRequestMove</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FNavLocation</span><span class="w"> </span><span class="n">ProjectedLocation</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">ProjectPointToNavigation</span><span class="p">(</span><span class="n">GoalLocation</span><span class="p">,</span><span class="w"> </span><span class="n">ProjectedLocation</span><span class="p">,</span><span class="w"> </span><span class="n">INVALID_NAVEXTENT</span><span class="p">,</span><span class="w"> </span><span class="n">NavAgentProps</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUsePathFinding</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;FGKMoveToArguments::ResolveGoalLocation failed to project destination location to navmesh&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">else</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;FGKMoveToArguments::ResolveGoalLocation failed to project destination location to navmesh, path finding is disabled perhaps disable goal projection ?&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">bCanRequestMove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">GoalLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ProjectedLocation</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bCanRequestMove</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">FGKNavPathHandle</span><span class="w"> </span><span class="n">UGKNavigationInterface</span><span class="o">::</span><span class="n">SimplifiedMove</span><span class="p">(</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">FGKMoveToArguments::FindPathToGoalSync</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get the navigation data for our query</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ANavigationData</span><span class="o">*</span><span class="w"> </span><span class="n">NavData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="w"> </span><span class="o">?</span><span class="w"></span>
+<span class="w">        </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">GetNavDataForProps</span><span class="p">(</span><span class="o">*</span><span class="n">NavAgentProps</span><span class="p">,</span><span class="w"> </span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">())</span><span class="w"> </span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">GetAbstractNavData</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Builds the Filter</span>
+<span class="w">    </span><span class="n">FSharedConstNavQueryFilter</span><span class="w"> </span><span class="n">NavFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UNavigationQueryFilter</span><span class="o">::</span><span class="n">GetQueryFilter</span><span class="p">(</span><span class="o">*</span><span class="n">NavData</span><span class="p">,</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Builds the query</span>
+<span class="w">    </span><span class="n">Query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FPathFindingQuery</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="n">NavData</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">GoalLocation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">NavFilter</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Query</span><span class="p">.</span><span class="n">SetAllowPartialPaths</span><span class="p">(</span><span class="n">bAllowPartialPaths</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Fetch the points to reach the goal</span>
+<span class="w">    </span><span class="c1">// this is probably what executes the A* algo</span>
+<span class="w">    </span><span class="c1">// E:\UnrealEngine\Engine\Source\Runtime\Navmesh\Private\Detour\DetourNavMeshQuery.cpp</span>
+<span class="w">    </span><span class="n">FPathFindingResult</span><span class="w"> </span><span class="n">PathResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">FindPathSync</span><span class="p">(</span><span class="n">Query</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ensure</span><span class="p">(</span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Check for results</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathResult</span><span class="p">.</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENavigationQueryResult</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">IsSuccessful</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Put the ActorGoal here so the path updates when the goal moves</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">SetGoalActorObservation</span><span class="p">(</span><span class="o">*</span><span class="n">GoalActor</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">EnableRecalculationOnInvalidation</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="nf">UGKNavigationInterface::SimplifiedMove</span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
@@ -163,83 +424,117 @@
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="w"></span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Fetch global resources</span>
-<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">LogAndReturnNull</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">UNavigationSystemV1</span><span class="o">*</span><span class="w"> </span><span class="n">NavSys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FNavigationSystem</span><span class="o">::</span><span class="n">GetCurrent</span><span class="o">&lt;</span><span class="n">UNavigationSystemV1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">World</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Resolve some Actor resources</span>
-<span class="w">    </span><span class="n">APawn</span><span class="o">*</span><span class="w"> </span><span class="n">Pawn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">APawn</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Actor</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FNavAgentProperties</span><span class="o">&amp;</span><span class="w"> </span><span class="n">NavAgentProps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="o">?</span><span class="w"> </span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetNavAgentPropertiesRef</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">FNavAgentProperties</span><span class="o">::</span><span class="n">DefaultProperties</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPathFollowingComponent</span><span class="o">*</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pawn</span><span class="o">?</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UPathFollowingComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Pawn</span><span class="o">-&gt;</span><span class="n">GetComponentByClass</span><span class="p">(</span><span class="n">UPathFollowingComponent</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()))</span><span class="o">:</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">FGKNavPathHandle</span><span class="w"> </span><span class="n">OutPath</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Get the navigation data for our query</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ANavigationData</span><span class="o">*</span><span class="w"> </span><span class="n">NavData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="w"> </span><span class="o">?</span><span class="w"></span>
-<span class="w">        </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">GetNavDataForProps</span><span class="p">(</span><span class="n">NavAgentProps</span><span class="p">,</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">())</span><span class="w"> </span><span class="o">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">GetAbstractNavData</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Builds the Filter</span>
-<span class="w">    </span><span class="n">FSharedConstNavQueryFilter</span><span class="w"> </span><span class="n">NavFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UNavigationQueryFilter</span><span class="o">::</span><span class="n">GetQueryFilter</span><span class="p">(</span><span class="o">*</span><span class="n">NavData</span><span class="p">,</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Builds the query</span>
-<span class="w">    </span><span class="n">FPathFindingQuery</span><span class="w"> </span><span class="n">Query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FPathFindingQuery</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKMoveToArguments</span><span class="w"> </span><span class="n">Args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKMoveToArguments</span><span class="o">::</span><span class="n">NewMoveTo</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="o">*</span><span class="n">NavData</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"></span>
-<span class="w">        </span><span class="n">GetGoalLocation</span><span class="p">(</span><span class="n">Actor</span><span class="p">,</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">),</span><span class="w"></span>
-<span class="w">        </span><span class="n">NavFilter</span><span class="w"></span>
+<span class="w">        </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bDebug</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Query</span><span class="p">.</span><span class="n">SetAllowPartialPaths</span><span class="p">(</span><span class="n">bAllowPartialPaths</span><span class="p">);</span><span class="w"></span>
 
-
-<span class="w">    </span><span class="c1">// Fetch the points to reach the goal</span>
-<span class="w">    </span><span class="c1">// this is probably what executes the A* algo</span>
-<span class="w">    </span><span class="n">FPathFindingResult</span><span class="w"> </span><span class="n">PathResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavSys</span><span class="o">-&gt;</span><span class="n">FindPathSync</span><span class="p">(</span><span class="n">Query</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Check for results</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathResult</span><span class="p">.</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENavigationQueryResult</span><span class="o">::</span><span class="n">Error</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathResult</span><span class="p">.</span><span class="n">IsSuccessful</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">SetGoalActorObservation</span><span class="p">(</span><span class="o">*</span><span class="n">GoalActor</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">EnableRecalculationOnInvalidation</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">OutPath</span><span class="p">.</span><span class="n">NavPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">NavSys</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;No NavSystem found&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Now we can execute a move</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PathFollowingComponent</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">OnPathfindingQuery</span><span class="p">(</span><span class="n">Query</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="n">MoveReq</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bMovetoActor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetGoalActor</span><span class="p">(</span><span class="n">GoalActor</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetGoalLocation</span><span class="p">(</span><span class="n">Dest</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetGoalLocation</span><span class="p">(</span><span class="n">Dest</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetUsePathfinding</span><span class="p">(</span><span class="n">bUsePathFinding</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetAllowPartialPath</span><span class="p">(</span><span class="n">bAllowPartialPaths</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetProjectGoalLocation</span><span class="p">(</span><span class="n">bProjectDestinationToNavigation</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetNavigationFilter</span><span class="p">(</span><span class="o">*</span><span class="n">FilterClass</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">FilterClass</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">UNavigationQueryFilter</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetAcceptanceRadius</span><span class="p">(</span><span class="n">AcceptanceRadius</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetReachTestIncludesAgentRadius</span><span class="p">(</span><span class="n">bStopOnOverlap</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">MoveReq</span><span class="p">.</span><span class="n">SetCanStrafe</span><span class="p">(</span><span class="n">bCanStrafe</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">OutPath</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMove</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">,</span><span class="w"> </span><span class="n">OutPath</span><span class="p">.</span><span class="n">NavPath</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">PathFollowingComponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;No PathFollowingComponent found for %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">AActor</span><span class="o">::</span><span class="n">GetDebugName</span><span class="p">(</span><span class="n">Args</span><span class="p">.</span><span class="n">Actor</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">OutPath</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">ResolveGoalLocation</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Cannot request move&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FAIMoveRequest</span><span class="w"> </span><span class="n">MoveRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">BuildsMoveRequest</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Args</span><span class="p">.</span><span class="n">HasReachedLocation</span><span class="p">(</span><span class="n">MoveRequest</span><span class="p">)){</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">AlreadyAtGoal</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMoveWithImmediateFinish</span><span class="p">(</span><span class="n">EPathFollowingResult</span><span class="o">::</span><span class="n">Success</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">FindPathToGoalSync</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Could not find path to location&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">DebugDrawPath</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Args</span><span class="p">.</span><span class="n">RequestPathFollowingMove</span><span class="p">(</span><span class="n">MoveRequest</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GKNAV_DISPLAY</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Request Status: %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">RequestSuccessful</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="nf">UGKNavigationInterface::FindPath</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKMoveToArguments</span><span class="w"> </span><span class="n">Args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGKMoveToArguments</span><span class="o">::</span><span class="n">NewMoveTo</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bDebug</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">NavSys</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;No NavSystem found&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">ResolveGoalLocation</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Cannot request move&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Args</span><span class="p">.</span><span class="n">FindPathToGoalSync</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GKNAV_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Could not find path to location&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Failed</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Args</span><span class="p">.</span><span class="n">Results</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

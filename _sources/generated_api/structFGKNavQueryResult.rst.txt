@@ -1,7 +1,7 @@
-.. _exhale_struct_structFGKNavPathHandle:
+.. _exhale_struct_structFGKNavQueryResult:
 
-Struct FGKNavPathHandle
-=======================
+Struct FGKNavQueryResult
+========================
 
 - Defined in :ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`
 
@@ -10,7 +10,7 @@ Struct Documentation
 --------------------
 
 
-.. doxygenstruct:: FGKNavPathHandle
+.. doxygenstruct:: FGKNavQueryResult
    :project: GameKit
    :members:
    :protected-members:

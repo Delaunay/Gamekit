@@ -54,7 +54,7 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structFGKNavPathHandle`
+- :ref:`exhale_struct_structFGKNavQueryResult`
 
 - :ref:`exhale_class_classUGKNavigationInterface`
 

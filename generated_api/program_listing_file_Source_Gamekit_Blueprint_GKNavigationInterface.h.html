@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                487a812d8
+                9a28a0996
 
               </div>
 <div role="search">
@@ -129,11 +129,12 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKNavigationInterface.generated.h&quot;</span><span class="cp"></span>
 
 <span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">FGKNavPathHandle</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">FGKNavQueryResult</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">FNavPathSharedPtr</span><span class="w"> </span><span class="n">NavPath</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">FAIRequestID</span><span class="w"> </span><span class="n">RequestID</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">Type</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Code</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
 <span class="n">UCLASS</span><span class="p">()</span><span class="w"></span>
@@ -143,22 +144,49 @@
 <span class="k">public</span><span class="o">:</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">WorldContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;WorldCtx&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGKNavPathHandle</span><span class="w"> </span><span class="n">SimplifiedMove</span><span class="p">(</span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMovetoActor</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="n">SimplifiedMove</span><span class="p">(</span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMoveToActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">WorldContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;WorldCtx&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="n">FindPath</span><span class="p">(</span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">Actor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Dest</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">AActor</span><span class="o">*</span><span class="w"> </span><span class="n">GoalActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">UNavigationQueryFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FilterClass</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUsePathFinding</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bMoveToActor</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAllowPartialPaths</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bProjectDestinationToNavigation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">AcceptanceRadius</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStopOnOverlap</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCanStrafe</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">GetPathPoints</span><span class="p">(</span><span class="n">FGKNavPathHandle</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">NavPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetPathPoints</span><span class="p">(</span><span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Points</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="w"> </span><span class="o">::</span><span class="n">RequestSuccessful</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">NavPath</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">Points</span><span class="p">.</span><span class="n">Reserve</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">NavPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">().</span><span class="n">Num</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="n">FNavPathPoint</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Point</span><span class="o">:</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">NavPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()){</span><span class="w"></span>
+<span class="w">                </span><span class="n">Points</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">Location</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Points</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">487a812d8</span>
+   &#160;<span id="projectnumber">9a28a0996</span>
    </div>
   </td>
  </tr>
@@ -75,8 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">GKNavigationInterface.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -85,16 +84,20 @@ $(function() {
 <code>#include &quot;Navigation/PathFollowingComponent.h&quot;</code><br />
 <code>#include &quot;NavigationSystem.h&quot;</code><br />
 <code>#include &quot;NavFilters/NavigationQueryFilter.h&quot;</code><br />
+<code>#include &quot;Kismet/KismetSystemLibrary.h&quot;</code><br />
+<code>#include &quot;AIController.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for GKNavigationInterface.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="GKNavigationInterface_8cpp__incl.png" border="0" usemap="#Source_2Gamekit_2Blueprint_2GKNavigationInterface_8cpp" alt=""/></div>
 <map name="Source_2Gamekit_2Blueprint_2GKNavigationInterface_8cpp" id="Source_2Gamekit_2Blueprint_2GKNavigationInterface_8cpp">
-<area shape="rect" title=" " alt="" coords="643,5,844,47"/>
+<area shape="rect" title=" " alt="" coords="841,5,1043,47"/>
 <area shape="rect" href="GKNavigationInterface_8h.html" title=" " alt="" coords="294,95,529,136"/>
 <area shape="rect" title=" " alt="" coords="553,95,739,136"/>
 <area shape="rect" title=" " alt="" coords="763,102,918,129"/>
 <area shape="rect" title=" " alt="" coords="942,95,1145,136"/>
+<area shape="rect" title=" " alt="" coords="1169,102,1392,129"/>
+<area shape="rect" title=" " alt="" coords="1416,102,1527,129"/>
 <area shape="rect" href="GKLog_8h.html" title=" " alt="" coords="17,191,153,218"/>
 <area shape="rect" title=" " alt="" coords="177,191,294,218"/>
 <area shape="rect" title=" " alt="" coords="318,184,505,225"/>
@@ -117,21 +120,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a753559e61f70f41de0e9952a64a74b4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a753559e61f70f41de0e9952a64a74b4e">DEFINE_LOG_CATEGORY</a> (LogGKNav) FVector GetGoalLocation(AActor *Actor</td></tr>
-<tr class="separator:a753559e61f70f41de0e9952a64a74b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a06838f50a812a5fd953b3419161d4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a8a06838f50a812a5fd953b3419161d4d">if</a> (<a class="el" href="GKNavigationInterface_8cpp.html#a1ea36db9e6564d1e9e4bcf6b725a4c4f">bMovetoActor</a>)</td></tr>
-<tr class="separator:a8a06838f50a812a5fd953b3419161d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:aad42db5e9d5dd6463ee2133d83f8204d"><td class="memItemLeft" align="right" valign="top">FVector const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#aad42db5e9d5dd6463ee2133d83f8204d">Dest</a></td></tr>
-<tr class="separator:aad42db5e9d5dd6463ee2133d83f8204d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bdc1ddc199ba56bf192dd2771eb2ae8"><td class="memItemLeft" align="right" valign="top">FVector const AActor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a8bdc1ddc199ba56bf192dd2771eb2ae8">GoalActor</a></td></tr>
-<tr class="separator:a8bdc1ddc199ba56bf192dd2771eb2ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea36db9e6564d1e9e4bcf6b725a4c4f"><td class="memItemLeft" align="right" valign="top">FVector const AActor bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a1ea36db9e6564d1e9e4bcf6b725a4c4f">bMovetoActor</a></td></tr>
-<tr class="separator:a1ea36db9e6564d1e9e4bcf6b725a4c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a964f87bad3fab8f1d6b40d1f7251c7e3"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a964f87bad3fab8f1d6b40d1f7251c7e3">GoalLocation</a></td></tr>
-<tr class="separator:a964f87bad3fab8f1d6b40d1f7251c7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b7467593073bb90d595dc23b9d9e26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKNavigationInterface_8cpp.html#a31b7467593073bb90d595dc23b9d9e26">DEFINE_LOG_CATEGORY</a> (LogGKNav) struct FGKMoveToArguments</td></tr>
+<tr class="separator:a31b7467593073bb90d595dc23b9d9e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a13666cde2e5985df10020667e1939ec8"></a>
@@ -247,8 +237,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a753559e61f70f41de0e9952a64a74b4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a753559e61f70f41de0e9952a64a74b4e">&#9670;&nbsp;</a></span>DEFINE_LOG_CATEGORY()</h2>
+<a id="a31b7467593073bb90d595dc23b9d9e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31b7467593073bb90d595dc23b9d9e26">&#9670;&nbsp;</a></span>DEFINE_LOG_CATEGORY()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,86 +255,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a8a06838f50a812a5fd953b3419161d4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a06838f50a812a5fd953b3419161d4d">&#9670;&nbsp;</a></span>if()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">if </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="GKNavigationInterface_8cpp.html#a1ea36db9e6564d1e9e4bcf6b725a4c4f">bMovetoActor</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a1ea36db9e6564d1e9e4bcf6b725a4c4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ea36db9e6564d1e9e4bcf6b725a4c4f">&#9670;&nbsp;</a></span>bMovetoActor</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FVector const AActor bool bMovetoActor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">{</div>
-<div class="line">    FVector <a class="code" href="GKNavigationInterface_8cpp.html#a964f87bad3fab8f1d6b40d1f7251c7e3">GoalLocation</a> = <a class="code" href="GKNavigationInterface_8cpp.html#aad42db5e9d5dd6463ee2133d83f8204d">Dest</a></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aad42db5e9d5dd6463ee2133d83f8204d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad42db5e9d5dd6463ee2133d83f8204d">&#9670;&nbsp;</a></span>Dest</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FVector const&amp; Dest</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8bdc1ddc199ba56bf192dd2771eb2ae8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bdc1ddc199ba56bf192dd2771eb2ae8">&#9670;&nbsp;</a></span>GoalActor</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FVector const AActor* GoalActor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a964f87bad3fab8f1d6b40d1f7251c7e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a964f87bad3fab8f1d6b40d1f7251c7e3">&#9670;&nbsp;</a></span>GoalLocation</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">return GoalLocation</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
-<div class="ttc" id="aGKNavigationInterface_8cpp_html_aad42db5e9d5dd6463ee2133d83f8204d"><div class="ttname"><a href="GKNavigationInterface_8cpp.html#aad42db5e9d5dd6463ee2133d83f8204d">Dest</a></div><div class="ttdeci">FVector const  &amp; Dest</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:22</div></div>
-<div class="ttc" id="aGKNavigationInterface_8cpp_html_a964f87bad3fab8f1d6b40d1f7251c7e3"><div class="ttname"><a href="GKNavigationInterface_8cpp.html#a964f87bad3fab8f1d6b40d1f7251c7e3">GoalLocation</a></div><div class="ttdeci">return GoalLocation</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:38</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
