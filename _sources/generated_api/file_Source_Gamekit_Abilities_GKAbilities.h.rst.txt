@@ -37,6 +37,8 @@ Included By
 -----------
 
 
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp`
+
 - :ref:`file_Source_Gamekit_Abilities_GKAbilities.cpp`
 
 - :ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.cpp`

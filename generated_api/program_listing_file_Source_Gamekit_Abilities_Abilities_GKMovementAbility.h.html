@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                4cfd3166f
+                00d750e96
 
               </div>
 <div role="search">
@@ -149,6 +149,15 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnMovementCancelled</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAbilityTask_MoveToDestination</span><span class="o">*</span><span class="w"> </span><span class="n">Task</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ReplicatedTargetData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">ActivationTag</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ExecuteMove</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">FHitResult</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Out</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">*</span><span class="w"> </span><span class="n">TriggerEventData</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

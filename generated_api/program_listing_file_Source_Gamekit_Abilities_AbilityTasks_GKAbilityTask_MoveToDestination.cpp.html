@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                4cfd3166f
+                00d750e96
 
               </div>
 <div role="search">
@@ -122,6 +122,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKNavigationInterface.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKUtilityLibrary.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;DrawDebugHelpers.h&quot;</span><span class="cp"></span>
@@ -134,7 +135,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Navigation/PathFollowingComponent.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
 
-<span class="c1">//#define DEBUG_MOVEMENT</span>
+<span class="c1">// #define DEBUG_MOVEMENT</span>
 
 <span class="cp">#ifdef DEBUG_MOVEMENT</span>
 <span class="cp">#    define DEBUG_MVT(...) GK_WARNING(__VA_ARGS__)</span>
@@ -434,6 +435,8 @@
 <span class="w">        </span><span class="n">DEBUG_MVT</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Reached current goal&quot;</span><span class="p">));</span><span class="w"></span>
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EndSegment</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">DEBUG_MVT</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;End of Path&quot;</span><span class="p">));</span><span class="w"></span>
+
 <span class="w">            </span><span class="n">bIsFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">            </span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
 <span class="w">            </span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
@@ -441,6 +444,7 @@
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">        </span><span class="k">else</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">DEBUG_MVT</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Go to next goal&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">            </span><span class="c1">// Got a new goal</span>
 <span class="w">            </span><span class="n">NextSegment</span><span class="p">();</span><span class="w"></span>
 <span class="w">            </span><span class="n">Goal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCurrentGoal</span><span class="p">();</span><span class="w"></span>
@@ -573,6 +577,8 @@
 <span class="w">        </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">End</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">EndSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">().</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">GK_DISPLAY</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Found path with %d points %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">EndSegment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetNetConfig</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAvatarActorFromActorInfo</span><span class="p">()));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;No path was found to destination&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>

@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                4cfd3166f
+                00d750e96
 
               </div>
 <div role="search">
@@ -67,12 +67,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#user-interface">User Interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#spell-button-states">Spell Button States</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ui-ability-state">UI &amp; Ability State</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-ability-state">UI &amp; Ability State</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#builtin-abilities">Builtin Abilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#builtin-effects">Builtin Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#builtin-attribute-set">Builtin Attribute Set</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Units.html">Units</a></li>
@@ -158,6 +158,7 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <section id="gametags">
 <h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
+<p>Gamekit automatically defines base gametags for its abilities.</p>
 <ul>
 <li><dl class="simple">
 <dt>Ability: use to tag abilities</dt><dd><ul class="simple">
@@ -383,42 +384,6 @@ which our ability can sample from.</p>
 and the right animation is then played. This enable us to use the same ability for different
 characters which can have different animation as well.</p>
 <img alt="../_images/AbilityAnimations.png" src="../_images/AbilityAnimations.png" />
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Setup your Gameplay Ability globals inside DefaultGame.ini to get failure tags.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[/Script/GameplayAbilities.AbilitySystemGlobals]</span><span class="w"></span>
-<span class="na">ActivateFailIsDeadName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
-<span class="na">ActivateFailCooldownName</span><span class="o">=</span><span class="s">Cooldown</span><span class="w"></span>
-<span class="na">ActivateFailCostName</span><span class="o">=</span><span class="s">Failure.Cost</span><span class="w"></span>
-<span class="na">ActivateFailTagsBlockedName</span><span class="o">=</span><span class="s">Failure.Blocked</span><span class="w"></span>
-<span class="na">ActivateFailTagsMissingName</span><span class="o">=</span><span class="s">Failure.Missing</span><span class="w"></span>
-<span class="na">ActivateFailNetworkingTag</span><span class="o">=</span><span class="s">Failure.Network</span><span class="w"></span>
-</pre></div>
-</div>
-<p>in DefaultGameplayTags.ini</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[/Script/GameplayTags.GameplayTagsSettings]</span><span class="w"></span>
-<span class="na">ImportTagsFromConfig</span><span class="o">=</span><span class="s">True</span><span class="w"></span>
-<span class="na">WarnOnInvalidTags</span><span class="o">=</span><span class="s">True</span><span class="w"></span>
-<span class="na">FastReplication</span><span class="o">=</span><span class="s">False</span><span class="w"></span>
-<span class="na">InvalidTagCharacters</span><span class="o">=</span><span class="s">&quot;\&quot;\&#39;,&quot;</span><span class="w"></span>
-<span class="na">NumBitsForContainerSize</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
-<span class="na">NetIndexFirstBitSegment</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;AbilityName&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;AbilityName.Attack&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Animation.Play&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown.Attack&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Cooldown.Skill1&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Debuff.Stun&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Dispel.Death&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Blocked&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Cost&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Missing&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;Failure.Network&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-<span class="na">+GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&quot;State.Dead&quot;,DevComment=&quot;&quot;)</span><span class="w"></span>
-</pre></div>
-</div>
-</div>
 </section>
 </section>
 <section id="user-interface">
@@ -452,15 +417,56 @@ a spell button.</p>
 <li><p><a class="reference internal" href="../generated_api/classUGKAsyncTaskAttributeChanged.html#_CPPv428UGKAsyncTaskAttributeChanged" title="UGKAsyncTaskAttributeChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTaskAttributeChanged</span></code></a>: can be used to listen to energy level and detect when an ability lacks its resources to be cast.</p></li>
 <li><p><a class="reference internal" href="../generated_api/classUGKAsyncTask__GameplayEffectChanged.html#_CPPv434UGKAsyncTask_GameplayEffectChanged" title="UGKAsyncTask_GameplayEffectChanged"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">UGKAsyncTask_GameplayEffectChanged</span></code></a>: can be used to listen to debuff that will disable spell casting.</p></li>
 </ul>
-<section id="resources">
-<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h4>
+</section>
+</section>
+<section id="builtin-abilities">
+<h2>Builtin Abilities<a class="headerlink" href="#builtin-abilities" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Base Ability: Basic ability with activation logic</p></li>
+<li><p>Cancel Ability: Cancel all the current abilities</p></li>
+<li><p>Move Ability: Move to destination or Actor</p></li>
+<li><p>Base Skill: Ability that is disabled when silenced</p></li>
+<li><dl class="simple">
+<dt>Base Item: Ability that is disabled when muted</dt><dd><ul>
+<li><p>with an optional item slot (Gloves, ring, etc…)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="builtin-effects">
+<h2>Builtin Effects<a class="headerlink" href="#builtin-effects" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cooldown</p></li>
+<li><p>Death: Remove all active effects and set health to zero</p></li>
+<li><p>Dispel: Remove all debuffs and disables</p></li>
+<li><p>Heal</p></li>
+<li><p>HealOvertime</p></li>
+<li><p>Damage</p></li>
+<li><p>DamageOvertime</p></li>
+<li><p>Immunity: Grant immunity against all debuffs and disables</p></li>
+<li><p>IncreaseHealth</p></li>
+<li><p>ManaCost</p></li>
+<li><p>MoveHaste</p></li>
+<li><p>Root</p></li>
+<li><p>Silence</p></li>
+<li><p>Stun</p></li>
+</ul>
+</section>
+<section id="builtin-attribute-set">
+<h2>Builtin Attribute Set<a class="headerlink" href="#builtin-attribute-set" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Health</p></li>
+<li><p>Mana</p></li>
+<li><p>Experience</p></li>
+<li><p>Gold</p></li>
+</ul>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
 <dd><p>Gameplay Ability System <a class="reference external" href="https://github.com/tranek/GASDocumentation">GAS</a>.</p>
 </dd>
 </dl>
-</section>
-</section>
 </section>
 </section>
 
