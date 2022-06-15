@@ -81,7 +81,8 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             float               Speed             = 600.f,
             bool                MoveToTarget      = true,
             EGK_AbilityBehavior TargetKind        = EGK_AbilityBehavior::PointTarget,
-            FGameplayTagContainer        CancelTag         = FGameplayTagContainer(),
+            FGameplayTagContainer CancelTag       = FGameplayTagContainer(),
+            bool                bUsePathfinding   = false,
             bool                Debug             = false);
 
     /**
@@ -109,6 +110,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             bool                                    bUseMovementComponent = true,
             EGK_AbilityBehavior                     TargetKind            = EGK_AbilityBehavior::PointTarget,
             FGameplayTagContainer                   CancelTag             = FGameplayTagContainer(),
+            bool                                    bUsePathfinding       = false,
             bool                                    Debug                 = false);
 
     /** Reached Destination */
@@ -156,8 +158,18 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     UPROPERTY()
     float MaxSpeed;
 
+private:
     UPROPERTY(replicated)
     FVector Destination;
+public:
+
+    void UpdateDestination(FVector Dest) {
+        Destination = Dest;
+
+        if (bUsePathfinding){
+            FindPath();
+        }
+    }
 
     UPROPERTY()
     bool bDebug;
@@ -197,4 +209,32 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     class UPawnMovementComponent *   MovementComponent;
     class USceneComponent *          RootComponent;
     class UGKAbilitySystemComponent *GetTargetASC();
+
+
+    // Path finding logic
+
+    // Find a path to the goal using the navigation system
+    void FindPath();
+
+    // Current path we are following
+    FNavPathSharedPtr Path;
+
+    // Called when the path was modified
+    void OnPathEvent(FNavigationPath* InPath, ENavPathEvent::Type Event);
+
+    int32 CurrentSegment;
+    int32 EndSegment;
+    NavNodeRef Start;
+    NavNodeRef End;
+
+    void FindingObjectivePoint();
+
+    // Return the current goal we should be waking toward
+    FVector GetCurrentGoal();
+
+    FVector GetEndGoal();
+
+    void DrawPath(FNavigationPath* InPath);
+
+    void NextSegment();
 };

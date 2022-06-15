@@ -76,6 +76,7 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 		true,						// Move To Target (i.e not rot only)
 		EGK_AbilityBehavior::PointTarget,
 		CancelTags,
+		true,					// UsePathfinding
 		false					// Debug
 	);
 

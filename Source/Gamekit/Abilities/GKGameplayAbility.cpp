@@ -350,6 +350,7 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
                                                                       true, // Use Movement Component
                                                                       GetAbilityStatic()->AbilityBehavior,
                                                                       FGameplayTagContainer(),
+                                                                      true,
                                                                       true);
 
     // MoveToTargetStartDelegate.Broadcast();
@@ -1177,7 +1178,7 @@ void UGKGameplayAbility::InputPressed(const FGameplayAbilitySpecHandle     Handl
             // TODO:: Fix this trace
             ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
             Controller->GetHitResultUnderCursorByChannel(Channel, false, Result);
-            MovementTask->Destination = Result.ImpactPoint;
+            MovementTask->UpdateDestination(Result.ImpactPoint);
         }
     }
 

@@ -11,6 +11,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All);
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "AITypes.h"
+#include "Navigation/PathFollowingComponent.h"
 
 // Generated
 #include "GKNavigationInterface.generated.h"
