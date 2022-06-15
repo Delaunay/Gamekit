@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9a28a0996
+                4cfd3166f
 
               </div>
 <div role="search">
@@ -463,6 +463,7 @@
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Use Movement Component</span>
 <span class="w">                                                                      </span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// MoveToTargetStartDelegate.Broadcast();</span>
@@ -1290,7 +1291,7 @@
 <span class="w">            </span><span class="c1">// TODO:: Fix this trace</span>
 <span class="w">            </span><span class="n">ETraceTypeQuery</span><span class="w"> </span><span class="n">Channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UEngineTypes</span><span class="o">::</span><span class="n">ConvertToTraceType</span><span class="p">(</span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">);</span><span class="w"></span>
 <span class="w">            </span><span class="n">Controller</span><span class="o">-&gt;</span><span class="n">GetHitResultUnderCursorByChannel</span><span class="p">(</span><span class="n">Channel</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">Result</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">MovementTask</span><span class="o">-&gt;</span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">MovementTask</span><span class="o">-&gt;</span><span class="n">UpdateDestination</span><span class="p">(</span><span class="n">Result</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 

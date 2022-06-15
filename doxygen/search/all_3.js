@@ -90,6 +90,7 @@ var searchData=
   ['currentfaction_270',['CurrentFaction',['../classUGKShadowCasting.html#a3ea07c8126c69cd5a6438798c2afe875',1,'UGKShadowCasting']]],
   ['currentresourcelevel_271',['CurrentResourceLevel',['../classAGKGameResource.html#a463fb69e80eeb5b4008ebfffb18c064a',1,'AGKGameResource']]],
   ['currentsavegame_272',['CurrentSaveGame',['../classUGKGameInstanceBase.html#ac05e6ef450b91e561c9c5e3ee806c8a5',1,'UGKGameInstanceBase']]],
-  ['currenttask_273',['CurrentTask',['../classUGKGameplayAbility.html#a158df09e00bc8a5b07aab3742499a19a',1,'UGKGameplayAbility']]],
-  ['curve_274',['Curve',['../structFGKAbilityEffect.html#aa41d5526b4a341892d5ef4c40f6e1f42',1,'FGKAbilityEffect']]]
+  ['currentsegment_273',['CurrentSegment',['../classUGKAbilityTask__MoveToDestination.html#a09ef07ef27475e040fee1411a28df129',1,'UGKAbilityTask_MoveToDestination']]],
+  ['currenttask_274',['CurrentTask',['../classUGKGameplayAbility.html#a158df09e00bc8a5b07aab3742499a19a',1,'UGKGameplayAbility']]],
+  ['curve_275',['Curve',['../structFGKAbilityEffect.html#aa41d5526b4a341892d5ef4c40f6e1f42',1,'FGKAbilityEffect']]]
 ];

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">9a28a0996</span>
+   &#160;<span id="projectnumber">4cfd3166f</span>
    </div>
   </td>
  </tr>
@@ -90,84 +90,85 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;AITypes.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// Generated</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;GKNavigationInterface.generated.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;USTRUCT(BlueprintType)</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html">   19</a></span>&#160;struct <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    GENERATED_USTRUCT_BODY()</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#ad21c4d1a5133dd157880439358ba28bd">   22</a></span>&#160;    FNavPathSharedPtr NavPath;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#a07ea78c1a2efbe73592c2e7c8e385682">   23</a></span>&#160;    FAIRequestID RequestID;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#a755ef106420ecb555fe7db6f8e80fc73">   24</a></span>&#160;    TEnumAsByte&lt;EPathFollowingRequestResult::Type&gt; Code;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;UCLASS()</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classUGKNavigationInterface.html">   32</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKNavigationInterface.html">UGKNavigationInterface</a> : public UBlueprintFunctionLibrary</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldCtx&quot;</span>))</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> SimplifiedMove(UObject* WorldCtx,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        AActor* Actor,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        FVector <span class="keyword">const</span>&amp; Dest,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        AActor* GoalActor,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        TSubclassOf&lt;UNavigationQueryFilter&gt; FilterClass,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">bool</span> bUsePathFinding,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">bool</span> bMoveToActor,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">bool</span> bAllowPartialPaths,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> bProjectDestinationToNavigation,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">float</span> AcceptanceRadius,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">bool</span> bStopOnOverlap,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">bool</span> bCanStrafe,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">bool</span> bDebug</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    );</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldCtx&quot;</span>))</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> FindPath(UObject* WorldCtx,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        AActor* Actor,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        FVector <span class="keyword">const</span>&amp; Dest,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        AActor* GoalActor,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        TSubclassOf&lt;UNavigationQueryFilter&gt; FilterClass,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">bool</span> bUsePathFinding,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">bool</span> bMoveToActor,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">bool</span> bAllowPartialPaths,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">bool</span> bProjectDestinationToNavigation,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">float</span> AcceptanceRadius,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">bool</span> bStopOnOverlap,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">bool</span> bCanStrafe,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">bool</span> bDebug</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    );</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    UFUNCTION(BlueprintPure)</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classUGKNavigationInterface.html#ab46b7ae549fdd1454336a905682d0bcc">   70</a></span>&#160;    static TArray&lt;FVector&gt; GetPathPoints(<a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> const&amp; Path) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        TArray&lt;FVector&gt; Points;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> (Path.Code == EPathFollowingRequestResult ::RequestSuccessful &amp;&amp; Path.NavPath){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            Points.Reserve(Path.NavPath-&gt;GetPathPoints().Num());</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">for</span>(FNavPathPoint&amp; Point: Path.NavPath-&gt;GetPathPoints()){</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                Points.Add(Point.Location);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> Points;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Navigation/PathFollowingComponent.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// Generated</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;GKNavigationInterface.generated.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;USTRUCT(BlueprintType)</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html">   20</a></span>&#160;struct <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    GENERATED_USTRUCT_BODY()</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#ad21c4d1a5133dd157880439358ba28bd">   23</a></span>&#160;    FNavPathSharedPtr NavPath;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#a07ea78c1a2efbe73592c2e7c8e385682">   24</a></span>&#160;    FAIRequestID RequestID;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structFGKNavQueryResult.html#a755ef106420ecb555fe7db6f8e80fc73">   25</a></span>&#160;    TEnumAsByte&lt;EPathFollowingRequestResult::Type&gt; Code;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;UCLASS()</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classUGKNavigationInterface.html">   33</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKNavigationInterface.html">UGKNavigationInterface</a> : public UBlueprintFunctionLibrary</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldCtx&quot;</span>))</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> SimplifiedMove(UObject* WorldCtx,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        AActor* Actor,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        FVector <span class="keyword">const</span>&amp; Dest,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        AActor* GoalActor,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        TSubclassOf&lt;UNavigationQueryFilter&gt; FilterClass,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">bool</span> bUsePathFinding,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">bool</span> bMoveToActor,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> bAllowPartialPaths,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> bProjectDestinationToNavigation,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">float</span> AcceptanceRadius,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">bool</span> bStopOnOverlap,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">bool</span> bCanStrafe,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">bool</span> bDebug</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    );</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldCtx&quot;</span>))</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> FindPath(UObject* WorldCtx,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        AActor* Actor,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        FVector <span class="keyword">const</span>&amp; Dest,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        AActor* GoalActor,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        TSubclassOf&lt;UNavigationQueryFilter&gt; FilterClass,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">bool</span> bUsePathFinding,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">bool</span> bMoveToActor,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">bool</span> bAllowPartialPaths,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">bool</span> bProjectDestinationToNavigation,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">float</span> AcceptanceRadius,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">bool</span> bStopOnOverlap,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">bool</span> bCanStrafe,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">bool</span> bDebug</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    );</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    UFUNCTION(BlueprintPure)</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classUGKNavigationInterface.html#ab46b7ae549fdd1454336a905682d0bcc">   71</a></span>&#160;    static TArray&lt;FVector&gt; GetPathPoints(<a class="code" href="structFGKNavQueryResult.html">FGKNavQueryResult</a> const&amp; Path) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        TArray&lt;FVector&gt; Points;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (Path.Code == EPathFollowingRequestResult ::RequestSuccessful &amp;&amp; Path.NavPath){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            Points.Reserve(Path.NavPath-&gt;GetPathPoints().Num());</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">for</span>(FNavPathPoint&amp; Point: Path.NavPath-&gt;GetPathPoints()){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                Points.Add(Point.Location);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> Points;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
-<div class="ttc" id="aclassUGKNavigationInterface_html"><div class="ttname"><a href="classUGKNavigationInterface.html">UGKNavigationInterface</a></div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.h:32</div></div>
-<div class="ttc" id="aclassUGKNavigationInterface_html_aca5612711afe4837d86d3d9c69a65574"><div class="ttname"><a href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574">UGKNavigationInterface::FindPath</a></div><div class="ttdeci">static FGKNavQueryResult FindPath(UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:374</div></div>
+<div class="ttc" id="aclassUGKNavigationInterface_html"><div class="ttname"><a href="classUGKNavigationInterface.html">UGKNavigationInterface</a></div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.h:33</div></div>
+<div class="ttc" id="aclassUGKNavigationInterface_html_aca5612711afe4837d86d3d9c69a65574"><div class="ttname"><a href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574">UGKNavigationInterface::FindPath</a></div><div class="ttdeci">static FGKNavQueryResult FindPath(UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:377</div></div>
 <div class="ttc" id="aGKLog_8h_html"><div class="ttname"><a href="GKLog_8h.html">GKLog.h</a></div></div>
 <div class="ttc" id="aGKNavigationInterface_8cpp_html_a31b7467593073bb90d595dc23b9d9e26"><div class="ttname"><a href="GKNavigationInterface_8cpp.html#a31b7467593073bb90d595dc23b9d9e26">DEFINE_LOG_CATEGORY</a></div><div class="ttdeci">DEFINE_LOG_CATEGORY(LogGKNav) struct FGKMoveToArguments</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:12</div></div>
 <div class="ttc" id="aGKNavigationInterface_8h_html_aea999a9f5a9f4af421a8f42d15a83f2c"><div class="ttname"><a href="GKNavigationInterface_8h.html#aea999a9f5a9f4af421a8f42d15a83f2c">DECLARE_LOG_CATEGORY_EXTERN</a></div><div class="ttdeci">DECLARE_LOG_CATEGORY_EXTERN(LogGKNav, Log, All)</div></div>
 <div class="ttc" id="aGKNavigationInterface_8cpp_html_a5a9e74fedd95fafe78f0f3ded6a4afb0"><div class="ttname"><a href="GKNavigationInterface_8cpp.html#a5a9e74fedd95fafe78f0f3ded6a4afb0">GKNAV_ERROR</a></div><div class="ttdeci">#define GKNAV_ERROR(Format,...)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:10</div></div>
 <div class="ttc" id="aGKNavigationInterface_8h_html"><div class="ttname"><a href="GKNavigationInterface_8h.html">GKNavigationInterface.h</a></div></div>
 <div class="ttc" id="aGKNavigationInterface_8cpp_html_a13666cde2e5985df10020667e1939ec8"><div class="ttname"><a href="GKNavigationInterface_8cpp.html#a13666cde2e5985df10020667e1939ec8">GKNAV_DISPLAY</a></div><div class="ttdeci">#define GKNAV_DISPLAY(Format,...)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:8</div></div>
-<div class="ttc" id="aclassUGKNavigationInterface_html_a322dc3751fbca7576638306185638bba"><div class="ttname"><a href="classUGKNavigationInterface.html#a322dc3751fbca7576638306185638bba">UGKNavigationInterface::SimplifiedMove</a></div><div class="ttdeci">static FGKNavQueryResult SimplifiedMove(UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:302</div></div>
-<div class="ttc" id="astructFGKNavQueryResult_html"><div class="ttname"><a href="structFGKNavQueryResult.html">FGKNavQueryResult</a></div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.h:19</div></div>
+<div class="ttc" id="aclassUGKNavigationInterface_html_a322dc3751fbca7576638306185638bba"><div class="ttname"><a href="classUGKNavigationInterface.html#a322dc3751fbca7576638306185638bba">UGKNavigationInterface::SimplifiedMove</a></div><div class="ttdeci">static FGKNavQueryResult SimplifiedMove(UObject *WorldCtx, AActor *Actor, FVector const &amp;Dest, AActor *GoalActor, TSubclassOf&lt; UNavigationQueryFilter &gt; FilterClass, bool bUsePathFinding, bool bMoveToActor, bool bAllowPartialPaths, bool bProjectDestinationToNavigation, float AcceptanceRadius, bool bStopOnOverlap, bool bCanStrafe, bool bDebug)</div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.cpp:305</div></div>
+<div class="ttc" id="astructFGKNavQueryResult_html"><div class="ttname"><a href="structFGKNavQueryResult.html">FGKNavQueryResult</a></div><div class="ttdef"><b>Definition:</b> GKNavigationInterface.h:20</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

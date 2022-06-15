@@ -54,8 +54,6 @@ Program Listing for File GKNavigationInterface.cpp
        FNavAgentProperties const*  NavAgentProps;
        UPathFollowingComponent*    PathFollowingComponent;
        UNavigationSystemV1*        NavSys;
-       FPathFollowingRequestResult ResultData;
-       FNavPathSharedPtr           Path;
        FPathFindingQuery           Query;
    
        // Results
@@ -190,7 +188,7 @@ Program Listing for File GKNavigationInterface.cpp
            // This happens earlier inside the AI controller
            // because the FAIMoveRequest is created much earlier
            if (!PathFollowingComponent->HasReached(MoveReq)) {
-               Results.RequestID = PathFollowingComponent->RequestMove(MoveReq, Path);
+               Results.RequestID = PathFollowingComponent->RequestMove(MoveReq, Results.NavPath);
                Results.Code = EPathFollowingRequestResult::RequestSuccessful;
            }
            else {
@@ -203,9 +201,12 @@ Program Listing for File GKNavigationInterface.cpp
    
    void FGKMoveToArguments::DebugDrawPath() {
        if (bDebug) {
-           FVector LineStart = Actor->GetActorLocation();
+           TArray<FNavPathPoint> Points = Results.NavPath->GetPathPoints();
+           FVector LineStart = Points[0].Location;
    
-           for (auto& Point : Path->GetPathPoints()) {
+           for (int i = 1; i < Points.Num(); i++) {
+               auto& Point = Points[i];
+   
                UKismetSystemLibrary::DrawDebugLine(
                    World,
                    LineStart,
@@ -304,7 +305,9 @@ Program Listing for File GKNavigationInterface.cpp
            }
    
            PathResult.Path->EnableRecalculationOnInvalidation(true);
-           Path = PathResult.Path;
+   
+           Results.NavPath = PathResult.Path;
+           Results.Code = EPathFollowingRequestResult::RequestSuccessful;
            return true;
        }
    

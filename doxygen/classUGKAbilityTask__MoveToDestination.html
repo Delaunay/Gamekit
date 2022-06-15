@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">9a28a0996</span>
+   &#160;<span id="projectnumber">4cfd3166f</span>
    </div>
   </td>
  </tr>
@@ -73,6 +73,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classUGKAbilityTask__MoveToDestination-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">UGKAbilityTask_MoveToDestination Class Reference</div>  </div>
@@ -123,15 +124,31 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9f5fee36d52fe3be088ea0a9c862b69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab95708fa3ef9d98bac963b48cc8f580d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#ab95708fa3ef9d98bac963b48cc8f580d">GetLifetimeReplicatedProps</a> (TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const override</td></tr>
 <tr class="separator:ab95708fa3ef9d98bac963b48cc8f580d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d8426762f66fd7f1ec2df125369a574"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a3d8426762f66fd7f1ec2df125369a574">UpdateDestination</a> (FVector Dest)</td></tr>
+<tr class="separator:a3d8426762f66fd7f1ec2df125369a574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82d214a49fbe2314726ac6d9256a754"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#aa82d214a49fbe2314726ac6d9256a754">GetTargetASC</a> ()</td></tr>
 <tr class="separator:aa82d214a49fbe2314726ac6d9256a754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97f8e1385be2c161149d15d6a5859d34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34">FindPath</a> ()</td></tr>
+<tr class="separator:a97f8e1385be2c161149d15d6a5859d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2e245d77413d50ce463ffcce22620a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a">OnPathEvent</a> (FNavigationPath *InPath, ENavPathEvent::Type Event)</td></tr>
+<tr class="separator:a1e2e245d77413d50ce463ffcce22620a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bc3532c80c9b7e095ed273f6462a3e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a1bc3532c80c9b7e095ed273f6462a3e1">FindingObjectivePoint</a> ()</td></tr>
+<tr class="separator:a1bc3532c80c9b7e095ed273f6462a3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01c90562e4aa15859413c5c2ed84040"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#af01c90562e4aa15859413c5c2ed84040">GetCurrentGoal</a> ()</td></tr>
+<tr class="separator:af01c90562e4aa15859413c5c2ed84040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7a7ff431ee7ad2271a651f8496a7aa"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a4e7a7ff431ee7ad2271a651f8496a7aa">GetEndGoal</a> ()</td></tr>
+<tr class="separator:a4e7a7ff431ee7ad2271a651f8496a7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312bd3bbeb51f7996936d31285f5156a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a312bd3bbeb51f7996936d31285f5156a">DrawPath</a> (FNavigationPath *InPath)</td></tr>
+<tr class="separator:a312bd3bbeb51f7996936d31285f5156a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e51a292c989f744d70f77bd516af561"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a7e51a292c989f744d70f77bd516af561">NextSegment</a> ()</td></tr>
+<tr class="separator:a7e51a292c989f744d70f77bd516af561"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae4f7da7e88350c3748f63af5ea364e41"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUGKAbilityTask__MoveToDestination.html">UGKAbilityTask_MoveToDestination</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#ae4f7da7e88350c3748f63af5ea364e41">MoveToDestination</a> (UGameplayAbility *OwningAbility, FName TaskInstanceName, FVector <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a47030a27f6c169a7a4a6ef4d000b20bc">Destination</a>, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a77402e9219086bede1d3089ecd77bb4b">DistanceTolerance</a>=10.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ac6e00e74fa83fc5889e9b02e278a2948">AngleTolerance</a>=15.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ad9649cbfb7f8416b82a58f18391bb54a">TurnRate</a>=45.f, float Speed=600.f, bool <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a2da4e9c5340c4e6151e99be422bd29e1">MoveToTarget</a>=true, <a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494">EGK_AbilityBehavior</a> <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a5aa87a5592c916f2e30e61469c62b1b6">TargetKind</a>=<a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494a6e12df12f78258f5b1c21d209d8192ab">EGK_AbilityBehavior::PointTarget</a>, FGameplayTagContainer <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ae6cf1db8727fef26f34caa279eb89cd6">CancelTag</a>=FGameplayTagContainer(), bool Debug=false)</td></tr>
-<tr class="separator:ae4f7da7e88350c3748f63af5ea364e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da4e9c5340c4e6151e99be422bd29e1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUGKAbilityTask__MoveToDestination.html">UGKAbilityTask_MoveToDestination</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a2da4e9c5340c4e6151e99be422bd29e1">MoveToTarget</a> (UGameplayAbility *OwningAbility, FName TaskInstanceName, const FGameplayAbilityTargetDataHandle &amp;<a class="el" href="classUGKAbilityTask__MoveToDestination.html#a2d61f701ae8f7c37823d25ca9b3d9de6">TargetData</a>, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a77402e9219086bede1d3089ecd77bb4b">DistanceTolerance</a>=10.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ac6e00e74fa83fc5889e9b02e278a2948">AngleTolerance</a>=15.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ad9649cbfb7f8416b82a58f18391bb54a">TurnRate</a>=45.f, float Speed=600.f, bool MoveToTarget=true, bool bUseMovementComponent=true, <a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494">EGK_AbilityBehavior</a> <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a5aa87a5592c916f2e30e61469c62b1b6">TargetKind</a>=<a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494a6e12df12f78258f5b1c21d209d8192ab">EGK_AbilityBehavior::PointTarget</a>, FGameplayTagContainer <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ae6cf1db8727fef26f34caa279eb89cd6">CancelTag</a>=FGameplayTagContainer(), bool Debug=false)</td></tr>
-<tr class="separator:a2da4e9c5340c4e6151e99be422bd29e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd8931ae89c9bd5b2b674e4362c1091"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUGKAbilityTask__MoveToDestination.html">UGKAbilityTask_MoveToDestination</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#acdd8931ae89c9bd5b2b674e4362c1091">MoveToDestination</a> (UGameplayAbility *OwningAbility, FName TaskInstanceName, FVector <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a47030a27f6c169a7a4a6ef4d000b20bc">Destination</a>, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a77402e9219086bede1d3089ecd77bb4b">DistanceTolerance</a>=10.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ac6e00e74fa83fc5889e9b02e278a2948">AngleTolerance</a>=15.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ad9649cbfb7f8416b82a58f18391bb54a">TurnRate</a>=45.f, float Speed=600.f, bool <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a66aed9e53dc630b7a94a7ebeae601e34">MoveToTarget</a>=true, <a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494">EGK_AbilityBehavior</a> <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a5aa87a5592c916f2e30e61469c62b1b6">TargetKind</a>=<a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494a6e12df12f78258f5b1c21d209d8192ab">EGK_AbilityBehavior::PointTarget</a>, FGameplayTagContainer <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ae6cf1db8727fef26f34caa279eb89cd6">CancelTag</a>=FGameplayTagContainer(), bool <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a09ad565d1c385d5f8a932f8dd74babae">bUsePathfinding</a>=false, bool Debug=false)</td></tr>
+<tr class="separator:acdd8931ae89c9bd5b2b674e4362c1091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66aed9e53dc630b7a94a7ebeae601e34"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUGKAbilityTask__MoveToDestination.html">UGKAbilityTask_MoveToDestination</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a66aed9e53dc630b7a94a7ebeae601e34">MoveToTarget</a> (UGameplayAbility *OwningAbility, FName TaskInstanceName, const FGameplayAbilityTargetDataHandle &amp;<a class="el" href="classUGKAbilityTask__MoveToDestination.html#a2d61f701ae8f7c37823d25ca9b3d9de6">TargetData</a>, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a77402e9219086bede1d3089ecd77bb4b">DistanceTolerance</a>=10.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ac6e00e74fa83fc5889e9b02e278a2948">AngleTolerance</a>=15.f, float <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ad9649cbfb7f8416b82a58f18391bb54a">TurnRate</a>=45.f, float Speed=600.f, bool MoveToTarget=true, bool bUseMovementComponent=true, <a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494">EGK_AbilityBehavior</a> <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a5aa87a5592c916f2e30e61469c62b1b6">TargetKind</a>=<a class="el" href="GKAbilityStatic_8h.html#a00e2a6c6de06d35993be5d13c3afd494a6e12df12f78258f5b1c21d209d8192ab">EGK_AbilityBehavior::PointTarget</a>, FGameplayTagContainer <a class="el" href="classUGKAbilityTask__MoveToDestination.html#ae6cf1db8727fef26f34caa279eb89cd6">CancelTag</a>=FGameplayTagContainer(), bool <a class="el" href="classUGKAbilityTask__MoveToDestination.html#a09ad565d1c385d5f8a932f8dd74babae">bUsePathfinding</a>=false, bool Debug=false)</td></tr>
+<tr class="separator:a66aed9e53dc630b7a94a7ebeae601e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -147,8 +164,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ad9649cbfb7f8416b82a58f18391bb54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ac8fda234e8498fce335cc667e38e07"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a1ac8fda234e8498fce335cc667e38e07">MaxSpeed</a></td></tr>
 <tr class="separator:a1ac8fda234e8498fce335cc667e38e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47030a27f6c169a7a4a6ef4d000b20bc"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a47030a27f6c169a7a4a6ef4d000b20bc">Destination</a></td></tr>
-<tr class="separator:a47030a27f6c169a7a4a6ef4d000b20bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af516deca84eaf63be903f36f4b3c74fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#af516deca84eaf63be903f36f4b3c74fa">bDebug</a></td></tr>
 <tr class="separator:af516deca84eaf63be903f36f4b3c74fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77402e9219086bede1d3089ecd77bb4b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a77402e9219086bede1d3089ecd77bb4b">DistanceTolerance</a></td></tr>
@@ -177,6 +192,21 @@ Public Attributes</h2></td></tr>
 <tr class="separator:adcd88998938ebeb13d98a1d6edff5eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba70e288ee4d09c735a013ed467c40c"><td class="memItemLeft" align="right" valign="top">class USceneComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#afba70e288ee4d09c735a013ed467c40c">RootComponent</a></td></tr>
 <tr class="separator:afba70e288ee4d09c735a013ed467c40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53763585125e9e74ea4d40218db3b8ae"><td class="memItemLeft" align="right" valign="top">FNavPathSharedPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a53763585125e9e74ea4d40218db3b8ae">Path</a></td></tr>
+<tr class="separator:a53763585125e9e74ea4d40218db3b8ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09ef07ef27475e040fee1411a28df129"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a09ef07ef27475e040fee1411a28df129">CurrentSegment</a></td></tr>
+<tr class="separator:a09ef07ef27475e040fee1411a28df129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd806f1f8bbbfc4fdae043b0caeb4ee"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#aacd806f1f8bbbfc4fdae043b0caeb4ee">EndSegment</a></td></tr>
+<tr class="separator:aacd806f1f8bbbfc4fdae043b0caeb4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1331b7a5ee6ecfb9f46b7230e0682a87"><td class="memItemLeft" align="right" valign="top">NavNodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a1331b7a5ee6ecfb9f46b7230e0682a87">Start</a></td></tr>
+<tr class="separator:a1331b7a5ee6ecfb9f46b7230e0682a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7efa6e66be0887f1e47bb75133b3a6c2"><td class="memItemLeft" align="right" valign="top">NavNodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a7efa6e66be0887f1e47bb75133b3a6c2">End</a></td></tr>
+<tr class="separator:a7efa6e66be0887f1e47bb75133b3a6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a47030a27f6c169a7a4a6ef4d000b20bc"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAbilityTask__MoveToDestination.html#a47030a27f6c169a7a4a6ef4d000b20bc">Destination</a></td></tr>
+<tr class="separator:a47030a27f6c169a7a4a6ef4d000b20bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is different from the Gameplay Ability MoveToLocation built-in </p><pre class="fragment">1. This will move the player to location without a timer
@@ -253,6 +283,33 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAbilityTask__MoveToDestination_a9f5fee36d52fe3be088ea0a9c862b69c_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a9f5fee36d52fe3be088ea0a9c862b69c_cgraph" alt=""/></div>
+<map name="classUGKAbilityTask__MoveToDestination_a9f5fee36d52fe3be088ea0a9c862b69c_cgraph" id="classUGKAbilityTask__MoveToDestination_a9f5fee36d52fe3be088ea0a9c862b69c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,260,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a312bd3bbeb51f7996936d31285f5156a" title=" " alt="" coords="308,5,563,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a312bd3bbeb51f7996936d31285f5156a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312bd3bbeb51f7996936d31285f5156a">&#9670;&nbsp;</a></span>DrawPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::DrawPath </td>
+          <td>(</td>
+          <td class="paramtype">FNavigationPath *&#160;</td>
+          <td class="paramname"><em>InPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -277,6 +334,85 @@ Public Attributes</h2></td></tr>
 <span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bc3532c80c9b7e095ed273f6462a3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc3532c80c9b7e095ed273f6462a3e1">&#9670;&nbsp;</a></span>FindingObjectivePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::FindingObjectivePoint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97f8e1385be2c161149d15d6a5859d34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97f8e1385be2c161149d15d6a5859d34">&#9670;&nbsp;</a></span>FindPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::FindPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAbilityTask__MoveToDestination_a97f8e1385be2c161149d15d6a5859d34_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a97f8e1385be2c161149d15d6a5859d34_cgraph" alt=""/></div>
+<map name="classUGKAbilityTask__MoveToDestination_a97f8e1385be2c161149d15d6a5859d34_cgraph" id="classUGKAbilityTask__MoveToDestination_a97f8e1385be2c161149d15d6a5859d34_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,260,80"/>
+<area shape="rect" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="345,5,525,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="308,71,563,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="611,71,865,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af01c90562e4aa15859413c5c2ed84040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01c90562e4aa15859413c5c2ed84040">&#9670;&nbsp;</a></span>GetCurrentGoal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector UGKAbilityTask_MoveToDestination::GetCurrentGoal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e7a7ff431ee7ad2271a651f8496a7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e7a7ff431ee7ad2271a651f8496a7aa">&#9670;&nbsp;</a></span>GetEndGoal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector UGKAbilityTask_MoveToDestination::GetEndGoal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -343,8 +479,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUGKAbilityTask__MoveToDestination_abab1f190f1ab81e1e73a4e6c5b2afd0c_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_abab1f190f1ab81e1e73a4e6c5b2afd0c_cgraph" alt=""/></div>
 <map name="classUGKAbilityTask__MoveToDestination_abab1f190f1ab81e1e73a4e6c5b2afd0c_cgraph" id="classUGKAbilityTask__MoveToDestination_abab1f190f1ab81e1e73a4e6c5b2afd0c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,260,47"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="308,5,563,47"/>
+<area shape="rect" title=" " alt="" coords="5,71,260,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="308,37,563,79"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="308,103,563,144"/>
+<area shape="rect" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="648,5,828,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="611,71,865,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="913,71,1168,112"/>
 </map>
 </div>
 
@@ -395,17 +535,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUGKAbilityTask__MoveToDestination_a37205d1f0c4911349703b499683cb319_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a37205d1f0c4911349703b499683cb319_cgraph" alt=""/></div>
 <map name="classUGKAbilityTask__MoveToDestination_a37205d1f0c4911349703b499683cb319_cgraph" id="classUGKAbilityTask__MoveToDestination_a37205d1f0c4911349703b499683cb319_cgraph">
-<area shape="rect" title=" " alt="" coords="5,39,260,80"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="308,5,563,47"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="308,71,563,112"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="611,5,865,47"/>
+<area shape="rect" title=" " alt="" coords="5,103,260,144"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="308,69,563,111"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="308,135,563,176"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="611,37,865,79"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="611,103,865,144"/>
+<area shape="rect" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="951,5,1131,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="913,71,1168,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="1216,71,1471,112"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ae4f7da7e88350c3748f63af5ea364e41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4f7da7e88350c3748f63af5ea364e41">&#9670;&nbsp;</a></span>MoveToDestination()</h2>
+<a id="acdd8931ae89c9bd5b2b674e4362c1091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd8931ae89c9bd5b2b674e4362c1091">&#9670;&nbsp;</a></span>MoveToDestination()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,6 +621,12 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bUsePathfinding</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>Debug</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
@@ -494,20 +644,24 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classUGKAbilityTask__MoveToDestination_ae4f7da7e88350c3748f63af5ea364e41_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_ae4f7da7e88350c3748f63af5ea364e41_cgraph" alt=""/></div>
-<map name="classUGKAbilityTask__MoveToDestination_ae4f7da7e88350c3748f63af5ea364e41_cgraph" id="classUGKAbilityTask__MoveToDestination_ae4f7da7e88350c3748f63af5ea364e41_cgraph">
-<area shape="rect" title=" " alt="" coords="5,35,260,76"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="611,5,865,47"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a2da4e9c5340c4e6151e99be422bd29e1" title=" " alt="" coords="308,64,563,105"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="913,5,1168,47"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="611,71,865,112"/>
+<div class="center"><img src="classUGKAbilityTask__MoveToDestination_acdd8931ae89c9bd5b2b674e4362c1091_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_acdd8931ae89c9bd5b2b674e4362c1091_cgraph" alt=""/></div>
+<map name="classUGKAbilityTask__MoveToDestination_acdd8931ae89c9bd5b2b674e4362c1091_cgraph" id="classUGKAbilityTask__MoveToDestination_acdd8931ae89c9bd5b2b674e4362c1091_cgraph">
+<area shape="rect" title=" " alt="" coords="5,100,260,141"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="611,71,865,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a66aed9e53dc630b7a94a7ebeae601e34" title=" " alt="" coords="308,129,563,171"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="913,37,1168,79"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="913,103,1168,144"/>
+<area shape="rect" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="1253,5,1433,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="1216,71,1471,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="1519,71,1773,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="611,136,865,177"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a2da4e9c5340c4e6151e99be422bd29e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2da4e9c5340c4e6151e99be422bd29e1">&#9670;&nbsp;</a></span>MoveToTarget()</h2>
+<a id="a66aed9e53dc630b7a94a7ebeae601e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66aed9e53dc630b7a94a7ebeae601e34">&#9670;&nbsp;</a></span>MoveToTarget()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -585,6 +739,12 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bUsePathfinding</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>Debug</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
@@ -603,14 +763,35 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classUGKAbilityTask__MoveToDestination_a2da4e9c5340c4e6151e99be422bd29e1_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a2da4e9c5340c4e6151e99be422bd29e1_cgraph" alt=""/></div>
-<map name="classUGKAbilityTask__MoveToDestination_a2da4e9c5340c4e6151e99be422bd29e1_cgraph" id="classUGKAbilityTask__MoveToDestination_a2da4e9c5340c4e6151e99be422bd29e1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,39,260,80"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="308,5,563,47"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="308,71,563,112"/>
-<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="611,5,865,47"/>
+<div class="center"><img src="classUGKAbilityTask__MoveToDestination_a66aed9e53dc630b7a94a7ebeae601e34_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a66aed9e53dc630b7a94a7ebeae601e34_cgraph" alt=""/></div>
+<map name="classUGKAbilityTask__MoveToDestination_a66aed9e53dc630b7a94a7ebeae601e34_cgraph" id="classUGKAbilityTask__MoveToDestination_a66aed9e53dc630b7a94a7ebeae601e34_cgraph">
+<area shape="rect" title=" " alt="" coords="5,103,260,144"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="308,69,563,111"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="308,135,563,176"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="611,37,865,79"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="611,103,865,144"/>
+<area shape="rect" href="classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="951,5,1131,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="913,71,1168,112"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="1216,71,1471,112"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a7e51a292c989f744d70f77bd516af561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e51a292c989f744d70f77bd516af561">&#9670;&nbsp;</a></span>NextSegment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::NextSegment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -637,6 +818,43 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e2e245d77413d50ce463ffcce22620a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2e245d77413d50ce463ffcce22620a">&#9670;&nbsp;</a></span>OnPathEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::OnPathEvent </td>
+          <td>(</td>
+          <td class="paramtype">FNavigationPath *&#160;</td>
+          <td class="paramname"><em>InPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ENavPathEvent::Type&#160;</td>
+          <td class="paramname"><em>Event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAbilityTask__MoveToDestination_a1e2e245d77413d50ce463ffcce22620a_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a1e2e245d77413d50ce463ffcce22620a_cgraph" alt=""/></div>
+<map name="classUGKAbilityTask__MoveToDestination_a1e2e245d77413d50ce463ffcce22620a_cgraph" id="classUGKAbilityTask__MoveToDestination_a1e2e245d77413d50ce463ffcce22620a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,260,47"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="308,5,563,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -696,11 +914,40 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUGKAbilityTask__MoveToDestination_a9186e397db69d80cfc8b7d47274d6b7a_cgraph.png" border="0" usemap="#classUGKAbilityTask__MoveToDestination_a9186e397db69d80cfc8b7d47274d6b7a_cgraph" alt=""/></div>
 <map name="classUGKAbilityTask__MoveToDestination_a9186e397db69d80cfc8b7d47274d6b7a_cgraph" id="classUGKAbilityTask__MoveToDestination_a9186e397db69d80cfc8b7d47274d6b7a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,35,260,76"/>
+<area shape="rect" title=" " alt="" coords="5,93,260,135"/>
 <area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a9f5fee36d52fe3be088ea0a9c862b69c" title=" " alt="" coords="308,5,563,47"/>
 <area shape="rect" href="GKHexGridUtilities_8cpp.html#aa9c384ac09b86a7c4936345caf7fabe8" title=" " alt="" coords="396,71,475,98"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#af01c90562e4aa15859413c5c2ed84040" title=" " alt="" coords="308,123,563,164"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a7e51a292c989f744d70f77bd516af561" title=" " alt="" coords="308,188,563,229"/>
+<area shape="rect" href="classUGKAbilityTask__MoveToDestination.html#a312bd3bbeb51f7996936d31285f5156a" title=" " alt="" coords="611,5,865,47"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a3d8426762f66fd7f1ec2df125369a574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d8426762f66fd7f1ec2df125369a574">&#9670;&nbsp;</a></span>UpdateDestination()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAbilityTask_MoveToDestination::UpdateDestination </td>
+          <td>(</td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Dest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -817,6 +1064,20 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a09ef07ef27475e040fee1411a28df129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09ef07ef27475e040fee1411a28df129">&#9670;&nbsp;</a></span>CurrentSegment</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UGKAbilityTask_MoveToDestination::CurrentSegment</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1811fbb4e960d1a1fe6acb86af5f2910"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1811fbb4e960d1a1fe6acb86af5f2910">&#9670;&nbsp;</a></span>DelegateHandle</h2>
 
@@ -836,11 +1097,19 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">FVector UGKAbilityTask_MoveToDestination::Destination</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -853,6 +1122,34 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">float UGKAbilityTask_MoveToDestination::DistanceTolerance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7efa6e66be0887f1e47bb75133b3a6c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7efa6e66be0887f1e47bb75133b3a6c2">&#9670;&nbsp;</a></span>End</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NavNodeRef UGKAbilityTask_MoveToDestination::End</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacd806f1f8bbbfc4fdae043b0caeb4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd806f1f8bbbfc4fdae043b0caeb4ee">&#9670;&nbsp;</a></span>EndSegment</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UGKAbilityTask_MoveToDestination::EndSegment</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -931,6 +1228,20 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a53763585125e9e74ea4d40218db3b8ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53763585125e9e74ea4d40218db3b8ae">&#9670;&nbsp;</a></span>Path</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FNavPathSharedPtr UGKAbilityTask_MoveToDestination::Path</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afba70e288ee4d09c735a013ed467c40c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afba70e288ee4d09c735a013ed467c40c">&#9670;&nbsp;</a></span>RootComponent</h2>
 
@@ -939,6 +1250,20 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">class USceneComponent* UGKAbilityTask_MoveToDestination::RootComponent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1331b7a5ee6ecfb9f46b7230e0682a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1331b7a5ee6ecfb9f46b7230e0682a87">&#9670;&nbsp;</a></span>Start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NavNodeRef UGKAbilityTask_MoveToDestination::Start</td>
         </tr>
       </table>
 </div><div class="memdoc">

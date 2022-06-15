@@ -362,6 +362,7 @@ Program Listing for File GKGameplayAbility.cpp
                                                                          true, // Use Movement Component
                                                                          GetAbilityStatic()->AbilityBehavior,
                                                                          FGameplayTagContainer(),
+                                                                         true,
                                                                          true);
    
        // MoveToTargetStartDelegate.Broadcast();
@@ -1189,7 +1190,7 @@ Program Listing for File GKGameplayAbility.cpp
                // TODO:: Fix this trace
                ETraceTypeQuery Channel = UEngineTypes::ConvertToTraceType(ECollisionChannel::ECC_WorldStatic);
                Controller->GetHitResultUnderCursorByChannel(Channel, false, Result);
-               MovementTask->Destination = Result.ImpactPoint;
+               MovementTask->UpdateDestination(Result.ImpactPoint);
            }
        }
    

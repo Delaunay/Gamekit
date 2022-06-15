@@ -1,4 +1,5 @@
 <map id="Source/Gamekit/Blueprint/GKNavigationInterface.h" name="Source/Gamekit/Blueprint/GKNavigationInterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="11,5,201,47"/>
-<area shape="rect" id="node2" href="$GKNavigationInterface_8cpp.html" title=" " alt="" coords="5,95,207,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="122,5,311,47"/>
+<area shape="rect" id="node2" href="$GKAbilityTask__MoveToDestination_8cpp.html" title=" " alt="" coords="5,95,204,151"/>
+<area shape="rect" id="node3" href="$GKNavigationInterface_8cpp.html" title=" " alt="" coords="228,102,429,143"/>
 </map>

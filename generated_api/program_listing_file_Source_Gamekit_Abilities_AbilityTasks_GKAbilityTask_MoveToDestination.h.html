@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9a28a0996
+                4cfd3166f
 
               </div>
 <div role="search">
@@ -150,7 +150,8 @@
 <span class="w">            </span><span class="kt">float</span><span class="w">               </span><span class="n">Speed</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mf">600.f</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">MoveToTarget</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w">        </span><span class="n">CancelTag</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CancelTag</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">bUsePathfinding</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">Debug</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"></span>
@@ -168,6 +169,7 @@
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUseMovementComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w">                     </span><span class="n">TargetKind</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w">                   </span><span class="n">CancelTag</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUsePathfinding</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">Debug</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintAssignable</span><span class="p">)</span><span class="w"></span>
@@ -213,8 +215,18 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">MaxSpeed</span><span class="p">;</span><span class="w"></span>
 
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">replicated</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Destination</span><span class="p">;</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">UpdateDestination</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dest</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUsePathfinding</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">FindPath</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDebug</span><span class="p">;</span><span class="w"></span>
@@ -254,6 +266,34 @@
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UPawnMovementComponent</span><span class="w"> </span><span class="o">*</span><span class="w">   </span><span class="n">MovementComponent</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">USceneComponent</span><span class="w"> </span><span class="o">*</span><span class="w">          </span><span class="n">RootComponent</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">GetTargetASC</span><span class="p">();</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">// Path finding logic</span>
+
+<span class="w">    </span><span class="c1">// Find a path to the goal using the navigation system</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">FindPath</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Current path we are following</span>
+<span class="w">    </span><span class="n">FNavPathSharedPtr</span><span class="w"> </span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Called when the path was modified</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnPathEvent</span><span class="p">(</span><span class="n">FNavigationPath</span><span class="o">*</span><span class="w"> </span><span class="n">InPath</span><span class="p">,</span><span class="w"> </span><span class="n">ENavPathEvent</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">Event</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">CurrentSegment</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">EndSegment</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">NavNodeRef</span><span class="w"> </span><span class="n">Start</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">NavNodeRef</span><span class="w"> </span><span class="n">End</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">FindingObjectivePoint</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Return the current goal we should be waking toward</span>
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="nf">GetCurrentGoal</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="nf">GetEndGoal</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DrawPath</span><span class="p">(</span><span class="n">FNavigationPath</span><span class="o">*</span><span class="w"> </span><span class="n">InPath</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">NextSegment</span><span class="p">();</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

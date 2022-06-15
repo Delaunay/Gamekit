@@ -23,6 +23,7 @@ Program Listing for File GKNavigationInterface.h
    #include "CoreMinimal.h"
    #include "Kismet/BlueprintFunctionLibrary.h"
    #include "AITypes.h"
+   #include "Navigation/PathFollowingComponent.h"
    
    // Generated
    #include "GKNavigationInterface.generated.h"

@@ -1,4 +1,8 @@
 <map id="UGKAbilityTask_MoveToDestination::Init" name="UGKAbilityTask_MoveToDestination::Init">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,260,47"/>
-<area shape="rect" id="node2" href="$classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="308,5,563,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,260,112"/>
+<area shape="rect" id="node2" href="$classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="308,37,563,79"/>
+<area shape="rect" id="node6" href="$classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="308,103,563,144"/>
+<area shape="rect" id="node3" href="$classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="648,5,828,47"/>
+<area shape="rect" id="node4" href="$classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="611,71,865,112"/>
+<area shape="rect" id="node5" href="$classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="913,71,1168,112"/>
 </map>

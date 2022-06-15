@@ -43,6 +43,8 @@ Includes
 
 - ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
 
+- ``Gamekit/Blueprint/GKNavigationInterface.h`` (:ref:`file_Source_Gamekit_Blueprint_GKNavigationInterface.h`)
+
 - ``Gamekit/Blueprint/GKUtilityLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`)
 
 - ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
@@ -50,6 +52,8 @@ Includes
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
 
 - ``Kismet/KismetMathLibrary.h``
+
+- ``Kismet/KismetSystemLibrary.h``
 
 - ``Navigation/PathFollowingComponent.h``
 

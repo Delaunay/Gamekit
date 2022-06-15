@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9a28a0996
+                4cfd3166f
 
               </div>
 <div role="search">
@@ -155,8 +155,6 @@
 <span class="w">    </span><span class="n">FNavAgentProperties</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w">  </span><span class="n">NavAgentProps</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">UPathFollowingComponent</span><span class="o">*</span><span class="w">    </span><span class="n">PathFollowingComponent</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">UNavigationSystemV1</span><span class="o">*</span><span class="w">        </span><span class="n">NavSys</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">FPathFollowingRequestResult</span><span class="w"> </span><span class="n">ResultData</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">FNavPathSharedPtr</span><span class="w">           </span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">FPathFindingQuery</span><span class="w">           </span><span class="n">Query</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Results</span>
@@ -291,7 +289,7 @@
 <span class="w">        </span><span class="c1">// This happens earlier inside the AI controller</span>
 <span class="w">        </span><span class="c1">// because the FAIMoveRequest is created much earlier</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">HasReached</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMove</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">RequestID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathFollowingComponent</span><span class="o">-&gt;</span><span class="n">RequestMove</span><span class="p">(</span><span class="n">MoveReq</span><span class="p">,</span><span class="w"> </span><span class="n">Results</span><span class="p">.</span><span class="n">NavPath</span><span class="p">);</span><span class="w"></span>
 <span class="w">            </span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">RequestSuccessful</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -304,9 +302,12 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">FGKMoveToArguments::DebugDrawPath</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDebug</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FNavPathPoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Results</span><span class="p">.</span><span class="n">NavPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Points</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+
 <span class="w">            </span><span class="n">UKismetSystemLibrary</span><span class="o">::</span><span class="n">DrawDebugLine</span><span class="p">(</span><span class="w"></span>
 <span class="w">                </span><span class="n">World</span><span class="p">,</span><span class="w"></span>
 <span class="w">                </span><span class="n">LineStart</span><span class="p">,</span><span class="w"></span>
@@ -405,7 +406,9 @@
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">EnableRecalculationOnInvalidation</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Results</span><span class="p">.</span><span class="n">NavPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathResult</span><span class="p">.</span><span class="n">Path</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Results</span><span class="p">.</span><span class="n">Code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EPathFollowingRequestResult</span><span class="o">::</span><span class="n">RequestSuccessful</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 

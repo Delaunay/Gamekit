@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                9a28a0996
+                4cfd3166f
 
               </div>
 <div role="search">
@@ -121,6 +121,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKNavigationInterface.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;DrawDebugHelpers.h&quot;</span><span class="cp"></span>
@@ -131,6 +132,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemComponent.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;NavigationSystem.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Navigation/PathFollowingComponent.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
 
 <span class="c1">//#define DEBUG_MOVEMENT</span>
 
@@ -168,6 +170,7 @@
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUseMovementComponent</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">EGK_AbilityBehavior</span><span class="w">                     </span><span class="n">TargetKind</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGameplayTagContainer</span><span class="w">                   </span><span class="n">CancelTag</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUsePathfinding</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">Debug</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="w"> </span><span class="o">*</span><span class="n">MyObj</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
@@ -188,7 +191,8 @@
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bDebug</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">Debug</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bTurnOnly</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">MoveToTarget</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">CancelTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">CancelTag</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathfinding</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUseMovementComponent</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -255,6 +259,7 @@
 <span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">    </span><span class="n">MoveToTarget</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">                  </span><span class="n">bUsePathfinding</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">                </span><span class="n">Debug</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="w"> </span><span class="o">*</span><span class="n">MyObj</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
@@ -276,6 +281,7 @@
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bTurnOnly</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">MoveToTarget</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">CancelTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathfinding</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">MyObj</span><span class="p">;</span><span class="w"></span>
@@ -321,6 +327,11 @@
 <span class="w">        </span><span class="n">DelegateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Delegate</span><span class="p">.</span><span class="n">GetHandle</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RegisterGenericGameplayTagEvent</span><span class="p">().</span><span class="n">Add</span><span class="p">(</span><span class="n">Delegate</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUsePathfinding</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">FindPath</span><span class="p">();</span><span class="w"></span>
 <span class="w">   </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="cm">/* This is not needed, it is already handled</span>
@@ -376,6 +387,10 @@
 <span class="w">                        </span><span class="nb">false</span><span class="w"> </span><span class="c1">// Persistent</span>
 <span class="w">        </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()){</span><span class="w"></span>
+<span class="w">        </span><span class="n">DrawPath</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="cp">#endif </span><span class="c1">// ENABLE_DRAW_DEBUG</span>
 <span class="p">}</span><span class="w"></span>
 
@@ -397,12 +412,6 @@
 
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">TickTask</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// If our target is an actor update the target location to his</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetActor</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">DebugDraw</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// If the movement input was not consumed yet; we cannot run</span>
@@ -415,23 +424,34 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">FVector</span><span class="w">   </span><span class="n">Goal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCurrentGoal</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Location</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">RootComponent</span><span class="o">-&gt;</span><span class="n">GetComponentLocation</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Goal</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Distance</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Direction</span><span class="p">.</span><span class="n">Size2D</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bRotationFinished</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DistanceTolerance</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">DEBUG_MVT</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Reached destination&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="n">bIsFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">DEBUG_MVT</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Reached current goal&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EndSegment</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">bIsFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">OnCompleted</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">TargetData</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Got a new goal</span>
+<span class="w">            </span><span class="n">NextSegment</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">Goal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetCurrentGoal</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">bRotationFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Look at method</span>
 <span class="w">    </span><span class="c1">// ---------------</span>
 <span class="w">    </span><span class="c1">// auto TargetRotator = UGKUtilityLibrary::BetterLookAtRotation(Location, Destination);</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetRotator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">FindLookAtRotation</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">Destination</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetRotator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">FindLookAtRotation</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">Goal</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">CurrentRot</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">RootComponent</span><span class="o">-&gt;</span><span class="n">GetComponentRotation</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetYaw</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">TargetRotator</span><span class="p">.</span><span class="n">Yaw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CurrentRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">;</span><span class="w"></span>
@@ -523,6 +543,134 @@
 <span class="n">UGKAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">GetTargetASC</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">FindPath</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Path</span><span class="p">.</span><span class="n">Reset</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGKNavQueryResult</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKNavigationInterface</span><span class="o">::</span><span class="n">FindPath</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAvatarActorFromActorInfo</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Destination</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetActor</span><span class="p">.</span><span class="n">Get</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">UNavigationQueryFilter</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">bDebug</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="p">.</span><span class="n">NavPath</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">NavPath</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">NavPath</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">AddObserver</span><span class="p">(</span><span class="n">FNavigationPath</span><span class="o">::</span><span class="n">FPathObserverDelegate</span><span class="o">::</span><span class="n">FDelegate</span><span class="o">::</span><span class="n">CreateUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">OnPathEvent</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">End</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">EndSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">().</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;No path was found to destination&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">NextSegment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">End</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">NodeRef</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FVector</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">GetCurrentGoal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FNavPathPoint</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">Points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetActor</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">TargetActor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Destination</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">OnPathEvent</span><span class="p">(</span><span class="n">FNavigationPath</span><span class="o">*</span><span class="w"> </span><span class="n">InPath</span><span class="p">,</span><span class="w"> </span><span class="n">ENavPathEvent</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">Event</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">NavPathEventEnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StaticEnum</span><span class="o">&lt;</span><span class="n">ENavPathEvent</span><span class="o">::</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Received Event: %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">NavPathEventEnum</span><span class="o">-&gt;</span><span class="n">GetNameStringByValue</span><span class="p">(</span><span class="n">Event</span><span class="p">));</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">InPath</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="n">Get</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">InPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">Event</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Reset the segment</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">NewPath</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">UpdatedDueToGoalMoved</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">UpdatedDueToNavigationChanged</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// The path is not updated fully so some old points can still be there</span>
+<span class="w">            </span><span class="c1">// we need to find the new CurrentSegment that is our previous goal</span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">            </span><span class="c1">// but sometimes we endup with less points</span>
+<span class="w">            </span><span class="c1">// so just start from the beginning, if we cannot resume</span>
+<span class="w">            </span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">EndSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">().</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// Try to resume where we used tobe if we have Node reference</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Start</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">INVALID_NAVNODEREF</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">End</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">INVALID_NAVNODEREF</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">InPath</span><span class="o">-&gt;</span><span class="n">GetNavigationDataUsed</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">PathPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">PathPoint</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">InPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">().</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">PathPoint</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">InPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">PathPoint</span><span class="p">].</span><span class="n">NodeRef</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Start</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">InPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">()[</span><span class="n">PathPoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">NodeRef</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">End</span><span class="p">)</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">CurrentSegment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Resumed path following&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">                        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Ignore this</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">MetaPathUpdate</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Stop movement</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">Cleared</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">Invalidated</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ENavPathEvent</span><span class="o">::</span><span class="no">RePathFailed</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ExternalCancel</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKAbilityTask_MoveToDestination</span><span class="o">::</span><span class="n">DrawPath</span><span class="p">(</span><span class="n">FNavigationPath</span><span class="o">*</span><span class="w"> </span><span class="n">InPath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDebug</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FNavPathPoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InPath</span><span class="o">-&gt;</span><span class="n">GetPathPoints</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">FVector</span><span class="w"> </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Points</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">UKismetSystemLibrary</span><span class="o">::</span><span class="n">DrawDebugLine</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">GetWorld</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                </span><span class="n">LineStart</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">Point</span><span class="p">.</span><span class="n">Location</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">FLinearColor</span><span class="o">::</span><span class="n">Red</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mf">0.f</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mf">1.f</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">LineStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

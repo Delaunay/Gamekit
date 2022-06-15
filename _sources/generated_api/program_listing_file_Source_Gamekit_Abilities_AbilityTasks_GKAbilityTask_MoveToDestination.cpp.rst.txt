@@ -20,6 +20,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    #include "Gamekit/GKLog.h"
    #include "Gamekit/Gamekit.h"
    #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
+   #include "Gamekit/Blueprint/GKNavigationInterface.h"
    
    // Unreal Engine
    #include "DrawDebugHelpers.h"
@@ -30,6 +31,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    #include "AbilitySystemComponent.h"
    #include "NavigationSystem.h"
    #include "Navigation/PathFollowingComponent.h"
+   #include "Kismet/KismetSystemLibrary.h"
    
    //#define DEBUG_MOVEMENT
    
@@ -67,6 +69,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
            bool                                    bUseMovementComponent,
            EGK_AbilityBehavior                     TargetKind,
            FGameplayTagContainer                   CancelTag,
+           bool                                    bUsePathfinding,
            bool                                    Debug)
    {
        UGKAbilityTask_MoveToDestination *MyObj =
@@ -87,7 +90,8 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        MyObj->bDebug            = Debug;
        MyObj->bTurnOnly         = !MoveToTarget;
        MyObj->TargetKind        = TargetKind;
-       MyObj->CancelTag = CancelTag;
+       MyObj->CancelTag         = CancelTag;
+       MyObj->bUsePathfinding = bUsePathfinding;
    
        if (bUseMovementComponent)
        {
@@ -154,6 +158,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
                                                                                          bool    MoveToTarget,
                                                                                          EGK_AbilityBehavior TargetKind,
                                                                                          FGameplayTagContainer CancelTag,
+                                                                                         bool                  bUsePathfinding,
                                                                                          bool                Debug)
    {
        UGKAbilityTask_MoveToDestination *MyObj =
@@ -175,6 +180,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        MyObj->bTurnOnly         = !MoveToTarget;
        MyObj->TargetKind        = TargetKind;
        MyObj->CancelTag = CancelTag;
+       MyObj->bUsePathfinding = bUsePathfinding;
    
        MyObj->Init();
        return MyObj;
@@ -220,6 +226,11 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
            DelegateHandle = Delegate.GetHandle();
    
            AbilitySystemComponent->RegisterGenericGameplayTagEvent().Add(Delegate);
+      }
+   
+   
+      if (bUsePathfinding) {
+          FindPath();
       }
    
        /* This is not needed, it is already handled
@@ -275,6 +286,10 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
                            false // Persistent
            );
        }
+   
+       if (bUsePathfinding && Path.IsValid()){
+           DrawPath(Path.Get());
+       }
    #endif // ENABLE_DRAW_DEBUG
    }
    
@@ -296,12 +311,6 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
    
        Super::TickTask(DeltaTime);
    
-       // If our target is an actor update the target location to his
-       if (TargetActor.IsValid())
-       {
-           Destination = TargetActor->GetActorLocation();
-       }
-   
        DebugDraw();
    
        // If the movement input was not consumed yet; we cannot run
@@ -314,23 +323,34 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
            return;
        }
    
+       FVector   Goal = GetCurrentGoal();
        auto Location  = RootComponent->GetComponentLocation();
-       auto Direction = Destination - Location;
+       auto Direction = Goal - Location;
        auto Distance  = Direction.Size2D();
    
        if (bRotationFinished && Distance < DistanceTolerance)
        {
-           DEBUG_MVT(TEXT("Reached destination"));
-           bIsFinished = true;
-           OnCompleted.Broadcast(TargetData);
-           EndTask();
-           return;
+           DEBUG_MVT(TEXT("Reached current goal"));
+   
+           if (CurrentSegment == EndSegment){
+               bIsFinished = true;
+               OnCompleted.Broadcast(TargetData);
+               EndTask();
+               return;
+           } 
+           else 
+           {
+               // Got a new goal
+               NextSegment();
+               Goal = GetCurrentGoal();
+               bRotationFinished = false;
+           }
        }
    
        // Look at method
        // ---------------
        // auto TargetRotator = UGKUtilityLibrary::BetterLookAtRotation(Location, Destination);
-       auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Destination);
+       auto TargetRotator = UKismetMathLibrary::FindLookAtRotation(Location, Goal);
    
        auto CurrentRot    = RootComponent->GetComponentRotation();
        auto TargetYaw     = TargetRotator.Yaw - CurrentRot.Yaw;
@@ -424,3 +444,130 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        return Cast<UGKAbilitySystemComponent>(AbilitySystemComponent);
    }
    
+   
+   void UGKAbilityTask_MoveToDestination::FindPath() {
+       Path.Reset();
+   
+       FGKNavQueryResult Result = UGKNavigationInterface::FindPath(
+           GetWorld(),
+           Ability->GetAvatarActorFromActorInfo(),
+           Destination,
+           TargetActor.Get(),
+           UNavigationQueryFilter::StaticClass(),
+           true,
+           TargetActor != nullptr,
+           true,
+           true,
+           0.0,
+           true,
+           false,
+           bDebug
+       );
+   
+       if (Result.NavPath.IsValid() && Result.NavPath->IsValid()) {
+           Path = Result.NavPath;
+           Path->AddObserver(FNavigationPath::FPathObserverDelegate::FDelegate::CreateUObject(this, &UGKAbilityTask_MoveToDestination::OnPathEvent));
+   
+           CurrentSegment = 0;
+           Start = Path->GetPathPoints()[CurrentSegment].NodeRef;
+           End   = Path->GetPathPoints()[CurrentSegment + 1].NodeRef;
+           EndSegment = Path->GetPathPoints().Num() - 2;
+       } else {
+           GK_WARNING(TEXT("No path was found to destination"));
+       }
+   }
+   
+   void UGKAbilityTask_MoveToDestination::NextSegment() {
+       CurrentSegment += 1;
+       Start = Path->GetPathPoints()[CurrentSegment].NodeRef;
+       End = Path->GetPathPoints()[CurrentSegment + 1].NodeRef;
+   }
+   
+   FVector UGKAbilityTask_MoveToDestination::GetCurrentGoal() {
+       if (bUsePathfinding && Path.IsValid() && Path->IsValid()) {
+           TArray<FNavPathPoint>& Points = Path->GetPathPoints();
+           return Path->GetPathPoints()[CurrentSegment + 1].Location;
+       }
+       else if (TargetActor.IsValid()) 
+       {
+           return TargetActor->GetActorLocation();
+       } 
+       else 
+       {
+           return Destination;
+       }
+   }
+   
+   void UGKAbilityTask_MoveToDestination::OnPathEvent(FNavigationPath* InPath, ENavPathEvent::Type Event)
+   {
+       const static UEnum* NavPathEventEnum = StaticEnum<ENavPathEvent::Type>();
+       GK_LOG(TEXT("Received Event: %s"), *NavPathEventEnum->GetNameStringByValue(Event));
+   
+   
+       if (InPath && Path.Get() == InPath) {
+           switch (Event)
+           {
+           // Reset the segment
+           case ENavPathEvent::NewPath: 
+           case ENavPathEvent::UpdatedDueToGoalMoved:
+           case ENavPathEvent::UpdatedDueToNavigationChanged:
+           {
+               // The path is not updated fully so some old points can still be there
+               // we need to find the new CurrentSegment that is our previous goal
+               //
+               // but sometimes we endup with less points
+               // so just start from the beginning, if we cannot resume
+               CurrentSegment = 0;
+               EndSegment = Path->GetPathPoints().Num() - 2;
+   
+               // Try to resume where we used tobe if we have Node reference
+               if (Start != INVALID_NAVNODEREF && End != INVALID_NAVNODEREF && InPath->GetNavigationDataUsed() != nullptr){
+                   for (int32 PathPoint = 0; PathPoint < InPath->GetPathPoints().Num() - 1; ++PathPoint)
+                   {
+                       if (InPath->GetPathPoints()[PathPoint].NodeRef == Start && InPath->GetPathPoints()[PathPoint + 1].NodeRef == End)
+                       {
+                           CurrentSegment = PathPoint;
+                           GK_LOG(TEXT("Resumed path following"));
+                           break;
+                       }
+                   }
+               }
+           }
+           break;
+   
+           // Ignore this
+           case ENavPathEvent::MetaPathUpdate:
+               break;
+   
+           // Stop movement
+           case ENavPathEvent::Cleared:
+           case ENavPathEvent::Invalidated:
+           case ENavPathEvent::RePathFailed:
+           default: {
+               ExternalCancel();
+           }
+               break;
+           }
+       }
+   }
+   
+   void UGKAbilityTask_MoveToDestination::DrawPath(FNavigationPath* InPath) {
+       if (bDebug) {
+           TArray<FNavPathPoint> Points = InPath->GetPathPoints();
+           FVector LineStart = Points[0].Location;
+   
+           for (int i = 1; i < Points.Num(); i++) {
+               auto& Point = Points[i];
+   
+               UKismetSystemLibrary::DrawDebugLine(
+                   GetWorld(),
+                   LineStart,
+                   Point.Location,
+                   FLinearColor::Red,
+                   0.f,
+                   1.f
+               );
+               LineStart = Point.Location;
+           }
+       }
+   }
