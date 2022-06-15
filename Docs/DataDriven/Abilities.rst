@@ -25,6 +25,8 @@ Setup
 GameTags
 ^^^^^^^^
 
+Gamekit automatically defines base gametags for its abilities.
+
 * Ability: use to tag abilities
 	* Exclusive: Used to prevent activation of multiple abilities witht the `Exclusive` tag
 	* Move: Used to tag abilities performing movement operation
@@ -210,45 +212,6 @@ characters which can have different animation as well.
 
 .. image:: /_static/AbilityAnimations.png
 
-.. note::
-
-   Setup your Gameplay Ability globals inside DefaultGame.ini to get failure tags.
-
-   .. code-block:: ini
-
-      [/Script/GameplayAbilities.AbilitySystemGlobals]
-      ActivateFailIsDeadName=State.Dead
-      ActivateFailCooldownName=Cooldown
-      ActivateFailCostName=Failure.Cost
-      ActivateFailTagsBlockedName=Failure.Blocked
-      ActivateFailTagsMissingName=Failure.Missing
-      ActivateFailNetworkingTag=Failure.Network
-
-   in DefaultGameplayTags.ini
-
-   .. code-block:: ini
-
-      [/Script/GameplayTags.GameplayTagsSettings]
-      ImportTagsFromConfig=True
-      WarnOnInvalidTags=True
-      FastReplication=False
-      InvalidTagCharacters="\"\',"
-      NumBitsForContainerSize=6
-      NetIndexFirstBitSegment=16
-      +GameplayTagList=(Tag="AbilityName",DevComment="")
-      +GameplayTagList=(Tag="AbilityName.Attack",DevComment="")
-      +GameplayTagList=(Tag="Animation.Play",DevComment="")
-      +GameplayTagList=(Tag="Cooldown",DevComment="")
-      +GameplayTagList=(Tag="Cooldown.Attack",DevComment="")
-      +GameplayTagList=(Tag="Cooldown.Skill1",DevComment="")
-      +GameplayTagList=(Tag="Debuff.Stun",DevComment="")
-      +GameplayTagList=(Tag="Dispel.Death",DevComment="")
-      +GameplayTagList=(Tag="Failure.Blocked",DevComment="")
-      +GameplayTagList=(Tag="Failure.Cost",DevComment="")
-      +GameplayTagList=(Tag="Failure.Missing",DevComment="")
-      +GameplayTagList=(Tag="Failure.Network",DevComment="")
-      +GameplayTagList=(Tag="State.Dead",DevComment="")
-
 
 User Interface
 --------------
@@ -303,6 +266,42 @@ The easiest way to bind the ability to a UI element is to use async task that wi
 * :cpp:class:`UGKAsyncTaskAttributeChanged`: can be used to listen to energy level and detect when an ability lacks its resources to be cast.
 * :cpp:class:`UGKAsyncTask_GameplayEffectChanged`: can be used to listen to debuff that will disable spell casting.
 
+
+Builtin Abilities
+-----------------
+
+* Base Ability: Basic ability with activation logic
+* Cancel Ability: Cancel all the current abilities
+* Move Ability: Move to destination or Actor
+* Base Skill: Ability that is disabled when silenced
+* Base Item: Ability that is disabled when muted
+	* with an optional item slot (Gloves, ring, etc...)
+
+Builtin Effects
+---------------
+
+* Cooldown
+* Death: Remove all active effects and set health to zero
+* Dispel: Remove all debuffs and disables
+* Heal
+* HealOvertime
+* Damage
+* DamageOvertime
+* Immunity: Grant immunity against all debuffs and disables
+* IncreaseHealth
+* ManaCost
+* MoveHaste
+* Root
+* Silence
+* Stun
+
+Builtin Attribute Set
+---------------------
+
+* Health
+* Mana
+* Experience
+* Gold
 
 
 

@@ -9,6 +9,7 @@
 #include "Gamekit/Gamekit.h"
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 #include "Gamekit/Blueprint/GKNavigationInterface.h"
+#include "Gamekit/Blueprint/GKUtilityLibrary.h"
 
 // Unreal Engine
 #include "DrawDebugHelpers.h"
@@ -21,7 +22,7 @@
 #include "Navigation/PathFollowingComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-//#define DEBUG_MOVEMENT
+// #define DEBUG_MOVEMENT
 
 #ifdef DEBUG_MOVEMENT
 #    define DEBUG_MVT(...) GK_WARNING(__VA_ARGS__)
@@ -321,6 +322,8 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         DEBUG_MVT(TEXT("Reached current goal"));
 
         if (CurrentSegment == EndSegment){
+            DEBUG_MVT(TEXT("End of Path"));
+
             bIsFinished = true;
             OnCompleted.Broadcast(TargetData);
             EndTask();
@@ -328,6 +331,7 @@ void UGKAbilityTask_MoveToDestination::TickTask(float DeltaTime)
         } 
         else 
         {
+            DEBUG_MVT(TEXT("Go to next goal"));
             // Got a new goal
             NextSegment();
             Goal = GetCurrentGoal();
@@ -460,6 +464,8 @@ void UGKAbilityTask_MoveToDestination::FindPath() {
         Start = Path->GetPathPoints()[CurrentSegment].NodeRef;
         End   = Path->GetPathPoints()[CurrentSegment + 1].NodeRef;
         EndSegment = Path->GetPathPoints().Num() - 2;
+
+        GK_DISPLAY(TEXT("Found path with %d points %s"), EndSegment + 2, *UGKUtilityLibrary::GetNetConfig(Ability->GetAvatarActorFromActorInfo()));
     } else {
         GK_WARNING(TEXT("No path was found to destination"));
     }

@@ -39,4 +39,13 @@ public:
 	void OnMovementCancelled(const FGameplayAbilityTargetDataHandle& Data);
 
 	class UGKAbilityTask_MoveToDestination* Task;
+
+	void ReplicatedTargetData(const FGameplayAbilityTargetDataHandle& Data, FGameplayTag ActivationTag);
+
+	void ExecuteMove(
+		FHitResult const& Out,
+		const FGameplayAbilitySpecHandle Handle,
+		const FGameplayAbilityActorInfo* ActorInfo,
+		const FGameplayAbilityActivationInfo ActivationInfo,
+		const FGameplayEventData* TriggerEventData);
 };

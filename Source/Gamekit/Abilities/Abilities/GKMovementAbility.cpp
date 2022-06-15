@@ -4,6 +4,7 @@
 #include "Gamekit/Abilities/Abilities/GKMovementAbility.h"
 
 // Gamekit
+#include "Gamekit/Abilities/GKAbilities.h"
 #include "Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h"
 #include "Gamekit/Abilities/GKAbilitySystemComponent.h"
 #include "Gamekit/Abilities/GKAttributeSet.h"
@@ -52,9 +53,69 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 		return;
 	}
 
-	FHitResult Out;
-	Controller->GetHitResultUnderCursor(GroundChannel, false, Out);
+	// New prediction key
+	FPredictionKey PredKey = ActivationInfo.GetActivationPredictionKey();
 
+	// this is server side, activation is done until server receives the  targt data
+	ActorInfo->AbilitySystemComponent->AbilityTargetDataSetDelegate(Handle, PredKey).AddUObject(this, &UGKMovementAbility::ReplicatedTargetData);
+
+	// Make the target data right now
+	FHitResult Out;
+	if (!Controller->GetHitResultUnderCursor(GroundChannel, false, Out)) {
+		return;
+	}
+
+	FGameplayAbilityTargetDataHandle CursorHitTarget;
+
+	// this is gets cleanup by a shared ptr internally
+	FGameplayAbilityTargetData_SingleTargetHit* ReturnData = new FGameplayAbilityTargetData_SingleTargetHit();
+	ReturnData->HitResult = Out;
+	CursorHitTarget.Add(ReturnData);
+	
+	// Send Target Data to server
+	FGameplayTag ApplicationTag;
+	ActorInfo->AbilitySystemComponent->CallServerSetReplicatedTargetData(
+		Handle,
+		PredKey,
+		CursorHitTarget,
+		ApplicationTag,
+		ActorInfo->AbilitySystemComponent->ScopedPredictionKey
+	);
+
+
+	ExecuteMove(
+		Out,
+		Handle,
+		ActorInfo,
+		ActivationInfo,
+		TriggerEventData
+	);
+}
+
+
+void UGKMovementAbility::ReplicatedTargetData(const FGameplayAbilityTargetDataHandle & Data, FGameplayTag ActivationTag){
+
+	FHitResult const& Out = *Data.Get(0)->GetHitResult();
+
+	GetCurrentActorInfo()->AbilitySystemComponent->ConsumeClientReplicatedTargetData(
+		GetCurrentAbilitySpecHandle(),
+		GetCurrentActivationInfo().GetActivationPredictionKey()
+	);
+
+	ExecuteMove(
+		Out, 
+		GetCurrentAbilitySpecHandle(),
+		GetCurrentActorInfo(),
+		GetCurrentActivationInfo(), 
+		nullptr);
+}
+
+void UGKMovementAbility::ExecuteMove(FHitResult const& Out,
+									 const FGameplayAbilitySpecHandle Handle,
+								 	 const FGameplayAbilityActorInfo * ActorInfo,
+								 	 const FGameplayAbilityActivationInfo ActivationInfo,
+									 const FGameplayEventData * TriggerEventData)
+{
 	UGKAttributeSet const* Attributes = Cast<UGKAttributeSet>(ActorInfo->AbilitySystemComponent->GetAttributeSet(UGKAttributeSet::StaticClass()));
 
 	// cancel all the another abilities 
@@ -77,7 +138,7 @@ void UGKMovementAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle
 		EGK_AbilityBehavior::PointTarget,
 		CancelTags,
 		true,					// UsePathfinding
-		false					// Debug
+		true 					// Debug
 	);
 
 	Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);

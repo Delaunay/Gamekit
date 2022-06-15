@@ -216,7 +216,6 @@ public:
     // Find a path to the goal using the navigation system
     void FindPath();
 
-    // Current path we are following
     FNavPathSharedPtr Path;
 
     // Called when the path was modified
