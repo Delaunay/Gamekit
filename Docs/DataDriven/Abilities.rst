@@ -81,14 +81,15 @@ Gamekit automatically defines base gametags for its abilities.
 		* Strong
 
 * Failure: used to report errors back to the users
-	* Blocked
-	* Cost
-	* Missing
-	* Network
-	* NotLearned
+	* Blocked:  Ability is blocked by a disable
+	* Cost: Resource level does not meet the ability cost
+	* Missing:  Ability has missing requirement
+	* Network: Internal error due to networking
+	* NotLearned: Ability was not learned yet
+	* Cooldown: Ability is still in cooldown
+	* Dead: Character is dead
 
-* GameplayCue: used to spawn effect in reseponse to gameplay effects
-  All disables will have an effect so players can see it easily
+* GameplayCue: used to spawn effect in reseponse to gameplay effects, all disables will have an effect so players can see it easily
 	* Immunity
 	* Stun
 	* Silence
@@ -96,35 +97,7 @@ Gamekit automatically defines base gametags for its abilities.
 	* Root
 	* Break
 
-
 * Quest: used to tag objectives for the quest system
-
-Unreal Engine GA tags
-
-* ActivateFailIsDeadName: Character is dead
-* ActivateFailCooldownName: Ability is till in cooldown
-* ActivateFailCostName: Resource level does not meet the ability cost
-* ActivateFailTagsBlockedTag: Ability is blocked by a debuff
-* ActivateFailTagsMissingName: Ability has missing requirement
-* ActivateFailNetworkingName: Internal error due to networking
-
-You can set those tags in `DefaultGame.ini`.
-
-.. code-block:: ini
-
-	[/Script/GameplayAbilities.AbilitySystemGlobals]
-	ActivateFailIsDeadName=State.Dead
-	ActivateFailCooldownName=Failure.Cooldown
-	ActivateFailCostName=Failure.Cost
-	ActivateFailTagsBlockedName=Failure.Blocked
-	ActivateFailTagsMissingName=Failure.Missing
-	ActivateFailNetworkingName=Failure.Network
-	ActivateFailNotYetLearnedName=Failure.NotLearned
-	DeathDispelName=Dispel.Death
-	DeathName=State.Dead
-
-   GlobalCurveTableName=CompositeCurveTable'/Game/Data/CurveDatabaseCache.CurveDatabaseCache'
-
 
 Define Abilities
 ----------------
@@ -173,6 +146,25 @@ The list of customizable properties can be found here :class:`FGKAbilityStatic`
 		"ProjectileRange": 1600,
 		"AOEActorClass": "None"
 	}
+
+
+Ability Kinds
+-------------
+
+MaxLevel = HeroLevel / 2
+UltimateMaxLevel = HeroLevel / 6
+
+* Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1
+	*
+
+* Ultimate Ability: 3 Levels, every 6 level
+
+* Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted
+* Abilities with charges: Ability consume charges, charges are given by an effect periodically
+* Linked Abilities [TODO]
+* Sub abilities [TODO]
+* Passive abilities
+* Autocast abilities [TODO]
 
 
 Overview
@@ -238,23 +230,36 @@ a spell button.
 
 #. Ability cannot be cast because of debuff
 
-.. image:: /_static/btn_cooldown.PNG
+.. figure:: /_static/btn_cooldown.PNG
+   :alt: Ability under cooldown
    :width: 60
 
-.. image:: /_static/btn_disabled.PNG
+   Ability under cooldown
+
+.. figure:: /_static/btn_disabled.PNG
    :width: 60
 
-.. image:: /_static/btn_normal.PNG
+   Ability disabled
+
+.. figure:: /_static/btn_normal.PNG
    :width: 60
 
-.. image:: /_static/btn_targetting.PNG
+   Ability ready
+
+.. figure:: /_static/btn_targetting.PNG
    :width: 60
 
-.. image:: /_static/btn_oom.PNG
+   Ability selecting a target
+
+.. figure:: /_static/btn_oom.PNG
    :width: 60
 
-.. image:: /_static/btn_mute.png
+   Ability out of mana
+
+.. figure:: /_static/btn_mute.png
    :width: 60
+
+   Ability disabled by gameplay effect
 
 
 UI & Ability State

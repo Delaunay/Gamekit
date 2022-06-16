@@ -389,6 +389,12 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     // Current Task taht is playing
     UAbilityTask *CurrentTask;
+
+    UFUNCTION(BlueprintCallable, Category = Ability)
+    bool IsPassive() const;
+
+    // Used to grand passives
+    void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 };
 
 //! Return an effect that regenerate the given attribute overtime

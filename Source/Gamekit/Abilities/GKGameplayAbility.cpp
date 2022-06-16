@@ -586,7 +586,7 @@ void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Hand
 
         FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(Handle, ActorInfo, ActivationInfo, CooldownGE->GetClass(), Level);
 
-        if (SpecHandle.IsValid()){
+        if (SpecHandle.IsValid() && AbilityData->Cooldown.Num() > 0){
             TArray<float> Durations = AbilityData->Cooldown;
 
             SpecHandle.Data.Get()->DynamicGrantedTags.AppendTags(*CooldownTags);
@@ -598,6 +598,42 @@ void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Hand
 
             SpecHandle.Data.Get()->SetSetByCallerMagnitude(CooldownParent, Duration);
             ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle);
+        }
+    }
+}
+
+
+bool UGKGameplayAbility::IsPassive() const {
+    FGKAbilityStatic const* Data = GetAbilityStatic();
+
+    if (Data->AbilityBehavior == EGK_AbilityBehavior::Passive){
+        return true;
+    }
+
+    FGKAbilityEffects const* AbilitiyEffets = Data->AbilityEffects.Find(EGK_EffectSlot::PassiveEffect);
+
+    return AbilitiyEffets != nullptr && Data->AbilityEffects.Num() == 1;
+}
+
+
+void UGKGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) {
+    Super::OnGiveAbility(ActorInfo, Spec);
+
+    FGKAbilityStatic const* Data = GetAbilityStatic();
+
+    if (Data) {
+        FGKAbilityEffects const* AbilitiyEffets = Data->AbilityEffects.Find(EGK_EffectSlot::PassiveEffect);
+
+        if (AbilitiyEffets){
+            for (const FGKAbilityEffect& Effect : AbilitiyEffets->Effects)
+            {
+                ActorInfo->AbilitySystemComponent->ApplyGameplayEffectToSelf(
+                    Effect.GameplayEffectClass.GetDefaultObject(),
+                    GetAbilityLevel(Spec.Handle, ActorInfo),
+                    FGameplayEffectContextHandle()
+
+                );
+            }
         }
     }
 }
@@ -773,6 +809,10 @@ void UGKGameplayAbility::ActivateAbility_Native()
 {
     if (GetAbilityLevel() <= 0)
     {
+        return;
+    }
+
+    if (IsPassive()){
         return;
     }
 

@@ -47,7 +47,9 @@ def generate_abilities_from_table(datatable, package):
 
     for fname in unreal.DataTableFunctionLibrary.get_data_table_row_names(table):
         name = str(fname)
-        asset_path = package + '/' + name
+        asset_name = f'GA_{name}'
+
+        asset_path = package + '/' + asset_name
 
         if not unreal.EditorAssetLibrary.does_asset_exist(asset_path):
             generate_ability(package, name, table, parent_cls)
