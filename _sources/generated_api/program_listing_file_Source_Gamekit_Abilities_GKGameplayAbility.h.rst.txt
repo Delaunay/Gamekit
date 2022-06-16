@@ -319,6 +319,12 @@ Program Listing for File GKGameplayAbility.h
    
        // Current Task taht is playing
        UAbilityTask *CurrentTask;
+   
+       UFUNCTION(BlueprintCallable, Category = Ability)
+       bool IsPassive() const;
+   
+       // Used to grand passives
+       void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
    };
    
    UGameplayEffect *NewPassiveRegenEffect(UObject *          Parent,

@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                49ebfc6f2
+                69a02b55d
 
               </div>
 <div role="search">
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ability-kinds">Ability Kinds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ability-datatable-initialization">Ability DataTable Initialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ability-activation-flow">Ability Activation Flow</a></li>
@@ -159,9 +160,9 @@
 <section id="gametags">
 <h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
 <p>Gamekit automatically defines base gametags for its abilities.</p>
-<ul>
+<ul class="simple">
 <li><dl class="simple">
-<dt>Ability: use to tag abilities</dt><dd><ul class="simple">
+<dt>Ability: use to tag abilities</dt><dd><ul>
 <li><p>Exclusive: Used to prevent activation of multiple abilities witht the <cite>Exclusive</cite> tag</p></li>
 <li><p>Move: Used to tag abilities performing movement operation</p></li>
 <li><p>Passive: tag passive abilities</p></li>
@@ -170,7 +171,7 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Animation: used to tag animation</dt><dd><ul class="simple">
+<dt>Animation: used to tag animation</dt><dd><ul>
 <li><p>CastPoint: Tag is sent when the animation reach the point where projectile/effect should be
 spawned.</p></li>
 </ul>
@@ -179,7 +180,7 @@ spawned.</p></li>
 </li>
 <li><p>Cooldown: used to tag cooldowns; to prevent the same ability from being casted all the time</p></li>
 <li><dl class="simple">
-<dt>Buff: Improves the effectiveness of a character</dt><dd><ul class="simple">
+<dt>Buff: Improves the effectiveness of a character</dt><dd><ul>
 <li><p>Immunity: protects against debuff and disables</p></li>
 <li><p>Armor increase</p></li>
 <li><p>Damage</p></li>
@@ -199,7 +200,7 @@ spawned.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Debuff: reduce the effectiveness of a character</dt><dd><ul class="simple">
+<dt>Debuff: reduce the effectiveness of a character</dt><dd><ul>
 <li><dl class="simple">
 <dt>Level: level of the debuff</dt><dd><ul>
 <li><p>Minor</p></li>
@@ -217,7 +218,7 @@ spawned.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Disable: prevent character for performing certain actions</dt><dd><ul class="simple">
+<dt>Disable: prevent character for performing certain actions</dt><dd><ul>
 <li><dl class="simple">
 <dt>Level: level of the disable</dt><dd><ul>
 <li><p>Minor</p></li>
@@ -247,7 +248,7 @@ but all actions are disabled.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Dispel: removes debuff and disables</dt><dd><ul class="simple">
+<dt>Dispel: removes debuff and disables</dt><dd><ul>
 <li><dl class="simple">
 <dt>Level: level of the dispel</dt><dd><ul>
 <li><p>Minor</p></li>
@@ -262,20 +263,20 @@ but all actions are disabled.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Failure: used to report errors back to the users</dt><dd><ul class="simple">
-<li><p>Blocked</p></li>
-<li><p>Cost</p></li>
-<li><p>Missing</p></li>
-<li><p>Network</p></li>
-<li><p>NotLearned</p></li>
+<dt>Failure: used to report errors back to the users</dt><dd><ul>
+<li><p>Blocked:  Ability is blocked by a disable</p></li>
+<li><p>Cost: Resource level does not meet the ability cost</p></li>
+<li><p>Missing:  Ability has missing requirement</p></li>
+<li><p>Network: Internal error due to networking</p></li>
+<li><p>NotLearned: Ability was not learned yet</p></li>
+<li><p>Cooldown: Ability is still in cooldown</p></li>
+<li><p>Dead: Character is dead</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p>GameplayCue: used to spawn effect in reseponse to gameplay effects
-All disables will have an effect so players can see it easily</p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt>GameplayCue: used to spawn effect in reseponse to gameplay effects, all disables will have an effect so players can see it easily</dt><dd><ul>
 <li><p>Immunity</p></li>
 <li><p>Stun</p></li>
 <li><p>Silence</p></li>
@@ -283,34 +284,11 @@ All disables will have an effect so players can see it easily</p>
 <li><p>Root</p></li>
 <li><p>Break</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 <li><p>Quest: used to tag objectives for the quest system</p></li>
 </ul>
-<p>Unreal Engine GA tags</p>
-<ul class="simple">
-<li><p>ActivateFailIsDeadName: Character is dead</p></li>
-<li><p>ActivateFailCooldownName: Ability is till in cooldown</p></li>
-<li><p>ActivateFailCostName: Resource level does not meet the ability cost</p></li>
-<li><p>ActivateFailTagsBlockedTag: Ability is blocked by a debuff</p></li>
-<li><p>ActivateFailTagsMissingName: Ability has missing requirement</p></li>
-<li><p>ActivateFailNetworkingName: Internal error due to networking</p></li>
-</ul>
-<p>You can set those tags in <cite>DefaultGame.ini</cite>.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">[/Script/GameplayAbilities.AbilitySystemGlobals]</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailIsDeadName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailCooldownName</span><span class="o">=</span><span class="s">Failure.Cooldown</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailCostName</span><span class="o">=</span><span class="s">Failure.Cost</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailTagsBlockedName</span><span class="o">=</span><span class="s">Failure.Blocked</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailTagsMissingName</span><span class="o">=</span><span class="s">Failure.Missing</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailNetworkingName</span><span class="o">=</span><span class="s">Failure.Network</span><span class="w"></span>
-<span class="w">     </span><span class="na">ActivateFailNotYetLearnedName</span><span class="o">=</span><span class="s">Failure.NotLearned</span><span class="w"></span>
-<span class="w">     </span><span class="na">DeathDispelName</span><span class="o">=</span><span class="s">Dispel.Death</span><span class="w"></span>
-<span class="w">     </span><span class="na">DeathName</span><span class="o">=</span><span class="s">State.Dead</span><span class="w"></span>
-
-<span class="na">GlobalCurveTableName</span><span class="o">=</span><span class="s">CompositeCurveTable&#39;/Game/Data/CurveDatabaseCache.CurveDatabaseCache&#39;</span><span class="w"></span>
-</pre></div>
-</div>
 </section>
 </section>
 <section id="define-abilities">
@@ -359,6 +337,27 @@ The list of customizable properties can be found here <a class="reference intern
 </pre></div>
 </div>
 </section>
+<section id="ability-kinds">
+<h2>Ability Kinds<a class="headerlink" href="#ability-kinds" title="Permalink to this heading"></a></h2>
+<p>MaxLevel = HeroLevel / 2
+UltimateMaxLevel = HeroLevel / 6</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1</dt><dd><ul>
+<li></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Ultimate Ability: 3 Levels, every 6 level</p></li>
+<li><p>Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted</p></li>
+<li><p>Abilities with charges: Ability consume charges, charges are given by an effect periodically</p></li>
+<li><p>Linked Abilities [TODO]</p></li>
+<li><p>Sub abilities [TODO]</p></li>
+<li><p>Passive abilities</p></li>
+<li><p>Autocast abilities [TODO]</p></li>
+</ul>
+</section>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <section id="ability-datatable-initialization">
@@ -402,12 +401,42 @@ a spell button.</p>
 <li><p>Ability requirements/cost are not met</p></li>
 <li><p>Ability cannot be cast because of debuff</p></li>
 </ol>
-<a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="../_images/btn_cooldown.PNG" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="Ability under cooldown" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability under cooldown</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability disabled</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/btn_normal.PNG"><img alt="../_images/btn_normal.PNG" src="../_images/btn_normal.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability ready</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="../_images/btn_targetting.PNG"><img alt="../_images/btn_targetting.PNG" src="../_images/btn_targetting.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability selecting a target</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/btn_oom.PNG"><img alt="../_images/btn_oom.PNG" src="../_images/btn_oom.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability out of mana</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="ui-ability-state">
 <h3>UI &amp; Ability State<a class="headerlink" href="#ui-ability-state" title="Permalink to this heading"></a></h3>
