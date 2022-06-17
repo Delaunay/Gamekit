@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -221,7 +221,7 @@
 <span class="w">    </span><span class="c1">// Disable Handling</span>
 <span class="w">    </span><span class="c1">// we track the count of all the stacked disables</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">DisableCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">OnBeginDisabled</span><span class="p">(</span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>

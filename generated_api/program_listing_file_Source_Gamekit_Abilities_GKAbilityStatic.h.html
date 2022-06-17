@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -144,18 +144,24 @@
 
 <span class="c1">// MOBA/Hack&#39;n Slash like Ability binding</span>
 <span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
-<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EGK_AbilityBehavior</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EGK_ActivationBehavior</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Hidden</span><span class="w">       </span><span class="nf">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hidden&quot;</span><span class="p">),</span><span class="w">       </span><span class="c1">// Not shown in UI</span>
 <span class="w">    </span><span class="n">Passive</span><span class="w">      </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Passive&quot;</span><span class="p">),</span><span class="w">      </span><span class="c1">// Passive ability, enabled as soon as it is equiped</span>
 <span class="w">    </span><span class="n">NoTarget</span><span class="w">     </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;NoTarget&quot;</span><span class="p">),</span><span class="w">     </span><span class="c1">// Ability is cast as soon as the input is pressed</span>
-<span class="w">    </span><span class="n">ActorTarget</span><span class="w">  </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ActorTarget&quot;</span><span class="p">),</span><span class="w">  </span><span class="c1">// Ability targets another actor</span>
-<span class="w">    </span><span class="n">PointTarget</span><span class="w">  </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PointTarget&quot;</span><span class="p">),</span><span class="w">  </span><span class="c1">// Ability targets the ground</span>
-<span class="w">    </span><span class="n">VectorTarget</span><span class="w"> </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;VectorTarget&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// Ability targets 2 points</span>
+<span class="w">    </span><span class="n">Targeted</span><span class="w">     </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Targeted&quot;</span><span class="p">),</span><span class="w">     </span><span class="c1">// Ability targets something</span>
+<span class="w">    </span><span class="n">Charge</span><span class="w">       </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Charge&quot;</span><span class="p">),</span><span class="w">       </span><span class="c1">// Ability consume charges on activation</span>
+<span class="w">    </span><span class="n">Channel</span><span class="w">      </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Channel&quot;</span><span class="p">),</span><span class="w">      </span><span class="c1">// Plays animation until the ends and cast spells at the end</span>
 <span class="w">    </span><span class="n">Toggle</span><span class="w">       </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Toggle&quot;</span><span class="p">),</span><span class="w">       </span><span class="c1">// Ability is Active or not</span>
 <span class="p">};</span><span class="w"></span>
 
-
+<span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EGK_TargetMode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">None</span><span class="w">            </span><span class="nf">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActorTarget</span><span class="w">     </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ActorTarget&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">PointTarget</span><span class="w">     </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PointTarget&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">VectorTarget</span><span class="w">    </span><span class="n">UMETA</span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;VectorTarget&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 <span class="c1">// This is create because we cannot use include AGKAbilityTarget_Actor</span>
 <span class="c1">// in AbilityStatic</span>
@@ -279,6 +285,9 @@
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bLoop</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">EGK_ActivationBehavior</span><span class="w"> </span><span class="n">AbilityBehavior</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
@@ -313,9 +322,6 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">CastMinRange</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">AbilityBehavior</span><span class="p">;</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Bitmask</span><span class="p">,</span><span class="w"> </span><span class="n">BitmaskEnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ETeamAttitude&quot;</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">TargetActorFaction</span><span class="p">;</span><span class="w"></span>
 
@@ -327,6 +333,9 @@
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">EObjectTypeQuery</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">TargetObjectTypes</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">EGK_TargetMode</span><span class="w"> </span><span class="n">TargetMode</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Animation</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">CastTime</span><span class="p">;</span><span class="w"></span>

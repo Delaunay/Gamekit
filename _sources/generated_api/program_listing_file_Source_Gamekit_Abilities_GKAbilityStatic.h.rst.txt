@@ -43,18 +43,24 @@ Program Listing for File GKAbilityStatic.h
    
    // MOBA/Hack'n Slash like Ability binding
    UENUM(BlueprintType)
-   enum class EGK_AbilityBehavior : uint8
+   enum class EGK_ActivationBehavior : uint8
    {
        Hidden       UMETA(DisplayName = "Hidden"),       // Not shown in UI
        Passive      UMETA(DisplayName = "Passive"),      // Passive ability, enabled as soon as it is equiped
        NoTarget     UMETA(DisplayName = "NoTarget"),     // Ability is cast as soon as the input is pressed
-       ActorTarget  UMETA(DisplayName = "ActorTarget"),  // Ability targets another actor
-       PointTarget  UMETA(DisplayName = "PointTarget"),  // Ability targets the ground
-       VectorTarget UMETA(DisplayName = "VectorTarget"), // Ability targets 2 points
+       Targeted     UMETA(DisplayName = "Targeted"),     // Ability targets something
+       Charge       UMETA(DisplayName = "Charge"),       // Ability consume charges on activation
+       Channel      UMETA(DisplayName = "Channel"),      // Plays animation until the ends and cast spells at the end
        Toggle       UMETA(DisplayName = "Toggle"),       // Ability is Active or not
    };
    
-   
+   UENUM(BlueprintType)
+   enum class EGK_TargetMode : uint8 {
+       None            UMETA(DisplayName = "None"),       
+       ActorTarget     UMETA(DisplayName = "ActorTarget"),      
+       PointTarget     UMETA(DisplayName = "PointTarget"),     
+       VectorTarget    UMETA(DisplayName = "VectorTarget"),
+   };
    
    // This is create because we cannot use include AGKAbilityTarget_Actor
    // in AbilityStatic
@@ -178,6 +184,9 @@ Program Listing for File GKAbilityStatic.h
        bool bLoop;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+       EGK_ActivationBehavior AbilityBehavior;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
        float Duration;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
@@ -212,9 +221,6 @@ Program Listing for File GKAbilityStatic.h
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
        float CastMinRange;
    
-       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
-       EGK_AbilityBehavior AbilityBehavior;
-   
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "ETeamAttitude"))
        int32 TargetActorFaction;
    
@@ -226,6 +232,9 @@ Program Listing for File GKAbilityStatic.h
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
        TArray<TEnumAsByte<EObjectTypeQuery>> TargetObjectTypes;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+       EGK_TargetMode TargetMode;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
        float CastTime;

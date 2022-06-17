@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">69a02b55d</span>
+   &#160;<span id="projectnumber">595869859</span>
    </div>
   </td>
  </tr>
@@ -88,88 +88,83 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// Generated</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;GKAsyncTask_GameplayEffectChanged.generated.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#a691cf3ba986c6191894b3a4867f4faa2">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams</a>(FGKOnGameplayEffectAdded,</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                              FActiveGameplayEffectHandle,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                              GameplayHandle,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                                              UGameplayEffect *,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                              GameplayEffect,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                              FGameplayTagContainer,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                              GameplayTags,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                              <span class="keywordtype">float</span>,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                              Duration);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#af9e79deb631efa7b2b72a9de214d6404">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</a>(FGKOnGameplayEffectStackChanged,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                                             FActiveGameplayEffectHandle,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                             GameplayHandle,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                             int32,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                             StackCount);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#aed28e28ae495247ba53c6cb51186f82c">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</a>(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;UCLASS(BlueprintType, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (ExposedAsyncProxy = AsyncTask))</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html">   34</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a>: public UBlueprintAsyncActionBase</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (BlueprintInternalUseOnly = <span class="stringliteral">&quot;true&quot;</span>))</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <a class="code" href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a> *ListenForGameplayEffectChange(</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        UAbilitySystemComponent *AbilitySystemComponent,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        FGameplayTagContainer SelectedTags = FGameplayTagContainer()</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    );</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#aff7420da7d70a939a641139f6bff3ce0">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams</a>(FGKOnGameplayEffectAdded,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                              FActiveGameplayEffectHandle, GameplayHandle,</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                              UGameplayEffect *,GameplayEffect,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                                              FGameplayTagContainer, GameplayTags,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                              <span class="keywordtype">float</span>, Duration,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                              <span class="keywordtype">int</span>, StackCount);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#a28eb6a39af288bcff8678e5c50e8741a">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</a>(FGKOnGameplayEffectStackChanged,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                             FActiveGameplayEffectHandle, GameplayHandle,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                             <span class="keywordtype">int</span>, StackCount);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="GKAsyncTask__GameplayEffectChanged_8h.html#aed28e28ae495247ba53c6cb51186f82c">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</a>(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;UCLASS(BlueprintType, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (ExposedAsyncProxy = AsyncTask))</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html">   29</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a>: public UBlueprintAsyncActionBase</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    UFUNCTION(BlueprintCallable, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (BlueprintInternalUseOnly = <span class="stringliteral">&quot;true&quot;</span>))</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <a class="code" href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a> *ListenForGameplayEffectChange(</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        UAbilitySystemComponent *AbilitySystemComponent,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        FGameplayTagContainer SelectedTags = FGameplayTagContainer()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectAdded_Native(UAbilitySystemComponent *   Target,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                              <span class="keyword">const</span> FGameplayEffectSpec &amp; SpecApplied,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                              FActiveGameplayEffectHandle ActiveHandle);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectAdded_Native(UAbilitySystemComponent *   Target,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                              <span class="keyword">const</span> FGameplayEffectSpec &amp; SpecApplied,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                              FActiveGameplayEffectHandle ActiveHandle);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectRemoved_Native(<span class="keyword">const</span> FActiveGameplayEffect &amp;EffectRemoved);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectStackChange_Native(FActiveGameplayEffectHandle EffectHandle,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                                    int32                       NewStackCount,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                                    int32                       PreviousStackCount);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectRemoved_Native(<span class="keyword">const</span> FActiveGameplayEffect &amp;EffectRemoved);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnGameplayEffectStackChange_Native(FActiveGameplayEffectHandle EffectHandle,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                                    int32                       NewStackCount,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                                    int32                       PreviousStackCount);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// List all the allowed tags</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a55c3ba851c2739ffb1fb41fe730ed162">   56</a></span>&#160;    FGameplayTagContainer OneOf;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// List all the allowed tags</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a55c3ba851c2739ffb1fb41fe730ed162">   61</a></span>&#160;    FGameplayTagContainer OneOf;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#af42e3569ff3e11b4a2ec5782d9388c1a">   64</a></span>&#160;    FGKOnGameplayEffectAdded OnGameplayEffectAdded;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a75e295e8cc8287a099728a051a1ee613">   67</a></span>&#160;    FGKOnGameplayEffectStackChanged OnGameplayEffectStackChanged;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#addda2f9091f89144d1d0e6216c668d96">   70</a></span>&#160;    FGKOnGameplayEffectRemoved OnGameplayEffectRemoved;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    public:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    UFUNCTION(BlueprintCallable)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> EndTask();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    protected:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a48f93357ea3dd89143c644b84aeb7ab2">   78</a></span>&#160;    UAbilitySystemComponent *AbilitySystemComponent;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#af42e3569ff3e11b4a2ec5782d9388c1a">   59</a></span>&#160;    FGKOnGameplayEffectAdded OnGameplayEffectAdded;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a75e295e8cc8287a099728a051a1ee613">   62</a></span>&#160;    FGKOnGameplayEffectStackChanged OnGameplayEffectStackChanged;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    UPROPERTY(BlueprintAssignable)</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#addda2f9091f89144d1d0e6216c668d96">   65</a></span>&#160;    FGKOnGameplayEffectRemoved OnGameplayEffectRemoved;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    public:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    UFUNCTION(BlueprintCallable)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> EndTask();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    protected:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classUGKAsyncTask__GameplayEffectChanged.html#a48f93357ea3dd89143c644b84aeb7ab2">   73</a></span>&#160;    UAbilitySystemComponent *AbilitySystemComponent;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a7fa23b8236cd0a68da4a466f19d17e12"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a7fa23b8236cd0a68da4a466f19d17e12">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native</a></div><div class="ttdeci">virtual void OnGameplayEffectStackChange_Native(FActiveGameplayEffectHandle EffectHandle, int32 NewStackCount, int32 PreviousStackCount)</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:124</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a></div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:34</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a7fa23b8236cd0a68da4a466f19d17e12"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a7fa23b8236cd0a68da4a466f19d17e12">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChange_Native</a></div><div class="ttdeci">virtual void OnGameplayEffectStackChange_Native(FActiveGameplayEffectHandle EffectHandle, int32 NewStackCount, int32 PreviousStackCount)</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:125</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html">UGKAsyncTask_GameplayEffectChanged</a></div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:29</div></div>
 <div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a0565cc1bef40c0f05e89ecf6715c4b0b"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a0565cc1bef40c0f05e89ecf6715c4b0b">UGKAsyncTask_GameplayEffectChanged::EndTask</a></div><div class="ttdeci">void EndTask()</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:58</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a48f93357ea3dd89143c644b84aeb7ab2"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a48f93357ea3dd89143c644b84aeb7ab2">UGKAsyncTask_GameplayEffectChanged::AbilitySystemComponent</a></div><div class="ttdeci">UAbilitySystemComponent * AbilitySystemComponent</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:78</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a5bf2229e7c4655663e7c83eac490f56a"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a5bf2229e7c4655663e7c83eac490f56a">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native</a></div><div class="ttdeci">virtual void OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &amp;EffectRemoved)</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:110</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_addda2f9091f89144d1d0e6216c668d96"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#addda2f9091f89144d1d0e6216c668d96">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved</a></div><div class="ttdeci">FGKOnGameplayEffectRemoved OnGameplayEffectRemoved</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:70</div></div>
-<div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html_af9e79deb631efa7b2b72a9de214d6404"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html#af9e79deb631efa7b2b72a9de214d6404">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</a></div><div class="ttdeci">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged, FActiveGameplayEffectHandle, GameplayHandle, int32, StackCount)</div></div>
+<div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html_a28eb6a39af288bcff8678e5c50e8741a"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html#a28eb6a39af288bcff8678e5c50e8741a">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams</a></div><div class="ttdeci">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged, FActiveGameplayEffectHandle, GameplayHandle, int, StackCount)</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a48f93357ea3dd89143c644b84aeb7ab2"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a48f93357ea3dd89143c644b84aeb7ab2">UGKAsyncTask_GameplayEffectChanged::AbilitySystemComponent</a></div><div class="ttdeci">UAbilitySystemComponent * AbilitySystemComponent</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:73</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a5bf2229e7c4655663e7c83eac490f56a"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a5bf2229e7c4655663e7c83eac490f56a">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved_Native</a></div><div class="ttdeci">virtual void OnGameplayEffectRemoved_Native(const FActiveGameplayEffect &amp;EffectRemoved)</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:111</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_addda2f9091f89144d1d0e6216c668d96"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#addda2f9091f89144d1d0e6216c668d96">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectRemoved</a></div><div class="ttdeci">FGKOnGameplayEffectRemoved OnGameplayEffectRemoved</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:65</div></div>
 <div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html">GKAsyncTask_GameplayEffectChanged.h</a></div></div>
 <div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html_aed28e28ae495247ba53c6cb51186f82c"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html#aed28e28ae495247ba53c6cb51186f82c">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</a></div><div class="ttdeci">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle)</div></div>
 <div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a3da7ae6b82fb83d67ed8b398ba6d89d5"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a3da7ae6b82fb83d67ed8b398ba6d89d5">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native</a></div><div class="ttdeci">virtual void OnGameplayEffectAdded_Native(UAbilitySystemComponent *Target, const FGameplayEffectSpec &amp;SpecApplied, FActiveGameplayEffectHandle ActiveHandle)</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:70</div></div>
 <div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a7fb9ba9ac8342bfe8452eac1146d4e41"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a7fb9ba9ac8342bfe8452eac1146d4e41">UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange</a></div><div class="ttdeci">static UGKAsyncTask_GameplayEffectChanged * ListenForGameplayEffectChange(UAbilitySystemComponent *AbilitySystemComponent, FGameplayTagContainer SelectedTags=FGameplayTagContainer())</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.cpp:8</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_af42e3569ff3e11b4a2ec5782d9388c1a"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#af42e3569ff3e11b4a2ec5782d9388c1a">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded</a></div><div class="ttdeci">FGKOnGameplayEffectAdded OnGameplayEffectAdded</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:64</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a75e295e8cc8287a099728a051a1ee613"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a75e295e8cc8287a099728a051a1ee613">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChanged</a></div><div class="ttdeci">FGKOnGameplayEffectStackChanged OnGameplayEffectStackChanged</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:67</div></div>
-<div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html_a691cf3ba986c6191894b3a4867f4faa2"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html#a691cf3ba986c6191894b3a4867f4faa2">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams</a></div><div class="ttdeci">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FGKOnGameplayEffectAdded, FActiveGameplayEffectHandle, GameplayHandle, UGameplayEffect *, GameplayEffect, FGameplayTagContainer, GameplayTags, float, Duration)</div></div>
-<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a55c3ba851c2739ffb1fb41fe730ed162"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a55c3ba851c2739ffb1fb41fe730ed162">UGKAsyncTask_GameplayEffectChanged::OneOf</a></div><div class="ttdeci">FGameplayTagContainer OneOf</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:61</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_af42e3569ff3e11b4a2ec5782d9388c1a"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#af42e3569ff3e11b4a2ec5782d9388c1a">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded</a></div><div class="ttdeci">FGKOnGameplayEffectAdded OnGameplayEffectAdded</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:59</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a75e295e8cc8287a099728a051a1ee613"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a75e295e8cc8287a099728a051a1ee613">UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectStackChanged</a></div><div class="ttdeci">FGKOnGameplayEffectStackChanged OnGameplayEffectStackChanged</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:62</div></div>
+<div class="ttc" id="aGKAsyncTask__GameplayEffectChanged_8h_html_aff7420da7d70a939a641139f6bff3ce0"><div class="ttname"><a href="GKAsyncTask__GameplayEffectChanged_8h.html#aff7420da7d70a939a641139f6bff3ce0">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams</a></div><div class="ttdeci">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FGKOnGameplayEffectAdded, FActiveGameplayEffectHandle, GameplayHandle, UGameplayEffect *, GameplayEffect, FGameplayTagContainer, GameplayTags, float, Duration, int, StackCount)</div></div>
+<div class="ttc" id="aclassUGKAsyncTask__GameplayEffectChanged_html_a55c3ba851c2739ffb1fb41fe730ed162"><div class="ttname"><a href="classUGKAsyncTask__GameplayEffectChanged.html#a55c3ba851c2739ffb1fb41fe730ed162">UGKAsyncTask_GameplayEffectChanged::OneOf</a></div><div class="ttdeci">FGameplayTagContainer OneOf</div><div class="ttdef"><b>Definition:</b> GKAsyncTask_GameplayEffectChanged.h:56</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

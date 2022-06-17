@@ -147,7 +147,7 @@ Program Listing for File GKMovementAbility.cpp
            150,                        // Turn Rate
            Attributes->GetMoveSpeed(), // Speed
            true,                       // Move To Target (i.e not rot only)
-           EGK_AbilityBehavior::PointTarget,
+           false,
            CancelTags,
            true,                   // UsePathfinding
            true                    // Debug

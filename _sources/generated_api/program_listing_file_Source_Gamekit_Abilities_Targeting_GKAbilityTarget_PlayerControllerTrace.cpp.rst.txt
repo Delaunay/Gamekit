@@ -49,7 +49,7 @@ Program Listing for File GKAbilityTarget_PlayerControllerTrace.cpp
        ObjectTypes        = AbilityData.TargetObjectTypes;
        ClassFilter        = AbilityData.TargetFilterClass;
        TargetActorFaction = AbilityData.TargetActorFaction;
-       TargetMode         = AbilityData.AbilityBehavior;
+       TargetMode         = AbilityData.TargetMode;
    
        // Blueprint overrides
        Super::InitializeFromAbilityData(AbilityData);
@@ -131,7 +131,7 @@ Program Listing for File GKAbilityTarget_PlayerControllerTrace.cpp
    
        TraceEndPoint = LatestHitResult.Component.IsValid() ? LatestHitResult.ImpactPoint : LatestHitResult.TraceEnd;
    
-       if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+       if (TargetMode == EGK_TargetMode::ActorTarget)
        {
            Deselect();
    
@@ -169,12 +169,12 @@ Program Listing for File GKAbilityTarget_PlayerControllerTrace.cpp
            return false;
        }
    
-       if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+       if (TargetMode == EGK_TargetMode::ActorTarget)
        {
            return ActorsUnderCursor.Num() > 0;
        }
    
-       if (TargetMode == EGK_AbilityBehavior::PointTarget)
+       if (TargetMode == EGK_TargetMode::PointTarget)
        {
            float DistanceSqr = FVector::DistSquared(SourceActor->GetActorLocation(), TraceEndPoint);
            return MaxRange * MaxRange >= DistanceSqr && DistanceSqr >= MinRange * MinRange;
@@ -231,7 +231,7 @@ Program Listing for File GKAbilityTarget_PlayerControllerTrace.cpp
            return;
        }
    
-       if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+       if (TargetMode == EGK_TargetMode::ActorTarget)
        {
            TArray<TWeakObjectPtr<AActor>> Actors;
            Actors.Reset(ActorsUnderCursor.Num());
@@ -247,7 +247,7 @@ Program Listing for File GKAbilityTarget_PlayerControllerTrace.cpp
            return;
        }
    
-       if (TargetMode == EGK_AbilityBehavior::PointTarget)
+       if (TargetMode == EGK_TargetMode::PointTarget)
        {
            // Target is ready, send the data now
            auto Handle = StartLocation.MakeTargetDataHandleFromHitResult(OwningAbility, LatestHitResult);

@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -150,7 +150,7 @@
 <span class="w">    </span><span class="n">ObjectTypes</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="p">.</span><span class="n">TargetObjectTypes</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ClassFilter</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="p">.</span><span class="n">TargetFilterClass</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">TargetActorFaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="p">.</span><span class="n">TargetActorFaction</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">TargetMode</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="p">.</span><span class="n">AbilityBehavior</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">TargetMode</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="p">.</span><span class="n">TargetMode</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Blueprint overrides</span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">InitializeFromAbilityData</span><span class="p">(</span><span class="n">AbilityData</span><span class="p">);</span><span class="w"></span>
@@ -232,7 +232,7 @@
 
 <span class="w">    </span><span class="n">TraceEndPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LatestHitResult</span><span class="p">.</span><span class="n">Component</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">LatestHitResult</span><span class="p">.</span><span class="n">ImpactPoint</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">LatestHitResult</span><span class="p">.</span><span class="n">TraceEnd</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">Deselect</span><span class="p">();</span><span class="w"></span>
 
@@ -270,12 +270,12 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActorsUnderCursor</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">DistanceSqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="o">::</span><span class="n">DistSquared</span><span class="p">(</span><span class="n">SourceActor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"> </span><span class="n">TraceEndPoint</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MaxRange</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MaxRange</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">DistanceSqr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">DistanceSqr</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">MinRange</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MinRange</span><span class="p">;</span><span class="w"></span>
@@ -332,7 +332,7 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">Actors</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">Actors</span><span class="p">.</span><span class="n">Reset</span><span class="p">(</span><span class="n">ActorsUnderCursor</span><span class="p">.</span><span class="n">Num</span><span class="p">());</span><span class="w"></span>
@@ -348,7 +348,7 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="c1">// Target is ready, send the data now</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StartLocation</span><span class="p">.</span><span class="n">MakeTargetDataHandleFromHitResult</span><span class="p">(</span><span class="n">OwningAbility</span><span class="p">,</span><span class="w"> </span><span class="n">LatestHitResult</span><span class="p">);</span><span class="w"></span>

@@ -68,7 +68,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
            float                                   Speed,
            bool                                    MoveToTarget,
            bool                                    bUseMovementComponent,
-           EGK_AbilityBehavior                     TargetKind,
+           bool                                    bFollowActor,
            FGameplayTagContainer                   CancelTag,
            bool                                    bUsePathfinding,
            bool                                    Debug)
@@ -90,7 +90,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        MyObj->MaxSpeed          = Speed;
        MyObj->bDebug            = Debug;
        MyObj->bTurnOnly         = !MoveToTarget;
-       MyObj->TargetKind        = TargetKind;
+       MyObj->bFollowActor      = bFollowActor;
        MyObj->CancelTag         = CancelTag;
        MyObj->bUsePathfinding = bUsePathfinding;
    
@@ -118,13 +118,13 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        {
            auto FirstTarget = TargetData.Get(0);
    
-           if (TargetKind == EGK_AbilityBehavior::PointTarget)
+           if (!bFollowActor)
            {
                if (FirstTarget->HasHitResult())
                {
                    Destination = FirstTarget->GetHitResult()->ImpactPoint;
+                   return;
                }
-               return;
            }
    
            auto Actors = FirstTarget->GetActors();
@@ -137,9 +137,11 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
                    Destination = Actor->GetActorLocation();
                }
    
-               if (TargetKind == EGK_AbilityBehavior::ActorTarget)
+               if (bFollowActor)
                {
                    TargetActor = Actors[0];
+               } else {
+                   Destination = Actors[0]->GetActorLocation();
                }
            }
        }
@@ -157,7 +159,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
                                                                                          float   TurnRate,
                                                                                          float   Speed,
                                                                                          bool    MoveToTarget,
-                                                                                         EGK_AbilityBehavior TargetKind,
+                                                                                         bool    bFollowActor,
                                                                                          FGameplayTagContainer CancelTag,
                                                                                          bool                  bUsePathfinding,
                                                                                          bool                Debug)
@@ -179,7 +181,7 @@ Program Listing for File GKAbilityTask_MoveToDestination.cpp
        MyObj->MaxSpeed          = Speed;
        MyObj->bDebug            = Debug;
        MyObj->bTurnOnly         = !MoveToTarget;
-       MyObj->TargetKind        = TargetKind;
+       MyObj->bFollowActor = bFollowActor;
        MyObj->CancelTag = CancelTag;
        MyObj->bUsePathfinding = bUsePathfinding;
    

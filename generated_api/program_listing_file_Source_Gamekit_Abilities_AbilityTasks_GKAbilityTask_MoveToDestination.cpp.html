@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -169,7 +169,7 @@
 <span class="w">        </span><span class="kt">float</span><span class="w">                                   </span><span class="n">Speed</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">MoveToTarget</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUseMovementComponent</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="n">EGK_AbilityBehavior</span><span class="w">                     </span><span class="n">TargetKind</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bFollowActor</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGameplayTagContainer</span><span class="w">                   </span><span class="n">CancelTag</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUsePathfinding</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">Debug</span><span class="p">)</span><span class="w"></span>
@@ -191,7 +191,7 @@
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">MaxSpeed</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Speed</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bDebug</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">Debug</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bTurnOnly</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">MoveToTarget</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bFollowActor</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">bFollowActor</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">CancelTag</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathfinding</span><span class="p">;</span><span class="w"></span>
 
@@ -219,13 +219,13 @@
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">FirstTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetData</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetKind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bFollowActor</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">HasHitResult</span><span class="p">())</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">GetHitResult</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ImpactPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">Actors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FirstTarget</span><span class="o">-&gt;</span><span class="n">GetActors</span><span class="p">();</span><span class="w"></span>
@@ -238,9 +238,11 @@
 <span class="w">                </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actor</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
 <span class="w">            </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TargetKind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bFollowActor</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actors</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Actors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">GetActorLocation</span><span class="p">();</span><span class="w"></span>
 <span class="w">            </span><span class="p">}</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
@@ -258,7 +260,7 @@
 <span class="w">                                                                                      </span><span class="kt">float</span><span class="w">   </span><span class="n">TurnRate</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="kt">float</span><span class="w">   </span><span class="n">Speed</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">    </span><span class="n">MoveToTarget</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                                      </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">    </span><span class="n">bFollowActor</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">                  </span><span class="n">bUsePathfinding</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                                      </span><span class="kt">bool</span><span class="w">                </span><span class="n">Debug</span><span class="p">)</span><span class="w"></span>
@@ -280,7 +282,7 @@
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">MaxSpeed</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Speed</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bDebug</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">Debug</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bTurnOnly</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">MoveToTarget</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bFollowActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bFollowActor</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">CancelTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CancelTag</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">MyObj</span><span class="o">-&gt;</span><span class="n">bUsePathfinding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bUsePathfinding</span><span class="p">;</span><span class="w"></span>
 

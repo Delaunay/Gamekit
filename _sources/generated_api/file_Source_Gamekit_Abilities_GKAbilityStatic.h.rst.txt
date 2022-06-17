@@ -95,13 +95,15 @@ Enums
 -----
 
 
-- :ref:`exhale_enum_GKAbilityStatic_8h_1a00e2a6c6de06d35993be5d13c3afd494`
-
 - :ref:`exhale_enum_GKAbilityStatic_8h_1a75720bf524d3e8434548df55673d9c36`
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1ab1ba7fe103a0f79794679f21b6e58bf5`
 
 - :ref:`exhale_enum_GKAbilityStatic_8h_1a9bc3aac591efd00e62a6414342d5ffec`
 
 - :ref:`exhale_enum_GKAbilityStatic_8h_1a62db423c801c352ffb38576228a35bda`
 
 - :ref:`exhale_enum_GKAbilityStatic_8h_1ad839d943689aa9b8ddff72a7ffdac49d`
+
+- :ref:`exhale_enum_GKAbilityStatic_8h_1a48b842e2724cdedac63a98990ba6bc5f`
 

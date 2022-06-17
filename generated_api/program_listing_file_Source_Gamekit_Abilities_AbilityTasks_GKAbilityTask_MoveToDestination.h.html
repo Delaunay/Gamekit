@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -149,7 +149,7 @@
 <span class="w">            </span><span class="kt">float</span><span class="w">               </span><span class="n">TurnRate</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="mf">45.f</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">float</span><span class="w">               </span><span class="n">Speed</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mf">600.f</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">MoveToTarget</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">bFollowActor</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">CancelTag</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">bUsePathfinding</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                </span><span class="n">Debug</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
@@ -167,7 +167,7 @@
 <span class="w">            </span><span class="kt">float</span><span class="w">                                   </span><span class="n">Speed</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="mf">600.f</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">MoveToTarget</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUseMovementComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="n">EGK_AbilityBehavior</span><span class="w">                     </span><span class="n">TargetKind</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">PointTarget</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bFollowActor</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="n">FGameplayTagContainer</span><span class="w">                   </span><span class="n">CancelTag</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">bUsePathfinding</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="kt">bool</span><span class="w">                                    </span><span class="n">Debug</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
@@ -206,7 +206,7 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">GetLifetimeReplicatedProps</span><span class="p">(</span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FLifetimeProperty</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">OutLifetimeProps</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">EGK_AbilityBehavior</span><span class="w"> </span><span class="n">TargetKind</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFollowActor</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Arguments</span>
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>

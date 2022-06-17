@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                69a02b55d
+                595869859
 
               </div>
 <div role="search">
@@ -461,7 +461,7 @@
 <span class="w">                                                                      </span><span class="n">Attributes</span><span class="o">-&gt;</span><span class="n">GetMoveSpeed</span><span class="p">(),</span><span class="w">       </span><span class="c1">// Speed</span>
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Move to target</span>
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Use Movement Component</span>
-<span class="w">                                                                      </span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="n">GetAbilityStatic</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">TargetMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_TargetMode</span><span class="o">::</span><span class="n">ActorTarget</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="n">FGameplayTagContainer</span><span class="p">(),</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
@@ -719,7 +719,7 @@
 <span class="kt">bool</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">IsPassive</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_AbilityBehavior</span><span class="o">::</span><span class="n">Passive</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_ActivationBehavior</span><span class="o">::</span><span class="n">Passive</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -821,6 +821,23 @@
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">K2_CommitAbility</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">FGKAbilityEffects</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">AbilitiyEffets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="o">-&gt;</span><span class="n">AbilityEffects</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">EGK_EffectSlot</span><span class="o">::</span><span class="n">CasterEffect</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilitiyEffets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGKAbilityEffect</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Effect</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">AbilitiyEffets</span><span class="o">-&gt;</span><span class="n">Effects</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">CurrentActorInfo</span><span class="o">-&gt;</span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">ApplyGameplayEffectToSelf</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="n">Effect</span><span class="p">.</span><span class="n">GameplayEffectClass</span><span class="p">.</span><span class="n">GetDefaultObject</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                        </span><span class="n">GetAbilityLevel</span><span class="p">(</span><span class="n">CurrentSpecHandle</span><span class="p">,</span><span class="w"> </span><span class="n">CurrentActorInfo</span><span class="p">),</span><span class="w"></span>
+<span class="w">                        </span><span class="n">FGameplayEffectContextHandle</span><span class="p">()</span><span class="w"></span>
+<span class="w">                    </span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">        </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">EventTag</span><span class="p">,</span><span class="w"> </span><span class="n">EventData</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
@@ -838,10 +855,14 @@
 <span class="w">    </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">OnAbilityTargetAcquired</span><span class="p">(</span><span class="n">FGameplayAbilityTargetDataHandle</span><span class="p">());</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_PointTarget</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateAbility_Targeted</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_ActorTarget</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// The TargetActor has the logic to handle ActorTarget &amp; PointTarget</span>
-<span class="w">    </span><span class="n">ActivateAbility_PointTarget</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ActivateAbility_Targeted</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">SpawnAbilityTarget_Actor</span><span class="p">()</span><span class="w"></span>
@@ -869,12 +890,13 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TargetActor</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_PointTarget</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">ActivateAbility_Targeted</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TargetActor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnAbilityTarget_Actor</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsValid</span><span class="p">(</span><span class="n">TargetActor</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Could not create the actor to select our target&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -947,24 +969,33 @@
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">AbilityData</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Ability data is missing for this ability&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityData</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">ActorTarget</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">Targeted</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_ActorTarget</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Hidden</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">Hidden</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Hidden</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">NoTarget</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">NoTarget</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_NoTarget</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Passive</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">Passive</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Passive</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">PointTarget</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_PointTarget</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_AbilityBehavior</span><span class="o">::</span><span class="no">Toggle</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">Toggle</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EGK_ActivationBehavior</span><span class="o">::</span><span class="no">Channel</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ActivateAbility_Channel</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;unhandled activation Behavior &quot;</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbility::ActivateAbility_Channel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
 <span class="p">}</span><span class="w"></span>
 
 <span class="k">const</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">UGKGameplayAbility::GetAbilityCooldownTags</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">Super</span><span class="o">::</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>

@@ -115,7 +115,8 @@ Program Listing for File GKAsyncTask_GameplayEffectChanged.cpp
            ActiveHandle, 
            const_cast<UGameplayEffect *>(EffectDef), 
            Tags, 
-           Duration - (CurrentTime - Start)
+           Duration - (CurrentTime - Start),
+           0
        );
    }
    

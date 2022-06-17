@@ -1,0 +1,14 @@
+.. _exhale_enum_GKAbilityStatic_8h_1a48b842e2724cdedac63a98990ba6bc5f:
+
+Enum EGK_TargetMode
+===================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: EGK_TargetMode
+   :project: GameKit

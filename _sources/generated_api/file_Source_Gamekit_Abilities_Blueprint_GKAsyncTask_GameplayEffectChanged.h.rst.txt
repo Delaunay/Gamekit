@@ -61,9 +61,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1a691cf3ba986c6191894b3a4867f4faa2`
+- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1aff7420da7d70a939a641139f6bff3ce0`
 
 - :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1aed28e28ae495247ba53c6cb51186f82c`
 
-- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1af9e79deb631efa7b2b72a9de214d6404`
+- :ref:`exhale_function_GKAsyncTask__GameplayEffectChanged_8h_1a28eb6a39af288bcff8678e5c50e8741a`
 

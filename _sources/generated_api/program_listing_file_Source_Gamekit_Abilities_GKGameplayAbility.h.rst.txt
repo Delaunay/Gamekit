@@ -65,6 +65,10 @@ Program Listing for File GKGameplayAbility.h
    
        void ActivateAbility_PointTarget();
    
+       void ActivateAbility_Targeted();
+   
+       void ActivateAbility_Channel();
+   
        void ActivateAbility_Toggle();
    
        void K2_EndAbility() override;
