@@ -370,6 +370,72 @@ void UGKGameplayAbility::OnAbilityMoveToTargetCancelled(const FGameplayAbilityTa
     K2_CancelAbility();
 }
 
+void UGKGameplayAbility::ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const  {
+    if (HasAuthority(&CurrentActivationInfo) == false)
+    {
+        return;
+    }
+
+    UAbilitySystemComponent* const AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo_Ensured();
+
+    if (AbilitySystemComponent)
+    {
+        FGameplayEffectQuery const Query = FGameplayEffectQuery::MakeQuery_MatchAllOwningTags(FGameplayTagContainer(GetAbilityStatic()->StackTag));
+        AbilitySystemComponent->RemoveActiveEffects(Query, 1);
+    }
+}
+
+bool UGKGameplayAbility::CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags) const {
+    UAbilitySystemComponent* const AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo_Ensured();
+
+    if (AbilitySystemComponent)
+    {
+        FGameplayEffectQuery const Query = FGameplayEffectQuery::MakeQuery_MatchAllOwningTags(FGameplayTagContainer(GetAbilityStatic()->StackTag));
+        
+        bool CostOk = AbilitySystemComponent->GetAggregatedStackCount(Query) > 0;
+
+        const FGameplayTag& CostTag = UAbilitySystemGlobals::Get().ActivateFailCostTag;
+        if (!CostOk && OptionalRelevantTags && CostTag.IsValid())
+        {
+            OptionalRelevantTags->AddTag(CostTag);
+        }
+
+        return CostOk;
+    }
+
+    return false;
+}
+
+void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const  {
+    if (GetAbilityStatic() && GetAbilityStatic()->AbilityBehavior == EGK_ActivationBehavior::Charge) {
+        return ApplyChargeCost(Handle, ActorInfo, ActivationInfo);
+    }
+
+    // No generated Effect
+    if (!CostEffectInstance)
+    {
+        // This uses the GameEffect CDO, when the Ability is not instantiated
+        return Super::ApplyCost(Handle, ActorInfo, ActivationInfo);
+    }
+
+    return ApplyGameplayEffectToOwnerDynamic(
+        Handle, 
+        ActorInfo, 
+        ActivationInfo, 
+        CostEffectInstance, 
+        GetAbilityLevel(Handle, ActorInfo), 
+        1
+    );
+}
+
+bool UGKGameplayAbility::CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags) const  {
+    if (GetAbilityStatic() && GetAbilityStatic()->AbilityBehavior == EGK_ActivationBehavior::Charge) {
+        return CheckChargeCost(Handle, ActorInfo, OptionalRelevantTags);
+    }
+    return Super::CheckCost(Handle, ActorInfo, OptionalRelevantTags);
+}
+
+
 void UGKGameplayAbility::OnAbilityMoveToTargetCompleted(const FGameplayAbilityTargetDataHandle &Data)
 {
     if (MoveToTargetTask && IsValid(MoveToTargetTask))
@@ -638,20 +704,6 @@ void UGKGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInf
     }
 }
 
-void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle     Handle,
-                                   const FGameplayAbilityActorInfo     *ActorInfo,
-                                   const FGameplayAbilityActivationInfo ActivationInfo) const
-{
-    // No generated Effect
-    if (!CostEffectInstance)
-    {
-        // This uses the GameEffect CDO, when the Ability is not instantiated
-        return Super::ApplyCost(Handle, ActorInfo, ActivationInfo);
-    }
-
-    return ApplyGameplayEffectToOwnerDynamic(
-            Handle, ActorInfo, ActivationInfo, CostEffectInstance, GetAbilityLevel(Handle, ActorInfo), 1);
-}
 
 void UGKGameplayAbility::ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle     Handle,
                                                            const FGameplayAbilityActorInfo     *ActorInfo,
@@ -863,7 +915,7 @@ void UGKGameplayAbility::ActivateAbility_Native()
     switch (AbilityData->AbilityBehavior)
     {
     case EGK_ActivationBehavior::Targeted:
-        return ActivateAbility_ActorTarget();
+        return ActivateAbility_Targeted();
     case EGK_ActivationBehavior::Hidden:
         return ActivateAbility_Hidden();
     case EGK_ActivationBehavior::NoTarget:
@@ -874,6 +926,8 @@ void UGKGameplayAbility::ActivateAbility_Native()
         return ActivateAbility_Toggle();
     case EGK_ActivationBehavior::Channel:
         return ActivateAbility_Channel();
+    case EGK_ActivationBehavior::Charge:
+        return ActivateAbility_Targeted();
     }
 
 

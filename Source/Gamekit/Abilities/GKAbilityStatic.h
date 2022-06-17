@@ -185,6 +185,12 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     bool bLoop;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+    TArray<int32> MaxStackCount;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+    FGameplayTag StackTag;
+
     //! Specifies how the ability is activated
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     EGK_ActivationBehavior AbilityBehavior;

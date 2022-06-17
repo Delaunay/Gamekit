@@ -82,6 +82,8 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     void ActivateAbility_Channel();
 
+    void ActivateAbility_Charges();
+
     //! Ability that is Toggled on/off
     void ActivateAbility_Toggle();
 
@@ -288,10 +290,6 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
                        const FGameplayAbilityActorInfo *    ActorInfo,
                        const FGameplayAbilityActivationInfo ActivationInfo) const override;
 
-    //! Apply Cost without using GameEffect CDO
-    void ApplyCost(const FGameplayAbilitySpecHandle     Handle,
-                   const FGameplayAbilityActorInfo *    ActorInfo,
-                   const FGameplayAbilityActivationInfo ActivationInfo) const override;
 
     //! Apply GameEffect without using GameEffect CDO
     void ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle     Handle,
@@ -399,6 +397,16 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
 
     // Used to grand passives
     void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
+
+    //
+    void ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const;
+
+    bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+
+    void ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
+
+    bool CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
+
 };
 
 //! Return an effect that regenerate the given attribute overtime
