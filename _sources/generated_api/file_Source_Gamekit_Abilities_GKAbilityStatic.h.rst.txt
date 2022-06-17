@@ -90,6 +90,8 @@ Classes
 
 - :ref:`exhale_struct_structFGKAbilityStatic`
 
+- :ref:`exhale_struct_structFGKExperience`
+
 
 Enums
 -----

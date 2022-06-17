@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKExperience:
+
+Struct FGKExperience
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FTableRowBase``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKExperience
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:
