@@ -24,9 +24,11 @@ class UGKGameplayAbility;
 UENUM(BlueprintType)
 enum class EGK_AbilityKind : uint8
 {
-    None  UMETA(DisplayName = "None"),
-    Item  UMETA(DisplayName = "Item"),
-    Skill UMETA(DisplayName = "Skill"),
+    None        UMETA(DisplayName = "None"),
+    Item        UMETA(DisplayName = "Item"),
+    Skill       UMETA(DisplayName = "Skill"),
+    Ultimate    UMETA(DisplayName = "Ultimate"),
+    // Note: Perk/Talent Can be Gameplay Effect directly
 };
 
 // MOBA/Hack'n Slash like Ability binding
@@ -300,4 +302,26 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     //! Should be a TArray | Ability Level can change this
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AreaOfEffect)
     float AreaOfEffect;
+};
+
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKExperience : public FTableRowBase
+{
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int Level;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int TotalExperience;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int AdditionalExperience;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int MaxAbilityLevel;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int MaxUtlimateLevel;
 };
