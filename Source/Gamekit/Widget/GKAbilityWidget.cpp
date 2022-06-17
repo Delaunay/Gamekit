@@ -115,6 +115,8 @@ void UGKAbilityWidget::RemoveListeners() {
 
 void UGKAbilityWidget::NativeDestruct()
 {
+    UUserWidget::NativeDestruct();
+
     RemoveListeners(); 
 }
 
