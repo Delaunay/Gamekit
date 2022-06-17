@@ -69,6 +69,8 @@ Program Listing for File GKGameplayAbility.h
    
        void ActivateAbility_Channel();
    
+       void ActivateAbility_Charges();
+   
        void ActivateAbility_Toggle();
    
        void K2_EndAbility() override;
@@ -241,9 +243,6 @@ Program Listing for File GKGameplayAbility.h
                           const FGameplayAbilityActorInfo *    ActorInfo,
                           const FGameplayAbilityActivationInfo ActivationInfo) const override;
    
-       void ApplyCost(const FGameplayAbilitySpecHandle     Handle,
-                      const FGameplayAbilityActorInfo *    ActorInfo,
-                      const FGameplayAbilityActivationInfo ActivationInfo) const override;
    
        void ApplyGameplayEffectToOwnerDynamic(const FGameplayAbilitySpecHandle     Handle,
                                               const FGameplayAbilityActorInfo *    ActorInfo,
@@ -329,6 +328,16 @@ Program Listing for File GKGameplayAbility.h
    
        // Used to grand passives
        void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
+   
+       //
+       void ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const;
+   
+       bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
+       void ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
+   
+       bool CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
+   
    };
    
    UGameplayEffect *NewPassiveRegenEffect(UObject *          Parent,

@@ -184,6 +184,12 @@ Program Listing for File GKAbilityStatic.h
        bool bLoop;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+       TArray<int32> MaxStackCount;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+       FGameplayTag StackTag;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
        EGK_ActivationBehavior AbilityBehavior;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)

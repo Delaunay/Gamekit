@@ -1,51 +1,50 @@
 <map id="UGKGameplayAbility::ActivateAbility_Native" name="UGKGameplayAbility::ActivateAbility_Native">
-<area shape="rect" id="node1" title=" " alt="" coords="5,302,181,343"/>
-<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#ab09bddbd7014dbdbaeff65d17dac37de" title="Ability that targets another actor." alt="" coords="235,83,442,124"/>
-<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="2255,380,2415,422"/>
-<area shape="rect" id="node40" href="$classUGKGameplayAbility.html#a5f0cbbcdba60f9ba093d995be744b886" title=" " alt="" coords="245,148,432,190"/>
-<area shape="rect" id="node41" href="$classUGKGameplayAbility.html#ac9aa9b01c041f01d7e5a1450742d4ba7" title="Activation function for an hidden activity that does not show in UI." alt="" coords="249,214,428,255"/>
-<area shape="rect" id="node42" href="$classUGKGameplayAbility.html#a69d84e1a6876da830f416a0d56ddacaa" title="Ability that does not require a target to bet cast." alt="" coords="496,387,687,428"/>
-<area shape="rect" id="node43" href="$classUGKGameplayAbility.html#abee1cf3672c5be69667283b482169e5f" title="Passive abilities are activated when granted." alt="" coords="247,331,430,372"/>
-<area shape="rect" id="node44" href="$classUGKGameplayAbility.html#ad6edea5ae05db41c5be2117e41013fc9" title="Ability that is Toggled on/off." alt="" coords="504,518,679,559"/>
-<area shape="rect" id="node45" href="$classUGKAbilityTask__WaitForTargetData.html#aa7d631b3c0d4c7c0128435b16b7ba21e" title=" " alt="" coords="229,451,448,492"/>
-<area shape="rect" id="node47" href="$classUGKGameplayAbility.html#aff1cb63cbb3fcac0997bec1695cf5008" title=" " alt="" coords="762,42,922,83"/>
-<area shape="rect" id="node48" href="$classUGKGameplayAbility.html#a04e4279b5d947ea538ab77e1b3ac1ffe" title=" " alt="" coords="259,843,419,884"/>
-<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#aca074b0d8161b442e5b96b69d84e7166" title=" " alt="" coords="497,144,686,186"/>
-<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a77a63f5a16e7a29dcd5fc73830cc9f0b" title=" " alt="" coords="749,479,935,520"/>
-<area shape="rect" id="node38" href="$classUGKGameplayAbility.html#ab38e0b33efea6fc3f24e7dba47d4936a" title=" " alt="" coords="735,112,949,154"/>
-<area shape="rect" id="node39" href="$classUGKGameplayAbility.html#aca9d4e11dcecac7d891ec3f975d92931" title=" " alt="" coords="744,178,940,219"/>
-<area shape="rect" id="node10" href="$classUGKAbilityTask__MoveToDestination.html#a7652b24d33d94415e0d06faa41581f1e" title=" " alt="" coords="997,888,1252,930"/>
-<area shape="rect" id="node21" href="$classUGKGameplayAbility.html#ae7f8853ba5dff0277d832638a43aa8ca" title=" " alt="" coords="1003,446,1247,487"/>
-<area shape="rect" id="node22" href="$classUGKGameplayAbility.html#a93e4fe7565e7f0052b5bd905f13c1e26" title=" " alt="" coords="999,511,1250,552"/>
-<area shape="rect" id="node6" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="2516,307,2676,348"/>
-<area shape="rect" id="node9" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="2511,373,2681,429"/>
-<area shape="rect" id="node7" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="2729,307,2928,348"/>
-<area shape="rect" id="node8" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="2976,307,3203,348"/>
-<area shape="rect" id="node11" href="$classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="1300,963,1555,1004"/>
-<area shape="rect" id="node20" href="$classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="1300,888,1555,930"/>
-<area shape="rect" id="node12" href="$classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="1603,963,1857,1004"/>
-<area shape="rect" id="node19" href="$classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="1603,1094,1857,1135"/>
-<area shape="rect" id="node13" href="$classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="1943,1043,2123,1084"/>
-<area shape="rect" id="node14" href="$classUGKUtilityLibrary.html#aeacb2c5ec5359169c29475217f674597" title=" " alt="" coords="1961,912,2104,954"/>
-<area shape="rect" id="node17" href="$classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="1905,978,2160,1019"/>
-<area shape="rect" id="node15" href="$classUGKUtilityLibrary.html#abb31c6168ed14535700881a9d80dce33" title=" " alt="" coords="2264,847,2407,888"/>
-<area shape="rect" id="node16" href="$classUGKUtilityLibrary.html#a5e7746488f6fb9d2d50cd68d93f0f538" title=" " alt="" coords="2264,912,2407,954"/>
-<area shape="rect" id="node18" href="$classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="2208,978,2463,1019"/>
-<area shape="rect" id="node23" href="$classUGKGameplayAbility.html#afe96ab30659245e4d299c5acff1de389" title="Lookup the animation montage to use before cast this ability." alt="" coords="1347,671,1507,712"/>
-<area shape="rect" id="node25" href="$classUGKGameplayAbility.html#a7dec8c0cc9c19029329731a766b32844" title="Animation was cancelled externally." alt="" coords="1331,446,1523,487"/>
-<area shape="rect" id="node26" href="$classUGKGameplayAbility.html#a1e7f2829efa9f8694925c5398da38604" title="New animation is taking over, make sure the ability is in a clean state for next call." alt="" coords="1319,804,1536,846"/>
-<area shape="rect" id="node31" href="$classUGKGameplayAbility.html#aeaa38c9a481f8b0c8f0bb2f239307c9e" title="Called when Animation reach the cast point through an AnimNotify." alt="" coords="1330,511,1525,552"/>
-<area shape="rect" id="node36" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#ae4b53eb555c68833032f308876354308" title=" " alt="" coords="1302,577,1553,633"/>
-<area shape="rect" id="node37" href="$GKGameplayAbility_8cpp.html#afa4f55520ec924d32695f86e7caf18af" title=" " alt="" coords="1328,337,1527,364"/>
-<area shape="rect" id="node24" href="$structFGKAnimationArray.html#a0d1e5d23432ce5a48518055f55404990" title=" " alt="" coords="1651,730,1809,771"/>
-<area shape="rect" id="node27" href="$classUGKGameplayAbility.html#a3dee52ee52a85d7bbee81a25423e2e66" title=" " alt="" coords="1650,795,1810,836"/>
-<area shape="rect" id="node28" href="$GKGameplayAbility_8cpp.html#a6135f6e077a3d30415ddc5459ebb3732" title=" " alt="" coords="1662,912,1798,938"/>
-<area shape="rect" id="node29" href="$classUGKGameplayAbility.html#a63ef37dc5765806b4780095075cb2406" title=" " alt="" coords="1650,1028,1810,1070"/>
-<area shape="rect" id="node30" href="$classUGKGameplayAbility.html#a785a4558cf6844ce1a141a9328ecf11e" title=" " alt="" coords="1953,1130,2113,1171"/>
-<area shape="rect" id="node32" href="$classUGKGameplayAbility.html#ae99084761ec2a8f26a7228b258667d21" title=" " alt="" coords="1650,504,1810,546"/>
-<area shape="rect" id="node33" href="$classUGKGameplayAbility.html#a7f39a93ee48e6f5d2eb88ce53c67677e" title=" " alt="" coords="1950,439,2115,480"/>
-<area shape="rect" id="node34" href="$classUGKGameplayAbility.html#ad32c041003bd0df5381d94703c5cd4c5" title="Reads the TargetData and try to fetch a location and an actor." alt="" coords="1953,504,2113,546"/>
-<area shape="rect" id="node35" href="$classUGKGameplayAbility.html#a163d075b3691b41ca2836942d4cdf2fb" title=" " alt="" coords="1935,570,2131,611"/>
-<area shape="rect" id="node46" href="$classAGKAbilityTarget__Actor.html#abae807d1933d440c5e549efb3a4df13b" title="Disable the targeting actor / make it ready for reuse." alt="" coords="505,452,678,494"/>
-<area shape="rect" id="node49" href="$classUGKGameplayAbility.html#a3bd798ef7b295cec792556e3ebf819ee" title=" " alt="" coords="1039,1132,1210,1174"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,401,181,443"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a5f0cbbcdba60f9ba093d995be744b886" title=" " alt="" coords="245,5,432,47"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#ac9aa9b01c041f01d7e5a1450742d4ba7" title="Activation function for an hidden activity that does not show in UI." alt="" coords="249,71,428,112"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a69d84e1a6876da830f416a0d56ddacaa" title="Ability that does not require a target to bet cast." alt="" coords="243,548,434,589"/>
+<area shape="rect" id="node6" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="2017,479,2177,520"/>
+<area shape="rect" id="node39" href="$classUGKGameplayAbility.html#abee1cf3672c5be69667283b482169e5f" title="Passive abilities are activated when granted." alt="" coords="247,368,430,409"/>
+<area shape="rect" id="node40" href="$classUGKGameplayAbility.html#aca074b0d8161b442e5b96b69d84e7166" title=" " alt="" coords="244,433,433,475"/>
+<area shape="rect" id="node43" href="$classUGKGameplayAbility.html#ad6edea5ae05db41c5be2117e41013fc9" title="Ability that is Toggled on/off." alt="" coords="251,675,426,716"/>
+<area shape="rect" id="node44" href="$classUGKAbilityTask__WaitForTargetData.html#aa7d631b3c0d4c7c0128435b16b7ba21e" title=" " alt="" coords="229,840,448,881"/>
+<area shape="rect" id="node46" href="$classUGKGameplayAbility.html#aff1cb63cbb3fcac0997bec1695cf5008" title=" " alt="" coords="806,188,966,229"/>
+<area shape="rect" id="node47" href="$classUGKGameplayAbility.html#a04e4279b5d947ea538ab77e1b3ac1ffe" title=" " alt="" coords="259,1105,419,1147"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a77a63f5a16e7a29dcd5fc73830cc9f0b" title=" " alt="" coords="510,675,697,716"/>
+<area shape="rect" id="node11" href="$classUGKAbilityTask__MoveToDestination.html#a7652b24d33d94415e0d06faa41581f1e" title=" " alt="" coords="759,953,1013,995"/>
+<area shape="rect" id="node22" href="$classUGKGameplayAbility.html#ae7f8853ba5dff0277d832638a43aa8ca" title=" " alt="" coords="764,609,1008,651"/>
+<area shape="rect" id="node23" href="$classUGKGameplayAbility.html#a93e4fe7565e7f0052b5bd905f13c1e26" title=" " alt="" coords="761,675,1011,716"/>
+<area shape="rect" id="node7" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="2277,405,2437,447"/>
+<area shape="rect" id="node10" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="2272,471,2443,527"/>
+<area shape="rect" id="node8" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="2491,405,2689,447"/>
+<area shape="rect" id="node9" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="2737,405,2964,447"/>
+<area shape="rect" id="node12" href="$classUGKAbilityTask__MoveToDestination.html#abab1f190f1ab81e1e73a4e6c5b2afd0c" title=" " alt="" coords="1061,953,1316,995"/>
+<area shape="rect" id="node21" href="$classUGKAbilityTask__MoveToDestination.html#ab1c5aca916c3ffcecf1032c3f55b45a2" title=" " alt="" coords="1061,1019,1316,1060"/>
+<area shape="rect" id="node13" href="$classUGKAbilityTask__MoveToDestination.html#a97f8e1385be2c161149d15d6a5859d34" title=" " alt="" coords="1364,976,1619,1017"/>
+<area shape="rect" id="node20" href="$classUGKAbilityTask__MoveToDestination.html#afb2516134d993d6c861d97e6feb03333" title=" " alt="" coords="1364,1112,1619,1153"/>
+<area shape="rect" id="node14" href="$classUGKNavigationInterface.html#aca5612711afe4837d86d3d9c69a65574" title=" " alt="" coords="1704,1039,1884,1080"/>
+<area shape="rect" id="node15" href="$classUGKUtilityLibrary.html#aeacb2c5ec5359169c29475217f674597" title=" " alt="" coords="1723,1104,1865,1145"/>
+<area shape="rect" id="node18" href="$classUGKAbilityTask__MoveToDestination.html#a1e2e245d77413d50ce463ffcce22620a" title=" " alt="" coords="1667,973,1921,1015"/>
+<area shape="rect" id="node16" href="$classUGKUtilityLibrary.html#abb31c6168ed14535700881a9d80dce33" title=" " alt="" coords="2025,1071,2168,1112"/>
+<area shape="rect" id="node17" href="$classUGKUtilityLibrary.html#a5e7746488f6fb9d2d50cd68d93f0f538" title=" " alt="" coords="2025,1136,2168,1177"/>
+<area shape="rect" id="node19" href="$classUGKAbilityTask__MoveToDestination.html#aaa59959647457cab0ed47ca5e053cca4" title=" " alt="" coords="1969,973,2224,1015"/>
+<area shape="rect" id="node24" href="$classUGKGameplayAbility.html#afe96ab30659245e4d299c5acff1de389" title="Lookup the animation montage to use before cast this ability." alt="" coords="1109,639,1269,680"/>
+<area shape="rect" id="node26" href="$classUGKGameplayAbility.html#a7dec8c0cc9c19029329731a766b32844" title="Animation was cancelled externally." alt="" coords="1093,456,1285,497"/>
+<area shape="rect" id="node27" href="$classUGKGameplayAbility.html#a1e7f2829efa9f8694925c5398da38604" title="New animation is taking over, make sure the ability is in a clean state for next call." alt="" coords="1080,836,1297,877"/>
+<area shape="rect" id="node32" href="$classUGKGameplayAbility.html#aeaa38c9a481f8b0c8f0bb2f239307c9e" title="Called when Animation reach the cast point through an AnimNotify." alt="" coords="1091,521,1286,563"/>
+<area shape="rect" id="node37" href="$classUGKAbilityTask__PlayMontageAndWaitForEvent.html#ae4b53eb555c68833032f308876354308" title=" " alt="" coords="1063,705,1314,761"/>
+<area shape="rect" id="node38" href="$GKGameplayAbility_8cpp.html#afa4f55520ec924d32695f86e7caf18af" title=" " alt="" coords="1089,785,1288,811"/>
+<area shape="rect" id="node25" href="$structFGKAnimationArray.html#a0d1e5d23432ce5a48518055f55404990" title=" " alt="" coords="1412,689,1571,731"/>
+<area shape="rect" id="node28" href="$classUGKGameplayAbility.html#a3dee52ee52a85d7bbee81a25423e2e66" title=" " alt="" coords="1411,755,1571,796"/>
+<area shape="rect" id="node29" href="$GKGameplayAbility_8cpp.html#a6135f6e077a3d30415ddc5459ebb3732" title=" " alt="" coords="1423,871,1559,898"/>
+<area shape="rect" id="node30" href="$classUGKGameplayAbility.html#a63ef37dc5765806b4780095075cb2406" title=" " alt="" coords="1411,1047,1571,1088"/>
+<area shape="rect" id="node31" href="$classUGKGameplayAbility.html#a785a4558cf6844ce1a141a9328ecf11e" title=" " alt="" coords="1714,1172,1874,1213"/>
+<area shape="rect" id="node33" href="$classUGKGameplayAbility.html#ae99084761ec2a8f26a7228b258667d21" title=" " alt="" coords="1411,420,1571,461"/>
+<area shape="rect" id="node34" href="$classUGKGameplayAbility.html#a7f39a93ee48e6f5d2eb88ce53c67677e" title=" " alt="" coords="1711,289,1877,331"/>
+<area shape="rect" id="node35" href="$classUGKGameplayAbility.html#ad32c041003bd0df5381d94703c5cd4c5" title="Reads the TargetData and try to fetch a location and an actor." alt="" coords="1714,420,1874,461"/>
+<area shape="rect" id="node36" href="$classUGKGameplayAbility.html#a163d075b3691b41ca2836942d4cdf2fb" title=" " alt="" coords="1696,355,1892,396"/>
+<area shape="rect" id="node41" href="$classUGKGameplayAbility.html#ab38e0b33efea6fc3f24e7dba47d4936a" title=" " alt="" coords="496,368,711,409"/>
+<area shape="rect" id="node42" href="$classUGKGameplayAbility.html#aca9d4e11dcecac7d891ec3f975d92931" title=" " alt="" coords="505,433,701,475"/>
+<area shape="rect" id="node45" href="$classAGKAbilityTarget__Actor.html#abae807d1933d440c5e549efb3a4df13b" title="Disable the targeting actor / make it ready for reuse." alt="" coords="517,1133,690,1175"/>
+<area shape="rect" id="node48" href="$classUGKGameplayAbility.html#a3bd798ef7b295cec792556e3ebf819ee" title=" " alt="" coords="801,1180,971,1221"/>
 </map>
