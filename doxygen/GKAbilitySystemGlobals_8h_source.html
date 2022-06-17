@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">bb02b9f69</span>
+   &#160;<span id="projectnumber">b45f53d7e</span>
    </div>
   </td>
  </tr>
@@ -135,45 +135,46 @@ $(function() {
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">    GKTAG(FailureCooldown,  &quot;Failure.Cooldown&quot;,         TEXT(&quot;Ability is not ready yet&quot;)) \</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">    GKTAG(FailureDead,      &quot;Failure.Dead&quot;,             TEXT(&quot;Character is dead&quot;)) \</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">    GKTAG(FailureCost,      &quot;Failure.Cost&quot;,             TEXT(&quot;Ability cost is not met&quot;)) \</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">    GKTAG(FailureMissing,   &quot;Failure.Missing&quot;,          TEXT(&quot;Ability requirements are not met&quot;)) \</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">    GKTAG(FailureNetwork,   &quot;Failure.Network&quot;,          TEXT(&quot;Internal error&quot;)) \</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">    GKTAG(FailureNotLearned,&quot;Failure.NotLearned&quot;,       TEXT(&quot;Ability was not learned&quot;))</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">    GKTAG(FailureCharge,    &quot;Failure.Charge&quot;,           TEXT(&quot;Ability has no charge available&quot;)) \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">    GKTAG(FailureMissing,   &quot;Failure.Missing&quot;,          TEXT(&quot;Ability requirements are not met&quot;)) \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">    GKTAG(FailureNetwork,   &quot;Failure.Network&quot;,          TEXT(&quot;Internal error&quot;)) \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    GKTAG(FailureNotLearned,&quot;Failure.NotLearned&quot;,       TEXT(&quot;Ability was not learned&quot;))</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">// clang-format on</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">   66</a></span>&#160;<span class="preprocessor">#define GKTAG(Name, Tag, Comment) extern FNativeGameplayTag Name;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="GKAbilitySystemGlobals_8h.html#aacd321876766c430c6a7245b11c455cc">GKTAGS</a>(<a class="code" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a>)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#undef GKTAG</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// #define GKTAG(Name, _) FGameplayTag Get ## Name();</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// GKTAGS(GKTAG);</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// #undef GKTAG</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html">   77</a></span>&#160;UCLASS(config = Game)</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">class </span>GAMEKIT_API <a class="code" href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a>: <span class="keyword">public</span> UAbilitySystemGlobals</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    GENERATED_UCLASS_BODY()</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">static</span> <a class="code" href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a>&amp; GetGlobals();</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> InitGlobalTags() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// THINK: We could a secondary global curve here for our curve generation system</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// clang-format on</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">   67</a></span>&#160;<span class="preprocessor">#define GKTAG(Name, Tag, Comment) extern FNativeGameplayTag Name;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="GKAbilitySystemGlobals_8h.html#aacd321876766c430c6a7245b11c455cc">GKTAGS</a>(<a class="code" href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a>)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#undef GKTAG</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// #define GKTAG(Name, _) FGameplayTag Get ## Name();</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// GKTAGS(GKTAG);</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// #undef GKTAG</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classUGKAbilitySystemGlobals.html">   78</a></span>&#160;UCLASS(config = Game)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">class </span>GAMEKIT_API <a class="code" href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a>: <span class="keyword">public</span> UAbilitySystemGlobals</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    GENERATED_UCLASS_BODY()</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">static</span> <a class="code" href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a>&amp; GetGlobals();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> InitGlobalTags() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// THINK: We could a secondary global curve here for our curve generation system</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aGKAbilitySystemGlobals_8h_html_af7ccc37b659d0a65d3a47bf8f59cf672"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a></div><div class="ttdeci">#define GKTAG(Name, Tag, Comment)</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:66</div></div>
+<div class="ttc" id="aGKAbilitySystemGlobals_8h_html_af7ccc37b659d0a65d3a47bf8f59cf672"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#af7ccc37b659d0a65d3a47bf8f59cf672">GKTAG</a></div><div class="ttdeci">#define GKTAG(Name, Tag, Comment)</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:67</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html">GKAbilitySystemGlobals.h</a></div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_ac620baaf4297018b050804fae48a82a1"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#ac620baaf4297018b050804fae48a82a1">FailureMissing</a></div><div class="ttdeci">FNativeGameplayTag FailureMissing</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8cpp_html_a83c17172670f158181e3c8c6cafb9654"><div class="ttname"><a href="GKAbilitySystemGlobals_8cpp.html#a83c17172670f158181e3c8c6cafb9654">GKTAGS</a></div><div class="ttdeci">GKTAGS(GKTAG)</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_aacd321876766c430c6a7245b11c455cc"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#aacd321876766c430c6a7245b11c455cc">GKTAGS</a></div><div class="ttdeci">#define GKTAGS(GKTAG)</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:20</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a57db4ef7479fa7193a46b1ea225fbe69"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a57db4ef7479fa7193a46b1ea225fbe69">FailureNetwork</a></div><div class="ttdeci">FNativeGameplayTag FailureNetwork</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemGlobals_html"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:77</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemGlobals_html"><div class="ttname"><a href="classUGKAbilitySystemGlobals.html">UGKAbilitySystemGlobals</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemGlobals.h:78</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a82702cfaed48b8bba4a55b517ddcae2b"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a82702cfaed48b8bba4a55b517ddcae2b">FailureCooldown</a></div><div class="ttdeci">FNativeGameplayTag FailureCooldown</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a8cd4d8fa31bd0fdc6b74316b46e1ed3c"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a8cd4d8fa31bd0fdc6b74316b46e1ed3c">FailureCost</a></div><div class="ttdeci">FNativeGameplayTag FailureCost</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a76402389df099d5942ba2498595cda7f"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a76402389df099d5942ba2498595cda7f">FailureDead</a></div><div class="ttdeci">FNativeGameplayTag FailureDead</div></div>

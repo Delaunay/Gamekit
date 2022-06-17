@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb02b9f69
+                b45f53d7e
 
               </div>
 <div role="search">
@@ -134,31 +134,28 @@
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+
 <span class="w">    </span><span class="n">Ability</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">InAbility</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ASC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilitySystemComponentFromActorInfo</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Attribute</span>
-<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="o">::</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityCostAttribute</span><span class="p">());</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AttributeChangedTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKAbilityStatic</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">AbilityData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityStatic</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityData</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilityData</span><span class="o">-&gt;</span><span class="n">AbilityBehavior</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EGK_ActivationBehavior</span><span class="o">::</span><span class="n">Charge</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilityStackTag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AbilityData</span><span class="o">-&gt;</span><span class="n">StackTag</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">CooldownTags</span><span class="o">-&gt;</span><span class="n">IsEmpty</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">ListenForCooldownChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownTags</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">AllTags</span><span class="p">(</span><span class="n">DisableTags</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">AllTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">AbilityStackTag</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Debuffs</span>
 <span class="w">    </span><span class="n">DisableEffectTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTask_GameplayEffectChanged</span><span class="o">::</span><span class="n">ListenForGameplayEffectChange</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="n">ASC</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="n">DisableTags</span><span class="w"></span>
+<span class="w">        </span><span class="n">AllTags</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectAdded</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnBeginDisabled_Native</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectRemoved</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnEndDisabled_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectAdded</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnBeginGameplayEffect_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectStackChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnStackChangedGameplayEffect_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableEffectTask</span><span class="o">-&gt;</span><span class="n">OnGameplayEffectRemoved</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnEndGameplayEffect_Native</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Targeting</span>
 <span class="w">    </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">TargetingStartDelegate</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnStartTargeting</span><span class="p">);</span><span class="w"></span>
@@ -169,7 +166,6 @@
 
 <span class="w">    </span><span class="c1">// Start</span>
 <span class="w">    </span><span class="c1">// Note Activate should be useless in that case</span>
-
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownChangedTask</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
@@ -178,6 +174,22 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AttributeChangedTask</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">RegisterWithGameInstance</span><span class="p">(</span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">());</span><span class="w"></span>
 <span class="w">        </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">Activate</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Attribute</span>
+<span class="w">    </span><span class="n">AttributeChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="o">::</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetAbilityCostAttribute</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AttributeChangedTask</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">AttributeChangedTask</span><span class="o">-&gt;</span><span class="n">OnAttributeChanged</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// TODO: Note: for abilities with charges the cooldown is not about the ability it is about</span>
+<span class="w">    </span><span class="c1">// the task that generates the stacks</span>
+<span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="o">-&gt;</span><span class="n">GetCooldownTags</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CooldownTags</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">CooldownTags</span><span class="o">-&gt;</span><span class="n">IsEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">ListenForCooldownChange</span><span class="p">(</span><span class="n">ASC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownTags</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownBegin</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownBegin_Native</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">CooldownChangedTask</span><span class="o">-&gt;</span><span class="n">OnCooldownEnd</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAbilityWidget</span><span class="o">::</span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">bBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
@@ -234,6 +246,50 @@
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnAbilityCooldownEnd_Native</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">OnAbilityCooldownEnd</span><span class="p">(</span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnBeginGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DisableTags</span><span class="p">.</span><span class="n">HasAnyExact</span><span class="p">(</span><span class="n">Effect</span><span class="o">-&gt;</span><span class="n">InheritableOwnedTagsContainer</span><span class="p">.</span><span class="n">CombinedTags</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnBeginDisabled_Native</span><span class="p">(</span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CurrentEffectHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnAbilityChargeChanged</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnStackChangedGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">StackCount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentEffectHandle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnAbilityChargeChanged</span><span class="p">(</span><span class="n">StackCount</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnEndGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">EffectHandle</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CurrentEffectHandle</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnEndDisabled_Native</span><span class="p">(</span><span class="n">EffectHandle</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CurrentEffectHandle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnAbilityChargeChanged</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">CurrentEffectHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FActiveGameplayEffectHandle</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// Disable Handling</span>
+<span class="c1">// we track the count of all the stacked disables</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnBeginDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnBeginDisabled</span><span class="p">(</span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAbilityWidget::OnEndDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">DisableCount</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">DisableCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">OnEndDisabled</span><span class="p">(</span><span class="n">EffectHandle</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

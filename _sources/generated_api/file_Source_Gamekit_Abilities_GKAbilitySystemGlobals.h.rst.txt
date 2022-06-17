@@ -154,6 +154,8 @@ Variables
 
 - :ref:`exhale_variable_GKAbilitySystemGlobals_8h_1a007d38789878ea4f5805e359effd6c26`
 
+- :ref:`exhale_variable_GKAbilitySystemGlobals_8h_1a531e2806cdcbd5cf1697d0b7ec1558fc`
+
 - :ref:`exhale_variable_GKAbilitySystemGlobals_8h_1a82702cfaed48b8bba4a55b517ddcae2b`
 
 - :ref:`exhale_variable_GKAbilitySystemGlobals_8h_1a8cd4d8fa31bd0fdc6b74316b46e1ed3c`

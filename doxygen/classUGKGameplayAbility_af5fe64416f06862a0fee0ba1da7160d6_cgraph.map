@@ -1,0 +1,8 @@
+<map id="UGKGameplayAbility::NumCharges" name="UGKGameplayAbility::NumCharges">
+<area shape="rect" id="node1" title=" " alt="" coords="5,79,165,120"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="213,79,373,120"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="427,5,587,47"/>
+<area shape="rect" id="node6" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="421,71,592,127"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="640,5,839,47"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="887,5,1113,47"/>
+</map>

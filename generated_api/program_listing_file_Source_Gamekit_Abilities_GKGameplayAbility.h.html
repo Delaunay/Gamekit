@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                bb02b9f69
+                b45f53d7e
 
               </div>
 <div role="search">
@@ -429,6 +429,13 @@
 
 <span class="w">    </span><span class="c1">// Used to grand passives</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnGiveAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Spec</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">K2_NumCharges</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NumCharges</span><span class="p">(</span><span class="n">GetCurrentAbilitySpecHandle</span><span class="p">(),</span><span class="w"> </span><span class="n">GetCurrentActorInfo</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">NumCharges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">//</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ApplyChargeCost</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
