@@ -127,6 +127,8 @@ Program Listing for File GKAbilityWidget.cpp
    
    void UGKAbilityWidget::NativeDestruct()
    {
+       UUserWidget::NativeDestruct();
+   
        RemoveListeners(); 
    }
    
