@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -154,6 +154,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa919e3bd15cdecea4aaa5703b024ff71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb061d8918eb72747e119d438e4ad835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#aeb061d8918eb72747e119d438e4ad835">SetupPlayerInputComponent</a> (UInputComponent *PlayerInputComponent) override</td></tr>
 <tr class="separator:aeb061d8918eb72747e119d438e4ad835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f83e80714c036313ec172c08177c5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a93f83e80714c036313ec172c08177c5e">OnSetupPlayerInputComponent</a> (UInputComponent *PlayerInputComponent)</td></tr>
+<tr class="separator:a93f83e80714c036313ec172c08177c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ecdfb9a332e618dbda831cd595dcc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a87ecdfb9a332e618dbda831cd595dcc9">OnSetupPlayerInputComponent_Implementation</a> (UInputComponent *PlayerInputComponent)</td></tr>
+<tr class="separator:a87ecdfb9a332e618dbda831cd595dcc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4352f2e1f7bf4e2f767e6d6aa31df8c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a4352f2e1f7bf4e2f767e6d6aa31df8c0">BindAbilityActivationFromInputEnum</a> (UInputComponent *PlayerInputComponent, <a class="el" href="structFGKGameplayAbilityInputBinds.html">FGKGameplayAbilityInputBinds</a> InputBinds)</td></tr>
+<tr class="separator:a4352f2e1f7bf4e2f767e6d6aa31df8c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfee2e4a30830490767ab85d7c4d31cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#adfee2e4a30830490767ab85d7c4d31cf">MoveToLocation</a> (FVector loc)</td></tr>
 <tr class="separator:adfee2e4a30830490767ab85d7c4d31cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27dac45cfdff08cfa1bdf18a1f4a6586"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUGKAttributeSet.html">UGKAttributeSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAGKCharacterBase.html#a27dac45cfdff08cfa1bdf18a1f4a6586">GetAttributeSet</a> ()</td></tr>
@@ -373,6 +379,44 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classAGKCharacterBase.html#af3c4ba4aef3dca123c72e796dee0df78" title=" " alt="" coords="1129,188,1346,229"/>
 <area shape="rect" href="classAGKCharacterBase.html#acbf60803193e37369950d23b88c4196b" title=" " alt="" coords="1124,254,1351,281"/>
 <area shape="rect" href="classAGKCharacterBase.html#ab84dddc01b53b03350480fdb927e1128" title=" " alt="" coords="1135,305,1339,347"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4352f2e1f7bf4e2f767e6d6aa31df8c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4352f2e1f7bf4e2f767e6d6aa31df8c0">&#9670;&nbsp;</a></span>BindAbilityActivationFromInputEnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::BindAbilityActivationFromInputEnum </td>
+          <td>(</td>
+          <td class="paramtype">UInputComponent *&#160;</td>
+          <td class="paramname"><em>PlayerInputComponent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structFGKGameplayAbilityInputBinds.html">FGKGameplayAbilityInputBinds</a>&#160;</td>
+          <td class="paramname"><em>InputBinds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Configure input callbacks to directly call the ability system component The num is used to map an action name (enum name) to an input id (enum value) A callaback is setup making the action name key press calling the ability system with the corresponding enum value When abilities are granted they are assigned an input it (enum value) when the action is pressed the ability system will activate the corresponding ability This removes the need for custom setup in blueprint and automate all the input binding boilerplate </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAGKCharacterBase_a4352f2e1f7bf4e2f767e6d6aa31df8c0_cgraph.png" border="0" usemap="#classAGKCharacterBase_a4352f2e1f7bf4e2f767e6d6aa31df8c0_cgraph" alt=""/></div>
+<map name="classAGKCharacterBase_a4352f2e1f7bf4e2f767e6d6aa31df8c0_cgraph" id="classAGKCharacterBase_a4352f2e1f7bf4e2f767e6d6aa31df8c0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,228,54"/>
+<area shape="rect" href="classUGKAbilitySystemComponent.html#abe56ea9525a3623e4f7223899431b58c" title=" " alt="" coords="276,5,493,61"/>
 </map>
 </div>
 
@@ -1141,6 +1185,43 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a93f83e80714c036313ec172c08177c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f83e80714c036313ec172c08177c5e">&#9670;&nbsp;</a></span>OnSetupPlayerInputComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::OnSetupPlayerInputComponent </td>
+          <td>(</td>
+          <td class="paramtype">UInputComponent *&#160;</td>
+          <td class="paramname"><em>PlayerInputComponent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Give the opportunity to user to bind their abilities using a Enum here see <code>BindAbilityActivationFromInputEnum</code> </p>
+
+</div>
+</div>
+<a id="a87ecdfb9a332e618dbda831cd595dcc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ecdfb9a332e618dbda831cd595dcc9">&#9670;&nbsp;</a></span>OnSetupPlayerInputComponent_Implementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AGKCharacterBase::OnSetupPlayerInputComponent_Implementation </td>
+          <td>(</td>
+          <td class="paramtype">UInputComponent *&#160;</td>
+          <td class="paramname"><em>PlayerInputComponent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a71b4842e4ccc53792068706194cfb04d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71b4842e4ccc53792068706194cfb04d">&#9670;&nbsp;</a></span>PossessedBy()</h2>
 
@@ -1405,6 +1486,15 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAGKCharacterBase_aeb061d8918eb72747e119d438e4ad835_cgraph.png" border="0" usemap="#classAGKCharacterBase_aeb061d8918eb72747e119d438e4ad835_cgraph" alt=""/></div>
+<map name="classAGKCharacterBase_aeb061d8918eb72747e119d438e4ad835_cgraph" id="classAGKCharacterBase_aeb061d8918eb72747e119d438e4ad835_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,236,47"/>
+<area shape="rect" href="classAGKCharacterBase.html#a93f83e80714c036313ec172c08177c5e" title=" " alt="" coords="284,5,491,47"/>
+</map>
+</div>
 
 </div>
 </div>

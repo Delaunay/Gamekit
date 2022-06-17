@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKGameplayAbilityInputBinds:
+
+Struct FGKGameplayAbilityInputBinds
+===================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKGameplayAbilityInputBinds
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

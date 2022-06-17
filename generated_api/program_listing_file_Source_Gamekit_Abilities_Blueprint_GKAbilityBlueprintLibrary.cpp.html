@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -219,6 +220,7 @@
 <span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNetwork</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNetwork&quot;</span><span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Internal error&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityDead</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityDead&quot;</span><span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;You are dead&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNotLearned&quot;</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability was not learnt yet&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">FText</span><span class="w"> </span><span class="n">AbilityNoCharge</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityNoCharge&quot;</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ability does not have charges anymore&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKFailureTagMapping</span><span class="o">&gt;</span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureCost</span><span class="p">,</span><span class="w">       </span><span class="n">AbilityCost</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
@@ -228,6 +230,7 @@
 <span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureNetwork</span><span class="p">,</span><span class="w">    </span><span class="n">AbilityNetwork</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureDead</span><span class="p">,</span><span class="w">       </span><span class="n">AbilityDead</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureNotLearned</span><span class="p">,</span><span class="w"> </span><span class="n">AbilityNotLearned</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKFailureTagMapping</span><span class="p">{</span><span class="w"> </span><span class="n">FailureCharge</span><span class="p">,</span><span class="w">     </span><span class="n">AbilityNoCharge</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
 <span class="w">    </span><span class="p">};</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -250,6 +253,12 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">NSLOCTEXT</span><span class="p">(</span><span class="n">NAMESPACE</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AbilityUnknown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Internal Failure reason&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">UGKAbilityBlueprintLibrary</span><span class="o">::</span><span class="n">GetDefaultAbilityInputEnum</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">InputEnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StaticEnum</span><span class="o">&lt;</span><span class="n">EGK_MOBA_AbilityInputID</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">InputEnum</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

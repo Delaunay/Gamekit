@@ -10,6 +10,7 @@
    :maxdepth: 1
 
    Welcome/Installation
+   Welcome/Roadmap
 
 .. toctree::
    :caption: Data Driven

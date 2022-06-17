@@ -97,10 +97,22 @@ Program Listing for File GKCharacter.h
    
        void PostInitProperties() override;
    
+       // ========================================================================
+       // Input Setup
+       // ------------------------------------------------------------------------
+    
        // Bind the abilities to inputs
        void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
    
        bool InputsBound;
+   
+       UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Ability|Input")
+       void OnSetupPlayerInputComponent(UInputComponent* PlayerInputComponent);
+   
+       void OnSetupPlayerInputComponent_Implementation(UInputComponent* PlayerInputComponent);
+   
+       UFUNCTION(BlueprintCallable)
+       void BindAbilityActivationFromInputEnum(UInputComponent* PlayerInputComponent, FGKGameplayAbilityInputBinds InputBinds);
    
        // ========================================================================
        // Game Play Ability System
@@ -123,9 +135,6 @@ Program Listing for File GKCharacter.h
    
        UFUNCTION(BlueprintCallable, Category = Abilities)
        void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
-   
-       // Allow to rebind abilities
-       // void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);
    
        UFUNCTION(BlueprintCallable, Category = Abilities)
        int AbilityCount() const;

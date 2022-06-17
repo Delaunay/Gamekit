@@ -500,24 +500,39 @@ Program Listing for File GKCharacter.cpp
    
    UGKAttributeSet *AGKCharacterBase::GetAttributeSet() { return AttributeSet; }
    
+   
    void AGKCharacterBase::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
    {
        Super::SetupPlayerInputComponent(PlayerInputComponent);
    
        if (!InputsBound && AbilitySystemComponent != nullptr && IsValid(InputComponent))
        {
+           OnSetupPlayerInputComponent(PlayerInputComponent);
+           InputsBound = true;
+       }
+   }
    
+   void AGKCharacterBase::OnSetupPlayerInputComponent_Implementation(UInputComponent* PlayerInputComponent) {
+       if(!InputsBound && AbilitySystemComponent != nullptr && IsValid(InputComponent))
+       {
+           // This is not that good of a default
+           // this assume ConfirmTarget & CancelTarget are defined in the project setting as inputs
            auto GAIB = FGameplayAbilityInputBinds(
-                   FString("ConfirmTarget"), FString("CancelTarget"), FString("EGK_MOBA_AbilityInputID")
-                   // static_cast<int32>(EGK_MOBA_AbilityInputID::Confirm),
-                   // static_cast<int32>(EGK_MOBA_AbilityInputID::Cancel)
+               FString("ConfirmTarget"),
+               FString("CancelTarget"),
+               FString("EGK_MOBA_AbilityInputID")
+               // static_cast<int32>(EGK_MOBA_AbilityInputID::Confirm),
+               // static_cast<int32>(EGK_MOBA_AbilityInputID::Cancel)
            );
    
            AbilitySystemComponent->BindAbilityActivationToInputComponent(InputComponent, GAIB);
    
-           GK_LOG(TEXT("Abilities got bound"));
-           InputsBound = true;
+           GK_WARNING(TEXT("Abilities got bound to inputs using the default logic"));
        }
+   }
+   
+   void AGKCharacterBase::BindAbilityActivationFromInputEnum(UInputComponent* PlayerInputComponent, FGKGameplayAbilityInputBinds InputBinds) {
+       AbilitySystemComponent->BindAbilityActivationToInputComponentFromEnum(PlayerInputComponent, InputBinds);
    }
    
    void AGKCharacterBase::MoveToLocation(FVector Loc)

@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -169,6 +170,33 @@
 <span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Location</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
+
+<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">FGKGameplayAbilityInputBinds</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Enum defining all the inputs</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">UEnum</span><span class="o">*</span><span class="w"> </span><span class="n">AbilityInputEnum</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Name of the input for cancel action</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">CancelCommand</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Name of the input for confirm action</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">ConfirmCommand</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Enum Id used for the confirm action</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">ConfirmTargetInputID</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Enum Id used for the cancel action</span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">CancelTargetInputID</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+
 <span class="n">UCLASS</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">,</span><span class="w"> </span><span class="n">Blueprintable</span><span class="p">)</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">UGKAbilitySystemComponent</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UAbilitySystemComponent</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -244,6 +272,8 @@
 <span class="w">    </span><span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="n">GetAbilityTarget_Actor</span><span class="p">(</span><span class="n">TSubclassOf</span><span class="o">&lt;</span><span class="n">AGKAbilityTarget_Actor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityTarget_ActorClass</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">AGKAbilityTarget_Actor</span><span class="w"> </span><span class="o">*</span><span class="nf">GetAbilityTarget_Actor</span><span class="p">(</span><span class="n">EGK_TargetingMode</span><span class="w"> </span><span class="n">Mode</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">BindAbilityActivationToInputComponentFromEnum</span><span class="p">(</span><span class="n">UInputComponent</span><span class="o">*</span><span class="w"> </span><span class="n">InputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">FGKGameplayAbilityInputBinds</span><span class="w"> </span><span class="n">InputBinds</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

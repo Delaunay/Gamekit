@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -197,6 +198,8 @@
 </li>
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase9BeginPlayEv">AGKCharacterBase::BeginPlay (C++ function)</a>
 </li>
+      <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds">AGKCharacterBase::BindAbilityActivationFromInputEnum (C++ function)</a>
+</li>
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase19bPreviousVisibilityE">AGKCharacterBase::bPreviousVisibility (C++ member)</a>
 </li>
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase14CharacterLevelE">AGKCharacterBase::CharacterLevel (C++ member)</a>
@@ -258,6 +261,10 @@
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase26OnReplicationPausedChangedEb">AGKCharacterBase::OnReplicationPausedChanged (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase8OnSelectEv">AGKCharacterBase::OnSelect (C++ function)</a>
+</li>
+      <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase27OnSetupPlayerInputComponentEP15UInputComponent">AGKCharacterBase::OnSetupPlayerInputComponent (C++ function)</a>
+</li>
+      <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase42OnSetupPlayerInputComponent_ImplementationEP15UInputComponent">AGKCharacterBase::OnSetupPlayerInputComponent_Implementation (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase11PossessedByEP11AController">AGKCharacterBase::PossessedBy (C++ function)</a>
 </li>
@@ -495,10 +502,10 @@
 </li>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase12K2_DoRestartEv">AGKGameModeBaseBase::K2_DoRestart (C++ function)</a>
 </li>
-      <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase13K2_OnGameOverEv">AGKGameModeBaseBase::K2_OnGameOver (C++ function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase13K2_OnGameOverEv">AGKGameModeBaseBase::K2_OnGameOver (C++ function)</a>
+</li>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase16PawnConstructionEP11AControllerP5APawn">AGKGameModeBaseBase::PawnConstruction (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase10ResetLevelEv">AGKGameModeBaseBase::ResetLevel (C++ function)</a>
@@ -848,6 +855,8 @@
       <li><a href="generated_api/classAGKUnitCharacter.html#_CPPv4N16AGKUnitCharacter4TickEf">AGKUnitCharacter::Tick (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKWorldSettings.html#_CPPv416AGKWorldSettings">AGKWorldSettings (C++ class)</a>
+</li>
+      <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4N16AGKWorldSettings16AGKWorldSettingsEv">AGKWorldSettings::AGKWorldSettings (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4NK16AGKWorldSettings14BuildTeamCacheEv">AGKWorldSettings::BuildTeamCache (C++ function)</a>
 </li>
@@ -1447,6 +1456,18 @@
 </li>
       <li><a href="generated_api/structFGKFailureTagMapping.html#_CPPv4N20FGKFailureTagMapping11LocalReasonE">FGKFailureTagMapping::LocalReason (C++ member)</a>
 </li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv428FGKGameplayAbilityInputBinds">FGKGameplayAbilityInputBinds (C++ struct)</a>
+</li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds16AbilityInputEnumE">FGKGameplayAbilityInputBinds::AbilityInputEnum (C++ member)</a>
+</li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds13CancelCommandE">FGKGameplayAbilityInputBinds::CancelCommand (C++ member)</a>
+</li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds19CancelTargetInputIDE">FGKGameplayAbilityInputBinds::CancelTargetInputID (C++ member)</a>
+</li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds14ConfirmCommandE">FGKGameplayAbilityInputBinds::ConfirmCommand (C++ member)</a>
+</li>
+      <li><a href="generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds20ConfirmTargetInputIDE">FGKGameplayAbilityInputBinds::ConfirmTargetInputID (C++ member)</a>
+</li>
       <li><a href="generated_api/structFGKGameplayEffectContainer.html#_CPPv426FGKGameplayEffectContainer">FGKGameplayEffectContainer (C++ struct)</a>
 </li>
       <li><a href="generated_api/structFGKGameplayEffectContainer.html#_CPPv4N26FGKGameplayEffectContainer26FGKGameplayEffectContainerEv">FGKGameplayEffectContainer::FGKGameplayEffectContainer (C++ function)</a>
@@ -1467,14 +1488,14 @@
 </li>
       <li><a href="generated_api/structFGKGameplayEffectContainerSpec.html#_CPPv4N30FGKGameplayEffectContainerSpec10TargetDataE">FGKGameplayEffectContainerSpec::TargetData (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/structFGKGameplayEffectContainerSpec.html#_CPPv4N30FGKGameplayEffectContainerSpec25TargetGameplayEffectSpecsE">FGKGameplayEffectContainerSpec::TargetGameplayEffectSpecs (C++ member)</a>
 </li>
       <li><a href="generated_api/structFGKGrid.html#_CPPv47FGKGrid">FGKGrid (C++ struct)</a>
 </li>
       <li><a href="generated_api/structFGKGrid.html#_CPPv4N7FGKGrid7FGKGridEv">FGKGrid::FGKGrid (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/structFGKGrid.html#_CPPv4NK7FGKGrid11GetTileSizeEv">FGKGrid::GetTileSize (C++ function)</a>
 </li>
       <li><a href="generated_api/structFGKGrid.html#_CPPv4N7FGKGrid8GridKindE">FGKGrid::GridKind (C++ member)</a>
@@ -1949,7 +1970,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError16add_stub_to_pathE4args">PhonyNameDueToError::add_stub_to_path (C++ function)</a>
 </li>
-      <li><a href="generated_api/classgamekit_1_1commands_1_1cook_1_1CookGame.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">PhonyNameDueToError::arguments (C++ function)</a>, <a href="generated_api/classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[1]</a>, <a href="generated_api/classgamekit_1_1commands_1_1disable_1_1Disable.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[2]</a>, <a href="generated_api/classgamekit_1_1commands_1_1docs_1_1Docs.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[3]</a>, <a href="generated_api/classgamekit_1_1commands_1_1init_1_1Init.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[4]</a>, <a href="generated_api/classgamekit_1_1commands_1_1install_1_1Install.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[5]</a>, <a href="generated_api/classgamekit_1_1commands_1_1local_1_1Local.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[6]</a>, <a href="generated_api/classgamekit_1_1commands_1_1tests_1_1RunTests.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[7]</a>, <a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[8]</a>
+      <li><a href="generated_api/classgamekit_1_1commands_1_1cook_1_1CookGame.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">PhonyNameDueToError::arguments (C++ function)</a>, <a href="generated_api/classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[1]</a>, <a href="generated_api/classgamekit_1_1commands_1_1disable_1_1Disable.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[2]</a>, <a href="generated_api/classgamekit_1_1commands_1_1docs_1_1Docs.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[3]</a>, <a href="generated_api/classgamekit_1_1commands_1_1init_1_1Init.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[4]</a>, <a href="generated_api/classgamekit_1_1commands_1_1install_1_1Install.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[5]</a>, <a href="generated_api/classgamekit_1_1commands_1_1local_1_1Local.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[6]</a>, <a href="generated_api/classgamekit_1_1commands_1_1python_1_1Python.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[7]</a>, <a href="generated_api/classgamekit_1_1commands_1_1tests_1_1RunTests.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[8]</a>, <a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError9argumentsE10subparsers">[9]</a>
 </li>
       <li><a href="generated_api/classgamekit_1_1commands_1_1local_1_1Local.html#_CPPv4N19PhonyNameDueToError6editorEv">PhonyNameDueToError::editor (C++ function)</a>, <a href="generated_api/classgamekit_1_1commands_1_1tests_1_1RunTests.html#_CPPv4N19PhonyNameDueToError6editorEv">[1]</a>
 </li>
@@ -1957,7 +1978,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError20enable_python_editorE4args">PhonyNameDueToError::enable_python_editor (C++ function)</a>
 </li>
-      <li><a href="generated_api/classgamekit_1_1commands_1_1cook_1_1CookGame.html#_CPPv4N19PhonyNameDueToError7executeE4args">PhonyNameDueToError::execute (C++ function)</a>, <a href="generated_api/classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#_CPPv4N19PhonyNameDueToError7executeE4args">[1]</a>, <a href="generated_api/classgamekit_1_1commands_1_1disable_1_1Disable.html#_CPPv4N19PhonyNameDueToError7executeE4args">[2]</a>, <a href="generated_api/classgamekit_1_1commands_1_1docs_1_1Docs.html#_CPPv4N19PhonyNameDueToError7executeE4args">[3]</a>, <a href="generated_api/classgamekit_1_1commands_1_1init_1_1Init.html#_CPPv4N19PhonyNameDueToError7executeE4args">[4]</a>, <a href="generated_api/classgamekit_1_1commands_1_1install_1_1Install.html#_CPPv4N19PhonyNameDueToError7executeE4args">[5]</a>, <a href="generated_api/classgamekit_1_1commands_1_1local_1_1Local.html#_CPPv4N19PhonyNameDueToError7executeE4args">[6]</a>, <a href="generated_api/classgamekit_1_1commands_1_1tests_1_1RunTests.html#_CPPv4N19PhonyNameDueToError7executeE4args">[7]</a>, <a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError7executeE4args">[8]</a>
+      <li><a href="generated_api/classgamekit_1_1commands_1_1cook_1_1CookGame.html#_CPPv4N19PhonyNameDueToError7executeE4args">PhonyNameDueToError::execute (C++ function)</a>, <a href="generated_api/classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#_CPPv4N19PhonyNameDueToError7executeE4args">[1]</a>, <a href="generated_api/classgamekit_1_1commands_1_1disable_1_1Disable.html#_CPPv4N19PhonyNameDueToError7executeE4args">[2]</a>, <a href="generated_api/classgamekit_1_1commands_1_1docs_1_1Docs.html#_CPPv4N19PhonyNameDueToError7executeE4args">[3]</a>, <a href="generated_api/classgamekit_1_1commands_1_1init_1_1Init.html#_CPPv4N19PhonyNameDueToError7executeE4args">[4]</a>, <a href="generated_api/classgamekit_1_1commands_1_1install_1_1Install.html#_CPPv4N19PhonyNameDueToError7executeE4args">[5]</a>, <a href="generated_api/classgamekit_1_1commands_1_1local_1_1Local.html#_CPPv4N19PhonyNameDueToError7executeE4args">[6]</a>, <a href="generated_api/classgamekit_1_1commands_1_1python_1_1Python.html#_CPPv4N19PhonyNameDueToError7executeE4args">[7]</a>, <a href="generated_api/classgamekit_1_1commands_1_1tests_1_1RunTests.html#_CPPv4N19PhonyNameDueToError7executeE4args">[8]</a>, <a href="generated_api/classgamekit_1_1commands_1_1vscode_1_1VSCode.html#_CPPv4N19PhonyNameDueToError7executeE4args">[9]</a>
 </li>
       <li><a href="generated_api/classgamekit_1_1commands_1_1dedicated_1_1Dedicated.html#_CPPv4N19PhonyNameDueToError22generate_server_targetE7project13server_target">PhonyNameDueToError::generate_server_target (C++ function)</a>
 </li>
@@ -2048,6 +2069,8 @@
       <li><a href="generated_api/classUGKAbilitySystemComponent.html#_CPPv4N25UGKAbilitySystemComponent24AbilityTarget_ActorCacheE">UGKAbilitySystemComponent::AbilityTarget_ActorCache (C++ member)</a>
 </li>
       <li><a href="generated_api/classUGKAbilitySystemComponent.html#_CPPv4N25UGKAbilitySystemComponent10AddToQueueEv">UGKAbilitySystemComponent::AddToQueue (C++ function)</a>
+</li>
+      <li><a href="generated_api/classUGKAbilitySystemComponent.html#_CPPv4N25UGKAbilitySystemComponent45BindAbilityActivationToInputComponentFromEnumEP15UInputComponent28FGKGameplayAbilityInputBinds">UGKAbilitySystemComponent::BindAbilityActivationToInputComponentFromEnum (C++ function)</a>
 </li>
       <li><a href="generated_api/classUGKAbilitySystemComponent.html#_CPPv4N25UGKAbilitySystemComponent25CancelAllPendingAbilitiesEv">UGKAbilitySystemComponent::CancelAllPendingAbilities (C++ function)</a>
 </li>

@@ -23,6 +23,7 @@ Files
 - :ref:`file_Source_Python_gamekit_commands_init.py`
 - :ref:`file_Source_Python_gamekit_commands_install.py`
 - :ref:`file_Source_Python_gamekit_commands_local.py`
+- :ref:`file_Source_Python_gamekit_commands_python.py`
 - :ref:`file_Source_Python_gamekit_commands_tests.py`
 - :ref:`file_Source_Python_gamekit_commands_vscode.py`
 

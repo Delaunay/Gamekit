@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -601,24 +602,39 @@
 
 <span class="n">UGKAttributeSet</span><span class="w"> </span><span class="o">*</span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">GetAttributeSet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">AttributeSet</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
+
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">UInputComponent</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">SetupPlayerInputComponent</span><span class="p">(</span><span class="n">PlayerInputComponent</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">InputsBound</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnSetupPlayerInputComponent</span><span class="p">(</span><span class="n">PlayerInputComponent</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">InputsBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">OnSetupPlayerInputComponent_Implementation</span><span class="p">(</span><span class="n">UInputComponent</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerInputComponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">InputsBound</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsValid</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// This is not that good of a default</span>
+<span class="w">        </span><span class="c1">// this assume ConfirmTarget &amp; CancelTarget are defined in the project setting as inputs</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">GAIB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FGameplayAbilityInputBinds</span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;ConfirmTarget&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;CancelTarget&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;EGK_MOBA_AbilityInputID&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Confirm),</span>
-<span class="w">                </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Cancel)</span>
+<span class="w">            </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;ConfirmTarget&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;CancelTarget&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">FString</span><span class="p">(</span><span class="s">&quot;EGK_MOBA_AbilityInputID&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Confirm),</span>
+<span class="w">            </span><span class="c1">// static_cast&lt;int32&gt;(EGK_MOBA_AbilityInputID::Cancel)</span>
 <span class="w">        </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">BindAbilityActivationToInputComponent</span><span class="p">(</span><span class="n">InputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">GAIB</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">GK_LOG</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Abilities got bound&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="n">InputsBound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_WARNING</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Abilities got bound to inputs using the default logic&quot;</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">BindAbilityActivationFromInputEnum</span><span class="p">(</span><span class="n">UInputComponent</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerInputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">FGKGameplayAbilityInputBinds</span><span class="w"> </span><span class="n">InputBinds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">BindAbilityActivationToInputComponentFromEnum</span><span class="p">(</span><span class="n">PlayerInputComponent</span><span class="p">,</span><span class="w"> </span><span class="n">InputBinds</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">AGKCharacterBase</span><span class="o">::</span><span class="n">MoveToLocation</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Loc</span><span class="p">)</span><span class="w"></span>

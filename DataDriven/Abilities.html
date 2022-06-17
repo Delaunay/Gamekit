@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Units" href="Units.html" />
-    <link rel="prev" title="Installation" href="../Welcome/Installation.html" /> 
+    <link rel="prev" title="Roadmap" href="../Welcome/Roadmap.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -48,16 +48,24 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Abilities</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gametags">GameTags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#ability-kinds">Ability Kinds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ability-datatable-initialization">Ability DataTable Initialization</a></li>
@@ -155,10 +163,43 @@
 <li><p><strong>Basic UI</strong>: easier debugging</p></li>
 </ul>
 </section>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Create inputs in your project setting (include <cite>ConfirmTarget</cite> &amp; <cite>CancelTarget</cite> input)</p></li>
+<li><p>Create a new enum with the same inputs</p></li>
+<li><p>Create a Character from <code class="docutils literal notranslate"><span class="pre">GKCharacterBase</span></code></p></li>
+<li><p>Extend the On Setup Player Input Component event, use to register your input to the ability system component
+(See <a href="#id1"><span class="problematic" id="id2">:cpp:`AGKCharacterBase::BindAbilityActivationFromInputEnum`</span></a>)</p></li>
+<li><p>You are not ready to grand abilities using <a href="#id3"><span class="problematic" id="id4">:cpp:`AGKCharacterBase::GrantAbility`</span></a>
+In Gamekit abilities are granted to a character for a given slot, each ability populates a slot.
+Slots can then be assigned an input. Gamekit defines 22 default slots (6 Skills, 8 Items, 7 Basic Abilities).
+Under the hood slots are simple integer, users can add as many slots as they want.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Granting ablities can only be done by the authority</p>
+</div>
+</li>
+<li><p>During Gameplay, you can press inputs and the abilities will activate.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Support for <cite>EnhancedInput</cite> is planned</p>
+</div>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<p>&lt;iframe src=”<a class="reference external" href="https://blueprintue.com/render/_rsbezu-/">https://blueprintue.com/render/_rsbezu-/</a>” scrolling=”no” allowfullscreen&gt;&lt;/iframe&gt;</p>
+</section>
+</section>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <section id="gametags">
 <h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
+<p>Gametags are used to mark the current state of a player/ability/effect, it is used to control
+transition between different states. It is the core of the gameplay ability system, some effects
+are exclusively implemented through gameplaytags.</p>
+<p>For example, Stun, Silences, Roots are all gameplay effects that simply prevent the character
+from using certain abilities, they can all be implemented using gameplaytag alone.</p>
 <p>Gamekit automatically defines base gametags for its abilities.</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -294,7 +335,18 @@ but all actions are disabled.</p></li>
 <section id="define-abilities">
 <h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this heading"></a></h2>
 <p>Abilities are define inside a json file.
-The list of customizable properties can be found here <a class="reference internal" href="../generated_api/structFGKAbilityStatic.html#_CPPv416FGKAbilityStatic" title="FGKAbilityStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAbilityStatic</span></code></a></p>
+The list of customizable properties can be found here <a class="reference internal" href="../generated_api/structFGKAbilityStatic.html#_CPPv416FGKAbilityStatic" title="FGKAbilityStatic"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">FGKAbilityStatic</span></code></a>.
+Gameplay designer can create new abilities by simply adding new abilities inside the ability data file.
+To create the new abilities in unreal engine you need to generate them using a python script.</p>
+<ol class="arabic simple">
+<li><p>Enable python scripting for UnrealEngine</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">Gamekit/Script</span></code> to your python path</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Gamekit/Content/Editor/Ability_Generator</span></code> right click on it and <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Editor</span> <span class="pre">Utility</span> <span class="pre">Widget</span></code>.
+A widget should pop up with a bit “Generate Default Abilities” button</p></li>
+<li><p>Click on the button, this will generate all the missing abilities</p></li>
+</ol>
+<section id="id5">
+<h3>Example<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fireball&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;AbilityKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Skill&quot;</span><span class="p">,</span><span class="w"></span>
@@ -337,18 +389,13 @@ The list of customizable properties can be found here <a class="reference intern
 </pre></div>
 </div>
 </section>
+</section>
 <section id="ability-kinds">
 <h2>Ability Kinds<a class="headerlink" href="#ability-kinds" title="Permalink to this heading"></a></h2>
 <p>MaxLevel = HeroLevel / 2
 UltimateMaxLevel = HeroLevel / 6</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1</dt><dd><ul>
-<li></li>
-</ul>
-</dd>
-</dl>
-</li>
+<li><p>Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1</p></li>
 <li><p>Ultimate Ability: 3 Levels, every 6 level</p></li>
 <li><p>Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted</p></li>
 <li><p>Abilities with charges: Ability consume charges, charges are given by an effect periodically</p></li>
@@ -401,40 +448,40 @@ a spell button.</p>
 <li><p>Ability requirements/cost are not met</p></li>
 <li><p>Ability cannot be cast because of debuff</p></li>
 </ol>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="Ability under cooldown" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability under cooldown</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability under cooldown</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability disabled</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability disabled</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id9">
 <a class="reference internal image-reference" href="../_images/btn_normal.PNG"><img alt="../_images/btn_normal.PNG" src="../_images/btn_normal.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability ready</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability ready</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="../_images/btn_targetting.PNG"><img alt="../_images/btn_targetting.PNG" src="../_images/btn_targetting.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability selecting a target</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability selecting a target</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="../_images/btn_oom.PNG"><img alt="../_images/btn_oom.PNG" src="../_images/btn_oom.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability out of mana</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability out of mana</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id12">
 <a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -467,20 +514,20 @@ a spell button.</p>
 <section id="builtin-effects">
 <h2>Builtin Effects<a class="headerlink" href="#builtin-effects" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Cooldown</p></li>
+<li><p>Cooldown: block the casting of an ability for a given amount of time</p></li>
 <li><p>Death: Remove all active effects and set health to zero</p></li>
 <li><p>Dispel: Remove all debuffs and disables</p></li>
-<li><p>Heal</p></li>
-<li><p>HealOvertime</p></li>
-<li><p>Damage</p></li>
-<li><p>DamageOvertime</p></li>
+<li><p>Heal: Heal ocne</p></li>
+<li><p>HealOvertime: Heals over time</p></li>
+<li><p>Damage: Deals damage once</p></li>
+<li><p>DamageOvertime: Deals damage overtime</p></li>
 <li><p>Immunity: Grant immunity against all debuffs and disables</p></li>
-<li><p>IncreaseHealth</p></li>
-<li><p>ManaCost</p></li>
-<li><p>MoveHaste</p></li>
-<li><p>Root</p></li>
-<li><p>Silence</p></li>
-<li><p>Stun</p></li>
+<li><p>IncreaseHealth: Increase health</p></li>
+<li><p>ManaCost: Remove mana from character</p></li>
+<li><p>MoveHaste: Increase movement speed</p></li>
+<li><p>Root: Prevent the character from moving</p></li>
+<li><p>Silence: Prevent the character from casting spells</p></li>
+<li><p>Stun: Completely disables the character</p></li>
 </ul>
 </section>
 <section id="builtin-attribute-set">
@@ -492,7 +539,7 @@ a spell button.</p>
 <li><p>Gold</p></li>
 </ul>
 <dl class="footnote brackets">
-<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dt class="label" id="id6"><span class="brackets">1</span></dt>
 <dd><p>Gameplay Ability System <a class="reference external" href="https://github.com/tranek/GASDocumentation">GAS</a>.</p>
 </dd>
 </dl>
@@ -503,7 +550,7 @@ a spell button.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Welcome/Installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Welcome/Roadmap.html" class="btn btn-neutral float-left" title="Roadmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Units.html" class="btn btn-neutral float-right" title="Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

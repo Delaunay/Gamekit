@@ -1385,6 +1385,11 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Python_gamekit_commands_python.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Python_gamekit_commands_tests.py.rst
 
 .. toctree::

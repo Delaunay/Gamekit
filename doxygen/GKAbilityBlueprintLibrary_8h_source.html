@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -172,7 +172,10 @@ $(function() {
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;UI&quot;</span>)</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    static FText GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, <span class="keywordtype">bool</span>&amp; bHandled);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    UFUNCTION(BlueprintPure)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    static UEnum* GetDefaultAbilityInputEnum();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructFGKFailureTagMapping_html_a7de9455fac948d139f575bf0b74358ba"><div class="ttname"><a href="structFGKFailureTagMapping.html#a7de9455fac948d139f575bf0b74358ba">FGKFailureTagMapping::FGKFailureTagMapping</a></div><div class="ttdeci">FGKFailureTagMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.h:26</div></div>
 <div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a9953fc0d4728ed787759d58864d13a77"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a9953fc0d4728ed787759d58864d13a77">UGKAbilityBlueprintLibrary::GetGameplayAbilityFromAbilitySpec</a></div><div class="ttdeci">static class UGameplayAbility * GetGameplayAbilityFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:28</div></div>
@@ -190,6 +193,7 @@ $(function() {
 <div class="ttc" id="astructFGKAnimationSet_html"><div class="ttname"><a href="structFGKAnimationSet.html">FGKAnimationSet</a></div><div class="ttdef"><b>Definition:</b> GKAnimationSet.h:46</div></div>
 <div class="ttc" id="aGKAbilityTypes_8h_html"><div class="ttname"><a href="GKAbilityTypes_8h.html">GKAbilityTypes.h</a></div></div>
 <div class="ttc" id="astructFGKGameplayEffectContainerSpec_html_a1a74f696d03cb1dfac5f906b7c8beb68"><div class="ttname"><a href="structFGKGameplayEffectContainerSpec.html#a1a74f696d03cb1dfac5f906b7c8beb68">FGKGameplayEffectContainerSpec::TargetGameplayEffectSpecs</a></div><div class="ttdeci">TArray&lt; FGameplayEffectSpecHandle &gt; TargetGameplayEffectSpecs</div><div class="ttdef"><b>Definition:</b> GKAbilityTypes.h:55</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a57321bcbad9865626ba8accd63eb6cad"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a57321bcbad9865626ba8accd63eb6cad">UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum</a></div><div class="ttdeci">static UEnum * GetDefaultAbilityInputEnum()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:145</div></div>
 <div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a4fb97c5920500fef8d9ab128fcd82e80"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a4fb97c5920500fef8d9ab128fcd82e80">UGKAbilityBlueprintLibrary::GetAbilityHandleFromAbilitySpec</a></div><div class="ttdeci">static GENERATED_UCLASS_BODY() public FGameplayAbilitySpecHandle GetAbilityHandleFromAbilitySpec(const FGameplayAbilitySpec &amp;Spec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:23</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a57db4ef7479fa7193a46b1ea225fbe69"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a57db4ef7479fa7193a46b1ea225fbe69">FailureNetwork</a></div><div class="ttdeci">FNativeGameplayTag FailureNetwork</div></div>
@@ -206,12 +210,13 @@ $(function() {
 <div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a8e85680f147b9095abc32aa69879e23d"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a8e85680f147b9095abc32aa69879e23d">UGKAbilityBlueprintLibrary::ApplyExternalEffectContainerSpec</a></div><div class="ttdeci">TArray&lt; FActiveGameplayEffectHandle &gt; ApplyExternalEffectContainerSpec(const FGKGameplayEffectContainerSpec &amp;ContainerSpec)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:49</div></div>
 <div class="ttc" id="aGKAbilityInputs_8h_html_a5926be264f6313e59bb65648750bdd6a"><div class="ttname"><a href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a></div><div class="ttdeci">EGK_MOBA_AbilityInputID</div><div class="ttdef"><b>Definition:</b> GKAbilityInputs.h:12</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a82702cfaed48b8bba4a55b517ddcae2b"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a82702cfaed48b8bba4a55b517ddcae2b">FailureCooldown</a></div><div class="ttdeci">FNativeGameplayTag FailureCooldown</div></div>
-<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a163bbb7edd910b168bd07187527bb7b6"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a163bbb7edd910b168bd07187527bb7b6">UGKAbilityBlueprintLibrary::GetFailureReasonFor</a></div><div class="ttdeci">static FText GetFailureReasonFor(UGameplayAbility *Ability, FGameplayTagContainer ReasonTags, bool &amp;bHandled)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:128</div></div>
+<div class="ttc" id="aclassUGKAbilityBlueprintLibrary_html_a163bbb7edd910b168bd07187527bb7b6"><div class="ttname"><a href="classUGKAbilityBlueprintLibrary.html#a163bbb7edd910b168bd07187527bb7b6">UGKAbilityBlueprintLibrary::GetFailureReasonFor</a></div><div class="ttdeci">static FText GetFailureReasonFor(UGameplayAbility *Ability, FGameplayTagContainer ReasonTags, bool &amp;bHandled)</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:130</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a8cd4d8fa31bd0fdc6b74316b46e1ed3c"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a8cd4d8fa31bd0fdc6b74316b46e1ed3c">FailureCost</a></div><div class="ttdeci">FNativeGameplayTag FailureCost</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a76402389df099d5942ba2498595cda7f"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a76402389df099d5942ba2498595cda7f">FailureDead</a></div><div class="ttdeci">FNativeGameplayTag FailureDead</div></div>
-<div class="ttc" id="aGKAbilityBlueprintLibrary_8cpp_html_ac7c289629b26169ea60f81877678f86c"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8cpp.html#ac7c289629b26169ea60f81877678f86c">GetFailureMapping</a></div><div class="ttdeci">TArray&lt; FGKFailureTagMapping &gt; const  &amp; GetFailureMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:122</div></div>
+<div class="ttc" id="aGKAbilityBlueprintLibrary_8cpp_html_ac7c289629b26169ea60f81877678f86c"><div class="ttname"><a href="GKAbilityBlueprintLibrary_8cpp.html#ac7c289629b26169ea60f81877678f86c">GetFailureMapping</a></div><div class="ttdeci">TArray&lt; FGKFailureTagMapping &gt; const  &amp; GetFailureMapping()</div><div class="ttdef"><b>Definition:</b> GKAbilityBlueprintLibrary.cpp:124</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a007d38789878ea4f5805e359effd6c26"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a007d38789878ea4f5805e359effd6c26">FailureBlocked</a></div><div class="ttdeci">FNativeGameplayTag FailureBlocked</div></div>
 <div class="ttc" id="aGKItemTypes_8h_html"><div class="ttname"><a href="GKItemTypes_8h.html">GKItemTypes.h</a></div></div>
+<div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a531e2806cdcbd5cf1697d0b7ec1558fc"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a531e2806cdcbd5cf1697d0b7ec1558fc">FailureCharge</a></div><div class="ttdeci">FNativeGameplayTag FailureCharge</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

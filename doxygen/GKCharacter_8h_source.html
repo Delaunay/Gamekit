@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -164,141 +164,150 @@ $(function() {
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> PostInitProperties() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// Bind the abilities to inputs</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">  111</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">InputsBound</a>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// Game Play Ability System</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Abilities|Move&quot;</span>)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    void MoveToLocation(FVector loc);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>* GetAttributeSet();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// Make grant ability work with data table</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">// --------------------------------------</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> GrantAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot, TSubclassOf&lt;<a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a>&gt; AbilityClass, <span class="keywordtype">int</span> Level = 0);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> RemoveAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordtype">void</span> EquipItem(<a class="code" href="GKAbilityStatic_8h.html#a62db423c801c352ffb38576228a35bda">EGK_ItemSlot</a> Slot, TSubclassOf&lt;<a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a>&gt; AbilityClass);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">// Allow to rebind abilities</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="comment">// void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Input Setup</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// Bind the abilities to inputs</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">  115</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">InputsBound</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = <span class="stringliteral">&quot;Ability|Input&quot;</span>)</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    void OnSetupPlayerInputComponent(UInputComponent* PlayerInputComponent);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> OnSetupPlayerInputComponent_Implementation(UInputComponent* PlayerInputComponent);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    UFUNCTION(BlueprintCallable)</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> BindAbilityActivationFromInputEnum(UInputComponent* PlayerInputComponent, <a class="code" href="structFGKGameplayAbilityInputBinds.html">FGKGameplayAbilityInputBinds</a> InputBinds);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// Game Play Ability System</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;public:</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    UFUNCTION(BlueprintCallable, Category = &quot;Abilities|<a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6aa6bc362dbf494c61ea117fe3c71ca48a5">Move</a>&quot;)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">void</span> MoveToLocation(FVector loc);</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">int</span> AbilityCount() const;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>* GetAttributeSet();</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// Slot</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a> *GetAbilityInstance(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// Make grant ability work with data table</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="comment">// --------------------------------------</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    FGameplayAbilitySpecHandle GetAbilityHandle(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> GrantAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot, TSubclassOf&lt;<a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a>&gt; AbilityClass, <span class="keywordtype">int</span> Level = 0);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">bool</span> ActivateAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">void</span> RemoveAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">// Friended to allow access to handle functions above</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a1915a7b27adbd89fbafc2a48a6c055a3">  155</a></span>&#160;    friend class <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ae0a5cd1dfc18bf1dfaa31d52d53bd108">  156</a></span>&#160;    friend class <a class="code" href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a>;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">void</span> AddPassiveEffect(UGameplayEffect* Effect);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">void</span> EquipItem(<a class="code" href="GKAbilityStatic_8h.html#a62db423c801c352ffb38576228a35bda">EGK_ItemSlot</a> Slot, TSubclassOf&lt;<a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a>&gt; AbilityClass);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">int</span> AbilityCount() const;</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">// Implement IAbilitySystemInterface</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    UAbilitySystemComponent* GetAbilitySystemComponent() const override;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    UFUNCTION(BlueprintCallable)</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    virtual int32 GetCharacterLevel() const;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">// Slot</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="classUGKGameplayAbility.html">UGKGameplayAbility</a> *GetAbilityInstance(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    FGameplayAbilitySpecHandle GetAbilityHandle(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    UFUNCTION(BlueprintCallable)</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    virtual <span class="keywordtype">bool</span> SetCharacterLevel(int32 NewLevel);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    UFUNCTION(BlueprintCallable, Category = Abilities)</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">bool</span> ActivateAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot);</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    UFUNCTION(BlueprintImplementableEvent, Category = &quot;Ability&quot;, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (DisplayName = &quot;On New Ability&quot;))</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordtype">void</span> ReceiveNewAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot, FGameplayAbilitySpec NewAbilAbilitySpecity);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">void</span> OnNewAbility_Native(FGameplayAbilitySpec&amp; AbilitySpec);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">// Friended to allow access to handle functions above</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a1915a7b27adbd89fbafc2a48a6c055a3">  172</a></span>&#160;    friend class <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>;</div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ae0a5cd1dfc18bf1dfaa31d52d53bd108">  173</a></span>&#160;    friend class <a class="code" href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">void</span> AddPassiveEffect(UGameplayEffect* Effect);</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordtype">void</span> OnAbilityRemoved_Native(FGameplayAbilitySpec&amp; AbilitySpec);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">// Implement IAbilitySystemInterface</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    UAbilitySystemComponent* GetAbilitySystemComponent() const override;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    virtual <span class="keywordtype">void</span> OnHealthChanged_Native(const FOnAttributeChangeData&amp; Data);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordtype">void</span> ClearGameplayAbilities();</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;protected:</div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ac2d8c21b438225d759ac45d5753efc9c">  184</a></span>&#160;    TMap&lt;<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>, FGameplayAbilitySpec&gt; AbilitySpecs;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)</div>
-<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#af808dd18b9cde0b822e2417d78c98425">  188</a></span>&#160;    int32 CharacterLevel;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ae99d1d22bbbeb6c88d4ff91f814e3284">  192</a></span>&#160;    <a class="code" href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a>* AbilitySystemComponent;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    UFUNCTION(BlueprintCallable)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    virtual int32 GetCharacterLevel() const;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    UFUNCTION(BlueprintCallable)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    virtual <span class="keywordtype">bool</span> SetCharacterLevel(int32 NewLevel);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    UFUNCTION(BlueprintImplementableEvent, Category = &quot;Ability&quot;, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (DisplayName = &quot;On New Ability&quot;))</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">void</span> ReceiveNewAbility(<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a> Slot, FGameplayAbilitySpec NewAbilAbilitySpecity);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordtype">void</span> OnNewAbility_Native(FGameplayAbilitySpec&amp; AbilitySpec);</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#aff167028254934c964c44d6c8e213ba2">  196</a></span>&#160;    <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>* AttributeSet;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordtype">void</span> OnAbilityRemoved_Native(FGameplayAbilitySpec&amp; AbilitySpec);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    virtual <span class="keywordtype">void</span> OnHealthChanged_Native(const FOnAttributeChangeData&amp; Data);</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">// Data Driven Hooks</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;protected:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = &quot;Unit|Data&quot;)</div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ac8ac30509bad1564a530fd1c9b584804">  206</a></span>&#160;    class UDataTable* UnitDataTable;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = &quot;Unit|Data&quot;)</div>
-<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a66083ea8fddee0df7ef621f5a90b0177">  209</a></span>&#160;    FName UnitRowName;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordtype">void</span> ClearGameplayAbilities();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;protected:</div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ac2d8c21b438225d759ac45d5753efc9c">  201</a></span>&#160;    TMap&lt;<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>, FGameplayAbilitySpec&gt; AbilitySpecs;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)</div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#af808dd18b9cde0b822e2417d78c98425">  205</a></span>&#160;    int32 CharacterLevel;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ae99d1d22bbbeb6c88d4ff91f814e3284">  209</a></span>&#160;    <a class="code" href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a>* AbilitySystemComponent;</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">  212</a></span>&#160;    <a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>* UnitStatic;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;public:</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    UFUNCTION(BlueprintCallable,</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        Category = &quot;Unit|Data&quot;,</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        DisplayName = &quot;GetUnitStatic&quot;,</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (ScriptName = &quot;GetUnitStatic&quot;))</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">void</span> K2_GetUnitStatic(<a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>&amp; UnitStatic, <span class="keywordtype">bool</span>&amp; Valid);</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>* GetUnitStatic();</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    UFUNCTION()</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">void</span> OnDataTableChanged_Native();</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    virtual <span class="keywordtype">void</span> LoadFromDataTable(<a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>&amp; UnitDef);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="comment">// IGenericTeamAgentInterface</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;protected:</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    UPROPERTY(replicated, BlueprintReadOnly, Category = &quot;Team&quot;, ReplicatedUsing=OnRep_Team)</div>
-<div class="line"><a name="l00239"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a65cd23392f08a0066c9ee827540c06e2">  239</a></span>&#160;    FGenericTeamId Team;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;public:</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    UFUNCTION()</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">void</span> OnRep_Team();</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordtype">void</span> SetGenericTeamId(const FGenericTeamId &amp;TeamID) override;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#aff167028254934c964c44d6c8e213ba2">  213</a></span>&#160;    <a class="code" href="classUGKAttributeSet.html">UGKAttributeSet</a>* AttributeSet;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="comment">// Data Driven Hooks</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;protected:</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = &quot;Unit|Data&quot;)</div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#ac8ac30509bad1564a530fd1c9b584804">  223</a></span>&#160;    class UDataTable* UnitDataTable;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = &quot;Unit|Data&quot;)</div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a66083ea8fddee0df7ef621f5a90b0177">  226</a></span>&#160;    FName UnitRowName;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">  229</a></span>&#160;    <a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>* UnitStatic;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;public:</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    UFUNCTION(BlueprintCallable,</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        Category = &quot;Unit|Data&quot;,</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        DisplayName = &quot;GetUnitStatic&quot;,</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (ScriptName = &quot;GetUnitStatic&quot;))</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">void</span> K2_GetUnitStatic(<a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>&amp; UnitStatic, <span class="keywordtype">bool</span>&amp; Valid);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>* GetUnitStatic();</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    UFUNCTION()</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">void</span> OnDataTableChanged_Native();</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    virtual <span class="keywordtype">void</span> LoadFromDataTable(<a class="code" href="structFGKUnitStatic.html">FGKUnitStatic</a>&amp; UnitDef);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;Team&quot;)</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    FGenericTeamId GetGenericTeamId() const override;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    UFUNCTION(BlueprintImplementableEvent, Category = &quot;Team&quot;, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (DisplayName = &quot;OnTeamAssigned&quot;))</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordtype">void</span> ReceiveTeamAssigned(FGenericTeamId NewTeam);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a2196277c864d76abfbd57a47247cf2e9">  256</a></span>&#160;    <span class="keywordtype">bool</span> bPreviousVisibility;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;};</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="comment">// IGenericTeamAgentInterface</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;protected:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    UPROPERTY(replicated, BlueprintReadOnly, Category = &quot;Team&quot;, ReplicatedUsing=OnRep_Team)</div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a65cd23392f08a0066c9ee827540c06e2">  256</a></span>&#160;    FGenericTeamId Team;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;public:</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    UFUNCTION()</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordtype">void</span> OnRep_Team();</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordtype">void</span> SetGenericTeamId(const FGenericTeamId &amp;TeamID) override;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    UFUNCTION(BlueprintPure, Category = &quot;Team&quot;)</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    FGenericTeamId GetGenericTeamId() const override;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    UFUNCTION(BlueprintImplementableEvent, Category = &quot;Team&quot;, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (DisplayName = &quot;OnTeamAssigned&quot;))</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordtype">void</span> ReceiveTeamAssigned(FGenericTeamId NewTeam);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classAGKCharacterBase.html#a2196277c864d76abfbd57a47247cf2e9">  273</a></span>&#160;    <span class="keywordtype">bool</span> bPreviousVisibility;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassAGKCharacterBase_html_ab84dddc01b53b03350480fdb927e1128"><div class="ttname"><a href="classAGKCharacterBase.html#ab84dddc01b53b03350480fdb927e1128">AGKCharacterBase::ReceiveDeath</a></div><div class="ttdeci">void ReceiveDeath()</div></div>
 <div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
@@ -308,46 +317,49 @@ $(function() {
 <div class="ttc" id="aGKAbilitySystemComponent_8h_html"><div class="ttname"><a href="GKAbilitySystemComponent_8h.html">GKAbilitySystemComponent.h</a></div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html">GKAbilitySystemGlobals.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_aaa634fafbee198ea90673ae787861f45"><div class="ttname"><a href="classAGKCharacterBase.html#aaa634fafbee198ea90673ae787861f45">AGKCharacterBase::Die</a></div><div class="ttdeci">virtual void Die()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:254</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_af808dd18b9cde0b822e2417d78c98425"><div class="ttname"><a href="classAGKCharacterBase.html#af808dd18b9cde0b822e2417d78c98425">AGKCharacterBase::CharacterLevel</a></div><div class="ttdeci">int32 CharacterLevel</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:188</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_af808dd18b9cde0b822e2417d78c98425"><div class="ttname"><a href="classAGKCharacterBase.html#af808dd18b9cde0b822e2417d78c98425">AGKCharacterBase::CharacterLevel</a></div><div class="ttdeci">int32 CharacterLevel</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:205</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a748d02c963feb7fc080d044e42635361"><div class="ttname"><a href="classAGKCharacterBase.html#a748d02c963feb7fc080d044e42635361">AGKCharacterBase::ReceiveNewAbility</a></div><div class="ttdeci">void ReceiveNewAbility(FGKAbilitySlot Slot, FGameplayAbilitySpec NewAbilAbilitySpecity)</div></div>
 <div class="ttc" id="aGKAbilityStatic_8h_html_a62db423c801c352ffb38576228a35bda"><div class="ttname"><a href="GKAbilityStatic_8h.html#a62db423c801c352ffb38576228a35bda">EGK_ItemSlot</a></div><div class="ttdeci">EGK_ItemSlot</div><div class="ttdef"><b>Definition:</b> GKAbilityStatic.h:65</div></div>
 <div class="ttc" id="aGKAttributeSet_8h_html"><div class="ttname"><a href="GKAttributeSet_8h.html">GKAttributeSet.h</a></div></div>
+<div class="ttc" id="aclassUGKAbilitySystemComponent_html_abe56ea9525a3623e4f7223899431b58c"><div class="ttname"><a href="classUGKAbilitySystemComponent.html#abe56ea9525a3623e4f7223899431b58c">UGKAbilitySystemComponent::BindAbilityActivationToInputComponentFromEnum</a></div><div class="ttdeci">void BindAbilityActivationToInputComponentFromEnum(UInputComponent *InputComponent, FGKGameplayAbilityInputBinds InputBinds)</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.cpp:211</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_ae40b7663a4cfef0d62552700a275b300"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#ae40b7663a4cfef0d62552700a275b300">DisableDead</a></div><div class="ttdeci">FNativeGameplayTag DisableDead</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a16c5c4f4f05f110b47bb5b116576f855"><div class="ttname"><a href="classAGKCharacterBase.html#a16c5c4f4f05f110b47bb5b116576f855">AGKCharacterBase::OnDeath_Native</a></div><div class="ttdeci">void OnDeath_Native()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:297</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a6aae965b86928cdcb22167cb19768fa7"><div class="ttname"><a href="classAGKCharacterBase.html#a6aae965b86928cdcb22167cb19768fa7">AGKCharacterBase::K2_GetUnitStatic</a></div><div class="ttdeci">void K2_GetUnitStatic(FGKUnitStatic &amp;UnitStatic, bool &amp;Valid)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:170</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_aeb061d8918eb72747e119d438e4ad835"><div class="ttname"><a href="classAGKCharacterBase.html#aeb061d8918eb72747e119d438e4ad835">AGKCharacterBase::SetupPlayerInputComponent</a></div><div class="ttdeci">void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:491</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a66083ea8fddee0df7ef621f5a90b0177"><div class="ttname"><a href="classAGKCharacterBase.html#a66083ea8fddee0df7ef621f5a90b0177">AGKCharacterBase::UnitRowName</a></div><div class="ttdeci">FName UnitRowName</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:209</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_aeb061d8918eb72747e119d438e4ad835"><div class="ttname"><a href="classAGKCharacterBase.html#aeb061d8918eb72747e119d438e4ad835">AGKCharacterBase::SetupPlayerInputComponent</a></div><div class="ttdeci">void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:492</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a66083ea8fddee0df7ef621f5a90b0177"><div class="ttname"><a href="classAGKCharacterBase.html#a66083ea8fddee0df7ef621f5a90b0177">AGKCharacterBase::UnitRowName</a></div><div class="ttdeci">FName UnitRowName</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:226</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_aa919e3bd15cdecea4aaa5703b024ff71"><div class="ttname"><a href="classAGKCharacterBase.html#aa919e3bd15cdecea4aaa5703b024ff71">AGKCharacterBase::PostInitProperties</a></div><div class="ttdeci">void PostInitProperties() override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:89</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_ac63334d5ec31418311750e01c7552872"><div class="ttname"><a href="classAGKCharacterBase.html#ac63334d5ec31418311750e01c7552872">AGKCharacterBase::OnDataTableChanged_Native</a></div><div class="ttdeci">void OnDataTableChanged_Native()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:82</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a7771e5e002a8ef88579a4693f8ef89ee"><div class="ttname"><a href="classAGKCharacterBase.html#a7771e5e002a8ef88579a4693f8ef89ee">AGKCharacterBase::GetAbilityHandle</a></div><div class="ttdeci">FGameplayAbilitySpecHandle GetAbilityHandle(FGKAbilitySlot Slot)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:445</div></div>
 <div class="ttc" id="aGKAbilityInputs_8h_html"><div class="ttname"><a href="GKAbilityInputs_8h.html">GKAbilityInputs.h</a></div></div>
 <div class="ttc" id="astructFGKAbilitySlot_html_aae0bab9662fbca2ca4b716e245567b18"><div class="ttname"><a href="structFGKAbilitySlot.html#aae0bab9662fbca2ca4b716e245567b18">FGKAbilitySlot::SlotNumber</a></div><div class="ttdeci">int32 SlotNumber</div><div class="ttdef"><b>Definition:</b> GKItemTypes.h:41</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a80ea608c73edccf5544a167d907a9226"><div class="ttname"><a href="classAGKCharacterBase.html#a80ea608c73edccf5544a167d907a9226">AGKCharacterBase::IsDead</a></div><div class="ttdeci">bool IsDead()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:301</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a04d635ef9569a90edd40cfe08832471f"><div class="ttname"><a href="classAGKCharacterBase.html#a04d635ef9569a90edd40cfe08832471f">AGKCharacterBase::SetGenericTeamId</a></div><div class="ttdeci">void SetGenericTeamId(const FGenericTeamId &amp;TeamID) override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:523</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a04d635ef9569a90edd40cfe08832471f"><div class="ttname"><a href="classAGKCharacterBase.html#a04d635ef9569a90edd40cfe08832471f">AGKCharacterBase::SetGenericTeamId</a></div><div class="ttdeci">void SetGenericTeamId(const FGenericTeamId &amp;TeamID) override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:538</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a358558ff71d709b6c8be1602dcbbbb19"><div class="ttname"><a href="classAGKCharacterBase.html#a358558ff71d709b6c8be1602dcbbbb19">AGKCharacterBase::AGKCharacterBase</a></div><div class="ttdeci">AGKCharacterBase()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:25</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a8e36043d5d7518ab8384e9f15c68c5a6"><div class="ttname"><a href="classAGKCharacterBase.html#a8e36043d5d7518ab8384e9f15c68c5a6">AGKCharacterBase::ClearGameplayAbilities</a></div><div class="ttdeci">void ClearGameplayAbilities()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:228</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a4144e9c95be4f18c46274a47d3818efc"><div class="ttname"><a href="classAGKCharacterBase.html#a4144e9c95be4f18c46274a47d3818efc">AGKCharacterBase::LoadFromDataTable</a></div><div class="ttdeci">virtual void LoadFromDataTable(FGKUnitStatic &amp;UnitDef)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:118</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a41afb7113afa1352ac4423ae9ee37d6f"><div class="ttname"><a href="classAGKCharacterBase.html#a41afb7113afa1352ac4423ae9ee37d6f">AGKCharacterBase::OnAbilityRemoved_Native</a></div><div class="ttdeci">void OnAbilityRemoved_Native(FGameplayAbilitySpec &amp;AbilitySpec)</div><div class="ttdoc">Client side register the removal.</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:400</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a4352f2e1f7bf4e2f767e6d6aa31df8c0"><div class="ttname"><a href="classAGKCharacterBase.html#a4352f2e1f7bf4e2f767e6d6aa31df8c0">AGKCharacterBase::BindAbilityActivationFromInputEnum</a></div><div class="ttdeci">void BindAbilityActivationFromInputEnum(UInputComponent *PlayerInputComponent, FGKGameplayAbilityInputBinds InputBinds)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:522</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a5f9ee7baa0ff710336496bf7cd75687d"><div class="ttname"><a href="classAGKCharacterBase.html#a5f9ee7baa0ff710336496bf7cd75687d">AGKCharacterBase::IsReplicationPausedForConnection</a></div><div class="ttdeci">bool IsReplicationPausedForConnection(const FNetViewer &amp;ConnectionOwnerNetViewer)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:62</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_ac2d8c21b438225d759ac45d5753efc9c"><div class="ttname"><a href="classAGKCharacterBase.html#ac2d8c21b438225d759ac45d5753efc9c">AGKCharacterBase::AbilitySpecs</a></div><div class="ttdeci">TMap&lt; FGKAbilitySlot, FGameplayAbilitySpec &gt; AbilitySpecs</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:184</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_ae99d1d22bbbeb6c88d4ff91f814e3284"><div class="ttname"><a href="classAGKCharacterBase.html#ae99d1d22bbbeb6c88d4ff91f814e3284">AGKCharacterBase::AbilitySystemComponent</a></div><div class="ttdeci">UGKAbilitySystemComponent * AbilitySystemComponent</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:192</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_aff167028254934c964c44d6c8e213ba2"><div class="ttname"><a href="classAGKCharacterBase.html#aff167028254934c964c44d6c8e213ba2">AGKCharacterBase::AttributeSet</a></div><div class="ttdeci">UGKAttributeSet * AttributeSet</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:196</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_ac2d8c21b438225d759ac45d5753efc9c"><div class="ttname"><a href="classAGKCharacterBase.html#ac2d8c21b438225d759ac45d5753efc9c">AGKCharacterBase::AbilitySpecs</a></div><div class="ttdeci">TMap&lt; FGKAbilitySlot, FGameplayAbilitySpec &gt; AbilitySpecs</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:201</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_ae99d1d22bbbeb6c88d4ff91f814e3284"><div class="ttname"><a href="classAGKCharacterBase.html#ae99d1d22bbbeb6c88d4ff91f814e3284">AGKCharacterBase::AbilitySystemComponent</a></div><div class="ttdeci">UGKAbilitySystemComponent * AbilitySystemComponent</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:209</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_aff167028254934c964c44d6c8e213ba2"><div class="ttname"><a href="classAGKCharacterBase.html#aff167028254934c964c44d6c8e213ba2">AGKCharacterBase::AttributeSet</a></div><div class="ttdeci">UGKAttributeSet * AttributeSet</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:213</div></div>
 <div class="ttc" id="aclassUGKAbilitySystemComponent_html_a54d0875c83f48ce534c4a8edb44121b3"><div class="ttname"><a href="classUGKAbilitySystemComponent.html#a54d0875c83f48ce534c4a8edb44121b3">UGKAbilitySystemComponent::TryActivateAbility_Point</a></div><div class="ttdeci">void TryActivateAbility_Point(FGameplayAbilitySpecHandle Handle, FVector Point)</div><div class="ttdoc">Level up the given ability.</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.cpp:185</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a6a9b340000f6752ce16abbde22510ade"><div class="ttname"><a href="classAGKCharacterBase.html#a6a9b340000f6752ce16abbde22510ade">AGKCharacterBase::GetAbilityInstance</a></div><div class="ttdeci">UGKGameplayAbility * GetAbilityInstance(FGKAbilitySlot Slot)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:425</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a2196277c864d76abfbd57a47247cf2e9"><div class="ttname"><a href="classAGKCharacterBase.html#a2196277c864d76abfbd57a47247cf2e9">AGKCharacterBase::bPreviousVisibility</a></div><div class="ttdeci">bool bPreviousVisibility</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:256</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a2196277c864d76abfbd57a47247cf2e9"><div class="ttname"><a href="classAGKCharacterBase.html#a2196277c864d76abfbd57a47247cf2e9">AGKCharacterBase::bPreviousVisibility</a></div><div class="ttdeci">bool bPreviousVisibility</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:273</div></div>
 <div class="ttc" id="astructFGKUnitStatic_html_a7eac7439e4b70db0e9edd1486558dbf9"><div class="ttname"><a href="structFGKUnitStatic.html#a7eac7439e4b70db0e9edd1486558dbf9">FGKUnitStatic::HealthRegen</a></div><div class="ttdeci">float HealthRegen</div><div class="ttdef"><b>Definition:</b> GKUnitStatic.h:61</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_adfee2e4a30830490767ab85d7c4d31cf"><div class="ttname"><a href="classAGKCharacterBase.html#adfee2e4a30830490767ab85d7c4d31cf">AGKCharacterBase::MoveToLocation</a></div><div class="ttdeci">void MoveToLocation(FVector loc)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:511</div></div>
+<div class="ttc" id="aGKLog_8h_html_a8f2b71540826e6057237668683c1caf4"><div class="ttname"><a href="GKLog_8h.html#a8f2b71540826e6057237668683c1caf4">GK_WARNING</a></div><div class="ttdeci">#define GK_WARNING(Format,...)</div><div class="ttdef"><b>Definition:</b> GKLog.h:47</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_adfee2e4a30830490767ab85d7c4d31cf"><div class="ttname"><a href="classAGKCharacterBase.html#adfee2e4a30830490767ab85d7c4d31cf">AGKCharacterBase::MoveToLocation</a></div><div class="ttdeci">void MoveToLocation(FVector loc)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:526</div></div>
 <div class="ttc" id="aGKItem_8h_html"><div class="ttname"><a href="GKItem_8h.html">GKItem.h</a></div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a8d1dc7ca224da7d131b8edb92c804304"><div class="ttname"><a href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">AGKCharacterBase::UnitStatic</a></div><div class="ttdeci">FGKUnitStatic * UnitStatic</div><div class="ttdoc">Cached lookup.</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:212</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a8d1dc7ca224da7d131b8edb92c804304"><div class="ttname"><a href="classAGKCharacterBase.html#a8d1dc7ca224da7d131b8edb92c804304">AGKCharacterBase::UnitStatic</a></div><div class="ttdeci">FGKUnitStatic * UnitStatic</div><div class="ttdoc">Cached lookup.</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:229</div></div>
 <div class="ttc" id="aGKUnitStatic_8h_html"><div class="ttname"><a href="GKUnitStatic_8h.html">GKUnitStatic.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a5798e7b745537e752422e58243402f7a"><div class="ttname"><a href="classAGKCharacterBase.html#a5798e7b745537e752422e58243402f7a">AGKCharacterBase::AddPassiveEffect</a></div><div class="ttdeci">void AddPassiveEffect(UGameplayEffect *Effect)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:94</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemComponent_html"><div class="ttname"><a href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.h:64</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemComponent_html"><div class="ttname"><a href="classUGKAbilitySystemComponent.html">UGKAbilitySystemComponent</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.h:91</div></div>
 <div class="ttc" id="astructFGKUnitStatic_html_a79ba74e8822f8a47f4a58904f782878d"><div class="ttname"><a href="structFGKUnitStatic.html#a79ba74e8822f8a47f4a58904f782878d">FGKUnitStatic::Health</a></div><div class="ttdeci">float Health</div><div class="ttdef"><b>Definition:</b> GKUnitStatic.h:58</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a5d17b44503fb294d4ef7e25b3c738979"><div class="ttname"><a href="classAGKCharacterBase.html#a5d17b44503fb294d4ef7e25b3c738979">AGKCharacterBase::EquipItem</a></div><div class="ttdeci">void EquipItem(EGK_ItemSlot Slot, TSubclassOf&lt; UGKGameplayAbility &gt; AbilityClass)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:411</div></div>
 <div class="ttc" id="aGKFogOfWarComponent_8h_html"><div class="ttname"><a href="GKFogOfWarComponent_8h.html">GKFogOfWarComponent.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a4712d2b4ba9328621d64fabad0961a0b"><div class="ttname"><a href="classAGKCharacterBase.html#a4712d2b4ba9328621d64fabad0961a0b">AGKCharacterBase::BeginPlay</a></div><div class="ttdeci">virtual void BeginPlay() override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:303</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a841bb8d69d63a1799d973b50d8971303"><div class="ttname"><a href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">AGKCharacterBase::InputsBound</a></div><div class="ttdeci">bool InputsBound</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:111</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a841bb8d69d63a1799d973b50d8971303"><div class="ttname"><a href="classAGKCharacterBase.html#a841bb8d69d63a1799d973b50d8971303">AGKCharacterBase::InputsBound</a></div><div class="ttdeci">bool InputsBound</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:115</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a10ea7eaac68ce4ea253250c866143781"><div class="ttname"><a href="classAGKCharacterBase.html#a10ea7eaac68ce4ea253250c866143781">AGKCharacterBase::GrantAbility</a></div><div class="ttdeci">void GrantAbility(FGKAbilitySlot Slot, TSubclassOf&lt; UGKGameplayAbility &gt; AbilityClass, int Level=0)</div><div class="ttdoc">Can only be called by the Authority,.</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:373</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a7df93c324d5cbdbbe2ebd9ee4baad4da"><div class="ttname"><a href="classAGKCharacterBase.html#a7df93c324d5cbdbbe2ebd9ee4baad4da">AGKCharacterBase::ReceiveTeamAssigned</a></div><div class="ttdeci">void ReceiveTeamAssigned(FGenericTeamId NewTeam)</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a5455169ed23821d15f6a6d6ff547c4ff"><div class="ttname"><a href="classAGKCharacterBase.html#a5455169ed23821d15f6a6d6ff547c4ff">AGKCharacterBase::OnReplicationPausedChanged</a></div><div class="ttdeci">void OnReplicationPausedChanged(bool bIsReplicationPaused)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:44</div></div>
@@ -357,18 +369,21 @@ $(function() {
 <div class="ttc" id="astructFGKAbilitySlot_html"><div class="ttname"><a href="structFGKAbilitySlot.html">FGKAbilitySlot</a></div><div class="ttdef"><b>Definition:</b> GKItemTypes.h:28</div></div>
 <div class="ttc" id="aGKLog_8h_html"><div class="ttname"><a href="GKLog_8h.html">GKLog.h</a></div></div>
 <div class="ttc" id="aGKGameplayAbility_8cpp_html_adce0a323e5bfb7eb46959e928ea2536e"><div class="ttname"><a href="GKGameplayAbility_8cpp.html#adce0a323e5bfb7eb46959e928ea2536e">NewPassiveRegenEffect</a></div><div class="ttdeci">UGameplayEffect * NewPassiveRegenEffect(UObject *Parent, FGameplayAttribute Attribute, float Value, float Period, FName name)</div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.cpp:1028</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_ac8ac30509bad1564a530fd1c9b584804"><div class="ttname"><a href="classAGKCharacterBase.html#ac8ac30509bad1564a530fd1c9b584804">AGKCharacterBase::UnitDataTable</a></div><div class="ttdeci">class UDataTable * UnitDataTable</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:206</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_ac8ac30509bad1564a530fd1c9b584804"><div class="ttname"><a href="classAGKCharacterBase.html#ac8ac30509bad1564a530fd1c9b584804">AGKCharacterBase::UnitDataTable</a></div><div class="ttdeci">class UDataTable * UnitDataTable</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:223</div></div>
 <div class="ttc" id="aclassUGKGameplayAbility_html"><div class="ttname"><a href="classUGKGameplayAbility.html">UGKGameplayAbility</a></div><div class="ttdef"><b>Definition:</b> GKGameplayAbility.h:51</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_acbf60803193e37369950d23b88c4196b"><div class="ttname"><a href="classAGKCharacterBase.html#acbf60803193e37369950d23b88c4196b">AGKCharacterBase::OnDeselect</a></div><div class="ttdeci">void OnDeselect()</div></div>
 <div class="ttc" id="aGKAnimationSet_8h_html_af1632aa373bb04c47e7939d94b8becaba6097f89e3092d4ccd249c9d479785c1f"><div class="ttname"><a href="GKAnimationSet_8h.html#af1632aa373bb04c47e7939d94b8becaba6097f89e3092d4ccd249c9d479785c1f">EGK_AbilityAnimation::Death</a></div><div class="ttdeci">@ Death</div></div>
 <div class="ttc" id="aGKAbilitySystemGlobals_8h_html_a20652666f96f84cc9e670f3c0abedf48"><div class="ttname"><a href="GKAbilitySystemGlobals_8h.html#a20652666f96f84cc9e670f3c0abedf48">Dispel</a></div><div class="ttdeci">FNativeGameplayTag Dispel</div></div>
 <div class="ttc" id="aGKFogOfWarLibrary_8h_html"><div class="ttname"><a href="GKFogOfWarLibrary_8h.html">GKFogOfWarLibrary.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html"><div class="ttname"><a href="classAGKCharacterBase.html">AGKCharacterBase</a></div><div class="ttdef"><b>Definition:</b> GKCharacter.h:46</div></div>
+<div class="ttc" id="astructFGKGameplayAbilityInputBinds_html"><div class="ttname"><a href="structFGKGameplayAbilityInputBinds.html">FGKGameplayAbilityInputBinds</a></div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.h:61</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_acb76e6120076ce16854139dcd124906b"><div class="ttname"><a href="classAGKCharacterBase.html#acb76e6120076ce16854139dcd124906b">AGKCharacterBase::ActivateAbility</a></div><div class="ttdeci">bool ActivateAbility(FGKAbilitySlot Slot)</div><div class="ttdoc">Low level ability activation.</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:475</div></div>
 <div class="ttc" id="aclassIGKSelectableInterface_html"><div class="ttname"><a href="classIGKSelectableInterface.html">IGKSelectableInterface</a></div><div class="ttdef"><b>Definition:</b> GKSelectableInterface.h:17</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_ae53303a2162d6035566ff2f9409aef3b"><div class="ttname"><a href="classAGKCharacterBase.html#ae53303a2162d6035566ff2f9409aef3b">AGKCharacterBase::OnSelect</a></div><div class="ttdeci">void OnSelect()</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a2ddc3bc87c0b76daef40d575bd2e5a4f"><div class="ttname"><a href="classAGKCharacterBase.html#a2ddc3bc87c0b76daef40d575bd2e5a4f">AGKCharacterBase::SetCharacterLevel</a></div><div class="ttdeci">virtual bool SetCharacterLevel(int32 NewLevel)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:362</div></div>
 <div class="ttc" id="astructFGKUnitStatic_html_a60d55abae84030b2143faf3c3b77b884"><div class="ttname"><a href="structFGKUnitStatic.html#a60d55abae84030b2143faf3c3b77b884">FGKUnitStatic::Mana</a></div><div class="ttdeci">float Mana</div><div class="ttdef"><b>Definition:</b> GKUnitStatic.h:64</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a93f83e80714c036313ec172c08177c5e"><div class="ttname"><a href="classAGKCharacterBase.html#a93f83e80714c036313ec172c08177c5e">AGKCharacterBase::OnSetupPlayerInputComponent</a></div><div class="ttdeci">void OnSetupPlayerInputComponent(UInputComponent *PlayerInputComponent)</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a87ecdfb9a332e618dbda831cd595dcc9"><div class="ttname"><a href="classAGKCharacterBase.html#a87ecdfb9a332e618dbda831cd595dcc9">AGKCharacterBase::OnSetupPlayerInputComponent_Implementation</a></div><div class="ttdeci">void OnSetupPlayerInputComponent_Implementation(UInputComponent *PlayerInputComponent)</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:503</div></div>
 <div class="ttc" id="astructFGKAnimationSet_html_a89bd1a53572df14ff734a051b07f3c8b"><div class="ttname"><a href="structFGKAnimationSet.html#a89bd1a53572df14ff734a051b07f3c8b">FGKAnimationSet::Sample</a></div><div class="ttdeci">class UAnimMontage * Sample(EGK_AbilityAnimation AnimKind) const</div><div class="ttdef"><b>Definition:</b> GKAnimationSet.h:64</div></div>
 <div class="ttc" id="aGKAbilityInputs_8h_html_a5926be264f6313e59bb65648750bdd6a"><div class="ttname"><a href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a></div><div class="ttdeci">EGK_MOBA_AbilityInputID</div><div class="ttdef"><b>Definition:</b> GKAbilityInputs.h:12</div></div>
 <div class="ttc" id="aclassUGKAttributeSet_html_abe5f3cb9c179e260a855fa0f0ba24504"><div class="ttname"><a href="classUGKAttributeSet.html#abe5f3cb9c179e260a855fa0f0ba24504">UGKAttributeSet::Health</a></div><div class="ttdeci">FGameplayAttributeData Health</div><div class="ttdef"><b>Definition:</b> GKAttributeSet.h:43</div></div>
@@ -380,7 +395,7 @@ $(function() {
 <div class="ttc" id="aclassAGKCharacterBase_html_a84546e92bcddeb568ceeebf9bcf80f19"><div class="ttname"><a href="classAGKCharacterBase.html#a84546e92bcddeb568ceeebf9bcf80f19">AGKCharacterBase::GetCharacterLevel</a></div><div class="ttdeci">virtual int32 GetCharacterLevel() const</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:360</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a84e87007ed6430b70453c855ec3925d1"><div class="ttname"><a href="classAGKCharacterBase.html#a84e87007ed6430b70453c855ec3925d1">AGKCharacterBase::Select</a></div><div class="ttdeci">void Select()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:457</div></div>
 <div class="ttc" id="aGKCharacter_8h_html"><div class="ttname"><a href="GKCharacter_8h.html">GKCharacter.h</a></div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a23e65d547bea1e333092dabcaa59d602"><div class="ttname"><a href="classAGKCharacterBase.html#a23e65d547bea1e333092dabcaa59d602">AGKCharacterBase::GetGenericTeamId</a></div><div class="ttdeci">FGenericTeamId GetGenericTeamId() const override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:538</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a23e65d547bea1e333092dabcaa59d602"><div class="ttname"><a href="classAGKCharacterBase.html#a23e65d547bea1e333092dabcaa59d602">AGKCharacterBase::GetGenericTeamId</a></div><div class="ttdeci">FGenericTeamId GetGenericTeamId() const override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:553</div></div>
 <div class="ttc" id="aclassUGKAttributeSet_html"><div class="ttname"><a href="classUGKAttributeSet.html">UGKAttributeSet</a></div><div class="ttdef"><b>Definition:</b> GKAttributeSet.h:31</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a5bce1f0dc3c0490858750abbbc499a3c"><div class="ttname"><a href="classAGKCharacterBase.html#a5bce1f0dc3c0490858750abbbc499a3c">AGKCharacterBase::AbilityCount</a></div><div class="ttdeci">int AbilityCount() const</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:487</div></div>
 <div class="ttc" id="astructFGKUnitStatic_html_aecc81b005cf9ecf5aa1d621e0bf9d0d0"><div class="ttname"><a href="structFGKUnitStatic.html#aecc81b005cf9ecf5aa1d621e0bf9d0d0">FGKUnitStatic::Abilities</a></div><div class="ttdeci">TArray&lt; TSubclassOf&lt; UGKGameplayAbility &gt; &gt; Abilities</div><div class="ttdef"><b>Definition:</b> GKUnitStatic.h:40</div></div>
@@ -390,10 +405,10 @@ $(function() {
 <div class="ttc" id="aGKInventoryInterface_8h_html"><div class="ttname"><a href="GKInventoryInterface_8h.html">GKInventoryInterface.h</a></div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a47b47b77c5b84d7a4ef54f8b640cb2fd"><div class="ttname"><a href="classAGKCharacterBase.html#a47b47b77c5b84d7a4ef54f8b640cb2fd">AGKCharacterBase::OnNewAbility_Native</a></div><div class="ttdeci">void OnNewAbility_Native(FGameplayAbilitySpec &amp;AbilitySpec)</div><div class="ttdoc">Client side register the granted ability.</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:461</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a8b9c9741d5cd90d2e59ccd93c88b3812"><div class="ttname"><a href="classAGKCharacterBase.html#a8b9c9741d5cd90d2e59ccd93c88b3812">AGKCharacterBase::GetLifetimeReplicatedProps</a></div><div class="ttdeci">virtual void GetLifetimeReplicatedProps(TArray&lt; FLifetimeProperty &gt; &amp;OutLifetimeProps) const override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:349</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a65cd23392f08a0066c9ee827540c06e2"><div class="ttname"><a href="classAGKCharacterBase.html#a65cd23392f08a0066c9ee827540c06e2">AGKCharacterBase::Team</a></div><div class="ttdeci">FGenericTeamId Team</div><div class="ttdoc">This is set by the Player Controller on possession.</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:239</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a65cd23392f08a0066c9ee827540c06e2"><div class="ttname"><a href="classAGKCharacterBase.html#a65cd23392f08a0066c9ee827540c06e2">AGKCharacterBase::Team</a></div><div class="ttdeci">FGenericTeamId Team</div><div class="ttdoc">This is set by the Player Controller on possession.</div><div class="ttdef"><b>Definition:</b> GKCharacter.h:256</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_ad4db88647373769021c0046af095f673"><div class="ttname"><a href="classAGKCharacterBase.html#ad4db88647373769021c0046af095f673">AGKCharacterBase::GetUnitStatic</a></div><div class="ttdeci">FGKUnitStatic * GetUnitStatic()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:182</div></div>
-<div class="ttc" id="aclassUGKAbilitySystemComponent_html_ae49d4d10f7d8c7527fb3c17f2bba7ffe"><div class="ttname"><a href="classUGKAbilitySystemComponent.html#ae49d4d10f7d8c7527fb3c17f2bba7ffe">UGKAbilitySystemComponent::Initialized</a></div><div class="ttdeci">bool Initialized</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.h:138</div></div>
-<div class="ttc" id="aclassAGKCharacterBase_html_a752840b76d6d4a8b3537d81d461d32e5"><div class="ttname"><a href="classAGKCharacterBase.html#a752840b76d6d4a8b3537d81d461d32e5">AGKCharacterBase::OnRep_Team</a></div><div class="ttdeci">void OnRep_Team()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:533</div></div>
+<div class="ttc" id="aclassUGKAbilitySystemComponent_html_ae49d4d10f7d8c7527fb3c17f2bba7ffe"><div class="ttname"><a href="classUGKAbilitySystemComponent.html#ae49d4d10f7d8c7527fb3c17f2bba7ffe">UGKAbilitySystemComponent::Initialized</a></div><div class="ttdeci">bool Initialized</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.h:165</div></div>
+<div class="ttc" id="aclassAGKCharacterBase_html_a752840b76d6d4a8b3537d81d461d32e5"><div class="ttname"><a href="classAGKCharacterBase.html#a752840b76d6d4a8b3537d81d461d32e5">AGKCharacterBase::OnRep_Team</a></div><div class="ttdeci">void OnRep_Team()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:548</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a27dac45cfdff08cfa1bdf18a1f4a6586"><div class="ttname"><a href="classAGKCharacterBase.html#a27dac45cfdff08cfa1bdf18a1f4a6586">AGKCharacterBase::GetAttributeSet</a></div><div class="ttdeci">UGKAttributeSet * GetAttributeSet()</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:489</div></div>
 <div class="ttc" id="aclassUGKAbilitySystemComponent_html_a64a351bb80228fe3f13395f6818ddd8a"><div class="ttname"><a href="classUGKAbilitySystemComponent.html#a64a351bb80228fe3f13395f6818ddd8a">UGKAbilitySystemComponent::IsInitialized</a></div><div class="ttdeci">bool IsInitialized() const</div><div class="ttdef"><b>Definition:</b> GKAbilitySystemComponent.cpp:78</div></div>
 <div class="ttc" id="aclassAGKCharacterBase_html_a71b4842e4ccc53792068706194cfb04d"><div class="ttname"><a href="classAGKCharacterBase.html#a71b4842e4ccc53792068706194cfb04d">AGKCharacterBase::PossessedBy</a></div><div class="ttdeci">virtual void PossessedBy(AController *NewController) override</div><div class="ttdef"><b>Definition:</b> GKCharacter.cpp:323</div></div>

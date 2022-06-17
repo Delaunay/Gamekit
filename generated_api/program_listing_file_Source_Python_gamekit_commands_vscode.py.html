@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -142,11 +143,11 @@
         <span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
         <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">default_engine</span><span class="p">)</span>
 
-        <span class="n">python_section</span> <span class="o">=</span> <span class="s2">&quot;[/Script/PythonScriptPlugin.PythonScriptPluginUserSettings]&quot;</span>
-        <span class="n">config</span><span class="p">[</span><span class="n">python_section</span><span class="p">][</span><span class="s2">&quot;bDeveloperMode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">config</span><span class="p">[</span><span class="n">python_section</span><span class="p">][</span><span class="s2">&quot;bEnableContentBrowserIntegration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">python_section</span> <span class="o">=</span> <span class="s2">&quot;/Script/PythonScriptPlugin.PythonScriptPluginUserSettings&quot;</span>
+        <span class="n">config</span><span class="p">[</span><span class="n">python_section</span><span class="p">][</span><span class="s2">&quot;bDeveloperMode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+        <span class="n">config</span><span class="p">[</span><span class="n">python_section</span><span class="p">][</span><span class="s2">&quot;bEnableContentBrowserIntegration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">default_engine</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">default_engine</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
             <span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>

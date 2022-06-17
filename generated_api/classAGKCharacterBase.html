@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                5d1e3b04f
+                030b02932
 
               </div>
 <div role="search">
@@ -48,6 +48,7 @@
               <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
 <ul>
@@ -100,6 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structFGKExperience.html">Struct FGKExperience</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKFactionMinimap.html">Struct FGKFactionMinimap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKFailureTagMapping.html">Struct FGKFailureTagMapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structFGKGameplayAbilityInputBinds.html">Struct FGKGameplayAbilityInputBinds</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainer.html">Struct FGKGameplayEffectContainer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGameplayEffectContainerSpec.html">Struct FGKGameplayEffectContainerSpec</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structFGKGrid.html">Struct FGKGrid</a></li>
@@ -164,6 +166,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1init_1_1Init.html">Class Init</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1install_1_1Install.html">Class Install</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1local_1_1Local.html">Class Local</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1python_1_1Python.html">Class Python</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1tests_1_1RunTests.html">Class RunTests</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1commands_1_1vscode_1_1VSCode.html">Class VSCode</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classgamekit_1_1conf_1_1Command.html">Class Command</a></li>
@@ -405,6 +408,23 @@
 <dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent">
 <span id="_CPPv3N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent"></span><span id="_CPPv2N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent"></span><span id="AGKCharacterBase::SetupPlayerInputComponent__UInputComponentP"></span><span class="target" id="classAGKCharacterBase_1aeb061d8918eb72747e119d438e4ad835"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetupPlayerInputComponent</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UInputComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">PlayerInputComponent</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase25SetupPlayerInputComponentEP15UInputComponent" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase27OnSetupPlayerInputComponentEP15UInputComponent">
+<span id="_CPPv3N16AGKCharacterBase27OnSetupPlayerInputComponentEP15UInputComponent"></span><span id="_CPPv2N16AGKCharacterBase27OnSetupPlayerInputComponentEP15UInputComponent"></span><span id="AGKCharacterBase::OnSetupPlayerInputComponent__UInputComponentP"></span><span class="target" id="classAGKCharacterBase_1a93f83e80714c036313ec172c08177c5e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnSetupPlayerInputComponent</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UInputComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">PlayerInputComponent</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase27OnSetupPlayerInputComponentEP15UInputComponent" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Give the opportunity to user to bind their abilities using a Enum here see <code class="docutils literal notranslate"><span class="pre">BindAbilityActivationFromInputEnum</span></code> </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase42OnSetupPlayerInputComponent_ImplementationEP15UInputComponent">
+<span id="_CPPv3N16AGKCharacterBase42OnSetupPlayerInputComponent_ImplementationEP15UInputComponent"></span><span id="_CPPv2N16AGKCharacterBase42OnSetupPlayerInputComponent_ImplementationEP15UInputComponent"></span><span id="AGKCharacterBase::OnSetupPlayerInputComponent_Implementation__UInputComponentP"></span><span class="target" id="classAGKCharacterBase_1a87ecdfb9a332e618dbda831cd595dcc9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnSetupPlayerInputComponent_Implementation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UInputComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">PlayerInputComponent</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase42OnSetupPlayerInputComponent_ImplementationEP15UInputComponent" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds">
+<span id="_CPPv3N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds"></span><span id="_CPPv2N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds"></span><span id="AGKCharacterBase::BindAbilityActivationFromInputEnum__UInputComponentP.FGKGameplayAbilityInputBinds"></span><span class="target" id="classAGKCharacterBase_1a4352f2e1f7bf4e2f767e6d6aa31df8c0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BindAbilityActivationFromInputEnum</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">UInputComponent</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">PlayerInputComponent</span></span>, <a class="reference internal" href="structFGKGameplayAbilityInputBinds.html#_CPPv428FGKGameplayAbilityInputBinds" title="FGKGameplayAbilityInputBinds"><span class="n"><span class="pre">FGKGameplayAbilityInputBinds</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">InputBinds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure input callbacks to directly call the ability system component The num is used to map an action name (enum name) to an input id (enum value) A callaback is setup making the action name key press calling the ability system with the corresponding enum value When abilities are granted they are assigned an input it (enum value) when the action is pressed the ability system will activate the corresponding ability This removes the need for custom setup in blueprint and automate all the input binding boilerplate </p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N16AGKCharacterBase14MoveToLocationE7FVector">

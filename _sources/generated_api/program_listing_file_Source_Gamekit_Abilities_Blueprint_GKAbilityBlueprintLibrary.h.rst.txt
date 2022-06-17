@@ -105,4 +105,7 @@ Program Listing for File GKAbilityBlueprintLibrary.h
    
        UFUNCTION(BlueprintPure, Category = "UI")
        static FText GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, bool& bHandled);
+   
+       UFUNCTION(BlueprintPure)
+       static UEnum* GetDefaultAbilityInputEnum();
    };

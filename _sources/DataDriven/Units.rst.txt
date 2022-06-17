@@ -3,6 +3,11 @@ Units
 
 Similar to abilities units are defined in json. It is very easy to create/add new units to the game.
 
+.. note::
+
+   Work in progress
+
+
 .. code-block::
 
 	{

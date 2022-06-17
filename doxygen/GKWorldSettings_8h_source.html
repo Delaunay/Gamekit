@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -117,47 +117,50 @@ $(function() {
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    GENERATED_BODY()</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Size of the Map in total in mm (1e3)</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// The map MUST be centered on (0, 0)</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// You can avoid using this if you are using a Fog of War Volume</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// The Volume knows its size and can be fetched using ``GetFogOfWarMapSize``</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Which simplify your life as you do not have to set the size of everything</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = <span class="stringliteral">&quot;Level|Constants&quot;</span>)</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a808f42e4d3c8f0756dafdeeeb953c2bd">   54</a></span>&#160;    FVector2D MapSize;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = &quot;Teams&quot;)</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a8c4e698245ead32714b4115fd88b1d52">   59</a></span>&#160;    FName DefaultTeam;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const *GetTeamInfo(<span class="keywordtype">int</span> Index) const;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const *GetTeamInfoFromName(FName) const;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> BuildTeamCache() const;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a54c2dc7ff1426de96de6c6e80871257f">   70</a></span>&#160;    TArray&lt;<a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> *&gt; const &amp;GetTeams() { </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        BuildTeamCache();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> TeamCache;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    UPROPERTY(EditDefaultsOnly, Category = <span class="stringliteral">&quot;Teams&quot;</span>)</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a90768057e309a41e0c3aebc594778912">   78</a></span>&#160;    class UDataTable *Teams;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a28cf47c8baec7435e424d3b453d4fac0">   80</a></span>&#160;    mutable TArray&lt;<a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a>*&gt; TeamCache;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classAGKWorldSettings.html">AGKWorldSettings</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Size of the Map in total in mm (1e3)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// The map MUST be centered on (0, 0)</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// You can avoid using this if you are using a Fog of War Volume</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// The Volume knows its size and can be fetched using ``GetFogOfWarMapSize``</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Which simplify your life as you do not have to set the size of everything</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = <span class="stringliteral">&quot;Level|Constants&quot;</span>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a808f42e4d3c8f0756dafdeeeb953c2bd">   56</a></span>&#160;    FVector2D MapSize;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = &quot;Teams&quot;)</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a8c4e698245ead32714b4115fd88b1d52">   61</a></span>&#160;    FName DefaultTeam;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const *GetTeamInfo(<span class="keywordtype">int</span> Index) const;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const *GetTeamInfoFromName(FName) const;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> BuildTeamCache() const;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a54c2dc7ff1426de96de6c6e80871257f">   72</a></span>&#160;    TArray&lt;<a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> *&gt; const &amp;GetTeams() { </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        BuildTeamCache();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">return</span> TeamCache;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    UPROPERTY(EditDefaultsOnly, Category = <span class="stringliteral">&quot;Teams&quot;</span>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a90768057e309a41e0c3aebc594778912">   80</a></span>&#160;    class UDataTable *Teams;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classAGKWorldSettings.html#a28cf47c8baec7435e424d3b453d4fac0">   82</a></span>&#160;    mutable TArray&lt;<a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a>*&gt; TeamCache;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructFGKTeamInfo_html_a9d05ceffe47a80e55ec62ca2301f6bcf"><div class="ttname"><a href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">FGKTeamInfo::TeamId</a></div><div class="ttdeci">uint8_t TeamId</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:19</div></div>
-<div class="ttc" id="aclassAGKWorldSettings_html_aaec73cc06f651e2ea055f5f419f0ad6e"><div class="ttname"><a href="classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e">AGKWorldSettings::BuildTeamCache</a></div><div class="ttdeci">void BuildTeamCache() const</div><div class="ttdoc">Build an array of TeamInfo from the DataTable.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:10</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_aaec73cc06f651e2ea055f5f419f0ad6e"><div class="ttname"><a href="classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e">AGKWorldSettings::BuildTeamCache</a></div><div class="ttdeci">void BuildTeamCache() const</div><div class="ttdoc">Build an array of TeamInfo from the DataTable.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:14</div></div>
 <div class="ttc" id="aclassAGKWorldSettings_html"><div class="ttname"><a href="classAGKWorldSettings.html">AGKWorldSettings</a></div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:43</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
 <div class="ttc" id="aGKLog_8h_html_a8f2b71540826e6057237668683c1caf4"><div class="ttname"><a href="GKLog_8h.html#a8f2b71540826e6057237668683c1caf4">GK_WARNING</a></div><div class="ttdeci">#define GK_WARNING(Format,...)</div><div class="ttdef"><b>Definition:</b> GKLog.h:47</div></div>
-<div class="ttc" id="aclassAGKWorldSettings_html_a90768057e309a41e0c3aebc594778912"><div class="ttname"><a href="classAGKWorldSettings.html#a90768057e309a41e0c3aebc594778912">AGKWorldSettings::Teams</a></div><div class="ttdeci">class UDataTable * Teams</div><div class="ttdoc">List of all the teams in this game.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:78</div></div>
-<div class="ttc" id="aclassAGKWorldSettings_html_a28cf47c8baec7435e424d3b453d4fac0"><div class="ttname"><a href="classAGKWorldSettings.html#a28cf47c8baec7435e424d3b453d4fac0">AGKWorldSettings::TeamCache</a></div><div class="ttdeci">TArray&lt; FGKTeamInfo * &gt; TeamCache</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:80</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_a90768057e309a41e0c3aebc594778912"><div class="ttname"><a href="classAGKWorldSettings.html#a90768057e309a41e0c3aebc594778912">AGKWorldSettings::Teams</a></div><div class="ttdeci">class UDataTable * Teams</div><div class="ttdoc">List of all the teams in this game.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:80</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_a28cf47c8baec7435e424d3b453d4fac0"><div class="ttname"><a href="classAGKWorldSettings.html#a28cf47c8baec7435e424d3b453d4fac0">AGKWorldSettings::TeamCache</a></div><div class="ttdeci">TArray&lt; FGKTeamInfo * &gt; TeamCache</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:82</div></div>
 <div class="ttc" id="aGKWorldSettings_8h_html"><div class="ttname"><a href="GKWorldSettings_8h.html">GKWorldSettings.h</a></div></div>
-<div class="ttc" id="aclassAGKWorldSettings_html_aaa0f21b197f3796b3268f366bc89b8d6"><div class="ttname"><a href="classAGKWorldSettings.html#aaa0f21b197f3796b3268f366bc89b8d6">AGKWorldSettings::GetTeamInfoFromName</a></div><div class="ttdeci">const FGKTeamInfo * GetTeamInfoFromName(FName) const</div><div class="ttdoc">Fetch Team info using.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:39</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_aaa0f21b197f3796b3268f366bc89b8d6"><div class="ttname"><a href="classAGKWorldSettings.html#aaa0f21b197f3796b3268f366bc89b8d6">AGKWorldSettings::GetTeamInfoFromName</a></div><div class="ttdeci">const FGKTeamInfo * GetTeamInfoFromName(FName) const</div><div class="ttdoc">Fetch Team info using.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:43</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_aa8c2c7960c8b667715abbeb0df71fc13"><div class="ttname"><a href="classAGKWorldSettings.html#aa8c2c7960c8b667715abbeb0df71fc13">AGKWorldSettings::AGKWorldSettings</a></div><div class="ttdeci">AGKWorldSettings()</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:10</div></div>
 <div class="ttc" id="aGKLog_8h_html"><div class="ttname"><a href="GKLog_8h.html">GKLog.h</a></div></div>
 <div class="ttc" id="astructFGKTeamInfo_html"><div class="ttname"><a href="structFGKTeamInfo.html">FGKTeamInfo</a></div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:14</div></div>
-<div class="ttc" id="aclassAGKWorldSettings_html_a936f934b779bc30a11097ce2a6ad3173"><div class="ttname"><a href="classAGKWorldSettings.html#a936f934b779bc30a11097ce2a6ad3173">AGKWorldSettings::GetTeamInfo</a></div><div class="ttdeci">const FGKTeamInfo * GetTeamInfo(int Index) const</div><div class="ttdoc">Fetch Team info using TeamID.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:30</div></div>
+<div class="ttc" id="aclassAGKWorldSettings_html_a936f934b779bc30a11097ce2a6ad3173"><div class="ttname"><a href="classAGKWorldSettings.html#a936f934b779bc30a11097ce2a6ad3173">AGKWorldSettings::GetTeamInfo</a></div><div class="ttdeci">const FGKTeamInfo * GetTeamInfo(int Index) const</div><div class="ttdoc">Fetch Team info using TeamID.</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.cpp:34</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

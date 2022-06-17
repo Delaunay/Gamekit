@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -112,8 +112,10 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a277c8bf5889e2557463ff50778237dee"><td class="memItemLeft" align="right" valign="top">static FVector2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#a277c8bf5889e2557463ff50778237dee">EdgePanDirection</a> (FVector2D MouseXYViewport)</td></tr>
 <tr class="separator:a277c8bf5889e2557463ff50778237dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3eedf24bb6e3892009932dd83793bae"><td class="memItemLeft" align="right" valign="top">static const TArray&lt; FInputActionKeyMapping &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">GetKeysForAction</a> (APlayerController *Controller, const FName &amp;ActionName)</td></tr>
+<tr class="memdesc:ab3eedf24bb6e3892009932dd83793bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch a lost of Keys matching a given action name.  <a href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">More...</a><br /></td></tr>
 <tr class="separator:ab3eedf24bb6e3892009932dd83793bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add546c9f93631f074f6938bc919356fd"><td class="memItemLeft" align="right" valign="top">static FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">GetKeysForInputID</a> (APlayerController *Controller, const <a class="el" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> InputID)</td></tr>
+<tr class="memdesc:add546c9f93631f074f6938bc919356fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <code>GetKeysFromInputEnum</code> but assume <code>EGK_MOBA_AbilityInputID</code> as its input enum.  <a href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">More...</a><br /></td></tr>
 <tr class="separator:add546c9f93631f074f6938bc919356fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e77d3dcf81589b35d8a9c5a0da9560"><td class="memItemLeft" align="right" valign="top">static FText&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560">GetKeysFromInputEnum</a> (APlayerController *Controller, UEnum *Enum, int Value)</td></tr>
 <tr class="separator:a62e77d3dcf81589b35d8a9c5a0da9560"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +181,8 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Fetch a lost of Keys matching a given action name. </p>
+
 </div>
 </div>
 <a id="add546c9f93631f074f6938bc919356fd"></a>
@@ -214,14 +218,16 @@ Static Private Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Same as <code>GetKeysFromInputEnum</code> but assume <code>EGK_MOBA_AbilityInputID</code> as its input enum. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph.png" border="0" usemap="#classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph" alt=""/></div>
 <map name="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph" id="classUGKInputLibrary_add546c9f93631f074f6938bc919356fd_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,196,47"/>
+<area shape="rect" title="Same as GetKeysFromInputEnum but assume EGK_MOBA_AbilityInputID as its input enum." alt="" coords="5,5,196,47"/>
 <area shape="rect" href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560" title=" " alt="" coords="244,5,435,47"/>
-<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title=" " alt="" coords="483,5,673,47"/>
+<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title="Fetch a lost of Keys matching a given action name." alt="" coords="483,5,673,47"/>
 </map>
 </div>
 
@@ -266,13 +272,29 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
+<p>Returns the Name of the key binded to a given Input Slot</p>
+<pre class="fragment">embed:rst:leading-asterisk
+* 
+* Examples
+* --------
+* 
+* .. code-block:: cpp
+* 
+*      FText KeyName = GetKeysFromInputEnum(
+*          Controller,
+*          StaticEnum&lt;EGK_MOBA_AbilityInputID&gt;(),
+*          int(EGK_MOBA_AbilityInputID::Skill1)
+*      );
+* 
+*      Print(KeyName); // "Q"
+* 
+* </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph.png" border="0" usemap="#classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph" alt=""/></div>
 <map name="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph" id="classUGKInputLibrary_a62e77d3dcf81589b35d8a9c5a0da9560_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,196,47"/>
-<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title=" " alt="" coords="244,5,435,47"/>
+<area shape="rect" href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae" title="Fetch a lost of Keys matching a given action name." alt="" coords="244,5,435,47"/>
 </map>
 </div>
 

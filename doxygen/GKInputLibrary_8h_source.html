@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">5d1e3b04f</span>
+   &#160;<span id="projectnumber">030b02932</span>
    </div>
   </td>
  </tr>
@@ -116,15 +116,15 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input|EdgePan&quot;</span>)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> FVector2D EdgePanDirection(FVector2D MouseXYViewport);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> TArray&lt;FInputActionKeyMapping&gt;&amp; GetKeysForAction(APlayerController* Controller, <span class="keyword">const</span> FName&amp; ActionName);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">static</span> FText GetKeysForInputID(APlayerController* Controller, <span class="keyword">const</span> <a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> InputID);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> FText GetKeysFromInputEnum(APlayerController* Controller, UEnum* Enum, <span class="keywordtype">int</span> Value);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> TArray&lt;FInputActionKeyMapping&gt;&amp; GetKeysForAction(APlayerController* Controller, <span class="keyword">const</span> FName&amp; ActionName);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> FText GetKeysForInputID(APlayerController* Controller, <span class="keyword">const</span> <a class="code" href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a> InputID);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Input&quot;</span>)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">static</span> FText GetKeysFromInputEnum(APlayerController* Controller, UEnum* Enum, <span class="keywordtype">int</span> Value);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassUGKInputLibrary_html_a80e8d1deef9bda009bf78d45a97a2df3"><div class="ttname"><a href="classUGKInputLibrary.html#a80e8d1deef9bda009bf78d45a97a2df3">UGKInputLibrary::MakeAxis3DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis3DAction(FVector value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:17</div></div>
 <div class="ttc" id="aclassUGKInputLibrary_html_aa0c30fc358190da3accd5958a029afc1"><div class="ttname"><a href="classUGKInputLibrary.html#aa0c30fc358190da3accd5958a029afc1">UGKInputLibrary::IsEdgePanning</a></div><div class="ttdeci">static bool IsEdgePanning(FVector2D MouseXYViewport, FVector4 Margins)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:19</div></div>
@@ -134,11 +134,11 @@ $(function() {
 <div class="ttc" id="aclassUGKInputLibrary_html_a62e77d3dcf81589b35d8a9c5a0da9560"><div class="ttname"><a href="classUGKInputLibrary.html#a62e77d3dcf81589b35d8a9c5a0da9560">UGKInputLibrary::GetKeysFromInputEnum</a></div><div class="ttdeci">static FText GetKeysFromInputEnum(APlayerController *Controller, UEnum *Enum, int Value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:53</div></div>
 <div class="ttc" id="aclassUGKInputLibrary_html_a5dbb3bcec742bce740f3df5b1ad20e12"><div class="ttname"><a href="classUGKInputLibrary.html#a5dbb3bcec742bce740f3df5b1ad20e12">UGKInputLibrary::MakeAxis1DAction</a></div><div class="ttdeci">static FInputActionValue MakeAxis1DAction(float value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:13</div></div>
 <div class="ttc" id="aclassUGKInputLibrary_html_a963a6f32ce2357d54aca008a5932e472"><div class="ttname"><a href="classUGKInputLibrary.html#a963a6f32ce2357d54aca008a5932e472">UGKInputLibrary::MakeBooleanAction</a></div><div class="ttdeci">static FInputActionValue MakeBooleanAction(bool value)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:11</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_add546c9f93631f074f6938bc919356fd"><div class="ttname"><a href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">UGKInputLibrary::GetKeysForInputID</a></div><div class="ttdeci">static FText GetKeysForInputID(APlayerController *Controller, const EGK_MOBA_AbilityInputID InputID)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:48</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_add546c9f93631f074f6938bc919356fd"><div class="ttname"><a href="classUGKInputLibrary.html#add546c9f93631f074f6938bc919356fd">UGKInputLibrary::GetKeysForInputID</a></div><div class="ttdeci">static FText GetKeysForInputID(APlayerController *Controller, const EGK_MOBA_AbilityInputID InputID)</div><div class="ttdoc">Same as GetKeysFromInputEnum but assume EGK_MOBA_AbilityInputID as its input enum.</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:48</div></div>
 <div class="ttc" id="aGKInputLibrary_8h_html"><div class="ttname"><a href="GKInputLibrary_8h.html">GKInputLibrary.h</a></div></div>
 <div class="ttc" id="aGKAbilityInputs_8h_html_a5926be264f6313e59bb65648750bdd6a"><div class="ttname"><a href="GKAbilityInputs_8h.html#a5926be264f6313e59bb65648750bdd6a">EGK_MOBA_AbilityInputID</a></div><div class="ttdeci">EGK_MOBA_AbilityInputID</div><div class="ttdef"><b>Definition:</b> GKAbilityInputs.h:12</div></div>
 <div class="ttc" id="aclassUGKInputLibrary_html_a277c8bf5889e2557463ff50778237dee"><div class="ttname"><a href="classUGKInputLibrary.html#a277c8bf5889e2557463ff50778237dee">UGKInputLibrary::EdgePanDirection</a></div><div class="ttdeci">static FVector2D EdgePanDirection(FVector2D MouseXYViewport)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:25</div></div>
-<div class="ttc" id="aclassUGKInputLibrary_html_ab3eedf24bb6e3892009932dd83793bae"><div class="ttname"><a href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">UGKInputLibrary::GetKeysForAction</a></div><div class="ttdeci">static const TArray&lt; FInputActionKeyMapping &gt; &amp; GetKeysForAction(APlayerController *Controller, const FName &amp;ActionName)</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:43</div></div>
+<div class="ttc" id="aclassUGKInputLibrary_html_ab3eedf24bb6e3892009932dd83793bae"><div class="ttname"><a href="classUGKInputLibrary.html#ab3eedf24bb6e3892009932dd83793bae">UGKInputLibrary::GetKeysForAction</a></div><div class="ttdeci">static const TArray&lt; FInputActionKeyMapping &gt; &amp; GetKeysForAction(APlayerController *Controller, const FName &amp;ActionName)</div><div class="ttdoc">Fetch a lost of Keys matching a given action name.</div><div class="ttdef"><b>Definition:</b> GKInputLibrary.cpp:43</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
