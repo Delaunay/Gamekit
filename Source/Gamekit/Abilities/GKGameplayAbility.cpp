@@ -348,7 +348,7 @@ void UGKGameplayAbility::OnAbilityTargetAcquired(const FGameplayAbilityTargetDat
                                                                       Attributes->GetMoveSpeed(),       // Speed
                                                                       true, // Move to target
                                                                       true, // Use Movement Component
-                                                                      GetAbilityStatic()->AbilityBehavior,
+                                                                      GetAbilityStatic()->TargetMode == EGK_TargetMode::ActorTarget,
                                                                       FGameplayTagContainer(),
                                                                       true,
                                                                       true);
@@ -606,7 +606,7 @@ void UGKGameplayAbility::ApplyCooldown(const FGameplayAbilitySpecHandle     Hand
 bool UGKGameplayAbility::IsPassive() const {
     FGKAbilityStatic const* Data = GetAbilityStatic();
 
-    if (Data->AbilityBehavior == EGK_AbilityBehavior::Passive){
+    if (Data->AbilityBehavior == EGK_ActivationBehavior::Passive){
         return true;
     }
 
@@ -708,6 +708,23 @@ void UGKGameplayAbility::OnAbilityAnimationEvent(FGameplayTag EventTag, FGamepla
 
     if (K2_CommitAbility())
     {
+        FGKAbilityStatic const* Data = GetAbilityStatic();
+
+        if (Data) {
+            FGKAbilityEffects const* AbilitiyEffets = Data->AbilityEffects.Find(EGK_EffectSlot::CasterEffect);
+
+            if (AbilitiyEffets) {
+                for (const FGKAbilityEffect& Effect : AbilitiyEffets->Effects)
+                {
+                    CurrentActorInfo->AbilitySystemComponent->ApplyGameplayEffectToSelf(
+                        Effect.GameplayEffectClass.GetDefaultObject(),
+                        GetAbilityLevel(CurrentSpecHandle, CurrentActorInfo),
+                        FGameplayEffectContextHandle()
+                    );
+                }
+            }
+        }
+
         SpawnProjectile(EventTag, EventData);
         return;
     }
@@ -725,10 +742,14 @@ void UGKGameplayAbility::ActivateAbility_NoTarget()
     UGKGameplayAbility::OnAbilityTargetAcquired(FGameplayAbilityTargetDataHandle());
 }
 
+
+void UGKGameplayAbility::ActivateAbility_PointTarget()  {
+    ActivateAbility_Targeted();
+}
+
 void UGKGameplayAbility::ActivateAbility_ActorTarget()
 {
-    // The TargetActor has the logic to handle ActorTarget & PointTarget
-    ActivateAbility_PointTarget();
+    ActivateAbility_Targeted();
 }
 
 AGKAbilityTarget_Actor *UGKGameplayAbility::SpawnAbilityTarget_Actor()
@@ -756,12 +777,13 @@ AGKAbilityTarget_Actor *UGKGameplayAbility::SpawnAbilityTarget_Actor()
     return TargetActor;
 }
 
-void UGKGameplayAbility::ActivateAbility_PointTarget()
+void UGKGameplayAbility::ActivateAbility_Targeted()
 {
     auto TargetActor = SpawnAbilityTarget_Actor();
 
     if (!IsValid(TargetActor))
     {
+        GK_WARNING(TEXT("Could not create the actor to select our target"));
         return;
     }
 
@@ -834,24 +856,33 @@ void UGKGameplayAbility::ActivateAbility_Native()
 
     if (!AbilityData)
     {
+        GK_WARNING(TEXT("Ability data is missing for this ability"));
         return;
     }
 
     switch (AbilityData->AbilityBehavior)
     {
-    case EGK_AbilityBehavior::ActorTarget:
+    case EGK_ActivationBehavior::Targeted:
         return ActivateAbility_ActorTarget();
-    case EGK_AbilityBehavior::Hidden:
+    case EGK_ActivationBehavior::Hidden:
         return ActivateAbility_Hidden();
-    case EGK_AbilityBehavior::NoTarget:
+    case EGK_ActivationBehavior::NoTarget:
         return ActivateAbility_NoTarget();
-    case EGK_AbilityBehavior::Passive:
+    case EGK_ActivationBehavior::Passive:
         return ActivateAbility_Passive();
-    case EGK_AbilityBehavior::PointTarget:
-        return ActivateAbility_PointTarget();
-    case EGK_AbilityBehavior::Toggle:
+    case EGK_ActivationBehavior::Toggle:
         return ActivateAbility_Toggle();
+    case EGK_ActivationBehavior::Channel:
+        return ActivateAbility_Channel();
     }
+
+
+    GK_WARNING(TEXT("unhandled activation Behavior "));
+}
+
+
+void UGKGameplayAbility::ActivateAbility_Channel() {
+
 }
 
 const FGameplayTagContainer &UGKGameplayAbility::GetAbilityCooldownTags() const { return *Super::GetCooldownTags(); }

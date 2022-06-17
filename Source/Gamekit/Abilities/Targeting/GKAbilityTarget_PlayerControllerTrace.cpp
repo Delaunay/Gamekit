@@ -37,7 +37,7 @@ void AGKAbilityTarget_PlayerControllerTrace::InitializeFromAbilityData(FGKAbilit
     ObjectTypes        = AbilityData.TargetObjectTypes;
     ClassFilter        = AbilityData.TargetFilterClass;
     TargetActorFaction = AbilityData.TargetActorFaction;
-    TargetMode         = AbilityData.AbilityBehavior;
+    TargetMode         = AbilityData.TargetMode;
 
     // Blueprint overrides
     Super::InitializeFromAbilityData(AbilityData);
@@ -119,7 +119,7 @@ void AGKAbilityTarget_PlayerControllerTrace::Tick(float DeltaSeconds)
 
     TraceEndPoint = LatestHitResult.Component.IsValid() ? LatestHitResult.ImpactPoint : LatestHitResult.TraceEnd;
 
-    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+    if (TargetMode == EGK_TargetMode::ActorTarget)
     {
         Deselect();
 
@@ -157,12 +157,12 @@ bool AGKAbilityTarget_PlayerControllerTrace::IsTargetValid() const
         return false;
     }
 
-    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+    if (TargetMode == EGK_TargetMode::ActorTarget)
     {
         return ActorsUnderCursor.Num() > 0;
     }
 
-    if (TargetMode == EGK_AbilityBehavior::PointTarget)
+    if (TargetMode == EGK_TargetMode::PointTarget)
     {
         float DistanceSqr = FVector::DistSquared(SourceActor->GetActorLocation(), TraceEndPoint);
         return MaxRange * MaxRange >= DistanceSqr && DistanceSqr >= MinRange * MinRange;
@@ -220,7 +220,7 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue()
         return;
     }
 
-    if (TargetMode == EGK_AbilityBehavior::ActorTarget)
+    if (TargetMode == EGK_TargetMode::ActorTarget)
     {
         TArray<TWeakObjectPtr<AActor>> Actors;
         Actors.Reset(ActorsUnderCursor.Num());
@@ -236,7 +236,7 @@ void AGKAbilityTarget_PlayerControllerTrace::ConfirmTargetingAndContinue()
         return;
     }
 
-    if (TargetMode == EGK_AbilityBehavior::PointTarget)
+    if (TargetMode == EGK_TargetMode::PointTarget)
     {
         // Target is ready, send the data now
         auto Handle = StartLocation.MakeTargetDataHandleFromHitResult(OwningAbility, LatestHitResult);

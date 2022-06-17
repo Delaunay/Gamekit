@@ -80,7 +80,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             float               TurnRate          = 45.f,
             float               Speed             = 600.f,
             bool                MoveToTarget      = true,
-            EGK_AbilityBehavior TargetKind        = EGK_AbilityBehavior::PointTarget,
+            bool                bFollowActor      = false,
             FGameplayTagContainer CancelTag       = FGameplayTagContainer(),
             bool                bUsePathfinding   = false,
             bool                Debug             = false);
@@ -108,7 +108,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
             float                                   Speed                 = 600.f,
             bool                                    MoveToTarget          = true,
             bool                                    bUseMovementComponent = true,
-            EGK_AbilityBehavior                     TargetKind            = EGK_AbilityBehavior::PointTarget,
+            bool                                    bFollowActor          = false,
             FGameplayTagContainer                   CancelTag             = FGameplayTagContainer(),
             bool                                    bUsePathfinding       = false,
             bool                                    Debug                 = false);
@@ -149,7 +149,7 @@ class GAMEKIT_API UGKAbilityTask_MoveToDestination: public UAbilityTask
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
     UPROPERTY()
-    EGK_AbilityBehavior TargetKind;
+    bool bFollowActor;
 
     // Arguments
     UPROPERTY()

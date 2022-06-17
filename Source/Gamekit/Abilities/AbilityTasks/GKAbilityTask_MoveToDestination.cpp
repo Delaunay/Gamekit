@@ -56,7 +56,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
         float                                   Speed,
         bool                                    MoveToTarget,
         bool                                    bUseMovementComponent,
-        EGK_AbilityBehavior                     TargetKind,
+        bool                                    bFollowActor,
         FGameplayTagContainer                   CancelTag,
         bool                                    bUsePathfinding,
         bool                                    Debug)
@@ -78,7 +78,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToTarget
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
-    MyObj->TargetKind        = TargetKind;
+    MyObj->bFollowActor      = bFollowActor;
     MyObj->CancelTag         = CancelTag;
     MyObj->bUsePathfinding = bUsePathfinding;
 
@@ -106,13 +106,13 @@ void UGKAbilityTask_MoveToDestination::InitFromTargetData()
     {
         auto FirstTarget = TargetData.Get(0);
 
-        if (TargetKind == EGK_AbilityBehavior::PointTarget)
+        if (!bFollowActor)
         {
             if (FirstTarget->HasHitResult())
             {
                 Destination = FirstTarget->GetHitResult()->ImpactPoint;
+                return;
             }
-            return;
         }
 
         auto Actors = FirstTarget->GetActors();
@@ -125,9 +125,11 @@ void UGKAbilityTask_MoveToDestination::InitFromTargetData()
                 Destination = Actor->GetActorLocation();
             }
 
-            if (TargetKind == EGK_AbilityBehavior::ActorTarget)
+            if (bFollowActor)
             {
                 TargetActor = Actors[0];
+            } else {
+                Destination = Actors[0]->GetActorLocation();
             }
         }
     }
@@ -145,7 +147,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
                                                                                       float   TurnRate,
                                                                                       float   Speed,
                                                                                       bool    MoveToTarget,
-                                                                                      EGK_AbilityBehavior TargetKind,
+                                                                                      bool    bFollowActor,
                                                                                       FGameplayTagContainer CancelTag,
                                                                                       bool                  bUsePathfinding,
                                                                                       bool                Debug)
@@ -167,7 +169,7 @@ UGKAbilityTask_MoveToDestination *UGKAbilityTask_MoveToDestination::MoveToDestin
     MyObj->MaxSpeed          = Speed;
     MyObj->bDebug            = Debug;
     MyObj->bTurnOnly         = !MoveToTarget;
-    MyObj->TargetKind        = TargetKind;
+    MyObj->bFollowActor = bFollowActor;
     MyObj->CancelTag = CancelTag;
     MyObj->bUsePathfinding = bUsePathfinding;
 

@@ -78,6 +78,10 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     //! Ability that targets an area on the ground
     void ActivateAbility_PointTarget();
 
+    void ActivateAbility_Targeted();
+
+    void ActivateAbility_Channel();
+
     //! Ability that is Toggled on/off
     void ActivateAbility_Toggle();
 

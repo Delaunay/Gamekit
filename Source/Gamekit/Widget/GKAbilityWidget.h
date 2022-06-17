@@ -117,7 +117,7 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     // Disable Handling
     // we track the count of all the stacked disables
     UFUNCTION()
-    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {
+    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack) {
         DisableCount += 1;
         OnBeginDisabled(EffectHandle, Effect, Tags, Duration);
     }

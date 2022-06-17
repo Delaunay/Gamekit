@@ -18,7 +18,7 @@ FGKAbilityStatic::FGKAbilityStatic():
     MaxStack           = 1;
     Price              = 0;
     Duration           = 1;
-    AbilityBehavior    = EGK_AbilityBehavior::NoTarget;
+    AbilityBehavior    = EGK_ActivationBehavior::NoTarget;
     TargetActorFaction = SetFlag(0, ETeamAttitude::Hostile);
     CastTime           = 1;
     ChannelTime        = 0;

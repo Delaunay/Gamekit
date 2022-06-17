@@ -103,7 +103,8 @@ void UGKAsyncTask_GameplayEffectChanged::OnGameplayEffectAdded_Native(UAbilitySy
         ActiveHandle, 
         const_cast<UGameplayEffect *>(EffectDef), 
         Tags, 
-        Duration - (CurrentTime - Start)
+        Duration - (CurrentTime - Start),
+        0
     );
 }
 

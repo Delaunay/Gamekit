@@ -9,21 +9,16 @@
 // Generated
 #include "GKAsyncTask_GameplayEffectChanged.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FGKOnGameplayEffectAdded,
-                                              FActiveGameplayEffectHandle,
-                                              GameplayHandle,
-                                              UGameplayEffect *,
-                                              GameplayEffect,
-                                              FGameplayTagContainer,
-                                              GameplayTags,
-                                              float,
-                                              Duration);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FGKOnGameplayEffectAdded,
+                                              FActiveGameplayEffectHandle, GameplayHandle,
+                                              UGameplayEffect *,GameplayEffect,
+                                              FGameplayTagContainer, GameplayTags,
+                                              float, Duration,
+                                              int, StackCount);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGKOnGameplayEffectStackChanged,
-                                             FActiveGameplayEffectHandle,
-                                             GameplayHandle,
-                                             int32,
-                                             StackCount);
+                                             FActiveGameplayEffectHandle, GameplayHandle,
+                                             int, StackCount);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGKOnGameplayEffectRemoved, FActiveGameplayEffectHandle, GameplayHandle);
 

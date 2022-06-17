@@ -68,7 +68,7 @@ class GAMEKIT_API AGKAbilityTarget_PlayerControllerTrace: public AGKAbilityTarge
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
 
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
-    EGK_AbilityBehavior TargetMode;
+    EGK_TargetMode TargetMode;
 
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn = true), Category = Trace)
     float MaxRange;

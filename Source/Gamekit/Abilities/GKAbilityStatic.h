@@ -31,18 +31,24 @@ enum class EGK_AbilityKind : uint8
 
 // MOBA/Hack'n Slash like Ability binding
 UENUM(BlueprintType)
-enum class EGK_AbilityBehavior : uint8
+enum class EGK_ActivationBehavior : uint8
 {
     Hidden       UMETA(DisplayName = "Hidden"),       // Not shown in UI
     Passive      UMETA(DisplayName = "Passive"),      // Passive ability, enabled as soon as it is equiped
     NoTarget     UMETA(DisplayName = "NoTarget"),     // Ability is cast as soon as the input is pressed
-    ActorTarget  UMETA(DisplayName = "ActorTarget"),  // Ability targets another actor
-    PointTarget  UMETA(DisplayName = "PointTarget"),  // Ability targets the ground
-    VectorTarget UMETA(DisplayName = "VectorTarget"), // Ability targets 2 points
+    Targeted     UMETA(DisplayName = "Targeted"),     // Ability targets something
+    Charge       UMETA(DisplayName = "Charge"),       // Ability consume charges on activation
+    Channel      UMETA(DisplayName = "Channel"),      // Plays animation until the ends and cast spells at the end
     Toggle       UMETA(DisplayName = "Toggle"),       // Ability is Active or not
 };
 
-
+UENUM(BlueprintType)
+enum class EGK_TargetMode : uint8 {
+    None            UMETA(DisplayName = "None"),       
+    ActorTarget     UMETA(DisplayName = "ActorTarget"),      
+    PointTarget     UMETA(DisplayName = "PointTarget"),     
+    VectorTarget    UMETA(DisplayName = "VectorTarget"),
+};
 
 // This is create because we cannot use include AGKAbilityTarget_Actor
 // in AbilityStatic
@@ -179,6 +185,10 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
     bool bLoop;
 
+    //! Specifies how the ability is activated
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Ability)
+    EGK_ActivationBehavior AbilityBehavior;
+
     //! Duration the ability linger after being cast
     //! used for damage overtime abilities or active buffs
     //! Should be a TArray | Ability Level can change this
@@ -229,10 +239,6 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     float CastMinRange;
 
-    //! Specifies how the ability is activated (Point Target, Actor Target, Vector Target)
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
-    EGK_AbilityBehavior AbilityBehavior;
-
     //! Required targets attitue to the spell caster
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target, meta = (Bitmask, BitmaskEnum = "ETeamAttitude"))
     int32 TargetActorFaction;
@@ -249,6 +255,9 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     //! Used to know when a valid target is detected
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
     TArray<TEnumAsByte<EObjectTypeQuery>> TargetObjectTypes;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Target)
+    EGK_TargetMode TargetMode;
 
     //! Time this ability needs before it is cast
     //! Player can be interrupted during that time

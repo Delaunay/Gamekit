@@ -135,7 +135,7 @@ void UGKMovementAbility::ExecuteMove(FHitResult const& Out,
 		150,						// Turn Rate
 		Attributes->GetMoveSpeed(), // Speed
 		true,						// Move To Target (i.e not rot only)
-		EGK_AbilityBehavior::PointTarget,
+		false,
 		CancelTags,
 		true,					// UsePathfinding
 		true 					// Debug
