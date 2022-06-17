@@ -398,6 +398,13 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     // Used to grand passives
     void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 
+    UFUNCTION(BlueprintCallable, Category = Ability)
+    int K2_NumCharges() const {
+        return NumCharges(GetCurrentAbilitySpecHandle(), GetCurrentActorInfo());
+    }
+
+    int NumCharges(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo) const;
+
     //
     void ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const;
 

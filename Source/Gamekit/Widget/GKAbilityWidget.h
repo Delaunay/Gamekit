@@ -28,6 +28,8 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FGameplayTagContainer DisableTags;
 
+    FGameplayTag AbilityStackTag;
+
     UFUNCTION(BlueprintCallable)
     bool IsDisabled() const { return DisableCount != 0; }
 
@@ -51,6 +53,10 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     //! either the target was acquired or the targeting got cancelled
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnEndTargeting(bool Cancelled);
+
+    //! 
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+    void OnAbilityChargeChanged(int NewCount);
 
     //! Disabled because of a debuff
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
@@ -84,6 +90,8 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
 
     virtual void OnAbilityInsufficientResources_Implementation(bool CostMet) {}
 
+    virtual void OnAbilityChargeChanged_Implementation(int NewCount) {}
+
     UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     virtual void SetupListeners(class UGKGameplayAbility *AbilityIn);
 
@@ -113,21 +121,24 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     UFUNCTION()
     void OnAbilityCooldownEnd_Native(FGameplayTag CooldownTag, float TimeRemaining, float Duration);
 
+    UFUNCTION()
+    void OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack);
+
+    UFUNCTION()
+    void OnStackChangedGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, int StackCount);
+
+    UFUNCTION()
+    void OnEndGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle);
 
     // Disable Handling
     // we track the count of all the stacked disables
-    UFUNCTION()
-    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack) {
-        DisableCount += 1;
-        OnBeginDisabled(EffectHandle, Effect, Tags, Duration);
-    }
+    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack);
 
-    UFUNCTION()
-    void OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle) {
-        DisableCount -= 1 * (DisableCount > 0);
-        OnEndDisabled(EffectHandle);
-    }
+    void OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle);
 
-    UPROPERTY()
+    UPROPERTY(Transient)
     int DisableCount;
+
+    UPROPERTY(Transient)
+    FActiveGameplayEffectHandle CurrentEffectHandle;
 };

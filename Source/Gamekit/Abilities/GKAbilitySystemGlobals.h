@@ -56,6 +56,7 @@
     GKTAG(FailureCooldown,  "Failure.Cooldown",         TEXT("Ability is not ready yet")) \
     GKTAG(FailureDead,      "Failure.Dead",             TEXT("Character is dead")) \
     GKTAG(FailureCost,      "Failure.Cost",             TEXT("Ability cost is not met")) \
+    GKTAG(FailureCharge,    "Failure.Charge",           TEXT("Ability has no charge available")) \
     GKTAG(FailureMissing,   "Failure.Missing",          TEXT("Ability requirements are not met")) \
     GKTAG(FailureNetwork,   "Failure.Network",          TEXT("Internal error")) \
     GKTAG(FailureNotLearned,"Failure.NotLearned",       TEXT("Ability was not learned"))

@@ -385,25 +385,30 @@ void UGKGameplayAbility::ApplyChargeCost(const FGameplayAbilitySpecHandle Handle
     }
 }
 
-bool UGKGameplayAbility::CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags) const {
+
+int UGKGameplayAbility::NumCharges(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo) const {
     UAbilitySystemComponent* const AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo_Ensured();
 
     if (AbilitySystemComponent)
     {
         FGameplayEffectQuery const Query = FGameplayEffectQuery::MakeQuery_MatchAllOwningTags(FGameplayTagContainer(GetAbilityStatic()->StackTag));
-        
-        bool CostOk = AbilitySystemComponent->GetAggregatedStackCount(Query) > 0;
 
-        const FGameplayTag& CostTag = UAbilitySystemGlobals::Get().ActivateFailCostTag;
-        if (!CostOk && OptionalRelevantTags && CostTag.IsValid())
-        {
-            OptionalRelevantTags->AddTag(CostTag);
-        }
-
-        return CostOk;
+        return AbilitySystemComponent->GetAggregatedStackCount(Query);
     }
 
-    return false;
+    return 0;
+}
+
+bool UGKGameplayAbility::CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags) const {
+    
+    bool CostOk = NumCharges(Handle, ActorInfo) > 0;
+
+    if (!CostOk && OptionalRelevantTags)
+    {
+        OptionalRelevantTags->AddTag(FailureCharge);
+    }
+
+     return CostOk;
 }
 
 void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const  {
@@ -429,10 +434,13 @@ void UGKGameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle Handle, cons
 }
 
 bool UGKGameplayAbility::CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags) const  {
+    bool CostOK = true;
+
     if (GetAbilityStatic() && GetAbilityStatic()->AbilityBehavior == EGK_ActivationBehavior::Charge) {
-        return CheckChargeCost(Handle, ActorInfo, OptionalRelevantTags);
+        CostOK = CheckChargeCost(Handle, ActorInfo, OptionalRelevantTags);
     }
-    return Super::CheckCost(Handle, ActorInfo, OptionalRelevantTags);
+
+    return CostOK && Super::CheckCost(Handle, ActorInfo, OptionalRelevantTags);
 }
 
 
