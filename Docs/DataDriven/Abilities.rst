@@ -19,11 +19,54 @@ Features
 * **Multiplayer ready**
 * **Basic UI**: easier debugging
 
+
+Get Started
+-----------
+
+#. Create inputs in your project setting (include `ConfirmTarget` & `CancelTarget` input)
+
+#. Create a new enum with the same inputs
+
+#. Create a Character from ``GKCharacterBase``
+
+#. Extend the On Setup Player Input Component event, use to register your input to the ability system component
+   (See :cpp:`AGKCharacterBase::BindAbilityActivationFromInputEnum`)
+
+#. You are not ready to grand abilities using :cpp:`AGKCharacterBase::GrantAbility`
+   In Gamekit abilities are granted to a character for a given slot, each ability populates a slot.
+   Slots can then be assigned an input. Gamekit defines 22 default slots (6 Skills, 8 Items, 7 Basic Abilities).
+   Under the hood slots are simple integer, users can add as many slots as they want.
+
+   .. note::
+
+	  Granting ablities can only be done by the authority
+
+#. During Gameplay, you can press inputs and the abilities will activate.
+
+.. note::
+
+   Support for `EnhancedInput` is planned
+
+Example
+^^^^^^^
+
+.. raw::
+
+   <iframe src="https://blueprintue.com/render/_rsbezu-/" scrolling="no" allowfullscreen></iframe>
+
+
 Setup
 -----
 
 GameTags
 ^^^^^^^^
+
+Gametags are used to mark the current state of a player/ability/effect, it is used to control
+transition between different states. It is the core of the gameplay ability system, some effects
+are exclusively implemented through gameplaytags.
+
+For example, Stun, Silences, Roots are all gameplay effects that simply prevent the character
+from using certain abilities, they can all be implemented using gameplaytag alone.
 
 Gamekit automatically defines base gametags for its abilities.
 
@@ -103,7 +146,18 @@ Define Abilities
 ----------------
 
 Abilities are define inside a json file.
-The list of customizable properties can be found here :class:`FGKAbilityStatic`
+The list of customizable properties can be found here :class:`FGKAbilityStatic`.
+Gameplay designer can create new abilities by simply adding new abilities inside the ability data file.
+To create the new abilities in unreal engine you need to generate them using a python script.
+
+#. Enable python scripting for UnrealEngine
+#. Add ``Gamekit/Script`` to your python path
+#. Go to ``Gamekit/Content/Editor/Ability_Generator`` right click on it and ``Run Editor Utility Widget``.
+   A widget should pop up with a bit "Generate Default Abilities" button
+#. Click on the button, this will generate all the missing abilities
+
+Example
+^^^^^^^
 
 .. code-block:: json
 
@@ -155,10 +209,7 @@ MaxLevel = HeroLevel / 2
 UltimateMaxLevel = HeroLevel / 6
 
 * Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1
-	*
-
 * Ultimate Ability: 3 Levels, every 6 level
-
 * Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted
 * Abilities with charges: Ability consume charges, charges are given by an effect periodically
 * Linked Abilities [TODO]
@@ -285,20 +336,20 @@ Builtin Abilities
 Builtin Effects
 ---------------
 
-* Cooldown
+* Cooldown: block the casting of an ability for a given amount of time
 * Death: Remove all active effects and set health to zero
 * Dispel: Remove all debuffs and disables
-* Heal
-* HealOvertime
-* Damage
-* DamageOvertime
+* Heal: Heal ocne
+* HealOvertime: Heals over time
+* Damage: Deals damage once
+* DamageOvertime: Deals damage overtime
 * Immunity: Grant immunity against all debuffs and disables
-* IncreaseHealth
-* ManaCost
-* MoveHaste
-* Root
-* Silence
-* Stun
+* IncreaseHealth: Increase health
+* ManaCost: Remove mana from character
+* MoveHaste: Increase movement speed
+* Root: Prevent the character from moving
+* Silence: Prevent the character from casting spells
+* Stun: Completely disables the character
 
 Builtin Attribute Set
 ---------------------
@@ -307,8 +358,6 @@ Builtin Attribute Set
 * Mana
 * Experience
 * Gold
-
-
 
 Resources
 ~~~~~~~~~

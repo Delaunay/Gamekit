@@ -56,6 +56,33 @@ struct GAMEKIT_API FGKQueuedAbility
     FVector Location;
 };
 
+
+USTRUCT(BlueprintType)
+struct FGKGameplayAbilityInputBinds {
+    GENERATED_USTRUCT_BODY();
+
+    // Enum defining all the inputs
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UEnum* AbilityInputEnum;
+
+    // Name of the input for cancel action
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString CancelCommand;
+
+    // Name of the input for confirm action
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString ConfirmCommand;
+
+    // Enum Id used for the confirm action
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int32 ConfirmTargetInputID;
+
+    // Enum Id used for the cancel action
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int32 CancelTargetInputID;
+};
+
+
 /**
  *
  * TODO: We need an ability Queue
@@ -150,4 +177,6 @@ class GAMEKIT_API UGKAbilitySystemComponent: public UAbilitySystemComponent
     AGKAbilityTarget_Actor *GetAbilityTarget_Actor(TSubclassOf<AGKAbilityTarget_Actor> AbilityTarget_ActorClass);
 
     AGKAbilityTarget_Actor *GetAbilityTarget_Actor(EGK_TargetingMode Mode);
+
+    void BindAbilityActivationToInputComponentFromEnum(UInputComponent* InputComponent, FGKGameplayAbilityInputBinds InputBinds);
 };

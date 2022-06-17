@@ -105,10 +105,30 @@ class GAMEKIT_API AGKCharacterBase: public ACharacter,
 
     void PostInitProperties() override;
 
+    // ========================================================================
+    // Input Setup
+    // ------------------------------------------------------------------------
+ 
     // Bind the abilities to inputs
     void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
     bool InputsBound;
+
+    //! Give the opportunity to user to bind their abilities using a Enum here
+    //! see ``BindAbilityActivationFromInputEnum``
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Ability|Input")
+    void OnSetupPlayerInputComponent(UInputComponent* PlayerInputComponent);
+
+    void OnSetupPlayerInputComponent_Implementation(UInputComponent* PlayerInputComponent);
+
+    //! Configure input callbacks to directly call the ability system component
+    //! The num is used to map an action name (enum name) to an input id (enum value)
+    //! A callaback is setup making the action name key press calling the ability system with the corresponding enum value
+    //! When abilities are granted they are assigned an input it (enum value)
+    //! when the action is pressed the ability system will activate the corresponding ability
+    //! This removes the need for custom setup in blueprint and automate all the input binding boilerplate
+    UFUNCTION(BlueprintCallable)
+    void BindAbilityActivationFromInputEnum(UInputComponent* PlayerInputComponent, FGKGameplayAbilityInputBinds InputBinds);
 
     // ========================================================================
     // Game Play Ability System
@@ -133,9 +153,6 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = Abilities)
     void EquipItem(EGK_ItemSlot Slot, TSubclassOf<UGKGameplayAbility> AbilityClass);
-
-    // Allow to rebind abilities
-    // void BindInputToAbility(EGK_MOBA_AbilityInputID InputID, FGameplayAbilitySpec AbilitySpec);
 
     UFUNCTION(BlueprintCallable, Category = Abilities)
     int AbilityCount() const;

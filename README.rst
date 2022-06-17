@@ -42,6 +42,12 @@ High level game framework built on top of Unreal Engine.
    * CI/CD
    * Testing Utilities
 
+.. note::
+
+   While the code base favours text code for development and contributions,
+   Gamekit makes sure to expose most of the logic to blueprint to extend or customize games
+   without going through C++.
+
 
 .. image:: https://github.com/Delaunay/Gamekit/blob/master/Docs/_static/Tests/GamekitPlayground.PNG?raw=true
 

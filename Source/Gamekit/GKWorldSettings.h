@@ -45,6 +45,8 @@ class GAMEKIT_API AGKWorldSettings: public AWorldSettings
     GENERATED_BODY()
 
     public:
+    AGKWorldSettings();
+
     // Size of the Map in total in mm (1e3)
     // The map MUST be centered on (0, 0)
     // You can avoid using this if you are using a Fog of War Volume

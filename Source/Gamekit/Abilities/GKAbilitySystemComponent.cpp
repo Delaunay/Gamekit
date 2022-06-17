@@ -206,3 +206,54 @@ void UGKAbilitySystemComponent::ServerTryActivateAbility_Point_Implementation(FG
 
     Ability->ActivateManual_PointTarget(Point);
 }
+
+
+void UGKAbilitySystemComponent::BindAbilityActivationToInputComponentFromEnum(UInputComponent* InputComponent, FGKGameplayAbilityInputBinds BindInfo) {
+
+    UEnum* EnumBinds = BindInfo.AbilityInputEnum;
+    bIsNetDirty = true;
+    GetBlockedAbilityBindings_Mutable().SetNumZeroed(EnumBinds->NumEnums());
+
+    for (int32 idx = 0; idx < EnumBinds->NumEnums(); ++idx)
+    {
+        const FString FullStr = EnumBinds->GetNameStringByIndex(idx);
+
+        // Pressed event
+        {
+            FInputActionBinding AB(FName(*FullStr), IE_Pressed);
+            AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &UAbilitySystemComponent::AbilityLocalInputPressed, idx);
+            InputComponent->AddActionBinding(AB);
+        }
+
+        // Released event
+        {
+            FInputActionBinding AB(FName(*FullStr), IE_Released);
+            AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &UAbilitySystemComponent::AbilityLocalInputReleased, idx);
+            InputComponent->AddActionBinding(AB);
+        }
+    }
+
+    // Bind Confirm/Cancel. Note: these have to come last!
+    if (BindInfo.ConfirmCommand.IsEmpty() == false)
+    {
+        FInputActionBinding AB(FName(*BindInfo.ConfirmCommand), IE_Pressed);
+        AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &UAbilitySystemComponent::LocalInputConfirm);
+        InputComponent->AddActionBinding(AB);
+    }
+
+    if (BindInfo.CancelCommand.IsEmpty() == false)
+    {
+        FInputActionBinding AB(FName(*BindInfo.CancelCommand), IE_Pressed);
+        AB.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &UAbilitySystemComponent::LocalInputCancel);
+        InputComponent->AddActionBinding(AB);
+    }
+
+    if (BindInfo.CancelTargetInputID >= 0)
+    {
+        GenericCancelInputID = BindInfo.CancelTargetInputID;
+    }
+    if (BindInfo.ConfirmTargetInputID >= 0)
+    {
+        GenericConfirmInputID = BindInfo.ConfirmTargetInputID;
+    }
+}

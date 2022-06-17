@@ -106,6 +106,7 @@ TArray<FGKFailureTagMapping> GenerateFailureMapping() {
     FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork"     , "Internal error");
     FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead"        , "You are dead");
     FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned"  , "Ability was not learnt yet");
+    FText AbilityNoCharge   = NSLOCTEXT(NAMESPACE, "AbilityNoCharge"    , "Ability does not have charges anymore");
 
     return TArray<FGKFailureTagMapping>{
         FGKFailureTagMapping{ FailureCost,       AbilityCost },
@@ -115,6 +116,7 @@ TArray<FGKFailureTagMapping> GenerateFailureMapping() {
         FGKFailureTagMapping{ FailureNetwork,    AbilityNetwork },
         FGKFailureTagMapping{ FailureDead,       AbilityDead },
         FGKFailureTagMapping{ FailureNotLearned, AbilityNotLearned },
+        FGKFailureTagMapping{ FailureCharge,     AbilityNoCharge },
     };
 }
 
@@ -137,4 +139,10 @@ FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility* Ability,
     }
 
     return NSLOCTEXT(NAMESPACE, "AbilityUnknown", "Internal Failure reason");
+}
+
+
+UEnum* UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum() {
+    static UEnum* InputEnum = StaticEnum<EGK_MOBA_AbilityInputID>();
+    return InputEnum;
 }

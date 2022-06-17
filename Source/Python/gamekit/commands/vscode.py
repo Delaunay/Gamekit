@@ -29,11 +29,11 @@ class VSCode(Command):
         config = configparser.ConfigParser()
         config.read(default_engine)
 
-        python_section = "[/Script/PythonScriptPlugin.PythonScriptPluginUserSettings]"
-        config[python_section]["bDeveloperMode"] = True
-        config[python_section]["bEnableContentBrowserIntegration"] = True
+        python_section = "/Script/PythonScriptPlugin.PythonScriptPluginUserSettings"
+        config[python_section]["bDeveloperMode"] = 'True'
+        config[python_section]["bEnableContentBrowserIntegration"] = 'True'
 
-        with open(default_engine, 'r') as file:
+        with open(default_engine, 'w') as file:
             config.write(file)
 
     @staticmethod

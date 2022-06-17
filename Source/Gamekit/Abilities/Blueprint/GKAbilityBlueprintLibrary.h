@@ -99,4 +99,7 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintPure, Category = "UI")
     static FText GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, bool& bHandled);
+
+    UFUNCTION(BlueprintPure)
+    static UEnum* GetDefaultAbilityInputEnum();
 };

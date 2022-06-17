@@ -7,6 +7,10 @@
 #include "Gamekit/GKLog.h"
 
 
+AGKWorldSettings::AGKWorldSettings() {
+
+}
+
 void AGKWorldSettings::BuildTeamCache() const {
     if (TeamCache.Num() == 0 && Teams) {
         TeamCache.Reserve(Teams->GetRowMap().Num());
