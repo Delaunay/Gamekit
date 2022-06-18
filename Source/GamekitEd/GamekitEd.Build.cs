@@ -27,6 +27,7 @@ public class GamekitEd : ModuleRules
             "LevelEditor",
 
             "GameplayAbilities",
+            "PythonScriptPlugin"
         });
 
         PrivateDependencyModuleNames.AddRange(new string[] {

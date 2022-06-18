@@ -9,6 +9,8 @@
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
 // Unreal Engine
+#include "Engine/DataTable.h"
+
 #if WITH_EDITOR
 #include "Editor.h"
 #endif
@@ -96,6 +98,35 @@ FGKTeamInfo const* UGKGamekitSettings::GetTeamInfoFromName(FName Name) const {
         }
     }
     return nullptr;
+}
+
+
+void UGKGamekitSettings::LoadAbilityTables() {
+    for(FGKNamedObject& Item: AbilityDataTables) {
+        if (Item.TablePath.IsValid())
+        {
+            UDataTable* Table = Cast<UDataTable>(Item.TablePath.TryLoad());
+            AbilityTables.Add(Item.Name, Table);
+
+            Table->OnDataTableChanged().AddLambda([&Item, &Table]() {
+                UGKGamekitSettings::Get()->GetOnAbilityTableChanged().Broadcast(Item.Name, Table);
+            });
+        }
+    }
+}
+
+void UGKGamekitSettings::LoadUnitTables() {
+    for (FGKNamedObject& Item : UnitDataTables) {
+        if (Item.TablePath.IsValid())
+        {
+            UDataTable* Table = Cast<UDataTable>(Item.TablePath.TryLoad());
+            UnitTables.Add(Item.Name, Table);
+
+            Table->OnDataTableChanged().AddLambda([&Item, &Table]() {
+                UGKGamekitSettings::Get()->GetOnUnitTableChanged().Broadcast(Item.Name, Table);
+            });
+        }
+    }
 }
 
 

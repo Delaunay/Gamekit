@@ -9,7 +9,6 @@
 #include "GKGamekitSettings.generated.h"
 
 
-
 USTRUCT(BlueprintType)
 struct GAMEKIT_API FGKTeamInfo : public FTableRowBase
 {
@@ -75,8 +74,19 @@ struct GAMEKIT_API FGKExperience : public FTableRowBase
     int MaxUtlimateLevel;
 };
 
-/**
- * 
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKNamedObject {
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY(EditAnywhere)
+    FName Name;
+
+    UPROPERTY(EditAnywhere)
+    FSoftObjectPath TablePath;
+};
+
+/** Global settings for Gamekit, stores sources for datadriven logic
  */
 UCLASS(config = Game)
 class GAMEKIT_API UGKGamekitSettings : public UObject
@@ -176,4 +186,53 @@ private:
     void ResetCachedData();
 
     void HandlePreLoadMap(const FString& MapName);
+
+public:
+    DECLARE_MULTICAST_DELEGATE_TwoParams(FOnDataTableChanged, FName /* Name*/, class UDataTable* /* Table*/);
+
+    // ==================================================
+    // Abilities
+    // --------------------------------------------------
+
+    //! Automatically generate abilities when tables change
+    UPROPERTY(EditAnywhere, Config, Category = "Abilities")
+    bool bAutoRegenerateAbilities;
+
+    //! Tables containing ability definitions
+    UPROPERTY(EditAnywhere, Config, Category = "Abilities")
+    TArray<FGKNamedObject> AbilityDataTables;
+
+    FOnDataTableChanged GetOnAbilityTableChanged() {
+        return AbilityTableChanged;
+    }
+
+private:
+    void LoadAbilityTables();
+
+    FOnDataTableChanged AbilityTableChanged;
+
+    TMap<FName, class UDataTable*>  AbilityTables;
+
+public:
+    // ==================================================
+    // Units
+    // --------------------------------------------------
+
+    //! Automatically generate units when tables change
+    UPROPERTY(EditAnywhere, Config, Category = "Units")
+    bool bAutoRegenerateUnits;
+
+    //! Tables containing unit definitions
+    UPROPERTY(EditAnywhere, Config, Category = "Units")
+    TArray<FGKNamedObject> UnitDataTables;
+
+    FOnDataTableChanged GetOnUnitTableChanged() {
+        return UnitTableChanged;
+    }
+private:
+    void LoadUnitTables();
+
+    FOnDataTableChanged UnitTableChanged;
+
+    TMap<FName, class UDataTable*>  UnitTables;
 };

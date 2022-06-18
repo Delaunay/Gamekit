@@ -35,6 +35,13 @@
     ],
     "Plugins": [
         {
+            "Name": "PythonScriptPlugin",
+            "Enabled": true,
+            "TargetAllowList": [
+                "Editor"
+            ]
+        },
+        {
             "Name": "GameplayAbilities",
             "Enabled": true
         },

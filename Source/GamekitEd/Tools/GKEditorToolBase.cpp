@@ -39,6 +39,7 @@ void FGKBaseEditorToolCustomization::CustomizeDetails(IDetailLayoutBuilder &Deta
     {
         for (TFieldIterator<UFunction> FuncIt(Class); FuncIt; ++FuncIt)
         {
+
             UFunction *Function = *FuncIt;
             if (Function->HasAnyFunctionFlags(FUNC_Exec) && (Function->NumParms == 0))
             {

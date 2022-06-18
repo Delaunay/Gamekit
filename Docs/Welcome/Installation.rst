@@ -78,3 +78,7 @@ Project structure after unzipping
                         ...
 			"Gamekit"
 		});
+
+
+4. Configure your project
+

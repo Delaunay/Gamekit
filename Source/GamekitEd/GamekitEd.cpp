@@ -7,7 +7,7 @@
 #include "GamekitEd/Tools/GKEditorToolBase.h"
 #include "GamekitEd/GamekitEdStyle.h"
 #include "GamekitEd/GKCommands.h"
-
+#include "GamekitEd/Tools/GKGameplayAbilityEditorTool.h"
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
@@ -71,14 +71,20 @@ void FGamekitEdModule::CreateToolListMenu(class FMenuBuilder &MenuBuilder)
         if (Class->IsChildOf(UGKEditorToolBase::StaticClass()))
         {
             FString FriendlyName = Class->GetName();
-            FText   MenuDescription =
-                    FText::Format(LOCTEXT("ToolMenuDescription", "{0}"), FText::FromString(FriendlyName));
-            FText MenuTooltip =
-                    FText::Format(LOCTEXT("ToolMenuToolTip", "Execute the {0} tool"), FText::FromString(FriendlyName));
 
-            FUIAction Action(FExecuteAction::CreateStatic(&FGamekitEdModule::TriggerTool, Class));
+            // This get generate along side the blueprint stuff
+            // but it is not executable
+            if (!FriendlyName.StartsWith("SKEL_"))
+            {
+                FText   MenuDescription =
+                        FText::Format(LOCTEXT("ToolMenuDescription", "{0}"), FText::FromString(FriendlyName));
+                FText MenuTooltip =
+                        FText::Format(LOCTEXT("ToolMenuToolTip", "Execute the {0} tool"), FText::FromString(FriendlyName));
 
-            MenuBuilder.AddMenuEntry(MenuDescription, MenuTooltip, FSlateIcon(), Action);
+                FUIAction Action(FExecuteAction::CreateStatic(&FGamekitEdModule::TriggerTool, Class));
+
+                MenuBuilder.AddMenuEntry(MenuDescription, MenuTooltip, FSlateIcon(), Action);
+            }
         }
     }
 }
@@ -116,6 +122,8 @@ void FGamekitEdModule::StartupModule()
     AddMenu();
 
     AddToolBar();
+
+    EnableAutomaticDataRegeneration();
 }
 
 void FGamekitEdModule::MakeCommandList() {
@@ -191,6 +199,18 @@ void FGamekitEdModule::RegisterSettings() {
                 return true;
             });
         }
+    }
+}
+
+void EnableAutomaticDataRegeneration() {
+    UGKGamekitSettings* Settings = UGKGamekitSettings::Get();
+
+    if (Settings->bAutoRegenerateAbilities) {
+        Settings->GetOnAbilityTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable);
+    }
+
+    if (Settings->bAutoRegenerateUnits) {
+        Settings->GetOnUnitTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateUnitsFromTable);
     }
 }
 

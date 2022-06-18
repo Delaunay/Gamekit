@@ -30,5 +30,7 @@ class FGamekitEdModule: public IModuleInterface
     void AddMenu();
     void AddToolBar();
 
+    void EnableAutomaticDataRegeneration();
+
     TSharedPtr<FUICommandList> CommandList;
 };
