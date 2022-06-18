@@ -13,20 +13,24 @@ public class GamekitEd : ModuleRules
         });
 
         PublicDependencyModuleNames.AddRange(new string[]{
-            "UnrealEd",
-
             "Gamekit",
-            "NetCore",
+
+            "Projects",
             "Core",
-            "RenderCore",
-            "RHI"
+            "CoreUObject",
+            "Engine",
+            "UnrealEd",
+            "InputCore",
+            "Slate",
+            "SlateCore",
+            "PropertyEditor",
+            "LevelEditor",
+
+            "GameplayAbilities",
         });
 
         PrivateDependencyModuleNames.AddRange(new string[] {
-            "GameplayAbilities",
 
-            // Defaults
-            "CoreUObject",
         });
     }
 }

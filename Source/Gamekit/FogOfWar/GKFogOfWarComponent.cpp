@@ -7,6 +7,7 @@
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
 #include "Gamekit/Blueprint/GKUtilityLibrary.h"
+#include "Gamekit/GKGamekitSettings.h"
 
 // Unreal Engine
 #include "GenericTeamAgentInterface.h"
@@ -89,13 +90,8 @@ bool UGKFogOfWarComponent::IsVisible(FVector Loc) const {
 
 FName UGKFogOfWarComponent::DeduceFaction() const
 {
-    auto Settings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    auto Settings = UGKGamekitSettings::Get();
     
-    if (!Settings)
-    {
-        return NAME_None;
-    }
-
     auto TeamId   = GetGenericTeamId().GetId();
     auto TeamInfo = Settings->GetTeamInfo(TeamId);
 

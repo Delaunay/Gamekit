@@ -10,6 +10,9 @@
 #include "Gamekit/Abilities/GKAttributeSet.h"
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 
+// Unreal Engine
+#include "GameFramework/PlayerController.h"
+
 
 UGKMovementAbility::UGKMovementAbility() {
 	GroundChannel = ECollisionChannel::ECC_WorldStatic;

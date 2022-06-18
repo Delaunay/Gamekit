@@ -10,6 +10,8 @@
 
 /**
  * Used to initialize the GAS
+ * 
+ * Should we put our customization option here
  */
 UCLASS()
 class GAMEKIT_API UGKEngineSubsystem: public UEngineSubsystem

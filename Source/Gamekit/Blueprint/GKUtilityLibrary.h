@@ -4,7 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilityStatic.h"
-#include "Gamekit/GKWorldSettings.h"
+#include "Gamekit/GKGamekitSettings.h"
 
 // Unreal Engine
 #include "GenericTeamAgentInterface.h"
@@ -59,18 +59,6 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     //! This cannot be exposed to blueprint because fo the const
     //! It is fine though we should create accessor lile the GetMapSize
     static class AWorldSettings const *GetWorldSetting(const UObject *World);
-
-    //! Return the map size stored inside WorldSettings
-    UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
-    static FVector2D GetWorldMapSize(const UObject *World);
-
-    //! Retrive the Team info struct
-    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-    static void GetTeamInfoFromName(const UObject *World, FName Name, FGKTeamInfo& TeamInfo, bool &bValid);
-
-    //! Retrive the Team inf struct
-    UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-    static void GetTeamInfo(const UObject *World, FGenericTeamId Team, FGKTeamInfo& TeamInfo, bool &bValid);
 
     // Returns the project version set in the 'Project Settings' > 'Description' section
     // of the editor 

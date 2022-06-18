@@ -15,7 +15,7 @@
 UENUM(BlueprintType)
 enum class EGK_AbilityAnimation : uint8
 {
-    Hidden  UMETA(DisplayName = "Hidden"),
+    Hidden  UMETA(DisplayName = "Hidden"), 
     Channel UMETA(DisplayName = "Channel"),
     Attack  UMETA(DisplayName = "Attack"),
     Cast    UMETA(DisplayName = "Cast"),

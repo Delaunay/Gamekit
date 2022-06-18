@@ -10,7 +10,7 @@
   "DocsURL": "https://gamekit.readthedocs.io/en/latest/",
   "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/",
   "SupportURL": "https://gitlab.com/Delaunay/gamekit",
-  "EngineVersion": "4.27",
+  "EngineVersion": "5",
   "CanContainContent": true,
   "IsBetaVersion": false,
   "IsExperimentalVersion": false,
@@ -30,7 +30,7 @@
         {
             "Name": "GamekitEd",
             "Type": "Editor",
-            "LoadingPhase": "PostSplashScreen"
+            "LoadingPhase": "Default"
         }
     ],
     "Plugins": [

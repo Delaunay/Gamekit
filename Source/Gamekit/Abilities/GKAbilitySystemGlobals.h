@@ -88,6 +88,9 @@ class GAMEKIT_API UGKAbilitySystemGlobals: public UAbilitySystemGlobals
     //
     // THINK: We could a secondary global curve here for our curve generation system
     //
+
+    // UPROPERTY(config)
+    // FSoftClassPath AbilitySystemGlobalsClassName;
 };
 
 

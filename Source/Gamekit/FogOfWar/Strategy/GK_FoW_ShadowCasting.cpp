@@ -379,7 +379,7 @@ void UGKShadowCasting::Initialize()
     auto TileCountFloat = FVector(MapSize.X, MapSize.Y, 0) / Grid.GetTileSize();
     auto TileCount      = FIntVector(int(TileCountFloat.X), int(TileCountFloat.Y), int(TileCountFloat.Z));
 
-    auto Settings  = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    auto Settings  = UGKGamekitSettings::Get();
     auto TeamCount = GKGETATTR(Settings, GetTeams().Num(), 1);
 
     TextureSize = TileCount;

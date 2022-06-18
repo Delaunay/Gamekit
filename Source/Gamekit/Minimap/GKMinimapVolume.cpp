@@ -170,7 +170,7 @@ FLinearColor AGKMinimapVolume::GetTeamColor(AActor* Actor) {
         return FLinearColor(1, 1, 1, 0);
     }
 
-    auto WorldSettings = Cast<AGKWorldSettings>(GetWorld()->GetWorldSettings());
+    auto WorldSettings = UGKGamekitSettings::Get();
 
     if (WorldSettings) {
         auto TeamInfo = WorldSettings->GetTeamInfo(CurrentAgent->GetGenericTeamId().GetId());

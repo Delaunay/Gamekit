@@ -55,5 +55,13 @@ public class Gamekit : ModuleRules
             "EnhancedInput",
             "Landscape",
         });
+
+        if (Target.bBuildEditor == true)
+        {
+            PrivateDependencyModuleNames.Add("EditorFramework");
+            PrivateDependencyModuleNames.Add("UnrealEd");
+            PrivateDependencyModuleNames.Add("Slate");
+            PrivateDependencyModuleNames.Add("SequenceRecorder");
+        }
     }
 }

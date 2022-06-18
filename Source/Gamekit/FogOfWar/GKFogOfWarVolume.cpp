@@ -407,13 +407,13 @@ void AGKFogOfWarVolume::InitializeBuffers()
     if (GetNetMode() == ENetMode::NM_Client)
         return;
 
-    auto World         = GetWorld();
-    auto WorldSettings = Cast<AGKWorldSettings>(World->GetWorldSettings());
+    auto World = GetWorld();
+    auto Settings = UGKGamekitSettings::Get();
 
     ensureMsgf(Strategy, TEXT("Strategy should be populated"));
 
     int i = 0;
-    for (auto TeamInfo: WorldSettings->GetTeams())
+    for (auto TeamInfo: Settings->GetTeams())
     {
         FActorSpawnParameters SpawnInfo;
         SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;

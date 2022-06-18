@@ -62,7 +62,7 @@ void AGKGameModeBaseBase::SetGenericTeamIdFromPlayerStart(AController *NewPlayer
 
     if (PlayerStart && TeamActor)
     {
-        auto Settings = Cast<AGKWorldSettings const>(GetWorld()->GetWorldSettings());
+        auto Settings = UGKGamekitSettings::Get();
 
         if (!Settings)
         {
