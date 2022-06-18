@@ -7,21 +7,18 @@
 #include "Gamekit/GKLog.h"
 
 
+
+
 AGKWorldSettings::AGKWorldSettings() {
 
 }
 
 void AGKWorldSettings::BuildTeamCache() const {
     if (TeamCache.Num() == 0 && Teams) {
-        TeamCache.Reserve(Teams->GetRowMap().Num());
-        
-        int i = 0;
-        for (auto RowMapIter(Teams->GetRowMap().CreateConstIterator()); RowMapIter; ++RowMapIter)
-	    {
-            FGKTeamInfo* Info = reinterpret_cast<FGKTeamInfo*>(RowMapIter.Value());
-            Info->TeamId = i;
-            TeamCache.Add(Info);
-            i += 1;
+        ReadDataTable(Teams, TeamCache);
+
+        for(int i = 0; i < TeamCache.Num(); i++){
+            TeamCache[i]->TeamId = i;
         }
     }
 

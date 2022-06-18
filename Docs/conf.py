@@ -115,6 +115,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "breathe",
     "exhale",
+    "sphinx.ext.graphviz",
 ]
 
 # Breathe Configuration

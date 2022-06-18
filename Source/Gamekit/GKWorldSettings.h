@@ -2,6 +2,7 @@
 
 #pragma once
 
+
 // Unreal Engine
 #include "CoreMinimal.h"
 #include "GameFramework/WorldSettings.h"
@@ -34,6 +35,46 @@ struct GAMEKIT_API FGKTeamInfo: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FLinearColor Color;
 };
+
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKExperience : public FTableRowBase
+{
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int Level;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int TotalExperience;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int AdditionalExperience;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int MaxAbilityLevel;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly);
+    int MaxUtlimateLevel;
+};
+
+
+template<typename T>
+void ReadDataTable(class UDataTable* Table, TArray<T*>& Rows) {
+    Rows.Reserve(Table->GetRowMap().Num());
+
+    for (auto RowMapIter(Table->GetRowMap().CreateConstIterator()); RowMapIter; ++RowMapIter)
+    {
+        T* Info = reinterpret_cast<T*>(RowMapIter.Value());
+        Rows.Add(Info);
+    }
+}
+
+template<typename T>
+T* GetRow(class UDataTable* Table, FName Row) {
+    static FString Context;
+    return Table->FindRow<T>(Row, Context, false);
+}
 
 
 /** Holds all the level specific constants
@@ -69,15 +110,42 @@ class GAMEKIT_API AGKWorldSettings: public AWorldSettings
     //! Build an array of TeamInfo from the DataTable
     void BuildTeamCache() const;
 
-    TArray<FGKTeamInfo *> const &GetTeams() { 
+    TArray<FGKTeamInfo*> const& GetTeams() {
         BuildTeamCache();
         return TeamCache;
+    }
+
+    UFUNCTION(BlueprintPure)
+    FGKExperience const& GetLevelSpec(int Level) {
+        static FGKExperience Nothing;
+        FGKExperience const* Result = GetRow<FGKExperience>(ExperienceLevels, FName(FString::FromInt(Level)));
+
+        if (Result != nullptr)
+            return *Result;
+
+        return Nothing;
+    }
+
+    // This is used to cache the table locally for fast lookup
+    // to avoid the Int -> String -> FName lookup
+    // The asc should probably cache this
+    // maybe we could move this to the asc global
+    // but it does not have a nice Editor widget
+    TArray<FGKExperience const*> GetExperienceLevels() {
+        TArray<FGKExperience const*> Out;
+        ReadDataTable(ExperienceLevels, Out);
+        return Out;
     }
 
 private:
     //! List of all the teams in this game
     UPROPERTY(EditDefaultsOnly, Category = "Teams")
     class UDataTable *Teams;
+
+    //! Table specifying the amount of experience required to reach a given level
+    //! Can also be used to add per level contrains
+    UPROPERTY(EditDefaultsOnly, Category = "Experience")
+    class UDataTable* ExperienceLevels;
 
     mutable TArray<FGKTeamInfo*> TeamCache;
 };

@@ -18,6 +18,7 @@
 
    DataDriven/Abilities
    DataDriven/Units
+   DataDriven/ExperienceTable
    DataDriven/Teams
 
 

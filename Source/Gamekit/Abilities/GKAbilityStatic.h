@@ -303,25 +303,3 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AreaOfEffect)
     float AreaOfEffect;
 };
-
-
-USTRUCT(BlueprintType)
-struct GAMEKIT_API FGKExperience : public FTableRowBase
-{
-    GENERATED_USTRUCT_BODY()
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly);
-    int Level;
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly);
-    int TotalExperience;
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly);
-    int AdditionalExperience;
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly);
-    int MaxAbilityLevel;
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly);
-    int MaxUtlimateLevel;
-};

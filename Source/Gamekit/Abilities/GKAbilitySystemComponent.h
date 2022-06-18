@@ -61,23 +61,23 @@ USTRUCT(BlueprintType)
 struct FGKGameplayAbilityInputBinds {
     GENERATED_USTRUCT_BODY();
 
-    // Enum defining all the inputs
+    //! Enum defining all the inputs
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     UEnum* AbilityInputEnum;
 
-    // Name of the input for cancel action
+    //! Name of the input for cancel action (this is the name of the action inside the project setting, NOT the enum name)
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString CancelCommand;
 
-    // Name of the input for confirm action
+    //! Name of the input for confirm action (this is the name of the action inside the project setting, NOT the enum name)
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString ConfirmCommand;
 
-    // Enum Id used for the confirm action
+    //! Enum Id used for the confirm action
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int32 ConfirmTargetInputID;
 
-    // Enum Id used for the cancel action
+    //! Enum Id used for the cancel action
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     int32 CancelTargetInputID;
 };
