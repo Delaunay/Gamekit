@@ -57,6 +57,12 @@ struct GAMEKIT_API FGKQueuedAbility
 };
 
 
+/* This is used to map action names inside the input's project to an index.
+ * The enum names need to match the action/input names. 
+ * 
+ * Two special actions can be absent from the enum `Cancel` and `Confirm`.
+ * Their names need to be specified here.
+ */
 USTRUCT(BlueprintType)
 struct FGKGameplayAbilityInputBinds {
     GENERATED_USTRUCT_BODY();
@@ -100,9 +106,10 @@ class GAMEKIT_API UGKAbilitySystemComponent: public UAbilitySystemComponent
     static UGKAbilitySystemComponent *GetAbilitySystemComponentFromActor(const AActor *Actor,
                                                                          bool          LookForComponent = false);
 
-    //! Used to receive the Granted ability through network
+    //! Overriden to send the event back to the owner of the ability
     void OnGiveAbility(FGameplayAbilitySpec &AbilitySpec) override;
 
+    //! Overriden to send the event back to the owner of the ability
     void OnRemoveAbility(FGameplayAbilitySpec& Spec) override;
 
     UFUNCTION(BlueprintCallable)

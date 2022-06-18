@@ -11,8 +11,9 @@
 // Generated
 #include "GKMovementAbility.generated.h"
 
-/**
+/** Simple movement ability, go torwards the location under the cursor. 
  * 
+ *  Note this assume `ECollisionChannel::ECC_WorldStatic` as the collision channel for ground
  */
 UCLASS()
 class GAMEKIT_API UGKMovementAbility : public UGKGameplayAbility

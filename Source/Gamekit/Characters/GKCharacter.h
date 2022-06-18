@@ -23,25 +23,7 @@ class UGKGameplayAbility;
 class UGameplayEffect;
 
 /** Base class for Character, Designed to be blueprinted
-
-Automatic input binding
-
-.. code-block:: cpp
-
-        AbilitySystemComponent->BindAbilityActivationToInputComponent(
-                InputComponent,
-                FGameplayAbilityInputBinds(
-                        FString("ConfirmTarget"),							//
-InConfirmTargetCommand---+
-                        FString("CancelTarget"),							//
-InCancelTargetCommand ---+--+
-                        FString("EGDAbilityInputID"),						// InEnumName
-|  | static_cast<int32>(EGKAbilityInputID::Confirm),		// InConfirmTargetInputID <-+  |
-                        static_cast<int32>(EGKAbilityInputID::Cancel)		// InCancelTargetInputID  <----+
-                )
-        );
-
-*/
+ */
 UCLASS(Blueprintable)
 class GAMEKIT_API AGKCharacterBase: public ACharacter,
                                     public IAbilitySystemInterface,

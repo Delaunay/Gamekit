@@ -20,8 +20,14 @@ USTRUCT(BlueprintType)
 struct FGKNavQueryResult {
     GENERATED_USTRUCT_BODY()
 
+    //! Path to our destination
     FNavPathSharedPtr NavPath;
+
+    //! Movement request id if any was issued (requires `PathFollowingComponent` to have been found)
     FAIRequestID RequestID;
+
+    //! Success code, `EPathFollowingRequestResult` here is reused
+    //! and it is always populated as the default error code for the entire request
     TEnumAsByte<EPathFollowingRequestResult::Type> Code;
 };
 

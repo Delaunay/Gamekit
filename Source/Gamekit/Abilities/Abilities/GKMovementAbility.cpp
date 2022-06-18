@@ -14,6 +14,9 @@
 UGKMovementAbility::UGKMovementAbility() {
 	GroundChannel = ECollisionChannel::ECC_WorldStatic;
 
+	// The exclusiveness is meant to avoid cancelling previously casting ability
+	// in the case of movement we do not mind cancelling the movement
+
 	AbilityTags.AddTag(AbilityMove);
 	// this ability is blocked by other exclusive abilities
 	// but it does not block exclusive abilities
@@ -27,7 +30,7 @@ UGKMovementAbility::UGKMovementAbility() {
 	// but the task would only start once the Exclusive tag is removed
 	// this would allow users to queue the move right away and simulate a kind of
 	// ability queue
-	BlockAbilitiesWithTag.RemoveTag(AbilityExclusive);
+	BlockAbilitiesWithTag.RemoveTag(AbilityExclusive); // <= REMOVE
 
 	// Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags
 	ActivationBlockedTags.AddTag(DisableRoot);

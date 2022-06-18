@@ -47,6 +47,11 @@
    Online/Cheating
 
 .. toctree::
+   :caption: Game Design
+
+   GameDesign/Abilties
+
+.. toctree::
    :caption: Developer Guide
 
    Developer/Release

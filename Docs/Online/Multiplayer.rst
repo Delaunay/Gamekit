@@ -17,7 +17,7 @@ Character will move beyond their target causing huge correction inside the clien
 Server and clients are running in parallel, but only server has authority, it means
 the server data overide the clients.
 
-.. image:: /_static/multiplayer/Multiplayer.png
+.. image:: /_static/Multiplayer/Multiplayer.png
 
 
 Replication Challenges:
