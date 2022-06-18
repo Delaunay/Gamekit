@@ -7,6 +7,7 @@
   <title>Installation &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -58,6 +59,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -162,10 +164,15 @@ git submodule add https://github.com/Delaunay/Gamekit.git Plugins/Gamekit
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="s2">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Gamekit&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">                </span><span class="s2">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Runtime&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="s2">&quot;LoadingPhase&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;LoadingPhase&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PostConfigInit&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">                </span><span class="s2">&quot;AdditionalDependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                        </span><span class="s2">&quot;Engine&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="s2">&quot;AIModule&quot;</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;AIModule&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;UMG&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;GameplayAbilities&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;OnlineSubsystem&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s2">&quot;OnlineSubsystemUtils&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="p">]</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="p">],</span><span class="w"></span>

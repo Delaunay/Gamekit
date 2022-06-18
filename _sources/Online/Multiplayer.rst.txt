@@ -1,6 +1,52 @@
 Multiplayer
 ===========
 
+The games are truely only running on the server. Clients forwards their inputs to the server
+and render the state of the game. The state of the game between the clients and the server is
+kept in sync through replication.
+
+To limit bandwidth usage some actions will get simulated on clients, for example when moving
+a character from A to B, there is no need to replicate the position of the character on each frame.
+Instead, we can interpolate its location given its current location, destination and speed, the final
+position on the server might grow out of sync overtime but it will get corrected when the replication triggers
+but thanks to simulation the replication can happen much later.
+
+Bad network condition will hinder the synchronisaton which can cause jittering.
+Character will move beyond their target causing huge correction inside the client, or the actions of other players will not be reflected.
+
+Server and clients are running in parallel, but only server has authority, it means
+the server data overide the clients.
+
+.. image:: /_static/multiplayer/Multiplayer.png
+
+
+Replication Challenges:
+
+#. Minimize the amount of data shared between server and clients to keep the game state in sync
+   * Use simulation for tick tasks to reduce replication requirements
+
+#. Keep latency low
+   * Start actions on the client with a prediction key, validate on server and execute on both
+
+
+.. note::
+
+   Optimizing 1. improves 2.
+
+
+.. note::
+
+   Simulated tasks are not a problem for cheating since the real tasks still happens in the server.
+   If the simulation state is altered the client will simply render the wrong things.
+   The client will experience extreme jittering due to the server trying to correct the simulation.
+
+   Ultimatly cheating by altering the simulation would degrate the gaming ExperienceLevels
+
+
+Important Classes
+-----------------
+
+
 * How classes are used inside a multiplayer game
 
 +------------------------------+----------+------------+
@@ -53,21 +99,6 @@ Common Actor Configurations
 +------------------------------+------------+------------+-------------+
 | Local Play                   | Standalone | Authority  | Simulated   |
 +------------------------------+------------+------------+-------------+
-
-
-About Servers
-~~~~~~~~~~~~~
-
-The games are truely only running on the server. Clients forwards their inputs to the server
-and render the state of the game. The state of the game between the clients and the server is
-kept in sync through replication.
-
-To limit bandwidth usage some actions will get simulated on clients, for example when moving
-a character from A to B, there is no need to replicate the position of the character on each frame.
-Instead, we can interpolate its location given its current location, destination and speed.
-
-Bad network condition will hinder the synchronisaton which can cause jittering.
-Character will move beyond their target, or the actions of other players will not be reflected.
 
 
 Code Snippet

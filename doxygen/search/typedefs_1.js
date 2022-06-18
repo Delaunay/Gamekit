@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['texel2x2_3226',['Texel2x2',['../GK__CPU__Upscaler_8h.html#a8f466ee664c11b7be8b22dcf0834dccf',1,'GK_CPU_Upscaler.h']]]
+  ['texel2x2_3236',['Texel2x2',['../GK__CPU__Upscaler_8h.html#a8f466ee664c11b7be8b22dcf0834dccf',1,'GK_CPU_Upscaler.h']]]
 ];

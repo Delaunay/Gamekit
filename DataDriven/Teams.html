@@ -7,6 +7,7 @@
   <title>Teams &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -23,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Fog Of War" href="../FogOfWar/index.html" />
-    <link rel="prev" title="Units" href="Units.html" /> 
+    <link rel="prev" title="Experience" href="ExperienceTable.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -54,6 +55,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -115,13 +117,15 @@
 <h1>Teams<a class="headerlink" href="#teams" title="Permalink to this heading"></a></h1>
 <p>Gamekit comes with a friend or foe system which leverages the IGenericTeamAgentInterface.
 You can simply define the teams per level.</p>
+<p>Teams are defined inside a DataTable (see <a href="#id1"><span class="problematic" id="id2">:cpp:`FGKTeamInfo`</span></a>), the datatable reference is held by the <code class="docutils literal notranslate"><span class="pre">GKWorldSettings</span></code>.
+The fog of war and the gameplay ability system leverage fully the team system.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Units.html" class="btn btn-neutral float-left" title="Units" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ExperienceTable.html" class="btn btn-neutral float-left" title="Experience" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../FogOfWar/index.html" class="btn btn-neutral float-right" title="Fog Of War" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

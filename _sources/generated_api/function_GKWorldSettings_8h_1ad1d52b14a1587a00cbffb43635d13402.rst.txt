@@ -1,0 +1,14 @@
+.. _exhale_function_GKWorldSettings_8h_1ad1d52b14a1587a00cbffb43635d13402:
+
+Template Function ReadDataTable
+===============================
+
+- Defined in :ref:`file_Source_Gamekit_GKWorldSettings.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ReadDataTable(class UDataTable *, TArray<T *>&)
+   :project: GameKit

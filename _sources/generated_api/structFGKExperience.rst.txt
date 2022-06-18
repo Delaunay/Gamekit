@@ -3,7 +3,7 @@
 Struct FGKExperience
 ====================
 
-- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
+- Defined in :ref:`file_Source_Gamekit_GKWorldSettings.h`
 
 
 Inheritance Relationships

@@ -7,6 +7,7 @@
   <title>Multiplayer &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -54,6 +55,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -71,20 +73,20 @@
 <p class="caption" role="heading"><span class="caption-text">Online</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Multiplayer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#common-actor-configurations">Common Actor Configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#about-servers">About Servers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-snippet">Code Snippet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#server-only-code-blocks">Server Only code blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#client-only-code-blocks">Client only code blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#actor-network-configuration">Actor Network configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conditionnal-execution-of-some-code">Conditionnal execution of some code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#network-conditions">Network Conditions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#replication">Replication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#advanced-replication">Advanced Replication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#important-classes">Important Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-actor-configurations">Common Actor Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-snippet">Code Snippet</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#server-only-code-blocks">Server Only code blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-only-code-blocks">Client only code blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#actor-network-configuration">Actor Network configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditionnal-execution-of-some-code">Conditionnal execution of some code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-conditions">Network Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-replication">Advanced Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="MMO.html">Massively Multiplayer</a></li>
@@ -129,6 +131,39 @@
              
   <section id="multiplayer">
 <h1>Multiplayer<a class="headerlink" href="#multiplayer" title="Permalink to this heading"></a></h1>
+<p>The games are truely only running on the server. Clients forwards their inputs to the server
+and render the state of the game. The state of the game between the clients and the server is
+kept in sync through replication.</p>
+<p>To limit bandwidth usage some actions will get simulated on clients, for example when moving
+a character from A to B, there is no need to replicate the position of the character on each frame.
+Instead, we can interpolate its location given its current location, destination and speed, the final
+position on the server might grow out of sync overtime but it will get corrected when the replication triggers
+but thanks to simulation the replication can happen much later.</p>
+<p>Bad network condition will hinder the synchronisaton which can cause jittering.
+Character will move beyond their target causing huge correction inside the client, or the actions of other players will not be reflected.</p>
+<p>Server and clients are running in parallel, but only server has authority, it means
+the server data overide the clients.</p>
+<img alt="_static/multiplayer/Multiplayer.png" src="_static/multiplayer/Multiplayer.png" />
+<p>Replication Challenges:</p>
+<ol class="arabic simple">
+<li><p>Minimize the amount of data shared between server and clients to keep the game state in sync
+* Use simulation for tick tasks to reduce replication requirements</p></li>
+<li><p>Keep latency low
+* Start actions on the client with a prediction key, validate on server and execute on both</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Optimizing 1. improves 2.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Simulated tasks are not a problem for cheating since the real tasks still happens in the server.
+If the simulation state is altered the client will simply render the wrong things.
+The client will experience extreme jittering due to the server trying to correct the simulation.</p>
+<p>Ultimatly cheating by altering the simulation would degrate the gaming ExperienceLevels</p>
+</div>
+<section id="important-classes">
+<h2>Important Classes<a class="headerlink" href="#important-classes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>How classes are used inside a multiplayer game</p></li>
 </ul>
@@ -188,7 +223,7 @@
 <li><p>ACharacter are setup for replications</p></li>
 </ul>
 <section id="common-actor-configurations">
-<h2>Common Actor Configurations<a class="headerlink" href="#common-actor-configurations" title="Permalink to this heading"></a></h2>
+<h3>Common Actor Configurations<a class="headerlink" href="#common-actor-configurations" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Local Play: No server, one player</p></li>
 <li><p>Hosting Client: Host is both a server &amp; and a client</p></li>
@@ -244,26 +279,17 @@
 </tbody>
 </table>
 </section>
-<section id="about-servers">
-<h2>About Servers<a class="headerlink" href="#about-servers" title="Permalink to this heading"></a></h2>
-<p>The games are truely only running on the server. Clients forwards their inputs to the server
-and render the state of the game. The state of the game between the clients and the server is
-kept in sync through replication.</p>
-<p>To limit bandwidth usage some actions will get simulated on clients, for example when moving
-a character from A to B, there is no need to replicate the position of the character on each frame.
-Instead, we can interpolate its location given its current location, destination and speed.</p>
-<p>Bad network condition will hinder the synchronisaton which can cause jittering.
-Character will move beyond their target, or the actions of other players will not be reflected.</p>
-</section>
 <section id="code-snippet">
-<h2>Code Snippet<a class="headerlink" href="#code-snippet" title="Permalink to this heading"></a></h2>
+<h3>Code Snippet<a class="headerlink" href="#code-snippet" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">HasAuthority</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_Client</span><span class="w"></span>
 <span class="n">ShouldShowUI</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENetMode</span><span class="o">::</span><span class="n">NM_DedicatedServer</span><span class="w"></span>
 <span class="n">AcceptRemoteConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_DedicatedServer</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">GetNetMode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NM_ListenServer</span><span class="w"></span>
 </pre></div>
 </div>
+</section>
+</section>
 <section id="server-only-code-blocks">
-<h3>Server Only code blocks<a class="headerlink" href="#server-only-code-blocks" title="Permalink to this heading"></a></h3>
+<h2>Server Only code blocks<a class="headerlink" href="#server-only-code-blocks" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if WITH_SERVER_CODE</span>
 
 <span class="c1">// code to load up your mananger and stuff here</span>
@@ -273,7 +299,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="client-only-code-blocks">
-<h3>Client only code blocks<a class="headerlink" href="#client-only-code-blocks" title="Permalink to this heading"></a></h3>
+<h2>Client only code blocks<a class="headerlink" href="#client-only-code-blocks" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#if !UE_SERVER</span>
 
 <span class="cp">#endif</span>
@@ -281,7 +307,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="actor-network-configuration">
-<h3>Actor Network configuration<a class="headerlink" href="#actor-network-configuration" title="Permalink to this heading"></a></h3>
+<h2>Actor Network configuration<a class="headerlink" href="#actor-network-configuration" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AActor</span><span class="o">::</span><span class="n">GetNetMode</span><span class="p">()</span><span class="w">    </span><span class="c1">// Standalone | Dedicated  | Listen | Client</span>
 <span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w">  </span><span class="c1">// Simulated  | Autonomous | Authority</span>
 <span class="n">AActor</span><span class="o">::</span><span class="n">GetRemoteRole</span><span class="p">()</span><span class="w"> </span><span class="c1">// Simulated  | Autonomous | Authority</span>
@@ -289,7 +315,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="conditionnal-execution-of-some-code">
-<h3>Conditionnal execution of some code<a class="headerlink" href="#conditionnal-execution-of-some-code" title="Permalink to this heading"></a></h3>
+<h2>Conditionnal execution of some code<a class="headerlink" href="#conditionnal-execution-of-some-code" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// HasAuthority in blueprints:</span>
 <span class="n">HasAuthority</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AActor</span><span class="o">::</span><span class="n">GetLocalRole</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ROLE_Authority</span><span class="p">);</span><span class="w"></span>
 
@@ -300,7 +326,7 @@ Character will move beyond their target, or the actions of other players will no
 </div>
 </section>
 <section id="network-conditions">
-<h3>Network Conditions<a class="headerlink" href="#network-conditions" title="Permalink to this heading"></a></h3>
+<h2>Network Conditions<a class="headerlink" href="#network-conditions" title="Permalink to this heading"></a></h2>
 <p>Netowrk conditions metrics are stored inside the <code class="docutils literal notranslate"><span class="pre">UNetDriver</span></code> stored inside the world.
 In addition you can hook yourself to the <code class="docutils literal notranslate"><span class="pre">FOnNetworkProcessingCausingSlowFrame</span></code> delegate inside <code class="docutils literal notranslate"><span class="pre">IpNetDriver</span></code>
 to display warning to users when network is being slow.</p>
@@ -474,7 +500,7 @@ to display warning to users when network is being slow.</p>
 </table>
 </section>
 <section id="replication">
-<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this heading"></a></h3>
+<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Net/Core/PushModel/PushModel.h&quot;</span><span class="cp"></span>
 
 <span class="w">     </span><span class="n">FDoRepLifetimeParams</span><span class="w"> </span><span class="n">SharedParams</span><span class="p">;</span><span class="w"></span>
@@ -492,7 +518,7 @@ to display warning to users when network is being slow.</p>
 </div>
 </section>
 <section id="advanced-replication">
-<h3>Advanced Replication<a class="headerlink" href="#advanced-replication" title="Permalink to this heading"></a></h3>
+<h2>Advanced Replication<a class="headerlink" href="#advanced-replication" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// this seems to work well, channel does not close</span>
 <span class="kt">bool</span><span class="w"> </span><span class="nf">AGKCharacterBase::IsReplicationPausedForConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FNetViewer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ConnectionOwnerNetViewer</span><span class="p">)</span><span class="w"></span>
 
@@ -539,7 +565,7 @@ to display warning to users when network is being slow.</p>
 </dl>
 </section>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h3>
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h2>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># DefaultEngine.ini</span><span class="w"></span>
 <span class="k">[PacketSimulationSettings]</span><span class="w"></span>
 <span class="na">PktLag</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
@@ -551,13 +577,12 @@ to display warning to users when network is being slow.</p>
 </div>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h3>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets">1</span></dt>
 <dd><p><a class="reference external" href="https://www.unrealengine.com/en-US/blog/finding-network-based-exploits?sessionInvalidated=true">Simulate Network Conditions</a></p>
 </dd>
 </dl>
-</section>
 </section>
 </section>
 

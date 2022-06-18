@@ -7,6 +7,7 @@
   <title>Program Listing for File GKAbilityStatic.h &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -52,6 +53,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -366,28 +368,6 @@
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AreaOfEffect</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">AreaOfEffect</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-
-
-<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKExperience</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FTableRowBase</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Level</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TotalExperience</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">AdditionalExperience</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">MaxAbilityLevel</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">MaxUtlimateLevel</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

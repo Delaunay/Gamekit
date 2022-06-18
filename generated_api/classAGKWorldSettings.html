@@ -7,6 +7,7 @@
   <title>Class AGKWorldSettings &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -54,6 +55,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -328,7 +330,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N16AGKWorldSettings8GetTeamsEv">
-<span id="_CPPv3N16AGKWorldSettings8GetTeamsEv"></span><span id="_CPPv2N16AGKWorldSettings8GetTeamsEv"></span><span id="AGKWorldSettings::GetTeams"></span><span class="target" id="classAGKWorldSettings_1a54c2dc7ff1426de96de6c6e80871257f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structFGKTeamInfo.html#_CPPv411FGKTeamInfo" title="FGKTeamInfo"><span class="n"><span class="pre">FGKTeamInfo</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetTeams</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKWorldSettings8GetTeamsEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N16AGKWorldSettings8GetTeamsEv"></span><span id="_CPPv2N16AGKWorldSettings8GetTeamsEv"></span><span id="AGKWorldSettings::GetTeams"></span><span class="target" id="classAGKWorldSettings_1a428363915a33dade7d2fbb71e7707782"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structFGKTeamInfo.html#_CPPv411FGKTeamInfo" title="FGKTeamInfo"><span class="n"><span class="pre">FGKTeamInfo</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetTeams</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKWorldSettings8GetTeamsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKWorldSettings12GetLevelSpecEi">
+<span id="_CPPv3N16AGKWorldSettings12GetLevelSpecEi"></span><span id="_CPPv2N16AGKWorldSettings12GetLevelSpecEi"></span><span id="AGKWorldSettings::GetLevelSpec__i"></span><span class="target" id="classAGKWorldSettings_1af50003d57b693fce6eb1a226b3530154"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="structFGKExperience.html#_CPPv413FGKExperience" title="FGKExperience"><span class="n"><span class="pre">FGKExperience</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">GetLevelSpec</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Level</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKWorldSettings12GetLevelSpecEi" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16AGKWorldSettings19GetExperienceLevelsEv">
+<span id="_CPPv3N16AGKWorldSettings19GetExperienceLevelsEv"></span><span id="_CPPv2N16AGKWorldSettings19GetExperienceLevelsEv"></span><span id="AGKWorldSettings::GetExperienceLevels"></span><span class="target" id="classAGKWorldSettings_1a9b67d36ee59991347dd7be02d4a98661"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">TArray</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structFGKExperience.html#_CPPv413FGKExperience" title="FGKExperience"><span class="n"><span class="pre">FGKExperience</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetExperienceLevels</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AGKWorldSettings19GetExperienceLevelsEv" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>

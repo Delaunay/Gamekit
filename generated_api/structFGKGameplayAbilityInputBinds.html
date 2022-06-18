@@ -7,6 +7,7 @@
   <title>Struct FGKGameplayAbilityInputBinds &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -54,6 +55,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -296,27 +298,32 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N28FGKGameplayAbilityInputBinds16AbilityInputEnumE">
 <span id="_CPPv3N28FGKGameplayAbilityInputBinds16AbilityInputEnumE"></span><span id="_CPPv2N28FGKGameplayAbilityInputBinds16AbilityInputEnumE"></span><span id="FGKGameplayAbilityInputBinds::AbilityInputEnum__UEnumP"></span><span class="target" id="structFGKGameplayAbilityInputBinds_1a9e4891c26415f5a83f7ed65c15aeba8d"></span><span class="n"><span class="pre">UEnum</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">AbilityInputEnum</span></span></span><a class="headerlink" href="#_CPPv4N28FGKGameplayAbilityInputBinds16AbilityInputEnumE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Enum defining all the inputs. </p>
+</dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N28FGKGameplayAbilityInputBinds13CancelCommandE">
 <span id="_CPPv3N28FGKGameplayAbilityInputBinds13CancelCommandE"></span><span id="_CPPv2N28FGKGameplayAbilityInputBinds13CancelCommandE"></span><span id="FGKGameplayAbilityInputBinds::CancelCommand__FString"></span><span class="target" id="structFGKGameplayAbilityInputBinds_1afa363191eac0a67aa85fc26e45875693"></span><span class="n"><span class="pre">FString</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CancelCommand</span></span></span><a class="headerlink" href="#_CPPv4N28FGKGameplayAbilityInputBinds13CancelCommandE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Name of the input for cancel action (this is the name of the action inside the project setting, NOT the enum name) </p>
+</dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N28FGKGameplayAbilityInputBinds14ConfirmCommandE">
 <span id="_CPPv3N28FGKGameplayAbilityInputBinds14ConfirmCommandE"></span><span id="_CPPv2N28FGKGameplayAbilityInputBinds14ConfirmCommandE"></span><span id="FGKGameplayAbilityInputBinds::ConfirmCommand__FString"></span><span class="target" id="structFGKGameplayAbilityInputBinds_1af985687f61d2792fee8b4ecff9afc987"></span><span class="n"><span class="pre">FString</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConfirmCommand</span></span></span><a class="headerlink" href="#_CPPv4N28FGKGameplayAbilityInputBinds14ConfirmCommandE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Name of the input for confirm action (this is the name of the action inside the project setting, NOT the enum name) </p>
+</dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N28FGKGameplayAbilityInputBinds20ConfirmTargetInputIDE">
 <span id="_CPPv3N28FGKGameplayAbilityInputBinds20ConfirmTargetInputIDE"></span><span id="_CPPv2N28FGKGameplayAbilityInputBinds20ConfirmTargetInputIDE"></span><span id="FGKGameplayAbilityInputBinds::ConfirmTargetInputID__int32"></span><span class="target" id="structFGKGameplayAbilityInputBinds_1a5b0e3e1b898997f70ca48c3aad51964f"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConfirmTargetInputID</span></span></span><a class="headerlink" href="#_CPPv4N28FGKGameplayAbilityInputBinds20ConfirmTargetInputIDE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Enum Id used for the confirm action. </p>
+</dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N28FGKGameplayAbilityInputBinds19CancelTargetInputIDE">
 <span id="_CPPv3N28FGKGameplayAbilityInputBinds19CancelTargetInputIDE"></span><span id="_CPPv2N28FGKGameplayAbilityInputBinds19CancelTargetInputIDE"></span><span id="FGKGameplayAbilityInputBinds::CancelTargetInputID__int32"></span><span class="target" id="structFGKGameplayAbilityInputBinds_1a74c5b00a83aa7025e107b5391df7a7f4"></span><span class="n"><span class="pre">int32</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CancelTargetInputID</span></span></span><a class="headerlink" href="#_CPPv4N28FGKGameplayAbilityInputBinds19CancelTargetInputIDE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Enum Id used for the cancel action. </p>
+</dd></dl>
 
 </div>
 </dd></dl>

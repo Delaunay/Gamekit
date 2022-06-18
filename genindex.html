@@ -6,6 +6,7 @@
   <title>Index &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -31,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -51,6 +52,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -502,10 +504,10 @@
 </li>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase12K2_DoRestartEv">AGKGameModeBaseBase::K2_DoRestart (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase13K2_OnGameOverEv">AGKGameModeBaseBase::K2_OnGameOver (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase16PawnConstructionEP11AControllerP5APawn">AGKGameModeBaseBase::PawnConstruction (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKGameModeBaseBase.html#_CPPv4N19AGKGameModeBaseBase10ResetLevelEv">AGKGameModeBaseBase::ResetLevel (C++ function)</a>
@@ -861,6 +863,10 @@
       <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4NK16AGKWorldSettings14BuildTeamCacheEv">AGKWorldSettings::BuildTeamCache (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4N16AGKWorldSettings11DefaultTeamE">AGKWorldSettings::DefaultTeam (C++ member)</a>
+</li>
+      <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4N16AGKWorldSettings19GetExperienceLevelsEv">AGKWorldSettings::GetExperienceLevels (C++ function)</a>
+</li>
+      <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4N16AGKWorldSettings12GetLevelSpecEi">AGKWorldSettings::GetLevelSpec (C++ function)</a>
 </li>
       <li><a href="generated_api/classAGKWorldSettings.html#_CPPv4NK16AGKWorldSettings11GetTeamInfoEi">AGKWorldSettings::GetTeamInfo (C++ function)</a>
 </li>
@@ -1798,10 +1804,10 @@
 </li>
       <li><a href="generated_api/classgamekit_1_1fbm_1_1Vec2.html#_CPPv4N7gamekit3fbm4Vec2E">gamekit::fbm::Vec2 (C++ class)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classgamekit_1_1fbm_1_1Vec2.html#_CPPv4N7gamekit3fbm4Vec27__add__E4self3obj">gamekit::fbm::Vec2::__add__ (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/classgamekit_1_1fbm_1_1Vec2.html#_CPPv4N7gamekit3fbm4Vec27__mul__E4self3obj">gamekit::fbm::Vec2::__mul__ (C++ function)</a>
 </li>
       <li><a href="generated_api/classgamekit_1_1fbm_1_1Vec2.html#_CPPv4N7gamekit3fbm4Vec25floorE4self">gamekit::fbm::Vec2::floor (C++ function)</a>
@@ -1821,6 +1827,8 @@
       <li><a href="generated_api/define_GKLog_8h_1a9c1cf69ede99dc485642d37c24770fef.html#c.GENERATE_LOG_FUN">GENERATE_LOG_FUN (C macro)</a>
 </li>
       <li><a href="generated_api/define_Upscaling__Buffer_8usf_1a24f41d09a0e2ab2e1e393a4372f02edd.html#c.GET">GET (C macro)</a>
+</li>
+      <li><a href="generated_api/function_GKWorldSettings_8h_1a48860ca2a38de9b2e17aa422294692c0.html#_CPPv4I0E6GetRowP1TP10UDataTable5FName">GetRow (C++ function)</a>
 </li>
       <li><a href="generated_api/define_GKTestUtilities_8h_1a2065af9595d614d2d2f8faec64ca01e9.html#c.GK_CONCAT">GK_CONCAT (C macro)</a>
 </li>
@@ -1989,6 +1997,10 @@
 
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated_api/function_GKWorldSettings_8h_1ad1d52b14a1587a00cbffb43635d13402.html#_CPPv4I0E13ReadDataTablevP10UDataTableR6TArrayIP1TE">ReadDataTable (C++ function)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated_api/function_GKBitFlag_8h_1aa917b61e29bb996ce90a7ae191eea7a9.html#_CPPv4I0E10RemoveFlag6uint326uint324Enum">RemoveFlag (C++ function)</a>
 </li>

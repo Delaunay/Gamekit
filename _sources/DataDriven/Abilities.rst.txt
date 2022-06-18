@@ -25,14 +25,20 @@ Get Started
 
 #. Create inputs in your project setting (include `ConfirmTarget` & `CancelTarget` input)
 
-#. Create a new enum with the same inputs
+#. Create a new enum with the same inputs (see :cpp:enum:`EGK_MOBA_AbilityInputID` as an example)
 
-#. Create a Character from ``GKCharacterBase``
+#. Create a Character from :cpp:class:`GKCharacterBase`
 
 #. Extend the On Setup Player Input Component event, use to register your input to the ability system component
-   (See :cpp:`AGKCharacterBase::BindAbilityActivationFromInputEnum`)
+   (See :cpp:func:`AGKCharacterBase::BindAbilityActivationFromInputEnum`)
 
-#. You are not ready to grand abilities using :cpp:`AGKCharacterBase::GrantAbility`
+   .. warning::
+
+	  :cpp:property:`FGKGameplayAbilityInputBinds::CancelCommand` and :cpp:property:`FGKGameplayAbilityInputBinds::ConfirmCommand`
+	  aret the named defined in the input's project setting NOT the enum name.
+
+
+#. You are not ready to grand abilities using :cpp:func:`AGKCharacterBase::GrantAbility`
    In Gamekit abilities are granted to a character for a given slot, each ability populates a slot.
    Slots can then be assigned an input. Gamekit defines 22 default slots (6 Skills, 8 Items, 7 Basic Abilities).
    Under the hood slots are simple integer, users can add as many slots as they want.
@@ -55,11 +61,8 @@ Example
    <iframe src="https://blueprintue.com/render/_rsbezu-/" scrolling="no" allowfullscreen></iframe>
 
 
-Setup
------
-
 GameTags
-^^^^^^^^
+--------
 
 Gametags are used to mark the current state of a player/ability/effect, it is used to control
 transition between different states. It is the core of the gameplay ability system, some effects
@@ -208,14 +211,22 @@ Ability Kinds
 MaxLevel = HeroLevel / 2
 UltimateMaxLevel = HeroLevel / 6
 
-* Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1
-* Ultimate Ability: 3 Levels, every 6 level
-* Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted
-* Abilities with charges: Ability consume charges, charges are given by an effect periodically
+* Standard Ability
+	* 4 Levels, Every 2 level character increase their maximum basic level ability by 1
+
+* Ultimate Ability
+	* 3 Levels, every 6 level
+
+* Abilities with charges
+	* Ability consume charges, charges are given by an effect periodically
+
+* Passive abilities
+	* Ability simply provide a permanent effect that can be temporarlly disabled with breaks
+
 * Linked Abilities [TODO]
 * Sub abilities [TODO]
-* Passive abilities
 * Autocast abilities [TODO]
+* Modifier abilities [TODO]
 
 
 Overview
@@ -281,33 +292,38 @@ a spell button.
 
 #. Ability cannot be cast because of debuff
 
-.. figure:: /_static/btn_cooldown.PNG
+.. figure:: /_static/Abilities/btn_cooldown.PNG
    :alt: Ability under cooldown
    :width: 60
 
    Ability under cooldown
 
-.. figure:: /_static/btn_disabled.PNG
+.. figure:: /_static/Abilities/btn_disabled.PNG
    :width: 60
 
    Ability disabled
 
-.. figure:: /_static/btn_normal.PNG
+.. figure:: /_static/Abilities/btn_normal.PNG
    :width: 60
 
    Ability ready
 
-.. figure:: /_static/btn_targetting.PNG
+.. figure:: /_static/Abilities/btn_targetting.PNG
    :width: 60
 
    Ability selecting a target
 
-.. figure:: /_static/btn_oom.PNG
+.. figure:: /_static/Abilities/btn_oom.PNG
    :width: 60
 
    Ability out of mana
 
-.. figure:: /_static/btn_mute.png
+.. figure:: /_static/Abilities/btn_mute.png
+   :width: 60
+
+   Ability disabled by gameplay effect
+
+.. figure:: /_static/Abilities/btn_charges.png
    :width: 60
 
    Ability disabled by gameplay effect

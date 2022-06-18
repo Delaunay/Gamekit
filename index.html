@@ -7,6 +7,7 @@
   <title>Welcome to GameKit’s documentation! &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -33,7 +34,7 @@
             <a href="#" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -53,6 +54,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -197,6 +199,7 @@ It expects some knowledge of UE and does not shy away from C++.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Abilities.html">Abilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataDriven/ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataDriven/Teams.html">Teams</a></li>
 </ul>
 </div>
@@ -220,20 +223,20 @@ It expects some knowledge of UE and does not shy away from C++.</p>
 <p class="caption" role="heading"><span class="caption-text">Online</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Online/Multiplayer.html">Multiplayer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#common-actor-configurations">Common Actor Configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#about-servers">About Servers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#code-snippet">Code Snippet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#server-only-code-blocks">Server Only code blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#client-only-code-blocks">Client only code blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#actor-network-configuration">Actor Network configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#conditionnal-execution-of-some-code">Conditionnal execution of some code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#network-conditions">Network Conditions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#replication">Replication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#advanced-replication">Advanced Replication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#testing">Testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#important-classes">Important Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#common-actor-configurations">Common Actor Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Online/Multiplayer.html#code-snippet">Code Snippet</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#server-only-code-blocks">Server Only code blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#client-only-code-blocks">Client only code blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#actor-network-configuration">Actor Network configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#conditionnal-execution-of-some-code">Conditionnal execution of some code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#network-conditions">Network Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#advanced-replication">Advanced Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Online/Multiplayer.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Online/MMO.html">Massively Multiplayer</a></li>
@@ -1825,6 +1828,10 @@ It expects some knowledge of UE and does not shy away from C++.</p>
 <li class="toctree-l5"><a class="reference internal" href="generated_api/function_GKGameplayAbility_8cpp_1a4913d3d77c628c97ae4808c22566728d.html#function-documentation">Function Documentation</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="generated_api/function_GKWorldSettings_8h_1a48860ca2a38de9b2e17aa422294692c0.html">Template Function GetRow</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="generated_api/function_GKWorldSettings_8h_1a48860ca2a38de9b2e17aa422294692c0.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="generated_api/function_GKSharedTexture_8cpp_1a2829158c26bbb94c8750013583943d29.html">Function GetTextureFormat</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="generated_api/function_GKSharedTexture_8cpp_1a2829158c26bbb94c8750013583943d29.html#function-documentation">Function Documentation</a></li>
 </ul>
@@ -1907,6 +1914,10 @@ It expects some knowledge of UE and does not shy away from C++.</p>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="generated_api/function_GKGameplayAbility_8h_1a5396a8662d5cc84c9f632669377f5a10.html">Function NewPassiveRegenEffect(UObject *, FGameplayAttribute, float, float, FName)</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="generated_api/function_GKGameplayAbility_8h_1a5396a8662d5cc84c9f632669377f5a10.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="generated_api/function_GKWorldSettings_8h_1ad1d52b14a1587a00cbffb43635d13402.html">Template Function ReadDataTable</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="generated_api/function_GKWorldSettings_8h_1ad1d52b14a1587a00cbffb43635d13402.html#function-documentation">Function Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="generated_api/function_GKBitFlag_8h_1aa917b61e29bb996ce90a7ae191eea7a9.html">Template Function RemoveFlag</a><ul>

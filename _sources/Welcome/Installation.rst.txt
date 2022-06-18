@@ -56,10 +56,15 @@ Project structure after unzipping
 		{
 			"Name": "Gamekit",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PostConfigInit",
 			"AdditionalDependencies": [
 				"Engine",
-				"AIModule"
+				"AIModule",
+				"CoreUObject",
+				"UMG",
+				"GameplayAbilities",
+				"OnlineSubsystem",
+				"OnlineSubsystemUtils"
 			]
 		}
 	],

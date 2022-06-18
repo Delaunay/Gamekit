@@ -7,6 +7,7 @@
   <title>Abilities &mdash; GameKit  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                09af65453
+                ca7c21efb
 
               </div>
 <div role="search">
@@ -58,10 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gametags">GameTags</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#gametags">GameTags</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id5">Example</a></li>
 </ul>
@@ -85,6 +83,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExperienceTable.html">Experience</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Teams.html">Teams</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
@@ -167,11 +166,17 @@
 <h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Create inputs in your project setting (include <cite>ConfirmTarget</cite> &amp; <cite>CancelTarget</cite> input)</p></li>
-<li><p>Create a new enum with the same inputs</p></li>
-<li><p>Create a Character from <code class="docutils literal notranslate"><span class="pre">GKCharacterBase</span></code></p></li>
+<li><p>Create a new enum with the same inputs (see <a class="reference internal" href="../generated_api/enum_GKAbilityInputs_8h_1a5926be264f6313e59bb65648750bdd6a.html#_CPPv423EGK_MOBA_AbilityInputID" title="EGK_MOBA_AbilityInputID"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">EGK_MOBA_AbilityInputID</span></code></a> as an example)</p></li>
+<li><p>Create a Character from <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">GKCharacterBase</span></code></p></li>
 <li><p>Extend the On Setup Player Input Component event, use to register your input to the ability system component
-(See <a href="#id1"><span class="problematic" id="id2">:cpp:`AGKCharacterBase::BindAbilityActivationFromInputEnum`</span></a>)</p></li>
-<li><p>You are not ready to grand abilities using <a href="#id3"><span class="problematic" id="id4">:cpp:`AGKCharacterBase::GrantAbility`</span></a>
+(See <a class="reference internal" href="../generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds" title="AGKCharacterBase::BindAbilityActivationFromInputEnum"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">AGKCharacterBase::BindAbilityActivationFromInputEnum()</span></code></a>)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><a href="#id1"><span class="problematic" id="id2">:cpp:property:`FGKGameplayAbilityInputBinds::CancelCommand`</span></a> and <a href="#id3"><span class="problematic" id="id4">:cpp:property:`FGKGameplayAbilityInputBinds::ConfirmCommand`</span></a>
+aret the named defined in the input’s project setting NOT the enum name.</p>
+</div>
+</li>
+<li><p>You are not ready to grand abilities using <a class="reference internal" href="../generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase12GrantAbilityE14FGKAbilitySlot11TSubclassOfI18UGKGameplayAbilityEi" title="AGKCharacterBase::GrantAbility"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">AGKCharacterBase::GrantAbility()</span></code></a>
 In Gamekit abilities are granted to a character for a given slot, each ability populates a slot.
 Slots can then be assigned an input. Gamekit defines 22 default slots (6 Skills, 8 Items, 7 Basic Abilities).
 Under the hood slots are simple integer, users can add as many slots as they want.</p>
@@ -190,10 +195,8 @@ Under the hood slots are simple integer, users can add as many slots as they wan
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
 </section>
 </section>
-<section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
 <section id="gametags">
-<h3>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h3>
+<h2>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h2>
 <p>Gametags are used to mark the current state of a player/ability/effect, it is used to control
 transition between different states. It is the core of the gameplay ability system, some effects
 are exclusively implemented through gameplaytags.</p>
@@ -330,7 +333,6 @@ but all actions are disabled.</p></li>
 <li><p>Quest: used to tag objectives for the quest system</p></li>
 </ul>
 </section>
-</section>
 <section id="define-abilities">
 <h2>Define Abilities<a class="headerlink" href="#define-abilities" title="Permalink to this heading"></a></h2>
 <p>Abilities are define inside a json file.
@@ -394,14 +396,38 @@ A widget should pop up with a bit “Generate Default Abilities” button</p></l
 <p>MaxLevel = HeroLevel / 2
 UltimateMaxLevel = HeroLevel / 6</p>
 <ul class="simple">
-<li><p>Standard Ability: 4 Levels, Every 2 level character increase their maximum basic level ability by 1</p></li>
-<li><p>Ultimate Ability: 3 Levels, every 6 level</p></li>
-<li><p>Unlockable Abilities: Ability is blocked until a tag is granted, unlock tag is granted</p></li>
-<li><p>Abilities with charges: Ability consume charges, charges are given by an effect periodically</p></li>
+<li><dl class="simple">
+<dt>Standard Ability</dt><dd><ul>
+<li><p>4 Levels, Every 2 level character increase their maximum basic level ability by 1</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Ultimate Ability</dt><dd><ul>
+<li><p>3 Levels, every 6 level</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Abilities with charges</dt><dd><ul>
+<li><p>Ability consume charges, charges are given by an effect periodically</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Passive abilities</dt><dd><ul>
+<li><p>Ability simply provide a permanent effect that can be temporarlly disabled with breaks</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p>Linked Abilities [TODO]</p></li>
 <li><p>Sub abilities [TODO]</p></li>
-<li><p>Passive abilities</p></li>
 <li><p>Autocast abilities [TODO]</p></li>
+<li><p>Modifier abilities [TODO]</p></li>
 </ul>
 </section>
 <section id="overview">
@@ -481,6 +507,12 @@ a spell button.</p>
 <a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
 <figcaption>
 <p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="../_images/btn_charges.png"><img alt="../_images/btn_charges.png" src="../_images/btn_charges.png" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
