@@ -1,0 +1,39 @@
+
+.. _file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp:
+
+File GKItemAbility.cpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit_Abilities_Abilities>` (``Source/Gamekit/Abilities/Abilities``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/Abilities/Abilities/GKItemAbility.cpp``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Abilities/Abilities/GKItemAbility.h`` (:ref:`file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h`)
+
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
+
+
+
+

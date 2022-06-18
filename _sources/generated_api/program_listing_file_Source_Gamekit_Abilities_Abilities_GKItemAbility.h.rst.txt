@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h:
+
+Program Listing for File GKItemAbility.h
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h>` (``Source/Gamekit/Abilities/Abilities/GKItemAbility.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "Abilities/GKGameplayAbility.h"
+   #include "GKItemAbility.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKItemAbility : public UGKGameplayAbility
+   {
+       GENERATED_BODY()
+   
+   
+       UGKItemAbility();
+   };

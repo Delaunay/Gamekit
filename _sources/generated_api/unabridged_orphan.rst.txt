@@ -925,6 +925,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Items_GKItemTypes.h.rst
 
 .. toctree::
@@ -1166,6 +1176,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_GKSharedTexture.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.h.rst
 
 .. toctree::
    :maxdepth: 5

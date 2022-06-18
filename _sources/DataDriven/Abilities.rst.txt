@@ -34,7 +34,7 @@ Get Started
 
    .. warning::
 
-	  :cpp:property:`FGKGameplayAbilityInputBinds::CancelCommand` and :cpp:property:`FGKGameplayAbilityInputBinds::ConfirmCommand`
+	  :cpp:member:`FGKGameplayAbilityInputBinds::CancelCommand` and :cpp:member:`FGKGameplayAbilityInputBinds::ConfirmCommand`
 	  aret the named defined in the input's project setting NOT the enum name.
 
 
@@ -56,9 +56,13 @@ Get Started
 Example
 ^^^^^^^
 
-.. raw::
+.. raw:: html
 
    <iframe src="https://blueprintue.com/render/_rsbezu-/" scrolling="no" allowfullscreen></iframe>
+
+.. raw:: html
+
+   <iframe width="100%" height="350px" src="https://blueprintue.com/render/i7gdsnhm/" scrolling="no" allowfullscreen></iframe>
 
 
 GameTags
@@ -82,7 +86,8 @@ Gamekit automatically defines base gametags for its abilities.
 	* CastPoint: Tag is sent when the animation reach the point where projectile/effect should be
 	  spawned.
 
-* Cooldown: used to tag cooldowns; to prevent the same ability from being casted all the time
+* Cooldown: used to tag cooldowns
+	* Prevents the same ability from being casted all the time
 
 * Buff: Improves the effectiveness of a character
 	* Immunity: protects against debuff and disables
@@ -326,7 +331,7 @@ a spell button.
 .. figure:: /_static/Abilities/btn_charges.png
    :width: 60
 
-   Ability disabled by gameplay effect
+   Ability with activation charges
 
 
 UI & Ability State

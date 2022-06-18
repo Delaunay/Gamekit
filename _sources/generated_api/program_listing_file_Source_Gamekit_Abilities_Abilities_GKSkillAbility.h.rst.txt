@@ -1,0 +1,27 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.h:
+
+Program Listing for File GKSkillAbility.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.h>` (``Source/Gamekit/Abilities/Abilities/GKSkillAbility.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "Abilities/GKGameplayAbility.h"
+   #include "GKSkillAbility.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API UGKSkillAbility : public UGKGameplayAbility
+   {
+       GENERATED_BODY()
+   
+       UGKSkillAbility();
+   };

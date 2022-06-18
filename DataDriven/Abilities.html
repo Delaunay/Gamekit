@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ca7c21efb
+                40378f817
 
               </div>
 <div role="search">
@@ -61,7 +61,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gametags">GameTags</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#define-abilities">Define Abilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ability-kinds">Ability Kinds</a></li>
@@ -172,7 +172,7 @@
 (See <a class="reference internal" href="../generated_api/classAGKCharacterBase.html#_CPPv4N16AGKCharacterBase34BindAbilityActivationFromInputEnumEP15UInputComponent28FGKGameplayAbilityInputBinds" title="AGKCharacterBase::BindAbilityActivationFromInputEnum"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">AGKCharacterBase::BindAbilityActivationFromInputEnum()</span></code></a>)</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><a href="#id1"><span class="problematic" id="id2">:cpp:property:`FGKGameplayAbilityInputBinds::CancelCommand`</span></a> and <a href="#id3"><span class="problematic" id="id4">:cpp:property:`FGKGameplayAbilityInputBinds::ConfirmCommand`</span></a>
+<p><a class="reference internal" href="../generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds13CancelCommandE" title="FGKGameplayAbilityInputBinds::CancelCommand"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">FGKGameplayAbilityInputBinds::CancelCommand</span></code></a> and <a class="reference internal" href="../generated_api/structFGKGameplayAbilityInputBinds.html#_CPPv4N28FGKGameplayAbilityInputBinds14ConfirmCommandE" title="FGKGameplayAbilityInputBinds::ConfirmCommand"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">FGKGameplayAbilityInputBinds::ConfirmCommand</span></code></a>
 aret the named defined in the input’s project setting NOT the enum name.</p>
 </div>
 </li>
@@ -193,7 +193,7 @@ Under the hood slots are simple integer, users can add as many slots as they wan
 </div>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
-</section>
+<iframe src="https://blueprintue.com/render/_rsbezu-/" scrolling="no" allowfullscreen></iframe><iframe width="100%" height="350px" src="https://blueprintue.com/render/i7gdsnhm/" scrolling="no" allowfullscreen></iframe></section>
 </section>
 <section id="gametags">
 <h2>GameTags<a class="headerlink" href="#gametags" title="Permalink to this heading"></a></h2>
@@ -221,7 +221,13 @@ spawned.</p></li>
 </dd>
 </dl>
 </li>
-<li><p>Cooldown: used to tag cooldowns; to prevent the same ability from being casted all the time</p></li>
+<li><dl class="simple">
+<dt>Cooldown: used to tag cooldowns</dt><dd><ul>
+<li><p>Prevents the same ability from being casted all the time</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><dl class="simple">
 <dt>Buff: Improves the effectiveness of a character</dt><dd><ul>
 <li><p>Immunity: protects against debuff and disables</p></li>
@@ -346,8 +352,8 @@ To create the new abilities in unreal engine you need to generate them using a p
 A widget should pop up with a bit “Generate Default Abilities” button</p></li>
 <li><p>Click on the button, this will generate all the missing abilities</p></li>
 </ol>
-<section id="id5">
-<h3>Example<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fireball&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;AbilityKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Skill&quot;</span><span class="p">,</span><span class="w"></span>
@@ -473,46 +479,46 @@ a spell button.</p>
 <li><p>Ability requirements/cost are not met</p></li>
 <li><p>Ability cannot be cast because of debuff</p></li>
 </ol>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/btn_cooldown.PNG"><img alt="Ability under cooldown" src="../_images/btn_cooldown.PNG" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability under cooldown</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability under cooldown</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability disabled</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../_images/btn_normal.PNG"><img alt="../_images/btn_normal.PNG" src="../_images/btn_normal.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability ready</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../_images/btn_targetting.PNG"><img alt="../_images/btn_targetting.PNG" src="../_images/btn_targetting.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability selecting a target</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../_images/btn_oom.PNG"><img alt="../_images/btn_oom.PNG" src="../_images/btn_oom.PNG" style="width: 60px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ability out of mana</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
-<a class="reference internal image-reference" href="../_images/btn_disabled.PNG"><img alt="../_images/btn_disabled.PNG" src="../_images/btn_disabled.PNG" style="width: 60px;" /></a>
+<a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability disabled</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
-<a class="reference internal image-reference" href="../_images/btn_normal.PNG"><img alt="../_images/btn_normal.PNG" src="../_images/btn_normal.PNG" style="width: 60px;" /></a>
-<figcaption>
-<p><span class="caption-text">Ability ready</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id10">
-<a class="reference internal image-reference" href="../_images/btn_targetting.PNG"><img alt="../_images/btn_targetting.PNG" src="../_images/btn_targetting.PNG" style="width: 60px;" /></a>
-<figcaption>
-<p><span class="caption-text">Ability selecting a target</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id11">
-<a class="reference internal image-reference" href="../_images/btn_oom.PNG"><img alt="../_images/btn_oom.PNG" src="../_images/btn_oom.PNG" style="width: 60px;" /></a>
-<figcaption>
-<p><span class="caption-text">Ability out of mana</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id12">
-<a class="reference internal image-reference" href="../_images/btn_mute.png"><img alt="../_images/btn_mute.png" src="../_images/btn_mute.png" style="width: 60px;" /></a>
-<figcaption>
-<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id13">
 <a class="reference internal image-reference" href="../_images/btn_charges.png"><img alt="../_images/btn_charges.png" src="../_images/btn_charges.png" style="width: 60px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ability disabled by gameplay effect</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ability with activation charges</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -570,7 +576,7 @@ a spell button.</p>
 <li><p>Gold</p></li>
 </ul>
 <dl class="footnote brackets">
-<dt class="label" id="id6"><span class="brackets">1</span></dt>
+<dt class="label" id="id2"><span class="brackets">1</span></dt>
 <dd><p>Gameplay Ability System <a class="reference external" href="https://github.com/tranek/GASDocumentation">GAS</a>.</p>
 </dd>
 </dl>

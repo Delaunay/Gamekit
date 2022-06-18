@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ca7c21efb</span>
+   &#160;<span id="projectnumber">40378f817</span>
    </div>
   </td>
  </tr>
@@ -82,8 +82,10 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad21c4d1a5133dd157880439358ba28bd"><td class="memItemLeft" align="right" valign="top">FNavPathSharedPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKNavQueryResult.html#ad21c4d1a5133dd157880439358ba28bd">NavPath</a></td></tr>
+<tr class="memdesc:ad21c4d1a5133dd157880439358ba28bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to our destination.  <a href="structFGKNavQueryResult.html#ad21c4d1a5133dd157880439358ba28bd">More...</a><br /></td></tr>
 <tr class="separator:ad21c4d1a5133dd157880439358ba28bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07ea78c1a2efbe73592c2e7c8e385682"><td class="memItemLeft" align="right" valign="top">FAIRequestID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKNavQueryResult.html#a07ea78c1a2efbe73592c2e7c8e385682">RequestID</a></td></tr>
+<tr class="memdesc:a07ea78c1a2efbe73592c2e7c8e385682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement request id if any was issued (requires <code>PathFollowingComponent</code> to have been found)  <a href="structFGKNavQueryResult.html#a07ea78c1a2efbe73592c2e7c8e385682">More...</a><br /></td></tr>
 <tr class="separator:a07ea78c1a2efbe73592c2e7c8e385682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a755ef106420ecb555fe7db6f8e80fc73"><td class="memItemLeft" align="right" valign="top">TEnumAsByte&lt; EPathFollowingRequestResult::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFGKNavQueryResult.html#a755ef106420ecb555fe7db6f8e80fc73">Code</a></td></tr>
 <tr class="separator:a755ef106420ecb555fe7db6f8e80fc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,6 +102,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Success code, <code>EPathFollowingRequestResult</code> here is reused and it is always populated as the default error code for the entire request </p>
 
 </div>
 </div>
@@ -115,6 +118,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Path to our destination. </p>
+
 </div>
 </div>
 <a id="a07ea78c1a2efbe73592c2e7c8e385682"></a>
@@ -128,6 +133,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Movement request id if any was issued (requires <code>PathFollowingComponent</code> to have been found) </p>
 
 </div>
 </div>

@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ca7c21efb
+                40378f817
 
               </div>
 <div role="search">
@@ -214,6 +214,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItemAbility.html">Class UGKItemAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMovementAbility.html">Class UGKMovementAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
@@ -229,6 +230,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillAbility.html">Class UGKSkillAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKStopMovement.html">Class UGKStopMovement</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
@@ -300,7 +302,9 @@
 <h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKCancelAbility</span></code> (<a class="reference internal" href="classUGKCancelAbility.html#exhale-class-classugkcancelability"><span class="std std-ref">Class UGKCancelAbility</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKItemAbility</span></code> (<a class="reference internal" href="classUGKItemAbility.html#exhale-class-classugkitemability"><span class="std std-ref">Class UGKItemAbility</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKMovementAbility</span></code> (<a class="reference internal" href="classUGKMovementAbility.html#exhale-class-classugkmovementability"><span class="std std-ref">Class UGKMovementAbility</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UGKSkillAbility</span></code> (<a class="reference internal" href="classUGKSkillAbility.html#exhale-class-classugkskillability"><span class="std std-ref">Class UGKSkillAbility</span></a>)</p></li>
 </ul>
 </section>
 </section>
@@ -313,7 +317,7 @@
 <p>For ability with charges, just make the ability consume charges on activation remove cooldown, give an effect that grant charges overtime Add the Charge Gametag the the Ability Tag Requirement</p>
 <p>TODO: Measure GA Latency : Measure RPC Latency (Ping-Pong) with BP</p>
 <p>TODO: Add an option to execute a queued ability which would skip the Need to Request a target data from the user </p>
-<p>Subclassed by <a class="reference internal" href="classUGKCancelAbility.html#classUGKCancelAbility"><span class="std std-ref">UGKCancelAbility</span></a>, <a class="reference internal" href="classUGKMovementAbility.html#classUGKMovementAbility"><span class="std std-ref">UGKMovementAbility</span></a></p>
+<p>Subclassed by <a class="reference internal" href="classUGKCancelAbility.html#classUGKCancelAbility"><span class="std std-ref">UGKCancelAbility</span></a>, <a class="reference internal" href="classUGKItemAbility.html#classUGKItemAbility"><span class="std std-ref">UGKItemAbility</span></a>, <a class="reference internal" href="classUGKMovementAbility.html#classUGKMovementAbility"><span class="std std-ref">UGKMovementAbility</span></a>, <a class="reference internal" href="classUGKSkillAbility.html#classUGKSkillAbility"><span class="std std-ref">UGKSkillAbility</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">

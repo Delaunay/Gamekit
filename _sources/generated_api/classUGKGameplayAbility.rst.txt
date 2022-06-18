@@ -19,7 +19,9 @@ Derived Types
 *************
 
 - ``public UGKCancelAbility`` (:ref:`exhale_class_classUGKCancelAbility`)
+- ``public UGKItemAbility`` (:ref:`exhale_class_classUGKItemAbility`)
 - ``public UGKMovementAbility`` (:ref:`exhale_class_classUGKMovementAbility`)
+- ``public UGKSkillAbility`` (:ref:`exhale_class_classUGKSkillAbility`)
 
 
 Class Documentation

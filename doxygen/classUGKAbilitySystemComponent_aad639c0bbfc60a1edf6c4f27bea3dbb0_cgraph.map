@@ -1,4 +1,4 @@
 <map id="UGKAbilitySystemComponent::OnRemoveAbility" name="UGKAbilitySystemComponent::OnRemoveAbility">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,223,47"/>
+<area shape="rect" id="node1" title="Overriden to send the event back to the owner of the ability." alt="" coords="5,5,223,47"/>
 <area shape="rect" id="node2" href="$classAGKCharacterBase.html#a41afb7113afa1352ac4423ae9ee37d6f" title="Client side register the removal." alt="" coords="271,5,483,47"/>
 </map>

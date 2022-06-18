@@ -32,8 +32,11 @@ Program Listing for File GKNavigationInterface.h
    struct FGKNavQueryResult {
        GENERATED_USTRUCT_BODY()
    
+       
        FNavPathSharedPtr NavPath;
+   
        FAIRequestID RequestID;
+   
        TEnumAsByte<EPathFollowingRequestResult::Type> Code;
    };
    

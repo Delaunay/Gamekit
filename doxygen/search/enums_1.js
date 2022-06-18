@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_3253',['type',['../namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79',1,'EGKSaveGameVersion']]]
+  ['type_3267',['type',['../namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79',1,'EGKSaveGameVersion']]]
 ];

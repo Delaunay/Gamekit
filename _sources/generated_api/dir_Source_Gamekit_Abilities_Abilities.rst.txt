@@ -17,7 +17,11 @@ Files
 
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.cpp`
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKCancelAbility.h`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h`
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp`
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.cpp`
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.h`
 
 

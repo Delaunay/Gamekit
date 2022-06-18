@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ca7c21efb
+                40378f817
 
               </div>
 <div role="search">
@@ -130,6 +130,9 @@
 <span class="n">UGKMovementAbility</span><span class="o">::</span><span class="n">UGKMovementAbility</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GroundChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_WorldStatic</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// The exclusiveness is meant to avoid cancelling previously casting ability</span>
+<span class="w">    </span><span class="c1">// in the case of movement we do not mind cancelling the movement</span>
+
 <span class="w">    </span><span class="n">AbilityTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">AbilityMove</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// this ability is blocked by other exclusive abilities</span>
 <span class="w">    </span><span class="c1">// but it does not block exclusive abilities</span>
@@ -143,7 +146,7 @@
 <span class="w">    </span><span class="c1">// but the task would only start once the Exclusive tag is removed</span>
 <span class="w">    </span><span class="c1">// this would allow users to queue the move right away and simulate a kind of</span>
 <span class="w">    </span><span class="c1">// ability queue</span>
-<span class="w">    </span><span class="n">BlockAbilitiesWithTag</span><span class="p">.</span><span class="n">RemoveTag</span><span class="p">(</span><span class="n">AbilityExclusive</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">BlockAbilitiesWithTag</span><span class="p">.</span><span class="n">RemoveTag</span><span class="p">(</span><span class="n">AbilityExclusive</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;= REMOVE</span>
 
 <span class="w">    </span><span class="c1">// Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags</span>
 <span class="w">    </span><span class="n">ActivationBlockedTags</span><span class="p">.</span><span class="n">AddTag</span><span class="p">(</span><span class="n">DisableRoot</span><span class="p">);</span><span class="w"></span>

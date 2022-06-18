@@ -43,7 +43,11 @@ Included By
 -----------
 
 
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp`
+
 - :ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.cpp`
 
 - :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.cpp`
 

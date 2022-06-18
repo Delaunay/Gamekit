@@ -1,0 +1,38 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.cpp:
+
+Program Listing for File GKSkillAbility.cpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Abilities_GKSkillAbility.cpp>` (``Source/Gamekit/Abilities/Abilities/GKSkillAbility.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   // Include
+   #include "Abilities/Abilities/GKSkillAbility.h"
+   
+   // Gamekit
+   #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
+   
+   
+   UGKSkillAbility::UGKSkillAbility() {
+       // The exclusiveness is meant to avoid cancelling previously casting ability
+   
+       // this ability is blocked by other exclusive abilities
+       // and block other exclusive abilities
+       AbilityTags.AddTag(AbilityExclusive);
+       BlockAbilitiesWithTag.AddTag(AbilityExclusive);
+   
+       // Is there instances where `ActivationBlockedTags` is not the same as CancelledByTags
+       ActivationBlockedTags.AddTag(DisableStun);
+       ActivationBlockedTags.AddTag(DisableDead);
+       ActivationBlockedTags.AddTag(DisableSilence);
+   
+       CancelledByTags.AddTag(DisableStun);
+       CancelledByTags.AddTag(DisableDead);
+       CancelledByTags.AddTag(DisableSilence);
+   }

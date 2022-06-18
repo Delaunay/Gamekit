@@ -1,0 +1,26 @@
+.. _exhale_class_classUGKItemAbility:
+
+Class UGKItemAbility
+====================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UGKGameplayAbility`` (:ref:`exhale_class_classUGKGameplayAbility`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKItemAbility
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

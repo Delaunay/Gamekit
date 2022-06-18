@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ca7c21efb
+                40378f817
 
               </div>
 <div role="search">
@@ -214,6 +214,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classUGKHexGridUtilities.html">Class UGKHexGridUtilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKInputLibrary.html">Class UGKInputLibrary</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKItem.html">Class UGKItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKItemAbility.html">Class UGKItemAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMazeGeneration.html">Class UGKMazeGeneration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMovementAbility.html">Class UGKMovementAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKMovementUtility.html">Class UGKMovementUtility</a></li>
@@ -229,6 +230,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classUGKRichTextBlockDecorator.html">Class UGKRichTextBlockDecorator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKSaveGame.html">Class UGKSaveGame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKShadowCasting.html">Class UGKShadowCasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classUGKSkillAbility.html">Class UGKSkillAbility</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKSkillItem.html">Class UGKSkillItem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKStopMovement.html">Class UGKStopMovement</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classUGKTargetType.html">Class UGKTargetType</a></li>
@@ -313,13 +315,14 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N25UGKAbilitySystemComponent13OnGiveAbilityER20FGameplayAbilitySpec">
 <span id="_CPPv3N25UGKAbilitySystemComponent13OnGiveAbilityER20FGameplayAbilitySpec"></span><span id="_CPPv2N25UGKAbilitySystemComponent13OnGiveAbilityER20FGameplayAbilitySpec"></span><span id="UGKAbilitySystemComponent::OnGiveAbility__FGameplayAbilitySpecR"></span><span class="target" id="classUGKAbilitySystemComponent_1a838e3f3c619af4a7fa185711fc8e8b01"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnGiveAbility</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">AbilitySpec</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N25UGKAbilitySystemComponent13OnGiveAbilityER20FGameplayAbilitySpec" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Used to receive the Granted ability through network. </p>
+<dd><p>Overriden to send the event back to the owner of the ability. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N25UGKAbilitySystemComponent15OnRemoveAbilityER20FGameplayAbilitySpec">
 <span id="_CPPv3N25UGKAbilitySystemComponent15OnRemoveAbilityER20FGameplayAbilitySpec"></span><span id="_CPPv2N25UGKAbilitySystemComponent15OnRemoveAbilityER20FGameplayAbilitySpec"></span><span id="UGKAbilitySystemComponent::OnRemoveAbility__FGameplayAbilitySpecR"></span><span class="target" id="classUGKAbilitySystemComponent_1aad639c0bbfc60a1edf6c4f27bea3dbb0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnRemoveAbility</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FGameplayAbilitySpec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Spec</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N25UGKAbilitySystemComponent15OnRemoveAbilityER20FGameplayAbilitySpec" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dd><p>Overriden to send the event back to the owner of the ability. </p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK25UGKAbilitySystemComponent13IsInitializedEv">
