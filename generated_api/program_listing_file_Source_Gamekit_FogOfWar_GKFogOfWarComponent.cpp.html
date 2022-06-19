@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -123,6 +123,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarLibrary.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarVolume.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKUtilityLibrary.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GenericTeamAgentInterface.h&quot;</span><span class="cp"></span>
@@ -205,12 +206,7 @@
 
 <span class="n">FName</span><span class="w"> </span><span class="n">UGKFogOfWarComponent</span><span class="o">::</span><span class="n">DeduceFaction</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">());</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Settings</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamId</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">GetGenericTeamId</span><span class="p">().</span><span class="n">GetId</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>

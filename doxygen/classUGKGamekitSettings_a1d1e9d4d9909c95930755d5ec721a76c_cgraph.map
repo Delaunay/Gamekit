@@ -1,0 +1,5 @@
+<map id="UGKGamekitSettings::GetTeamInfo" name="UGKGamekitSettings::GetTeamInfo">
+<area shape="rect" id="node1" title="Fetch Team info using TeamID." alt="" coords="5,5,165,47"/>
+<area shape="rect" id="node2" href="$classUGKGamekitSettings.html#a6bc7c78aedc874a10c9bcdbf3ee82c10" title="Build an array of TeamInfo from the DataTable." alt="" coords="213,5,373,47"/>
+<area shape="rect" id="node3" href="$GKGamekitSettings_8h.html#ad1d52b14a1587a00cbffb43635d13402" title=" " alt="" coords="421,13,541,39"/>
+</map>

@@ -33,6 +33,8 @@ Includes
 
 - ``GKTeamAgentLibrary.generated.h``
 
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
 
 - ``GenericTeamAgentInterface.h``

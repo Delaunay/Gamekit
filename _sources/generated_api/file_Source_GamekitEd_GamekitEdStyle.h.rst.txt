@@ -1,0 +1,56 @@
+
+.. _file_Source_GamekitEd_GamekitEdStyle.h:
+
+File GamekitEdStyle.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitEd>` (``Source/GamekitEd``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/GamekitEd/GamekitEdStyle.h``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_GamekitEd_GamekitEdStyle.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``Styling/SlateStyle.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_GamekitEd_GamekitEd.cpp`
+
+- :ref:`file_Source_GamekitEd_GamekitEdStyle.cpp`
+
+- :ref:`file_Source_GamekitEd_GKCommands.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classFGamekitEdStyle`
+

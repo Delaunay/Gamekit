@@ -1,0 +1,26 @@
+.. _exhale_class_classFGKCommands:
+
+Class FGKCommands
+=================
+
+- Defined in :ref:`file_Source_GamekitEd_GKCommands.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public TCommands< FGKCommands >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FGKCommands
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

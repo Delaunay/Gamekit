@@ -1,9 +1,12 @@
 <map id="Source/Gamekit/Blueprint/GKTeamAgentLibrary.h" name="Source/Gamekit/Blueprint/GKTeamAgentLibrary.h">
-<area shape="rect" id="node1" title=" " alt="" coords="276,5,465,47"/>
-<area shape="rect" id="node2" href="$Gamekit_8h.html" title=" " alt="" coords="102,102,253,129"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,184,123,211"/>
-<area shape="rect" id="node5" title=" " alt="" coords="277,95,464,136"/>
-<area shape="rect" id="node6" title=" " alt="" coords="489,102,703,129"/>
-<area shape="rect" id="node7" title=" " alt="" coords="727,102,966,129"/>
-<area shape="rect" id="node4" title=" " alt="" coords="147,184,344,211"/>
+<area shape="rect" id="node1" title=" " alt="" coords="467,5,656,47"/>
+<area shape="rect" id="node2" href="$Gamekit_8h.html" title=" " alt="" coords="110,102,261,129"/>
+<area shape="rect" id="node3" title=" " alt="" coords="227,184,344,211"/>
+<area shape="rect" id="node5" href="$GKGamekitSettings_8h.html" title=" " alt="" coords="335,102,558,129"/>
+<area shape="rect" id="node8" title=" " alt="" coords="583,95,769,136"/>
+<area shape="rect" id="node9" title=" " alt="" coords="794,102,1009,129"/>
+<area shape="rect" id="node10" title=" " alt="" coords="1033,102,1271,129"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,184,203,211"/>
+<area shape="rect" id="node6" title=" " alt="" coords="368,184,555,211"/>
+<area shape="rect" id="node7" title=" " alt="" coords="579,184,811,211"/>
 </map>

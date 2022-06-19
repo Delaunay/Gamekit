@@ -43,11 +43,7 @@ Included By
 -----------
 
 
-- :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp`
-
 - :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.cpp`
-
-- :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
 
 - :ref:`file_Source_Gamekit_GKWorldSettings.cpp`
 
@@ -58,18 +54,5 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structFGKExperience`
-
-- :ref:`exhale_struct_structFGKTeamInfo`
-
 - :ref:`exhale_class_classAGKWorldSettings`
-
-
-Functions
----------
-
-
-- :ref:`exhale_function_GKWorldSettings_8h_1a48860ca2a38de9b2e17aa422294692c0`
-
-- :ref:`exhale_function_GKWorldSettings_8h_1ad1d52b14a1587a00cbffb43635d13402`
 

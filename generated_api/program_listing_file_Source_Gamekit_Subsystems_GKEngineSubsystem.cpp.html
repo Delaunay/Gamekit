@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -120,11 +120,13 @@
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKEngineSubsystem::Initialize</span><span class="p">(</span><span class="n">FSubsystemCollectionBase</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Collection</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="n">Collection</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">InitGlobalData</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">InitGlobalData</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>

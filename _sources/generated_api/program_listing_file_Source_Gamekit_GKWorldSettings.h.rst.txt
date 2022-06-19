@@ -23,66 +23,8 @@ Program Listing for File GKWorldSettings.h
    // Generated
    #include "GKWorldSettings.generated.h"
    
-   USTRUCT(BlueprintType)
-   struct GAMEKIT_API FGKTeamInfo: public FTableRowBase
-   {
-       GENERATED_BODY()
-       public:
-   
-       uint8_t      TeamId;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadWrite)
-       FName        Name;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadWrite)
-       FText        DisplayName;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadWrite)
-       FText        Description;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadWrite)
-       FLinearColor Color;
-   };
    
    
-   USTRUCT(BlueprintType)
-   struct GAMEKIT_API FGKExperience : public FTableRowBase
-   {
-       GENERATED_USTRUCT_BODY()
-   
-       UPROPERTY(EditAnywhere, BlueprintReadOnly);
-       int Level;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadOnly);
-       int TotalExperience;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadOnly);
-       int AdditionalExperience;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadOnly);
-       int MaxAbilityLevel;
-   
-       UPROPERTY(EditAnywhere, BlueprintReadOnly);
-       int MaxUtlimateLevel;
-   };
-   
-   
-   template<typename T>
-   void ReadDataTable(class UDataTable* Table, TArray<T*>& Rows) {
-       Rows.Reserve(Table->GetRowMap().Num());
-   
-       for (auto RowMapIter(Table->GetRowMap().CreateConstIterator()); RowMapIter; ++RowMapIter)
-       {
-           T* Info = reinterpret_cast<T*>(RowMapIter.Value());
-           Rows.Add(Info);
-       }
-   }
-   
-   template<typename T>
-   T* GetRow(class UDataTable* Table, FName Row) {
-       static FString Context;
-       return Table->FindRow<T>(Row, Context, false);
-   }
    
    
    UCLASS()
@@ -93,56 +35,17 @@ Program Listing for File GKWorldSettings.h
        public:
        AGKWorldSettings();
    
+   
+   
+   
        // Size of the Map in total in mm (1e3)
        // The map MUST be centered on (0, 0)
        // You can avoid using this if you are using a Fog of War Volume
        // The Volume knows its size and can be fetched using ``GetFogOfWarMapSize``
        // Which simplify your life as you do not have to set the size of everything
-       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level|Constants")
-       FVector2D MapSize;
+       // UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level|Constants")
+       // FVector2D MapSize;
    
-       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Teams")
-       FName DefaultTeam;
    
-       FGKTeamInfo const *GetTeamInfo(int Index) const;
    
-       FGKTeamInfo const *GetTeamInfoFromName(FName) const;
-   
-       void BuildTeamCache() const;
-   
-       TArray<FGKTeamInfo*> const& GetTeams() {
-           BuildTeamCache();
-           return TeamCache;
-       }
-   
-       UFUNCTION(BlueprintPure)
-       FGKExperience const& GetLevelSpec(int Level) {
-           static FGKExperience Nothing;
-           FGKExperience const* Result = GetRow<FGKExperience>(ExperienceLevels, FName(FString::FromInt(Level)));
-   
-           if (Result != nullptr)
-               return *Result;
-   
-           return Nothing;
-       }
-   
-       // This is used to cache the table locally for fast lookup
-       // to avoid the Int -> String -> FName lookup
-       // The asc should probably cache this
-       // maybe we could move this to the asc global
-       // but it does not have a nice Editor widget
-       TArray<FGKExperience const*> GetExperienceLevels() {
-           TArray<FGKExperience const*> Out;
-           ReadDataTable(ExperienceLevels, Out);
-           return Out;
-       }
-   
-   private:
-       UPROPERTY(EditDefaultsOnly, Category = "Teams")
-       class UDataTable *Teams;
-   
-       UPROPERTY(EditDefaultsOnly, Category = "Experience")
-       class UDataTable* ExperienceLevels;
-   
-       mutable TArray<FGKTeamInfo*> TeamCache;
    };

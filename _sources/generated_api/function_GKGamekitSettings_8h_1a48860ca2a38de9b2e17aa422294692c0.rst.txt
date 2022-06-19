@@ -1,0 +1,14 @@
+.. _exhale_function_GKGamekitSettings_8h_1a48860ca2a38de9b2e17aa422294692c0:
+
+Template Function GetRow
+========================
+
+- Defined in :ref:`file_Source_Gamekit_GKGamekitSettings.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetRow(class UDataTable *, FName)
+   :project: GameKit

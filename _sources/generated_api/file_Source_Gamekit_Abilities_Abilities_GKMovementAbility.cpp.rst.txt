@@ -29,6 +29,8 @@ Includes
 --------
 
 
+- ``GameFramework/PlayerController.h``
+
 - ``Gamekit/Abilities/Abilities/GKMovementAbility.h`` (:ref:`file_Source_Gamekit_Abilities_Abilities_GKMovementAbility.h`)
 
 - ``Gamekit/Abilities/AbilityTasks/GKAbilityTask_MoveToDestination.h`` (:ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`)

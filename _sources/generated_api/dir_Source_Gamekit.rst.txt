@@ -46,6 +46,8 @@ Files
 - :ref:`file_Source_Gamekit_GKAssetManager.h`
 - :ref:`file_Source_Gamekit_GKGameInstance.cpp`
 - :ref:`file_Source_Gamekit_GKGameInstance.h`
+- :ref:`file_Source_Gamekit_GKGamekitSettings.cpp`
+- :ref:`file_Source_Gamekit_GKGamekitSettings.h`
 - :ref:`file_Source_Gamekit_GKGameMode.cpp`
 - :ref:`file_Source_Gamekit_GKGameMode.h`
 - :ref:`file_Source_Gamekit_GKLog.h`

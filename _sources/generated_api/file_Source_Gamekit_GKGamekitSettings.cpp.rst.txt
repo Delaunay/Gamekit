@@ -1,0 +1,45 @@
+
+.. _file_Source_Gamekit_GKGamekitSettings.cpp:
+
+File GKGamekitSettings.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKGamekitSettings.cpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKGamekitSettings.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Engine/DataTable.h``
+
+- ``GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
+
+
+
+

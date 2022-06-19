@@ -47,41 +47,6 @@ Program Listing for File GKUtilityLibrary.cpp
        return World->GetWorldSettings();
    }
    
-   FVector2D UGKUtilityLibrary::GetWorldMapSize(const UObject *World)
-   {
-       auto Settings = Cast<AGKWorldSettings const>(GetWorldSetting(World));
-   
-       if (!Settings)
-           return FVector2D();
-   
-       return Settings->MapSize;
-   }
-   
-   
-   void UGKUtilityLibrary::GetTeamInfoFromName(const UObject *World, FName Name, FGKTeamInfo &TeamInfo, bool &bValid) {
-       auto WorldSetting = Cast<AGKWorldSettings>(GetWorldSetting(World));
-       auto Result = WorldSetting->GetTeamInfoFromName(Name);
-       bValid = false;
-   
-       if (Result != nullptr)
-       {
-           TeamInfo = *Result;
-           bValid = true;
-       }
-   }
-   
-   void UGKUtilityLibrary::GetTeamInfo(const UObject *World, FGenericTeamId Team, FGKTeamInfo &TeamInfo, bool &bValid) {
-       auto WorldSetting = Cast<AGKWorldSettings>(GetWorldSetting(World));
-       auto Result = WorldSetting->GetTeamInfo(Team);
-       bValid = false;
-   
-       if (Result != nullptr)
-       {
-           TeamInfo = *Result;
-           bValid = true;
-       }
-   }
-   
    FString UGKUtilityLibrary::GetProjectVersion()
    {
        FString ProjectVersion;

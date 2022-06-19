@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_GamekitEd_GKCommands.h:
+
+Program Listing for File GKCommands.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_GKCommands.h>` (``Source/GamekitEd/GKCommands.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "Framework/Commands/Commands.h"
+   
+   
+   class FGKCommands : public TCommands<FGKCommands> {
+   public:
+       FGKCommands();
+   
+       virtual void RegisterCommands() override;
+   
+   public:
+       TSharedPtr<FUICommandInfo> OpenPluginWindow;
+   };

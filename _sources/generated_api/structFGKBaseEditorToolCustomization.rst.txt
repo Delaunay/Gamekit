@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKBaseEditorToolCustomization:
+
+Struct FGKBaseEditorToolCustomization
+=====================================
+
+- Defined in :ref:`file_Source_GamekitEd_Tools_GKEditorToolBase.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public IDetailCustomization``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKBaseEditorToolCustomization
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

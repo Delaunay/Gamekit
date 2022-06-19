@@ -1,0 +1,39 @@
+
+.. _program_listing_file_Source_GamekitEd_Tools_GKEditorToolBase.h:
+
+Program Listing for File GKEditorToolBase.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_Tools_GKEditorToolBase.h>` (``Source/GamekitEd/Tools/GKEditorToolBase.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   // Unreal Engine
+   #include "IDetailCustomization.h"
+   
+   // Generated
+   #include "GKEditorToolBase.generated.h"
+   
+   UCLASS(Blueprintable, Abstract)
+   class UGKEditorToolBase: public UObject
+   {
+       GENERATED_UCLASS_BODY()
+   
+   };
+   
+   /* Add buttons for every functions inside an object that is marked Exec
+    */
+   struct FGKBaseEditorToolCustomization: public IDetailCustomization
+   {
+       static TSharedRef<IDetailCustomization> MakeInstance();
+   
+       // modify layouts
+       virtual void CustomizeDetails(IDetailLayoutBuilder &DetailBuilder) override;
+   
+       // Execute the functions
+       static FReply ExecuteToolCommand(IDetailLayoutBuilder *DetailBuilder, UFunction *MethodToExecute);
+   };

@@ -31,7 +31,27 @@ Includes
 
 - ``Engine/Blueprint.h``
 
-- ``GamekitEd.h`` (:ref:`file_Source_GamekitEd_GamekitEd.h`)
+- ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
+
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
+- ``GamekitEd/GKCommands.h`` (:ref:`file_Source_GamekitEd_GKCommands.h`)
+
+- ``GamekitEd/GamekitEd.h`` (:ref:`file_Source_GamekitEd_GamekitEd.h`)
+
+- ``GamekitEd/GamekitEdStyle.h`` (:ref:`file_Source_GamekitEd_GamekitEdStyle.h`)
+
+- ``GamekitEd/Tools/GKEditorToolBase.h`` (:ref:`file_Source_GamekitEd_Tools_GKEditorToolBase.h`)
+
+- ``GamekitEd/Tools/GKGameplayAbilityEditorTool.h`` (:ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.h`)
+
+- ``ISettingsContainer.h``
+
+- ``ISettingsModule.h``
+
+- ``ISettingsSection.h``
+
+- ``LevelEditor.h``
 
 - ``Modules/ModuleManager.h``
 
@@ -44,7 +64,16 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GamekitEd_8cpp_1a3b8ef3939f35dc8258728a18e4dfc86f`
+- :ref:`exhale_function_GamekitEd_8cpp_1a22497df546cc284288c0327eb5fe0867`
+
+- :ref:`exhale_function_GamekitEd_8cpp_1a1bdde13bf566effd0aeda7d31e61251a`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GamekitEd_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7`
 
 
 Variables

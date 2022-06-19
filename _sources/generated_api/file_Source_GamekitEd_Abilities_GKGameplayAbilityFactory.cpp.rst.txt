@@ -29,8 +29,6 @@ Includes
 --------
 
 
-- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
-
 - ``GamekitEd/Abilities/GKGameplayAbilityFactory.h`` (:ref:`file_Source_GamekitEd_Abilities_GKGameplayAbilityFactory.h`)
 
 

@@ -1,0 +1,81 @@
+
+.. _file_Source_Gamekit_GKGamekitSettings.h:
+
+File GKGamekitSettings.h
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_Gamekit>` (``Source/Gamekit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/Gamekit/GKGamekitSettings.h``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_Gamekit_GKGamekitSettings.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CoreMinimal.h``
+
+- ``GKGamekitSettings.generated.h``
+
+- ``UObject/NoExportTypes.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.cpp`
+
+- :ref:`file_Source_Gamekit_Blueprint_GKTeamAgentLibrary.h`
+
+- :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
+
+- :ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarComponent.cpp`
+
+- :ref:`file_Source_Gamekit_GKGamekitSettings.cpp`
+
+- :ref:`file_Source_Gamekit_Subsystems_GKEngineSubsystem.cpp`
+
+- :ref:`file_Source_GamekitEd_GamekitEd.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFGKExperience`
+
+- :ref:`exhale_struct_structFGKNamedObject`
+
+- :ref:`exhale_struct_structFGKTeamInfo`
+
+- :ref:`exhale_class_classUGKGamekitSettings`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKGamekitSettings_8h_1a48860ca2a38de9b2e17aa422294692c0`
+
+- :ref:`exhale_function_GKGamekitSettings_8h_1ad1d52b14a1587a00cbffb43635d13402`
+

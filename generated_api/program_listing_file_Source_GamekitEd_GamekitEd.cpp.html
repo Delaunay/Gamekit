@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -116,21 +116,237 @@
 <p>↰ <a class="reference internal" href="file_Source_GamekitEd_GamekitEd.cpp.html#file-source-gamekited-gamekited-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/GamekitEd/GamekitEd.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Modules/ModuleManager.h&quot;</span><span class="cp"></span>
+<span class="c1">// Include</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/GamekitEd.h&quot;</span><span class="cp"></span>
 
+<span class="c1">// GamekitEd</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/Tools/GKEditorToolBase.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/GamekitEdStyle.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/GKCommands.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/Tools/GKGameplayAbilityEditorTool.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/Blueprint.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LevelEditor.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Modules/ModuleManager.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ISettingsContainer.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ISettingsModule.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ISettingsSection.h&quot;</span><span class="cp"></span>
+
 
 <span class="n">DEFINE_LOG_CATEGORY</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">)</span><span class="w"></span>
 
+<span class="cp">#define LOCTEXT_NAMESPACE &quot;GamekitEdModule&quot;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">FGamekitEdModule</span><span class="o">::</span><span class="n">StartupModule</span><span class="p">()</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Local</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddToolbarCommands</span><span class="p">(</span><span class="n">FToolBarBuilder</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ToolbarBuilder</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ToolbarBuilder</span><span class="p">.</span><span class="n">AddToolBarButton</span><span class="p">(</span><span class="n">FGKCommands</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">OpenPluginWindow</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddMenuCommands</span><span class="p">(</span><span class="n">FMenuBuilder</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MenuBuilder</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MenuBuilder</span><span class="p">.</span><span class="n">AddSubMenu</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;Gamekit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;GamekitToolTip&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit Options&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">FNewMenuDelegate</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">FGamekitEdModule</span><span class="o">::</span><span class="n">CreateToolListMenu</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::TriggerTool</span><span class="p">(</span><span class="n">UClass</span><span class="w"> </span><span class="o">*</span><span class="n">ToolClass</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKEditorToolBase</span><span class="w"> </span><span class="o">*</span><span class="n">ToolInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UGKEditorToolBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetTransientPackage</span><span class="p">(),</span><span class="w"> </span><span class="n">ToolClass</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ToolInstance</span><span class="o">-&gt;</span><span class="n">AddToRoot</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FPropertyEditorModule</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FPropertyEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">UObject</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">ObjectsToView</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ObjectsToView</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">ToolInstance</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">SWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PropPlugin</span><span class="p">.</span><span class="n">CreateFloatingDetailsView</span><span class="p">(</span><span class="n">ObjectsToView</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Window</span><span class="o">-&gt;</span><span class="n">SetOnWindowClosed</span><span class="p">(</span><span class="n">FOnWindowClosed</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">FGamekitEdModule</span><span class="o">::</span><span class="n">OnToolWindowClosed</span><span class="p">,</span><span class="w"> </span><span class="n">ToolInstance</span><span class="p">));</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">FGamekitEdModule</span><span class="o">::</span><span class="n">ShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::CreateToolListMenu</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">FMenuBuilder</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MenuBuilder</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">TObjectIterator</span><span class="o">&lt;</span><span class="n">UClass</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ClassIt</span><span class="p">;</span><span class="w"> </span><span class="n">ClassIt</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ClassIt</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UClass</span><span class="w"> </span><span class="o">*</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">ClassIt</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Class</span><span class="o">-&gt;</span><span class="n">HasAnyClassFlags</span><span class="p">(</span><span class="n">CLASS_Deprecated</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">CLASS_NewerVersionExists</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">CLASS_Abstract</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Class</span><span class="o">-&gt;</span><span class="n">IsChildOf</span><span class="p">(</span><span class="n">UGKEditorToolBase</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()))</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">FString</span><span class="w"> </span><span class="n">FriendlyName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="o">-&gt;</span><span class="n">GetName</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// This get generate along side the blueprint stuff</span>
+<span class="w">            </span><span class="c1">// but it is not executable</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">FriendlyName</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;SKEL_&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">FText</span><span class="w">   </span><span class="n">MenuDescription</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">                        </span><span class="n">FText</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;ToolMenuDescription&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{0}&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FText</span><span class="o">::</span><span class="n">FromString</span><span class="p">(</span><span class="n">FriendlyName</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="n">FText</span><span class="w"> </span><span class="n">MenuTooltip</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">                        </span><span class="n">FText</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;ToolMenuToolTip&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Execute the {0} tool&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FText</span><span class="o">::</span><span class="n">FromString</span><span class="p">(</span><span class="n">FriendlyName</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">FUIAction</span><span class="w"> </span><span class="n">Action</span><span class="p">(</span><span class="n">FExecuteAction</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">FGamekitEdModule</span><span class="o">::</span><span class="n">TriggerTool</span><span class="p">,</span><span class="w"> </span><span class="n">Class</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">MenuBuilder</span><span class="p">.</span><span class="n">AddMenuEntry</span><span class="p">(</span><span class="n">MenuDescription</span><span class="p">,</span><span class="w"> </span><span class="n">MenuTooltip</span><span class="p">,</span><span class="w"> </span><span class="n">FSlateIcon</span><span class="p">(),</span><span class="w"> </span><span class="n">Action</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::OnToolWindowClosed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">SWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Window</span><span class="p">,</span><span class="w"> </span><span class="n">UGKEditorToolBase</span><span class="w"> </span><span class="o">*</span><span class="n">Instance</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Instance</span><span class="o">-&gt;</span><span class="n">RemoveFromRoot</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::StartupModule</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">IsModuleLoaded</span><span class="p">(</span><span class="s">&quot;LevelEditor&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Could not load LevelEditor module, make sure the loading phase is correct&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Register customization for our tool widget</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">FPropertyEditorModule</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FPropertyEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PropPlugin</span><span class="p">.</span><span class="n">RegisterCustomClassLayout</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;GKEditorToolBase&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">FOnGetDetailCustomizationInstance</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="n">FGKBaseEditorToolCustomization</span><span class="o">::</span><span class="n">MakeInstance</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">RegisterSettings</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Load resources (icons etc...)</span>
+<span class="w">    </span><span class="n">FGamekitEdStyle</span><span class="o">::</span><span class="n">Initialize</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Register our commands so we can start calling them</span>
+<span class="w">    </span><span class="n">FGKCommands</span><span class="o">::</span><span class="n">Register</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AddMenu</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">AddToolBar</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">EnableAutomaticDataRegeneration</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::MakeCommandList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CommandList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MakeShareable</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FUICommandList</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">CommandList</span><span class="o">-&gt;</span><span class="n">MapAction</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">FGKCommands</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">OpenPluginWindow</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FExecuteAction</span><span class="o">::</span><span class="n">CreateLambda</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">//</span>
+<span class="w">        </span><span class="p">}),</span><span class="w"></span>
+<span class="w">        </span><span class="n">FCanExecuteAction</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::AddToolBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// I think this one does not work for UE5 anymore</span>
+<span class="w">    </span><span class="n">FLevelEditorModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">LevelEditorModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FLevelEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;LevelEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Add Tool bar</span>
+<span class="w">    </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">FExtender</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ToolBarExtender</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FExtender</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">ToolBarExtender</span><span class="o">-&gt;</span><span class="n">AddToolBarExtension</span><span class="p">(</span><span class="s">&quot;Content&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Existing section where we want to add it</span>
+<span class="w">        </span><span class="n">EExtensionHook</span><span class="o">::</span><span class="n">After</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">CommandList</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FToolBarExtensionDelegate</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Local</span><span class="o">::</span><span class="n">AddToolbarCommands</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">LevelEditorModule</span><span class="p">.</span><span class="n">GetMenuExtensibilityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddExtender</span><span class="p">(</span><span class="n">ToolBarExtender</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::AddMenu</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FLevelEditorModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">LevelEditorModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FLevelEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;LevelEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Add Menu</span>
+<span class="w">    </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">FExtender</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MenuExtender</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FExtender</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">MenuExtender</span><span class="o">-&gt;</span><span class="n">AddMenuExtension</span><span class="p">(</span><span class="s">&quot;EditMain&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Existing section where we want to add it</span>
+<span class="w">        </span><span class="n">EExtensionHook</span><span class="o">::</span><span class="n">After</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">CommandList</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">FMenuExtensionDelegate</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Local</span><span class="o">::</span><span class="n">AddMenuCommands</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">LevelEditorModule</span><span class="p">.</span><span class="n">GetMenuExtensibilityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddExtender</span><span class="p">(</span><span class="n">MenuExtender</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::RegisterSettings</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ISettingsModule</span><span class="o">*</span><span class="w"> </span><span class="n">SettingsModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">GetModulePtr</span><span class="o">&lt;</span><span class="n">ISettingsModule</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Settings&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SettingsModule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Create the new category</span>
+<span class="w">        </span><span class="n">ISettingsContainerPtr</span><span class="w"> </span><span class="n">SettingsContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SettingsModule</span><span class="o">-&gt;</span><span class="n">GetContainer</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Project&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">SettingsContainer</span><span class="o">-&gt;</span><span class="n">DescribeCategory</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Gamekit Settings&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;RuntimeWDCategoryName&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit Settings&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;RuntimeWDCategoryDescription&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit Settings&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Register the settings</span>
+<span class="w">        </span><span class="n">ISettingsSectionPtr</span><span class="w"> </span><span class="n">SettingsSection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SettingsModule</span><span class="o">-&gt;</span><span class="n">RegisterSettings</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Project&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Plugins&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Gamekit&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;RuntimeGeneralSettingsName&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;RuntimeGeneralSettingsDescription&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamekit&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">Settings</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Register the save handler to your settings, you might want to use it to</span>
+<span class="w">        </span><span class="c1">// validate those or just act to settings changes.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SettingsSection</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">SettingsSection</span><span class="o">-&gt;</span><span class="n">OnModified</span><span class="p">().</span><span class="n">BindLambda</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">SaveConfig</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">});</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">EnableAutomaticDataRegeneration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">bAutoRegenerateAbilities</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateGameplayAbilitiesFromTable</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">bAutoRegenerateUnits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnUnitTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateUnitsFromTable</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::ShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UObjectInitialized</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ISettingsModule</span><span class="o">*</span><span class="w"> </span><span class="n">SettingsModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">GetModulePtr</span><span class="o">&lt;</span><span class="n">ISettingsModule</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Settings&quot;</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SettingsModule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">SettingsModule</span><span class="o">-&gt;</span><span class="n">UnregisterSettings</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Project&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Plugins&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Gamekit&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FGamekitEdStyle</span><span class="o">::</span><span class="n">Shutdown</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGKCommands</span><span class="o">::</span><span class="n">Unregister</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="n">IMPLEMENT_GAME_MODULE</span><span class="p">(</span><span class="n">FGamekitEdModule</span><span class="p">,</span><span class="w"> </span><span class="n">GamekitEd</span><span class="p">);</span><span class="w"></span>
+
+
+<span class="cp">#undef LOCTEXT_NAMESPACE</span>
 </pre></div>
 </div>
 </section>

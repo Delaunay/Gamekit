@@ -59,6 +59,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_FogOfWar_Strategy_GK_FoW_Strategy.cpp`
 
+- :ref:`file_Source_Gamekit_GKGamekitSettings.cpp`
+
 - :ref:`file_Source_Gamekit_GKGameMode.cpp`
 
 - :ref:`file_Source_Gamekit_GKWorldSettings.cpp`

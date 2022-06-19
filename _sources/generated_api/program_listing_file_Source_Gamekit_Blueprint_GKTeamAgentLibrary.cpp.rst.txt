@@ -15,30 +15,49 @@ Program Listing for File GKTeamAgentLibrary.cpp
    
    #include "Gamekit/Blueprint/GKTeamAgentLibrary.h"
    
-   
    // Gamekit
-   #include "Gamekit/GKWorldSettings.h"
+   #include "Gamekit/GKGamekitSettings.h"
    
    
    
-   FGKTeamInfo const* UGKTeamAgentLibrary::GetTeamInfo(class UWorld *World, FGenericTeamId TeamId) {
-       auto Settings = Cast<AGKWorldSettings const>(World->GetWorldSettings());
+   FGKTeamInfo const* UGKTeamAgentLibrary::GetTeamInfo(FGenericTeamId TeamId) {
+       UGKGamekitSettings* Settings = UGKGamekitSettings::Get();
    
        return GKGETATTR(Settings, GetTeamInfo(TeamId), nullptr);
    }
    
-   FName UGKTeamAgentLibrary::GetTeamName(class UObject* WorldCtx, FGenericTeamId TeamId) { 
-       UWorld *World = GEngine->GetWorldFromContextObject(WorldCtx, EGetWorldErrorMode::LogAndReturnNull);
+   FName UGKTeamAgentLibrary::GetTeamName( FGenericTeamId TeamId) { 
    
-       auto Result = GetTeamInfo(World, TeamId);
-   
+       auto Result = GetTeamInfo(TeamId);
        return GKGETATTR(Result, Name, NAME_None);
    }
    
-   FText UGKTeamAgentLibrary::GetTeamDisplayName(class UObject *WorldCtx, FGenericTeamId TeamId) {
-       UWorld *World = GEngine->GetWorldFromContextObject(WorldCtx, EGetWorldErrorMode::LogAndReturnNull);
-   
-       auto Result = GetTeamInfo(World, TeamId);
+   FText UGKTeamAgentLibrary::GetTeamDisplayName(FGenericTeamId TeamId) {
+       auto Result = GetTeamInfo(TeamId);
    
        return GKGETATTR(Result, DisplayName, FText());
+   }
+   
+   void UGKTeamAgentLibrary::GetTeamInfoFromName(FName Name, FGKTeamInfo& TeamInfo, bool& bValid) {
+       UGKGamekitSettings* Settings = UGKGamekitSettings::Get();
+       
+       auto Result = Settings->GetTeamInfoFromName(Name);
+       bValid = false;
+   
+       if (Result != nullptr)
+       {
+           TeamInfo = *Result;
+           bValid = true;
+       }
+   }
+   
+   void UGKTeamAgentLibrary::GetTeamInfo(FGenericTeamId Team, FGKTeamInfo& TeamInfo, bool& bValid) {
+       auto Result = GetTeamInfo(Team);
+       bValid = false;
+   
+       if (Result != nullptr)
+       {
+           TeamInfo = *Result;
+           bValid = true;
+       }
    }

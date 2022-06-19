@@ -1,4 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,111,32"/>
-<area shape="rect" id="node2" href="$classUGKCastPointAnimNotify.html" title=" " alt="" coords="159,5,344,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,113,108"/>
+<area shape="rect" id="node2" href="$classUGKAbilityWidget.html" title=" " alt="" coords="175,5,314,32"/>
+<area shape="rect" id="node3" href="$classUGKWidgetDraggable.html" title=" " alt="" coords="163,56,326,83"/>
+<area shape="rect" id="node4" href="$classUGKWidgetDragVisual.html" title=" " alt="" coords="161,107,328,133"/>
+<area shape="rect" id="node5" href="$classUGKWidgetDropZone.html" title=" " alt="" coords="165,157,325,184"/>
 </map>

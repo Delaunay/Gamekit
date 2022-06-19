@@ -1,6 +1,7 @@
 <map id="Source/GamekitEd/GamekitEd.h" name="Source/GamekitEd/GamekitEd.h">
-<area shape="rect" id="node1" title=" " alt="" coords="118,5,349,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="234,5,465,32"/>
 <area shape="rect" id="node2" href="$GKGameplayAbilityFactory_8h.html" title=" " alt="" coords="13,80,224,121"/>
 <area shape="rect" id="node4" href="$GamekitEd_8cpp.html" title=" " alt="" coords="248,80,451,121"/>
+<area shape="rect" id="node5" href="$GKGameplayAbilityEditorTool_8cpp.html" title=" " alt="" coords="475,80,720,121"/>
 <area shape="rect" id="node3" href="$GKGameplayAbilityFactory_8cpp.html" title=" " alt="" coords="5,169,232,211"/>
 </map>

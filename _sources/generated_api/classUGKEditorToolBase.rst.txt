@@ -1,0 +1,32 @@
+.. _exhale_class_classUGKEditorToolBase:
+
+Class UGKEditorToolBase
+=======================
+
+- Defined in :ref:`file_Source_GamekitEd_Tools_GKEditorToolBase.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UObject``
+
+
+Derived Type
+************
+
+- ``public UGKGameplayAbilityEditorTool`` (:ref:`exhale_class_classUGKGameplayAbilityEditorTool`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: UGKEditorToolBase
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

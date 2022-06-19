@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -286,7 +286,7 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FLinearColor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">WorldSettings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorldSettings</span><span class="o">-&gt;</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">CurrentAgent</span><span class="o">-&gt;</span><span class="n">GetGenericTeamId</span><span class="p">().</span><span class="n">GetId</span><span class="p">());</span><span class="w"></span>

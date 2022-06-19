@@ -1,0 +1,14 @@
+.. _exhale_function_GamekitEd_8cpp_1a22497df546cc284288c0327eb5fe0867:
+
+Function DEFINE_LOG_CATEGORY(LogGamekitEd)
+==========================================
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEd.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DEFINE_LOG_CATEGORY(LogGamekitEd)
+   :project: GameKit

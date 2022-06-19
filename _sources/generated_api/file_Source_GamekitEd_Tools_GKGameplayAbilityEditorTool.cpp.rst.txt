@@ -1,0 +1,66 @@
+
+.. _file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp:
+
+File GKGameplayAbilityEditorTool.cpp
+====================================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitEd_Tools>` (``Source/GamekitEd/Tools``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/GamekitEd/Tools/GKGameplayAbilityEditorTool.cpp``)
+-----------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
+- ``Gamekit/Characters/GKUnitStatic.h`` (:ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`)
+
+- ``GamekitEd/GamekitEd.h`` (:ref:`file_Source_GamekitEd_GamekitEd.h`)
+
+- ``IPythonScriptPlugin.h``
+
+- ``Tools/GKGameplayAbilityEditorTool.h`` (:ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.h`)
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1ac9a22372067447786c71cae5e4f3bfa5`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_GKGameplayAbilityEditorTool_8cpp_1ad610d7f366c82bfc00c752e12bd79af2`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_GKGameplayAbilityEditorTool_8cpp_1a731e1e047f5ad4d9379a056e5434032a`
+

@@ -186,6 +186,11 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_GamekitEd_Tools.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_GamekitTestSuite.rst
 
 .. toctree::
@@ -296,6 +301,16 @@ Files
    :maxdepth: 5
 
    file_Source_GamekitEd_GamekitEd.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GamekitEdStyle.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GamekitEdStyle.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -675,6 +690,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_GamekitEd_GKCommands.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_GKCommands.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Blueprint_GKCoordinateLibrary.cpp.rst
 
 .. toctree::
@@ -691,6 +716,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_Execution_GKDamageExecution.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Tools_GKEditorToolBase.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Tools_GKEditorToolBase.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -790,6 +825,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_GKGamekitSettings.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_GKGamekitSettings.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_GKGameMode.cpp.rst
 
 .. toctree::
@@ -806,6 +851,16 @@ Files
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_GKGameplayAbility.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.h.rst
 
 .. toctree::
    :maxdepth: 5

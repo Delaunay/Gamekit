@@ -63,7 +63,11 @@ Included By
 
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
 
+- :ref:`file_Source_Gamekit_GKGamekitSettings.cpp`
+
 - :ref:`file_Source_Gamekit_Subsystems_GKEngineSubsystem.cpp`
+
+- :ref:`file_Source_GamekitEd_GamekitEd.cpp`
 
 
 

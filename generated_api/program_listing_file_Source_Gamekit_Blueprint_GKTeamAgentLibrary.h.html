@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -121,6 +121,7 @@
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
@@ -136,13 +137,19 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">WorldContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">GetTeamName</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">GetTeamName</span><span class="p">(</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">WorldContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">GetTeamDisplayName</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FText</span><span class="w"> </span><span class="n">GetTeamDisplayName</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">Team</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bValid</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Team&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bValid</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

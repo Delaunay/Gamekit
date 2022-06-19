@@ -89,6 +89,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_GKSaveGame.h`
 
+- :ref:`file_Source_Gamekit_GKGamekitSettings.cpp`
+
 - :ref:`file_Source_Gamekit_GKGameMode.h`
 
 - :ref:`file_Source_Gamekit_GKWorldSettings.cpp`

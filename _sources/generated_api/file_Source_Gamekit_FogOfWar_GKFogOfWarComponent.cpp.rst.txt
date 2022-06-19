@@ -39,6 +39,8 @@ Includes
 
 - ``Gamekit/FogOfWar/GKFogOfWarVolume.h`` (:ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarVolume.h`)
 
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
 - ``GenericTeamAgentInterface.h``
 
 - ``Kismet/GameplayStatics.h``

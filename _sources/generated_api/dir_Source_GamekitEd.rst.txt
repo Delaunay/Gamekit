@@ -15,6 +15,7 @@ Subdirectories
 --------------
 
 - :ref:`dir_Source_GamekitEd_Abilities`
+- :ref:`dir_Source_GamekitEd_Tools`
 
 
 Files
@@ -23,5 +24,9 @@ Files
 - :ref:`file_Source_GamekitEd_GamekitEd.Build.cs`
 - :ref:`file_Source_GamekitEd_GamekitEd.cpp`
 - :ref:`file_Source_GamekitEd_GamekitEd.h`
+- :ref:`file_Source_GamekitEd_GamekitEdStyle.cpp`
+- :ref:`file_Source_GamekitEd_GamekitEdStyle.h`
+- :ref:`file_Source_GamekitEd_GKCommands.cpp`
+- :ref:`file_Source_GamekitEd_GKCommands.h`
 
 

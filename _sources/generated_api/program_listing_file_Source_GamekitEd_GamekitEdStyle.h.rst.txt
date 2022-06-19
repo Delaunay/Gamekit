@@ -1,0 +1,32 @@
+
+.. _program_listing_file_Source_GamekitEd_GamekitEdStyle.h:
+
+Program Listing for File GamekitEdStyle.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_GamekitEdStyle.h>` (``Source/GamekitEd/GamekitEdStyle.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   // UnrealEngine
+   #include "CoreMinimal.h"
+   #include "Styling/SlateStyle.h"
+   
+   class FGamekitEdStyle {
+   public:
+       static void Initialize();
+       static void Shutdown();
+   
+       static void ReloadTextures();
+   
+       static const ISlateStyle& Get();
+   
+       static FName GetStyleSetName();
+   private:
+       static TSharedRef< class FSlateStyleSet > Create();
+       static TSharedPtr< class FSlateStyleSet > StyleInstance;
+   };

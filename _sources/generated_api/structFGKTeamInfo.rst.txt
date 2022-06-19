@@ -3,7 +3,7 @@
 Struct FGKTeamInfo
 ==================
 
-- Defined in :ref:`file_Source_Gamekit_GKWorldSettings.h`
+- Defined in :ref:`file_Source_Gamekit_GKGamekitSettings.h`
 
 
 Inheritance Relationships

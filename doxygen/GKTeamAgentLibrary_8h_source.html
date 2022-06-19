@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">40378f817</span>
+   &#160;<span id="projectnumber">ad4815c92</span>
    </div>
   </td>
  </tr>
@@ -84,41 +84,51 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// Gamekit</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Gamekit_8h.html">Gamekit/Gamekit.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// Unreal Engine</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;GenericTeamAgentInterface.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Generated</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;GKTeamAgentLibrary.generated.h&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKGamekitSettings_8h.html">Gamekit/GKGamekitSettings.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// Unreal Engine</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;GenericTeamAgentInterface.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// Generated</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;GKTeamAgentLibrary.generated.h&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;UCLASS()</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classUGKTeamAgentLibrary.html">   22</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKTeamAgentLibrary.html">UGKTeamAgentLibrary</a> : public UBlueprintFunctionLibrary</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <span class="keyword">struct </span><a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const* GetTeamInfo(<span class="keyword">class</span> UWorld* World, FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;World&quot;</span>))</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> FName GetTeamName(<span class="keyword">class</span> UObject* World, FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;World&quot;</span>))</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> FText GetTeamDisplayName(<span class="keyword">class</span> UObject* World, FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;UCLASS()</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classUGKTeamAgentLibrary.html">   23</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKTeamAgentLibrary.html">UGKTeamAgentLibrary</a> : public UBlueprintFunctionLibrary</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">static</span> <span class="keyword">struct </span><a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a> const* GetTeamInfo(FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> FName GetTeamName( FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> FText GetTeamDisplayName(FGenericTeamId <a class="code" href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">TeamId</a>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GetTeamInfo(FGenericTeamId Team, <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a>&amp; TeamInfo, <span class="keywordtype">bool</span>&amp; bValid);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Team&quot;</span>)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GetTeamInfoFromName(FName <a class="code" href="structFGKTeamInfo.html#adaa9eed35eebe424f572730e9ba52993">Name</a>, <a class="code" href="structFGKTeamInfo.html">FGKTeamInfo</a>&amp; TeamInfo, <span class="keywordtype">bool</span>&amp; bValid);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
-<div class="ttc" id="aclassUGKTeamAgentLibrary_html_a17539bdb21abb0d54416dfb205291302"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#a17539bdb21abb0d54416dfb205291302">UGKTeamAgentLibrary::GetTeamDisplayName</a></div><div class="ttdeci">static FText GetTeamDisplayName(class UObject *World, FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:26</div></div>
-<div class="ttc" id="astructFGKTeamInfo_html_a9d05ceffe47a80e55ec62ca2301f6bcf"><div class="ttname"><a href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">FGKTeamInfo::TeamId</a></div><div class="ttdeci">uint8_t TeamId</div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:20</div></div>
+<div class="ttc" id="aclassUGKGamekitSettings_html"><div class="ttname"><a href="classUGKGamekitSettings.html">UGKGamekitSettings</a></div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.h:92</div></div>
+<div class="ttc" id="astructFGKTeamInfo_html_a9d05ceffe47a80e55ec62ca2301f6bcf"><div class="ttname"><a href="structFGKTeamInfo.html#a9d05ceffe47a80e55ec62ca2301f6bcf">FGKTeamInfo::TeamId</a></div><div class="ttdeci">uint8_t TeamId</div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.h:18</div></div>
 <div class="ttc" id="aGamekit_8h_html_a06a98535820538d88406614874c1e37a"><div class="ttname"><a href="Gamekit_8h.html#a06a98535820538d88406614874c1e37a">GKGETATTR</a></div><div class="ttdeci">#define GKGETATTR(Obj, Attr, Default)</div><div class="ttdef"><b>Definition:</b> Gamekit.h:10</div></div>
+<div class="ttc" id="astructFGKTeamInfo_html_adaa9eed35eebe424f572730e9ba52993"><div class="ttname"><a href="structFGKTeamInfo.html#adaa9eed35eebe424f572730e9ba52993">FGKTeamInfo::Name</a></div><div class="ttdeci">FName Name</div><div class="ttdoc">Internal Name.</div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.h:22</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
-<div class="ttc" id="aclassUGKTeamAgentLibrary_html_ac1b2d79e2528b6c18bcbbe89d84bd608"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#ac1b2d79e2528b6c18bcbbe89d84bd608">UGKTeamAgentLibrary::GetTeamName</a></div><div class="ttdeci">static FName GetTeamName(class UObject *World, FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:18</div></div>
-<div class="ttc" id="aGKWorldSettings_8h_html"><div class="ttname"><a href="GKWorldSettings_8h.html">GKWorldSettings.h</a></div></div>
-<div class="ttc" id="aclassUGKTeamAgentLibrary_html_a1f293ca6d1a1c43f17e66b511d29c9ef"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#a1f293ca6d1a1c43f17e66b511d29c9ef">UGKTeamAgentLibrary::GetTeamInfo</a></div><div class="ttdeci">static struct FGKTeamInfo const  * GetTeamInfo(class UWorld *World, FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:12</div></div>
-<div class="ttc" id="aclassUGKTeamAgentLibrary_html"><div class="ttname"><a href="classUGKTeamAgentLibrary.html">UGKTeamAgentLibrary</a></div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.h:22</div></div>
+<div class="ttc" id="aclassUGKTeamAgentLibrary_html_aafb191fb93e081bf368b71196f5e0ae0"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#aafb191fb93e081bf368b71196f5e0ae0">UGKTeamAgentLibrary::GetTeamName</a></div><div class="ttdeci">static FName GetTeamName(FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:17</div></div>
+<div class="ttc" id="aclassUGKTeamAgentLibrary_html_ae9c2536f39600b01ea15be3db3429dbb"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#ae9c2536f39600b01ea15be3db3429dbb">UGKTeamAgentLibrary::GetTeamInfoFromName</a></div><div class="ttdeci">static void GetTeamInfoFromName(FName Name, FGKTeamInfo &amp;TeamInfo, bool &amp;bValid)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:29</div></div>
+<div class="ttc" id="aGKGamekitSettings_8h_html"><div class="ttname"><a href="GKGamekitSettings_8h.html">GKGamekitSettings.h</a></div></div>
+<div class="ttc" id="aclassUGKTeamAgentLibrary_html_af82bf9dea135e13cfdaa5ca5c6909f1c"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#af82bf9dea135e13cfdaa5ca5c6909f1c">UGKTeamAgentLibrary::GetTeamDisplayName</a></div><div class="ttdeci">static FText GetTeamDisplayName(FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:23</div></div>
+<div class="ttc" id="aclassUGKGamekitSettings_html_a798acd76a8688f64998b8fec2ea2b5fc"><div class="ttname"><a href="classUGKGamekitSettings.html#a798acd76a8688f64998b8fec2ea2b5fc">UGKGamekitSettings::GetTeamInfoFromName</a></div><div class="ttdeci">FGKTeamInfo const  * GetTeamInfoFromName(FName Name) const</div><div class="ttdoc">Fetch Team info using.</div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.cpp:90</div></div>
+<div class="ttc" id="aclassUGKTeamAgentLibrary_html"><div class="ttname"><a href="classUGKTeamAgentLibrary.html">UGKTeamAgentLibrary</a></div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.h:23</div></div>
+<div class="ttc" id="aclassUGKTeamAgentLibrary_html_a1b57fec54545c1689dbb847abe3014e6"><div class="ttname"><a href="classUGKTeamAgentLibrary.html#a1b57fec54545c1689dbb847abe3014e6">UGKTeamAgentLibrary::GetTeamInfo</a></div><div class="ttdeci">static struct FGKTeamInfo const  * GetTeamInfo(FGenericTeamId TeamId)</div><div class="ttdef"><b>Definition:</b> GKTeamAgentLibrary.cpp:11</div></div>
 <div class="ttc" id="aGKTeamAgentLibrary_8h_html"><div class="ttname"><a href="GKTeamAgentLibrary_8h.html">GKTeamAgentLibrary.h</a></div></div>
-<div class="ttc" id="astructFGKTeamInfo_html"><div class="ttname"><a href="structFGKTeamInfo.html">FGKTeamInfo</a></div><div class="ttdef"><b>Definition:</b> GKWorldSettings.h:15</div></div>
+<div class="ttc" id="astructFGKTeamInfo_html"><div class="ttname"><a href="structFGKTeamInfo.html">FGKTeamInfo</a></div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.h:13</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

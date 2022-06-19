@@ -25,20 +25,25 @@ Program Listing for File GamekitEd.Build.cs
            });
    
            PublicDependencyModuleNames.AddRange(new string[]{
-               "UnrealEd",
-   
                "Gamekit",
-               "NetCore",
+   
+               "Projects",
                "Core",
-               "RenderCore",
-               "RHI"
+               "CoreUObject",
+               "Engine",
+               "UnrealEd",
+               "InputCore",
+               "Slate",
+               "SlateCore",
+               "PropertyEditor",
+               "LevelEditor",
+   
+               "GameplayAbilities",
+               "PythonScriptPlugin"
            });
    
            PrivateDependencyModuleNames.AddRange(new string[] {
-               "GameplayAbilities",
    
-               // Defaults
-               "CoreUObject",
            });
        }
    }

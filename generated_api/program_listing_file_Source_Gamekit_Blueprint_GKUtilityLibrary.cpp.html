@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -149,41 +149,6 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="n">FVector2D</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetWorldMapSize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorldSetting</span><span class="p">(</span><span class="n">World</span><span class="p">));</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Settings</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector2D</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldSetting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorldSetting</span><span class="p">(</span><span class="n">World</span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorldSetting</span><span class="o">-&gt;</span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">Team</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">WorldSetting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetWorldSetting</span><span class="p">(</span><span class="n">World</span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorldSetting</span><span class="o">-&gt;</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="n">FString</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetProjectVersion</span><span class="p">()</span><span class="w"></span>

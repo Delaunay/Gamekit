@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -171,6 +171,14 @@
 <span class="w">            </span><span class="s">&quot;EnhancedInput&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;Landscape&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Target</span><span class="p">.</span><span class="n">bBuildEditor</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="k">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;EditorFramework&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;UnrealEd&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Slate&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;SequenceRecorder&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>

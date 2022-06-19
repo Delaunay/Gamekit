@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -119,32 +119,51 @@
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKTeamAgentLibrary.h&quot;</span><span class="cp"></span>
 
-
 <span class="c1">// Gamekit</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKWorldSettings.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
 
 
 
-<span class="n">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">AGKWorldSettings</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="p">(</span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetWorldSettings</span><span class="p">());</span><span class="w"></span>
+<span class="n">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Settings</span><span class="p">,</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">TeamId</span><span class="p">),</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">FName</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamName</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">LogAndReturnNull</span><span class="p">);</span><span class="w"></span>
+<span class="n">FName</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamName</span><span class="p">(</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
-
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">NAME_None</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">FText</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamDisplayName</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldCtx</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">LogAndReturnNull</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">World</span><span class="p">,</span><span class="w"> </span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
+<span class="n">FText</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamDisplayName</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">TeamId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">TeamId</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GKGETATTR</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span><span class="w"> </span><span class="n">DisplayName</span><span class="p">,</span><span class="w"> </span><span class="n">FText</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKTeamAgentLibrary</span><span class="o">::</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="w"> </span><span class="n">Team</span><span class="p">,</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">TeamInfo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="n">Team</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TeamInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">bValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

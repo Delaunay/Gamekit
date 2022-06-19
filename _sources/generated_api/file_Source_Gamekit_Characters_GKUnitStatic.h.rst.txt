@@ -51,6 +51,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Characters_GKUnitStatic.cpp`
 
+- :ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp`
+
 
 
 

@@ -1,0 +1,30 @@
+
+.. _program_listing_file_Source_GamekitEd_GKCommands.cpp:
+
+Program Listing for File GKCommands.cpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_GKCommands.cpp>` (``Source/GamekitEd/GKCommands.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   
+   #include "GamekitEd/GKCommands.h"
+   #include "GamekitEd/GamekitEdStyle.h"
+   
+   #define LOCTEXT_NAMESPACE "GamekitEd"
+   
+   FGKCommands::FGKCommands() : TCommands<FGKCommands>(
+       TEXT("GamekitEd"),
+       NSLOCTEXT("Contexts", "GamekitEd", "GamekitEd Plugin"),
+       NAME_None,
+       FGamekitEdStyle::GetStyleSetName()) {}
+   
+   void FGKCommands::RegisterCommands() {
+       UI_COMMAND(OpenPluginWindow, "GamekitEd", "Open the GamekitEd window", EUserInterfaceActionType::Button, FInputChord{});
+   }
+   
+   #undef LOCTEXT_NAMESPACE

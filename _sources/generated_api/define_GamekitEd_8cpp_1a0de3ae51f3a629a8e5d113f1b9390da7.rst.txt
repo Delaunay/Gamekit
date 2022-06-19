@@ -1,0 +1,14 @@
+.. _exhale_define_GamekitEd_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7:
+
+Define LOCTEXT_NAMESPACE
+========================
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEd.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LOCTEXT_NAMESPACE
+   :project: GameKit

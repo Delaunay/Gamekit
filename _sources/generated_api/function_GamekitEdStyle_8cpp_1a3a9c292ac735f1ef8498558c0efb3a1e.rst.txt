@@ -1,0 +1,14 @@
+.. _exhale_function_GamekitEdStyle_8cpp_1a3a9c292ac735f1ef8498558c0efb3a1e:
+
+Function StyleSetName
+=====================
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEdStyle.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: StyleSetName(TEXT("GamekitEdStyle"))
+   :project: GameKit

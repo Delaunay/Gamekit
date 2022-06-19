@@ -43,6 +43,8 @@ Included By
 
 - :ref:`file_Source_GamekitEd_GamekitEd.cpp`
 
+- :ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp`
+
 
 
 

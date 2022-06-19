@@ -31,6 +31,8 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
 
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
 - ``Gamekit/Subsystems/GKEngineSubsystem.h`` (:ref:`file_Source_Gamekit_Subsystems_GKEngineSubsystem.h`)
 
 

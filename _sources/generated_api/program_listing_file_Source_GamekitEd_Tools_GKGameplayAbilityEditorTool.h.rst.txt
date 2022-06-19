@@ -1,0 +1,36 @@
+
+.. _program_listing_file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.h:
+
+Program Listing for File GKGameplayAbilityEditorTool.h
+======================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.h>` (``Source/GamekitEd/Tools/GKGameplayAbilityEditorTool.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   #include "CoreMinimal.h"
+   #include "Tools/GKEditorToolBase.h"
+   #include "GKGameplayAbilityEditorTool.generated.h"
+   
+   UCLASS()
+   class GAMEKITED_API UGKGameplayAbilityEditorTool : public UGKEditorToolBase
+   {
+       GENERATED_BODY()
+   
+   public:
+       UFUNCTION(Exec)
+       static void GenerateGameplayAbilities();
+   
+       static void GenerateGameplayAbilitiesFromTable(FName Name, class UDataTable* Table);
+   
+       static void GenerateUnitsFromTable(FName Name, class UDataTable* Table);
+   
+       UPROPERTY(EditAnywhere)
+       bool bTestSomething;
+   };

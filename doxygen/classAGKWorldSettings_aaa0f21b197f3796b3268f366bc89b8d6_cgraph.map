@@ -1,5 +1,0 @@
-<map id="AGKWorldSettings::GetTeamInfoFromName" name="AGKWorldSettings::GetTeamInfoFromName">
-<area shape="rect" id="node1" title="Fetch Team info using." alt="" coords="5,5,211,47"/>
-<area shape="rect" id="node2" href="$classAGKWorldSettings.html#aaec73cc06f651e2ea055f5f419f0ad6e" title="Build an array of TeamInfo from the DataTable." alt="" coords="259,5,473,47"/>
-<area shape="rect" id="node3" href="$GKWorldSettings_8h.html#ad1d52b14a1587a00cbffb43635d13402" title=" " alt="" coords="521,13,641,39"/>
-</map>

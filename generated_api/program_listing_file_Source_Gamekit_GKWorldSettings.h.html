@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -127,66 +127,8 @@
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKWorldSettings.generated.h&quot;</span><span class="cp"></span>
 
-<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKTeamInfo</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FTableRowBase</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w">      </span><span class="n">TeamId</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w">        </span><span class="n">Name</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FText</span><span class="w">        </span><span class="n">DisplayName</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FText</span><span class="w">        </span><span class="n">Description</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FLinearColor</span><span class="w"> </span><span class="n">Color</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
 
 
-<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKExperience</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FTableRowBase</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">()</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Level</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TotalExperience</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">AdditionalExperience</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">MaxAbilityLevel</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">MaxUtlimateLevel</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">ReadDataTable</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">,</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;&amp;</span><span class="w"> </span><span class="n">Rows</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Rows</span><span class="p">.</span><span class="n">Reserve</span><span class="p">(</span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">GetRowMap</span><span class="p">().</span><span class="n">Num</span><span class="p">());</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">RowMapIter</span><span class="p">(</span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">GetRowMap</span><span class="p">().</span><span class="n">CreateConstIterator</span><span class="p">());</span><span class="w"> </span><span class="n">RowMapIter</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">RowMapIter</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">Info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">RowMapIter</span><span class="p">.</span><span class="n">Value</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Info</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">GetRow</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">,</span><span class="w"> </span><span class="n">FName</span><span class="w"> </span><span class="n">Row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="n">Context</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">FindRow</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Row</span><span class="p">,</span><span class="w"> </span><span class="n">Context</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
 
 
 <span class="n">UCLASS</span><span class="p">()</span><span class="w"></span>
@@ -197,58 +139,19 @@
 <span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">AGKWorldSettings</span><span class="p">();</span><span class="w"></span>
 
+
+
+
 <span class="w">    </span><span class="c1">// Size of the Map in total in mm (1e3)</span>
 <span class="w">    </span><span class="c1">// The map MUST be centered on (0, 0)</span>
 <span class="w">    </span><span class="c1">// You can avoid using this if you are using a Fog of War Volume</span>
 <span class="w">    </span><span class="c1">// The Volume knows its size and can be fetched using ``GetFogOfWarMapSize``</span>
 <span class="w">    </span><span class="c1">// Which simplify your life as you do not have to set the size of everything</span>
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Level|Constants&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FVector2D</span><span class="w"> </span><span class="n">MapSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = &quot;Level|Constants&quot;)</span>
+<span class="w">    </span><span class="c1">// FVector2D MapSize;</span>
 
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Teams&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FName</span><span class="w"> </span><span class="n">DefaultTeam</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">GetTeamInfo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FGKTeamInfo</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">GetTeamInfoFromName</span><span class="p">(</span><span class="n">FName</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">BuildTeamCache</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKTeamInfo</span><span class="o">*&gt;</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">GetTeams</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">BuildTeamCache</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">TeamCache</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">FGKExperience</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">GetLevelSpec</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Level</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="n">FGKExperience</span><span class="w"> </span><span class="n">Nothing</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">FGKExperience</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetRow</span><span class="o">&lt;</span><span class="n">FGKExperience</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ExperienceLevels</span><span class="p">,</span><span class="w"> </span><span class="n">FName</span><span class="p">(</span><span class="n">FString</span><span class="o">::</span><span class="n">FromInt</span><span class="p">(</span><span class="n">Level</span><span class="p">)));</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">Result</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Nothing</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// This is used to cache the table locally for fast lookup</span>
-<span class="w">    </span><span class="c1">// to avoid the Int -&gt; String -&gt; FName lookup</span>
-<span class="w">    </span><span class="c1">// The asc should probably cache this</span>
-<span class="w">    </span><span class="c1">// maybe we could move this to the asc global</span>
-<span class="w">    </span><span class="c1">// but it does not have a nice Editor widget</span>
-<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKExperience</span><span class="w"> </span><span class="k">const</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">GetExperienceLevels</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKExperience</span><span class="w"> </span><span class="k">const</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ReadDataTable</span><span class="p">(</span><span class="n">ExperienceLevels</span><span class="p">,</span><span class="w"> </span><span class="n">Out</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Out</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Teams&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="w"> </span><span class="o">*</span><span class="n">Teams</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Experience&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">ExperienceLevels</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKTeamInfo</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">TeamCache</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

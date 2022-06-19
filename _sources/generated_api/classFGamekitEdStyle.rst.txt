@@ -1,0 +1,17 @@
+.. _exhale_class_classFGamekitEdStyle:
+
+Class FGamekitEdStyle
+=====================
+
+- Defined in :ref:`file_Source_GamekitEd_GamekitEdStyle.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: FGamekitEdStyle
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

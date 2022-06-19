@@ -35,7 +35,7 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
 
-- ``Gamekit/GKWorldSettings.h`` (:ref:`file_Source_Gamekit_GKWorldSettings.h`)
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
 
 - ``GenericTeamAgentInterface.h``
 

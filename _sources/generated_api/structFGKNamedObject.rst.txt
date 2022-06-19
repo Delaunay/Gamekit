@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKNamedObject:
+
+Struct FGKNamedObject
+=====================
+
+- Defined in :ref:`file_Source_Gamekit_GKGamekitSettings.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKNamedObject
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

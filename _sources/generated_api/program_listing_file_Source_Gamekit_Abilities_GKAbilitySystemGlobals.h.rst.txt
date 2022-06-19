@@ -97,6 +97,9 @@ Program Listing for File GKAbilitySystemGlobals.h
        //
        // THINK: We could a secondary global curve here for our curve generation system
        //
+   
+       // UPROPERTY(config)
+       // FSoftClassPath AbilitySystemGlobalsClassName;
    };
    
    

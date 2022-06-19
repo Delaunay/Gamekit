@@ -67,5 +67,13 @@ Program Listing for File Gamekit.Build.cs
                "EnhancedInput",
                "Landscape",
            });
+   
+           if (Target.bBuildEditor == true)
+           {
+               PrivateDependencyModuleNames.Add("EditorFramework");
+               PrivateDependencyModuleNames.Add("UnrealEd");
+               PrivateDependencyModuleNames.Add("Slate");
+               PrivateDependencyModuleNames.Add("SequenceRecorder");
+           }
        }
    }

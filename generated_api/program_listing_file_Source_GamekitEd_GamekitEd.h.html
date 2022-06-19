@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                40378f817
+                ad4815c92
 
               </div>
 <div role="search">
@@ -123,12 +123,32 @@
 
 <span class="n">DECLARE_LOG_CATEGORY_EXTERN</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">All</span><span class="p">);</span><span class="w"></span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">FGamekitEdModule</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IModuleInterface</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FGamekitEdModule</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IModuleInterface</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">StartupModule</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Helper to create too windows</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">TriggerTool</span><span class="p">(</span><span class="n">UClass</span><span class="w"> </span><span class="o">*</span><span class="n">ToolClass</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CreateToolListMenu</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">FMenuBuilder</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MenuBuilder</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnToolWindowClosed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">SWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Window</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKEditorToolBase</span><span class="w"> </span><span class="o">*</span><span class="n">Instance</span><span class="p">);</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">// Add settings in the project windows</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">RegisterSettings</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// add commands to our list</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">MakeCommandList</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Insert our new menus and toolbars</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddMenu</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddToolBar</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">EnableAutomaticDataRegeneration</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TSharedPtr</span><span class="o">&lt;</span><span class="n">FUICommandList</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CommandList</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

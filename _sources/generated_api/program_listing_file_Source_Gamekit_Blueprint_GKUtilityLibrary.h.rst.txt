@@ -16,7 +16,7 @@ Program Listing for File GKUtilityLibrary.h
    
    // Gamekit
    #include "Gamekit/Abilities/GKAbilityStatic.h"
-   #include "Gamekit/GKWorldSettings.h"
+   #include "Gamekit/GKGamekitSettings.h"
    
    // Unreal Engine
    #include "GenericTeamAgentInterface.h"
@@ -66,15 +66,6 @@ Program Listing for File GKUtilityLibrary.h
    
        public:
        static class AWorldSettings const *GetWorldSetting(const UObject *World);
-   
-       UFUNCTION(BlueprintPure, Category = "Level|Size", meta = (WorldContext = "World"))
-       static FVector2D GetWorldMapSize(const UObject *World);
-   
-       UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-       static void GetTeamInfoFromName(const UObject *World, FName Name, FGKTeamInfo& TeamInfo, bool &bValid);
-   
-       UFUNCTION(BlueprintPure, Category = "Level|Team", meta = (WorldContext = "World"))
-       static void GetTeamInfo(const UObject *World, FGenericTeamId Team, FGKTeamInfo& TeamInfo, bool &bValid);
    
        // Returns the project version set in the 'Project Settings' > 'Description' section
        // of the editor 

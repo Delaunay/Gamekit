@@ -1,0 +1,48 @@
+
+.. _file_Source_GamekitEd_GamekitEdStyle.cpp:
+
+File GamekitEdStyle.cpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitEd>` (``Source/GamekitEd``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``Source/GamekitEd/GamekitEdStyle.cpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_Source_GamekitEd_GamekitEdStyle.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GamekitEd/GamekitEdStyle.h`` (:ref:`file_Source_GamekitEd_GamekitEdStyle.h`)
+
+- ``Interfaces/IPluginManager.h``
+
+- ``Styling/SlateStyleRegistry.h``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GamekitEdStyle_8cpp_1a3a9c292ac735f1ef8498558c0efb3a1e`
+
