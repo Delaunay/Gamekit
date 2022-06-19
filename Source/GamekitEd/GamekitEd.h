@@ -32,5 +32,10 @@ class FGamekitEdModule: public IModuleInterface
 
     void EnableAutomaticDataRegeneration();
 
+    void Dummy(FName Name, class UDataTable* Table);
+
     TSharedPtr<FUICommandList> CommandList;
+
+    FDelegateHandle AbilityTableUpdate;
+    FDelegateHandle UnitTableUpdate;
 };

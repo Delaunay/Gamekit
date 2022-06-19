@@ -42,6 +42,13 @@
             ]
         },
         {
+            "Name": "EditorScriptingUtilities",
+            "Enabled": true,
+            "TargetAllowList": [
+                "Editor"
+            ]
+        },
+        {
             "Name": "GameplayAbilities",
             "Enabled": true
         },

@@ -201,16 +201,20 @@ void FGamekitEdModule::RegisterSettings() {
         }
     }
 }
+void FGamekitEdModule::Dummy(FName Name, class UDataTable* Table) {
+    UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable(Name, Table);
+}
 
-void EnableAutomaticDataRegeneration() {
+void FGamekitEdModule::EnableAutomaticDataRegeneration() {
     UGKGamekitSettings* Settings = UGKGamekitSettings::Get();
 
     if (Settings->bAutoRegenerateAbilities) {
-        Settings->GetOnAbilityTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable);
+        AbilityTableUpdate = Settings->GetOnAbilityTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable);
+        UE_LOG(LogGamekitEd, Log, TEXT("Auto Regenerating abilities %d"), Settings->GetOnAbilityTableChanged().IsBound());
     }
 
     if (Settings->bAutoRegenerateUnits) {
-        Settings->GetOnUnitTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateUnitsFromTable);
+        UnitTableUpdate = Settings->GetOnUnitTableChanged().AddStatic(&UGKGameplayAbilityEditorTool::GenerateUnitsFromTable);
     }
 }
 

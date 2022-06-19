@@ -24,11 +24,15 @@ UGKGamekitSettings::UGKGamekitSettings(const FObjectInitializer& ObjectInitializ
     Super(ObjectInitializer) 
 {
     AbilitySystemGlobalsClassName = UGKAbilitySystemGlobals::StaticClass();
+    AbilityOutput = "/Gamekit/Abilities/Generated";
+    UnitOutput = "/Gamekit/Units/Generated";
 }
 
 void UGKGamekitSettings::InitGlobalData() {
     GetTeamTable();
     GetExperienceLevel();
+    LoadAbilityTables();
+    LoadUnitTables();
 
     // Register for PreloadMap so cleanup can occur on map transitions
     FCoreUObjectDelegates::PreLoadMap.AddUObject(this, &UGKGamekitSettings::HandlePreLoadMap);
@@ -100,17 +104,23 @@ FGKTeamInfo const* UGKGamekitSettings::GetTeamInfoFromName(FName Name) const {
     return nullptr;
 }
 
+void BroadcastTableChange(FName Name, UDataTable* Table) {
+    UGKGamekitSettings::Get()->GetOnAbilityTableChanged().Broadcast(Name, Table);
+}
+
 
 void UGKGamekitSettings::LoadAbilityTables() {
     for(FGKNamedObject& Item: AbilityDataTables) {
         if (Item.TablePath.IsValid())
         {
             UDataTable* Table = Cast<UDataTable>(Item.TablePath.TryLoad());
-            AbilityTables.Add(Item.Name, Table);
 
-            Table->OnDataTableChanged().AddLambda([&Item, &Table]() {
-                UGKGamekitSettings::Get()->GetOnAbilityTableChanged().Broadcast(Item.Name, Table);
-            });
+            if (Table){
+                AbilityTables.Add(Item.Name, Table);
+                Table->OnDataTableChanged().AddStatic(&BroadcastTableChange, Item.Name, Table);
+            } else {
+                GK_ERROR(TEXT("Could not load datatable %s %s"), *Item.Name.ToString(), *Item.TablePath.ToString());
+            }
         }
     }
 }

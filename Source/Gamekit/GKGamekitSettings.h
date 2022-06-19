@@ -202,7 +202,10 @@ public:
     UPROPERTY(EditAnywhere, Config, Category = "Abilities")
     TArray<FGKNamedObject> AbilityDataTables;
 
-    FOnDataTableChanged GetOnAbilityTableChanged() {
+    UPROPERTY(EditAnywhere, Config, Category = "Abilities")
+    FString AbilityOutput;
+
+    FOnDataTableChanged& GetOnAbilityTableChanged() {
         return AbilityTableChanged;
     }
 
@@ -226,7 +229,10 @@ public:
     UPROPERTY(EditAnywhere, Config, Category = "Units")
     TArray<FGKNamedObject> UnitDataTables;
 
-    FOnDataTableChanged GetOnUnitTableChanged() {
+    UPROPERTY(EditAnywhere, Config, Category = "Units")
+    FString UnitOutput;
+
+    FOnDataTableChanged& GetOnUnitTableChanged() {
         return UnitTableChanged;
     }
 private:
