@@ -157,6 +157,10 @@ struct GAMEKIT_API FGKAbilityStatic: public FTableRowBase
     public:
     FGKAbilityStatic();
 
+    //! use to disable auto generation on a per ability basis
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
+    bool bAutoGenerate;
+
     //! Primary key not visible
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
     FName Name;

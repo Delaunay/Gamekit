@@ -10,7 +10,7 @@
 FGKAbilityStatic::FGKAbilityStatic():
     MaxLevel(1), Price(0), MaxStack(1), AbilityTargetActorClass(AGKAbilityTarget_PlayerControllerTrace::StaticClass())
 {
-
+    bAutoGenerate      = false;
     AbilityKind        = EGK_AbilityKind::None;
     Icon               = nullptr;
     CastMaxRange       = 1800;

@@ -105,6 +105,10 @@ void GenerateGameplayAbilitiesFromTable_CPP(FName Name, class UDataTable* Table)
 
     for(FName RowName: Table->GetRowNames()) {
         FGKAbilityStatic* Row = Table->FindRow<FGKAbilityStatic>(RowName, "", false);
+
+        if (!Row->bAutoGenerate){
+            continue;
+        }
     
         FString FullAssetPath = FString::Format(TEXT("{0}/GA_{1}"), { Destination, RowName.ToString() });
 
@@ -117,7 +121,7 @@ void GenerateGameplayAbilitiesFromTable_CPP(FName Name, class UDataTable* Table)
 }
 
 
-FString GenerateAbilityTemplate = TEXT(
+FString GenerateAbilitiesTemplate = TEXT(
     "from importlib import reload\n"
     "import gamekit.abilities as abilities\n"
     "\n"
@@ -132,13 +136,37 @@ void GenerateGameplayAbilitiesFromTable_Python(FName Name, class UDataTable* Tab
 
     FSoftObjectPath DataTablePath = Table;
 
-    FString PythonCode = FString::Format(*GenerateAbilityTemplate, { DataTablePath.ToString(), Destination });
+    FString PythonCode = FString::Format(*GenerateAbilitiesTemplate, { DataTablePath.ToString(), Destination });
 
     IPythonScriptPlugin::Get()->ExecPythonCommand(*PythonCode);
 
 }
 void UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable(FName Name, class UDataTable* Table) {
     GenerateGameplayAbilitiesFromTable_Python(Name, Table);
+}
+
+FString GenerateAbilityTemplate = TEXT(
+    "from importlib import reload\n"
+    "import gamekit.abilities as abilities\n"
+    "\n"
+    "reload(abilities)\n"
+    "abilities.generate_ability(\"{0}\", \"{1}\", \"{2}\")\n"
+);
+
+
+void UGKGameplayAbilityEditorTool::GenerateGameplayAbilityFromTable(FName RowName, class UDataTable* Table) {
+    UGKGamekitSettings* Settings = UGKGamekitSettings::Get();
+    FString Destination = Settings->AbilityOutput;
+
+    FSoftObjectPath DataTablePath = Table;
+
+    FString PythonCode = FString::Format(*GenerateAbilityTemplate, { 
+        DataTablePath.ToString(), 
+        RowName.ToString(),
+        Destination 
+    });
+
+    IPythonScriptPlugin::Get()->ExecPythonCommand(*PythonCode);
 }
 
 void UGKGameplayAbilityEditorTool::GenerateUnitsFromTable(FName Name, class UDataTable* Table) {

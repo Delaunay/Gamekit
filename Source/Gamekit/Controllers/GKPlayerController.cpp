@@ -6,7 +6,7 @@
 #include "Gamekit/Characters/GKCharacter.h"
 #include "Gamekit/GKGameInstance.h"
 #include "Gamekit/GKSaveGame.h"
-#include "Gamekit/Items/GKItem.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
 // Unreal Engine
 #include "Engine/NetDriver.h"

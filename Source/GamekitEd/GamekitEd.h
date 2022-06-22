@@ -29,6 +29,7 @@ class FGamekitEdModule: public IModuleInterface
     // Insert our new menus and toolbars
     void AddMenu();
     void AddToolBar();
+    void ExtendDataTableMenu();
 
     void EnableAutomaticDataRegeneration();
 

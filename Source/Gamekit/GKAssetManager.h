@@ -11,8 +11,6 @@
 // Generated
 #include "GKAssetManager.generated.h"
 
-class UGKItem;
-
 /**
  * This was used to initialize the GAS when Subsystem did not exist yet
  * Currently it is useless
@@ -37,5 +35,5 @@ class GAMEKIT_API UGKAssetManager: public UAssetManager
      * @param PrimaryAssetId The asset identifier to load
      * @param bDisplayWarning If true, this will log a warning if the item failed to load
      */
-    UGKItem *ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, bool bLogWarning = true);
+    // UGKItem *ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, bool bLogWarning = true);
 };

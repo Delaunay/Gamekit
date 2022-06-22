@@ -4,9 +4,12 @@
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilityTypes.h"
+#include "Gamekit/Abilities/GKAbilityStatic.h"
 #include "Gamekit/Animation/GKAnimationSet.h"
+
 #include "Gamekit/Gamekit.h"
-#include "Gamekit/Items/GKItemTypes.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
+
 
 // Unreal Engine
 #include "Abilities/GameplayAbility.h"
@@ -62,19 +65,19 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
 
     // TODO: This does a full copy
     UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
-    FGKGameplayEffectContainerSpec AddTargetsToEffectContainerSpec(const FGKGameplayEffectContainerSpec &ContainerSpec,
+    static FGKGameplayEffectContainerSpec AddTargetsToEffectContainerSpec(const FGKGameplayEffectContainerSpec &ContainerSpec,
                                                                    const TArray<FHitResult> &            HitResults,
                                                                    const TArray<AActor *> &              TargetActors);
 
     UFUNCTION(BlueprintCallable, Category = "Ability|Effect")
-    TArray<FActiveGameplayEffectHandle> ApplyExternalEffectContainerSpec(
+    static TArray<FActiveGameplayEffectHandle> ApplyExternalEffectContainerSpec(
             const FGKGameplayEffectContainerSpec &ContainerSpec);
 
     //! Safe way to query the Animation set, should always return a valid animation
     //! NB: the animation can change if multiple animations are available for the same
     //! animation kind
     UFUNCTION(BlueprintCallable, Category = "Ability|Animation")
-    class UAnimMontage *GetAnimation(const FGKAnimationSet &AnimationSet, EGK_AbilityAnimation AnimKind)
+    static  class UAnimMontage *GetAnimation(const FGKAnimationSet &AnimationSet, EGK_AbilityAnimation AnimKind)
     {
         return AnimationSet.GetAnimations(AnimKind).Sample();
     }
@@ -102,4 +105,11 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
 
     UFUNCTION(BlueprintPure)
     static UEnum* GetDefaultAbilityInputEnum();
+
+    // This is used to enable fetching a row inside a datatable in python
+    UFUNCTION(BlueprintPure)
+    static FGKAbilityStatic GetAbilityData(class UDataTable* Table, FName Row, bool& bValid);
+
+    UFUNCTION(BlueprintCallable)
+    static void DisableAbilityAutoGeneration(class UDataTable* Table, FName Row);
 };

@@ -4,8 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Gamekit.h"
-#include "Gamekit/Items/GKItem.h"
-#include "Gamekit/Items/GKItemTypes.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
 // Unreal Engine
 #include "GameFramework/SaveGame.h"
@@ -41,23 +40,11 @@ class GAMEKIT_API UGKSaveGame: public USaveGame
         SavedDataVersion = EGKSaveGameVersion::LatestVersion;
     }
 
-    /** Map of items to item data */
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
-    TMap<FPrimaryAssetId, FGKItemData> InventoryData;
-
-    /** Map of slotted items */
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
-    TMap<FGKAbilitySlot, FPrimaryAssetId> SlottedItems;
-
     /** User's unique id */
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
     FString UserId;
 
     protected:
-    /** Deprecated way of storing items, this is read in but not saved out */
-    UPROPERTY()
-    TArray<FPrimaryAssetId> InventoryItems_DEPRECATED;
-
     /** What LatestVersion was when the archive was saved */
     UPROPERTY()
     int32 SavedDataVersion;

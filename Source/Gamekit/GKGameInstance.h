@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Gamekit.h"
-#include "Items/GKItemTypes.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
 #include "Engine/GameInstance.h"
 #include "GKGameInstance.generated.h"
@@ -32,13 +32,6 @@ class GAMEKIT_API UGKGameInstanceBase: public UGameInstance
     /** The platform-specific user index */
     UPROPERTY(BlueprintReadWrite, Category = Save)
     int32 SaveUserIndex;
-
-    /** Delegate called when the save game has been loaded/reset */
-    UPROPERTY(BlueprintAssignable, Category = Inventory)
-    FOnSaveGameLoaded OnSaveGameLoaded;
-
-    /** Native delegate for save game load/reset */
-    FOnSaveGameLoadedNative OnSaveGameLoadedNative;
 
     /** Returns the current save game, so it can be used to initialize state. Changes are not written until
      * WriteSaveGame is called */

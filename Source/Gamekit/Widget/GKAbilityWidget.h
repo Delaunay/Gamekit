@@ -4,7 +4,7 @@
 
 // Gamekit
 #include "Gamekit/Abilities/GKGameplayAbility.h"
-#include "Gamekit/Items/GKInventoryInterface.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
 // Unreal Engine
 #include "Blueprint/UserWidget.h"

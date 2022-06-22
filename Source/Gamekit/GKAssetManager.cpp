@@ -1,9 +1,12 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+// include
 #include "GKAssetManager.h"
 
-#include "Items/GKItem.h"
+// Gamekit
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
+// Unreal Engine
 #include "AbilitySystemGlobals.h"
 
 UGKAssetManager &UGKAssetManager::Get()
@@ -23,6 +26,7 @@ UGKAssetManager &UGKAssetManager::Get()
 
 void UGKAssetManager::StartInitialLoading() { Super::StartInitialLoading(); }
 
+/*
 UGKItem *UGKAssetManager::ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, bool bLogWarning)
 {
     FSoftObjectPath ItemPath = GetPrimaryAssetPath(PrimaryAssetId);
@@ -37,3 +41,4 @@ UGKItem *UGKAssetManager::ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, b
 
     return LoadedItem;
 }
+*/

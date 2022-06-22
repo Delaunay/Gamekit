@@ -9,7 +9,9 @@ public class GamekitEd : ModuleRules
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PrivateIncludePaths.AddRange(new string[]{
-            "GamekitEd"
+            "GamekitEd",
+
+            "Editor/PropertyEditor/Private"
         });
 
         PublicDependencyModuleNames.AddRange(new string[]{
@@ -19,7 +21,6 @@ public class GamekitEd : ModuleRules
             "Core",
             "CoreUObject",
             "Engine",
-            "UnrealEd",
             "InputCore",
             "Slate",
             "SlateCore",
@@ -32,8 +33,15 @@ public class GamekitEd : ModuleRules
             "EditorScriptingUtilities"
         });
 
-        PrivateDependencyModuleNames.AddRange(new string[] {
-
+        /*
+        PrivateIncludePathModuleNames.AddRange(new string[] {
+            "UnrealEd",
         });
+
+        
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "UnrealEd",
+        });
+        */
     }
 }

@@ -146,3 +146,24 @@ UEnum* UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum() {
     static UEnum* InputEnum = StaticEnum<EGK_MOBA_AbilityInputID>();
     return InputEnum;
 }
+
+
+FGKAbilityStatic UGKAbilityBlueprintLibrary::GetAbilityData(class UDataTable* Table, FName Row, bool& bValid) {
+    FGKAbilityStatic* Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
+
+    if (Result != nullptr) {
+        bValid = true;
+        return *Result;
+    }
+
+    bValid = false;
+    return FGKAbilityStatic();
+}
+
+void UGKAbilityBlueprintLibrary::DisableAbilityAutoGeneration(class UDataTable* Table, FName Row) {
+    FGKAbilityStatic* Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
+
+    if (Result != nullptr){
+        Result->bAutoGenerate = false;
+    }
+}

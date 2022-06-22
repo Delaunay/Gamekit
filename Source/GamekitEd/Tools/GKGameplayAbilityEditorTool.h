@@ -20,8 +20,11 @@ public:
 
 	static void GenerateGameplayAbilitiesFromTable(FName Name, class UDataTable* Table);
 
+	static void GenerateGameplayAbilityFromTable(FName RowName, class UDataTable* Table);
+
 	static void GenerateUnitsFromTable(FName Name, class UDataTable* Table);
 
+	// This is not saved/loaded
 	UPROPERTY(EditAnywhere)
 	bool bTestSomething;
 };

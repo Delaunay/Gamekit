@@ -8,6 +8,7 @@
 #include "GamekitEd/GamekitEdStyle.h"
 #include "GamekitEd/GKCommands.h"
 #include "GamekitEd/Tools/GKGameplayAbilityEditorTool.h"
+#include "GamekitEd/Customization/GKAbilityStaticCustomization.h"
 
 // Gamekit
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
@@ -16,6 +17,7 @@
 // Unreal Engine
 #include "Engine/Blueprint.h"
 #include "LevelEditor.h"
+#include "Editor/DataTableEditor/Public/DataTableEditorModule.h"
 #include "Modules/ModuleManager.h"
 #include "ISettingsContainer.h"
 #include "ISettingsModule.h"
@@ -104,11 +106,22 @@ void FGamekitEdModule::StartupModule()
 
     // Register customization for our tool widget
     {
-        FPropertyEditorModule &PropPlugin = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
+        FPropertyEditorModule& PropPlugin = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
 
         PropPlugin.RegisterCustomClassLayout(
-                "GKEditorToolBase",
-                FOnGetDetailCustomizationInstance::CreateStatic(FGKBaseEditorToolCustomization::MakeInstance));
+            "GKEditorToolBase",
+            FOnGetDetailCustomizationInstance::CreateStatic(FGKBaseEditorToolCustomization::MakeInstance));
+    }
+
+
+    // Register Customization when editing the properties of AbilityStatic
+    {
+        // DataTableEditor does use the PropertyEditor with `CreateStructureDetailView`
+        FPropertyEditorModule& PropPlugin = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
+
+        PropPlugin.RegisterCustomClassLayout(
+            "GKAbilityStatic",
+            FOnGetDetailCustomizationInstance::CreateStatic(FGKAbilityStaticCustomization::MakeInstance));
     }
 
     RegisterSettings();
@@ -136,6 +149,21 @@ void FGamekitEdModule::MakeCommandList() {
         }),
         FCanExecuteAction()
     );
+}
+
+void FGamekitEdModule::ExtendDataTableMenu() {
+    FDataTableEditorModule& DataTableEditorModule = FModuleManager::LoadModuleChecked<FDataTableEditorModule>("DataTableEditor");
+
+    // Add Menu
+    TSharedRef<FExtender> MenuExtender(new FExtender());
+    /*
+    MenuExtender->AddMenuExtension("EditMain", // Existing section where we want to add it
+        EExtensionHook::After,
+        CommandList,
+        FMenuExtensionDelegate::CreateStatic(&Local::AddMenuCommands));
+    */
+
+    DataTableEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
 }
 
 void FGamekitEdModule::AddToolBar() {

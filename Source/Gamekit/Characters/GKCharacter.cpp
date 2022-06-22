@@ -7,7 +7,7 @@
 #include "Gamekit/Abilities/GKAbilityStatic.h"
 #include "Gamekit/Abilities/GKAbilitySystemGlobals.h"
 #include "Gamekit/Abilities/GKGameplayAbility.h"
-#include "Gamekit/Items/GKItem.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 #include "Gamekit/GKLog.h"
 #include "Gamekit/FogOfWar/GKFogOfWarComponent.h"
 #include "Gamekit/FogOfWar/GKFogOfWarLibrary.h"

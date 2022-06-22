@@ -1,11 +1,14 @@
 // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
 
+// Include
 #include "GKGameInstance.h"
 
+// Gamekit
 #include "GKAssetManager.h"
 #include "GKSaveGame.h"
-#include "Items/GKItem.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
+// Unreal Engine
 #include "Kismet/GameplayStatics.h"
 
 UGKGameInstanceBase::UGKGameInstanceBase(): SaveSlot(TEXT("SaveGame")), SaveUserIndex(0) {}
@@ -49,8 +52,8 @@ bool UGKGameInstanceBase::HandleSaveGameLoaded(USaveGame *SaveGameObject)
         CurrentSaveGame = Cast<UGKSaveGame>(UGameplayStatics::CreateSaveGameObject(UGKSaveGame::StaticClass()));
     }
 
-    OnSaveGameLoaded.Broadcast(CurrentSaveGame);
-    OnSaveGameLoadedNative.Broadcast(CurrentSaveGame);
+    // OnSaveGameLoaded.Broadcast(CurrentSaveGame);
+    // OnSaveGameLoadedNative.Broadcast(CurrentSaveGame);
 
     return bLoaded;
 }

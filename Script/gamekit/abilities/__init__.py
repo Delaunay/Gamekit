@@ -35,26 +35,66 @@ def generate_ability(root, name, table, parent):
     bp_cdo.set_editor_property("AbilityRowName", name)
 
 
+def get_default_parent():
+    parent_obj = unreal.load_object(None, '/Gamekit/Abilities/GAC_AbilityBase_Prototype.GAC_AbilityBase_Prototype_C')
+    return unreal.get_default_object(parent_obj).get_class()
+
+
+def does_end_with_number(name):
+    try:
+        int(name.split('_')[-1])
+        return True
+    except:
+        return False
+
+
+def generate_ability_internal(datatable, table, package, fname):
+    parent_cls = get_default_parent()
+    name = str(fname)
+    asset_name = f'GA_{name}'
+
+    asset_path = package + '/' + asset_name
+
+    row, valid = unreal.GKAbilityBlueprintLibrary.get_ability_data(table, fname)
+
+    if not valid:
+        print(f"Skipping {name} because its ability data row was not found")
+        return
+
+    if not row.auto_generate:
+        print(f"Skipping {name} because it disabled auto generate")
+        return
+
+    if does_end_with_number(name):
+        print(f"Skipping {name} because name ends with number")
+        return
+
+    if unreal.EditorAssetLibrary.does_asset_exist(asset_path):
+        print(f'Skipping {asset_path} because it already exist')
+        return
+
+    generate_ability(package, name, table, parent_cls)
+
+    # the ability was generated, lets ignore it for future updates
+    unreal.GKAbilityBlueprintLibrary.DisableAutoGeneration(table, fname)
+
+    unreal.EditorAssetLibrary.save_asset(datatable, only_if_is_dirty=False)
+
+    # unreal.EditorLoadingAndSavingUtils.save_packages(datatable.get_package())
+
+
+def generate_ability(datatable, fname, package):
+    table = unreal.EditorAssetLibrary.load_asset(datatable)
+    generate_ability_internal(datatable, table, package, fname)
+
+
 def generate_abilities_from_table(datatable, package):
     """Generate a new Gameplay ability for every row of a given datatable"""
-    #  import Abilities.generate_abilities as gkgen
-    #  reload(gkgen); gkgen.generate_abilities_from_table()
-
-    parent_obj = unreal.load_object(None, '/Gamekit/Abilities/GAC_AbilityBase_Prototype.GAC_AbilityBase_Prototype_C')
-    parent_cls = unreal.get_default_object(parent_obj).get_class()
 
     table = unreal.EditorAssetLibrary.load_asset(datatable)
 
     for fname in unreal.DataTableFunctionLibrary.get_data_table_row_names(table):
-        name = str(fname)
-        asset_name = f'GA_{name}'
-
-        asset_path = package + '/' + asset_name
-
-        if not unreal.EditorAssetLibrary.does_asset_exist(asset_path):
-            generate_ability(package, name, table, parent_cls)
-        else:
-            print(f'Skipping {asset_path}')
+        generate_ability_internal(datatable, table, package, fname)
 
 
 def generate_gamekit_abilities():

@@ -8,7 +8,7 @@
 #include "Gamekit/Characters/GKSelectableInterface.h"
 #include "Gamekit/Characters/GKUnitStatic.h"
 #include "Gamekit/Gamekit.h"
-#include "Gamekit/Items/GKInventoryInterface.h"
+#include "Gamekit/Abilities/GKAbilityInterface.h"
 
 // Unreal Engine
 #include "AbilitySystemInterface.h"
