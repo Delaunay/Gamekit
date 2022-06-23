@@ -122,4 +122,25 @@ class GAMEKIT_API UGKCoordinateLibrary: public UBlueprintFunctionLibrary
             z
         );
     }
+
+    UFUNCTION(BlueprintPure, Category = "Coordinate")
+    static FVector FromPolar(FVector Point) {
+        return FVector(
+            Point.Y * FMath::Cos(Point.X),
+            Point.Y * FMath::Sin(Point.X),
+            Point.Z
+        );
+    }
+
+    UFUNCTION(BlueprintPure, Category = "Coordinate")
+    static FVector ToPolar(FVector Point) {
+        float Radius = FMath::Sqrt(Point.X * Point.X + Point.Y * Point.Y);
+        float Angle = FMath::Atan2(Point.Y, Point.X);
+
+        return FVector(
+            Angle,
+            Radius,
+            Point.Z
+        );
+    }
 };

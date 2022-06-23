@@ -50,16 +50,26 @@ class GAMEKIT_API UGKAsyncTaskCooldownChanged: public UBlueprintAsyncActionBase
     UFUNCTION(BlueprintCallable)
     void EndTask();
 
+    virtual void SetReadyToDestroy() override;
+
+    bool HasCooldownTags() const { return DelegateHandles.Num() > 0; }
+
+    bool IsDestroyed() const { return bDestroyed;}
+
     protected:
+    bool bDestroyed;
+
     UPROPERTY()
     UAbilitySystemComponent *ASC;
 
     FGameplayTagContainer CooldownTags;
 
+    TArray<FDelegateHandle> DelegateHandles;
+
     bool UseServerCooldown;
 
-    virtual void OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent *   Target,
-                                                     const FGameplayEffectSpec & SpecApplied,
+    virtual void OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent    *Target,
+                                                     const FGameplayEffectSpec  &SpecApplied,
                                                      FActiveGameplayEffectHandle ActiveHandle);
 
     virtual void CooldownTagChanged(const FGameplayTag CooldownTag, int32 NewCount);

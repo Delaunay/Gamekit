@@ -10,7 +10,6 @@
 #include "Misc/ConfigCacheIni.h"
 #include "NativeGameplayTags.h"
 
-
 #define NAMESPACE "GamekitAbilities"
 
 UGKAbilityBlueprintLibrary::UGKAbilityBlueprintLibrary(const FObjectInitializer &ObjectInitializer):
@@ -38,8 +37,8 @@ UGameplayEffect *UGKAbilityBlueprintLibrary::GetGameplayEffectFromHandle(const F
 
 FGKGameplayEffectContainerSpec UGKAbilityBlueprintLibrary::AddTargetsToEffectContainerSpec(
         const FGKGameplayEffectContainerSpec &ContainerSpec,
-        const TArray<FHitResult> &            HitResults,
-        const TArray<AActor *> &              TargetActors)
+        const TArray<FHitResult>             &HitResults,
+        const TArray<AActor *>               &TargetActors)
 {
     FGKGameplayEffectContainerSpec NewSpec = ContainerSpec;
     NewSpec.AddTargets(HitResults, TargetActors);
@@ -68,7 +67,7 @@ TArray<FActiveGameplayEffectHandle> UGKAbilityBlueprintLibrary::ApplyExternalEff
 
 FHitResult UGKAbilityBlueprintLibrary::GetTargetDataHitResult(FGameplayAbilityTargetDataHandle const &Handle,
                                                               int32                                   Index,
-                                                              bool &                                  HasHitResult)
+                                                              bool                                   &HasHitResult)
 {
 
     HasHitResult           = false;
@@ -94,45 +93,49 @@ FGKAbilitySlot UGKAbilityBlueprintLibrary::AbilitySlotFromInput(EGK_MOBA_Ability
     return FGKAbilitySlot(AbilityInput);
 }
 
-
-TArray<FGKFailureTagMapping> GenerateFailureMapping() {
+TArray<FGKFailureTagMapping> GenerateFailureMapping()
+{
     // TODO: make this a datatable
-    auto& ASGlobals = (UGKAbilitySystemGlobals&) (UGKAbilitySystemGlobals::Get());
-    
-    FText AbilityCost       = NSLOCTEXT(NAMESPACE, "AbilityCost"        , "Ability cost not met");
-    FText AbilityCooldown   = NSLOCTEXT(NAMESPACE, "AbilityCooldown"    , "Ability is on cooldown");
-    FText AbilityBlocked    = NSLOCTEXT(NAMESPACE, "AbilityBlocked"     , "Ability is blocked by an active effect");
-    FText AbilityMissing    = NSLOCTEXT(NAMESPACE, "AbilityMissing"     , "Ability requirements are not met");
-    FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork"     , "Internal error");
-    FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead"        , "You are dead");
-    FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned"  , "Ability was not learnt yet");
-    FText AbilityNoCharge   = NSLOCTEXT(NAMESPACE, "AbilityNoCharge"    , "Ability does not have charges anymore");
+    auto &ASGlobals = (UGKAbilitySystemGlobals &)(UGKAbilitySystemGlobals::Get());
+
+    FText AbilityCost       = NSLOCTEXT(NAMESPACE, "AbilityCost", "Ability cost not met");
+    FText AbilityCooldown   = NSLOCTEXT(NAMESPACE, "AbilityCooldown", "Ability is on cooldown");
+    FText AbilityBlocked    = NSLOCTEXT(NAMESPACE, "AbilityBlocked", "Ability is blocked by an active effect");
+    FText AbilityMissing    = NSLOCTEXT(NAMESPACE, "AbilityMissing", "Ability requirements are not met");
+    FText AbilityNetwork    = NSLOCTEXT(NAMESPACE, "AbilityNetwork", "Internal error");
+    FText AbilityDead       = NSLOCTEXT(NAMESPACE, "AbilityDead", "You are dead");
+    FText AbilityNotLearned = NSLOCTEXT(NAMESPACE, "AbilityNotLearned", "Ability was not learnt yet");
+    FText AbilityNoCharge   = NSLOCTEXT(NAMESPACE, "AbilityNoCharge", "Ability does not have charges anymore");
 
     return TArray<FGKFailureTagMapping>{
-        FGKFailureTagMapping{ FailureCost,       AbilityCost },
-        FGKFailureTagMapping{ FailureCooldown,   AbilityCooldown },
-        FGKFailureTagMapping{ FailureBlocked,    AbilityBlocked },
-        FGKFailureTagMapping{ FailureMissing,    AbilityMissing },
-        FGKFailureTagMapping{ FailureNetwork,    AbilityNetwork },
-        FGKFailureTagMapping{ FailureDead,       AbilityDead },
-        FGKFailureTagMapping{ FailureNotLearned, AbilityNotLearned },
-        FGKFailureTagMapping{ FailureCharge,     AbilityNoCharge },
+            FGKFailureTagMapping{FailureCost, AbilityCost},
+            FGKFailureTagMapping{FailureCooldown, AbilityCooldown},
+            FGKFailureTagMapping{FailureBlocked, AbilityBlocked},
+            FGKFailureTagMapping{FailureMissing, AbilityMissing},
+            FGKFailureTagMapping{FailureNetwork, AbilityNetwork},
+            FGKFailureTagMapping{FailureDead, AbilityDead},
+            FGKFailureTagMapping{FailureNotLearned, AbilityNotLearned},
+            FGKFailureTagMapping{FailureCharge, AbilityNoCharge},
     };
 }
 
-
-TArray<FGKFailureTagMapping> const& GetFailureMapping() {
+TArray<FGKFailureTagMapping> const &GetFailureMapping()
+{
     static TArray<FGKFailureTagMapping> Mappings = GenerateFailureMapping();
     return Mappings;
 }
 
-
-FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility* Ability, FGameplayTagContainer ReasonTags, bool& bHandled) {
+FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility     *Ability,
+                                                      FGameplayTagContainer ReasonTags,
+                                                      bool                 &bHandled)
+{
     FGameplayTag GameplayTag = ReasonTags.GetByIndex(0);
-    bHandled = false;
+    bHandled                 = false;
 
-    for(FGKFailureTagMapping const& Entry: GetFailureMapping()) {
-        if (Entry.FailureTag == GameplayTag){
+    for (FGKFailureTagMapping const &Entry: GetFailureMapping())
+    {
+        if (Entry.FailureTag == GameplayTag)
+        {
             bHandled = true;
             return Entry.LocalReason;
         }
@@ -141,29 +144,33 @@ FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility* Ability,
     return NSLOCTEXT(NAMESPACE, "AbilityUnknown", "Internal Failure reason");
 }
 
-
-UEnum* UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum() {
-    static UEnum* InputEnum = StaticEnum<EGK_MOBA_AbilityInputID>();
+UEnum *UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum()
+{
+    static UEnum *InputEnum = StaticEnum<EGK_MOBA_AbilityInputID>();
     return InputEnum;
 }
 
+void UGKAbilityBlueprintLibrary::GetAbilityData(class UDataTable *Table,
+                                                FName             Row,
+                                                bool             &bValid,
+                                                FGKAbilityStatic &AbilityData)
+{
+    FGKAbilityStatic *Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
+     bValid = false;
 
-FGKAbilityStatic UGKAbilityBlueprintLibrary::GetAbilityData(class UDataTable* Table, FName Row, bool& bValid) {
-    FGKAbilityStatic* Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
-
-    if (Result != nullptr) {
-        bValid = true;
-        return *Result;
+    if (Result != nullptr)
+    {
+        bValid      = true;
+        AbilityData = *Result;
     }
-
-    bValid = false;
-    return FGKAbilityStatic();
 }
 
-void UGKAbilityBlueprintLibrary::DisableAbilityAutoGeneration(class UDataTable* Table, FName Row) {
-    FGKAbilityStatic* Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
+void UGKAbilityBlueprintLibrary::DisableAbilityAutoGeneration(class UDataTable *Table, FName Row)
+{
+    FGKAbilityStatic *Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
 
-    if (Result != nullptr){
+    if (Result != nullptr)
+    {
         Result->bAutoGenerate = false;
     }
 }

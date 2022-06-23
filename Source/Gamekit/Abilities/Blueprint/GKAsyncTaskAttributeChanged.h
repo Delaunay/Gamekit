@@ -41,7 +41,7 @@ class GAMEKIT_API UGKAsyncTaskAttributeChanged: public UBlueprintAsyncActionBase
     // Listens for an attribute changing.
     // Version that takes in an array of Attributes. Check the Attribute output for which Attribute changed.
     UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
-    static UGKAsyncTaskAttributeChanged *ListenForAttributesChange(UAbilitySystemComponent *  AbilitySystemComponent,
+    static UGKAsyncTaskAttributeChanged *ListenForAttributesChange(UAbilitySystemComponent   *AbilitySystemComponent,
                                                                    TArray<FGameplayAttribute> Attributes);
 
     // You must call this function manually when you want the AsyncTask to end.
@@ -49,13 +49,21 @@ class GAMEKIT_API UGKAsyncTaskAttributeChanged: public UBlueprintAsyncActionBase
     UFUNCTION(BlueprintCallable)
     void EndTask();
 
+    bool IsDestroyed() const { return bDestroyed; }
+
+    void SetReadyToDestroy() override;
+
     protected:
+    bool bDestroyed;
+
     UPROPERTY()
     UAbilitySystemComponent *ASC;
 
     FGameplayAttribute AttributeToListenFor;
 
     TArray<FGameplayAttribute> AttributesToListenFor;
+
+    TArray<FDelegateHandle> DelegateHandles;
 
     void AttributeChanged(const FOnAttributeChangeData &Data);
 };

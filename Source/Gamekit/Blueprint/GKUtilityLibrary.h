@@ -7,8 +7,8 @@
 #include "Gamekit/GKGamekitSettings.h"
 
 // Unreal Engine
-#include "GenericTeamAgentInterface.h"
 #include "CoreMinimal.h"
+#include "GenericTeamAgentInterface.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 
 // Generated
@@ -61,7 +61,7 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     static class AWorldSettings const *GetWorldSetting(const UObject *World);
 
     // Returns the project version set in the 'Project Settings' > 'Description' section
-    // of the editor 
+    // of the editor
     UFUNCTION(BlueprintPure, Category = "Project")
     static FString GetProjectVersion();
 
@@ -72,16 +72,16 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     //! Given a player controller it will output the 4 corners seen by the player
     //! projected on the ground
     UFUNCTION(BlueprintCallable, Category = "Controller", meta = (WorldContext = "World"))
-    static void GetControllerFieldOfView(const UObject *          World,
+    static void GetControllerFieldOfView(const UObject           *World,
                                          class APlayerController *Controller,
                                          ETraceTypeQuery          TraceChannel,
-                                         TArray<FVector> &        Corners,
+                                         TArray<FVector>         &Corners,
                                          FVector2D                Margin = FVector2D(0, 0));
 
     //! Draw a polygon given its corners
     //! It will close the polygon at the end
     UFUNCTION(BlueprintCallable, Category = "Controller", meta = (WorldContext = "World"))
-    static void DrawPolygon(const UObject *              World,
+    static void DrawPolygon(const UObject               *World,
                             class UCanvasRenderTarget2D *Target,
                             TArray<FVector>              Corners,
                             FVector2D                    MapSize,
@@ -130,16 +130,20 @@ class GAMEKIT_API UGKUtilityLibrary: public UBlueprintFunctionLibrary
     UFUNCTION(BlueprintPure, Category = "Multiplayer")
     static FString GetNetConfig(const AActor *Actor);
 
-    static FName NetModeToString(ENetMode NetMode); 
+    static FName NetModeToString(ENetMode NetMode);
 
     static FName NetRoleToString(ENetRole NetRole);
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
-    static FString GetNetworkPrefix(const UObject* WorldContext);
+    static FString GetNetworkPrefix(const UObject *WorldContext);
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContext"))
     static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext);
 
     UFUNCTION(BlueprintCallable, Category = "Multiplayer", meta = (WorldContext = "WorldContextObject"))
-    static APlayerController* GetFirstLocalPlayerController(const UObject* WorldContextObject);
+    static APlayerController *GetFirstLocalPlayerController(const UObject *WorldContextObject);
+
+    //! Find the rotation which makes the Target face the player controller's camera
+    UFUNCTION(BlueprintPure, Category = "Multiplayer", meta = (WorldContext = "WorldContextObject"))
+    static FRotator GetLookAtCamera(const UObject *WorldContextObject, int PlayerIndex, FVector Target);
 };

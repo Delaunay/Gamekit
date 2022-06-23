@@ -21,13 +21,12 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
         return;
     }
 
-
     Ability  = InAbility;
     auto ASC = Ability->GetAbilitySystemComponentFromActorInfo();
 
-
-    FGKAbilityStatic const* AbilityData = Ability->GetAbilityStatic();
-    if (AbilityData && AbilityData->AbilityBehavior == EGK_ActivationBehavior::Charge) {
+    FGKAbilityStatic const *AbilityData = Ability->GetAbilityStatic();
+    if (AbilityData && AbilityData->AbilityBehavior == EGK_ActivationBehavior::Charge)
+    {
         AbilityStackTag = AbilityData->StackTag;
     }
 
@@ -35,13 +34,11 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     AllTags.AddTag(AbilityStackTag);
 
     // Debuffs
-    DisableEffectTask = UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(
-        ASC,
-        AllTags
-    );
+    DisableEffectTask = UGKAsyncTask_GameplayEffectChanged::ListenForGameplayEffectChange(ASC, AllTags);
 
     DisableEffectTask->OnGameplayEffectAdded.AddDynamic(this, &UGKAbilityWidget::OnBeginGameplayEffect_Native);
-    DisableEffectTask->OnGameplayEffectStackChanged.AddDynamic(this, &UGKAbilityWidget::OnStackChangedGameplayEffect_Native);
+    DisableEffectTask->OnGameplayEffectStackChanged.AddDynamic(this,
+                                                               &UGKAbilityWidget::OnStackChangedGameplayEffect_Native);
     DisableEffectTask->OnGameplayEffectRemoved.AddDynamic(this, &UGKAbilityWidget::OnEndGameplayEffect_Native);
 
     // Targeting
@@ -53,27 +50,33 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
 
     // Start
     // Note Activate should be useless in that case
-    if (CooldownChangedTask){
+    if (CooldownChangedTask)
+    {
         CooldownChangedTask->RegisterWithGameInstance(Ability->GetWorld());
         CooldownChangedTask->Activate();
     }
 
-    if (AttributeChangedTask){
+    if (AttributeChangedTask)
+    {
         AttributeChangedTask->RegisterWithGameInstance(Ability->GetWorld());
         AttributeChangedTask->Activate();
     }
 
     // Attribute
-    AttributeChangedTask = UGKAsyncTaskAttributeChanged::ListenForAttributesChange(ASC, Ability->GetAbilityCostAttribute());
+    AttributeChangedTask =
+            UGKAsyncTaskAttributeChanged::ListenForAttributesChange(ASC, Ability->GetAbilityCostAttribute());
 
-    if (AttributeChangedTask) {
-        AttributeChangedTask->OnAttributeChanged.AddDynamic(this, &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
+    if (AttributeChangedTask)
+    {
+        AttributeChangedTask->OnAttributeChanged.AddDynamic(this,
+                                                            &UGKAbilityWidget::OnAbilityInsufficientResources_Native);
     }
 
     // TODO: Note: for abilities with charges the cooldown is not about the ability it is about
     // the task that generates the stacks
-    FGameplayTagContainer const* CooldownTags = Ability->GetCooldownTags();
-    if (CooldownTags != nullptr && !CooldownTags->IsEmpty()) {
+    FGameplayTagContainer const *CooldownTags = Ability->GetCooldownTags();
+    if (CooldownTags != nullptr && !CooldownTags->IsEmpty())
+    {
         CooldownChangedTask = UGKAsyncTaskCooldownChanged::ListenForCooldownChange(ASC, *CooldownTags, true);
         CooldownChangedTask->OnCooldownBegin.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownBegin_Native);
         CooldownChangedTask->OnCooldownEnd.AddDynamic(this, &UGKAbilityWidget::OnAbilityCooldownEnd_Native);
@@ -82,7 +85,8 @@ void UGKAbilityWidget::SetupListeners(class UGKGameplayAbility *InAbility)
     bBound = true;
 }
 
-void UGKAbilityWidget::RemoveListeners() {
+void UGKAbilityWidget::RemoveListeners()
+{
     if (!bBound)
     {
         return;
@@ -95,19 +99,24 @@ void UGKAbilityWidget::RemoveListeners() {
         Ability->OnAbilityLevelUp.RemoveAll(this);
     }
 
-    if (CooldownChangedTask)
+    // TODO: investigate why the dask got destroyed already
+    // is it because of the order of NativeDestruct
+    if (IsValid(CooldownChangedTask) && !CooldownChangedTask->IsDestroyed())
     {
-        CooldownChangedTask->OnCooldownBegin.RemoveAll(this);
-        CooldownChangedTask->OnCooldownEnd.RemoveAll(this);
+        //*
+        if (CooldownChangedTask->HasCooldownTags())
+        {
+            CooldownChangedTask->OnCooldownBegin.RemoveAll(this);
+            CooldownChangedTask->OnCooldownEnd.RemoveAll(this);
+        }
+        //*/
         CooldownChangedTask->EndTask();
-        CooldownChangedTask->SetReadyToDestroy();
     }
 
-    if (AttributeChangedTask)
+    if (IsValid(AttributeChangedTask) && !AttributeChangedTask->IsDestroyed())
     {
         AttributeChangedTask->OnAttributeChanged.RemoveAll(this);
         AttributeChangedTask->EndTask();
-        AttributeChangedTask->SetReadyToDestroy();
     }
 
     bBound = false;
@@ -117,7 +126,7 @@ void UGKAbilityWidget::NativeDestruct()
 {
     UUserWidget::NativeDestruct();
 
-    RemoveListeners(); 
+    RemoveListeners();
 }
 
 void UGKAbilityWidget::OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute,
@@ -137,9 +146,14 @@ void UGKAbilityWidget::OnAbilityCooldownEnd_Native(FGameplayTag CooldownTag, flo
     return OnAbilityCooldownEnd(TimeRemaining, Duration);
 }
 
-
-void UGKAbilityWidget::OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack) {
-    if (DisableTags.HasAnyExact(Effect->InheritableOwnedTagsContainer.CombinedTags)) {
+void UGKAbilityWidget::OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle,
+                                                    UGameplayEffect            *Effect,
+                                                    FGameplayTagContainer       Tags,
+                                                    float                       Duration,
+                                                    int                         Stack)
+{
+    if (DisableTags.HasAnyExact(Effect->InheritableOwnedTagsContainer.CombinedTags))
+    {
         OnBeginDisabled_Native(EffectHandle, Effect, Tags, Duration, 0);
         return;
     }
@@ -148,22 +162,26 @@ void UGKAbilityWidget::OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle 
     OnAbilityChargeChanged(1);
 }
 
-void UGKAbilityWidget::OnStackChangedGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, int StackCount) {
+void UGKAbilityWidget::OnStackChangedGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, int StackCount)
+{
 
-    if (CurrentEffectHandle == EffectHandle){
+    if (CurrentEffectHandle == EffectHandle)
+    {
         OnAbilityChargeChanged(StackCount);
     }
 }
 
+void UGKAbilityWidget::OnEndGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle)
+{
 
-void UGKAbilityWidget::OnEndGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle) {
-
-    if (EffectHandle != CurrentEffectHandle){
+    if (EffectHandle != CurrentEffectHandle)
+    {
         OnEndDisabled_Native(EffectHandle);
         return;
     }
 
-    if (CurrentEffectHandle == EffectHandle) {
+    if (CurrentEffectHandle == EffectHandle)
+    {
         OnAbilityChargeChanged(0);
         CurrentEffectHandle = FActiveGameplayEffectHandle();
     }
@@ -171,12 +189,49 @@ void UGKAbilityWidget::OnEndGameplayEffect_Native(FActiveGameplayEffectHandle Ef
 
 // Disable Handling
 // we track the count of all the stacked disables
-void UGKAbilityWidget::OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack) {
+void UGKAbilityWidget::OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle,
+                                              UGameplayEffect            *Effect,
+                                              FGameplayTagContainer       Tags,
+                                              float                       Duration,
+                                              int                         Stack)
+{
     DisableCount += 1;
     OnBeginDisabled(EffectHandle, Effect, Tags, Duration);
 }
 
-void UGKAbilityWidget::OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle) {
+void UGKAbilityWidget::OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle)
+{
     DisableCount -= 1 * (DisableCount > 0);
     OnEndDisabled(EffectHandle);
+}
+
+void UGKAbilityWidget::OnAbilityGranted_Implementation(FGKAbilityWidgetArgs const &Args)
+{
+    UGKGameplayAbility *AbilityCDO  = Cast<UGKGameplayAbility>(Args.AbilitySpec.Ability);
+    FGKAbilityStatic   *AbilityData = AbilityCDO->GetAbilityStatic();
+    FGameplayTag        StackTag    = AbilityData->StackTag;
+
+    UAbilitySystemComponent *const ASC = Args.ActorInfo.AbilitySystemComponent.Get();
+
+    // Initialize the Stack count
+    if (StackTag != FGameplayTag::EmptyTag)
+    {
+        int Num = AbilityCDO->CheckChargeCost(Args.AbilitySpec.Handle, &Args.ActorInfo, nullptr);
+        TArray<FGameplayEffectSpec> ActiveGameplayEffects;
+        ASC->GetAllActiveGameplayEffectSpecs(ActiveGameplayEffects);
+
+        FGameplayEffectQuery const Query =
+                FGameplayEffectQuery::MakeQuery_MatchAllOwningTags(FGameplayTagContainer(StackTag));
+
+        for (FGameplayEffectSpec &Effect: ActiveGameplayEffects)
+        {
+            // if (Effect.DynamicGrantedTags.MatchesQuery(Query))
+            // {
+            //     CurrentEffectHandle = ASC->FindActiveGameplayEffectHandle();
+            //     break;
+            // }
+        }
+
+        OnAbilityChargeChanged(Num);
+    }
 }

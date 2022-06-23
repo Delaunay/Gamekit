@@ -5,23 +5,23 @@
 // Gamekit
 #include "Gamekit/Blueprint/GKCoordinateLibrary.h"
 #include "Gamekit/FogOfWar/GKFogOfWarVolume.h"
-#include "Gamekit/GKWorldSettings.h"
 #include "Gamekit/GKLog.h"
+#include "Gamekit/GKWorldSettings.h"
 
 // Unreal Engine
 #include "ClearQuad.h"
 #include "Components/PanelSlot.h"
 #include "Engine/Canvas.h"
 #include "Engine/CanvasRenderTarget2D.h"
+#include "Engine/NetConnection.h"
+#include "Engine/NetDriver.h"
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Math/RotationMatrix.h"
 #include "Math/Rotator.h"
-#include "Engine/NetDriver.h"
-#include "Engine/NetConnection.h"
-
 
 AWorldSettings const *UGKUtilityLibrary::GetWorldSetting(const UObject *WorldContext)
 {
@@ -61,10 +61,10 @@ FVector UGKUtilityLibrary::GetFogOfWarMapSize(const UObject *WorldContext)
     return FVector();
 }
 
-void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
+void UGKUtilityLibrary::GetControllerFieldOfView(const UObject           *World,
                                                  class APlayerController *Controller,
                                                  ETraceTypeQuery          TraceChannel,
-                                                 TArray<FVector> &        Corners,
+                                                 TArray<FVector>         &Corners,
                                                  FVector2D                Margin)
 {
     int32 SizeX = 0;
@@ -108,7 +108,7 @@ void UGKUtilityLibrary::GetControllerFieldOfView(const UObject *          World,
     Corners[2].X = Corners[3].X;
 }
 
-void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
+void UGKUtilityLibrary::DrawPolygon(const UObject               *WorldContext,
                                     class UCanvasRenderTarget2D *Target,
                                     TArray<FVector>              Corners,
                                     FVector2D                    MapSize,
@@ -117,7 +117,7 @@ void UGKUtilityLibrary::DrawPolygon(const UObject *              WorldContext,
 {
     UWorld *World = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::LogAndReturnNull);
 
-    UCanvas *                  Canvas;
+    UCanvas                   *Canvas;
     FVector2D                  TextureSize;
     FDrawToRenderTargetContext Context;
 
@@ -460,15 +460,16 @@ FGKNetworkMetrics UGKUtilityLibrary::GetNetworkMetrics(const UObject *WorldConte
     // auto Connection = Driver->ServerConnection;
 }
 
-APlayerController* UGKUtilityLibrary::GetFirstLocalPlayerController(const UObject* WorldContextObject) {
-    UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
+APlayerController *UGKUtilityLibrary::GetFirstLocalPlayerController(const UObject *WorldContextObject)
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
 
     for (FConstPlayerControllerIterator Iterator = World->GetPlayerControllerIterator(); Iterator; ++Iterator)
     {
-        APlayerController* PlayerController = Iterator->Get();
+        APlayerController *PlayerController = Iterator->Get();
         if (PlayerController)
         {
-            ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(PlayerController->Player);
+            ULocalPlayer *LocalPlayer = Cast<ULocalPlayer>(PlayerController->Player);
 
             if (LocalPlayer)
             {
@@ -480,11 +481,12 @@ APlayerController* UGKUtilityLibrary::GetFirstLocalPlayerController(const UObjec
     return nullptr;
 }
 
-FString UGKUtilityLibrary::GetNetworkPrefix(const UObject* WorldContextObject) {
+FString UGKUtilityLibrary::GetNetworkPrefix(const UObject *WorldContextObject)
+{
     FString Prefix;
 
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST) // Do not Print in Shipping or Test
-    UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull);
     if (World)
     {
         if (World->WorldType == EWorldType::PIE)
@@ -493,7 +495,8 @@ FString UGKUtilityLibrary::GetNetworkPrefix(const UObject* WorldContextObject) {
             {
             case NM_Client:
                 // GPlayInEditorID 0 is always the server, so 1 will be first client.
-                // You want to keep this logic in sync with GeneratePIEViewportWindowTitle and UpdatePlayInEditorWorldDebugString
+                // You want to keep this logic in sync with GeneratePIEViewportWindowTitle and
+                // UpdatePlayInEditorWorldDebugString
                 Prefix = FString::Printf(TEXT("Client %d: "), GPlayInEditorID);
                 break;
             case NM_DedicatedServer:
@@ -508,4 +511,18 @@ FString UGKUtilityLibrary::GetNetworkPrefix(const UObject* WorldContextObject) {
 #endif
 
     return Prefix;
+}
+
+FRotator UGKUtilityLibrary::GetLookAtCamera(const UObject *WorldContextObject, int PlayerIndex, FVector Target)
+{
+    UWorld *World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::Assert);
+
+    APlayerController *PlayerController = UGameplayStatics::GetPlayerController(WorldContextObject, PlayerIndex);
+
+    FVector  Location = PlayerController->PlayerCameraManager->GetCameraLocation();
+    FRotator Rot      = PlayerController->PlayerCameraManager->GetCameraRotation();
+
+    FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(Target, Location);
+
+    return  FRotator(-Rot.Pitch, LookAtRot.Yaw, LookAtRot.Roll);
 }

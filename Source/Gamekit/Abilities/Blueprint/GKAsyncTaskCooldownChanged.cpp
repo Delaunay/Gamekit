@@ -1,6 +1,11 @@
 //  MIT License Copyright(c) 2020 Dan Kestranek
 
+// Include
 #include "Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h"
+
+// Gamekit
+#include "Gamekit/GKLog.h"
+#include "Gamekit/Gamekit.h"
 
 UGKAsyncTaskCooldownChanged *UGKAsyncTaskCooldownChanged::ListenForCooldownChange(
         UAbilitySystemComponent *AbilitySystemComponent,
@@ -11,6 +16,7 @@ UGKAsyncTaskCooldownChanged *UGKAsyncTaskCooldownChanged::ListenForCooldownChang
     ListenForCooldownChange->ASC                         = AbilitySystemComponent;
     ListenForCooldownChange->CooldownTags                = InCooldownTags;
     ListenForCooldownChange->UseServerCooldown           = InUseServerCooldown;
+    ListenForCooldownChange->bDestroyed                  = false;
 
     if (!IsValid(AbilitySystemComponent) || InCooldownTags.Num() < 1)
     {
@@ -18,11 +24,14 @@ UGKAsyncTaskCooldownChanged *UGKAsyncTaskCooldownChanged::ListenForCooldownChang
         return nullptr;
     }
 
-    AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(
-            ListenForCooldownChange, &UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback);
-
     TArray<FGameplayTag> CooldownTagArray;
     InCooldownTags.GetGameplayTagArray(CooldownTagArray);
+
+    ListenForCooldownChange->DelegateHandles.Reserve(CooldownTagArray.Num() + 1);
+
+    ListenForCooldownChange->DelegateHandles.Add(
+            AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(
+                    ListenForCooldownChange, &UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback));
 
     for (FGameplayTag CooldownTag: CooldownTagArray)
     {
@@ -32,8 +41,9 @@ UGKAsyncTaskCooldownChanged *UGKAsyncTaskCooldownChanged::ListenForCooldownChang
             continue;
         }
 
-        AbilitySystemComponent->RegisterGameplayTagEvent(CooldownTag, EGameplayTagEventType::NewOrRemoved)
-                .AddUObject(ListenForCooldownChange, &UGKAsyncTaskCooldownChanged::CooldownTagChanged);
+        ListenForCooldownChange->DelegateHandles.Add(
+                AbilitySystemComponent->RegisterGameplayTagEvent(CooldownTag, EGameplayTagEventType::NewOrRemoved)
+                        .AddUObject(ListenForCooldownChange, &UGKAsyncTaskCooldownChanged::CooldownTagChanged));
     }
 
     return ListenForCooldownChange;
@@ -41,31 +51,41 @@ UGKAsyncTaskCooldownChanged *UGKAsyncTaskCooldownChanged::ListenForCooldownChang
 
 void UGKAsyncTaskCooldownChanged::EndTask()
 {
+    if (bDestroyed)
+    {
+        GK_ERROR(TEXT("Destroying object twice"));
+        return;
+    }
+
+    if (IsValid(this))
+    {
+        SetReadyToDestroy();
+    }
+}
+
+void UGKAsyncTaskCooldownChanged::SetReadyToDestroy()
+{
     if (IsValid(ASC))
     {
-        ASC->OnActiveGameplayEffectAddedDelegateToSelf.RemoveAll(this);
+        ASC->OnActiveGameplayEffectAddedDelegateToSelf.Remove(DelegateHandles[0]);
 
         TArray<FGameplayTag> CooldownTagArray;
         CooldownTags.GetGameplayTagArray(CooldownTagArray);
 
+        int i = 0;
         for (FGameplayTag CooldownTag: CooldownTagArray)
         {
-            // Invalid tags would make this crash
-            if (!CooldownTag.IsValid() || CooldownTag == FGameplayTag::EmptyTag)
-            {
-                continue;
-            }
-
-            ASC->RegisterGameplayTagEvent(CooldownTag, EGameplayTagEventType::NewOrRemoved).RemoveAll(this);
+            i += 1;
+            ASC->RegisterGameplayTagEvent(CooldownTag, EGameplayTagEventType::NewOrRemoved).Remove(DelegateHandles[i]);
         }
     }
 
-    SetReadyToDestroy();
-    MarkAsGarbage();
+    Super::SetReadyToDestroy();
+    bDestroyed = true;
 }
 
-void UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent *   Target,
-                                                                      const FGameplayEffectSpec & SpecApplied,
+void UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent    *Target,
+                                                                      const FGameplayEffectSpec  &SpecApplied,
                                                                       FActiveGameplayEffectHandle ActiveHandle)
 {
     FGameplayTagContainer AssetTags;
@@ -122,8 +142,8 @@ void UGKAsyncTaskCooldownChanged::CooldownTagChanged(const FGameplayTag Cooldown
 }
 
 bool UGKAsyncTaskCooldownChanged::GetCooldownRemainingForTag(FGameplayTagContainer InCooldownTags,
-                                                             float &               TimeRemaining,
-                                                             float &               CooldownDuration)
+                                                             float                &TimeRemaining,
+                                                             float                &CooldownDuration)
 {
     if (IsValid(ASC) && InCooldownTags.Num() > 0)
     {

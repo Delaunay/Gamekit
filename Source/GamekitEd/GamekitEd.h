@@ -19,7 +19,6 @@ class FGamekitEdModule: public IModuleInterface
     static void CreateToolListMenu(class FMenuBuilder &MenuBuilder);
     static void OnToolWindowClosed(const TSharedRef<SWindow> &Window, class UGKEditorToolBase *Instance);
 
-
     // Add settings in the project windows
     void RegisterSettings();
 

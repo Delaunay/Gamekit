@@ -144,7 +144,7 @@ void UGKMovementAbility::ExecuteMove(FHitResult const& Out,
 		false,
 		CancelTags,
 		true,					// UsePathfinding
-		true 					// Debug
+		false 					// Debug
 	);
 
 	Task->OnCompleted.AddDynamic(this, &UGKMovementAbility::OnMovementEnded);

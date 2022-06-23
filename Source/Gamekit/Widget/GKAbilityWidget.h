@@ -3,16 +3,38 @@
 #pragma once
 
 // Gamekit
-#include "Gamekit/Abilities/GKGameplayAbility.h"
 #include "Gamekit/Abilities/GKAbilityInterface.h"
+#include "Gamekit/Abilities/GKGameplayAbility.h"
 
-// Unreal Engine
-#include "Blueprint/UserWidget.h"
+// Unreal Engine (1)
+#include "Containers/UnrealString.h"
 #include "CoreMinimal.h"
+
+// Unreal Engine (2)
+#include "Abilities/GameplayAbilityTypes.h"
+#include "Blueprint/UserWidget.h"
 #include "GameplayAbilitySpec.h"
 
 // Generated
 #include "GKAbilityWidget.generated.h"
+
+USTRUCT(BlueprintType)
+struct GAMEKIT_API FGKAbilityWidgetArgs
+{
+    GENERATED_USTRUCT_BODY();
+
+    //! Actor info
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FGameplayAbilityActorInfo ActorInfo;
+
+    //! Ability spec of the ability displayed by this widget
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FGameplayAbilitySpec AbilitySpec;
+
+    //! Ability Slot used by the ability
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    int AbilitySlot;
+};
 
 /* Simple Widget that receives ability state update through a top level UGKAbilityWidgetContainer
  */
@@ -54,7 +76,7 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnEndTargeting(bool Cancelled);
 
-    //! 
+    //!
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnAbilityChargeChanged(int NewCount);
 
@@ -67,14 +89,32 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     void OnAbilityInsufficientResources(bool CostMet);
 
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
-    void OnBeginDisabled(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration);
+    void OnAbilityGranted(FGKAbilityWidgetArgs const &Args);
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+    void OnAbilityRemoved();
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
+    void OnBeginDisabled(FActiveGameplayEffectHandle EffectHandle,
+                         UGameplayEffect            *Effect,
+                         FGameplayTagContainer       Tags,
+                         float                       Duration);
 
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Ability)
     void OnEndDisabled(FActiveGameplayEffectHandle EffectHandle);
 
-    void OnBeginDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration) {}
+    void OnBeginDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle,
+                                        UGameplayEffect            *Effect,
+                                        FGameplayTagContainer       Tags,
+                                        float                       Duration)
+    {
+    }
+
+    void OnAbilityRemoved_Implementation() {}
 
     void OnEndDisabled_Implementation(FActiveGameplayEffectHandle EffectHandle) {}
+
+    virtual void OnAbilityGranted_Implementation(FGKAbilityWidgetArgs const &Args);
 
     virtual void OnAbilityCooldownBegin_Implementation(float TimeRemaining, float Duration) {}
 
@@ -110,7 +150,7 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
 
     class UGKAsyncTaskCooldownChanged *CooldownChangedTask;
 
-    class UGKAsyncTask_GameplayEffectChanged* DisableEffectTask;
+    class UGKAsyncTask_GameplayEffectChanged *DisableEffectTask;
 
     UFUNCTION()
     void OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute, float NewValue, float OldValue);
@@ -122,7 +162,11 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
     void OnAbilityCooldownEnd_Native(FGameplayTag CooldownTag, float TimeRemaining, float Duration);
 
     UFUNCTION()
-    void OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack);
+    void OnBeginGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle,
+                                      UGameplayEffect            *Effect,
+                                      FGameplayTagContainer       Tags,
+                                      float                       Duration,
+                                      int                         Stack);
 
     UFUNCTION()
     void OnStackChangedGameplayEffect_Native(FActiveGameplayEffectHandle EffectHandle, int StackCount);
@@ -132,7 +176,11 @@ class GAMEKIT_API UGKAbilityWidget: public UUserWidget
 
     // Disable Handling
     // we track the count of all the stacked disables
-    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle, UGameplayEffect* Effect, FGameplayTagContainer Tags, float Duration, int Stack);
+    void OnBeginDisabled_Native(FActiveGameplayEffectHandle EffectHandle,
+                                UGameplayEffect            *Effect,
+                                FGameplayTagContainer       Tags,
+                                float                       Duration,
+                                int                         Stack);
 
     void OnEndDisabled_Native(FActiveGameplayEffectHandle EffectHandle);
 

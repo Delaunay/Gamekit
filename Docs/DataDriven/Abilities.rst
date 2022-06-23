@@ -23,6 +23,9 @@ Features
 Get Started
 -----------
 
+Setup
+^^^^^
+
 #. Create inputs in your project setting (include `ConfirmTarget` & `CancelTarget` input)
 
 #. Create a new enum with the same inputs (see :cpp:enum:`EGK_MOBA_AbilityInputID` as an example)
@@ -52,6 +55,15 @@ Get Started
 .. note::
 
    Support for `EnhancedInput` is planned
+
+Creating Abilities
+^^^^^^^^^^^^^^^^^^
+
+* Create a new DataTable using the `GKAbilityStatic` struct
+
+* Insert a row, give the row a name (the row name is used to generate the ability asset)
+
+* Click the generate button
 
 Example
 ^^^^^^^

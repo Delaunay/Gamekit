@@ -352,21 +352,6 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     UFUNCTION(BlueprintCallable, Category = Cost)
     TArray<FGameplayAttribute> GetAbilityCostAttribute() const;
 
-    //! Check that Ability is not currently blocked
-    virtual bool CheckTagRequirements(const UAbilitySystemComponent &AbilitySystemComponent,
-                                      OUT FGameplayTagContainer *OptionalRelevantTags = nullptr) const
-    {
-        return DoesAbilitySatisfyTagRequirements(AbilitySystemComponent, nullptr, nullptr, OptionalRelevantTags);
-    }
-
-    //! Checks the ability's status, returns true if the ability can be cast. Has no side effects.
-    //! if the ability is blocked returns a list of GameplayTags causing the block.
-    UFUNCTION(BlueprintCallable,
-              Category    = ActivationTags,
-              DisplayName = "CheckTagRequirements",
-              meta        = (ScriptName = "CheckTagRequirements"))
-    virtual bool K2_CheckTagRequirements(FGameplayTagContainer &RelevantTags);
-
     //! Level up the ability (RPC to server)
     UFUNCTION(BlueprintCallable, Category = Ability)
     void LevelUpAbility();
@@ -398,22 +383,42 @@ class GAMEKIT_API UGKGameplayAbility: public UGameplayAbility
     // Used to grand passives
     void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 
+    //! Number of charges available to be cast
     UFUNCTION(BlueprintCallable, Category = Ability)
-    int K2_NumCharges() const {
-        return NumCharges(GetCurrentAbilitySpecHandle(), GetCurrentActorInfo());
-    }
+    int K2_NumCharges() const;
 
     int NumCharges(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo) const;
 
-    //
     void ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const;
-
-    bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
 
     void ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
 
+    // This is technically a Tag Requirement, but it is a bit different because the tag stack is consumed
+    bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+
     bool CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
 
+    bool CheckEnergyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+
+    bool CheckTagRequirements(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+
+    //! Used to check if a target is valid
+    //! TODO: actually use this during target picking
+    bool CheckTargetTagRequirements(const FGameplayTagContainer* TargetTags, const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+
+    //! Check if the actor has charges to cast the ability
+    UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckChargeCost")
+    bool K2_CheckChargeCost() const;
+
+    //! Check the actor has enough energy to cast the ability
+    UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckEnergyCost")
+    bool K2_CheckEnergeyCost() const;
+
+    //! Check both Actiation requirements/blocks, Source requirements/blocks and Target requirements / blocks
+    UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckTagRequirements")
+    bool K2_CheckTagRequirements() const;
+
+    
 };
 
 //! Return an effect that regenerate the given attribute overtime
