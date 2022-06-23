@@ -61,6 +61,8 @@ void UGKAsyncTaskAttributeChanged::EndTask()
         GK_ERROR(TEXT("Destroying object twice"));
         return;
     }
+
+    SetReadyToDestroy();
 }
 
 void UGKAsyncTaskAttributeChanged::SetReadyToDestroy()
@@ -79,7 +81,7 @@ void UGKAsyncTaskAttributeChanged::SetReadyToDestroy()
 
     if (IsValid(this))
     {
-        SetReadyToDestroy();
+        Super::SetReadyToDestroy();
     }
 
     bDestroyed = true;
