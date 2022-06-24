@@ -144,6 +144,51 @@ FText UGKAbilityBlueprintLibrary::GetFailureReasonFor(UGameplayAbility     *Abil
     return NSLOCTEXT(NAMESPACE, "AbilityUnknown", "Internal Failure reason");
 }
 
+TArray<FGKFailureTagMapping> GenerateDisableNameMapping()
+{
+    // TODO: make this a datatable
+    auto &ASGlobals = (UGKAbilitySystemGlobals &)(UGKAbilitySystemGlobals::Get());
+
+    FText DisableStunName     = NSLOCTEXT(NAMESPACE, "Stun Effect", "Stun");
+    FText DisableSilenceName  = NSLOCTEXT(NAMESPACE, "Silence", "Silence");
+    FText DisableRootName     = NSLOCTEXT(NAMESPACE, "Root", "Root");
+    FText DisableBreakName    = NSLOCTEXT(NAMESPACE, "Break", "Break");
+    FText DisableMuteName     = NSLOCTEXT(NAMESPACE, "Mute", "Mute");
+    FText DisableDisarmedName = NSLOCTEXT(NAMESPACE, "Disarmed", "Disarmed");
+    FText DisableEtheralName  = NSLOCTEXT(NAMESPACE, "Etheral", "Etheral");
+
+    return TArray<FGKFailureTagMapping>{
+            FGKFailureTagMapping{DisableStun, DisableStunName},
+            FGKFailureTagMapping{DisableSilence, DisableSilenceName},
+            FGKFailureTagMapping{DisableRoot, DisableRootName},
+            FGKFailureTagMapping{DisableBreak, DisableBreakName},
+            FGKFailureTagMapping{DisableMute, DisableMuteName},
+            FGKFailureTagMapping{DisableDisarmed, DisableDisarmedName},
+            FGKFailureTagMapping{DisableEtheral, DisableEtheralName},
+    };
+}
+
+TArray<FGKFailureTagMapping> const &GetDisableNames()
+{
+    static TArray<FGKFailureTagMapping> Mappings = GenerateDisableNameMapping();
+    return Mappings;
+}
+
+FText UGKAbilityBlueprintLibrary::GetDisableName(FGameplayTagContainer Tags)
+{
+    FGameplayTag Tag = Tags.GetByIndex(0);
+
+    for (FGKFailureTagMapping const &Entry: GetDisableNames())
+    {
+        if (Entry.FailureTag == Tag)
+        {
+            return Entry.LocalReason;
+        }
+    }
+
+    return NSLOCTEXT(NAMESPACE, "DisableUnknown", "Disable has no name");
+}
+
 UEnum *UGKAbilityBlueprintLibrary::GetDefaultAbilityInputEnum()
 {
     static UEnum *InputEnum = StaticEnum<EGK_MOBA_AbilityInputID>();
@@ -156,7 +201,7 @@ void UGKAbilityBlueprintLibrary::GetAbilityData(class UDataTable *Table,
                                                 FGKAbilityStatic &AbilityData)
 {
     FGKAbilityStatic *Result = Table->FindRow<FGKAbilityStatic>(Row, "", false);
-     bValid = false;
+    bValid                   = false;
 
     if (Result != nullptr)
     {
@@ -173,4 +218,11 @@ void UGKAbilityBlueprintLibrary::DisableAbilityAutoGeneration(class UDataTable *
     {
         Result->bAutoGenerate = false;
     }
+}
+
+void UGKAbilityBlueprintLibrary::GetActiveEffectsWithAnyTags(UAbilitySystemComponent             *AbilitySystem,
+                                                             FGameplayTagContainer const         &Tags,
+                                                             TArray<FActiveGameplayEffectHandle> &ActiveGameplayEffects)
+{
+    ActiveGameplayEffects = AbilitySystem->GetActiveEffects(FGameplayEffectQuery::MakeQuery_MatchAnyEffectTags(Tags));
 }

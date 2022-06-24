@@ -105,6 +105,9 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
     UFUNCTION(BlueprintPure)
     static void GetAbilityData(class UDataTable *Table, FName Row, bool &bValid, FGKAbilityStatic &AbilityData);
 
+    UFUNCTION(BlueprintPure)
+    static FText GetDisableName(FGameplayTagContainer Tags);
+
     UFUNCTION(BlueprintCallable)
     static void DisableAbilityAutoGeneration(class UDataTable *Table, FName Row);
 
@@ -120,4 +123,23 @@ class GAMEKIT_API UGKAbilityBlueprintLibrary: public UBlueprintFunctionLibrary
         InputID        = AbilitySpec.InputID;
         ActivationInfo = AbilitySpec.ActivationInfo;
     }
+
+    UFUNCTION(BlueprintPure)
+    static void BreakGameplayEffectContextHandle(FGameplayEffectContextHandle const &EffectContext,
+                                                 bool                               &bIsValid,
+                                                 FGameplayTagContainer              &ActorTagContainer,
+                                                 FGameplayTagContainer              &SpecTagContainer,
+                                                 UGameplayAbility                  *&Ability,
+                                                 UAbilitySystemComponent           *&AbilitySystem)
+    {
+        bIsValid = EffectContext.IsValid();
+        EffectContext.GetOwnedGameplayTags(ActorTagContainer, SpecTagContainer);
+        Ability       = const_cast<UGameplayAbility *>(EffectContext.GetAbility());
+        AbilitySystem = const_cast<UAbilitySystemComponent *>(EffectContext.GetInstigatorAbilitySystemComponent());
+    }
+
+    UFUNCTION(BlueprintCallable)
+    static void GetActiveEffectsWithAnyTags(UAbilitySystemComponent             *AbilitySystem,
+                                            FGameplayTagContainer const         &Tags,
+                                            TArray<FActiveGameplayEffectHandle> &ActiveGameplayEffects);
 };

@@ -99,34 +99,33 @@ void UGKAbilityWidget::RemoveListeners()
         Ability->OnAbilityLevelUp.RemoveAll(this);
     }
 
-    // TODO: investigate why the dask got destroyed already
-    // is it because of the order of NativeDestruct
+    // This is not necessary, they get cleanup automatically already
+    /*
     if (IsValid(CooldownChangedTask) && !CooldownChangedTask->IsDestroyed())
     {
-        //*
         if (CooldownChangedTask->HasCooldownTags())
         {
             CooldownChangedTask->OnCooldownBegin.RemoveAll(this);
             CooldownChangedTask->OnCooldownEnd.RemoveAll(this);
         }
-        //*/
         CooldownChangedTask->EndTask();
     }
 
     if (IsValid(AttributeChangedTask) && !AttributeChangedTask->IsDestroyed())
     {
-        AttributeChangedTask->OnAttributeChanged.RemoveAll(this);
+        // AttributeChangedTask->OnAttributeChanged.RemoveAll(this);
         AttributeChangedTask->EndTask();
     }
+    */
 
     bBound = false;
 }
 
 void UGKAbilityWidget::NativeDestruct()
 {
-    UUserWidget::NativeDestruct();
-
     RemoveListeners();
+
+    UUserWidget::NativeDestruct();
 }
 
 void UGKAbilityWidget::OnAbilityInsufficientResources_Native(FGameplayAttribute Attribute,
