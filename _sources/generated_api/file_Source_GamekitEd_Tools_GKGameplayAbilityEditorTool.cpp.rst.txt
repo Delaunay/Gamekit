@@ -29,9 +29,17 @@ Includes
 --------
 
 
+- ``AssetToolsModule.h``
+
+- ``EditorAssetLibrary.h``
+
+- ``Factories/BlueprintFactory.h``
+
 - ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
 
 - ``Gamekit/Characters/GKUnitStatic.h`` (:ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`)
+
+- ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
 
 - ``GamekitEd/GamekitEd.h`` (:ref:`file_Source_GamekitEd_GamekitEd.h`)
 
@@ -48,7 +56,13 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1ac9a22372067447786c71cae5e4f3bfa5`
+- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1a36cee8187e8b47ce79f27f046f3b6b2e`
+
+- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1ac534e107ef28c701d39d5de14bab763d`
+
+- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1a508ec7a75b3f09e11d867b987fe06736`
+
+- :ref:`exhale_function_GKGameplayAbilityEditorTool_8cpp_1acc5f8eb140a183134f24f1160126f75b`
 
 
 Defines
@@ -62,5 +76,9 @@ Variables
 ---------
 
 
+- :ref:`exhale_variable_GKGameplayAbilityEditorTool_8cpp_1a28d64919263d1dad5ee10c73374d01ed`
+
 - :ref:`exhale_variable_GKGameplayAbilityEditorTool_8cpp_1a731e1e047f5ad4d9379a056e5434032a`
+
+- :ref:`exhale_variable_GKGameplayAbilityEditorTool_8cpp_1ac461cb3854dc32fe57d1b18b62ece03d`
 

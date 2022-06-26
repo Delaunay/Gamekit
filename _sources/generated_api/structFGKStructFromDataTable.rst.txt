@@ -1,0 +1,26 @@
+.. _exhale_struct_structFGKStructFromDataTable:
+
+Struct FGKStructFromDataTable
+=============================
+
+- Defined in :ref:`file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public FStructOnScope``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKStructFromDataTable
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

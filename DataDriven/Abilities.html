@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -56,6 +56,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Abilities</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-abilities">Creating Abilities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -164,6 +166,8 @@
 </section>
 <section id="get-started">
 <h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Create inputs in your project setting (include <cite>ConfirmTarget</cite> &amp; <cite>CancelTarget</cite> input)</p></li>
 <li><p>Create a new enum with the same inputs (see <a class="reference internal" href="../generated_api/enum_GKAbilityInputs_8h_1a5926be264f6313e59bb65648750bdd6a.html#_CPPv423EGK_MOBA_AbilityInputID" title="EGK_MOBA_AbilityInputID"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">EGK_MOBA_AbilityInputID</span></code></a> as an example)</p></li>
@@ -191,6 +195,15 @@ Under the hood slots are simple integer, users can add as many slots as they wan
 <p class="admonition-title">Note</p>
 <p>Support for <cite>EnhancedInput</cite> is planned</p>
 </div>
+</section>
+<section id="creating-abilities">
+<h3>Creating Abilities<a class="headerlink" href="#creating-abilities" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Create a new DataTable using the <cite>GKAbilityStatic</cite> struct</p></li>
+<li><p>Insert a row, give the row a name (the row name is used to generate the ability asset)</p></li>
+<li><p>Click the generate button</p></li>
+</ul>
+</section>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
 <iframe src="https://blueprintue.com/render/_rsbezu-/" scrolling="no" allowfullscreen></iframe><iframe width="100%" height="350px" src="https://blueprintue.com/render/i7gdsnhm/" scrolling="no" allowfullscreen></iframe></section>

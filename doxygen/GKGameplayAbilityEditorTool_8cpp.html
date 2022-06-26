@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -85,54 +85,64 @@ $(function() {
 <code>#include &quot;<a class="el" href="GamekitEd_8h_source.html">GamekitEd/GamekitEd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKAbilityStatic_8h_source.html">Gamekit/Abilities/GKAbilityStatic.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GKUnitStatic_8h_source.html">Gamekit/Characters/GKUnitStatic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="GKGamekitSettings_8h_source.html">Gamekit/GKGamekitSettings.h</a>&quot;</code><br />
+<code>#include &quot;Factories/BlueprintFactory.h&quot;</code><br />
 <code>#include &quot;IPythonScriptPlugin.h&quot;</code><br />
+<code>#include &quot;AssetToolsModule.h&quot;</code><br />
+<code>#include &quot;EditorAssetLibrary.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for GKGameplayAbilityEditorTool.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="GKGameplayAbilityEditorTool_8cpp__incl.png" border="0" usemap="#Source_2GamekitEd_2Tools_2GKGameplayAbilityEditorTool_8cpp" alt=""/></div>
 <map name="Source_2GamekitEd_2Tools_2GKGameplayAbilityEditorTool_8cpp" id="Source_2GamekitEd_2Tools_2GKGameplayAbilityEditorTool_8cpp">
-<area shape="rect" title=" " alt="" coords="2001,5,2247,47"/>
-<area shape="rect" href="GKGameplayAbilityEditorTool_8h.html" title=" " alt="" coords="2265,95,2490,136"/>
-<area shape="rect" href="GamekitEd_8h.html" title=" " alt="" coords="2038,638,2221,665"/>
-<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="1073,273,1273,315"/>
-<area shape="rect" href="GKUnitStatic_8h.html" title=" " alt="" coords="689,95,841,136"/>
-<area shape="rect" title=" " alt="" coords="2513,102,2673,129"/>
-<area shape="rect" title=" " alt="" coords="2427,720,2544,747"/>
-<area shape="rect" href="GKEditorToolBase_8h.html" title=" " alt="" coords="2284,191,2471,218"/>
-<area shape="rect" title=" " alt="" coords="2649,191,2945,218"/>
-<area shape="rect" title=" " alt="" coords="2404,281,2575,307"/>
-<area shape="rect" title=" " alt="" coords="2161,281,2380,307"/>
-<area shape="rect" title=" " alt="" coords="1400,720,1597,747"/>
-<area shape="rect" href="GKAnimationSet_8h.html" title=" " alt="" coords="294,363,533,404"/>
-<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="895,638,1046,665"/>
-<area shape="rect" title=" " alt="" coords="399,549,545,575"/>
-<area shape="rect" href="GKAssetManager_8h.html" title=" " alt="" coords="960,370,1165,397"/>
-<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="1930,363,2081,404"/>
-<area shape="rect" title=" " alt="" coords="1231,549,1385,575"/>
-<area shape="rect" href="GKBitFlag_8h.html" title=" " alt="" coords="670,370,885,397"/>
-<area shape="rect" title=" " alt="" coords="1241,363,1429,404"/>
-<area shape="rect" title=" " alt="" coords="1453,370,1627,397"/>
-<area shape="rect" title=" " alt="" coords="1652,370,1855,397"/>
-<area shape="rect" title=" " alt="" coords="246,459,453,486"/>
-<area shape="rect" title=" " alt="" coords="477,459,688,486"/>
-<area shape="rect" title=" " alt="" coords="1009,459,1183,486"/>
-<area shape="rect" title=" " alt="" coords="1207,459,1422,486"/>
-<area shape="rect" href="GKAbilityEffectActor_8h.html" title=" " alt="" coords="2162,452,2331,493"/>
-<area shape="rect" href="GKProjectileStatic_8h.html" title=" " alt="" coords="1497,452,1652,493"/>
-<area shape="rect" title=" " alt="" coords="1903,459,2087,486"/>
-<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="1705,541,1905,583"/>
-<area shape="rect" title=" " alt="" coords="2239,549,2422,575"/>
-<area shape="rect" title=" " alt="" coords="1980,549,2215,575"/>
-<area shape="rect" title=" " alt="" coords="1399,631,1587,672"/>
-<area shape="rect" title=" " alt="" coords="1611,638,1786,665"/>
-<area shape="rect" title=" " alt="" coords="1811,638,2013,665"/>
-<area shape="rect" title=" " alt="" coords="1460,549,1681,575"/>
-<area shape="rect" title=" " alt="" coords="763,459,883,486"/>
-<area shape="rect" href="GKAbilityInputs_8h.html" title=" " alt="" coords="1373,184,1573,225"/>
-<area shape="rect" href="GKGameplayAbility_8h.html" title=" " alt="" coords="653,184,878,225"/>
-<area shape="rect" title=" " alt="" coords="903,191,1089,218"/>
-<area shape="rect" title=" " alt="" coords="539,281,738,307"/>
-<area shape="rect" title=" " alt="" coords="762,281,993,307"/>
+<area shape="rect" title=" " alt="" coords="2129,5,2375,47"/>
+<area shape="rect" href="GKGameplayAbilityEditorTool_8h.html" title=" " alt="" coords="330,95,555,136"/>
+<area shape="rect" href="GamekitEd_8h.html" title=" " alt="" coords="427,638,610,665"/>
+<area shape="rect" href="GKAbilityStatic_8h.html" title=" " alt="" coords="1523,273,1723,315"/>
+<area shape="rect" href="GKUnitStatic_8h.html" title=" " alt="" coords="1964,95,2116,136"/>
+<area shape="rect" href="GKGamekitSettings_8h.html" title=" " alt="" coords="2141,102,2363,129"/>
+<area shape="rect" title=" " alt="" coords="2387,102,2587,129"/>
+<area shape="rect" title=" " alt="" coords="2611,102,2771,129"/>
+<area shape="rect" title=" " alt="" coords="2795,102,2946,129"/>
+<area shape="rect" title=" " alt="" coords="2970,102,3121,129"/>
+<area shape="rect" title=" " alt="" coords="2169,720,2287,747"/>
+<area shape="rect" href="GKEditorToolBase_8h.html" title=" " alt="" coords="325,191,512,218"/>
+<area shape="rect" title=" " alt="" coords="5,191,301,218"/>
+<area shape="rect" title=" " alt="" coords="107,281,277,307"/>
+<area shape="rect" title=" " alt="" coords="301,281,520,307"/>
+<area shape="rect" title=" " alt="" coords="868,720,1065,747"/>
+<area shape="rect" href="GKAnimationSet_8h.html" title=" " alt="" coords="2181,363,2419,404"/>
+<area shape="rect" href="Gamekit_8h.html" title=" " alt="" coords="1339,638,1490,665"/>
+<area shape="rect" title=" " alt="" coords="976,549,1123,575"/>
+<area shape="rect" href="GKAssetManager_8h.html" title=" " alt="" coords="1075,370,1280,397"/>
+<area shape="rect" href="GKProjectile_8h.html" title=" " alt="" coords="2006,363,2157,404"/>
+<area shape="rect" title=" " alt="" coords="1223,549,1377,575"/>
+<area shape="rect" href="GKBitFlag_8h.html" title=" " alt="" coords="1305,370,1519,397"/>
+<area shape="rect" title=" " alt="" coords="1595,363,1783,404"/>
+<area shape="rect" title=" " alt="" coords="1807,370,1982,397"/>
+<area shape="rect" title=" " alt="" coords="848,370,1051,397"/>
+<area shape="rect" title=" " alt="" coords="2501,459,2707,486"/>
+<area shape="rect" title=" " alt="" coords="2265,459,2476,486"/>
+<area shape="rect" title=" " alt="" coords="899,459,1074,486"/>
+<area shape="rect" title=" " alt="" coords="1098,459,1313,486"/>
+<area shape="rect" href="GKAbilityEffectActor_8h.html" title=" " alt="" coords="1970,452,2139,493"/>
+<area shape="rect" href="GKProjectileStatic_8h.html" title=" " alt="" coords="1791,452,1945,493"/>
+<area shape="rect" title=" " alt="" coords="1532,459,1716,486"/>
+<area shape="rect" href="GKAbilityTypes_8h.html" title=" " alt="" coords="2467,541,2667,583"/>
+<area shape="rect" title=" " alt="" coords="1957,549,2139,575"/>
+<area shape="rect" title=" " alt="" coords="1697,549,1932,575"/>
+<area shape="rect" title=" " alt="" coords="2769,631,2957,672"/>
+<area shape="rect" title=" " alt="" coords="2342,638,2517,665"/>
+<area shape="rect" title=" " alt="" coords="2541,638,2744,665"/>
+<area shape="rect" title=" " alt="" coords="1452,549,1673,575"/>
+<area shape="rect" title=" " alt="" coords="1337,459,1457,486"/>
+<area shape="rect" href="GKAbilityInputs_8h.html" title=" " alt="" coords="2833,273,3033,315"/>
+<area shape="rect" href="GKGameplayAbility_8h.html" title=" " alt="" coords="2223,184,2449,225"/>
+<area shape="rect" title=" " alt="" coords="2012,191,2199,218"/>
+<area shape="rect" title=" " alt="" coords="2305,281,2503,307"/>
+<area shape="rect" title=" " alt="" coords="2527,281,2758,307"/>
+<area shape="rect" title=" " alt="" coords="3108,191,3295,218"/>
+<area shape="rect" title=" " alt="" coords="2523,191,2755,218"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -143,13 +153,23 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac9a22372067447786c71cae5e4f3bfa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#ac9a22372067447786c71cae5e4f3bfa5">GenerateAbility</a> ()</td></tr>
-<tr class="separator:ac9a22372067447786c71cae5e4f3bfa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5f8eb140a183134f24f1160126f75b"><td class="memItemLeft" align="right" valign="top">UClass *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#acc5f8eb140a183134f24f1160126f75b">GetDefaultParentAbility</a> ()</td></tr>
+<tr class="separator:acc5f8eb140a183134f24f1160126f75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36cee8187e8b47ce79f27f046f3b6b2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#a36cee8187e8b47ce79f27f046f3b6b2e">GenerateAbility_CPP</a> (FName AbilityName, FString Destination, class UDataTable *Table)</td></tr>
+<tr class="separator:a36cee8187e8b47ce79f27f046f3b6b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac534e107ef28c701d39d5de14bab763d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#ac534e107ef28c701d39d5de14bab763d">GenerateGameplayAbilitiesFromTable_CPP</a> (FName Name, class UDataTable *Table)</td></tr>
+<tr class="separator:ac534e107ef28c701d39d5de14bab763d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a508ec7a75b3f09e11d867b987fe06736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#a508ec7a75b3f09e11d867b987fe06736">GenerateGameplayAbilitiesFromTable_Python</a> (FName Name, class UDataTable *Table)</td></tr>
+<tr class="separator:a508ec7a75b3f09e11d867b987fe06736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a731e1e047f5ad4d9379a056e5434032a"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#a731e1e047f5ad4d9379a056e5434032a">GenerateAbilityCommand</a></td></tr>
 <tr class="separator:a731e1e047f5ad4d9379a056e5434032a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d64919263d1dad5ee10c73374d01ed"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#a28d64919263d1dad5ee10c73374d01ed">GenerateAbilitiesTemplate</a></td></tr>
+<tr class="separator:a28d64919263d1dad5ee10c73374d01ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac461cb3854dc32fe57d1b18b62ece03d"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GKGameplayAbilityEditorTool_8cpp.html#ac461cb3854dc32fe57d1b18b62ece03d">GenerateAbilityTemplate</a></td></tr>
+<tr class="separator:ac461cb3854dc32fe57d1b18b62ece03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ad610d7f366c82bfc00c752e12bd79af2"></a>
@@ -171,14 +191,113 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac9a22372067447786c71cae5e4f3bfa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9a22372067447786c71cae5e4f3bfa5">&#9670;&nbsp;</a></span>GenerateAbility()</h2>
+<a id="a36cee8187e8b47ce79f27f046f3b6b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36cee8187e8b47ce79f27f046f3b6b2e">&#9670;&nbsp;</a></span>GenerateAbility_CPP()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GenerateAbility </td>
+          <td class="memname">void GenerateAbility_CPP </td>
+          <td>(</td>
+          <td class="paramtype">FName&#160;</td>
+          <td class="paramname"><em>AbilityName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">class UDataTable *&#160;</td>
+          <td class="paramname"><em>Table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac534e107ef28c701d39d5de14bab763d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac534e107ef28c701d39d5de14bab763d">&#9670;&nbsp;</a></span>GenerateGameplayAbilitiesFromTable_CPP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerateGameplayAbilitiesFromTable_CPP </td>
+          <td>(</td>
+          <td class="paramtype">FName&#160;</td>
+          <td class="paramname"><em>Name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">class UDataTable *&#160;</td>
+          <td class="paramname"><em>Table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="GKGameplayAbilityEditorTool_8cpp_ac534e107ef28c701d39d5de14bab763d_cgraph.png" border="0" usemap="#GKGameplayAbilityEditorTool_8cpp_ac534e107ef28c701d39d5de14bab763d_cgraph" alt=""/></div>
+<map name="GKGameplayAbilityEditorTool_8cpp_ac534e107ef28c701d39d5de14bab763d_cgraph" id="GKGameplayAbilityEditorTool_8cpp_ac534e107ef28c701d39d5de14bab763d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,47"/>
+<area shape="rect" href="GKGameplayAbilityEditorTool_8cpp.html#a36cee8187e8b47ce79f27f046f3b6b2e" title=" " alt="" coords="256,13,412,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a508ec7a75b3f09e11d867b987fe06736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508ec7a75b3f09e11d867b987fe06736">&#9670;&nbsp;</a></span>GenerateGameplayAbilitiesFromTable_Python()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerateGameplayAbilitiesFromTable_Python </td>
+          <td>(</td>
+          <td class="paramtype">FName&#160;</td>
+          <td class="paramname"><em>Name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">class UDataTable *&#160;</td>
+          <td class="paramname"><em>Table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc5f8eb140a183134f24f1160126f75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5f8eb140a183134f24f1160126f75b">&#9670;&nbsp;</a></span>GetDefaultParentAbility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UClass* GetDefaultParentAbility </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -189,6 +308,27 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a28d64919263d1dad5ee10c73374d01ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d64919263d1dad5ee10c73374d01ed">&#9670;&nbsp;</a></span>GenerateAbilitiesTemplate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString GenerateAbilitiesTemplate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= TEXT(</div>
+<div class="line">    <span class="stringliteral">&quot;from importlib import reload\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;import gamekit.abilities as abilities\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;reload(abilities)\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;abilities.generate_abilities_from_table(\&quot;{0}\&quot;, \&quot;{1}\&quot;)\n&quot;</span></div>
+<div class="line">)</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a731e1e047f5ad4d9379a056e5434032a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a731e1e047f5ad4d9379a056e5434032a">&#9670;&nbsp;</a></span>GenerateAbilityCommand</h2>
 
@@ -207,6 +347,27 @@ Variables</h2></td></tr>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="stringliteral">&quot;from importlib import reload; import gamekit.abilities as abilities;  reload(abilities); abilities.generate_gamekit_abilities()&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ac461cb3854dc32fe57d1b18b62ece03d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac461cb3854dc32fe57d1b18b62ece03d">&#9670;&nbsp;</a></span>GenerateAbilityTemplate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString GenerateAbilityTemplate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= TEXT(</div>
+<div class="line">    <span class="stringliteral">&quot;from importlib import reload\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;import gamekit.abilities as abilities\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;reload(abilities)\n&quot;</span></div>
+<div class="line">    <span class="stringliteral">&quot;abilities.generate_ability(\&quot;{0}\&quot;, \&quot;{1}\&quot;, \&quot;{2}\&quot;)\n&quot;</span></div>
+<div class="line">)</div>
 </div><!-- fragment -->
 </div>
 </div>

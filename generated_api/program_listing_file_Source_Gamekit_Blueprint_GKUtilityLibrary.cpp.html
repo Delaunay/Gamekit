@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -121,23 +121,23 @@
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Blueprint/GKCoordinateLibrary.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/FogOfWar/GKFogOfWarVolume.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKWorldSettings.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKWorldSettings.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ClearQuad.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Components/PanelSlot.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/Canvas.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/CanvasRenderTarget2D.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetConnection.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetDriver.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/PlayerController.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/PlayerState.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/GameplayStatics.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetRenderingLibrary.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/KismetSystemLibrary.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Math/RotationMatrix.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Math/Rotator.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetDriver.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/NetConnection.h&quot;</span><span class="cp"></span>
-
 
 <span class="n">AWorldSettings</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetWorldSetting</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldContext</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -177,10 +177,10 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetControllerFieldOfView</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="w">          </span><span class="n">World</span><span class="p">,</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetControllerFieldOfView</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w">           </span><span class="o">*</span><span class="n">World</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                 </span><span class="k">class</span><span class="w"> </span><span class="nc">APlayerController</span><span class="w"> </span><span class="o">*</span><span class="n">Controller</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                 </span><span class="n">ETraceTypeQuery</span><span class="w">          </span><span class="n">TraceChannel</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                 </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w">        </span><span class="n">Corners</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                 </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w">         </span><span class="o">&amp;</span><span class="n">Corners</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                 </span><span class="n">FVector2D</span><span class="w">                </span><span class="n">Margin</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">SizeX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -224,7 +224,7 @@
 <span class="w">    </span><span class="n">Corners</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Corners</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">X</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">DrawPolygon</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="w">              </span><span class="n">WorldContext</span><span class="p">,</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">DrawPolygon</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w">               </span><span class="o">*</span><span class="n">WorldContext</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                    </span><span class="k">class</span><span class="w"> </span><span class="nc">UCanvasRenderTarget2D</span><span class="w"> </span><span class="o">*</span><span class="n">Target</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FVector</span><span class="o">&gt;</span><span class="w">              </span><span class="n">Corners</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                    </span><span class="n">FVector2D</span><span class="w">                    </span><span class="n">MapSize</span><span class="p">,</span><span class="w"></span>
@@ -233,7 +233,7 @@
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContext</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">LogAndReturnNull</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">UCanvas</span><span class="w"> </span><span class="o">*</span><span class="w">                  </span><span class="n">Canvas</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">UCanvas</span><span class="w">                   </span><span class="o">*</span><span class="n">Canvas</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">FVector2D</span><span class="w">                  </span><span class="n">TextureSize</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">FDrawToRenderTargetContext</span><span class="w"> </span><span class="n">Context</span><span class="p">;</span><span class="w"></span>
 
@@ -576,15 +576,16 @@
 <span class="w">    </span><span class="c1">// auto Connection = Driver-&gt;ServerConnection;</span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetFirstLocalPlayerController</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
+<span class="n">APlayerController</span><span class="w"> </span><span class="o">*</span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetFirstLocalPlayerController</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">FConstPlayerControllerIterator</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="o">-&gt;</span><span class="n">GetPlayerControllerIterator</span><span class="p">();</span><span class="w"> </span><span class="n">Iterator</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">Iterator</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">APlayerController</span><span class="o">*</span><span class="w"> </span><span class="n">PlayerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iterator</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">APlayerController</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iterator</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PlayerController</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">ULocalPlayer</span><span class="o">*</span><span class="w"> </span><span class="n">LocalPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">ULocalPlayer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">Player</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ULocalPlayer</span><span class="w"> </span><span class="o">*</span><span class="n">LocalPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">ULocalPlayer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">Player</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">LocalPlayer</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
@@ -596,11 +597,12 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="n">FString</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetNetworkPrefix</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">FString</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetNetworkPrefix</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldContextObject</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Prefix</span><span class="p">;</span><span class="w"></span>
 
 <span class="cp">#if !(UE_BUILD_SHIPPING || UE_BUILD_TEST) </span><span class="c1">// Do not Print in Shipping or Test</span>
-<span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">ReturnNull</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">World</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">World</span><span class="o">-&gt;</span><span class="n">WorldType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EWorldType</span><span class="o">::</span><span class="n">PIE</span><span class="p">)</span><span class="w"></span>
@@ -609,7 +611,8 @@
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_Client</span><span class="p">:</span><span class="w"></span>
 <span class="w">                </span><span class="c1">// GPlayInEditorID 0 is always the server, so 1 will be first client.</span>
-<span class="w">                </span><span class="c1">// You want to keep this logic in sync with GeneratePIEViewportWindowTitle and UpdatePlayInEditorWorldDebugString</span>
+<span class="w">                </span><span class="c1">// You want to keep this logic in sync with GeneratePIEViewportWindowTitle and</span>
+<span class="w">                </span><span class="c1">// UpdatePlayInEditorWorldDebugString</span>
 <span class="w">                </span><span class="n">Prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Printf</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Client %d: &quot;</span><span class="p">),</span><span class="w"> </span><span class="n">GPlayInEditorID</span><span class="p">);</span><span class="w"></span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">NM_DedicatedServer</span><span class="p">:</span><span class="w"></span>
@@ -624,6 +627,20 @@
 <span class="cp">#endif</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Prefix</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FRotator</span><span class="w"> </span><span class="n">UGKUtilityLibrary</span><span class="o">::</span><span class="n">GetLookAtCamera</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UObject</span><span class="w"> </span><span class="o">*</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PlayerIndex</span><span class="p">,</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UWorld</span><span class="w"> </span><span class="o">*</span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEngine</span><span class="o">-&gt;</span><span class="n">GetWorldFromContextObject</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">EGetWorldErrorMode</span><span class="o">::</span><span class="n">Assert</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">APlayerController</span><span class="w"> </span><span class="o">*</span><span class="n">PlayerController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGameplayStatics</span><span class="o">::</span><span class="n">GetPlayerController</span><span class="p">(</span><span class="n">WorldContextObject</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerIndex</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FVector</span><span class="w">  </span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">PlayerCameraManager</span><span class="o">-&gt;</span><span class="n">GetCameraLocation</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FRotator</span><span class="w"> </span><span class="n">Rot</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">PlayerController</span><span class="o">-&gt;</span><span class="n">PlayerCameraManager</span><span class="o">-&gt;</span><span class="n">GetCameraRotation</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FRotator</span><span class="w"> </span><span class="n">LookAtRot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">FindLookAtRotation</span><span class="p">(</span><span class="n">Target</span><span class="p">,</span><span class="w"> </span><span class="n">Location</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="n">FRotator</span><span class="p">(</span><span class="o">-</span><span class="n">Rot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span><span class="w"> </span><span class="n">LookAtRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span><span class="w"> </span><span class="n">LookAtRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

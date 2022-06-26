@@ -1,0 +1,21 @@
+.. _dir_Source_GamekitEd_Customization:
+
+
+Directory Customization
+=======================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_Source_GamekitEd>` (``Source/GamekitEd``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``Source/GamekitEd/Customization``
+
+
+Files
+-----
+
+- :ref:`file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.cpp`
+- :ref:`file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.h`
+
+

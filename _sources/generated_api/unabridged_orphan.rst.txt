@@ -46,6 +46,11 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_Source_Gamekit_Abilities_Cues.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_Source_Gamekit_Abilities_Effect.rst
 
 .. toctree::
@@ -107,11 +112,6 @@ Directories
    :maxdepth: 5
 
    dir_Source_Gamekit_Grid.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   dir_Source_Gamekit_Items.rst
 
 .. toctree::
    :maxdepth: 5
@@ -182,6 +182,11 @@ Directories
    :maxdepth: 5
 
    dir_Source_GamekitEd_Abilities.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_Source_GamekitEd_Customization.rst
 
 .. toctree::
    :maxdepth: 5
@@ -450,12 +455,27 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Abilities_GKAbilityInterface.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Abilities_GKAbilityStatic.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_GKAbilityStatic.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -875,6 +895,16 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_Source_Gamekit_Abilities_Cues_GKGameplayCueNotify_Actor.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_Source_Gamekit_Abilities_Cues_GKGameplayCueNotify_Actor.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_Source_Gamekit_Abilities_Effect_GKGameplayEffect.cpp.rst
 
 .. toctree::
@@ -965,32 +995,12 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Items_GKInventoryInterface.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Items_GKItem.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Items_GKItem.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_Source_Gamekit_Abilities_Abilities_GKItemAbility.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
    file_Source_Gamekit_Abilities_Abilities_GKItemAbility.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Items_GKItemTypes.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -1120,11 +1130,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Items_GKPotionItem.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_Source_Gamekit_States_GKPrivatePlayerState.cpp.rst
 
 .. toctree::
@@ -1245,11 +1250,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_Source_Gamekit_Items_GKSkillItem.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_Source_Gamekit_Abilities_Execution_GKStopMovement.cpp.rst
 
 .. toctree::
@@ -1301,11 +1301,6 @@ Files
    :maxdepth: 5
 
    file_Source_GamekitTestSuite_GKTestUtilities.h.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Items_GKTokenItem.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -1386,11 +1381,6 @@ Files
    :maxdepth: 5
 
    file_Source_GamekitTestSuite_Blueprint_GKUtilityLibraryTest.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_Source_Gamekit_Items_GKWeaponItem.h.rst
 
 .. toctree::
    :maxdepth: 5

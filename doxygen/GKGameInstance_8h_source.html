@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -82,7 +82,7 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Gamekit_8h.html">Gamekit.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKItemTypes_8h.html">Items/GKItemTypes.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKAbilityInterface_8h.html">Gamekit/Abilities/GKAbilityInterface.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;Engine/GameInstance.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;GKGameInstance.generated.h&quot;</span></div>
@@ -104,73 +104,65 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    UPROPERTY(BlueprintReadWrite, Category = Save)</div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a2a3ec593b3073d06dee0fd4dd2f96c6c">   34</a></span>&#160;    int32 SaveUserIndex;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    UPROPERTY(BlueprintAssignable, Category = Inventory)</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a1fa6793eee1f3dfe58f1ce2a31bd8294">   38</a></span>&#160;    FOnSaveGameLoaded OnSaveGameLoaded;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#ac2b0f78d0413ddfe03156a4f5c46b09a">   41</a></span>&#160;    FOnSaveGameLoadedNative OnSaveGameLoadedNative;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *GetCurrentSaveGame();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> SetSavingEnabled(<span class="keywordtype">bool</span> bEnabled);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> LoadOrCreateSaveGame();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> HandleSaveGameLoaded(USaveGame *SaveGameObject);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> GetSaveSlotInfo(FString &amp;SlotName, int32 &amp;UserIndex) const;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> WriteSaveGame();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> ResetSaveGame();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    protected:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#ac05e6ef450b91e561c9c5e3ee806c8a5">   79</a></span>&#160;    <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *CurrentSaveGame;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a3efa6035657bba480741bed52e93dfec">   83</a></span>&#160;    <span class="keywordtype">bool</span> bSavingEnabled;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#afcf9be33c70f811f7040e409398cb090">   87</a></span>&#160;    <span class="keywordtype">bool</span> bCurrentlySaving;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a32f92f62681127e2df3ff932ace2f532">   91</a></span>&#160;    <span class="keywordtype">bool</span> bPendingSaveRequested;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    virtual <span class="keywordtype">void</span> HandleAsyncSave(const FString &amp;SlotName, const int32 UserIndex, <span class="keywordtype">bool</span> bSuccess);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *GetCurrentSaveGame();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> SetSavingEnabled(<span class="keywordtype">bool</span> bEnabled);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> LoadOrCreateSaveGame();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> HandleSaveGameLoaded(USaveGame *SaveGameObject);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> GetSaveSlotInfo(FString &amp;SlotName, int32 &amp;UserIndex) const;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> WriteSaveGame();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    UFUNCTION(BlueprintCallable, Category = Save)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> ResetSaveGame();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    protected:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#ac05e6ef450b91e561c9c5e3ee806c8a5">   72</a></span>&#160;    <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a> *CurrentSaveGame;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a3efa6035657bba480741bed52e93dfec">   76</a></span>&#160;    <span class="keywordtype">bool</span> bSavingEnabled;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#afcf9be33c70f811f7040e409398cb090">   80</a></span>&#160;    <span class="keywordtype">bool</span> bCurrentlySaving;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classUGKGameInstanceBase.html#a32f92f62681127e2df3ff932ace2f532">   84</a></span>&#160;    <span class="keywordtype">bool</span> bPendingSaveRequested;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    virtual <span class="keywordtype">void</span> HandleAsyncSave(const FString &amp;SlotName, const int32 UserIndex, <span class="keywordtype">bool</span> bSuccess);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKGameInstance_8h_html"><div class="ttname"><a href="GKGameInstance_8h.html">GKGameInstance.h</a></div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_ac4965d9c81c63f85fe0dec9d160ed15a"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac4965d9c81c63f85fe0dec9d160ed15a">UGKGameInstanceBase::SetSavingEnabled</a></div><div class="ttdeci">void SetSavingEnabled(bool bEnabled)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:15</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_ac4965d9c81c63f85fe0dec9d160ed15a"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac4965d9c81c63f85fe0dec9d160ed15a">UGKGameInstanceBase::SetSavingEnabled</a></div><div class="ttdeci">void SetSavingEnabled(bool bEnabled)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:18</div></div>
 <div class="ttc" id="aclassUGKGameInstanceBase_html_a2a3ec593b3073d06dee0fd4dd2f96c6c"><div class="ttname"><a href="classUGKGameInstanceBase.html#a2a3ec593b3073d06dee0fd4dd2f96c6c">UGKGameInstanceBase::SaveUserIndex</a></div><div class="ttdeci">int32 SaveUserIndex</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:34</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a53738fd063e2a8feb4f159937b171939"><div class="ttname"><a href="classUGKGameInstanceBase.html#a53738fd063e2a8feb4f159937b171939">UGKGameInstanceBase::HandleSaveGameLoaded</a></div><div class="ttdeci">bool HandleSaveGameLoaded(USaveGame *SaveGameObject)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:29</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_a53738fd063e2a8feb4f159937b171939"><div class="ttname"><a href="classUGKGameInstanceBase.html#a53738fd063e2a8feb4f159937b171939">UGKGameInstanceBase::HandleSaveGameLoaded</a></div><div class="ttdeci">bool HandleSaveGameLoaded(USaveGame *SaveGameObject)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:32</div></div>
 <div class="ttc" id="aGKAssetManager_8h_html"><div class="ttname"><a href="GKAssetManager_8h.html">GKAssetManager.h</a></div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a3efa6035657bba480741bed52e93dfec"><div class="ttname"><a href="classUGKGameInstanceBase.html#a3efa6035657bba480741bed52e93dfec">UGKGameInstanceBase::bSavingEnabled</a></div><div class="ttdeci">bool bSavingEnabled</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:83</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_aa8d4523f9fe062c3c8d85ac9ffaa0210"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa8d4523f9fe062c3c8d85ac9ffaa0210">UGKGameInstanceBase::ResetSaveGame</a></div><div class="ttdeci">void ResetSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:89</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a32f92f62681127e2df3ff932ace2f532"><div class="ttname"><a href="classUGKGameInstanceBase.html#a32f92f62681127e2df3ff932ace2f532">UGKGameInstanceBase::bPendingSaveRequested</a></div><div class="ttdeci">bool bPendingSaveRequested</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:91</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_a3efa6035657bba480741bed52e93dfec"><div class="ttname"><a href="classUGKGameInstanceBase.html#a3efa6035657bba480741bed52e93dfec">UGKGameInstanceBase::bSavingEnabled</a></div><div class="ttdeci">bool bSavingEnabled</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:76</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_aa8d4523f9fe062c3c8d85ac9ffaa0210"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa8d4523f9fe062c3c8d85ac9ffaa0210">UGKGameInstanceBase::ResetSaveGame</a></div><div class="ttdeci">void ResetSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:92</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_a32f92f62681127e2df3ff932ace2f532"><div class="ttname"><a href="classUGKGameInstanceBase.html#a32f92f62681127e2df3ff932ace2f532">UGKGameInstanceBase::bPendingSaveRequested</a></div><div class="ttdeci">bool bPendingSaveRequested</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:84</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a635f0f65a59f243b53f00ef77bab2da8"><div class="ttname"><a href="classUGKGameInstanceBase.html#a635f0f65a59f243b53f00ef77bab2da8">UGKGameInstanceBase::UGKGameInstanceBase</a></div><div class="ttdeci">UGKGameInstanceBase()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:11</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_aa80ab2e2ce10351e15e34be3fff69189"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa80ab2e2ce10351e15e34be3fff69189">UGKGameInstanceBase::HandleAsyncSave</a></div><div class="ttdeci">virtual void HandleAsyncSave(const FString &amp;SlotName, const int32 UserIndex, bool bSuccess)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:95</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_afcf9be33c70f811f7040e409398cb090"><div class="ttname"><a href="classUGKGameInstanceBase.html#afcf9be33c70f811f7040e409398cb090">UGKGameInstanceBase::bCurrentlySaving</a></div><div class="ttdeci">bool bCurrentlySaving</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:87</div></div>
-<div class="ttc" id="aGKItem_8h_html"><div class="ttname"><a href="GKItem_8h.html">GKItem.h</a></div></div>
-<div class="ttc" id="aclassUGKSaveGame_html"><div class="ttname"><a href="classUGKSaveGame.html">UGKSaveGame</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:32</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_ab61d42778928376245d1c72294f59f2c"><div class="ttname"><a href="classUGKGameInstanceBase.html#ab61d42778928376245d1c72294f59f2c">UGKGameInstanceBase::WriteSaveGame</a></div><div class="ttdeci">bool WriteSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:64</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_ac05e6ef450b91e561c9c5e3ee806c8a5"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac05e6ef450b91e561c9c5e3ee806c8a5">UGKGameInstanceBase::CurrentSaveGame</a></div><div class="ttdeci">UGKSaveGame * CurrentSaveGame</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:79</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a7d47f788c847abcaaf6987b6baca34e3"><div class="ttname"><a href="classUGKGameInstanceBase.html#a7d47f788c847abcaaf6987b6baca34e3">UGKGameInstanceBase::LoadOrCreateSaveGame</a></div><div class="ttdeci">bool LoadOrCreateSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:17</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_a635f0f65a59f243b53f00ef77bab2da8"><div class="ttname"><a href="classUGKGameInstanceBase.html#a635f0f65a59f243b53f00ef77bab2da8">UGKGameInstanceBase::UGKGameInstanceBase</a></div><div class="ttdeci">UGKGameInstanceBase()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:14</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_aa80ab2e2ce10351e15e34be3fff69189"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa80ab2e2ce10351e15e34be3fff69189">UGKGameInstanceBase::HandleAsyncSave</a></div><div class="ttdeci">virtual void HandleAsyncSave(const FString &amp;SlotName, const int32 UserIndex, bool bSuccess)</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:98</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_afcf9be33c70f811f7040e409398cb090"><div class="ttname"><a href="classUGKGameInstanceBase.html#afcf9be33c70f811f7040e409398cb090">UGKGameInstanceBase::bCurrentlySaving</a></div><div class="ttdeci">bool bCurrentlySaving</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:80</div></div>
+<div class="ttc" id="aclassUGKSaveGame_html"><div class="ttname"><a href="classUGKSaveGame.html">UGKSaveGame</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:31</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_ab61d42778928376245d1c72294f59f2c"><div class="ttname"><a href="classUGKGameInstanceBase.html#ab61d42778928376245d1c72294f59f2c">UGKGameInstanceBase::WriteSaveGame</a></div><div class="ttdeci">bool WriteSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:67</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_ac05e6ef450b91e561c9c5e3ee806c8a5"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac05e6ef450b91e561c9c5e3ee806c8a5">UGKGameInstanceBase::CurrentSaveGame</a></div><div class="ttdeci">UGKSaveGame * CurrentSaveGame</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:72</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_a7d47f788c847abcaaf6987b6baca34e3"><div class="ttname"><a href="classUGKGameInstanceBase.html#a7d47f788c847abcaaf6987b6baca34e3">UGKGameInstanceBase::LoadOrCreateSaveGame</a></div><div class="ttdeci">bool LoadOrCreateSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:20</div></div>
 <div class="ttc" id="aclassUGKGameInstanceBase_html"><div class="ttname"><a href="classUGKGameInstanceBase.html">UGKGameInstanceBase</a></div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:20</div></div>
 <div class="ttc" id="aGKSaveGame_8h_html"><div class="ttname"><a href="GKSaveGame_8h.html">GKSaveGame.h</a></div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_ac2b0f78d0413ddfe03156a4f5c46b09a"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac2b0f78d0413ddfe03156a4f5c46b09a">UGKGameInstanceBase::OnSaveGameLoadedNative</a></div><div class="ttdeci">FOnSaveGameLoadedNative OnSaveGameLoadedNative</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:41</div></div>
 <div class="ttc" id="aclassUGKGameInstanceBase_html_a4ab13e304ea77290d81216668ca22123"><div class="ttname"><a href="classUGKGameInstanceBase.html#a4ab13e304ea77290d81216668ca22123">UGKGameInstanceBase::SaveSlot</a></div><div class="ttdeci">FString SaveSlot</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:30</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_a1fa6793eee1f3dfe58f1ce2a31bd8294"><div class="ttname"><a href="classUGKGameInstanceBase.html#a1fa6793eee1f3dfe58f1ce2a31bd8294">UGKGameInstanceBase::OnSaveGameLoaded</a></div><div class="ttdeci">FOnSaveGameLoaded OnSaveGameLoaded</div><div class="ttdef"><b>Definition:</b> GKGameInstance.h:38</div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_aa438f406db099499326a13590d7b4f82"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa438f406db099499326a13590d7b4f82">UGKGameInstanceBase::GetCurrentSaveGame</a></div><div class="ttdeci">UGKSaveGame * GetCurrentSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:13</div></div>
-<div class="ttc" id="aGKItemTypes_8h_html"><div class="ttname"><a href="GKItemTypes_8h.html">GKItemTypes.h</a></div></div>
-<div class="ttc" id="aclassUGKGameInstanceBase_html_ac58d8637c6227fc6bce5ee653279e623"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac58d8637c6227fc6bce5ee653279e623">UGKGameInstanceBase::GetSaveSlotInfo</a></div><div class="ttdeci">void GetSaveSlotInfo(FString &amp;SlotName, int32 &amp;UserIndex) const</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:58</div></div>
+<div class="ttc" id="aGKAbilityInterface_8h_html"><div class="ttname"><a href="GKAbilityInterface_8h.html">GKAbilityInterface.h</a></div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_aa438f406db099499326a13590d7b4f82"><div class="ttname"><a href="classUGKGameInstanceBase.html#aa438f406db099499326a13590d7b4f82">UGKGameInstanceBase::GetCurrentSaveGame</a></div><div class="ttdeci">UGKSaveGame * GetCurrentSaveGame()</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:16</div></div>
+<div class="ttc" id="aclassUGKGameInstanceBase_html_ac58d8637c6227fc6bce5ee653279e623"><div class="ttname"><a href="classUGKGameInstanceBase.html#ac58d8637c6227fc6bce5ee653279e623">UGKGameInstanceBase::GetSaveSlotInfo</a></div><div class="ttdeci">void GetSaveSlotInfo(FString &amp;SlotName, int32 &amp;UserIndex) const</div><div class="ttdef"><b>Definition:</b> GKGameInstance.cpp:61</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

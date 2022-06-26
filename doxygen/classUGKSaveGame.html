@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -107,10 +107,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae58056d107e656f1b7e59d0fa847a5d9"><td class="memItemLeft" align="right" valign="top">TMap&lt; FPrimaryAssetId, <a class="el" href="structFGKItemData.html">FGKItemData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKSaveGame.html#ae58056d107e656f1b7e59d0fa847a5d9">InventoryData</a></td></tr>
-<tr class="separator:ae58056d107e656f1b7e59d0fa847a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5493c2a757741a43f96a7a18f8e6322"><td class="memItemLeft" align="right" valign="top">TMap&lt; <a class="el" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>, FPrimaryAssetId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKSaveGame.html#ac5493c2a757741a43f96a7a18f8e6322">SlottedItems</a></td></tr>
-<tr class="separator:ac5493c2a757741a43f96a7a18f8e6322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac5e7785e9953e97a273795edf2612e7"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKSaveGame.html#aac5e7785e9953e97a273795edf2612e7">UserId</a></td></tr>
 <tr class="separator:aac5e7785e9953e97a273795edf2612e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -121,8 +117,6 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a9d35ed33020f92916a1046cc39564c94"><td class="memItemLeft" align="right" valign="top">TArray&lt; FPrimaryAssetId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKSaveGame.html#a9d35ed33020f92916a1046cc39564c94">InventoryItems_DEPRECATED</a></td></tr>
-<tr class="separator:a9d35ed33020f92916a1046cc39564c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d7128580ff118787bcf012051c51e71"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71">SavedDataVersion</a></td></tr>
 <tr class="separator:a1d7128580ff118787bcf012051c51e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -184,44 +178,6 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae58056d107e656f1b7e59d0fa847a5d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae58056d107e656f1b7e59d0fa847a5d9">&#9670;&nbsp;</a></span>InventoryData</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TMap&lt;FPrimaryAssetId, <a class="el" href="structFGKItemData.html">FGKItemData</a>&gt; UGKSaveGame::InventoryData</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Map of items to item data </p>
-
-</div>
-</div>
-<a id="a9d35ed33020f92916a1046cc39564c94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d35ed33020f92916a1046cc39564c94">&#9670;&nbsp;</a></span>InventoryItems_DEPRECATED</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">TArray&lt;FPrimaryAssetId&gt; UGKSaveGame::InventoryItems_DEPRECATED</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Deprecated way of storing items, this is read in but not saved out </p>
-
-</div>
-</div>
 <a id="a1d7128580ff118787bcf012051c51e71"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d7128580ff118787bcf012051c51e71">&#9670;&nbsp;</a></span>SavedDataVersion</h2>
 
@@ -242,21 +198,6 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>What LatestVersion was when the archive was saved </p>
-
-</div>
-</div>
-<a id="ac5493c2a757741a43f96a7a18f8e6322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5493c2a757741a43f96a7a18f8e6322">&#9670;&nbsp;</a></span>SlottedItems</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TMap&lt;<a class="el" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>, FPrimaryAssetId&gt; UGKSaveGame::SlottedItems</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Map of slotted items </p>
 
 </div>
 </div>

@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -140,11 +140,15 @@
 <span class="w">    </span><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">AbilitySystemGlobalsClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKAbilitySystemGlobals</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">AbilityOutput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/Gamekit/Abilities/Generated&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">UnitOutput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/Gamekit/Units/Generated&quot;</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">InitGlobalData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">GetTeamTable</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="n">GetExperienceLevel</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">LoadAbilityTables</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">LoadUnitTables</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Register for PreloadMap so cleanup can occur on map transitions</span>
 <span class="w">    </span><span class="n">FCoreUObjectDelegates</span><span class="o">::</span><span class="n">PreLoadMap</span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">HandlePreLoadMap</span><span class="p">);</span><span class="w"></span>
@@ -216,17 +220,23 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+<span class="kt">void</span><span class="w"> </span><span class="n">BroadcastTableChange</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
 
 <span class="kt">void</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">LoadAbilityTables</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">FGKNamedObject</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Item</span><span class="o">:</span><span class="w"> </span><span class="n">AbilityDataTables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Item</span><span class="p">.</span><span class="n">TablePath</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="n">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UDataTable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Item</span><span class="p">.</span><span class="n">TablePath</span><span class="p">.</span><span class="n">TryLoad</span><span class="p">());</span><span class="w"></span>
-<span class="w">            </span><span class="n">AbilityTables</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Item</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">            </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">AddLambda</span><span class="p">([</span><span class="o">&amp;</span><span class="n">Item</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Table</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">Item</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">});</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Table</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="n">AbilityTables</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Item</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">OnDataTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">BroadcastTableChange</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">GK_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Could not load datatable %s %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Item</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"> </span><span class="o">*</span><span class="n">Item</span><span class="p">.</span><span class="n">TablePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

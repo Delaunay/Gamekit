@@ -31,6 +31,10 @@ Includes
 
 - ``Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h`` (:ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.h`)
 
+- ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
+
+- ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
+
 
 
 

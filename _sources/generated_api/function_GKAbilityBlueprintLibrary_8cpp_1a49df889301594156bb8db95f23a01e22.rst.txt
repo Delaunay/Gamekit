@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityBlueprintLibrary_8cpp_1a49df889301594156bb8db95f23a01e22:
+
+Function GetFailureMapping
+==========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetFailureMapping()
+   :project: GameKit

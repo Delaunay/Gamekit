@@ -43,3 +43,10 @@ Includes
 
 
 
+
+Functions
+---------
+
+
+- :ref:`exhale_function_GKGamekitSettings_8cpp_1a6730066c3fe315a4a99c9db67ffd97ac`
+

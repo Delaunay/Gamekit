@@ -35,7 +35,7 @@ Includes
 
 - ``GKSaveGame.h`` (:ref:`file_Source_Gamekit_GKSaveGame.h`)
 
-- ``Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
 
 - ``Kismet/GameplayStatics.h``
 

@@ -29,15 +29,19 @@ Includes
 --------
 
 
+- ``Abilities/GameplayAbilityTypes.h``
+
 - ``Blueprint/UserWidget.h``
+
+- ``Containers/UnrealString.h``
 
 - ``CoreMinimal.h``
 
 - ``GKAbilityWidget.generated.h``
 
-- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
 
-- ``Gamekit/Items/GKInventoryInterface.h`` (:ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`)
+- ``Gamekit/Abilities/GKGameplayAbility.h`` (:ref:`file_Source_Gamekit_Abilities_GKGameplayAbility.h`)
 
 - ``GameplayAbilitySpec.h``
 
@@ -55,6 +59,8 @@ Included By
 Classes
 -------
 
+
+- :ref:`exhale_struct_structFGKAbilityWidgetArgs`
 
 - :ref:`exhale_class_classUGKAbilityWidget`
 

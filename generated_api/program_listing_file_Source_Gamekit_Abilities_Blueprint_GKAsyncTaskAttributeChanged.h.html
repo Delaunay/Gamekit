@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -151,7 +151,7 @@
 <span class="w">    </span><span class="c1">// Listens for an attribute changing.</span>
 <span class="w">    </span><span class="c1">// Version that takes in an array of Attributes. Check the Attribute output for which Attribute changed.</span>
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">BlueprintInternalUseOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="w"> </span><span class="o">*</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="w">  </span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">UGKAsyncTaskAttributeChanged</span><span class="w"> </span><span class="o">*</span><span class="n">ListenForAttributesChange</span><span class="p">(</span><span class="n">UAbilitySystemComponent</span><span class="w">   </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                   </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayAttribute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Attributes</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// You must call this function manually when you want the AsyncTask to end.</span>
@@ -159,13 +159,21 @@
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">EndTask</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">IsDestroyed</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">bDestroyed</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetReadyToDestroy</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDestroyed</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">ASC</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">FGameplayAttribute</span><span class="w"> </span><span class="n">AttributeToListenFor</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayAttribute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AttributesToListenFor</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FDelegateHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DelegateHandles</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AttributeChanged</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FOnAttributeChangeData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Data</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>

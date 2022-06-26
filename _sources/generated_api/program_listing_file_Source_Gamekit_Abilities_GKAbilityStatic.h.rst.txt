@@ -165,6 +165,9 @@ Program Listing for File GKAbilityStatic.h
        FGKAbilityStatic();
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
+       bool bAutoGenerate;
+   
+       UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)
        FName Name;
    
        UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Common)

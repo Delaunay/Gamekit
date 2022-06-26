@@ -1,12 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,80,159"/>
-<area shape="rect" id="node2" href="$classUGKEditorToolBase.html" title=" " alt="" coords="164,5,311,32"/>
-<area shape="rect" id="node4" href="$classUGKGamekitSettings.html" title=" " alt="" coords="157,56,317,83"/>
-<area shape="rect" id="node5" href="$classUGKQuestDataRef.html" title=" " alt="" coords="166,107,309,133"/>
-<area shape="rect" id="node6" href="$classUGKQuestObjectiveRef.html" title=" " alt="" coords="151,157,324,184"/>
-<area shape="rect" id="node7" href="$classUGKQuestSimpleObjectiveRef.html" title=" " alt="" coords="128,208,347,235"/>
-<area shape="rect" id="node8" href="$classUGKTargetType.html" title=" " alt="" coords="177,259,297,285"/>
-<area shape="rect" id="node3" href="$classUGKGameplayAbilityEditorTool.html" title=" " alt="" coords="395,5,619,32"/>
-<area shape="rect" id="node9" href="$classUGKTargetType__UseEventData.html" title=" " alt="" coords="397,233,617,260"/>
-<area shape="rect" id="node10" href="$classUGKTargetType__UseOwner.html" title=" " alt="" coords="409,284,604,311"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node2" href="$classUGKCastPointAnimNotify.html" title=" " alt="" coords="159,5,344,32"/>
 </map>

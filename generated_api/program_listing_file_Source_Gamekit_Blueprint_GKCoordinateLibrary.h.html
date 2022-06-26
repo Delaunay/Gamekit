@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -231,6 +231,27 @@
 <span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sinh</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">cosh</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Cos</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span><span class="w"></span>
 <span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">cosh</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Cos</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span><span class="w"></span>
 <span class="w">            </span><span class="n">z</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Coordinate&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">FromPolar</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Point</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Cos</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">X</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">Point</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">X</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">Point</span><span class="p">.</span><span class="n">Z</span><span class="w"></span>
+<span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Coordinate&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FVector</span><span class="w"> </span><span class="n">ToPolar</span><span class="p">(</span><span class="n">FVector</span><span class="w"> </span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">Radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sqrt</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">X</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Atan2</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">Point</span><span class="p">.</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FVector</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Angle</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">Radius</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">Point</span><span class="p">.</span><span class="n">Z</span><span class="w"></span>
 <span class="w">        </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>

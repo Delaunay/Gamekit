@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -126,9 +126,13 @@
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityStatic.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Characters/GKUnitStatic.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKGamekitSettings.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Factories/BlueprintFactory.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;IPythonScriptPlugin.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AssetToolsModule.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;EditorAssetLibrary.h&quot;</span><span class="cp"></span>
 
 
 <span class="cp">#define CODE(X) #X</span>
@@ -148,17 +152,137 @@
 <span class="w">    </span><span class="n">IPythonScriptPlugin</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ExecPythonCommand</span><span class="p">(</span><span class="o">*</span><span class="n">GenerateAbilityCommand</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
+<span class="n">UClass</span><span class="o">*</span><span class="w"> </span><span class="nf">GetDefaultParentAbility</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UBlueprintGeneratedClass</span><span class="o">*</span><span class="w"> </span><span class="n">Obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoadObject</span><span class="o">&lt;</span><span class="n">UBlueprintGeneratedClass</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="k">nullptr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;/Gamekit/Abilities/GAC_AbilityBase_Prototype.GAC_AbilityBase_Prototype_C&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">GenerateAbility</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
+<span class="w">    </span><span class="c1">// This is what python was doing but seems a bit redundant</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GetDefault</span><span class="o">&lt;</span><span class="n">UBlueprintGeneratedClass</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Obj</span><span class="o">-&gt;</span><span class="n">GetClass</span><span class="p">())</span><span class="o">-&gt;</span><span class="n">GetClass</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">GenerateAbility_CPP</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">AbilityName</span><span class="p">,</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="n">Destination</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FAssetToolsModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">AssetToolsModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FAssetToolsModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;AssetTools&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UBlueprintFactory</span><span class="o">*</span><span class="w"> </span><span class="n">BlueprintFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UBlueprintFactory</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetTransientPackage</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// GetDefaultParentAbility();</span>
+<span class="w">    </span><span class="n">BlueprintFactory</span><span class="o">-&gt;</span><span class="n">ParentClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGameplayAbility</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">BlueprintFactory</span><span class="o">-&gt;</span><span class="n">bEditAfterNew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">BlueprintFactory</span><span class="o">-&gt;</span><span class="n">SupportedClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UBlueprint</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;GA_{0}&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">AbilityName</span><span class="p">.</span><span class="n">ToString</span><span class="p">()});</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">BP_Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;{0}/{1}.{1}_C&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">NewAbility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AssetToolsModule</span><span class="p">.</span><span class="n">Get</span><span class="p">().</span><span class="n">CreateAsset</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">Name</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Destination</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">nullptr</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">BlueprintFactory</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">NewAbility</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Saving here force the generation of the BlueprintGeneratedClass</span>
+<span class="w">        </span><span class="n">UEditorAssetLibrary</span><span class="o">::</span><span class="n">SaveLoadedAsset</span><span class="p">(</span><span class="n">NewAbility</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">UBlueprintGeneratedClass</span><span class="o">*</span><span class="w"> </span><span class="n">AbilityBP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoadObject</span><span class="o">&lt;</span><span class="n">UBlueprintGeneratedClass</span><span class="o">&gt;</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">BP_Name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ensure</span><span class="p">(</span><span class="n">AbilityBP</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">UBlueprintGeneratedClass</span><span class="o">*</span><span class="w"> </span><span class="n">AbilityCDO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetMutableDefault</span><span class="o">&lt;</span><span class="n">UBlueprintGeneratedClass</span><span class="o">&gt;</span><span class="p">(</span><span class="n">AbilityBP</span><span class="o">-&gt;</span><span class="n">GetClass</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AbilityCDO</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// This is how far I got to port the python script into C++</span>
+<span class="w">            </span><span class="c1">// that part of the code seems to have no helpers</span>
+
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">            FProperty* TableProp = AbilityCDO-&gt;FindPropertyByName(&quot;AbilityDatatable&quot;);</span>
+<span class="cm">            FObjectPropertyBase* TableObj = CastField&lt;FObjectPropertyBase&gt;(Prop)</span>
+<span class="cm">            TableObj-&gt;SetObjectPropertyValue(ValueAddr, NewValue);</span>
+
+<span class="cm">            FProperty* RowProp = AbilityCDO-&gt;FindPropertyByName(&quot;AbilityRowName&quot;);</span>
+<span class="cm">            FNameProperty* RowName = CastField&lt;FNameProperty&gt;(RowProp);</span>
+<span class="cm">            RowName-&gt;</span>
+
+<span class="cm">            UEditorAssetLibrary::SaveLoadedAsset(AbilityCDO);</span>
+<span class="cm">            */</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">GenerateGameplayAbilitiesFromTable_CPP</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Auto Regenerating abilities for %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Name</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">AbilityOutput</span><span class="p">;</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">RowName</span><span class="o">:</span><span class="w"> </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">GetRowNames</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">FGKAbilityStatic</span><span class="o">*</span><span class="w"> </span><span class="n">Row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Table</span><span class="o">-&gt;</span><span class="n">FindRow</span><span class="o">&lt;</span><span class="n">FGKAbilityStatic</span><span class="o">&gt;</span><span class="p">(</span><span class="n">RowName</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Row</span><span class="o">-&gt;</span><span class="n">bAutoGenerate</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FString</span><span class="w"> </span><span class="n">FullAssetPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;{0}/GA_{1}&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Destination</span><span class="p">,</span><span class="w"> </span><span class="n">RowName</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">UEditorAssetLibrary</span><span class="o">::</span><span class="n">DoesAssetExist</span><span class="p">(</span><span class="n">FullAssetPath</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">GenerateAbility_CPP</span><span class="p">(</span><span class="n">RowName</span><span class="p">,</span><span class="w"> </span><span class="n">Destination</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Skipping asset %s&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">FullAssetPath</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">FString</span><span class="w"> </span><span class="n">GenerateAbilitiesTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;from importlib import reload</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;import gamekit.abilities as abilities</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;reload(abilities)</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;abilities.generate_abilities_from_table(</span><span class="se">\&quot;</span><span class="s">{0}</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">{1}</span><span class="se">\&quot;</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">GenerateGameplayAbilitiesFromTable_Python</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">AbilityOutput</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FSoftObjectPath</span><span class="w"> </span><span class="n">DataTablePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Table</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">PythonCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="o">*</span><span class="n">GenerateAbilitiesTemplate</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DataTablePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">IPythonScriptPlugin</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ExecPythonCommand</span><span class="p">(</span><span class="o">*</span><span class="n">PythonCode</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbilityEditorTool::GenerateGameplayAbilitiesFromTable</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GenerateGameplayAbilitiesFromTable_Python</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">FString</span><span class="w"> </span><span class="n">GenerateAbilityTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;from importlib import reload</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;import gamekit.abilities as abilities</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;reload(abilities)</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;abilities.generate_ability(</span><span class="se">\&quot;</span><span class="s">{0}</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">{1}</span><span class="se">\&quot;</span><span class="s">, </span><span class="se">\&quot;</span><span class="s">{2}</span><span class="se">\&quot;</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbilityEditorTool::GenerateGameplayAbilityFromTable</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">RowName</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">Destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">AbilityOutput</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FSoftObjectPath</span><span class="w"> </span><span class="n">DataTablePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Table</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">PythonCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FString</span><span class="o">::</span><span class="n">Format</span><span class="p">(</span><span class="o">*</span><span class="n">GenerateAbilityTemplate</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">DataTablePath</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">RowName</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="n">Destination</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">IPythonScriptPlugin</span><span class="o">::</span><span class="n">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ExecPythonCommand</span><span class="p">(</span><span class="o">*</span><span class="n">PythonCode</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKGameplayAbilityEditorTool::GenerateUnitsFromTable</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

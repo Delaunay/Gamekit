@@ -31,7 +31,6 @@ Program Listing for File GamekitEd.h
        static void CreateToolListMenu(class FMenuBuilder &MenuBuilder);
        static void OnToolWindowClosed(const TSharedRef<SWindow> &Window, class UGKEditorToolBase *Instance);
    
-   
        // Add settings in the project windows
        void RegisterSettings();
    
@@ -41,8 +40,14 @@ Program Listing for File GamekitEd.h
        // Insert our new menus and toolbars
        void AddMenu();
        void AddToolBar();
+       void ExtendDataTableMenu();
    
        void EnableAutomaticDataRegeneration();
    
+       void Dummy(FName Name, class UDataTable* Table);
+   
        TSharedPtr<FUICommandList> CommandList;
+   
+       FDelegateHandle AbilityTableUpdate;
+       FDelegateHandle UnitTableUpdate;
    };

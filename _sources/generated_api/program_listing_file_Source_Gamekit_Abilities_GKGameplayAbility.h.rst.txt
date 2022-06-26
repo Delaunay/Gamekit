@@ -295,18 +295,6 @@ Program Listing for File GKGameplayAbility.h
        UFUNCTION(BlueprintCallable, Category = Cost)
        TArray<FGameplayAttribute> GetAbilityCostAttribute() const;
    
-       virtual bool CheckTagRequirements(const UAbilitySystemComponent &AbilitySystemComponent,
-                                         OUT FGameplayTagContainer *OptionalRelevantTags = nullptr) const
-       {
-           return DoesAbilitySatisfyTagRequirements(AbilitySystemComponent, nullptr, nullptr, OptionalRelevantTags);
-       }
-   
-       UFUNCTION(BlueprintCallable,
-                 Category    = ActivationTags,
-                 DisplayName = "CheckTagRequirements",
-                 meta        = (ScriptName = "CheckTagRequirements"))
-       virtual bool K2_CheckTagRequirements(FGameplayTagContainer &RelevantTags);
-   
        UFUNCTION(BlueprintCallable, Category = Ability)
        void LevelUpAbility();
    
@@ -330,21 +318,35 @@ Program Listing for File GKGameplayAbility.h
        void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
    
        UFUNCTION(BlueprintCallable, Category = Ability)
-       int K2_NumCharges() const {
-           return NumCharges(GetCurrentAbilitySpecHandle(), GetCurrentActorInfo());
-       }
+       int K2_NumCharges() const;
    
        int NumCharges(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo) const;
    
-       //
        void ApplyChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const;
-   
-       bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
    
        void ApplyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo) const override;
    
+       // This is technically a Tag Requirement, but it is a bit different because the tag stack is consumed
+       bool CheckChargeCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
        bool CheckCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const override;
    
+       bool CheckEnergyCost(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
+       bool CheckTagRequirements(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
+       bool CheckTargetTagRequirements(const FGameplayTagContainer* TargetTags, const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, OUT FGameplayTagContainer* OptionalRelevantTags = nullptr) const;
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckChargeCost")
+       bool K2_CheckChargeCost() const;
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckEnergyCost")
+       bool K2_CheckEnergeyCost() const;
+   
+       UFUNCTION(BlueprintCallable, Category = Ability, DisplayName = "CheckTagRequirements")
+       bool K2_CheckTagRequirements() const;
+   
+       
    };
    
    UGameplayEffect *NewPassiveRegenEffect(UObject *          Parent,

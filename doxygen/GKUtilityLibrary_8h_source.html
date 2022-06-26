@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -86,8 +86,8 @@ $(function() {
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKGamekitSettings_8h.html">Gamekit/GKGamekitSettings.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// Unreal Engine</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;GenericTeamAgentInterface.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;GenericTeamAgentInterface.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Kismet/BlueprintFunctionLibrary.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Generated</span></div>
@@ -135,7 +135,7 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> <span class="keyword">class </span>AWorldSettings const *GetWorldSetting(<span class="keyword">const</span> UObject *World);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Returns the project version set in the &#39;Project Settings&#39; &gt; &#39;Description&#39; section</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// of the editor </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// of the editor</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Project&quot;</span>)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">static</span> FString GetProjectVersion();</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
@@ -143,14 +143,14 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> FVector GetFogOfWarMapSize(<span class="keyword">const</span> UObject *World);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Controller&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;World&quot;</span>))</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GetControllerFieldOfView(<span class="keyword">const</span> UObject *          World,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GetControllerFieldOfView(<span class="keyword">const</span> UObject           *World,</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                         <span class="keyword">class</span> APlayerController *Controller,</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                         ETraceTypeQuery          TraceChannel,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                         TArray&lt;FVector&gt; &amp;        Corners,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                         TArray&lt;FVector&gt;         &amp;Corners,</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                         FVector2D                Margin = FVector2D(0, 0));</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Controller&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;World&quot;</span>))</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> DrawPolygon(<span class="keyword">const</span> UObject *              World,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> DrawPolygon(<span class="keyword">const</span> UObject               *World,</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                            <span class="keyword">class</span> UCanvasRenderTarget2D *Target,</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                            TArray&lt;FVector&gt;              Corners,</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                            FVector2D                    MapSize,</div>
@@ -195,19 +195,22 @@ $(function() {
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>)</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">static</span> FString GetNetConfig(<span class="keyword">const</span> AActor *Actor);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">static</span> FName NetModeToString(ENetMode NetMode); </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">static</span> FName NetModeToString(ENetMode NetMode);</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">static</span> FName NetRoleToString(ENetRole NetRole);</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContext&quot;</span>))</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">static</span> FString GetNetworkPrefix(<span class="keyword">const</span> UObject* WorldContext);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">static</span> FString GetNetworkPrefix(<span class="keyword">const</span> UObject *WorldContext);</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContext&quot;</span>))</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keyword">static</span> <a class="code" href="structFGKNetworkMetrics.html">FGKNetworkMetrics</a> GetNetworkMetrics(<span class="keyword">const</span> UObject *WorldContext);</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContextObject&quot;</span>))</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">static</span> APlayerController* GetFirstLocalPlayerController(<span class="keyword">const</span> UObject* WorldContextObject);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;};</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">static</span> APlayerController *GetFirstLocalPlayerController(<span class="keyword">const</span> UObject *WorldContextObject);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    UFUNCTION(BlueprintPure, Category = <span class="stringliteral">&quot;Multiplayer&quot;</span>, <a class="code" href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a> = (WorldContext = <span class="stringliteral">&quot;WorldContextObject&quot;</span>))</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">static</span> FRotator GetLookAtCamera(<span class="keyword">const</span> UObject *WorldContextObject, <span class="keywordtype">int</span> PlayerIndex, FVector Target);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aGKFogOfWarComponent_8h_html_a2cb6ac985e5133868af0f75cb0f1edbb"><div class="ttname"><a href="GKFogOfWarComponent_8h.html#a2cb6ac985e5133868af0f75cb0f1edbb">meta</a></div><div class="ttdeci">meta</div><div class="ttdef"><b>Definition:</b> GKFogOfWarComponent.h:33</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_ab21cadae78584922fe893c4f72569c2a"><div class="ttname"><a href="classUGKUtilityLibrary.html#ab21cadae78584922fe893c4f72569c2a">UGKUtilityLibrary::GetRelativePositionFromActor</a></div><div class="ttdeci">static EGKRelativePosition GetRelativePositionFromActor(AActor *Actor, FVector Location)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:218</div></div>
@@ -225,7 +228,7 @@ $(function() {
 <div class="ttc" id="aGKUtilityLibrary_8h_html"><div class="ttname"><a href="GKUtilityLibrary_8h.html">GKUtilityLibrary.h</a></div></div>
 <div class="ttc" id="aGKUtilityLibrary_8h_html_a133d81012099cb3e1e8d5f81a839ee29a8e4dbde44b9f0b348adedc55d7dd648c"><div class="ttname"><a href="GKUtilityLibrary_8h.html#a133d81012099cb3e1e8d5f81a839ee29a8e4dbde44b9f0b348adedc55d7dd648c">EGKRelativePosition::BotLeft</a></div><div class="ttdeci">@ BotLeft</div></div>
 <div class="ttc" id="astructFGKTeamInfo_html_a444b0a09cdbdb03f2e12ebfe428c34ab"><div class="ttname"><a href="structFGKTeamInfo.html#a444b0a09cdbdb03f2e12ebfe428c34ab">FGKTeamInfo::Color</a></div><div class="ttdeci">FLinearColor Color</div><div class="ttdoc">Display color.</div><div class="ttdef"><b>Definition:</b> GKGamekitSettings.h:34</div></div>
-<div class="ttc" id="aclassUGKUtilityLibrary_html_a345fd7d54d12a80d9be7838e4f746e88"><div class="ttname"><a href="classUGKUtilityLibrary.html#a345fd7d54d12a80d9be7838e4f746e88">UGKUtilityLibrary::GetNetworkPrefix</a></div><div class="ttdeci">static FString GetNetworkPrefix(const UObject *WorldContext)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:483</div></div>
+<div class="ttc" id="aclassUGKUtilityLibrary_html_a345fd7d54d12a80d9be7838e4f746e88"><div class="ttname"><a href="classUGKUtilityLibrary.html#a345fd7d54d12a80d9be7838e4f746e88">UGKUtilityLibrary::GetNetworkPrefix</a></div><div class="ttdeci">static FString GetNetworkPrefix(const UObject *WorldContext)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:484</div></div>
 <div class="ttc" id="aGKGamekitSettings_8h_html"><div class="ttname"><a href="GKGamekitSettings_8h.html">GKGamekitSettings.h</a></div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_adc541900e774a4e6f6d0b22ebf8fb031"><div class="ttname"><a href="classUGKUtilityLibrary.html#adc541900e774a4e6f6d0b22ebf8fb031">UGKUtilityLibrary::GetNetworkMetrics</a></div><div class="ttdeci">static FGKNetworkMetrics GetNetworkMetrics(const UObject *WorldContext)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:426</div></div>
 <div class="ttc" id="aclassUGKCoordinateLibrary_html_a3cfb6acffc7ccc1a7846840e82b738bb"><div class="ttname"><a href="classUGKCoordinateLibrary.html#a3cfb6acffc7ccc1a7846840e82b738bb">UGKCoordinateLibrary::ToScreenCoordinate</a></div><div class="ttdeci">static FVector2D ToScreenCoordinate(FVector WorldLocation, FVector2D MapSize, FVector2D TextureSize)</div><div class="ttdoc">Returns coordinate (0, PixelSize)</div><div class="ttdef"><b>Definition:</b> GKCoordinateLibrary.cpp:19</div></div>
@@ -247,6 +250,7 @@ $(function() {
 <div class="ttc" id="aclassUGKUtilityLibrary_html_ad23e15f03594735b5fd6d01544ef30ec"><div class="ttname"><a href="classUGKUtilityLibrary.html#ad23e15f03594735b5fd6d01544ef30ec">UGKUtilityLibrary::GetFogOfWarMapSize</a></div><div class="ttdeci">static FVector GetFogOfWarMapSize(const UObject *World)</div><div class="ttdoc">Return the map size stored inside the Fog of War Volume if any.</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:48</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_a816c3909a52458dbd81772058fe80853"><div class="ttname"><a href="classUGKUtilityLibrary.html#a816c3909a52458dbd81772058fe80853">UGKUtilityLibrary::GetYaw</a></div><div class="ttdeci">static float GetYaw(FVector Origin, FVector Target)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:180</div></div>
 <div class="ttc" id="aGKUtilityLibrary_8h_html_a133d81012099cb3e1e8d5f81a839ee29a1448e86d90e0feb307c2894c24e87767"><div class="ttname"><a href="GKUtilityLibrary_8h.html#a133d81012099cb3e1e8d5f81a839ee29a1448e86d90e0feb307c2894c24e87767">EGKRelativePosition::Bot</a></div><div class="ttdeci">@ Bot</div></div>
+<div class="ttc" id="aclassUGKUtilityLibrary_html_a7d1b8e87f78e9fb875be2cdcd6e58e98"><div class="ttname"><a href="classUGKUtilityLibrary.html#a7d1b8e87f78e9fb875be2cdcd6e58e98">UGKUtilityLibrary::GetLookAtCamera</a></div><div class="ttdeci">static FRotator GetLookAtCamera(const UObject *WorldContextObject, int PlayerIndex, FVector Target)</div><div class="ttdoc">Find the rotation which makes the Target face the player controller's camera.</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:516</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_a088058d40c1f13b454afdd380a5f3863"><div class="ttname"><a href="classUGKUtilityLibrary.html#a088058d40c1f13b454afdd380a5f3863">UGKUtilityLibrary::GetWidgetUnderCursor</a></div><div class="ttdeci">static class UWidget * GetWidgetUnderCursor()</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:155</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_a98104e1c53522f12bfc984c040c96d86"><div class="ttname"><a href="classUGKUtilityLibrary.html#a98104e1c53522f12bfc984c040c96d86">UGKUtilityLibrary::ItemSlotFromInteger</a></div><div class="ttdeci">static EGK_ItemSlot ItemSlotFromInteger(int SlotId)</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:178</div></div>
 <div class="ttc" id="aclassUGKUtilityLibrary_html_a4a605ac8a01c4eab8f7f6a169347aea9"><div class="ttname"><a href="classUGKUtilityLibrary.html#a4a605ac8a01c4eab8f7f6a169347aea9">UGKUtilityLibrary::GetRelativePosition</a></div><div class="ttdeci">static EGKRelativePosition GetRelativePosition(FVector Origin, FVector BoxExtent, FVector Location)</div><div class="ttdoc">Returns the relative postition of location given an actor.</div><div class="ttdef"><b>Definition:</b> GKUtilityLibrary.cpp:193</div></div>

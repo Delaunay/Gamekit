@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -125,7 +125,9 @@
 <span class="w">        </span><span class="n">PCHUsage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ModuleRules</span><span class="p">.</span><span class="n">PCHUsageMode</span><span class="p">.</span><span class="n">UseExplicitOrSharedPCHs</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">PrivateIncludePaths</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]{</span><span class="w"></span>
-<span class="w">            </span><span class="s">&quot;GamekitEd&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;GamekitEd&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="s">&quot;Editor/PropertyEditor/Private&quot;</span><span class="w"></span>
 <span class="w">        </span><span class="p">});</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">PublicDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]{</span><span class="w"></span>
@@ -135,7 +137,6 @@
 <span class="w">            </span><span class="s">&quot;Core&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;Engine&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s">&quot;UnrealEd&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;InputCore&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;Slate&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="s">&quot;SlateCore&quot;</span><span class="p">,</span><span class="w"></span>
@@ -143,12 +144,21 @@
 <span class="w">            </span><span class="s">&quot;LevelEditor&quot;</span><span class="p">,</span><span class="w"></span>
 
 <span class="w">            </span><span class="s">&quot;GameplayAbilities&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s">&quot;PythonScriptPlugin&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;PythonScriptPlugin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;AssetTools&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;EditorScriptingUtilities&quot;</span><span class="w"></span>
 <span class="w">        </span><span class="p">});</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">        PrivateIncludePathModuleNames.AddRange(new string[] {</span>
+<span class="cm">            &quot;UnrealEd&quot;,</span>
+<span class="cm">        });</span>
 
-<span class="w">        </span><span class="p">});</span><span class="w"></span>
+
+<span class="cm">        PrivateDependencyModuleNames.AddRange(new string[] {</span>
+<span class="cm">            &quot;UnrealEd&quot;,</span>
+<span class="cm">        });</span>
+<span class="cm">        */</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>

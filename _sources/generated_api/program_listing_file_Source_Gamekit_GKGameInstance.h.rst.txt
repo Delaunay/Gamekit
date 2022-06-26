@@ -15,7 +15,7 @@ Program Listing for File GKGameInstance.h
    #pragma once
    
    #include "Gamekit.h"
-   #include "Items/GKItemTypes.h"
+   #include "Gamekit/Abilities/GKAbilityInterface.h"
    
    #include "Engine/GameInstance.h"
    #include "GKGameInstance.generated.h"
@@ -36,11 +36,6 @@ Program Listing for File GKGameInstance.h
    
        UPROPERTY(BlueprintReadWrite, Category = Save)
        int32 SaveUserIndex;
-   
-       UPROPERTY(BlueprintAssignable, Category = Inventory)
-       FOnSaveGameLoaded OnSaveGameLoaded;
-   
-       FOnSaveGameLoadedNative OnSaveGameLoadedNative;
    
        UFUNCTION(BlueprintCallable, Category = Save)
        UGKSaveGame *GetCurrentSaveGame();

@@ -1,0 +1,14 @@
+.. _exhale_define_GKLog_8h_1ae9739ac6b1269a41a627b88e5a2905c0:
+
+Define GK_ERROR
+===============
+
+- Defined in :ref:`file_Source_Gamekit_GKLog.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GK_ERROR
+   :project: GameKit

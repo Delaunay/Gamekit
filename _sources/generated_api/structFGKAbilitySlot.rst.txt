@@ -3,7 +3,7 @@
 Struct FGKAbilitySlot
 =====================
 
-- Defined in :ref:`file_Source_Gamekit_Items_GKItemTypes.h`
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`
 
 
 Struct Documentation

@@ -41,6 +41,8 @@ Includes
 
 - ``Engine/NetDriver.h``
 
+- ``GameFramework/PlayerController.h``
+
 - ``GameFramework/PlayerState.h``
 
 - ``Gamekit/Blueprint/GKCoordinateLibrary.h`` (:ref:`file_Source_Gamekit_Blueprint_GKCoordinateLibrary.h`)

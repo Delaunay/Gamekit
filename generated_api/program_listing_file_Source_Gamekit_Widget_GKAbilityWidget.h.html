@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -119,16 +119,35 @@
 <span class="cp">#pragma once</span>
 
 <span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInterface.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKGameplayAbility.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Items/GKInventoryInterface.h&quot;</span><span class="cp"></span>
 
-<span class="c1">// Unreal Engine</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Blueprint/UserWidget.h&quot;</span><span class="cp"></span>
+<span class="c1">// Unreal Engine (1)</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Containers/UnrealString.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Unreal Engine (2)</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Abilities/GameplayAbilityTypes.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Blueprint/UserWidget.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameplayAbilitySpec.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Generated</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAbilityWidget.generated.h&quot;</span><span class="cp"></span>
+
+<span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">GAMEKIT_API</span><span class="w"> </span><span class="n">FGKAbilityWidgetArgs</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GENERATED_USTRUCT_BODY</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayAbilityActorInfo</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGameplayAbilitySpec</span><span class="w"> </span><span class="n">AbilitySpec</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">AbilitySlot</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 <span class="cm">/* Simple Widget that receives ability state update through a top level UGKAbilityWidgetContainer</span>
 <span class="cm"> */</span><span class="w"></span>
@@ -173,14 +192,32 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnAbilityInsufficientResources</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">CostMet</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginDisabled</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnAbilityGranted</span><span class="p">(</span><span class="n">FGKAbilityWidgetArgs</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Args</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnAbilityRemoved</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginDisabled</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                         </span><span class="n">UGameplayEffect</span><span class="w">            </span><span class="o">*</span><span class="n">Effect</span><span class="p">,</span><span class="w"></span>
+<span class="w">                         </span><span class="n">FGameplayTagContainer</span><span class="w">       </span><span class="n">Tags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                         </span><span class="kt">float</span><span class="w">                       </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnEndDisabled</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnBeginDisabled_Implementation</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnBeginDisabled_Implementation</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                        </span><span class="n">UGameplayEffect</span><span class="w">            </span><span class="o">*</span><span class="n">Effect</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                        </span><span class="n">FGameplayTagContainer</span><span class="w">       </span><span class="n">Tags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                        </span><span class="kt">float</span><span class="w">                       </span><span class="n">Duration</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnAbilityRemoved_Implementation</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnEndDisabled_Implementation</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnAbilityGranted_Implementation</span><span class="p">(</span><span class="n">FGKAbilityWidgetArgs</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Args</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnAbilityCooldownBegin_Implementation</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
@@ -216,7 +253,7 @@
 
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAsyncTaskCooldownChanged</span><span class="w"> </span><span class="o">*</span><span class="n">CooldownChangedTask</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAsyncTask_GameplayEffectChanged</span><span class="o">*</span><span class="w"> </span><span class="n">DisableEffectTask</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKAsyncTask_GameplayEffectChanged</span><span class="w"> </span><span class="o">*</span><span class="n">DisableEffectTask</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnAbilityInsufficientResources_Native</span><span class="p">(</span><span class="n">FGameplayAttribute</span><span class="w"> </span><span class="n">Attribute</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">NewValue</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">OldValue</span><span class="p">);</span><span class="w"></span>
@@ -228,7 +265,11 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnAbilityCooldownEnd_Native</span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stack</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnBeginGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">UGameplayEffect</span><span class="w">            </span><span class="o">*</span><span class="n">Effect</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">FGameplayTagContainer</span><span class="w">       </span><span class="n">Tags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="kt">float</span><span class="w">                       </span><span class="n">Duration</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="kt">int</span><span class="w">                         </span><span class="n">Stack</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UFUNCTION</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnStackChangedGameplayEffect_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">StackCount</span><span class="p">);</span><span class="w"></span>
@@ -238,7 +279,11 @@
 
 <span class="w">    </span><span class="c1">// Disable Handling</span>
 <span class="w">    </span><span class="c1">// we track the count of all the stacked disables</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnBeginDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"> </span><span class="n">UGameplayEffect</span><span class="o">*</span><span class="w"> </span><span class="n">Effect</span><span class="p">,</span><span class="w"> </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">Tags</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Stack</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnBeginDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">UGameplayEffect</span><span class="w">            </span><span class="o">*</span><span class="n">Effect</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">FGameplayTagContainer</span><span class="w">       </span><span class="n">Tags</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="kt">float</span><span class="w">                       </span><span class="n">Duration</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="kt">int</span><span class="w">                         </span><span class="n">Stack</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnEndDisabled_Native</span><span class="p">(</span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">EffectHandle</span><span class="p">);</span><span class="w"></span>
 

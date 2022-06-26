@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -116,12 +116,15 @@
 <p>↰ <a class="reference internal" href="file_Source_Gamekit_GKGameInstance.cpp.html#file-source-gamekit-gkgameinstance-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/GKGameInstance.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
 
+<span class="c1">// Include</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKGameInstance.h&quot;</span><span class="cp"></span>
 
+<span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAssetManager.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKSaveGame.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Items/GKItem.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInterface.h&quot;</span><span class="cp"></span>
 
+<span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Kismet/GameplayStatics.h&quot;</span><span class="cp"></span>
 
 <span class="n">UGKGameInstanceBase</span><span class="o">::</span><span class="n">UGKGameInstanceBase</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="n">SaveSlot</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;SaveGame&quot;</span><span class="p">)),</span><span class="w"> </span><span class="n">SaveUserIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
@@ -165,8 +168,8 @@
 <span class="w">        </span><span class="n">CurrentSaveGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKSaveGame</span><span class="o">&gt;</span><span class="p">(</span><span class="n">UGameplayStatics</span><span class="o">::</span><span class="n">CreateSaveGameObject</span><span class="p">(</span><span class="n">UGKSaveGame</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">()));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">OnSaveGameLoaded</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">CurrentSaveGame</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">OnSaveGameLoadedNative</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">CurrentSaveGame</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// OnSaveGameLoaded.Broadcast(CurrentSaveGame);</span>
+<span class="w">    </span><span class="c1">// OnSaveGameLoadedNative.Broadcast(CurrentSaveGame);</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bLoaded</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

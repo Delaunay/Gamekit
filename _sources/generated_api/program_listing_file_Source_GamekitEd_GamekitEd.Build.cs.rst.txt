@@ -21,7 +21,9 @@ Program Listing for File GamekitEd.Build.cs
            PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
    
            PrivateIncludePaths.AddRange(new string[]{
-               "GamekitEd"
+               "GamekitEd",
+   
+               "Editor/PropertyEditor/Private"
            });
    
            PublicDependencyModuleNames.AddRange(new string[]{
@@ -31,7 +33,6 @@ Program Listing for File GamekitEd.Build.cs
                "Core",
                "CoreUObject",
                "Engine",
-               "UnrealEd",
                "InputCore",
                "Slate",
                "SlateCore",
@@ -39,11 +40,20 @@ Program Listing for File GamekitEd.Build.cs
                "LevelEditor",
    
                "GameplayAbilities",
-               "PythonScriptPlugin"
+               "PythonScriptPlugin",
+               "AssetTools",
+               "EditorScriptingUtilities"
            });
    
+           /*
+           PrivateIncludePathModuleNames.AddRange(new string[] {
+               "UnrealEd",
+           });
+   
+           
            PrivateDependencyModuleNames.AddRange(new string[] {
-   
+               "UnrealEd",
            });
+           */
        }
    }

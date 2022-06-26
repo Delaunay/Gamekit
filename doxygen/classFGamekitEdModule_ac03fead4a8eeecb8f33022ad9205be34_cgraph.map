@@ -1,11 +1,17 @@
 <map id="FGamekitEdModule::StartupModule" name="FGamekitEdModule::StartupModule">
-<area shape="rect" id="node1" title=" " alt="" coords="5,137,211,178"/>
-<area shape="rect" id="node2" href="$classFGamekitEdModule.html#ae54063cb9eff6dec3d461ea0975ab4a0" title=" " alt="" coords="269,5,487,32"/>
-<area shape="rect" id="node3" href="$classFGamekitEdModule.html#aa5305ffa1d8cf779d76cc54500df77b7" title=" " alt="" coords="263,56,493,83"/>
-<area shape="rect" id="node4" href="$classFGamekitEdModule.html#a9782e30c068f393c4a75d8f74de5ef22" title=" " alt="" coords="275,107,481,149"/>
-<area shape="rect" id="node5" href="$classFGamekitEdStyle.html#afe848d3401bb89c3c009bbb55bc93da6" title=" " alt="" coords="279,173,477,200"/>
-<area shape="rect" id="node8" href="$structFGKBaseEditorToolCustomization.html#abdf458f33344fc95ef1f7a9cca9a97ef" title=" " alt="" coords="259,225,497,266"/>
-<area shape="rect" id="node9" href="$classFGamekitEdModule.html#a0c5ab6384a374c7f38add7707db232ba" title=" " alt="" coords="272,290,484,331"/>
-<area shape="rect" id="node6" href="$classFGamekitEdStyle.html#a8f4469d0b127fca52d6320d3ef4d1aaf" title=" " alt="" coords="545,173,732,200"/>
-<area shape="rect" id="node7" href="$GamekitEdStyle_8cpp.html#a3a9c292ac735f1ef8498558c0efb3a1e" title=" " alt="" coords="780,173,895,200"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,210,211,251"/>
+<area shape="rect" id="node2" href="$classFGamekitEdModule.html#ae54063cb9eff6dec3d461ea0975ab4a0" title=" " alt="" coords="269,49,487,76"/>
+<area shape="rect" id="node3" href="$classFGamekitEdModule.html#aa5305ffa1d8cf779d76cc54500df77b7" title=" " alt="" coords="263,100,493,127"/>
+<area shape="rect" id="node4" href="$classFGamekitEdModule.html#a9782e30c068f393c4a75d8f74de5ef22" title=" " alt="" coords="275,151,481,193"/>
+<area shape="rect" id="node10" href="$classFGamekitEdStyle.html#afe848d3401bb89c3c009bbb55bc93da6" title=" " alt="" coords="279,217,477,244"/>
+<area shape="rect" id="node13" href="$structFGKAbilityStaticCustomization.html#a1d1fff556f0f3f22abc8c0ec7283fd28" title=" " alt="" coords="267,269,489,310"/>
+<area shape="rect" id="node14" href="$structFGKBaseEditorToolCustomization.html#abdf458f33344fc95ef1f7a9cca9a97ef" title=" " alt="" coords="259,334,497,375"/>
+<area shape="rect" id="node15" href="$classFGamekitEdModule.html#a0c5ab6384a374c7f38add7707db232ba" title=" " alt="" coords="272,399,484,441"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbilityEditorTool.html#ab9efdcded0b9d78fdae10f4cdc11315c" title=" " alt="" coords="545,5,781,61"/>
+<area shape="rect" id="node7" href="$classUGKGameplayAbilityEditorTool.html#a3a0db07c65a60f0c9bc9879067707254" title=" " alt="" coords="555,86,772,127"/>
+<area shape="rect" id="node8" href="$classUGKGamekitSettings.html#ada9b759babfaf07d132e06c37c122c14" title=" " alt="" coords="561,151,765,193"/>
+<area shape="rect" id="node9" href="$classUGKGamekitSettings.html#aca9e3031aca27ec3ac68a0254f0b7f7b" title=" " alt="" coords="569,217,758,258"/>
+<area shape="rect" id="node6" href="$GKGameplayAbilityEditorTool_8cpp.html#a508ec7a75b3f09e11d867b987fe06736" title=" " alt="" coords="829,13,1032,54"/>
+<area shape="rect" id="node11" href="$classFGamekitEdStyle.html#a8f4469d0b127fca52d6320d3ef4d1aaf" title=" " alt="" coords="570,283,757,309"/>
+<area shape="rect" id="node12" href="$GamekitEdStyle_8cpp.html#a3a9c292ac735f1ef8498558c0efb3a1e" title=" " alt="" coords="873,283,988,309"/>
 </map>

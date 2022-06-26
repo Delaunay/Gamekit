@@ -1,0 +1,17 @@
+.. _exhale_struct_structFGKAbilityWidgetArgs:
+
+Struct FGKAbilityWidgetArgs
+===========================
+
+- Defined in :ref:`file_Source_Gamekit_Widget_GKAbilityWidget.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: FGKAbilityWidgetArgs
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

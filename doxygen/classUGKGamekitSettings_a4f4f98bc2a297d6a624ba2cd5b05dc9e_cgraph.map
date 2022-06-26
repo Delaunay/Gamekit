@@ -1,7 +1,10 @@
 <map id="UGKGamekitSettings::InitGlobalData" name="UGKGamekitSettings::InitGlobalData">
-<area shape="rect" id="node1" title=" " alt="" coords="5,71,165,112"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,136,165,177"/>
 <area shape="rect" id="node2" href="$classUGKGamekitSettings.html#a47d573e03ef7a78d2570d1616ae73dca" title=" " alt="" coords="213,5,373,47"/>
 <area shape="rect" id="node3" href="$classUGKGamekitSettings.html#ad6231d186a0f77fbe2f90d7b5a31ff4f" title=" " alt="" coords="213,71,373,112"/>
 <area shape="rect" id="node4" href="$classUGKGamekitSettings.html#a4b987d9971b10f4b918521782d597f3d" title=" " alt="" coords="213,136,373,177"/>
-<area shape="rect" id="node5" href="$classUGKGamekitSettings.html#a259ce928402f06fcb4212769803c1272" title=" " alt="" coords="421,136,581,177"/>
+<area shape="rect" id="node6" href="$classUGKGamekitSettings.html#ae56dab1a0c8408676df7b8588c6e8c7b" title=" " alt="" coords="213,201,373,243"/>
+<area shape="rect" id="node8" href="$classUGKGamekitSettings.html#ae17ac264e67699213ca4a18837cbf2d5" title=" " alt="" coords="213,267,373,308"/>
+<area shape="rect" id="node5" href="$classUGKGamekitSettings.html#a259ce928402f06fcb4212769803c1272" title=" " alt="" coords="427,136,587,177"/>
+<area shape="rect" id="node7" href="$GKGamekitSettings_8cpp.html#a6730066c3fe315a4a99c9db67ffd97ac" title=" " alt="" coords="421,209,592,235"/>
 </map>

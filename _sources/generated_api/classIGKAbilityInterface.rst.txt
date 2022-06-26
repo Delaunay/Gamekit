@@ -1,0 +1,17 @@
+.. _exhale_class_classIGKAbilityInterface:
+
+Class IGKAbilityInterface
+=========================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: IGKAbilityInterface
+   :project: GameKit
+   :members:
+   :protected-members:
+   :undoc-members:

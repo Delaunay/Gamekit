@@ -45,8 +45,6 @@ Included By
 
 - :ref:`file_Source_Gamekit_GKAssetManager.cpp`
 
-- :ref:`file_Source_Gamekit_Items_GKItem.h`
-
 - :ref:`file_Source_Gamekit_GKGameInstance.cpp`
 
 

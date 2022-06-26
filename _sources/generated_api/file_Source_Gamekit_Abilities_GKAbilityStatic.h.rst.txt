@@ -57,6 +57,8 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_AbilityTasks_GKAbilityTask_MoveToDestination.h`
 
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
+
 - :ref:`file_Source_Gamekit_Abilities_Effect_GKGameplayEffectUIData.h`
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.cpp`
@@ -74,6 +76,8 @@ Included By
 - :ref:`file_Source_Gamekit_Blueprint_GKUtilityLibrary.h`
 
 - :ref:`file_Source_Gamekit_Characters_GKCharacter.cpp`
+
+- :ref:`file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.cpp`
 
 - :ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp`
 

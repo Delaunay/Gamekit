@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -124,6 +124,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/GamekitEdStyle.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/GKCommands.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/Tools/GKGameplayAbilityEditorTool.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GamekitEd/Customization/GKAbilityStaticCustomization.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilitySystemGlobals.h&quot;</span><span class="cp"></span>
@@ -132,6 +133,7 @@
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Engine/Blueprint.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LevelEditor.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Editor/DataTableEditor/Public/DataTableEditorModule.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Modules/ModuleManager.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ISettingsContainer.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ISettingsModule.h&quot;</span><span class="cp"></span>
@@ -220,11 +222,22 @@
 
 <span class="w">    </span><span class="c1">// Register customization for our tool widget</span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">FPropertyEditorModule</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FPropertyEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">FPropertyEditorModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">PropPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FPropertyEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">PropPlugin</span><span class="p">.</span><span class="n">RegisterCustomClassLayout</span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="s">&quot;GKEditorToolBase&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="n">FOnGetDetailCustomizationInstance</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="n">FGKBaseEditorToolCustomization</span><span class="o">::</span><span class="n">MakeInstance</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;GKEditorToolBase&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FOnGetDetailCustomizationInstance</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="n">FGKBaseEditorToolCustomization</span><span class="o">::</span><span class="n">MakeInstance</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">// Register Customization when editing the properties of AbilityStatic</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// DataTableEditor does use the PropertyEditor with `CreateStructureDetailView`</span>
+<span class="w">        </span><span class="n">FPropertyEditorModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">PropPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FPropertyEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PropPlugin</span><span class="p">.</span><span class="n">RegisterCustomClassLayout</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="s">&quot;GKAbilityStatic&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">FOnGetDetailCustomizationInstance</span><span class="o">::</span><span class="n">CreateStatic</span><span class="p">(</span><span class="n">FGKAbilityStaticCustomization</span><span class="o">::</span><span class="n">MakeInstance</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">RegisterSettings</span><span class="p">();</span><span class="w"></span>
@@ -252,6 +265,21 @@
 <span class="w">        </span><span class="p">}),</span><span class="w"></span>
 <span class="w">        </span><span class="n">FCanExecuteAction</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::ExtendDataTableMenu</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FDataTableEditorModule</span><span class="o">&amp;</span><span class="w"> </span><span class="n">DataTableEditorModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FModuleManager</span><span class="o">::</span><span class="n">LoadModuleChecked</span><span class="o">&lt;</span><span class="n">FDataTableEditorModule</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;DataTableEditor&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Add Menu</span>
+<span class="w">    </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">FExtender</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MenuExtender</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FExtender</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    MenuExtender-&gt;AddMenuExtension(&quot;EditMain&quot;, // Existing section where we want to add it</span>
+<span class="cm">        EExtensionHook::After,</span>
+<span class="cm">        CommandList,</span>
+<span class="cm">        FMenuExtensionDelegate::CreateStatic(&amp;Local::AddMenuCommands));</span>
+<span class="cm">    */</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">DataTableEditorModule</span><span class="p">.</span><span class="n">GetMenuExtensibilityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddExtender</span><span class="p">(</span><span class="n">MenuExtender</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::AddToolBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -317,16 +345,20 @@
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::Dummy</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateGameplayAbilitiesFromTable</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">EnableAutomaticDataRegeneration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FGamekitEdModule::EnableAutomaticDataRegeneration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">UGKGamekitSettings</span><span class="o">*</span><span class="w"> </span><span class="n">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UGKGamekitSettings</span><span class="o">::</span><span class="n">Get</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">bAutoRegenerateAbilities</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateGameplayAbilitiesFromTable</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">AbilityTableUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateGameplayAbilitiesFromTable</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekitEd</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Auto Regenerating abilities %d&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnAbilityTableChanged</span><span class="p">().</span><span class="n">IsBound</span><span class="p">());</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">bAutoRegenerateUnits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnUnitTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateUnitsFromTable</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">UnitTableUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Settings</span><span class="o">-&gt;</span><span class="n">GetOnUnitTableChanged</span><span class="p">().</span><span class="n">AddStatic</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UGKGameplayAbilityEditorTool</span><span class="o">::</span><span class="n">GenerateUnitsFromTable</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 

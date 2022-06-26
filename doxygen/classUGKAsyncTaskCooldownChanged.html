@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -105,6 +105,12 @@ Collaboration diagram for UGKAsyncTaskCooldownChanged:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1023fbe993b288450c5291556a33774c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c">EndTask</a> ()</td></tr>
 <tr class="separator:a1023fbe993b288450c5291556a33774c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09033bde576d35d2106faaccf73aba12"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a09033bde576d35d2106faaccf73aba12">SetReadyToDestroy</a> () override</td></tr>
+<tr class="separator:a09033bde576d35d2106faaccf73aba12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7328a350f1ee0980b79f7b8dcf05daf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#af7328a350f1ee0980b79f7b8dcf05daf">HasCooldownTags</a> () const</td></tr>
+<tr class="separator:af7328a350f1ee0980b79f7b8dcf05daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9763c0442e259713bfe00fed947b28c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a9763c0442e259713bfe00fed947b28c6">IsDestroyed</a> () const</td></tr>
+<tr class="separator:a9763c0442e259713bfe00fed947b28c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -129,10 +135,14 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:ac6d22b856d30fa03aa68bb838cfeaa19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#ac6d22b856d30fa03aa68bb838cfeaa19">bDestroyed</a></td></tr>
+<tr class="separator:ac6d22b856d30fa03aa68bb838cfeaa19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af898619d1ec3eedb29e58ceb6f467893"><td class="memItemLeft" align="right" valign="top">UAbilitySystemComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#af898619d1ec3eedb29e58ceb6f467893">ASC</a></td></tr>
 <tr class="separator:af898619d1ec3eedb29e58ceb6f467893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5618103f313fabce51e8cfda22ee9369"><td class="memItemLeft" align="right" valign="top">FGameplayTagContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a5618103f313fabce51e8cfda22ee9369">CooldownTags</a></td></tr>
 <tr class="separator:a5618103f313fabce51e8cfda22ee9369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15cb06ef60d5af133febd67315362047"><td class="memItemLeft" align="right" valign="top">TArray&lt; FDelegateHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a15cb06ef60d5af133febd67315362047">DelegateHandles</a></td></tr>
+<tr class="separator:a15cb06ef60d5af133febd67315362047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2186c8cef38709b0252b6ee3ae50b49f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskCooldownChanged.html#a2186c8cef38709b0252b6ee3ae50b49f">UseServerCooldown</a></td></tr>
 <tr class="separator:a2186c8cef38709b0252b6ee3ae50b49f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -190,6 +200,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAsyncTaskCooldownChanged_a1023fbe993b288450c5291556a33774c_cgraph.png" border="0" usemap="#classUGKAsyncTaskCooldownChanged_a1023fbe993b288450c5291556a33774c_cgraph" alt=""/></div>
+<map name="classUGKAsyncTaskCooldownChanged_a1023fbe993b288450c5291556a33774c_cgraph" id="classUGKAsyncTaskCooldownChanged_a1023fbe993b288450c5291556a33774c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,245,47"/>
+<area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#a09033bde576d35d2106faaccf73aba12" title=" " alt="" coords="293,5,533,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -229,6 +248,56 @@ Protected Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7328a350f1ee0980b79f7b8dcf05daf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7328a350f1ee0980b79f7b8dcf05daf">&#9670;&nbsp;</a></span>HasCooldownTags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UGKAsyncTaskCooldownChanged::HasCooldownTags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9763c0442e259713bfe00fed947b28c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9763c0442e259713bfe00fed947b28c6">&#9670;&nbsp;</a></span>IsDestroyed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UGKAsyncTaskCooldownChanged::IsDestroyed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -283,6 +352,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#a7d1112ee7aaba2416bbf6276a9568b37" title=" " alt="" coords="319,5,559,47"/>
 <area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#a1023fbe993b288450c5291556a33774c" title=" " alt="" coords="319,71,559,112"/>
 <area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#aaa52e7f0481edd48eb04720eb71b9767" title=" " alt="" coords="293,136,584,177"/>
+<area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#a09033bde576d35d2106faaccf73aba12" title=" " alt="" coords="632,71,872,112"/>
 <area shape="rect" href="classUGKAsyncTaskCooldownChanged.html#abc43ed35085750b4206cef8c0bfcd8ef" title=" " alt="" coords="632,136,872,177"/>
 </map>
 </div>
@@ -340,6 +410,31 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a09033bde576d35d2106faaccf73aba12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09033bde576d35d2106faaccf73aba12">&#9670;&nbsp;</a></span>SetReadyToDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAsyncTaskCooldownChanged::SetReadyToDestroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="af898619d1ec3eedb29e58ceb6f467893"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af898619d1ec3eedb29e58ceb6f467893">&#9670;&nbsp;</a></span>ASC</h2>
@@ -363,6 +458,28 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ac6d22b856d30fa03aa68bb838cfeaa19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d22b856d30fa03aa68bb838cfeaa19">&#9670;&nbsp;</a></span>bDestroyed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UGKAsyncTaskCooldownChanged::bDestroyed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5618103f313fabce51e8cfda22ee9369"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5618103f313fabce51e8cfda22ee9369">&#9670;&nbsp;</a></span>CooldownTags</h2>
 
@@ -374,6 +491,28 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">FGameplayTagContainer UGKAsyncTaskCooldownChanged::CooldownTags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15cb06ef60d5af133febd67315362047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15cb06ef60d5af133febd67315362047">&#9670;&nbsp;</a></span>DelegateHandles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;FDelegateHandle&gt; UGKAsyncTaskCooldownChanged::DelegateHandles</td>
         </tr>
       </table>
   </td>

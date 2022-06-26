@@ -48,9 +48,13 @@ Functions
 ---------
 
 
+- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1acfa655f2761e1244946168d43eb06121`
+
 - :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1a8f6c705628fadfabcf535be6211ef6b2`
 
-- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1ac7c289629b26169ea60f81877678f86c`
+- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1a198426b24889cc97b76104745e02a782`
+
+- :ref:`exhale_function_GKAbilityBlueprintLibrary_8cpp_1a49df889301594156bb8db95f23a01e22`
 
 
 Defines

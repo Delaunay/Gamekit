@@ -17,6 +17,7 @@ Subdirectories
 - :ref:`dir_Source_Gamekit_Abilities_Abilities`
 - :ref:`dir_Source_Gamekit_Abilities_AbilityTasks`
 - :ref:`dir_Source_Gamekit_Abilities_Blueprint`
+- :ref:`dir_Source_Gamekit_Abilities_Cues`
 - :ref:`dir_Source_Gamekit_Abilities_Effect`
 - :ref:`dir_Source_Gamekit_Abilities_Execution`
 - :ref:`dir_Source_Gamekit_Abilities_Targeting`
@@ -28,6 +29,7 @@ Files
 - :ref:`file_Source_Gamekit_Abilities_GKAbilities.cpp`
 - :ref:`file_Source_Gamekit_Abilities_GKAbilities.h`
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityInputs.h`
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.cpp`
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
 - :ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.cpp`

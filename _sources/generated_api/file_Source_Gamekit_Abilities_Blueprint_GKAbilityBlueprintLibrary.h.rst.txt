@@ -33,13 +33,15 @@ Includes
 
 - ``GKAbilityBlueprintLibrary.generated.h``
 
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
+
+- ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
+
 - ``Gamekit/Abilities/GKAbilityTypes.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityTypes.h`)
 
 - ``Gamekit/Animation/GKAnimationSet.h`` (:ref:`file_Source_Gamekit_Animation_GKAnimationSet.h`)
 
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
-
-- ``Gamekit/Items/GKItemTypes.h`` (:ref:`file_Source_Gamekit_Items_GKItemTypes.h`)
 
 - ``Kismet/BlueprintFunctionLibrary.h``
 

@@ -33,6 +33,8 @@ Includes
 
 - ``GameFramework/GameNetworkManager.h``
 
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
+
 - ``Gamekit/Characters/GKCharacter.h`` (:ref:`file_Source_Gamekit_Characters_GKCharacter.h`)
 
 - ``Gamekit/Controllers/GKPlayerController.h`` (:ref:`file_Source_Gamekit_Controllers_GKPlayerController.h`)
@@ -40,8 +42,6 @@ Includes
 - ``Gamekit/GKGameInstance.h`` (:ref:`file_Source_Gamekit_GKGameInstance.h`)
 
 - ``Gamekit/GKSaveGame.h`` (:ref:`file_Source_Gamekit_GKSaveGame.h`)
-
-- ``Gamekit/Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
 
 - ``Net/UnrealNetwork.h``
 

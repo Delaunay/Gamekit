@@ -15,6 +15,7 @@ Subdirectories
 --------------
 
 - :ref:`dir_Source_GamekitEd_Abilities`
+- :ref:`dir_Source_GamekitEd_Customization`
 - :ref:`dir_Source_GamekitEd_Tools`
 
 

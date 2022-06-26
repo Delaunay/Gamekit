@@ -33,7 +33,7 @@ Includes
 
 - ``GKAssetManager.h`` (:ref:`file_Source_Gamekit_GKAssetManager.h`)
 
-- ``Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
 
 
 

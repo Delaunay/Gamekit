@@ -1,0 +1,14 @@
+.. _exhale_function_GKGameplayAbilityEditorTool_8cpp_1acc5f8eb140a183134f24f1160126f75b:
+
+Function GetDefaultParentAbility
+================================
+
+- Defined in :ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GetDefaultParentAbility()
+   :project: GameKit

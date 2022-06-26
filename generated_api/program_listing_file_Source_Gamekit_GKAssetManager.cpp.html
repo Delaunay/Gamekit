@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -116,10 +116,13 @@
 <p>↰ <a class="reference internal" href="file_Source_Gamekit_GKAssetManager.cpp.html#file-source-gamekit-gkassetmanager-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/GKAssetManager.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.</span>
 
+<span class="c1">// include</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GKAssetManager.h&quot;</span><span class="cp"></span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Items/GKItem.h&quot;</span><span class="cp"></span>
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInterface.h&quot;</span><span class="cp"></span>
 
+<span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AbilitySystemGlobals.h&quot;</span><span class="cp"></span>
 
 <span class="n">UGKAssetManager</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">UGKAssetManager::Get</span><span class="p">()</span><span class="w"></span>
@@ -139,20 +142,22 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAssetManager::StartInitialLoading</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Super</span><span class="o">::</span><span class="n">StartInitialLoading</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-<span class="n">UGKItem</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKAssetManager::ForceLoadItem</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FPrimaryAssetId</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PrimaryAssetId</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bLogWarning</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">FSoftObjectPath</span><span class="w"> </span><span class="n">ItemPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetPrimaryAssetPath</span><span class="p">(</span><span class="n">PrimaryAssetId</span><span class="p">);</span><span class="w"></span>
+<span class="cm">/*</span>
+<span class="cm">UGKItem *UGKAssetManager::ForceLoadItem(const FPrimaryAssetId &amp;PrimaryAssetId, bool bLogWarning)</span>
+<span class="cm">{</span>
+<span class="cm">    FSoftObjectPath ItemPath = GetPrimaryAssetPath(PrimaryAssetId);</span>
 
-<span class="w">    </span><span class="c1">// This does a synchronous load and may hitch</span>
-<span class="w">    </span><span class="n">UGKItem</span><span class="w"> </span><span class="o">*</span><span class="n">LoadedItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">UGKItem</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ItemPath</span><span class="p">.</span><span class="n">TryLoad</span><span class="p">());</span><span class="w"></span>
+<span class="cm">    // This does a synchronous load and may hitch</span>
+<span class="cm">    UGKItem *LoadedItem = Cast&lt;UGKItem&gt;(ItemPath.TryLoad());</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bLogWarning</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">LoadedItem</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogGamekit</span><span class="p">,</span><span class="w"> </span><span class="n">Warning</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Failed to load item for identifier %s!&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">PrimaryAssetId</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="cm">    if (bLogWarning &amp;&amp; LoadedItem == nullptr)</span>
+<span class="cm">    {</span>
+<span class="cm">        UE_LOG(LogGamekit, Warning, TEXT(&quot;Failed to load item for identifier %s!&quot;), *PrimaryAssetId.ToString());</span>
+<span class="cm">    }</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">LoadedItem</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cm">    return LoadedItem;</span>
+<span class="cm">}</span>
+<span class="cm">*/</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

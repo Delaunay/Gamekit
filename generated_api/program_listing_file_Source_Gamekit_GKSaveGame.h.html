@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -120,8 +120,7 @@
 
 <span class="c1">// Gamekit</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Items/GKItem.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Items/GKItemTypes.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/GKAbilityInterface.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Unreal Engine</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GameFramework/SaveGame.h&quot;</span><span class="cp"></span>
@@ -155,18 +154,9 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SaveGame</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FPrimaryAssetId</span><span class="p">,</span><span class="w"> </span><span class="n">FGKItemData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">InventoryData</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SaveGame</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGKAbilitySlot</span><span class="p">,</span><span class="w"> </span><span class="n">FPrimaryAssetId</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SlottedItems</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SaveGame</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">UserId</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FPrimaryAssetId</span><span class="o">&gt;</span><span class="w"> </span><span class="n">InventoryItems_DEPRECATED</span><span class="p">;</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">SavedDataVersion</span><span class="p">;</span><span class="w"></span>
 

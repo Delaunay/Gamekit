@@ -45,9 +45,15 @@ Included By
 
 - :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAbilityBlueprintLibrary.h`
 
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskAttributeChanged.cpp`
+
+- :ref:`file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.cpp`
+
 - :ref:`file_Source_Gamekit_Abilities_Execution_GKDamageExecution.h`
 
 - :ref:`file_Source_Gamekit_Abilities_Execution_GKStopMovement.h`
+
+- :ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`
 
 - :ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`
 
@@ -83,8 +89,6 @@ Included By
 
 - :ref:`file_Source_Gamekit_GKAssetManager.h`
 
-- :ref:`file_Source_Gamekit_Items_GKItem.h`
-
 - :ref:`file_Source_Gamekit_GKGameInstance.h`
 
 - :ref:`file_Source_Gamekit_GKSaveGame.h`
@@ -94,8 +98,6 @@ Included By
 - :ref:`file_Source_Gamekit_GKGameMode.h`
 
 - :ref:`file_Source_Gamekit_GKWorldSettings.cpp`
-
-- :ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`
 
 - :ref:`file_Source_Gamekit_Minimap_GKMinimapVolume.h`
 

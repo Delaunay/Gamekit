@@ -33,11 +33,9 @@ Includes
 
 - ``GameFramework/SaveGame.h``
 
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
+
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
-
-- ``Gamekit/Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
-
-- ``Gamekit/Items/GKItemTypes.h`` (:ref:`file_Source_Gamekit_Items_GKItemTypes.h`)
 
 
 

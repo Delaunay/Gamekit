@@ -1,0 +1,28 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_Cues_GKGameplayCueNotify_Actor.h:
+
+Program Listing for File GKGameplayCueNotify_Actor.h
+====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_Cues_GKGameplayCueNotify_Actor.h>` (``Source/Gamekit/Abilities/Cues/GKGameplayCueNotify_Actor.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Unreal Engine
+   #include "CoreMinimal.h"
+   #include "GameplayCueNotify_Actor.h"
+   
+   // Generated
+   #include "GKGameplayCueNotify_Actor.generated.h"
+   
+   UCLASS()
+   class GAMEKIT_API AGKGameplayCueNotify_Actor: public AGameplayCueNotify_Actor
+   {
+       GENERATED_BODY()
+   };

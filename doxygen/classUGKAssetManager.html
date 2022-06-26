@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -104,8 +104,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a582921a7e091bc7d83e0bc180259b0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ef878f00eb93468696b641c0ae0eb67"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAssetManager.html#a9ef878f00eb93468696b641c0ae0eb67">StartInitialLoading</a> () override</td></tr>
 <tr class="separator:a9ef878f00eb93468696b641c0ae0eb67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2b079d0972980bc5b5421a70bbe1a3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUGKItem.html">UGKItem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAssetManager.html#ae2b079d0972980bc5b5421a70bbe1a3d">ForceLoadItem</a> (const FPrimaryAssetId &amp;PrimaryAssetId, bool bLogWarning=true)</td></tr>
-<tr class="separator:ae2b079d0972980bc5b5421a70bbe1a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -141,42 +139,6 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae2b079d0972980bc5b5421a70bbe1a3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2b079d0972980bc5b5421a70bbe1a3d">&#9670;&nbsp;</a></span>ForceLoadItem()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classUGKItem.html">UGKItem</a> * UGKAssetManager::ForceLoadItem </td>
-          <td>(</td>
-          <td class="paramtype">const FPrimaryAssetId &amp;&#160;</td>
-          <td class="paramname"><em>PrimaryAssetId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bLogWarning</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Synchronously loads an GKItem subclass, this can hitch but is useful when you cannot wait for an async load This does not maintain a reference to the item so it will garbage collect if not loaded some other way</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">PrimaryAssetId</td><td>The asset identifier to load </td></tr>
-    <tr><td class="paramname">bDisplayWarning</td><td>If true, this will log a warning if the item failed to load </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a70ccf23b048ef724b2490858ef8fa08d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70ccf23b048ef724b2490858ef8fa08d">&#9670;&nbsp;</a></span>Get()</h2>
 

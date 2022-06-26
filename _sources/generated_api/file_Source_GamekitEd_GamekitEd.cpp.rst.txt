@@ -29,11 +29,15 @@ Includes
 --------
 
 
+- ``Editor/DataTableEditor/Public/DataTableEditorModule.h``
+
 - ``Engine/Blueprint.h``
 
 - ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
 
 - ``Gamekit/GKGamekitSettings.h`` (:ref:`file_Source_Gamekit_GKGamekitSettings.h`)
+
+- ``GamekitEd/Customization/GKAbilityStaticCustomization.h`` (:ref:`file_Source_GamekitEd_Customization_GKAbilityStaticCustomization.h`)
 
 - ``GamekitEd/GKCommands.h`` (:ref:`file_Source_GamekitEd_GKCommands.h`)
 
@@ -65,8 +69,6 @@ Functions
 
 
 - :ref:`exhale_function_GamekitEd_8cpp_1a22497df546cc284288c0327eb5fe0867`
-
-- :ref:`exhale_function_GamekitEd_8cpp_1a1bdde13bf566effd0aeda7d31e61251a`
 
 
 Defines

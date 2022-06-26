@@ -16,8 +16,7 @@ Program Listing for File GKSaveGame.h
    
    // Gamekit
    #include "Gamekit/Gamekit.h"
-   #include "Gamekit/Items/GKItem.h"
-   #include "Gamekit/Items/GKItemTypes.h"
+   #include "Gamekit/Abilities/GKAbilityInterface.h"
    
    // Unreal Engine
    #include "GameFramework/SaveGame.h"
@@ -51,18 +50,9 @@ Program Listing for File GKSaveGame.h
        }
    
        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
-       TMap<FPrimaryAssetId, FGKItemData> InventoryData;
-   
-       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
-       TMap<FGKAbilitySlot, FPrimaryAssetId> SlottedItems;
-   
-       UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)
        FString UserId;
    
        protected:
-       UPROPERTY()
-       TArray<FPrimaryAssetId> InventoryItems_DEPRECATED;
-   
        UPROPERTY()
        int32 SavedDataVersion;
    

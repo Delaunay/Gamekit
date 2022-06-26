@@ -1,7 +1,8 @@
 <map id="Source/GamekitEd/Tools/GKEditorToolBase.h" name="Source/GamekitEd/Tools/GKEditorToolBase.h">
-<area shape="rect" id="node1" title=" " alt="" coords="89,5,268,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="91,5,269,47"/>
 <area shape="rect" id="node2" href="$GamekitEd_8cpp.html" title=" " alt="" coords="5,184,208,225"/>
-<area shape="rect" id="node3" href="$GKEditorToolBase_8cpp.html" title=" " alt="" coords="89,95,268,136"/>
-<area shape="rect" id="node4" href="$GKGameplayAbilityEditorTool_8h.html" title=" " alt="" coords="293,95,523,136"/>
-<area shape="rect" id="node5" href="$GKGameplayAbilityEditorTool_8cpp.html" title=" " alt="" coords="285,184,531,225"/>
+<area shape="rect" id="node3" href="$GKEditorToolBase_8cpp.html" title=" " alt="" coords="91,95,269,136"/>
+<area shape="rect" id="node4" href="$GKGameplayAbilityEditorTool_8h.html" title=" " alt="" coords="294,95,525,136"/>
+<area shape="rect" id="node5" href="$GKAbilityStaticCustomization_8cpp.html" title=" " alt="" coords="259,184,504,225"/>
+<area shape="rect" id="node6" href="$GKGameplayAbilityEditorTool_8cpp.html" title=" " alt="" coords="528,184,773,225"/>
 </map>

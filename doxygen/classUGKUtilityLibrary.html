@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -146,6 +146,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:adc541900e774a4e6f6d0b22ebf8fb031"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44b9a437d4e8b5a8354aa8c3c57bcf6a"><td class="memItemLeft" align="right" valign="top">static APlayerController *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKUtilityLibrary.html#a44b9a437d4e8b5a8354aa8c3c57bcf6a">GetFirstLocalPlayerController</a> (const UObject *WorldContextObject)</td></tr>
 <tr class="separator:a44b9a437d4e8b5a8354aa8c3c57bcf6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d1b8e87f78e9fb875be2cdcd6e58e98"><td class="memItemLeft" align="right" valign="top">static FRotator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKUtilityLibrary.html#a7d1b8e87f78e9fb875be2cdcd6e58e98">GetLookAtCamera</a> (const UObject *WorldContextObject, int PlayerIndex, FVector Target)</td></tr>
+<tr class="memdesc:a7d1b8e87f78e9fb875be2cdcd6e58e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the rotation which makes the Target face the player controller's camera.  <a href="classUGKUtilityLibrary.html#a7d1b8e87f78e9fb875be2cdcd6e58e98">More...</a><br /></td></tr>
+<tr class="separator:a7d1b8e87f78e9fb875be2cdcd6e58e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a46666479c89ffc43a10e7a53941c0cf3"></a>
@@ -430,6 +433,50 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Return the map size stored inside the Fog of War Volume if any. </p>
+
+</div>
+</div>
+<a id="a7d1b8e87f78e9fb875be2cdcd6e58e98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d1b8e87f78e9fb875be2cdcd6e58e98">&#9670;&nbsp;</a></span>GetLookAtCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FRotator UGKUtilityLibrary::GetLookAtCamera </td>
+          <td>(</td>
+          <td class="paramtype">const UObject *&#160;</td>
+          <td class="paramname"><em>WorldContextObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>Target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find the rotation which makes the Target face the player controller's camera. </p>
 
 </div>
 </div>

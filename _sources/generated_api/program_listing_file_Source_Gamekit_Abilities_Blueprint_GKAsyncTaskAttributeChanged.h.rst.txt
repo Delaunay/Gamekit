@@ -47,7 +47,7 @@ Program Listing for File GKAsyncTaskAttributeChanged.h
        // Listens for an attribute changing.
        // Version that takes in an array of Attributes. Check the Attribute output for which Attribute changed.
        UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true"))
-       static UGKAsyncTaskAttributeChanged *ListenForAttributesChange(UAbilitySystemComponent *  AbilitySystemComponent,
+       static UGKAsyncTaskAttributeChanged *ListenForAttributesChange(UAbilitySystemComponent   *AbilitySystemComponent,
                                                                       TArray<FGameplayAttribute> Attributes);
    
        // You must call this function manually when you want the AsyncTask to end.
@@ -55,13 +55,21 @@ Program Listing for File GKAsyncTaskAttributeChanged.h
        UFUNCTION(BlueprintCallable)
        void EndTask();
    
+       bool IsDestroyed() const { return bDestroyed; }
+   
+       void SetReadyToDestroy() override;
+   
        protected:
+       bool bDestroyed;
+   
        UPROPERTY()
        UAbilitySystemComponent *ASC;
    
        FGameplayAttribute AttributeToListenFor;
    
        TArray<FGameplayAttribute> AttributesToListenFor;
+   
+       TArray<FDelegateHandle> DelegateHandles;
    
        void AttributeChanged(const FOnAttributeChangeData &Data);
    };

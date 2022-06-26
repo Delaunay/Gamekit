@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -135,7 +135,6 @@
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CreateToolListMenu</span><span class="p">(</span><span class="k">class</span><span class="w"> </span><span class="nc">FMenuBuilder</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MenuBuilder</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnToolWindowClosed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">SWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Window</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UGKEditorToolBase</span><span class="w"> </span><span class="o">*</span><span class="n">Instance</span><span class="p">);</span><span class="w"></span>
 
-
 <span class="w">    </span><span class="c1">// Add settings in the project windows</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">RegisterSettings</span><span class="p">();</span><span class="w"></span>
 
@@ -145,10 +144,16 @@
 <span class="w">    </span><span class="c1">// Insert our new menus and toolbars</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddMenu</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">AddToolBar</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ExtendDataTableMenu</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">EnableAutomaticDataRegeneration</span><span class="p">();</span><span class="w"></span>
 
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Dummy</span><span class="p">(</span><span class="n">FName</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">UDataTable</span><span class="o">*</span><span class="w"> </span><span class="n">Table</span><span class="p">);</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">TSharedPtr</span><span class="o">&lt;</span><span class="n">FUICommandList</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CommandList</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FDelegateHandle</span><span class="w"> </span><span class="n">AbilityTableUpdate</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">FDelegateHandle</span><span class="w"> </span><span class="n">UnitTableUpdate</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>

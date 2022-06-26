@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Define GK_ERROR &mdash; GameKit  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Define GK_LOG" href="define_GKLog_8h_1a08e0992848e1bf500f4bcee4c8a0c7ee.html" />
+    <link rel="prev" title="Define GK_DISPLAY" href="define_GKLog_8h_1a71c6c63e2e1d2c746098e2f4a0669c2c.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> GameKit
+          </a>
+              <div class="version">
+                e3d7ebad0
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Welcome</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Welcome/Roadmap.html">Roadmap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Driven</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Abilities.html">Abilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/ExperienceTable.html">Experience</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DataDriven/Teams.html">Teams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fog Of War</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/index.html">Fog Of War</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FogOfWar/Strategies.html">Drawing Strategies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Game</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Game/GameFlow.html">GameFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Game/Minimaps.html">Minimaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Level/index.html">Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Online</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Multiplayer.html">Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/MMO.html">Massively Multiplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Competitive.html">Competitive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Online/Cheating.html">Cheating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Docs.html">Documentation Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Shaders/index.html">Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/Contribution.html">Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/CommandLine.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="GamekitAPI.html">Gamekit API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="GamekitAPI.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#variables">Variables</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="GamekitAPI.html#defines">Defines</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="define_GKAttributeSet_8h_1a557ad7abc436418aee5d00d667d37f02.html">Define ATTRIBUTE_ACCESSORS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKUtilityLibraryTest_8cpp_1ae8ec9ebf4128f19371db39984d29d6fe.html">Define CASES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKUtilityLibraryTest_8cpp_1ac0e2a4fd86b93ab9b5ae5ef9a1f9c551.html">Define CHECK_CASE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKGameplayAbilityEditorTool_8cpp_1ad610d7f366c82bfc00c752e12bd79af2.html">Define CODE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilityTask__MoveToDestination_8cpp_1a665c81740e2b3e275e0883d583187f12.html">Define DEBUG_MVT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKFogOfWarVolume_8h_1a4a39dc1f83ce1bbc87573f45fcdee368.html">Define DEFAULT_FoW_COLLISION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GK__CPU__Upscaler_8cpp_1a7b05b8118861711fd8573e92759bbc34.html">Define FULL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKLog_8h_1ac81a1048484afe356a754f26edaecc35.html">Define GAMEKIT_LOG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Gamekit_8cpp_1a39656224c35cb2bb41bebcef608dcb12.html">Define GAMEKIT_SHADERS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKTestUtilities_8h_1a6b316970463e8195c27e621f944782de.html">Define GAMEKIT_TEST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKLog_8h_1a9c1cf69ede99dc485642d37c24770fef.html">Define GENERATE_LOG_FUN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Upscaling__Buffer_8usf_1a24f41d09a0e2ab2e1e393a4372f02edd.html">Define GET</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKTestUtilities_8h_1a2065af9595d614d2d2f8faec64ca01e9.html">Define GK_CONCAT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKLog_8h_1a71c6c63e2e1d2c746098e2f4a0669c2c.html">Define GK_DISPLAY</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Define GK_ERROR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKLog_8h_1a08e0992848e1bf500f4bcee4c8a0c7ee.html">Define GK_LOG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKPlayerState_8h_1a2922d4cd002a1929c9982922642b22f8.html">Define GK_PLAYERSTATE_SANITY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKPrivatePlayerState_8h_1a7802d309072ba97dc0ad707fb0857572.html">Define GK_PRIVATEPLAYERSTATE_SANITY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKLog_8h_1a8f2b71540826e6057237668683c1caf4.html">Define GK_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKFogOfWar_8h_1a095082534f4b322cf8c6e0e8e9768d1a.html">Define GKFOG_DISPLAY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKFogOfWar_8h_1a0889e536348bfaaab0a3462de9f0fc1d.html">Define GKFOG_LOG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKFogOfWar_8h_1afb77b71b7364862746fe3c6669661618.html">Define GKFOG_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilities_8h_1a4257225b9f17f941d1eb19de88337614.html">Define GKGA_DISPLAY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilities_8h_1ae4a6680bd6925ecd4acf28f80294addb.html">Define GKGA_LOG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilities_8h_1aeed4f56d901f129c11979fd21ea312ee.html">Define GKGA_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Gamekit_8h_1a06a98535820538d88406614874c1e37a.html">Define GKGETATTR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKNavigationInterface_8cpp_1a13666cde2e5985df10020667e1939ec8.html">Define GKNAV_DISPLAY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKNavigationInterface_8cpp_1a5a9e74fedd95fafe78f0f3ded6a4afb0.html">Define GKNAV_ERROR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKNavigationInterface_8cpp_1a83dfa9781899f31fe73d7a17a392c732.html">Define GKNAV_LOG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKNavigationInterface_8cpp_1ab2f35b32517a2d11ee2a6c7f902f9908.html">Define GKNAV_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilitySystemGlobals_8cpp_1a0ed1499bb2ade62da374ef4c9d5d6603.html">Define GKTAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilitySystemGlobals_8h_1af7ccc37b659d0a65d3a47bf8f59cf672.html">Define GKTAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilitySystemGlobals_8h_1aacd321876766c430c6a7245b11c455cc.html">Define GKTAGS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GK__CPU__Upscaler_8cpp_1a37c4c48ff47f0838f64b5a1fb3c803b2.html">Define HALF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Upscaling_8usf_1a731cb5d97bc0e49e396f2b4daa9f69ae.html">Define IS_VISIBLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Upscaling__Buffer_8usf_1a731cb5d97bc0e49e396f2b4daa9f69ae.html">Define IS_VISIBLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GK__CPU__Upscaler_8cpp_1a731cb5d97bc0e49e396f2b4daa9f69ae.html">Define IS_VISIBLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKMovementUtility_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKGameplayAbilityFactory_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GamekitEd_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKCommands_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GamekitTestSuiteModule_8cpp_1a0de3ae51f3a629a8e5d113f1b9390da7.html">Define LOCTEXT_NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKAbilityBlueprintLibrary_8cpp_1afa7779fe56b160955b535cd6a8aaf8f4.html">Define NAMESPACE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKUpscalingShader_8cpp_1ac31132757814da57c9e459e2d6595176.html">Define NUM_THREADS_PER_GROUP_DIMENSION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Upscaling_8usf_1acf567fd79abc0801bba69cbd5ff82315.html">Define TEXEL_2x2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_Upscaling__Buffer_8usf_1acf567fd79abc0801bba69cbd5ff82315.html">Define TEXEL_2x2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GK__CPU__Upscaler_8cpp_1acf567fd79abc0801bba69cbd5ff82315.html">Define TEXEL_2x2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GK__Upscaler__Strategy_8h_1aa8642466d707f13c7e45fef8cd358d09.html">Define UpscaledTextureType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKMazeGeneration_8cpp_1a28615ad40e5d11edaefd903c02206f6d.html">Define VISITED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_GKMazeGeneration_8cpp_1ac749b87dd5d843e4add3eb8e8a130f62.html">Define WALL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="GamekitAPI.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GameKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="GamekitAPI.html">Gamekit API</a> &raquo;</li>
+      <li>Define GK_ERROR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated_api/define_GKLog_8h_1ae9739ac6b1269a41a627b88e5a2905c0.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="define-gk-error">
+<span id="exhale-define-gklog-8h-1ae9739ac6b1269a41a627b88e5a2905c0"></span><h1>Define GK_ERROR<a class="headerlink" href="#define-gk-error" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_Source_Gamekit_GKLog.h.html#file-source-gamekit-gklog-h"><span class="std std-ref">File GKLog.h</span></a></p></li>
+</ul>
+<section id="define-documentation">
+<h2>Define Documentation<a class="headerlink" href="#define-documentation" title="Permalink to this heading"></a></h2>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.GK_ERROR">
+<span class="target" id="GKLog_8h_1ae9739ac6b1269a41a627b88e5a2905c0"></span><span class="sig-name descname"><span class="n"><span class="pre">GK_ERROR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Format</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span> <a class="reference internal" href="define_GKLog_8h_1ac81a1048484afe356a754f26edaecc35.html#GKLog_8h_1ac81a1048484afe356a754f26edaecc35"><span class="std std-ref"><span class="pre">GAMEKIT_LOG</span></span></a><span class="pre">(LogGamekit,</span> <span class="pre">Error,</span> <span class="pre">Format,</span> <span class="pre">__VA_ARGS__)</span><a class="headerlink" href="#c.GK_ERROR" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="define_GKLog_8h_1a71c6c63e2e1d2c746098e2f4a0669c2c.html" class="btn btn-neutral float-left" title="Define GK_DISPLAY" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="define_GKLog_8h_1a08e0992848e1bf500f4bcee4c8a0c7ee.html" class="btn btn-neutral float-right" title="Define GK_LOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright BSD 3-Clause License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<map id="UGKAbilityWidget::OnAbilityGranted_Implementation" name="UGKAbilityWidget::OnAbilityGranted_Implementation">
+<area shape="rect" id="node1" title=" " alt="" coords="5,108,212,149"/>
+<area shape="rect" id="node2" href="$classUGKGameplayAbility.html#afcf5e2afd1c757887272cffc4c088030" title=" " alt="" coords="283,49,443,91"/>
+<area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="723,79,883,120"/>
+<area shape="rect" id="node9" href="$classUGKAbilityWidget.html#a6263826f1104f8a79e114dbde62d409e" title=" " alt="" coords="260,167,467,208"/>
+<area shape="rect" id="node3" href="$classUGKGameplayAbility.html#af5fe64416f06862a0fee0ba1da7160d6" title=" " alt="" coords="515,49,675,91"/>
+<area shape="rect" id="node5" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="936,5,1096,47"/>
+<area shape="rect" id="node8" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="931,71,1101,127"/>
+<area shape="rect" id="node6" href="$classUGKGameplayAbility.html#a87996c339db9215ef143f01b5cf0045b" title=" " alt="" coords="1149,5,1348,47"/>
+<area shape="rect" id="node7" href="$classUGKGameplayAbility.html#a3d8be03e5aa0818f94d5f121bc9a8096" title=" " alt="" coords="1396,5,1623,47"/>
+</map>

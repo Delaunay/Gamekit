@@ -1,0 +1,14 @@
+.. _exhale_variable_GKGameplayAbilityEditorTool_8cpp_1a28d64919263d1dad5ee10c73374d01ed:
+
+Variable GenerateAbilitiesTemplate
+==================================
+
+- Defined in :ref:`file_Source_GamekitEd_Tools_GKGameplayAbilityEditorTool.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: GenerateAbilitiesTemplate
+   :project: GameKit

@@ -41,6 +41,8 @@ Includes
 
 - ``Gamekit/Abilities/GKAbilityInputs.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInputs.h`)
 
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
+
 - ``Gamekit/Abilities/GKAbilityStatic.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityStatic.h`)
 
 - ``Gamekit/Abilities/GKAbilitySystemGlobals.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemGlobals.h`)
@@ -54,8 +56,6 @@ Includes
 - ``Gamekit/FogOfWar/GKFogOfWarLibrary.h`` (:ref:`file_Source_Gamekit_FogOfWar_GKFogOfWarLibrary.h`)
 
 - ``Gamekit/GKLog.h`` (:ref:`file_Source_Gamekit_GKLog.h`)
-
-- ``Gamekit/Items/GKItem.h`` (:ref:`file_Source_Gamekit_Items_GKItem.h`)
 
 - ``Kismet/KismetSystemLibrary.h``
 

@@ -1,4 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,111,32"/>
-<area shape="rect" id="node2" href="$classUGKCastPointAnimNotify.html" title=" " alt="" coords="159,5,344,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,208,98"/>
+<area shape="rect" id="node2" href="$classUGKAsyncTask__GameplayEffectChanged.html" title=" " alt="" coords="261,5,491,47"/>
+<area shape="rect" id="node3" href="$classUGKAsyncTaskAttributeChanged.html" title=" " alt="" coords="259,71,493,98"/>
+<area shape="rect" id="node4" href="$classUGKAsyncTaskCooldownChanged.html" title=" " alt="" coords="256,122,496,149"/>
 </map>

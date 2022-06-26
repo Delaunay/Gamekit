@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -83,75 +83,62 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Gamekit</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Gamekit_8h.html">Gamekit/Gamekit.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKItem_8h.html">Gamekit/Items/GKItem.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKItemTypes_8h.html">Gamekit/Items/GKItemTypes.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// Unreal Engine</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;GameFramework/SaveGame.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// Generated</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;GKSaveGame.generated.h&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html">   17</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceEGKSaveGameVersion.html">EGKSaveGameVersion</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">   19</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">type</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Initial version</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">   22</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">Initial</a>,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// -----&lt;new versions must be added before this line&gt;-------------------------------------------------</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">   25</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">VersionPlusOne</a>,</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">   26</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">LatestVersion</a> = <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">VersionPlusOne</a> - 1</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <span class="comment">// namespace EGKSaveGameVersion</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;UCLASS(BlueprintType)</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html">   32</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a>: public USaveGame</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    GENERATED_BODY()</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">   38</a></span>&#160;    <a class="code" href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">UGKSaveGame</a>()</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// Set to current version, this will get overwritten during serialization when loading</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        SavedDataVersion = <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">EGKSaveGameVersion::LatestVersion</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#ae58056d107e656f1b7e59d0fa847a5d9">   46</a></span>&#160;    TMap&lt;FPrimaryAssetId, <a class="code" href="structFGKItemData.html">FGKItemData</a>&gt; InventoryData;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#ac5493c2a757741a43f96a7a18f8e6322">   50</a></span>&#160;    TMap&lt;<a class="code" href="structFGKAbilitySlot.html">FGKAbilitySlot</a>, FPrimaryAssetId&gt; SlottedItems;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GKAbilityInterface_8h.html">Gamekit/Abilities/GKAbilityInterface.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// Unreal Engine</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;GameFramework/SaveGame.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Generated</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;GKSaveGame.generated.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html">   16</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceEGKSaveGameVersion.html">EGKSaveGameVersion</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">   18</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">type</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// Initial version</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">   21</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">Initial</a>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// -----&lt;new versions must be added before this line&gt;-------------------------------------------------</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">   24</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">VersionPlusOne</a>,</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">   25</a></span>&#160;    <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">LatestVersion</a> = <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">VersionPlusOne</a> - 1</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace EGKSaveGameVersion</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;UCLASS(BlueprintType)</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html">   31</a></span>&#160;class GAMEKIT_API <a class="code" href="classUGKSaveGame.html">UGKSaveGame</a>: public USaveGame</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    GENERATED_BODY()</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">   37</a></span>&#160;    <a class="code" href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">UGKSaveGame</a>()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Set to current version, this will get overwritten during serialization when loading</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        SavedDataVersion = <a class="code" href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">EGKSaveGameVersion::LatestVersion</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#aac5e7785e9953e97a273795edf2612e7">   45</a></span>&#160;    FString UserId;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    protected:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    UPROPERTY()</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71">   50</a></span>&#160;    int32 SavedDataVersion;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = SaveGame)</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#aac5e7785e9953e97a273795edf2612e7">   54</a></span>&#160;    FString UserId;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    protected:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#a9d35ed33020f92916a1046cc39564c94">   59</a></span>&#160;    TArray&lt;FPrimaryAssetId&gt; InventoryItems_DEPRECATED;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    UPROPERTY()</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71">   63</a></span>&#160;    int32 SavedDataVersion;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    virtual <span class="keywordtype">void</span> Serialize(FArchive &amp;Ar) override;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    virtual <span class="keywordtype">void</span> Serialize(FArchive &amp;Ar) override;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">EGKSaveGameVersion::VersionPlusOne</a></div><div class="ttdeci">@ VersionPlusOne</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:25</div></div>
+<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a4bbdeb99d6df76decaaadc1160f951cb">EGKSaveGameVersion::VersionPlusOne</a></div><div class="ttdeci">@ VersionPlusOne</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:24</div></div>
 <div class="ttc" id="aGKGameInstance_8h_html"><div class="ttname"><a href="GKGameInstance_8h.html">GKGameInstance.h</a></div></div>
-<div class="ttc" id="astructFGKItemData_html"><div class="ttname"><a href="structFGKItemData.html">FGKItemData</a></div><div class="ttdef"><b>Definition:</b> GKItemTypes.h:56</div></div>
-<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">EGKSaveGameVersion::Initial</a></div><div class="ttdeci">@ Initial</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:22</div></div>
+<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79af033f845403dc4196fd7ba08738d5dd1">EGKSaveGameVersion::Initial</a></div><div class="ttdeci">@ Initial</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:21</div></div>
 <div class="ttc" id="aGamekit_8h_html"><div class="ttname"><a href="Gamekit_8h.html">Gamekit.h</a></div></div>
-<div class="ttc" id="aGKItem_8h_html"><div class="ttname"><a href="GKItem_8h.html">GKItem.h</a></div></div>
-<div class="ttc" id="aclassUGKSaveGame_html"><div class="ttname"><a href="classUGKSaveGame.html">UGKSaveGame</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:32</div></div>
-<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">EGKSaveGameVersion::type</a></div><div class="ttdeci">type</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:19</div></div>
-<div class="ttc" id="astructFGKAbilitySlot_html"><div class="ttname"><a href="structFGKAbilitySlot.html">FGKAbilitySlot</a></div><div class="ttdef"><b>Definition:</b> GKItemTypes.h:28</div></div>
+<div class="ttc" id="aclassUGKSaveGame_html"><div class="ttname"><a href="classUGKSaveGame.html">UGKSaveGame</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:31</div></div>
+<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79">EGKSaveGameVersion::type</a></div><div class="ttdeci">type</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:18</div></div>
 <div class="ttc" id="aclassUGKSaveGame_html_a0034297808e86a6cf3a0ab5127b8c5d4"><div class="ttname"><a href="classUGKSaveGame.html#a0034297808e86a6cf3a0ab5127b8c5d4">UGKSaveGame::Serialize</a></div><div class="ttdeci">virtual void Serialize(FArchive &amp;Ar) override</div><div class="ttdef"><b>Definition:</b> GKSaveGame.cpp:6</div></div>
-<div class="ttc" id="aclassUGKSaveGame_html_a2bf8e13f863fa6e04ad2b8a2d3ac2cc2"><div class="ttname"><a href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">UGKSaveGame::UGKSaveGame</a></div><div class="ttdeci">UGKSaveGame()</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:38</div></div>
-<div class="ttc" id="aclassUGKSaveGame_html_a1d7128580ff118787bcf012051c51e71"><div class="ttname"><a href="classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71">UGKSaveGame::SavedDataVersion</a></div><div class="ttdeci">int32 SavedDataVersion</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:63</div></div>
+<div class="ttc" id="aclassUGKSaveGame_html_a2bf8e13f863fa6e04ad2b8a2d3ac2cc2"><div class="ttname"><a href="classUGKSaveGame.html#a2bf8e13f863fa6e04ad2b8a2d3ac2cc2">UGKSaveGame::UGKSaveGame</a></div><div class="ttdeci">UGKSaveGame()</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:37</div></div>
+<div class="ttc" id="aclassUGKSaveGame_html_a1d7128580ff118787bcf012051c51e71"><div class="ttname"><a href="classUGKSaveGame.html#a1d7128580ff118787bcf012051c51e71">UGKSaveGame::SavedDataVersion</a></div><div class="ttdeci">int32 SavedDataVersion</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:50</div></div>
 <div class="ttc" id="aGKSaveGame_8h_html"><div class="ttname"><a href="GKSaveGame_8h.html">GKSaveGame.h</a></div></div>
-<div class="ttc" id="anamespaceEGKSaveGameVersion_html"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html">EGKSaveGameVersion</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:17</div></div>
-<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">EGKSaveGameVersion::LatestVersion</a></div><div class="ttdeci">@ LatestVersion</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:26</div></div>
-<div class="ttc" id="aGKItemTypes_8h_html"><div class="ttname"><a href="GKItemTypes_8h.html">GKItemTypes.h</a></div></div>
+<div class="ttc" id="aGKAbilityInterface_8h_html"><div class="ttname"><a href="GKAbilityInterface_8h.html">GKAbilityInterface.h</a></div></div>
+<div class="ttc" id="anamespaceEGKSaveGameVersion_html"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html">EGKSaveGameVersion</a></div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:16</div></div>
+<div class="ttc" id="anamespaceEGKSaveGameVersion_html_a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58"><div class="ttname"><a href="namespaceEGKSaveGameVersion.html#a1d08fa10138bd365319d1d74b1bc4b79a75daf9f750dbb0307100c23e015fba58">EGKSaveGameVersion::LatestVersion</a></div><div class="ttdeci">@ LatestVersion</div><div class="ttdef"><b>Definition:</b> GKSaveGame.h:25</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

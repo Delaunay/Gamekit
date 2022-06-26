@@ -1,0 +1,82 @@
+
+.. _program_listing_file_Source_Gamekit_Abilities_GKAbilityInterface.h:
+
+Program Listing for File GKAbilityInterface.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_Source_Gamekit_Abilities_GKAbilityInterface.h>` (``Source/Gamekit/Abilities/GKAbilityInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // BSD 3-Clause License Copyright (c) 2022, Pierre Delaunay All rights reserved.
+   
+   #pragma once
+   
+   // Gamekit
+   #include "Gamekit/Gamekit.h"
+   #include "Gamekit/Abilities/GKGameplayAbility.h"
+   #include "Gamekit/Abilities/GKAbilityInputs.h"
+   
+   // Generated
+   #include "GKAbilityInterface.generated.h"
+   
+   
+   USTRUCT(BlueprintType)
+   struct GAMEKIT_API FGKAbilitySlot
+   {
+       GENERATED_BODY()
+   
+       
+       FGKAbilitySlot() : SlotNumber(-1) {}
+   
+       FGKAbilitySlot(int32 InSlotNumber) : SlotNumber(InSlotNumber) {}
+   
+       FGKAbilitySlot(EGK_MOBA_AbilityInputID AbilityInput) : SlotNumber(int32(AbilityInput)) {}
+   
+       UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
+       int32 SlotNumber;
+   
+       bool operator==(const FGKAbilitySlot& Other) const { return SlotNumber == Other.SlotNumber; }
+       bool operator!=(const FGKAbilitySlot& Other) const { return !(*this == Other); }
+   
+       friend inline uint32 GetTypeHash(const FGKAbilitySlot& Key) { return GetTypeHash(Key.SlotNumber); }
+   
+       bool IsValid() const { return SlotNumber >= 0; }
+   };
+   
+   UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
+   class UGKAbilityInterface: public UInterface
+   {
+       GENERATED_BODY()
+   };
+   
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityRemoved, int, SlotID, UGKGameplayAbility*, Ability);
+   
+   DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityAdded, int, SlotID, UGKGameplayAbility*, Ability);
+   
+   
+   class GAMEKIT_API IGKAbilityInterface
+   {
+       GENERATED_BODY()
+   
+       public:
+   
+       virtual void GrantAbility(TSubclassOf<UGKGameplayAbility> AbilityClass, int SlotID, int InputID, int Level = 0) = 0;
+   
+       virtual bool ActivateAbility(int SlotID) = 0;
+   
+       virtual void RemoveAbility(int SlotID) = 0;
+   
+       virtual UGKGameplayAbility const* GetAbilityInstance(int SlotID) const = 0;
+   
+       virtual FGameplayAbilitySpecHandle GetAbilityHandle(int SlotID) const = 0;
+   
+       virtual FOnAbilityRemoved& GetOnAbilityRemoved() = 0;
+   
+       virtual FOnAbilityAdded& GetOnAbilityAdded() = 0;
+   };
+   
+   

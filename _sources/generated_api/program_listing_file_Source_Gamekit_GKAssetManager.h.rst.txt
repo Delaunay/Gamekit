@@ -23,8 +23,6 @@ Program Listing for File GKAssetManager.h
    // Generated
    #include "GKAssetManager.generated.h"
    
-   class UGKItem;
-   
    UCLASS()
    class GAMEKIT_API UGKAssetManager: public UAssetManager
    {
@@ -37,5 +35,5 @@ Program Listing for File GKAssetManager.h
    
        static UGKAssetManager &Get();
    
-       UGKItem *ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, bool bLogWarning = true);
+       // UGKItem *ForceLoadItem(const FPrimaryAssetId &PrimaryAssetId, bool bLogWarning = true);
    };

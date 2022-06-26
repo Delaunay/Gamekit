@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -302,7 +302,10 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abilities&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKNamedObject</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AbilityDataTables</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FOnDataTableChanged</span><span class="w"> </span><span class="nf">GetOnAbilityTableChanged</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abilities&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">AbilityOutput</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FOnDataTableChanged</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">GetOnAbilityTableChanged</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AbilityTableChanged</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -324,7 +327,10 @@
 <span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Units&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGKNamedObject</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UnitDataTables</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">FOnDataTableChanged</span><span class="w"> </span><span class="nf">GetOnUnitTableChanged</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Units&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">UnitOutput</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">FOnDataTableChanged</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">GetOnUnitTableChanged</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UnitTableChanged</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="k">private</span><span class="o">:</span><span class="w"></span>

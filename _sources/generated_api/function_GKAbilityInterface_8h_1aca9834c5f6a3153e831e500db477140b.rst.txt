@@ -1,0 +1,14 @@
+.. _exhale_function_GKAbilityInterface_8h_1aca9834c5f6a3153e831e500db477140b:
+
+Function DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityAdded, int, SlotID, UGKGameplayAbility \*, Ability)
+===================================================================================================================
+
+- Defined in :ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAbilityAdded, int, SlotID, UGKGameplayAbility *, Ability)
+   :project: GameKit

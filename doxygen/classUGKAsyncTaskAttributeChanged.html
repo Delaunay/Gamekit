@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Game Kit
-   &#160;<span id="projectnumber">ad4815c92</span>
+   &#160;<span id="projectnumber">e3d7ebad0</span>
    </div>
   </td>
  </tr>
@@ -105,6 +105,10 @@ Collaboration diagram for UGKAsyncTaskAttributeChanged:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a11429ac8a0b08fca7872aac3faa20db8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#a11429ac8a0b08fca7872aac3faa20db8">EndTask</a> ()</td></tr>
 <tr class="separator:a11429ac8a0b08fca7872aac3faa20db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62dc045a45d2182899dbf30ff3bd3d38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#a62dc045a45d2182899dbf30ff3bd3d38">IsDestroyed</a> () const</td></tr>
+<tr class="separator:a62dc045a45d2182899dbf30ff3bd3d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a6bcfb53fb9253ffd712f060947782d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#a5a6bcfb53fb9253ffd712f060947782d">SetReadyToDestroy</a> () override</td></tr>
+<tr class="separator:a5a6bcfb53fb9253ffd712f060947782d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -125,12 +129,16 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a83e8669f41927f24e26338b689a14ab6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#a83e8669f41927f24e26338b689a14ab6">bDestroyed</a></td></tr>
+<tr class="separator:a83e8669f41927f24e26338b689a14ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a2fef2cd9654f46630d0900128e0d7b"><td class="memItemLeft" align="right" valign="top">UAbilitySystemComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#a0a2fef2cd9654f46630d0900128e0d7b">ASC</a></td></tr>
 <tr class="separator:a0a2fef2cd9654f46630d0900128e0d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0df6b7003bf9442d75e19a3edbe64cb"><td class="memItemLeft" align="right" valign="top">FGameplayAttribute&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#af0df6b7003bf9442d75e19a3edbe64cb">AttributeToListenFor</a></td></tr>
 <tr class="separator:af0df6b7003bf9442d75e19a3edbe64cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac318d66c74c657e74d6733bde96fcdf0"><td class="memItemLeft" align="right" valign="top">TArray&lt; FGameplayAttribute &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#ac318d66c74c657e74d6733bde96fcdf0">AttributesToListenFor</a></td></tr>
 <tr class="separator:ac318d66c74c657e74d6733bde96fcdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4bbc696212fd822c594380d7daa59cd"><td class="memItemLeft" align="right" valign="top">TArray&lt; FDelegateHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUGKAsyncTaskAttributeChanged.html#ad4bbc696212fd822c594380d7daa59cd">DelegateHandles</a></td></tr>
+<tr class="separator:ad4bbc696212fd822c594380d7daa59cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Blueprint node to automatically register a listener for all attribute changes in an AbilitySystemComponent. Useful to use in UI.</p>
@@ -175,6 +183,40 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUGKAsyncTaskAttributeChanged_a11429ac8a0b08fca7872aac3faa20db8_cgraph.png" border="0" usemap="#classUGKAsyncTaskAttributeChanged_a11429ac8a0b08fca7872aac3faa20db8_cgraph" alt=""/></div>
+<map name="classUGKAsyncTaskAttributeChanged_a11429ac8a0b08fca7872aac3faa20db8_cgraph" id="classUGKAsyncTaskAttributeChanged_a11429ac8a0b08fca7872aac3faa20db8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,239,47"/>
+<area shape="rect" href="classUGKAsyncTaskAttributeChanged.html#a5a6bcfb53fb9253ffd712f060947782d" title=" " alt="" coords="287,5,520,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62dc045a45d2182899dbf30ff3bd3d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62dc045a45d2182899dbf30ff3bd3d38">&#9670;&nbsp;</a></span>IsDestroyed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UGKAsyncTaskAttributeChanged::IsDestroyed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -269,6 +311,31 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a5a6bcfb53fb9253ffd712f060947782d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a6bcfb53fb9253ffd712f060947782d">&#9670;&nbsp;</a></span>SetReadyToDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UGKAsyncTaskAttributeChanged::SetReadyToDestroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a0a2fef2cd9654f46630d0900128e0d7b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a2fef2cd9654f46630d0900128e0d7b">&#9670;&nbsp;</a></span>ASC</h2>
@@ -325,6 +392,50 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">FGameplayAttribute UGKAsyncTaskAttributeChanged::AttributeToListenFor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83e8669f41927f24e26338b689a14ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e8669f41927f24e26338b689a14ab6">&#9670;&nbsp;</a></span>bDestroyed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UGKAsyncTaskAttributeChanged::bDestroyed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4bbc696212fd822c594380d7daa59cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4bbc696212fd822c594380d7daa59cd">&#9670;&nbsp;</a></span>DelegateHandles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;FDelegateHandle&gt; UGKAsyncTaskAttributeChanged::DelegateHandles</td>
         </tr>
       </table>
   </td>

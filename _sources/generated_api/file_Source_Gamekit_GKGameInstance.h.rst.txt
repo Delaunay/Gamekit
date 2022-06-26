@@ -35,7 +35,7 @@ Includes
 
 - ``Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
 
-- ``Items/GKItemTypes.h`` (:ref:`file_Source_Gamekit_Items_GKItemTypes.h`)
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
 
 
 

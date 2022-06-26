@@ -1,7 +1,8 @@
 <map id="UGKGameplayAbility::CheckCost" name="UGKGameplayAbility::CheckCost">
-<area shape="rect" id="node1" title=" " alt="" coords="5,79,165,120"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,108,165,149"/>
 <area shape="rect" id="node2" href="$classUGKGameplayAbility.html#afcf5e2afd1c757887272cffc4c088030" title=" " alt="" coords="213,49,373,91"/>
 <area shape="rect" id="node4" href="$classUGKGameplayAbility.html#a2879be12d13c539e8ef35c1409f5ab86" title=" " alt="" coords="629,79,789,120"/>
+<area shape="rect" id="node9" href="$classUGKGameplayAbility.html#a86166eb896a8414841809844bf094a95" title=" " alt="" coords="213,167,373,208"/>
 <area shape="rect" id="node3" href="$classUGKGameplayAbility.html#af5fe64416f06862a0fee0ba1da7160d6" title=" " alt="" coords="421,49,581,91"/>
 <area shape="rect" id="node5" href="$classUGKGameplayAbility.html#aa2fad22b3e33ceaac03dee65a81f81a1" title="Called everytime the Static data is loaded (init &amp; reimport)" alt="" coords="843,5,1003,47"/>
 <area shape="rect" id="node8" href="$classUGKGameplayAbility.html#aeb859eac08183551d59a365a64d604b0" title="Called everytime the DataTable is modified, refresh the cached lookup." alt="" coords="837,71,1008,127"/>

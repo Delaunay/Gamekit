@@ -1,8 +1,0 @@
-<map id="UGKItem" name="UGKItem">
-<area shape="rect" id="node1" title=" " alt="" coords="234,80,315,107"/>
-<area shape="rect" id="node3" href="$classUGKPotionItem.html" title=" " alt="" coords="5,155,128,181"/>
-<area shape="rect" id="node4" href="$classUGKSkillItem.html" title=" " alt="" coords="152,155,261,181"/>
-<area shape="rect" id="node5" href="$classUGKTokenItem.html" title=" " alt="" coords="285,155,403,181"/>
-<area shape="rect" id="node6" href="$classUGKWeaponItem.html" title=" " alt="" coords="427,155,559,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="199,5,350,32"/>
-</map>

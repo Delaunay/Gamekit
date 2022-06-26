@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> GameKit
           </a>
               <div class="version">
-                ad4815c92
+                e3d7ebad0
 
               </div>
 <div role="search">
@@ -116,7 +116,12 @@
 <p>↰ <a class="reference internal" href="file_Source_Gamekit_Abilities_Blueprint_GKAsyncTaskCooldownChanged.cpp.html#file-source-gamekit-abilities-blueprint-gkasynctaskcooldownchanged-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">Source/Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//  MIT License Copyright(c) 2020 Dan Kestranek</span>
 
+<span class="c1">// Include</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Abilities/Blueprint/GKAsyncTaskCooldownChanged.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Gamekit</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/GKLog.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Gamekit/Gamekit.h&quot;</span><span class="cp"></span>
 
 <span class="n">UGKAsyncTaskCooldownChanged</span><span class="w"> </span><span class="o">*</span><span class="nf">UGKAsyncTaskCooldownChanged::ListenForCooldownChange</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="n">AbilitySystemComponent</span><span class="p">,</span><span class="w"></span>
@@ -127,6 +132,7 @@
 <span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">ASC</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="n">AbilitySystemComponent</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">CooldownTags</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">InCooldownTags</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">UseServerCooldown</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">InUseServerCooldown</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">bDestroyed</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsValid</span><span class="p">(</span><span class="n">AbilitySystemComponent</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">InCooldownTags</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -134,11 +140,14 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnActiveGameplayEffectAddedDelegateToSelf</span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">ListenForCooldownChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">OnActiveGameplayEffectAddedCallback</span><span class="p">);</span><span class="w"></span>
-
 <span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayTag</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CooldownTagArray</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">InCooldownTags</span><span class="p">.</span><span class="n">GetGameplayTagArray</span><span class="p">(</span><span class="n">CooldownTagArray</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">DelegateHandles</span><span class="p">.</span><span class="n">Reserve</span><span class="p">(</span><span class="n">CooldownTagArray</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">DelegateHandles</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">OnActiveGameplayEffectAddedDelegateToSelf</span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ListenForCooldownChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">OnActiveGameplayEffectAddedCallback</span><span class="p">));</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">CooldownTag</span><span class="o">:</span><span class="w"> </span><span class="n">CooldownTagArray</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -148,8 +157,9 @@
 <span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RegisterGameplayTagEvent</span><span class="p">(</span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="n">EGameplayTagEventType</span><span class="o">::</span><span class="n">NewOrRemoved</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="n">ListenForCooldownChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">CooldownTagChanged</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ListenForCooldownChange</span><span class="o">-&gt;</span><span class="n">DelegateHandles</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">AbilitySystemComponent</span><span class="o">-&gt;</span><span class="n">RegisterGameplayTagEvent</span><span class="p">(</span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="n">EGameplayTagEventType</span><span class="o">::</span><span class="n">NewOrRemoved</span><span class="p">)</span><span class="w"></span>
+<span class="w">                        </span><span class="p">.</span><span class="n">AddUObject</span><span class="p">(</span><span class="n">ListenForCooldownChange</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UGKAsyncTaskCooldownChanged</span><span class="o">::</span><span class="n">CooldownTagChanged</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ListenForCooldownChange</span><span class="p">;</span><span class="w"></span>
@@ -157,31 +167,41 @@
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">UGKAsyncTaskCooldownChanged::EndTask</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bDestroyed</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">GK_ERROR</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Destroying object twice&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SetReadyToDestroy</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAsyncTaskCooldownChanged::SetReadyToDestroy</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="n">ASC</span><span class="p">))</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">OnActiveGameplayEffectAddedDelegateToSelf</span><span class="p">.</span><span class="n">RemoveAll</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">OnActiveGameplayEffectAddedDelegateToSelf</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">DelegateHandles</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">FGameplayTag</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CooldownTagArray</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">CooldownTags</span><span class="p">.</span><span class="n">GetGameplayTagArray</span><span class="p">(</span><span class="n">CooldownTagArray</span><span class="p">);</span><span class="w"></span>
 
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">FGameplayTag</span><span class="w"> </span><span class="n">CooldownTag</span><span class="o">:</span><span class="w"> </span><span class="n">CooldownTagArray</span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="c1">// Invalid tags would make this crash</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CooldownTag</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">CooldownTag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">FGameplayTag</span><span class="o">::</span><span class="n">EmptyTag</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">RegisterGameplayTagEvent</span><span class="p">(</span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="n">EGameplayTagEventType</span><span class="o">::</span><span class="n">NewOrRemoved</span><span class="p">).</span><span class="n">RemoveAll</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">ASC</span><span class="o">-&gt;</span><span class="n">RegisterGameplayTagEvent</span><span class="p">(</span><span class="n">CooldownTag</span><span class="p">,</span><span class="w"> </span><span class="n">EGameplayTagEventType</span><span class="o">::</span><span class="n">NewOrRemoved</span><span class="p">).</span><span class="n">Remove</span><span class="p">(</span><span class="n">DelegateHandles</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">SetReadyToDestroy</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">MarkAsGarbage</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">SetReadyToDestroy</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">bDestroyed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback</span><span class="p">(</span><span class="n">UAbilitySystemComponent</span><span class="w"> </span><span class="o">*</span><span class="w">   </span><span class="n">Target</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                                      </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectSpec</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">SpecApplied</span><span class="p">,</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">UGKAsyncTaskCooldownChanged::OnActiveGameplayEffectAddedCallback</span><span class="p">(</span><span class="n">UAbilitySystemComponent</span><span class="w">    </span><span class="o">*</span><span class="n">Target</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                      </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectSpec</span><span class="w">  </span><span class="o">&amp;</span><span class="n">SpecApplied</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                                                      </span><span class="n">FActiveGameplayEffectHandle</span><span class="w"> </span><span class="n">ActiveHandle</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">AssetTags</span><span class="p">;</span><span class="w"></span>
@@ -238,8 +258,8 @@
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="nf">UGKAsyncTaskCooldownChanged::GetCooldownRemainingForTag</span><span class="p">(</span><span class="n">FGameplayTagContainer</span><span class="w"> </span><span class="n">InCooldownTags</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                             </span><span class="kt">float</span><span class="w"> </span><span class="o">&amp;</span><span class="w">               </span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                             </span><span class="kt">float</span><span class="w"> </span><span class="o">&amp;</span><span class="w">               </span><span class="n">CooldownDuration</span><span class="p">)</span><span class="w"></span>
+<span class="w">                                                             </span><span class="kt">float</span><span class="w">                </span><span class="o">&amp;</span><span class="n">TimeRemaining</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                             </span><span class="kt">float</span><span class="w">                </span><span class="o">&amp;</span><span class="n">CooldownDuration</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsValid</span><span class="p">(</span><span class="n">ASC</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">InCooldownTags</span><span class="p">.</span><span class="n">Num</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>

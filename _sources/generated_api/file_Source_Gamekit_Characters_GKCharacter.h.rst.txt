@@ -35,6 +35,8 @@ Includes
 
 - ``GameFramework/Character.h``
 
+- ``Gamekit/Abilities/GKAbilityInterface.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilityInterface.h`)
+
 - ``Gamekit/Abilities/GKAbilitySystemComponent.h`` (:ref:`file_Source_Gamekit_Abilities_GKAbilitySystemComponent.h`)
 
 - ``Gamekit/Abilities/GKAttributeSet.h`` (:ref:`file_Source_Gamekit_Abilities_GKAttributeSet.h`)
@@ -44,8 +46,6 @@ Includes
 - ``Gamekit/Characters/GKUnitStatic.h`` (:ref:`file_Source_Gamekit_Characters_GKUnitStatic.h`)
 
 - ``Gamekit/Gamekit.h`` (:ref:`file_Source_Gamekit_Gamekit.h`)
-
-- ``Gamekit/Items/GKInventoryInterface.h`` (:ref:`file_Source_Gamekit_Items_GKInventoryInterface.h`)
 
 - ``GenericTeamAgentInterface.h``
 
