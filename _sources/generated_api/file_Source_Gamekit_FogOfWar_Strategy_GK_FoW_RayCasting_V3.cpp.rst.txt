@@ -8,6 +8,7 @@ File GK_FoW_RayCasting_V3.cpp
 
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
 
+
 .. contents:: Contents
    :local:
    :backlinks: none
@@ -54,7 +55,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GK__FoW__RayCasting__V3_8cpp_1ab67f0c9fe6e58ebef785f8936907cd3f`
-
 - :ref:`exhale_function_GK__FoW__RayCasting__V3_8cpp_1a34a71c6ae828aad8939e38aae0dddf64`
+
+- :ref:`exhale_function_GK__FoW__RayCasting__V3_8cpp_1ab67f0c9fe6e58ebef785f8936907cd3f`
 
