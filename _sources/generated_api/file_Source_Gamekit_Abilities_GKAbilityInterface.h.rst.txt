@@ -78,7 +78,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_GKAbilityInterface_8h_1ac729d791a5b414fe19522f58559814ca`
-
 - :ref:`exhale_function_GKAbilityInterface_8h_1aca9834c5f6a3153e831e500db477140b`
+
+- :ref:`exhale_function_GKAbilityInterface_8h_1ac729d791a5b414fe19522f58559814ca`
 
